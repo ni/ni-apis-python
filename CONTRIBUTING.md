@@ -1,11 +1,11 @@
-# Contributing to \<reponame\> 
+# Contributing to `ni-apis-python`
 
-Contributions to \<reponame\> are welcome from all!
+Contributions to `ni-apis-python` are welcome from all!
 
-\<reponame\> is managed via [git](https://git-scm.com), with the canonical upstream
-repository hosted on [GitHub](https://github.com/ni/<reponame>/).
+`ni-apis-python` is managed via [git](https://git-scm.com), with the canonical upstream
+repository hosted on [GitHub](https://github.com/ni/ni-apis-python/).
 
-\<reponame\> follows a pull-request model for development.  If you wish to
+`ni-apis-python` follows a pull-request model for development.  If you wish to
 contribute, you will need to create a GitHub account, fork this project, push a
 branch with your changes to your project, and then submit a pull request.
 
@@ -21,11 +21,39 @@ See [GitHub's official documentation](https://help.github.com/articles/using-pul
 
 # Getting Started
 
-- TODO: include build steps here.
+To contribute to this project, it is recommended that you follow these steps:
+
+1. Ensure you have [poetry](https://python-poetry.org/)
+   [installed](https://python-poetry.org/docs/#installation)
+2. Fork the repository on GitHub.
+3. Install `ni-apis-python` dependencies using `poetry install`
+4. Run the regression tests on your system (see Testing section). At this point, if any tests fail,
+   do not begin development. Try to investigate these failures. If you're unable to do so, report an
+   issue through our [GitHub issues page](http://github.com/ni/ni-apis-python/issues).
+5. Write new tests that demonstrate your bug or feature. Ensure that these new tests fail.
+6. Make your change.
+7. Run all the regression tests again (including the tests you just added), and confirm that they
+   all pass.
+8. Run `poetry run ni-python-styleguide lint` to check that the updated code follows NI's Python
+   coding conventions. If this reports errors, first run `poetry run ni-python-styleguide fix` in
+   order to sort imports and format the code with Black, then manually fix any remaining errors.
+9. Run `poetry run mypy` to statically type-check the updated code.
+10. Send a GitHub Pull Request to the main repository's `main` branch. GitHub Pull Requests are the
+   expected method of code collaboration on this project.
 
 # Testing
 
-- TODO: include testing steps here.
+In order to be able to run the `ni-apis-python` regression tests, your setup should meet the following minimum
+requirements:
+
+- Machine has a supported version of CPython or PyPy installed.
+- Machine has [poetry](https://python-poetry.org/) installed.
+
+To run the `ni-apis-python` regression tests, run the following command in the root of the distribution:
+
+```sh
+$ poetry run pytest -v
+```
 
 # Developer Certificate of Origin (DCO)
 
@@ -57,5 +85,5 @@ See [GitHub's official documentation](https://help.github.com/articles/using-pul
 
 (taken from [developercertificate.org](https://developercertificate.org/))
 
-See [LICENSE](https://github.com/ni/<reponame>/blob/main/LICENSE)
-for details about how \<reponame\> is licensed.
+See [LICENSE](https://github.com/ni/ni-apis-python/blob/main/LICENSE)
+for details about how `ni-apis-python` is licensed.
