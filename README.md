@@ -2,10 +2,14 @@
 
 - [Table of Contents](#table-of-contents)
 - [About](#about)
+  - [Operating System Support](#operating-system-support)
+  - [Python Version Support](#python-version-support)
 
 # About
 
-NI created and supports this package.
+`ni-apis-python` is a Git repository that provides Python packages for [NI's gRPC APIs](https://github.com/ni/ni-apis).
+
+NI created and supports these packages.
 
 ## Operating System Support
 
