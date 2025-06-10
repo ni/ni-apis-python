@@ -2,58 +2,126 @@
 
 Contributions to `ni-apis-python` are welcome from all!
 
-`ni-apis-python` is managed via [git](https://git-scm.com), with the canonical upstream
-repository hosted on [GitHub](https://github.com/ni/ni-apis-python/).
+`ni-apis-python` is managed via Git, with the canonical upstream
+repository hosted on GitHub at https://github.com/ni/ni-apis-python. This repo
+contains a collection of Python packages for [NI's gRPC APIs](https://github.com/ni/ni-apis).
 
 `ni-apis-python` follows a pull-request model for development.  If you wish to
 contribute, you will need to create a GitHub account, fork this project, push a
 branch with your changes to your project, and then submit a pull request.
 
 Please remember to sign off your commits (e.g., by using `git commit -s` if you
-are using the command line client). This amends your git commit message with a line
+are using the command line client). This amends your Git commit message with a line
 of the form `Signed-off-by: Name Lastname <name.lastmail@emailaddress.com>`. Please
 include all authors of any given commit into the commit message with a
 `Signed-off-by` line. This indicates that you have read and signed the Developer
 Certificate of Origin (see below) and are able to legally submit your code to
 this repository.
 
-See [GitHub's official documentation](https://help.github.com/articles/using-pull-requests/) for more details.
+See [GitHub's official documentation](https://help.github.com/articles/using-pull-requests/)
+for more details.
 
 # Getting Started
 
-To contribute to this project, it is recommended that you follow these steps:
+## Prerequisites
 
-1. Ensure you have [poetry](https://python-poetry.org/)
-   [installed](https://python-poetry.org/docs/#installation)
-2. Fork the repository on GitHub.
-3. Install `ni-apis-python` dependencies using `poetry install`
-4. Run the regression tests on your system (see Testing section). At this point, if any tests fail,
-   do not begin development. Try to investigate these failures. If you're unable to do so, report an
-   issue through our [GitHub issues page](http://github.com/ni/ni-apis-python/issues).
-5. Write new tests that demonstrate your bug or feature. Ensure that these new tests fail.
-6. Make your change.
-7. Run all the regression tests again (including the tests you just added), and confirm that they
-   all pass.
-8. Run `poetry run ni-python-styleguide lint` to check that the updated code follows NI's Python
-   coding conventions. If this reports errors, first run `poetry run ni-python-styleguide fix` in
-   order to sort imports and format the code with Black, then manually fix any remaining errors.
-9. Run `poetry run mypy` to statically type-check the updated code.
-10. Send a GitHub Pull Request to the main repository's `main` branch. GitHub Pull Requests are the
-   expected method of code collaboration on this project.
+- _(Optional)_ Install [Visual Studio Code](https://code.visualstudio.com/download)
+- Install [Git](https://git-scm.com)
+- Install [Python](https://www.python.org/downloads/), any version from the [README](README.md)
+- Install [Poetry](https://python-poetry.org/docs/#installation), version >= 1.8.2
 
-# Testing
+## Clone or update the Git repository
 
-In order to be able to run the `ni-apis-python` regression tests, your setup should meet the following minimum
-requirements:
+To download the source, clone the Git repository.
 
-- Machine has a supported version of CPython or PyPy installed.
-- Machine has [poetry](https://python-poetry.org/) installed.
+```cmd
+git clone --recurse-submodules https://github.com/ni/ni-apis-python.git
+```
 
-To run the `ni-apis-python` regression tests, run the following command in the root of the distribution:
+Specifying `--recurse-submodules` includes the [ni-apis](https://github.com/ni/ni-apis)
+repository. This is required for the [update gRPC stubs](#update-grpc-stubs-if-needed) workflow.
+
+To update the source, you can update the repository and its submodules.
+
+```cmd
+git checkout main
+git pull
+git submodule update --init --recursive
+```
+
+## Select a package to develop
+
+This repository includes multiple Python packages. Some examples:
+- _(waiting for upload -- AB#3159540)_: types used by [NI's gRPC APIs](https://github.com/ni/ni-apis/)
+- _(waiting for upload -- AB#3159540)_: APIs used by [`nipanel-python`](https://github.com/ni/nipanel-python)
+
+Open a terminal window and navigate to the package that you selected.
 
 ```sh
-$ poetry run pytest -v
+# Example: APIs used by nipanel-python
+cd packages\(waiting for upload -- AB#3159540)
 ```
+
+## Install the package and its dependencies
+
+From the package's subdirectory, run the [`poetry install`](https://python-poetry.org/docs/cli/#install)
+command. This creates an in-project virtual environment (`.venv`) and installs
+the package's dependencies and dev-dependencies, as specified in its
+`pyproject.toml` and `poetry.lock` files.
+
+```cmd
+poetry install
+```
+
+## Activate the virtual environment (if needed)
+
+- _(Recommended)_ Activate for each command by prefixing the call with `poetry run {command}`
+- Activate for the lifetime of the shell in the terminal with `poetry shell`
+- Activate in VS Code ([link](https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment))
+
+# Simple Development Loop
+
+```sh
+# Update from main
+git checkout main
+git pull
+git submodule update --init --recursive
+
+# Create a new branch
+git switch --create users/{username}/{branch-purpose}
+
+# Select and package and install its dependencies
+# Example: APIs used by nipanel-python
+cd packages\(waiting for upload -- AB#3159540)
+poetry install
+
+# ✍ Make source changes
+
+# Run the analyzers -- see files in .github/workflows for details
+poetry run nps lint
+poetry run mypy
+
+# Apply safe fixes
+poetry run nps fix
+
+# Run the tests
+poetry run pytest -v
+```
+
+# Update gRPC Stubs (If Needed)
+
+Each package in this repository contains Python files generated from the
+matching protobuf (`.proto`) package in the `ni-apis` Git submodule. These
+Python files must be regenerated whenever the `.proto` files change.
+
+To regenerate the Python files for a package, run the code generator on its directory.
+
+```sh
+# Example: APIs used by nipanel-python
+(waiting for upload -- AB#3159540)
+```
+
+To preview in-work `.proto` file changes, (waiting for upload -- AB#3159540).
 
 # Developer Certificate of Origin (DCO)
 
