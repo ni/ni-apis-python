@@ -27,6 +27,7 @@ for more details.
 
 - _(Optional)_ Install [Visual Studio Code](https://code.visualstudio.com/download)
 - Install [Git](https://git-scm.com)
+  -  _(Optional)_ Configure git to automatically add the `--recurse-submodules` flag with `git config submodule.recurse true`
 - Install [Python](https://www.python.org/downloads/), any version from the [README](README.md)
 - Install [Poetry](https://python-poetry.org/docs/#installation), version >= 1.8.2
 
