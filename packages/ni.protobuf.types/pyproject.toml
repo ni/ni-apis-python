@@ -44,7 +44,6 @@ pytest = ">=7.2"
 pytest-cov = ">=4.0"
 pytest-doctestplus = ">=1.4"
 pytest-mock = ">=3.0"
-tomlkit = ">=0.11.0"
 
 [tool.poetry.group.docs]
 optional = true
@@ -55,8 +54,6 @@ Sphinx = { version = ">=8.2", python = "^3.11" }
 sphinx-rtd-theme = ">=1.0.0"
 sphinx-autoapi = ">=1.8.4"
 m2r2 = ">=0.3.2"
-toml = ">=0.10.2"
-tomlkit = ">=0.11.0"
 
 [build-system]
 requires = ["poetry-core"]
