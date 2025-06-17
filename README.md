@@ -11,6 +11,8 @@
 
 NI created and supports these packages.
 
+- `ni.protobuf.types` -- provides Python stubs for the definitions in the `ni.protobuf.types` package
+
 ## Operating System Support
 
 `ni-apis-python` supports Windows and Linux operating systems.
