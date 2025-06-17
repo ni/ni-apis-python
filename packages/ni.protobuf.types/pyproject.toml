@@ -4,7 +4,10 @@ version = "0.1.0"
 license = "MIT"
 description = "Stubs for the gRPC definitions in ni-apis"
 authors = ["NI <opensource@ni.com>"]
-maintainers = ["Joe Friedrichsen <joe.friedrichsen@emerson.com>"]
+maintainers = [
+  "Brad Keryan <brad.keryan@emerson.com>",
+  "Joe Friedrichsen <joe.friedrichsen@emerson.com>",
+]
 readme = "README.md"
 repository = "https://github.com/ni/ni-apis-python"
 keywords = ["ni-apis", "protobuf"]
