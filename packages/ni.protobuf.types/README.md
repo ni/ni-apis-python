@@ -9,7 +9,7 @@
 
 `ni.protobuf.types` is a Python package that provides Python stubs for the definitions in the [ni.protobuf.types package](https://github.com/ni/ni-apis/tree/main/ni/protobuf/types).
 
-NI created and supports these packages.
+NI created and supports this package.
 
 ## Operating System Support
 
