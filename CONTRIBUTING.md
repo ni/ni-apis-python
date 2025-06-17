@@ -101,6 +101,7 @@ poetry install
 # Run the analyzers -- see files in .github/workflows for details
 poetry run nps lint
 poetry run mypy
+poetry run pyright
 
 # Apply safe fixes
 poetry run nps fix
