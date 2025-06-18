@@ -1,1 +1,1 @@
-"""Namespace package for ni.protobuf.types."""
+"""Package for ni.protobuf.types."""
