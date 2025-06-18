@@ -53,7 +53,7 @@ git submodule update --init --recursive
 ## Select a package to develop
 
 This repository includes multiple Python packages. Some examples:
-- _(waiting for upload -- AB#3159540)_: types used by [NI's gRPC APIs](https://github.com/ni/ni-apis/)
+- `ni.protobuf.types`: types used by [NI's gRPC APIs](https://github.com/ni/ni-apis/)
 - _(waiting for upload -- AB#3159540)_: APIs used by [`nipanel-python`](https://github.com/ni/nipanel-python)
 
 Open a terminal window and navigate to the package that you selected.
@@ -101,6 +101,7 @@ poetry install
 # Run the analyzers -- see files in .github/workflows for details
 poetry run nps lint
 poetry run mypy
+poetry run pyright
 
 # Apply safe fixes
 poetry run nps fix
