@@ -2,7 +2,7 @@
 name = "ni.protobuf.types"
 version = "0.1.0"
 license = "MIT"
-description = "Stubs for the ni.protobuf.types gRPC definitions in ni-apis"
+description = "Protobuf data types for NI gRPC APIs"
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",

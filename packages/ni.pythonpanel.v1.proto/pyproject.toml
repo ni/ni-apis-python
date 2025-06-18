@@ -2,7 +2,7 @@
 name = "ni.pythonpanel.v1.proto"
 version = "0.1.0"
 license = "MIT"
-description = "Stubs for the ni.pythonpanel.v1 gRPC definitions in ni-apis"
+description = "Protobuf generated code for the ni.pythonpanel.v1 gRPC API"
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",

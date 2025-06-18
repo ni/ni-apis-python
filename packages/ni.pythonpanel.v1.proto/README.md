@@ -7,7 +7,7 @@
 
 # About
 
-`ni.pythonpanel.v1.proto` is a Python package that provides Python stubs for the definitions in the [ni.pythonpanel.v1 package](https://github.com/ni/ni-apis).
+`ni.pythonpanel.v1.proto` is a Python package that provides Protobuf generated code for the [ni.pythonpanel.v1 gRPC API](https://github.com/ni/ni-apis/tree/main/ni/pythonpanel/v1).
 
 NI created and supports this package.
 
