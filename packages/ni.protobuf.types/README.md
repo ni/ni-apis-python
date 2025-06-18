@@ -7,7 +7,7 @@
 
 # About
 
-`ni.protobuf.types` is a Python package that provides Python stubs for the definitions in the [ni.protobuf.types package](https://github.com/ni/ni-apis/tree/main/ni/protobuf/types).
+`ni.protobuf.types` is a Python package that provides Protobuf data types for NI gRPC APIs in the [ni.protobuf.types package](https://github.com/ni/ni-apis/tree/main/ni/protobuf/types).
 
 NI created and supports this package.
 

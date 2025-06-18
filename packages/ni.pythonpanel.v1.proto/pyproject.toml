@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "ni.protobuf.types"
+name = "ni.pythonpanel.v1.proto"
 version = "0.1.0"
 license = "MIT"
-description = "Protobuf data types for NI gRPC APIs"
+description = "Protobuf generated code for the ni.pythonpanel.v1 gRPC API"
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",
@@ -10,7 +10,7 @@ maintainers = [
 ]
 readme = "README.md"
 repository = "https://github.com/ni/ni-apis-python"
-keywords = ["ni-apis", "protobuf"]
+keywords = ["ni-apis", "protobuf", "pythonpanel"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
