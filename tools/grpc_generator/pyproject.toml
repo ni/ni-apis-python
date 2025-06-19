@@ -26,7 +26,7 @@ pytest-cov = ">=4.0"
 pytest-mock = ">=3.0"
 
 [build-system]
-requires = ["poetry-core>-1.8"]
+requires = ["poetry-core>=1.8"]
 build-backend = "poetry.core.masonry.api"
 
 
