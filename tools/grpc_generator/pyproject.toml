@@ -1,15 +1,48 @@
 [tool.poetry]
 name = "grpc-generator"
 version = "0.1.0"
-description = ""
-authors = ["Joe Friedrichsen <114173023+jfriedri-ni@users.noreply.github.com>"]
+license = "MIT"
+description = "Python generator for NI gRPC APIs"
+authors = ["NI <opensource@ni.com>"]
 readme = "README.md"
 packages = [{include = "grpc_generator", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 
+[tool.poetry.group.lint.dependencies]
+bandit = { version = ">=1.7", extras = ["toml"] }
+ni-python-styleguide = ">=0.4.1"
+mypy = ">=1.0"
+pyright = { version = ">=1.1.400", extras = ["nodejs"] }
+
+[tool.poetry.group.test.dependencies]
+pytest = ">=7.2"
+pytest-cov = ">=4.0"
+pytest-doctestplus = ">=1.4"
+pytest-mock = ">=3.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.bandit]
+skips = [
+  "B101", # assert_used
+]
+
+[tool.black]
+line-length = 100
+
+[tool.mypy]
+files = "src/,tests/"
+namespace_packages = true
+strict = true
+
+[tool.pyright]
+include = ["src/", "tests/"]
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers"
+testpaths = ["tests"]
