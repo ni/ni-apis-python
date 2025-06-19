@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "grpc-generator"
+name = "ni-apis-grpc-generator"
 version = "0.1.0"
 license = "MIT"
 description = "Python generator for NI gRPC APIs"
