@@ -665,24 +665,6 @@ pytest = ">=6.2.5"
 testing = ["fields", "hunter", "process-tests", "pytest-xdist", "virtualenv"]
 
 [[package]]
-name = "pytest-doctestplus"
-version = "1.4.0"
-description = "Pytest plugin with advanced doctest features."
-optional = false
-python-versions = ">=3.9"
-files = [
-    {file = "pytest_doctestplus-1.4.0-py3-none-any.whl", hash = "sha256:cfbae130ec90d4a2831819bbbfd097121b8e55f1e4d20a47ea992e4eaad2539a"},
-    {file = "pytest_doctestplus-1.4.0.tar.gz", hash = "sha256:df83832b1d11288572df2ee4c7cccdb421d812b8038a658bb514c9c62bdbd626"},
-]
-
-[package.dependencies]
-packaging = ">=17.0"
-pytest = ">=4.6"
-
-[package.extras]
-test = ["numpy", "pytest-remotedata (>=0.3.2)", "setuptools (>=30.3.0)", "sphinx"]
-
-[[package]]
 name = "pytest-mock"
 version = "3.14.1"
 description = "Thin-wrapper around the mock package for easier use with pytest"
@@ -849,4 +831,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "6759eeac2dd169d9d84a6256c1a7c3c1527b321e6d7dbeb685fa259c5d17c382"
+content-hash = "f344891163977c7c60a72bf53fc4a42de978e8f98079e82dd19ed23190bebb6a"

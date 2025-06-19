@@ -23,7 +23,6 @@ pyright = { version = ">=1.1.400", extras = ["nodejs"] }
 [tool.poetry.group.test.dependencies]
 pytest = ">=7.2"
 pytest-cov = ">=4.0"
-pytest-doctestplus = ">=1.4"
 pytest-mock = ">=3.0"
 
 [build-system]
