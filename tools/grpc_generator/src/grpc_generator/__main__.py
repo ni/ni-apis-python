@@ -2,13 +2,17 @@
 
 import logging
 
+import click
+
 
 _logger = logging.getLogger(__name__)
 _logger.addHandler(logging.NullHandler())
 
 
-def cli():
-    """Main entry point for the command line interface."""
+@click.command()
+@click.help_option()
+def cli() -> None:
+    """Generate gRPC Python stubs from proto files."""
     print("Hello World")
 
 
