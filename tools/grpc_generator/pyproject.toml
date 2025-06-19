@@ -7,6 +7,9 @@ authors = ["NI <opensource@ni.com>"]
 readme = "README.md"
 packages = [{include = "grpc_generator", from = "src"}]
 
+[tool.poetry.scripts]
+grpc-generator = "grpc_generator.__main__:cli"
+
 [tool.poetry.dependencies]
 python = "^3.11"
 click = "^8.2.1"
