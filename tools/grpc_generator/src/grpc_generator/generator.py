@@ -3,11 +3,19 @@
 import importlib.resources
 import logging
 import pathlib
+from enum import StrEnum
 from typing import NamedTuple
 
 import click
 import grpc_tools.protoc
 from google.protobuf import descriptor_pb2
+
+
+class OutputFormat(StrEnum):
+    """Supported Python output formats for generated gRPC packages."""
+
+    Submodule = "Submodule"
+    Subpackage = "Subpackage"
 
 
 class GenerationSpec(NamedTuple):
@@ -17,6 +25,7 @@ class GenerationSpec(NamedTuple):
     proto_paths: list[pathlib.Path]
     include_paths: list[pathlib.Path]
     output_path: pathlib.Path
+    output_format: OutputFormat
 
     @property
     def package_descriptor_file(self) -> pathlib.Path:
@@ -73,28 +82,29 @@ def do_generation() -> None:
         proto_paths=hardcoded_protos,
         include_paths=hardcoded_include,
         output_path=hardcoded_output,
+        output_format=OutputFormat.Submodule,
     )
 
     device_spec = GenerationSpec(
         name="nidevice_grpc",
         proto_paths=[pathlib.Path("C:\\dev\\ni\\git\\github\\ni-apis-python\\third_party\\ni-apis\\ni\\grpcdevice\\v1\\session.proto")],
         include_paths=[pathlib.Path("C:\\dev\\ni\\git\\github\\ni-apis-python\\third_party\\ni-apis")],
-        output_path=hardcoded_output
+        output_path=hardcoded_output,
+        output_format=OutputFormat.Subpackage,
     )
 
     all_specs = [preview_spec, device_spec]
 
     for spec in all_specs:
-        delete_generated_files(output_path=spec.output_path)
+        reset_python_package(spec)
         generate_python_files(spec)
-        remove_empty_service_files(spec)
-        transform_files_for_namespace()
+        finalize_python_package(spec)
 
 
-def delete_generated_files(output_path: pathlib.Path) -> None:
+def reset_python_package(generation_spec: GenerationSpec) -> None:
     """Delete all generated gRPC files to accommodate API name changes and deletions."""
     _logger.info(
-        f"{click.style('Deleting', 'red')} old gRPC files in {click.style(str(output_path), 'bright_cyan')}"
+        f"{click.style('Deleting', 'red')} old gRPC files in {click.style(str(generation_spec.output_path), 'bright_cyan')}"
     )
 
 
@@ -126,13 +136,14 @@ def generate_python_files(generation_spec: GenerationSpec) -> None:
     invoke_protoc(protoc_arguments)
 
 
-def remove_empty_service_files(generation_spec: GenerationSpec) -> None:
-    """Detect and remove empty '..._grpc.py' stubs files."""
+def finalize_python_package(generation_spec: GenerationSpec) -> None:
+    """Post process the generated files according to the generation_spec."""
     _logger.info(
         f"{click.style('Removing', 'yellow')} empty gRPC service files in {click.style(str(generation_spec.output_path), 'bright_cyan')}."
     )
 
     inspect_proto_descriptor(generation_spec)
+    transform_files_for_namespace()
 
 
 def inspect_proto_descriptor(generation_spec: GenerationSpec) -> None:
