@@ -52,10 +52,19 @@ def do_generation() -> None:
         output_path=hardcoded_output,
     )
 
-    delete_generated_files(output_path=preview_spec.output_path)
-    generate_python_files(preview_spec)
-    remove_empty_service_files()
-    transform_files_for_namespace()
+    device_spec = GenerationSpec(
+        proto_paths=[pathlib.Path("C:\\dev\\ni\\git\\github\\ni-apis-python\\third_party\\ni-apis\\ni\\grpcdevice\\v1\\session.proto")],
+        include_paths=[pathlib.Path("C:\\dev\\ni\\git\\github\\ni-apis-python\\third_party\\ni-apis")],
+        output_path=hardcoded_output
+    )
+
+    all_specs = [preview_spec, device_spec]
+
+    for spec in all_specs:
+        delete_generated_files(output_path=spec.output_path)
+        generate_python_files(spec)
+        remove_empty_service_files()
+        transform_files_for_namespace()
 
 
 def delete_generated_files(output_path: pathlib.Path) -> None:
