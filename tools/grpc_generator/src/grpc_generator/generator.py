@@ -2,9 +2,18 @@
 
 import logging
 import pathlib
+from typing import NamedTuple
 
 import click
 import grpc_tools.protoc
+
+
+class GenerationSpec(NamedTuple):
+    """A NamedTuple that describes a gRPC package for code generation."""
+
+    proto_paths: list[pathlib.Path]
+    include_paths: list[pathlib.Path]
+    output_path: pathlib.Path
 
 
 _logger = logging.getLogger(__name__)
@@ -37,14 +46,14 @@ def do_generation() -> None:
         ),
     ]
 
-    delete_generated_files(
+    preview_spec = GenerationSpec(
+        proto_paths=hardcoded_protos,
+        include_paths=hardcoded_include,
         output_path=hardcoded_output,
     )
-    generate_python_files(
-        proto_include_paths=hardcoded_include,
-        proto_files=hardcoded_protos,
-        output_path=hardcoded_output,
-    )
+
+    delete_generated_files(output_path=preview_spec.output_path)
+    generate_python_files(preview_spec)
     remove_empty_service_files()
     transform_files_for_namespace()
 
@@ -56,24 +65,22 @@ def delete_generated_files(output_path: pathlib.Path) -> None:
     )
 
 
-def generate_python_files(
-    proto_include_paths: list[pathlib.Path],
-    proto_files: list[pathlib.Path],
-    output_path: pathlib.Path,
-) -> None:
+def generate_python_files(generation_spec: GenerationSpec) -> None:
     """Generate Python files from the Protobuf files."""
     _logger.info(
-        f"{click.style('Generating', 'green')} new gRPC files in {click.style(str(output_path), 'bright_cyan')}"
+        f"{click.style('Generating', 'green')} new gRPC files in {click.style(str(generation_spec.output_path), 'bright_cyan')}"
     )
-    _ = [_logger.info(f"  Include: {path!s}") for path in proto_include_paths]  # type: ignore[func-returns-value]
-    _ = [_logger.info(f"  Compile: {path!s}") for path in proto_files]  # type: ignore[func-returns-value]
+    _ = [_logger.info(f"  Include: {path!s}") for path in generation_spec.include_paths]  # type: ignore[func-returns-value]
+    _ = [_logger.info(f"  Compile: {path!s}") for path in generation_spec.proto_paths]  # type: ignore[func-returns-value]
 
-    proto_include_options = [f"--proto_path={source_path!s}" for source_path in proto_include_paths]
+    proto_include_options = [
+        f"--proto_path={source_path!s}" for source_path in generation_spec.include_paths
+    ]
     output_path_options = [
-        f"{arg_name}={output_path!s}"
+        f"{arg_name}={generation_spec.output_path!s}"
         for arg_name in ["--python_out", "--mypy_out", "--grpc_python_out", "--mypy_grpc_out"]
     ]
-    proto_file_args = [f"{proto_file!s}" for proto_file in proto_files]
+    proto_file_args = [f"{proto_file!s}" for proto_file in generation_spec.proto_paths]
 
     protoc_arguments = ["protoc"]
     protoc_arguments.extend(proto_include_options)
