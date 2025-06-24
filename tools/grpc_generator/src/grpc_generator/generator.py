@@ -8,7 +8,7 @@ from enum import StrEnum
 from typing import NamedTuple
 
 import click
-import grpc_tools.protoc
+import grpc_tools.protoc  # type: ignore[import-untyped]
 from google.protobuf import descriptor_pb2
 
 
@@ -51,22 +51,24 @@ class GenerationSpec(NamedTuple):
         proto_files = sorted(full_proto_path.glob("*.proto"))
         return proto_files
 
-    def get_matching_message_files(self, relative_proto_file_path: pathlib.Path) -> list[pathlib.Path]:
-        """Get the full paths to the generated message files for the specified proto package path."""
+    def get_matching_message_files(
+        self, relative_proto_file_path: pathlib.Path
+    ) -> list[pathlib.Path]:
+        """Get the full paths to the message files for the specified proto package path."""
         full_path = self.output_basepath.joinpath(relative_proto_file_path)
         logic_file = full_path.with_name(f"{full_path.stem}_pb2.py")
         types_file = full_path.with_name(f"{full_path.stem}_pb2.pyi")
         return [logic_file, types_file]
 
-    def get_matching_service_files(self, relative_proto_file_path: pathlib.Path) -> list[pathlib.Path]:
-        """Get the full paths to the generated service files for the specified proto package path."""
+    def get_matching_service_files(
+        self, relative_proto_file_path: pathlib.Path
+    ) -> list[pathlib.Path]:
+        """Get the full paths to the service files for the specified proto package path."""
         full_path = self.output_basepath.joinpath(relative_proto_file_path)
         logic_file = full_path.with_name(f"{full_path.stem}_pb2_grpc.py")
         types_file = full_path.with_name(f"{full_path.stem}_pb2_grpc.pyi")
         return [logic_file, types_file]
 
-
-REPO_ROOT = pathlib.Path(__file__).parents[pathlib.Path(__file__).parts.index("ni-apis-python") - 1]
 
 _logger = logging.getLogger(__name__)
 _logger.addHandler(logging.NullHandler())
@@ -76,15 +78,10 @@ def handle_cli(
     proto_subpath: pathlib.Path,
     output_basepath: pathlib.Path,
     output_format: OutputFormat,
-    proto_basepath: pathlib.Path | None = None,
-    proto_include_paths: list[pathlib.Path] | None = None,
+    proto_basepath: pathlib.Path,
+    proto_include_paths: list[pathlib.Path],
 ) -> None:
     """Handle the command line interface invocation."""
-    if proto_basepath is None:
-        proto_basepath = REPO_ROOT.joinpath("third_party/ni-apis")
-    if proto_include_paths is None:
-        proto_include_paths = [REPO_ROOT.joinpath("third_party/ni-apis")]
-
     all_include_paths = set([proto_basepath, *proto_include_paths])
     generation_spec = GenerationSpec(
         proto_basepath=proto_basepath,
@@ -98,8 +95,10 @@ def handle_cli(
 
 
 def do_generation(generation_spec: GenerationSpec) -> None:
-    """Generate gRPC files."""
-    _logger.info(f"Starting {click.style(generation_spec.name, 'bright_cyan')} as {click.style(generation_spec.output_format, 'bright_cyan')}")
+    """Regenerate the gRPC package according to the generation_spec."""
+    _logger.info(
+        f"Starting {click.style(generation_spec.name, 'bright_cyan')} as {click.style(generation_spec.output_format, 'bright_cyan')}"
+    )
     reset_python_package(generation_spec)
     generate_python_files(generation_spec)
     finalize_python_package(generation_spec)
@@ -218,4 +217,6 @@ def invoke_protoc(protoc_arguments: list[str]) -> None:
     exit_code = grpc_tools.protoc.main(protoc_arguments)
     _logger.info(f"    Outcome: {exit_code}")
     if exit_code != 0:
-        raise RuntimeError(click.style(f"protoc exited with error code {exit_code}", "bright_magenta"))
+        raise RuntimeError(
+            click.style(f"protoc exited with error code {exit_code}", "bright_magenta")
+        )
