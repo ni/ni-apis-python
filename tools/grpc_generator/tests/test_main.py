@@ -3,7 +3,7 @@
 import pathlib
 
 from click.testing import CliRunner, Result
-from grpc_generator import __main__
+from grpc_generator import __main__, generator
 
 
 def call_generate(args: list[str]) -> Result:
@@ -45,9 +45,9 @@ def test_generate_submodules(tmp_path: pathlib.Path) -> None:
     result = call_generate(
         [
             "--output-basepath",
-            f"{pathlib.Path(tmp_path)!s}",
+            f"{tmp_path!s}",
             "--output-format",
-            "Submodule",
+            generator.OutputFormat.Submodule,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
@@ -64,9 +64,9 @@ def test_generate_subpackages(tmp_path: pathlib.Path) -> None:
     result = call_generate(
         [
             "--output-basepath",
-            f"{pathlib.Path(tmp_path)!s}",
+            f"{tmp_path!s}",
             "--output-format",
-            "Subpackage",
+            generator.OutputFormat.Subpackage,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
@@ -82,9 +82,9 @@ def test_regeneration(tmp_path: pathlib.Path) -> None:
     result = call_generate(
         [
             "--output-basepath",
-            f"{pathlib.Path(tmp_path)!s}",
+            f"{tmp_path!s}",
             "--output-format",
-            "Submodule",
+            generator.OutputFormat.Submodule,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
@@ -101,9 +101,9 @@ def test_regeneration(tmp_path: pathlib.Path) -> None:
     result = call_generate(
         [
             "--output-basepath",
-            f"{pathlib.Path(tmp_path)!s}",
+            f"{tmp_path!s}",
             "--output-format",
-            "Submodule",
+            generator.OutputFormat.Submodule,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
