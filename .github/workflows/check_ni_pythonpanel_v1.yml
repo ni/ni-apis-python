@@ -36,7 +36,7 @@ jobs:
       - name: Mypy static analysis (Windows)
         run:  poetry run mypy --platform win32
       - name: Bandit security checks
-        run:  poetry run bandit -c pyproject.toml -r src/ni/pythonpanel/v1
+        run:  poetry run bandit -c pyproject.toml -r src/ni
       - name: Add virtualenv to the path for pyright-action
         run: echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
       - name: Pyright static analysis (Linux)
