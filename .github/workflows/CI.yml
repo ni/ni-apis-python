@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  check_ni_protobuf_types:
+    name: Check ni.protobuf.types
+    uses: ./.github/workflows/check_package.yml
+    with:
+      package_name: ni.protobuf.types
+  check_ni_pythonpanel_v1_proto:
+    name: Check ni.pythonpanel.v1.proto
+    uses: ./.github/workflows/check_package.yml
+    with:
+      package_name: ni.pythonpanel.v1.proto
