@@ -22,33 +22,45 @@ class OutputFormat(StrEnum):
 class GenerationSpec(NamedTuple):
     """A NamedTuple that describes a gRPC package for code generation."""
 
-    name: str
-    proto_paths: list[pathlib.Path]
+    proto_basepath: pathlib.Path
+    proto_subpath: pathlib.Path
     include_paths: list[pathlib.Path]
-    output_root_path: pathlib.Path
+    output_basepath: pathlib.Path
     output_format: OutputFormat
+
+    @property
+    def name(self) -> str:
+        """Return the name of the protobuf package."""
+        subpath_as_name = self.proto_subpath.as_posix().replace("/", ".")
+        return subpath_as_name
 
     @property
     def package_folder(self) -> pathlib.Path:
         """Return the full path to the folder for the generated files."""
-        name_as_path = self.name.replace(".", "/")
-        return self.output_root_path.joinpath(name_as_path)
+        return self.output_basepath.joinpath(self.proto_subpath)
 
     @property
     def package_descriptor_file(self) -> pathlib.Path:
-        """Return the path for the package's FileDescriptorSet."""
-        return self.output_root_path.joinpath(f"{self.name}-descriptor.pb")
+        """Return the path to use for the package's FileDescriptorSet."""
+        return self.output_basepath.joinpath(f"{self.name}-descriptor.pb")
+
+    @property
+    def proto_paths(self) -> list[pathlib.Path]:
+        """Return a list of all proto files under proto_subpath."""
+        full_proto_path = self.proto_basepath.joinpath(self.proto_subpath)
+        proto_files = sorted(full_proto_path.glob("*.proto"))
+        return proto_files
 
     def get_matching_message_files(self, relative_proto_file_path: pathlib.Path) -> list[pathlib.Path]:
         """Get the full paths to the generated message files for the specified proto package path."""
-        full_path = self.output_root_path.joinpath(relative_proto_file_path)
+        full_path = self.output_basepath.joinpath(relative_proto_file_path)
         logic_file = full_path.with_name(f"{full_path.stem}_pb2.py")
         types_file = full_path.with_name(f"{full_path.stem}_pb2.pyi")
         return [logic_file, types_file]
 
     def get_matching_service_files(self, relative_proto_file_path: pathlib.Path) -> list[pathlib.Path]:
         """Get the full paths to the generated service files for the specified proto package path."""
-        full_path = self.output_root_path.joinpath(relative_proto_file_path)
+        full_path = self.output_basepath.joinpath(relative_proto_file_path)
         logic_file = full_path.with_name(f"{full_path.stem}_pb2_grpc.py")
         types_file = full_path.with_name(f"{full_path.stem}_pb2_grpc.pyi")
         return [logic_file, types_file]
@@ -69,34 +81,20 @@ def do_generation() -> None:
     hardcoded_include = [
         pathlib.Path("C:\\dev\\ni\\git\\github\\ni-apis-python\\third_party\\ni-apis"),
     ]
-    hardcoded_protos = [
-        pathlib.Path(
-            "C:\\dev\\ni\\git\\github\\ni-apis-python\\third_party\\ni-apis\\ni\\protobuf\\types\\array.proto"
-        ),
-        pathlib.Path(
-            "C:\\dev\\ni\\git\\github\\ni-apis-python\\third_party\\ni-apis\\ni\\protobuf\\types\\precision_timestamp.proto"
-        ),
-        pathlib.Path(
-            "C:\\dev\\ni\\git\\github\\ni-apis-python\\third_party\\ni-apis\\ni\\protobuf\\types\\waveform.proto"
-        ),
-        pathlib.Path(
-            "C:\\dev\\ni\\git\\github\\ni-apis-python\\third_party\\ni-apis\\ni\\protobuf\\types\\xydata.proto"
-        ),
-    ]
 
     preview_spec = GenerationSpec(
-        name="ni.protobuf.types",
-        proto_paths=hardcoded_protos,
+        proto_basepath=hardcoded_include[0],
+        proto_subpath=pathlib.Path("ni/protobuf/types"),
         include_paths=hardcoded_include,
-        output_root_path=hardcoded_output,
+        output_basepath=hardcoded_output,
         output_format=OutputFormat.Submodule,
     )
 
     device_spec = GenerationSpec(
-        name="ni.grpcdevice.v1",
-        proto_paths=[pathlib.Path("C:\\dev\\ni\\git\\github\\ni-apis-python\\third_party\\ni-apis\\ni\\grpcdevice\\v1\\session.proto")],
+        proto_basepath=hardcoded_include[0],
+        proto_subpath=pathlib.Path("ni/grpcdevice/v1"),
         include_paths=hardcoded_include,
-        output_root_path=hardcoded_output,
+        output_basepath=hardcoded_output,
         output_format=OutputFormat.Subpackage,
     )
 
@@ -131,7 +129,7 @@ def generate_python_files(generation_spec: GenerationSpec) -> None:
         f"--proto_path={source_path!s}" for source_path in generation_spec.include_paths
     ]
     output_path_options = [
-        f"{arg_name}={generation_spec.output_root_path!s}"
+        f"{arg_name}={generation_spec.output_basepath!s}"
         for arg_name in ["--python_out", "--mypy_out", "--grpc_python_out", "--mypy_grpc_out"]
     ]
     proto_file_args = [f"{proto_file!s}" for proto_file in generation_spec.proto_paths]
