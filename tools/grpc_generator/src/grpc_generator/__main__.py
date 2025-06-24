@@ -39,7 +39,7 @@ REPO_ROOT = pathlib.Path(__file__).parents[pathlib.Path(__file__).parts.index("n
     type=click.Path(file_okay=False, path_type=pathlib.Path),
     default=[REPO_ROOT.joinpath("third_party/ni-apis")],
     show_default=True,
-    help="Add PATH to the import search list",
+    help="Add PATH to the import search list, can be used more than once",
 )
 @click.option(
     "--proto-subpath",
