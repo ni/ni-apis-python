@@ -134,6 +134,7 @@ def generate_python_files(generation_spec: GenerationSpec) -> None:
         *proto_file_args,
     ]
 
+    generation_spec.output_basepath.mkdir(parents=True, exist_ok=True)
     invoke_protoc(protoc_arguments)
 
 
@@ -163,6 +164,8 @@ def finalize_python_package(generation_spec: GenerationSpec) -> None:
         case OutputFormat.Submodule:
             add_submodule_files(generation_spec)
 
+    generation_spec.package_descriptor_file.unlink()
+
 
 def transform_files_for_namespace(generation_spec: GenerationSpec) -> None:
     """Convert a submodule to a subpackage."""
@@ -188,7 +191,7 @@ def add_submodule_files(generation_spec: GenerationSpec) -> None:
 
     init_file = generation_spec.package_folder.joinpath("__init__.py")
     init_file.touch()
-    init_file.write_bytes(b'"""Auto generated gRPC files."""\n')
+    init_file.write_text(f'"""Package for {generation_spec.name}."""\n')
     click.echo(f"    Created: {init_file!s}")
 
     py_typed_file = init_file.with_name("py.typed")
