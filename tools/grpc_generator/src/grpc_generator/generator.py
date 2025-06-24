@@ -39,16 +39,16 @@ class GenerationSpec(NamedTuple):
         """Return the path for the package's FileDescriptorSet."""
         return self.output_root_path.joinpath(f"{self.name}-descriptor.pb")
 
-    def get_matching_message_files(self, relative_path: pathlib.Path) -> list[pathlib.Path]:
+    def get_matching_message_files(self, relative_proto_file_path: pathlib.Path) -> list[pathlib.Path]:
         """Get the full paths to the generated message files for the specified proto package path."""
-        full_path = self.output_root_path.joinpath(relative_path)
+        full_path = self.output_root_path.joinpath(relative_proto_file_path)
         logic_file = full_path.with_name(f"{full_path.stem}_pb2.py")
         types_file = full_path.with_name(f"{full_path.stem}_pb2.pyi")
         return [logic_file, types_file]
 
-    def get_matching_service_files(self, relative_path: pathlib.Path) -> list[pathlib.Path]:
+    def get_matching_service_files(self, relative_proto_file_path: pathlib.Path) -> list[pathlib.Path]:
         """Get the full paths to the generated service files for the specified proto package path."""
-        full_path = self.output_root_path.joinpath(relative_path)
+        full_path = self.output_root_path.joinpath(relative_proto_file_path)
         logic_file = full_path.with_name(f"{full_path.stem}_pb2_grpc.py")
         types_file = full_path.with_name(f"{full_path.stem}_pb2_grpc.pyi")
         return [logic_file, types_file]
