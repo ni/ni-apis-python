@@ -1,7 +1,6 @@
 """Generate gRPC Python stubs from proto files."""
 
 import importlib.resources
-import logging
 import pathlib
 import shutil
 from enum import StrEnum
@@ -70,10 +69,6 @@ class GenerationSpec(NamedTuple):
         return [logic_file, types_file]
 
 
-_logger = logging.getLogger(__name__)
-_logger.addHandler(logging.NullHandler())
-
-
 def handle_cli(
     proto_subpath: pathlib.Path,
     output_basepath: pathlib.Path,
@@ -96,7 +91,7 @@ def handle_cli(
 
 def do_generation(generation_spec: GenerationSpec) -> None:
     """Regenerate the gRPC package according to the generation_spec."""
-    _logger.info(
+    click.echo(
         f"Starting {click.style(generation_spec.name, 'bright_cyan')} as {click.style(generation_spec.output_format, 'bright_cyan')}"
     )
     reset_python_package(generation_spec)
@@ -106,7 +101,7 @@ def do_generation(generation_spec: GenerationSpec) -> None:
 
 def reset_python_package(generation_spec: GenerationSpec) -> None:
     """Delete all generated gRPC files to accommodate API name changes and deletions."""
-    _logger.info(
+    click.echo(
         f"  {click.style('Deleting', 'red')} all files under {click.style(str(generation_spec.package_folder), 'bright_cyan')}"
     )
     if not generation_spec.package_folder.exists():
@@ -116,11 +111,11 @@ def reset_python_package(generation_spec: GenerationSpec) -> None:
 
 def generate_python_files(generation_spec: GenerationSpec) -> None:
     """Generate Python files from the Protobuf files."""
-    _logger.info(
+    click.echo(
         f"  {click.style('Generating', 'green')} new gRPC files in {click.style(str(generation_spec.package_folder), 'bright_cyan')}"
     )
-    _ = [_logger.info(f"    Include: {path!s}") for path in generation_spec.include_paths]  # type: ignore[func-returns-value]
-    _ = [_logger.info(f"    Compile: {path!s}") for path in generation_spec.proto_paths]  # type: ignore[func-returns-value]
+    _ = [click.echo(f"    Include: {path!s}") for path in generation_spec.include_paths]  # type: ignore[func-returns-value]
+    _ = [click.echo(f"    Compile: {path!s}") for path in generation_spec.proto_paths]  # type: ignore[func-returns-value]
 
     proto_include_options = [
         f"--proto_path={source_path!s}" for source_path in generation_spec.include_paths
@@ -151,13 +146,13 @@ def finalize_python_package(generation_spec: GenerationSpec) -> None:
     for file_descriptor in package_descriptor_set.file:
         relative_proto_file_path = pathlib.Path(file_descriptor.name)
         if not file_descriptor.message_type:
-            _logger.info(
+            click.echo(
                 f"  {click.style('Removing', 'yellow')} empty gRPC message files for {click.style(file_descriptor.name, 'bright_cyan')}"
             )
             remove_files(generation_spec.get_matching_message_files(relative_proto_file_path))
 
         if not file_descriptor.service:
-            _logger.info(
+            click.echo(
                 f"  {click.style('Removing', 'yellow')} empty gRPC service files for {click.style(file_descriptor.name, 'bright_cyan')}"
             )
             remove_files(generation_spec.get_matching_service_files(relative_proto_file_path))
@@ -171,7 +166,7 @@ def finalize_python_package(generation_spec: GenerationSpec) -> None:
 
 def transform_files_for_namespace(generation_spec: GenerationSpec) -> None:
     """Convert a submodule to a subpackage."""
-    _logger.info(f"  {click.style('Transforming', 'yellow')} gRPC submodules to subpackages")
+    click.echo(f"  {click.style('Transforming', 'yellow')} gRPC submodules to subpackages")
     files = sorted(generation_spec.package_folder.glob("*.py*"))
     new_subpackage_folders: set[pathlib.Path] = set()
     for file in files:
@@ -180,32 +175,32 @@ def transform_files_for_namespace(generation_spec: GenerationSpec) -> None:
         submodule_file = subpackage_folder.joinpath(f"__init__{file.suffix}")
         subpackage_folder.mkdir(exist_ok=True)
         file.rename(submodule_file)
-        _logger.info(f"    Xformed: {submodule_file!s}")
+        click.echo(f"    Xformed: {submodule_file!s}")
     for folder in new_subpackage_folders:
         py_typed_file = folder.joinpath("py.typed")
         py_typed_file.touch()
-        _logger.info(f"    Created: {folder.joinpath('py.typed')!s}")
+        click.echo(f"    Created: {folder.joinpath('py.typed')!s}")
 
 
 def add_submodule_files(generation_spec: GenerationSpec) -> None:
     """Add an __init__.py file to the specified protobuf package."""
-    _logger.info(f"  {click.style('Initializing', 'yellow')} gRPC submodules")
+    click.echo(f"  {click.style('Initializing', 'yellow')} gRPC submodules")
 
     init_file = generation_spec.package_folder.joinpath("__init__.py")
     init_file.touch()
     init_file.write_bytes(b'"""Auto generated gRPC files."""\n')
-    _logger.info(f"    Created: {init_file!s}")
+    click.echo(f"    Created: {init_file!s}")
 
     py_typed_file = init_file.with_name("py.typed")
     py_typed_file.touch()
-    _logger.info(f"    Created: {py_typed_file!s}")
+    click.echo(f"    Created: {py_typed_file!s}")
 
 
 def remove_files(files: list[pathlib.Path]) -> None:
     """Delete the specified files."""
     for file in files:
         file.unlink()
-        _logger.info(f"    Removed: {file!s}")
+        click.echo(f"    Removed: {file!s}")
 
 
 def invoke_protoc(protoc_arguments: list[str]) -> None:
@@ -213,9 +208,9 @@ def invoke_protoc(protoc_arguments: list[str]) -> None:
     builtin_proto_folder = importlib.resources.files(grpc_tools).joinpath("_proto")
     protoc_arguments.insert(1, f"--proto_path={builtin_proto_folder!s}")
 
-    _logger.info(f"    Invoking '{click.style(' '.join(protoc_arguments), 'bright_white')}'")
+    click.echo(f"    Invoking '{click.style(' '.join(protoc_arguments), 'bright_white')}'")
     exit_code = grpc_tools.protoc.main(protoc_arguments)
-    _logger.info(f"    Outcome: {exit_code}")
+    click.echo(f"    Outcome: {exit_code}")
     if exit_code != 0:
         raise RuntimeError(
             click.style(f"protoc exited with error code {exit_code}", "bright_magenta")

@@ -1,15 +1,11 @@
 """grpc_generator entry points."""
 
-import logging
 import pathlib
 
 import click
 
 from . import generator
 
-
-_logger = logging.getLogger(__name__)
-_logger.addHandler(logging.NullHandler())
 
 REPO_ROOT = pathlib.Path(__file__).parents[pathlib.Path(__file__).parts.index("ni-apis-python") - 1]
 
@@ -61,12 +57,6 @@ def cli(
     output_format: str,
 ) -> None:
     """Generate gRPC Python stubs from proto files."""
-    logging.basicConfig(
-        format="{levelname:<8} {module:>16}:{funcName:<30} L{lineno:<4} {message}",
-        style="{",
-        level=logging.INFO,
-    )
-
     generator.handle_cli(
         proto_subpath=proto_subpath,
         output_basepath=output_basepath,
