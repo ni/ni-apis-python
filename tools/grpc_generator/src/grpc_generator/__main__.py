@@ -1,6 +1,7 @@
 """grpc_generator entry points."""
 
 import logging
+import pathlib
 
 import click
 

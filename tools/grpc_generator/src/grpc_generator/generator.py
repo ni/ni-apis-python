@@ -66,45 +66,43 @@ class GenerationSpec(NamedTuple):
         return [logic_file, types_file]
 
 
+REPO_ROOT = pathlib.Path(__file__).parents[pathlib.Path(__file__).parts.index("ni-apis-python") - 1]
+
 _logger = logging.getLogger(__name__)
 _logger.addHandler(logging.NullHandler())
 
 
-def handle_cli() -> None:
+def handle_cli(
+    proto_subpath: pathlib.Path,
+    output_basepath: pathlib.Path,
+    output_format: OutputFormat,
+    proto_basepath: pathlib.Path | None = None,
+    proto_include_paths: list[pathlib.Path] | None = None,
+) -> None:
     """Handle the command line interface invocation."""
-    do_generation()
+    if proto_basepath is None:
+        proto_basepath = REPO_ROOT.joinpath("third_party/ni-apis")
+    if proto_include_paths is None:
+        proto_include_paths = [REPO_ROOT.joinpath("third_party/ni-apis")]
+
+    all_include_paths = set([proto_basepath, *proto_include_paths])
+    generation_spec = GenerationSpec(
+        proto_basepath=proto_basepath,
+        proto_subpath=proto_subpath,
+        include_paths=sorted(all_include_paths),
+        output_basepath=output_basepath,
+        output_format=output_format,
+    )
+
+    do_generation(generation_spec)
 
 
-def do_generation() -> None:
+def do_generation(generation_spec: GenerationSpec) -> None:
     """Generate gRPC files."""
-    hardcoded_output = pathlib.Path("C:\\dev\\scratch")
-    hardcoded_include = [
-        pathlib.Path("C:\\dev\\ni\\git\\github\\ni-apis-python\\third_party\\ni-apis"),
-    ]
-
-    preview_spec = GenerationSpec(
-        proto_basepath=hardcoded_include[0],
-        proto_subpath=pathlib.Path("ni/protobuf/types"),
-        include_paths=hardcoded_include,
-        output_basepath=hardcoded_output,
-        output_format=OutputFormat.Submodule,
-    )
-
-    device_spec = GenerationSpec(
-        proto_basepath=hardcoded_include[0],
-        proto_subpath=pathlib.Path("ni/grpcdevice/v1"),
-        include_paths=hardcoded_include,
-        output_basepath=hardcoded_output,
-        output_format=OutputFormat.Subpackage,
-    )
-
-    all_specs = [preview_spec, device_spec]
-
-    for spec in all_specs:
-        _logger.info(f"Starting {click.style(spec.name, 'bright_cyan')} as {click.style(spec.output_format, 'bright_cyan')}")
-        reset_python_package(spec)
-        generate_python_files(spec)
-        finalize_python_package(spec)
+    _logger.info(f"Starting {click.style(generation_spec.name, 'bright_cyan')} as {click.style(generation_spec.output_format, 'bright_cyan')}")
+    reset_python_package(generation_spec)
+    generate_python_files(generation_spec)
+    finalize_python_package(generation_spec)
 
 
 def reset_python_package(generation_spec: GenerationSpec) -> None:
