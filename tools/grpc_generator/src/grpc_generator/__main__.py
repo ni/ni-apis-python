@@ -1,6 +1,8 @@
 """grpc_generator entry points."""
 
 import pathlib
+import warnings
+warnings.filterwarnings("ignore")  # grpc_tools\protoc.py:21: UserWarning: pkg_resources is deprecated as an API
 
 import click
 
