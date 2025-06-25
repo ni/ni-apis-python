@@ -106,7 +106,15 @@ def reset_python_package(generation_spec: GenerationSpec) -> None:
     )
     if not generation_spec.package_folder.exists():
         return
-    shutil.rmtree(generation_spec.package_folder)
+
+    match generation_spec.output_format:
+        case OutputFormat.Subpackage:
+            shutil.rmtree(generation_spec.package_folder)
+        case OutputFormat.Submodule:
+            grpc_files = sorted(generation_spec.package_folder.glob("*_pb2.py*"))
+            grpc_files.extend(generation_spec.package_folder.glob("*_pb2_grpc.py*"))
+            for file in grpc_files:
+                file.unlink()
 
 
 def generate_python_files(generation_spec: GenerationSpec) -> None:
