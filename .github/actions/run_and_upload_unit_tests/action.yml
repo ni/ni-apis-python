@@ -4,7 +4,6 @@ inputs:
   package-name:  # id of input
     description: 'The name of the package to run tests for.'
     required: true
-outputs:
 runs:
   using: "composite"
   steps:
