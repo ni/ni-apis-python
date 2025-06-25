@@ -78,7 +78,42 @@ def test_generate_subpackages(tmp_path: pathlib.Path) -> None:
 
 
 def test_regeneration(tmp_path: pathlib.Path) -> None:
-    """Does it regenerate a Python package?"""
+    """Does it correctly regenerate a Python package?"""
+    # Add files to the package that are not gRPC APIs
+    output_folder = tmp_path.joinpath("ni/protobuf/types")
+    output_folder.mkdir(parents=True, exist_ok=True)
+    support_files = [
+        output_folder.joinpath("helper.py"),
+        output_folder.joinpath("converter.py"),
+    ]
+    for support_file in support_files:
+        support_file.touch()
+    result = call_generate(
+        [
+            "--output-basepath",
+            f"{tmp_path!s}",
+            "--output-format",
+            generator.OutputFormat.Submodule,
+            "--proto-subpath",
+            "ni/protobuf/types",
+        ]
+    )
+    assert result.exit_code == 0
+    assert_is_submodule(output_folder)
+    assert len(sorted(output_folder.glob("*_pb2_grpc.*"))) == 0
+    for support_file in support_files:
+        assert support_file.exists(), "Support file incorrectly deleted!"
+
+    # Mimic an API change by pretending the first version has this API
+    previous_api_files = [
+        output_folder.joinpath("previous_grpc_file_pb2.py"),
+        output_folder.joinpath("previous_grpc_file_pb2.pyi"),
+        output_folder.joinpath("previous_grpc_file_pb2_grpc.py"),
+        output_folder.joinpath("previous_grpc_file_pb2_grpc.pyi"),
+    ]
+    for previous_api_file in previous_api_files:
+        previous_api_file.touch()
+
     result = call_generate(
         [
             "--output-basepath",
@@ -93,23 +128,7 @@ def test_regeneration(tmp_path: pathlib.Path) -> None:
     output_folder = tmp_path.joinpath("ni/protobuf/types")
     assert_is_submodule(output_folder)
     assert len(sorted(output_folder.glob("*_pb2_grpc.*"))) == 0
-
-    # Mimic an API change by pretending the first version has this file
-    previous_file = output_folder.joinpath("previous_grpc_file.py")
-    previous_file.touch()
-
-    result = call_generate(
-        [
-            "--output-basepath",
-            f"{tmp_path!s}",
-            "--output-format",
-            generator.OutputFormat.Submodule,
-            "--proto-subpath",
-            "ni/protobuf/types",
-        ]
-    )
-    assert result.exit_code == 0
-    output_folder = tmp_path.joinpath("ni/protobuf/types")
-    assert_is_submodule(output_folder)
-    assert len(sorted(output_folder.glob("*_pb2_grpc.*"))) == 0
-    assert not previous_file.exists()
+    for previous_api_file in previous_api_files:
+        assert not previous_api_file.exists()
+    for support_file in support_files:
+        assert support_file.exists(), "Support file incorrectly deleted!"
