@@ -58,11 +58,11 @@ def cli(
 ) -> None:
     """Generate gRPC Python stubs from proto files."""
     generator.handle_cli(
+        proto_basepath=proto_basepath,
         proto_subpath=proto_subpath,
+        proto_include_paths=proto_include_path,
         output_basepath=output_basepath,
         output_format=generator.OutputFormat(output_format),
-        proto_basepath=proto_basepath,
-        proto_include_paths=proto_include_path,
     )
 
 

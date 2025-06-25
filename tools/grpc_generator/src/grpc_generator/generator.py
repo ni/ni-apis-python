@@ -23,7 +23,7 @@ class GenerationSpec(NamedTuple):
 
     proto_basepath: pathlib.Path
     proto_subpath: pathlib.Path
-    include_paths: list[pathlib.Path]
+    proto_include_paths: list[pathlib.Path]
     output_basepath: pathlib.Path
     output_format: OutputFormat
 
@@ -70,18 +70,18 @@ class GenerationSpec(NamedTuple):
 
 
 def handle_cli(
+    proto_basepath: pathlib.Path,
     proto_subpath: pathlib.Path,
+    proto_include_paths: list[pathlib.Path],
     output_basepath: pathlib.Path,
     output_format: OutputFormat,
-    proto_basepath: pathlib.Path,
-    proto_include_paths: list[pathlib.Path],
 ) -> None:
     """Handle the command line interface invocation."""
     all_include_paths = set([proto_basepath, *proto_include_paths])
     generation_spec = GenerationSpec(
         proto_basepath=proto_basepath,
         proto_subpath=proto_subpath,
-        include_paths=sorted(all_include_paths),
+        proto_include_paths=sorted(all_include_paths),
         output_basepath=output_basepath,
         output_format=output_format,
     )
@@ -122,11 +122,11 @@ def generate_python_files(generation_spec: GenerationSpec) -> None:
     click.echo(
         f"  {click.style('Generating', 'green')} new gRPC files in {click.style(str(generation_spec.package_folder), 'bright_cyan')}"
     )
-    _ = [click.echo(f"    Include: {path!s}") for path in generation_spec.include_paths]  # type: ignore[func-returns-value]
+    _ = [click.echo(f"    Include: {path!s}") for path in generation_spec.proto_include_paths]  # type: ignore[func-returns-value]
     _ = [click.echo(f"    Compile: {path!s}") for path in generation_spec.proto_paths]  # type: ignore[func-returns-value]
 
     proto_include_options = [
-        f"--proto_path={source_path!s}" for source_path in generation_spec.include_paths
+        f"--proto_path={source_path!s}" for source_path in generation_spec.proto_include_paths
     ]
     output_path_options = [
         f"{arg_name}={generation_spec.output_basepath!s}"
