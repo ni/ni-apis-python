@@ -108,7 +108,7 @@ def do_generation(generation_spec: GenerationSpec) -> None:
 def reset_python_package(generation_spec: GenerationSpec) -> None:
     """Delete all generated gRPC files to accommodate API name changes and deletions."""
     click.echo(
-        f"  {click.style('Deleting', 'red')} all files under {click.style(str(generation_spec.package_folder), 'bright_cyan')}"
+        f"  {click.style('Deleting', 'red')} all gRPC files under {click.style(str(generation_spec.package_folder), 'bright_cyan')}"
     )
     if not generation_spec.package_folder.exists():
         return
@@ -119,8 +119,7 @@ def reset_python_package(generation_spec: GenerationSpec) -> None:
         case OutputFormat.Submodule:
             grpc_files = sorted(generation_spec.package_folder.glob("*_pb2.py*"))
             grpc_files.extend(generation_spec.package_folder.glob("*_pb2_grpc.py*"))
-            for file in grpc_files:
-                file.unlink()
+            remove_files(grpc_files)
 
 
 def generate_python_files(generation_spec: GenerationSpec) -> None:
