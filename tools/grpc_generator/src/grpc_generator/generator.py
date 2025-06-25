@@ -11,6 +11,11 @@ import grpc_tools.protoc  # type: ignore[import-untyped]
 from google.protobuf import descriptor_pb2
 
 
+USAGE_EXAMPLE = """Example
+
+grpc-generator  --proto-subpath ni/protobuf/types  --output-basepath ../../packages/ni.protobuf.types/src  --output-format Submodule"""
+
+
 class OutputFormat(StrEnum):
     """Supported Python output formats for generated gRPC packages."""
 

@@ -10,7 +10,7 @@ from . import generator
 REPO_ROOT = pathlib.Path(__file__).parents[pathlib.Path(__file__).parts.index("ni-apis-python") - 1]
 
 
-@click.command()
+@click.command(epilog=generator.USAGE_EXAMPLE)
 @click.option(
     "--output-basepath",
     metavar="PATH",
@@ -49,6 +49,7 @@ REPO_ROOT = pathlib.Path(__file__).parents[pathlib.Path(__file__).parts.index("n
     help="Use the proto files under PATH as input",
 )
 @click.help_option()
+@click.version_option()
 def cli(
     proto_basepath: pathlib.Path,
     proto_subpath: pathlib.Path,
