@@ -40,7 +40,7 @@ jobs:
       - name: Upload ni.protobuf.types test results
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: test_results_unit_${{ matrix.os }}_py${{ matrix.python-version }}
+          name: test_results_unit_ni_protobuf_types${{ matrix.os }}_py${{ matrix.python-version }}
           path: ./packages/ni.protobuf.types/test_results/*.xml
         if: always()
       # ni.pythonpanel.v1.proto
@@ -58,6 +58,6 @@ jobs:
       - name: Upload ni.pythonpanel.v1.proto test results
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: test_results_unit_${{ matrix.os }}_py${{ matrix.python-version }}
+          name: test_results_unit_ni_pythonpanel_v1_proto${{ matrix.os }}_py${{ matrix.python-version }}
           path: ./packages/ni.pythonpanel.v1.proto/test_results/*.xml
         if: always()
