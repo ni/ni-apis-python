@@ -1,0 +1,59 @@
+name: Check Package
+
+on:
+  workflow_call:
+    inputs:
+      package_name:
+        description: 'The name of the package to check.'
+        default: ''
+        required: true
+        type: string
+  workflow_dispatch:
+
+jobs:
+  check_package:
+    name: Check ${{ inputs.package_name }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        # Set the working-directory for all steps in this job.
+        working-directory: ./packages/${{ inputs.package_name }}
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Set up Python
+        uses: ni/python-actions/setup-python@a3bfe1baa6062fd6157683651d653d527967d4d4 # v0.3.1
+        id: setup-python
+      - name: Set up Poetry
+        uses: ni/python-actions/setup-poetry@a3bfe1baa6062fd6157683651d653d527967d4d4 # v0.3.1
+      - name: Check for lock changes
+        run: poetry check --lock
+      - name: Cache virtualenv
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        with:
+          path: packages/${{ inputs.package_name }}/.venv
+          key: ${{ inputs.package_name }}-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('packages/${{ inputs.package_name }}/poetry.lock') }}
+      - name: Install ${{ inputs.package_name }}
+        run: poetry install -v
+      - name: Lint
+        run: poetry run ni-python-styleguide lint
+      - name: Mypy static analysis (Linux)
+        run:  poetry run mypy
+      - name: Mypy static analysis (Windows)
+        run:  poetry run mypy --platform win32
+      - name: Bandit security checks
+        run:  poetry run bandit -c pyproject.toml -r src/
+      - name: Add virtualenv to the path for pyright-action
+        run: echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
+      - name: Pyright static analysis (Linux)
+        uses: jakebailey/pyright-action@b5d50e5cde6547546a5c4ac92e416a8c2c1a1dfe # v2.3.2
+        with:
+          python-platform: Linux
+          version: PATH
+          working-directory: ./packages/${{ inputs.package_name }}
+      - name: Pyright static analysis (Windows)
+        uses: jakebailey/pyright-action@b5d50e5cde6547546a5c4ac92e416a8c2c1a1dfe # v2.3.2
+        with:
+          python-platform: Windows
+          version: PATH
+          working-directory: ./packages/${{ inputs.package_name }}
