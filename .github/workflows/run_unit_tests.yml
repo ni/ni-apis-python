@@ -27,39 +27,11 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Set up Poetry
         uses: ni/python-actions/setup-poetry@a3bfe1baa6062fd6157683651d653d527967d4d4 # v0.3.1
-      # ni.protobuf.types
-      - name: Cache ni.protobuf.types virtualenv
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+      - name: Run and Upload Unit ni.protobuf.types Tests
+        uses: ./.github/actions/run_and_upload_unit_tests
         with:
-          path: ./packages/ni.protobuf.types/.venv
-          key: ni.protobuf.types-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('packages/ni.protobuf.types/poetry.lock') }}
-      - name: Install ni.protobuf.types
-        run: poetry install -v
-        working-directory: ./packages/ni.protobuf.types
-      - name: Run ni.protobuf.types unit tests and code coverage
-        run: poetry run pytest ./tests/unit -v --cov=ni.protobuf.types --junitxml=test_results/ni.protobuf.types-${{ matrix.os }}-py${{ matrix.python-version }}.xml
-        working-directory: ./packages/ni.protobuf.types
-      - name: Upload ni.protobuf.types test results
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+          package-name: ni.protobuf.types
+      - name: Run and Upload Unit ni.pythonpanel.v1.proto Tests
+        uses: ./.github/actions/run_and_upload_unit_tests
         with:
-          name: test_results_unit_ni_protobuf_types_${{ matrix.os }}_py${{ matrix.python-version }}
-          path: ./packages/ni.protobuf.types/test_results/*.xml
-        if: always()
-      # ni.pythonpanel.v1.proto
-      - name: Cache ni.pythonpanel.v1.proto virtualenv
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
-        with:
-          path: ./packages/ni.pythonpanel.v1.proto/.venv
-          key: ni.pythonpanel.v1.proto-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('packages/ni.pythonpanel.v1.proto/poetry.lock') }}
-      - name: Install ni.pythonpanel.v1.proto
-        run: poetry install -v
-        working-directory: ./packages/ni.pythonpanel.v1.proto
-      - name: Run ni.pythonpanel.v1.proto unit tests and code coverage
-        run: poetry run pytest ./tests/unit -v --cov=ni.pythonpanel.v1.proto --junitxml=test_results/ni.pythonpanel.v1.proto-${{ matrix.os }}-py${{ matrix.python-version }}.xml
-        working-directory: ./packages/ni.pythonpanel.v1.proto
-      - name: Upload ni.pythonpanel.v1.proto test results
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
-        with:
-          name: test_results_unit_ni_pythonpanel_v1_proto_${{ matrix.os }}_py${{ matrix.python-version }}
-          path: ./packages/ni.pythonpanel.v1.proto/test_results/*.xml
-        if: always()
+          package-name: ni.pythonpanel.v1.proto

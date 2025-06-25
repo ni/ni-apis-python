@@ -13,12 +13,12 @@ jobs:
     name: Check ni.protobuf.types
     uses: ./.github/workflows/check_package.yml
     with:
-      package_name: ni.protobuf.types
+      package-name: ni.protobuf.types
   check_ni_pythonpanel_v1_proto:
     name: Check ni.pythonpanel.v1.proto
     uses: ./.github/workflows/check_package.yml
     with:
-      package_name: ni.pythonpanel.v1.proto
+      package-name: ni.pythonpanel.v1.proto
   run_unit_tests:
     name: Run unit tests
     uses: ./.github/workflows/run_unit_tests.yml

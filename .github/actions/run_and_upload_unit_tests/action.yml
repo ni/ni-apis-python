@@ -1,0 +1,27 @@
+name: 'Run and Upload Unit Tests'
+description: 'Run and Upload Unit Tests'
+inputs:
+  package-name:  # id of input
+    description: 'The name of the package to run tests for.'
+    required: true
+outputs:
+runs:
+  using: "composite"
+  steps:
+    - name: Cache ${{ inputs.package-name }} virtualenv
+      uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+      with:
+        path: ./packages/${{ inputs.package-name }}/.venv
+        key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('packages/${{ inputs.package-name }}/poetry.lock') }}
+    - name: Install ${{ inputs.package-name }}
+      run: poetry install -v
+      working-directory: ./packages/${{ inputs.package-name }}
+    - name: Run ${{ inputs.package-name }} unit tests and code coverage
+      run: poetry run pytest ./tests/unit -v --cov=${{ inputs.package-name }} --junitxml=test_results/${{ inputs.package-name }}-${{ matrix.os }}-py${{ matrix.python-version }}.xml
+      working-directory: ./packages/${{ inputs.package-name }}
+    - name: Upload ${{ inputs.package-name }} test results
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+      with:
+        name: test_results_unit_${{ inputs.package-name }}_${{ matrix.os }}_py${{ matrix.python-version }}
+        path: ./packages/${{ inputs.package-name }}/test_results/*.xml
+      if: always()
