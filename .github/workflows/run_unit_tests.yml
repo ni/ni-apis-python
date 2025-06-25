@@ -27,11 +27,11 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Set up Poetry
         uses: ni/python-actions/setup-poetry@a3bfe1baa6062fd6157683651d653d527967d4d4 # v0.3.1
-      - name: Run and Upload Unit ni.protobuf.types Tests
+      - name: Run and Upload Unit Tests - ni.protobuf.types
         uses: ./.github/actions/run_and_upload_unit_tests
         with:
           package-name: ni.protobuf.types
-      - name: Run and Upload Unit ni.pythonpanel.v1.proto Tests
+      - name: Run and Upload Unit Tests - ni.pythonpanel.v1.proto
         uses: ./.github/actions/run_and_upload_unit_tests
         with:
           package-name: ni.pythonpanel.v1.proto
