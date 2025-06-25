@@ -63,34 +63,34 @@ def cli(
 
     Specifying input and output locations
 
-        This script uses the protobuf files from the folder specified by
+      This script uses the protobuf files from the folder specified by
     --proto-basepath and --proto-subpath and emits Python files into the
-    folder specified by --output-basepath.
+    folder specified by --output-basepath:
 
     \b
-        {proto-basepath}/{proto-subpath}  -->  {output-basepath}/{proto-subpath}
+      {proto-basepath}/{proto-subpath}  -->  {output-basepath}/{proto-subpath}
 
-        The script resolves gRPC imports from --proto-basepath by default. Include
+      The script resolves gRPC imports from --proto-basepath by default. Include
     additional paths by using --proto-include-path for each required folder.
 
     Specifying output format
 
-        The script supports generating gRPC packages as either subpackages
+      The script supports generating gRPC packages as either subpackages
     or submodules with --output-format.
 
-        When generating submodules, the script creates Python files with names
+      When generating submodules, the script creates Python files with names
     that match the source protobuf files:
 
-        \b
-        waveform.proto  -->  waveform_pb2.py
+    \b
+      waveform.proto  -->  waveform_pb2.py
 
-        When generating subpackages, the script creates folders with names
+      When generating subpackages, the script creates folders with names
     that match the source protobuf files:
 
-        \b
-        waveform.proto  -->  waveform_pb2/__init__.py
+    \b
+      waveform.proto  -->  waveform_pb2/__init__.py
 
-        Clients use the same "import waveform_pb2" syntax.
+      Clients use the same "import waveform_pb2" syntax.
 
     """
     generator.handle_cli(
