@@ -1,8 +1,6 @@
 """grpc_generator entry points."""
 
 import pathlib
-import warnings
-warnings.filterwarnings("ignore")  # grpc_tools\protoc.py:21: UserWarning: pkg_resources is deprecated as an API
 
 import click
 
@@ -92,7 +90,7 @@ def cli(
 
       Clients use the same "import waveform_pb2" syntax.
 
-    """
+    """  # noqa
     generator.handle_cli(
         proto_basepath=proto_basepath,
         proto_subpath=proto_subpath,
