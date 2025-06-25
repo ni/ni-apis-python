@@ -11,8 +11,9 @@ import grpc_tools.protoc  # type: ignore[import-untyped]
 from google.protobuf import descriptor_pb2
 
 
-USAGE_EXAMPLE = """Example
+USAGE_EXAMPLE = """Example:
 
+\b
 grpc-generator  --proto-subpath ni/protobuf/types  --output-basepath ../../packages/ni.protobuf.types/src  --output-format Submodule"""
 
 
