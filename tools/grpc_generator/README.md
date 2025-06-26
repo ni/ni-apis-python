@@ -16,7 +16,7 @@ poetry install
 
 ```pwsh
 # PowerShell
-grpc-generator `
+poetry run grpc-generator `
    --proto-basepath ..\..\third_party\ni-apis `
    --proto-subpath ni\protobuf\types `
    --output-basepath ..\..\packages\ni.protobuf.types\src `
@@ -27,7 +27,7 @@ grpc-generator `
 
 ```pwsh
 # PowerShell
-grpc-generator `
+poetry run grpc-generator `
    --proto-basepath ..\..\third_party\ni-apis `
    --proto-subpath ni\measurementlink\pinmap\v1 `
    --output-basepath ..\..\packages\ni.measurementlink.pinmap.v1\src `
