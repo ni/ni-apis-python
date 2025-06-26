@@ -195,7 +195,7 @@ def transform_files_for_namespace(generation_spec: GenerationSpec) -> None:
     for folder in new_subpackage_folders:
         py_typed_file = folder.joinpath("py.typed")
         py_typed_file.touch()
-        click.echo(f"    Created: {folder.joinpath('py.typed')!s}")
+        click.echo(f"    Created: {py_typed_file!s}")
 
 
 def add_submodule_files(generation_spec: GenerationSpec) -> None:
