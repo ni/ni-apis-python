@@ -203,7 +203,6 @@ def add_submodule_files(generation_spec: GenerationSpec) -> None:
     click.echo(f"  {click.style('Initializing', 'yellow')} gRPC submodules")
 
     init_file = generation_spec.package_folder.joinpath("__init__.py")
-    init_file.touch()
     init_file.write_text(f'"""Package for {generation_spec.name}."""\n')
     click.echo(f"    Created: {init_file!s}")
 
