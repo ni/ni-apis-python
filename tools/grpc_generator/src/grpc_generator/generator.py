@@ -227,6 +227,6 @@ def invoke_protoc(protoc_arguments: list[str]) -> None:
     click.echo(f"    Invoking '{click.style(' '.join(protoc_arguments), 'bright_white')}'")
     exit_code = grpc_tools.protoc.main(protoc_arguments)
     if exit_code != 0:
-        raise RuntimeError(
+        raise click.ClickException(
             click.style(f"protoc exited with error code {exit_code}", "bright_magenta")
         )
