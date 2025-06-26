@@ -3,8 +3,8 @@
 import importlib.resources
 import pathlib
 import shutil
+from dataclasses import dataclass
 from enum import StrEnum
-from typing import NamedTuple
 
 import click
 import grpc_tools.protoc  # type: ignore[import-untyped]
@@ -24,7 +24,8 @@ class OutputFormat(StrEnum):
     SUBPACKAGE = "subpackage"
 
 
-class GenerationSpec(NamedTuple):
+@dataclass(frozen=True)
+class GenerationSpec:
     """A NamedTuple that describes a gRPC package for code generation."""
 
     proto_basepath: pathlib.Path
