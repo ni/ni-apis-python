@@ -20,7 +20,7 @@ REPO_ROOT = next((p for p in pathlib.Path(__file__).parents if (p / "third_party
 )
 @click.option(
     "--output-format",
-    type=click.Choice(choices=[value for value in generator.OutputFormat]),
+    type=click.Choice(choices=[value.lower() for value in generator.OutputFormat]),
     required=True,
     help="Generate a Python submodule or subpackage",
 )
