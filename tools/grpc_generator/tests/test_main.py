@@ -35,7 +35,6 @@ def assert_is_subpackage(output_path: pathlib.Path) -> None:
 
 
 def test___generator___call_generator_help___succeeds() -> None:
-    """Does it invoke the base command group?"""
     result = call_generate(args=["--help"])
     assert result.exit_code == 0
 
@@ -43,7 +42,6 @@ def test___generator___call_generator_help___succeeds() -> None:
 def test___empty_package___generate_submodules___creates_submodules(
     tmp_path: pathlib.Path,
 ) -> None:
-    """Does it generate Python submodules?"""
     result = call_generate(
         [
             "--output-basepath",
@@ -64,7 +62,6 @@ def test___empty_package___generate_submodules___creates_submodules(
 def test___empty_package___generate_subpackages___creates_subpackages(
     tmp_path: pathlib.Path,
 ) -> None:
-    """Does it generate Python subpackages?"""
     result = call_generate(
         [
             "--output-basepath",
@@ -84,7 +81,6 @@ def test___empty_package___generate_subpackages___creates_subpackages(
 def test___existing_package___generate_submodules___updates_submodules(
     tmp_path: pathlib.Path,
 ) -> None:
-    """Does it correctly regenerate a Python package?"""
     # Add files to the package that are not gRPC APIs
     output_folder = tmp_path.joinpath("ni/protobuf/types")
     output_folder.mkdir(parents=True, exist_ok=True)
