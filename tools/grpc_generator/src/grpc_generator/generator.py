@@ -127,8 +127,10 @@ def generate_python_files(generation_spec: GenerationSpec) -> None:
     click.echo(
         f"  {click.style('Generating', 'green')} new gRPC files in {click.style(str(generation_spec.package_folder), 'bright_cyan')}"
     )
-    _ = [click.echo(f"    Include: {path!s}") for path in generation_spec.proto_include_paths]  # type: ignore[func-returns-value]
-    _ = [click.echo(f"    Compile: {path!s}") for path in generation_spec.proto_paths]  # type: ignore[func-returns-value]
+    for path in generation_spec.proto_include_paths:
+        click.echo(f"    Include: {path!s}")
+    for path in generation_spec.proto_paths:
+        click.echo(f"    Compile: {path!s}")
 
     proto_include_options = [
         f"--proto_path={source_path!s}" for source_path in generation_spec.proto_include_paths
