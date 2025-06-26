@@ -1,7 +1,7 @@
-name: 'Run and Upload Unit Tests'
-description: 'Run and Upload Unit Tests'
+name: 'Run and upload unit tests'
+description: 'Run unit tests using pytest and upload the results as an artifact.'
 inputs:
-  package-name:  # id of input
+  package-name:
     description: 'The name of the package to run tests for.'
     required: true
 runs:
