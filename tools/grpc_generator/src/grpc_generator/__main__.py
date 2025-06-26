@@ -7,7 +7,9 @@ import click
 from . import generator
 
 
-REPO_ROOT = next((p for p in pathlib.Path(__file__).parents if (p / "third_party").exists()), pathlib.Path("."))
+REPO_ROOT = next(
+    (p for p in pathlib.Path(__file__).parents if (p / "third_party").exists()), pathlib.Path(".")
+)
 
 
 @click.command(epilog=generator.USAGE_EXAMPLE)
