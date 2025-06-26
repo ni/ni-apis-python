@@ -3,7 +3,7 @@ name: Check Package
 on:
   workflow_call:
     inputs:
-      package_name:
+      package-name:
         description: 'The name of the package to check.'
         default: ''
         required: true
@@ -12,15 +12,17 @@ on:
 
 jobs:
   check_package:
-    name: Check ${{ inputs.package_name }}
+    name: Check ${{ inputs.package-name }}
     runs-on: ubuntu-latest
     defaults:
       run:
         # Set the working-directory for all steps in this job.
-        working-directory: ./packages/${{ inputs.package_name }}
+        working-directory: ./packages/${{ inputs.package-name }}
     steps:
       - name: Check out repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          submodules: true
       - name: Set up Python
         uses: ni/python-actions/setup-python@a3bfe1baa6062fd6157683651d653d527967d4d4 # v0.3.1
         id: setup-python
@@ -31,9 +33,9 @@ jobs:
       - name: Cache virtualenv
         uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
         with:
-          path: packages/${{ inputs.package_name }}/.venv
-          key: ${{ inputs.package_name }}-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('packages/${{ inputs.package_name }}/poetry.lock') }}
-      - name: Install ${{ inputs.package_name }}
+          path: packages/${{ inputs.package-name }}/.venv
+          key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles(format('packages/{0}/poetry.lock', inputs.package-name)) }}
+      - name: Install ${{ inputs.package-name }}
         run: poetry install -v
       - name: Lint
         run: poetry run ni-python-styleguide lint
@@ -50,10 +52,10 @@ jobs:
         with:
           python-platform: Linux
           version: PATH
-          working-directory: ./packages/${{ inputs.package_name }}
+          working-directory: ./packages/${{ inputs.package-name }}
       - name: Pyright static analysis (Windows)
         uses: jakebailey/pyright-action@b5d50e5cde6547546a5c4ac92e416a8c2c1a1dfe # v2.3.2
         with:
           python-platform: Windows
           version: PATH
-          working-directory: ./packages/${{ inputs.package_name }}
+          working-directory: ./packages/${{ inputs.package-name }}

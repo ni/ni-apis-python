@@ -1,0 +1,37 @@
+name: Run unit tests
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  run_unit_tests:
+    name: Run unit tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+        python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
+      # Fail-fast skews the pass/fail ratio and seems to make pytest produce
+      # incomplete JUnit XML results.
+      fail-fast: false
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          submodules: true
+      - name: Set up Python
+        uses: ni/python-actions/setup-python@49cd7a9a4098c459b90ba97e8e56bf5cd80997bb # v0.4.0
+        id: setup-python
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Set up Poetry
+        uses: ni/python-actions/setup-poetry@49cd7a9a4098c459b90ba97e8e56bf5cd80997bb # v0.4.0
+      - name: Run and upload unit tests - ni.protobuf.types
+        uses: ./.github/actions/run_and_upload_unit_tests
+        with:
+          package-name: ni.protobuf.types
+      - name: Run and upload unit tests - ni.pythonpanel.v1.proto
+        uses: ./.github/actions/run_and_upload_unit_tests
+        with:
+          package-name: ni.pythonpanel.v1.proto
