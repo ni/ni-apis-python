@@ -14,14 +14,14 @@ from google.protobuf import descriptor_pb2
 USAGE_EXAMPLE = """Example:
 
 \b
-grpc-generator  --proto-subpath ni/protobuf/types  --output-basepath ../../packages/ni.protobuf.types/src  --output-format Submodule"""
+grpc-generator  --proto-subpath ni/protobuf/types  --output-basepath ../../packages/ni.protobuf.types/src  --output-format submodule"""
 
 
 class OutputFormat(StrEnum):
     """Supported Python output formats for generated gRPC packages."""
 
-    Submodule = "Submodule"
-    Subpackage = "Subpackage"
+    SUBMODULE = "submodule"
+    SUBPACKAGE = "subpackage"
 
 
 class GenerationSpec(NamedTuple):
@@ -114,9 +114,9 @@ def reset_python_package(generation_spec: GenerationSpec) -> None:
         return
 
     match generation_spec.output_format:
-        case OutputFormat.Subpackage:
+        case OutputFormat.SUBPACKAGE:
             shutil.rmtree(generation_spec.package_folder)
-        case OutputFormat.Submodule:
+        case OutputFormat.SUBMODULE:
             grpc_files = sorted(generation_spec.package_folder.glob("*_pb2.py*"))
             grpc_files.extend(generation_spec.package_folder.glob("*_pb2_grpc.py*"))
             remove_files(grpc_files)
@@ -172,9 +172,9 @@ def finalize_python_package(generation_spec: GenerationSpec) -> None:
             remove_files(generation_spec.get_matching_service_files(relative_proto_file_path))
 
     match generation_spec.output_format:
-        case OutputFormat.Subpackage:
+        case OutputFormat.SUBPACKAGE:
             transform_files_for_namespace(generation_spec)
-        case OutputFormat.Submodule:
+        case OutputFormat.SUBMODULE:
             add_submodule_files(generation_spec)
 
     generation_spec.package_descriptor_file.unlink()

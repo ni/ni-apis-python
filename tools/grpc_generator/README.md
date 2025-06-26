@@ -20,7 +20,7 @@ poetry run grpc-generator `
    --proto-basepath ..\..\third_party\ni-apis `
    --proto-subpath ni\protobuf\types `
    --output-basepath ..\..\packages\ni.protobuf.types\src `
-   --output-format Submodule
+   --output-format submodule
 ```
 
 ## Generate into a namespace package
@@ -31,7 +31,7 @@ poetry run grpc-generator `
    --proto-basepath ..\..\third_party\ni-apis `
    --proto-subpath ni\measurementlink\pinmap\v1 `
    --output-basepath ..\..\packages\ni.measurementlink.pinmap.v1\src `
-   --output-format Subpackage
+   --output-format subpackage
 ```
 
 ## Options
@@ -73,7 +73,7 @@ Usage: grpc-generator [OPTIONS]
 Options:
   --output-basepath PATH          Emit the generated gRPC files to PATH
                                   [required]
-  --output-format [Submodule|Subpackage]
+  --output-format [submodule|subpackage]
                                   Generate a Python submodule or subpackage
                                   [required]
   --proto-basepath PATH           Use PATH as the base for --proto-subpath
@@ -90,5 +90,5 @@ Options:
 
   Example:
 
-  grpc-generator  --proto-subpath ni/protobuf/types  --output-basepath ../../packages/ni.protobuf.types/src  --output-format Submodule
+  grpc-generator  --proto-subpath ni/protobuf/types  --output-basepath ../../packages/ni.protobuf.types/src  --output-format submodule
 ```

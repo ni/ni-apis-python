@@ -47,7 +47,7 @@ def test_generate_submodules(tmp_path: pathlib.Path) -> None:
             "--output-basepath",
             f"{tmp_path!s}",
             "--output-format",
-            generator.OutputFormat.Submodule,
+            generator.OutputFormat.SUBMODULE,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
@@ -66,7 +66,7 @@ def test_generate_subpackages(tmp_path: pathlib.Path) -> None:
             "--output-basepath",
             f"{tmp_path!s}",
             "--output-format",
-            generator.OutputFormat.Subpackage,
+            generator.OutputFormat.SUBPACKAGE,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
@@ -93,7 +93,7 @@ def test_regeneration(tmp_path: pathlib.Path) -> None:
             "--output-basepath",
             f"{tmp_path!s}",
             "--output-format",
-            generator.OutputFormat.Submodule,
+            generator.OutputFormat.SUBMODULE,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
@@ -119,7 +119,7 @@ def test_regeneration(tmp_path: pathlib.Path) -> None:
             "--output-basepath",
             f"{tmp_path!s}",
             "--output-format",
-            generator.OutputFormat.Submodule,
+            generator.OutputFormat.SUBMODULE,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
