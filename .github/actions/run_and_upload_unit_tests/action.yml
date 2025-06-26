@@ -11,7 +11,7 @@ runs:
       uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
       with:
         path: ./packages/${{ inputs.package-name }}/.venv
-        key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('packages/${{ inputs.package-name }}/poetry.lock') }}
+        key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ env.pythonVersion }}-${{ hashFiles('packages/${{ inputs.package-name }}/poetry.lock') }}
     - name: Install ${{ inputs.package-name }}
       run: poetry install -v
       working-directory: ./packages/${{ inputs.package-name }}
