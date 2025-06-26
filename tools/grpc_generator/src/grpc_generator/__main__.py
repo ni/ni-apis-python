@@ -22,7 +22,7 @@ REPO_ROOT = next(
 )
 @click.option(
     "--output-format",
-    type=click.Choice(choices=[value.lower() for value in generator.OutputFormat]),
+    type=click.Choice(choices=[entry.value for entry in generator.OutputFormat]),
     required=True,
     help="Generate a Python submodule or subpackage",
 )

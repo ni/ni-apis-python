@@ -49,7 +49,7 @@ def test___empty_package___generate_submodules___creates_submodules(
             "--output-basepath",
             f"{tmp_path!s}",
             "--output-format",
-            generator.OutputFormat.SUBMODULE,
+            generator.OutputFormat.SUBMODULE.value,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
@@ -70,7 +70,7 @@ def test___empty_package___generate_subpackages___creates_subpackages(
             "--output-basepath",
             f"{tmp_path!s}",
             "--output-format",
-            generator.OutputFormat.SUBPACKAGE,
+            generator.OutputFormat.SUBPACKAGE.value,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
@@ -99,7 +99,7 @@ def test___existing_package___generate_submodules___updates_submodules(
             "--output-basepath",
             f"{tmp_path!s}",
             "--output-format",
-            generator.OutputFormat.SUBMODULE,
+            generator.OutputFormat.SUBMODULE.value,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
@@ -125,7 +125,7 @@ def test___existing_package___generate_submodules___updates_submodules(
             "--output-basepath",
             f"{tmp_path!s}",
             "--output-format",
-            generator.OutputFormat.SUBMODULE,
+            generator.OutputFormat.SUBMODULE.value,
             "--proto-subpath",
             "ni/protobuf/types",
         ]
