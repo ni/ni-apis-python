@@ -90,7 +90,7 @@ def cli(
 
       Clients use the same "import waveform_pb2" syntax.
 
-    """  # noqa
+    """  # noqa: D301 - Use r""" if any backslashes in a docstring
     generator.handle_cli(
         proto_basepath=proto_basepath,
         proto_subpath=proto_subpath,
