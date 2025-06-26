@@ -14,22 +14,24 @@ poetry install
 
 ## Generate
 
-```
-grpc-generator ^
-   --proto-basepath ..\..\third_party\ni-apis ^
-   --proto-subpath ni\protobuf\types ^
-   --output-basepath ..\..\packages\ni.protobuf.types\src ^
-   --output-format Submodule ^
+```pwsh
+# PowerShell
+grpc-generator `
+   --proto-basepath ..\..\third_party\ni-apis `
+   --proto-subpath ni\protobuf\types `
+   --output-basepath ..\..\packages\ni.protobuf.types\src `
+   --output-format Submodule
 ```
 
 ## Generate into a namespace package
 
-```
-grpc-generator ^
-   --proto-basepath ..\..\third_party\ni-apis ^
-   --proto-subpath ni\measurementlink\pinmap\v1 ^
-   --output-basepath ..\..\packages\ni.measurementlink.pinmap.v1\src ^
-   --output-format Subpackage ^
+```pwsh
+# PowerShell
+grpc-generator `
+   --proto-basepath ..\..\third_party\ni-apis `
+   --proto-subpath ni\measurementlink\pinmap\v1 `
+   --output-basepath ..\..\packages\ni.measurementlink.pinmap.v1\src `
+   --output-format Subpackage
 ```
 
 ## Options
