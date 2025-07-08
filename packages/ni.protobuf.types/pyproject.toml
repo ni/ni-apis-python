@@ -34,6 +34,10 @@ packages = [{include = "ni", from = "src"}]
 python = "^3.9"
 protobuf = {version=">=4.21"}
 
+[tool.poetry.group.dev.dependencies]
+types-grpcio = ">=1.0"
+types-protobuf = ">=4.21"
+
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
 ni-python-styleguide = ">=0.4.1"
@@ -70,7 +74,8 @@ skips = [
 line-length = 100
 
 [tool.mypy]
-files = "src/,tests/"
+mypy_path = "src"
+files = "."
 namespace_packages = true
 strict = true
 explicit_package_bases = true

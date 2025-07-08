@@ -1,8 +1,8 @@
 """Tests for the ni.protobuf.types package."""
-from src.ni.protobuf.types.array_pb2 import Double2DArray, String2DArray
-from src.ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
-from src.ni.protobuf.types.waveform_pb2 import DoubleAnalogWaveform, DoubleComplexWaveform, DoubleSpectrum, I16AnalogWaveform, I16ComplexWaveform, WaveformAttributeValue
-from src.ni.protobuf.types.xydata_pb2 import DoubleXYData
+from ni.protobuf.types.array_pb2 import Double2DArray, String2DArray
+from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
+from ni.protobuf.types.waveform_pb2 import DoubleAnalogWaveform, DoubleComplexWaveform, DoubleSpectrum, I16AnalogWaveform, I16ComplexWaveform, WaveformAttributeValue
+from ni.protobuf.types.xydata_pb2 import DoubleXYData
 
 EXPECTED_T0 = PrecisionTimestamp(seconds=5, fractional_seconds=0)
 EXPECTED_DT = 0.01

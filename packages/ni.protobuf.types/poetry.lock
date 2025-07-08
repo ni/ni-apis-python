@@ -1460,6 +1460,28 @@ files = [
 ]
 
 [[package]]
+name = "types-grpcio"
+version = "1.0.0.20250703"
+description = "Typing stubs for grpcio"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "types_grpcio-1.0.0.20250703-py3-none-any.whl", hash = "sha256:78d1bfc33b58a56697ef99e666e34be4c6887631341c75fdd28d58587aef5d9f"},
+    {file = "types_grpcio-1.0.0.20250703.tar.gz", hash = "sha256:baf100184e5353cb60f045fb4fd47f37a360bedf0f19581535e4c3a3a1f7912b"},
+]
+
+[[package]]
+name = "types-protobuf"
+version = "6.30.2.20250703"
+description = "Typing stubs for protobuf"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "types_protobuf-6.30.2.20250703-py3-none-any.whl", hash = "sha256:fa5aff9036e9ef432d703abbdd801b436a249b6802e4df5ef74513e272434e57"},
+    {file = "types_protobuf-6.30.2.20250703.tar.gz", hash = "sha256:609a974754bbb71fa178fc641f51050395e8e1849f49d0420a6281ed8d1ddf46"},
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.14.0"
 description = "Backported and Experimental Type Hints for Python 3.9+"
@@ -1490,4 +1512,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "d6d13e5f17d21f9ef7f4f5462ed246e180da6de6ac7719b5412dbec2eeb9be9b"
+content-hash = "0fd5bc699969c7ae03af848630ea800dcac36c8e5e9d30beb568d7c5a3d2846c"
