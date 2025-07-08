@@ -70,7 +70,11 @@ skips = [
   "B101", # assert_used
 ]
 
+[tool.ni-python-styleguide]
+extend_exclude = "src/ni/protobuf/types"
+
 [tool.black]
+extend-exclude = 'src/ni/protobuf/types/'
 line-length = 100
 
 [tool.mypy]
@@ -81,7 +85,8 @@ strict = true
 explicit_package_bases = true
 
 [tool.pyright]
-include = ["tests/"]
+include = ["src/", "tests/"]
+exclude = ["src/ni/protobuf/types/"]
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"

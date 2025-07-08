@@ -1,7 +1,15 @@
 """Tests for the ni.protobuf.types package."""
+
 from ni.protobuf.types.array_pb2 import Double2DArray, String2DArray
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
-from ni.protobuf.types.waveform_pb2 import DoubleAnalogWaveform, DoubleComplexWaveform, DoubleSpectrum, I16AnalogWaveform, I16ComplexWaveform, WaveformAttributeValue
+from ni.protobuf.types.waveform_pb2 import (
+    DoubleAnalogWaveform,
+    DoubleComplexWaveform,
+    DoubleSpectrum,
+    I16AnalogWaveform,
+    I16ComplexWaveform,
+    WaveformAttributeValue,
+)
 from ni.protobuf.types.xydata_pb2 import DoubleXYData
 
 EXPECTED_T0 = PrecisionTimestamp(seconds=5, fractional_seconds=0)
@@ -10,6 +18,7 @@ EXPECTED_ATTRIBUTES = {
     "attr1": WaveformAttributeValue(integer_value=1),
     "attr2": WaveformAttributeValue(string_value="two"),
 }
+
 
 def test___valid_inputs___createdouble2darray___creation_successful() -> None:
     test_array = Double2DArray(rows=2, columns=2, data=[1.0, 2.0, 3.0, 4.0])
