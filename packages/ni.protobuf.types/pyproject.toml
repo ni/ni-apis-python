@@ -32,6 +32,7 @@ packages = [{include = "ni", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+protobuf = {version=">=4.21"}
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
@@ -74,7 +75,7 @@ namespace_packages = true
 strict = true
 
 [tool.pyright]
-include = ["src/", "tests/"]
+include = ["tests/"]
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
