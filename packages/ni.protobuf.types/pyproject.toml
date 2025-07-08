@@ -73,6 +73,7 @@ line-length = 100
 files = "src/,tests/"
 namespace_packages = true
 strict = true
+explicit_package_bases = true
 
 [tool.pyright]
 include = ["tests/"]
