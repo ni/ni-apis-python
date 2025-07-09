@@ -20,21 +20,23 @@ EXPECTED_ATTRIBUTES = {
 }
 
 
-def test___valid_inputs___createdouble2darray___creation_successful() -> None:
-    test_array = Double2DArray(rows=2, columns=2, data=[1.0, 2.0, 3.0, 4.0])
+def test___valid_inputs___createdouble2darray___message_created() -> None:
+    test_array = Double2DArray(rows=3, columns=2, data=[1.0, 2.0, 3.0, 4.0, 5.0, 6.0])
 
-    assert test_array.rows == test_array.columns == 2
-    assert list(test_array.data) == [1.0, 2.0, 3.0, 4.0]
-
-
-def test___valid_inputs___createstring2darray___creation_successful() -> None:
-    test_array = String2DArray(rows=2, columns=2, data=["A", "B", "C", "D"])
-
-    assert test_array.rows == test_array.columns == 2
-    assert list(test_array.data) == ["A", "B", "C", "D"]
+    assert test_array.rows == 3
+    assert test_array.columns == 2
+    assert list(test_array.data) == [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
 
 
-def test___valid_inputs___create_doubleanalogwaveform___creation_successful() -> None:
+def test___valid_inputs___createstring2darray___message_created() -> None:
+    test_array = String2DArray(rows=2, columns=3, data=["A", "B", "C", "D", "E", "F"])
+
+    assert test_array.rows == 2
+    assert test_array.columns == 3
+    assert list(test_array.data) == ["A", "B", "C", "D", "E", "F"]
+
+
+def test___valid_inputs___create_doubleanalogwaveform___message_created() -> None:
     test_wfm = DoubleAnalogWaveform(
         t0=EXPECTED_T0,
         dt=EXPECTED_DT,
@@ -48,7 +50,7 @@ def test___valid_inputs___create_doubleanalogwaveform___creation_successful() ->
     assert test_wfm.attributes == EXPECTED_ATTRIBUTES
 
 
-def test___valid_inputs___create_i16analogwaveform___creation_successful() -> None:
+def test___valid_inputs___create_i16analogwaveform___message_created() -> None:
     test_wfm = I16AnalogWaveform(
         t0=EXPECTED_T0,
         dt=EXPECTED_DT,
@@ -62,7 +64,7 @@ def test___valid_inputs___create_i16analogwaveform___creation_successful() -> No
     assert test_wfm.attributes == EXPECTED_ATTRIBUTES
 
 
-def test___valid_inputs___create_doublecomplexwaveform___creation_successful() -> None:
+def test___valid_inputs___create_doublecomplexwaveform___message_created() -> None:
     test_wfm = DoubleComplexWaveform(
         t0=EXPECTED_T0,
         dt=EXPECTED_DT,
@@ -76,7 +78,7 @@ def test___valid_inputs___create_doublecomplexwaveform___creation_successful() -
     assert test_wfm.attributes == EXPECTED_ATTRIBUTES
 
 
-def test___valid_inputs___create_i16complexwaveform___creation_successful() -> None:
+def test___valid_inputs___create_i16complexwaveform___message_created() -> None:
     test_wfm = I16ComplexWaveform(
         t0=EXPECTED_T0,
         dt=EXPECTED_DT,
@@ -90,7 +92,7 @@ def test___valid_inputs___create_i16complexwaveform___creation_successful() -> N
     assert test_wfm.attributes == EXPECTED_ATTRIBUTES
 
 
-def test___valid_inputs___create_doublespectrum___creation_successful() -> None:
+def test___valid_inputs___create_doublespectrum___message_created() -> None:
     test_wfm = DoubleSpectrum(
         start_frequency=10.0,
         frequency_increment=1.0,
@@ -104,7 +106,7 @@ def test___valid_inputs___create_doublespectrum___creation_successful() -> None:
     assert test_wfm.attributes == EXPECTED_ATTRIBUTES
 
 
-def test___valid_inputs___create_doublexydata___creation_successful() -> None:
+def test___valid_inputs___create_doublexydata___message_created() -> None:
     test_wfm = DoubleXYData(
         x_data=[1.0, 2.0, 3.0],
         y_data=[4.0, 5.0, 6.0],
