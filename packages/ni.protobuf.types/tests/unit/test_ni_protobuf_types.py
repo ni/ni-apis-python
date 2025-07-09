@@ -66,13 +66,13 @@ def test___valid_inputs___create_doublecomplexwaveform___creation_successful() -
     test_wfm = DoubleComplexWaveform(
         t0=EXPECTED_T0,
         dt=EXPECTED_DT,
-        y_data=[1.0, 2.0, 3.0],
+        y_data=[1.0, 2.0, 3.0, 4.0],
         attributes=EXPECTED_ATTRIBUTES,
     )
 
     assert test_wfm.t0 == EXPECTED_T0
     assert test_wfm.dt == EXPECTED_DT
-    assert list(test_wfm.y_data) == [1.0, 2.0, 3.0]
+    assert list(test_wfm.y_data) == [1.0, 2.0, 3.0, 4.0]
     assert test_wfm.attributes == EXPECTED_ATTRIBUTES
 
 
@@ -80,13 +80,13 @@ def test___valid_inputs___create_i16complexwaveform___creation_successful() -> N
     test_wfm = I16ComplexWaveform(
         t0=EXPECTED_T0,
         dt=EXPECTED_DT,
-        y_data=[1, 2, 3],
+        y_data=[1, 2, 3, 4],
         attributes=EXPECTED_ATTRIBUTES,
     )
 
     assert test_wfm.t0 == EXPECTED_T0
     assert test_wfm.dt == EXPECTED_DT
-    assert list(test_wfm.y_data) == [1, 2, 3]
+    assert list(test_wfm.y_data) == [1, 2, 3, 4]
     assert test_wfm.attributes == EXPECTED_ATTRIBUTES
 
 
