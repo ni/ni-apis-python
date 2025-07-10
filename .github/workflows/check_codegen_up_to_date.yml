@@ -60,5 +60,5 @@ jobs:
         run:  git diff --exit-code
       - name: Revert gRPC stubs
         run: |
-          git clean ${{ inputs.output-basepath }}
+          git clean -dfx ${{ inputs.output-basepath }}
           git restore ${{ inputs.output-basepath }}
