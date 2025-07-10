@@ -20,7 +20,7 @@ jobs:
     with:
       package-name: ni.pythonpanel.v1.proto
   check_codegen_ni_protobuf_types:
-    name: Check codegen up-to-date for ni.pythonpanel.v1.proto
+    name: Check codegen up-to-date for ni.protobuf.types
     uses: ./.github/workflows/check_codegen_up_to_date.yml
     with:
       proto-basepath: ../../third_party/ni-apis
