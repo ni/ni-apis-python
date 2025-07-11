@@ -17,9 +17,9 @@ from nitypes.waveform import (
     Timing,
 )
 
-from ni.protobuf.types.precision_timestamp_converters import (
-    bintime_datetime_to_protobuf_message,
-    precision_timestamp_to_python_value,
+from ni.protobuf.types.precision_timestamp_conversion import (
+    bintime_datetime_to_protobuf,
+    precision_timestamp_to_python,
 )
 from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
@@ -27,32 +27,32 @@ from ni.protobuf.types.waveform_pb2 import (
 )
 
 
-def analog_waveform_to_protobuf_message(
-    python_value: AnalogWaveform[np.float64],
+def float64_analog_waveform_to_protobuf(
+    value: AnalogWaveform[np.float64], /
 ) -> DoubleAnalogWaveform:
     """Convert the Python AnalogWaveform to a protobuf DoubleAnalogWaveform."""
-    if python_value.timing.has_start_time:
-        bin_datetime = convert_datetime(bt.DateTime, python_value.timing.start_time)
-        precision_timestamp = bintime_datetime_to_protobuf_message(bin_datetime)
+    if value.timing.has_start_time:
+        bin_datetime = convert_datetime(bt.DateTime, value.timing.start_time)
+        precision_timestamp = bintime_datetime_to_protobuf(bin_datetime)
     else:
         precision_timestamp = None
 
-    if python_value.timing.has_sample_interval:
-        time_interval = python_value.timing.sample_interval.total_seconds()
+    if value.timing.has_sample_interval:
+        time_interval = value.timing.sample_interval.total_seconds()
     else:
         time_interval = 0
 
-    attributes = _extended_properties_to_attributes(python_value.extended_properties)
+    attributes = _extended_properties_to_attributes(value.extended_properties)
 
     return DoubleAnalogWaveform(
         t0=precision_timestamp,
         dt=time_interval,
-        y_data=python_value.scaled_data,
+        y_data=value.scaled_data,
         attributes=attributes,
     )
 
 
-def double_analog_waveform_to_python_value(
+def double_analog_waveform_to_python(
     protobuf_message: DoubleAnalogWaveform,
 ) -> AnalogWaveform[np.float64]:
     """Convert the protobuf DoubleAnalogWaveform to a Python AnalogWaveform."""
@@ -63,7 +63,7 @@ def double_analog_waveform_to_python_value(
         timing = Timing.empty
     else:
         # Timestamp
-        bin_datetime = precision_timestamp_to_python_value(protobuf_message.t0)
+        bin_datetime = precision_timestamp_to_python(protobuf_message.t0)
 
         # Sample Interval
         if not protobuf_message.dt:

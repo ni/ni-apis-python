@@ -87,12 +87,6 @@ namespace_packages = true
 strict = true
 explicit_package_bases = true
 
-[[tool.mypy.overrides]]
-module = [
-  "hightime.*",
-]
-ignore_missing_imports = true
-
 [tool.pyright]
 include = ["src/", "tests/"]
 exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi"]
