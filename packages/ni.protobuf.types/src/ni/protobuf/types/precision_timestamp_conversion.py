@@ -15,9 +15,7 @@ def bintime_datetime_to_protobuf(value: bt.DateTime, /) -> PrecisionTimestamp:
     return PrecisionTimestamp(seconds=seconds, fractional_seconds=fractional_seconds)
 
 
-def bintime_datetime_from_protobuf(protobuf_message: PrecisionTimestamp) -> bt.DateTime:
+def bintime_datetime_from_protobuf(message: PrecisionTimestamp, /) -> bt.DateTime:
     """Convert the protobuf PrecisionTimestamp to a NI-BTF DateTime."""
-    time_value_tuple = bt.TimeValueTuple(
-        protobuf_message.seconds, protobuf_message.fractional_seconds
-    )
+    time_value_tuple = bt.TimeValueTuple(message.seconds, message.fractional_seconds)
     return bt.DateTime.from_tuple(time_value_tuple)

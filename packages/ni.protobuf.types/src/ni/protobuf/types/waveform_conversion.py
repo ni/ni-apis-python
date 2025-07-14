@@ -53,34 +53,34 @@ def float64_analog_waveform_to_protobuf(
 
 
 def float64_analog_waveform_from_protobuf(
-    protobuf_message: DoubleAnalogWaveform,
+    message: DoubleAnalogWaveform, /
 ) -> AnalogWaveform[np.float64]:
     """Convert the protobuf DoubleAnalogWaveform to a Python AnalogWaveform."""
     # Declare timing to accept both bintime and dt.datetime to satisfy mypy.
     timing: Timing[bt.DateTime | dt.datetime]
-    if not protobuf_message.dt and not protobuf_message.HasField("t0"):
+    if not message.dt and not message.HasField("t0"):
         # If both dt and t0 are unset, use Timing.empty.
         timing = Timing.empty
     else:
         # Timestamp
-        bin_datetime = bintime_datetime_from_protobuf(protobuf_message.t0)
+        bin_datetime = bintime_datetime_from_protobuf(message.t0)
 
         # Sample Interval
-        if not protobuf_message.dt:
+        if not message.dt:
             timing = Timing.create_with_no_interval(timestamp=bin_datetime)
         else:
-            sample_interval = ht.timedelta(seconds=protobuf_message.dt)
+            sample_interval = ht.timedelta(seconds=message.dt)
             timing = Timing.create_with_regular_interval(
                 sample_interval=sample_interval,
                 timestamp=bin_datetime,
             )
 
     extended_properties = {}
-    for key, value in protobuf_message.attributes.items():
+    for key, value in message.attributes.items():
         attr_type = value.WhichOneof("attribute")
         extended_properties[key] = getattr(value, str(attr_type))
 
-    data_array = np.array(protobuf_message.y_data)
+    data_array = np.array(message.y_data)
     return AnalogWaveform(
         sample_count=data_array.size,
         dtype=np.float64,
