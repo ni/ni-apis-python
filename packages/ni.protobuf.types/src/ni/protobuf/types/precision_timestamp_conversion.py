@@ -10,13 +10,13 @@ from ni.protobuf.types.precision_timestamp_pb2 import (
 
 
 def bintime_datetime_to_protobuf(value: bt.DateTime, /) -> PrecisionTimestamp:
-    """Convert the Python DateTime to a protobuf PrecisionTimestamp."""
+    """Convert the NI BTF DateTime to a protobuf PrecisionTimestamp."""
     seconds, fractional_seconds = value.to_tuple()
     return PrecisionTimestamp(seconds=seconds, fractional_seconds=fractional_seconds)
 
 
 def precision_timestamp_to_python(protobuf_message: PrecisionTimestamp) -> bt.DateTime:
-    """Convert the protobuf PrecisionTimestamp to a Python DateTime."""
+    """Convert the protobuf PrecisionTimestamp to a NI BTF DateTime."""
     time_value_tuple = bt.TimeValueTuple(
         protobuf_message.seconds, protobuf_message.fractional_seconds
     )
