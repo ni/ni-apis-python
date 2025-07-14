@@ -58,7 +58,7 @@ jobs:
           poetry run grpc-generator --proto-basepath ${{ inputs.proto-basepath }} --proto-subpath ${{ inputs.proto-subpath }} --output-basepath ${{ inputs.output-basepath }} --output-format ${{ inputs.output-format }}
       - name: Check for out-of-date gRPC stubs
         run: git diff --exit-code
-        working-directory: ${GITHUB_WORKSPACE}
+        working-directory: '.'
       - name: Revert gRPC stubs
         run: |
           git clean -dfx ${{ inputs.output-basepath }}
