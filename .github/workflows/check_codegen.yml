@@ -6,7 +6,6 @@ on:
       proto-basepath:
         description: 'The base path for proto files used for generation.'
         default: '../../third_party/ni-apis'
-        required: true
         type: string
       proto-subpath:
         description: 'The path to proto files relative to proto-base-path.'
