@@ -57,8 +57,7 @@ jobs:
           find ${{ inputs.output-basepath }} -name \*_pb2.py\* -o -name \*_pb2_grpc.py\* -delete
           poetry run grpc-generator --proto-basepath ${{ inputs.proto-basepath }} --proto-subpath ${{ inputs.proto-subpath }} --output-basepath ${{ inputs.output-basepath }} --output-format ${{ inputs.output-format }}
       - name: Check for out-of-date gRPC stubs
-        run:  git diff --exit-code
-        working-directory: ./
+        run:  git diff --exit-code ${{ inputs.output-basepath }}
       - name: Revert gRPC stubs
         run: |
           git clean -dfx ${{ inputs.output-basepath }}
