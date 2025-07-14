@@ -62,3 +62,4 @@ jobs:
         run: |
           git clean -dfx ${{ inputs.output-basepath }}
           git restore ${{ inputs.output-basepath }}
+        working-directory: ./tools/grpc_generator
