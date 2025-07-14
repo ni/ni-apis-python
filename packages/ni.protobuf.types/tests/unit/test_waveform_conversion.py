@@ -7,7 +7,7 @@ from nitypes.waveform import AnalogWaveform, NoneScaleMode, SampleIntervalMode, 
 from ni.protobuf.types.precision_timestamp_conversion import bintime_datetime_to_protobuf
 from ni.protobuf.types.waveform_conversion import (
     float64_analog_waveform_to_protobuf,
-    double_analog_waveform_to_python,
+    float64_analog_waveform_from_protobuf,
 )
 from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
@@ -78,7 +78,7 @@ def test___analog_waveform_with_standard_timing___convert___valid_protobuf() -> 
 def test___default_dbl_analog_wfm___convert___valid_python_object() -> None:
     dbl_analog_wfm = DoubleAnalogWaveform()
 
-    analog_waveform = double_analog_waveform_to_python(dbl_analog_wfm)
+    analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
     assert not analog_waveform.extended_properties
     assert analog_waveform.timing == Timing.empty
@@ -89,7 +89,7 @@ def test___default_dbl_analog_wfm___convert___valid_python_object() -> None:
 def test___dbl_analog_wfm_with_y_data___convert___valid_python_object() -> None:
     dbl_analog_wfm = DoubleAnalogWaveform(y_data=[1.0, 2.0, 3.0])
 
-    analog_waveform = double_analog_waveform_to_python(dbl_analog_wfm)
+    analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
     assert list(analog_waveform.scaled_data) == [1.0, 2.0, 3.0]
 
@@ -101,7 +101,7 @@ def test___dbl_analog_wfm_with_attributes___convert___valid_python_object() -> N
     }
     dbl_analog_wfm = DoubleAnalogWaveform(attributes=attributes)
 
-    analog_waveform = double_analog_waveform_to_python(dbl_analog_wfm)
+    analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
     assert analog_waveform.channel_name == "Dev1/ai0"
     assert analog_waveform.unit_description == "Volts"
@@ -112,7 +112,7 @@ def test___dbl_analog_wfm_with_timing___convert___valid_python_object() -> None:
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     dbl_analog_wfm = DoubleAnalogWaveform(t0=t0_pt, dt=0.1, y_data=[1.0, 2.0, 3.0])
 
-    analog_waveform = double_analog_waveform_to_python(dbl_analog_wfm)
+    analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
     assert analog_waveform.timing.start_time == t0_dt._to_datetime_datetime()
     assert analog_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
@@ -122,7 +122,7 @@ def test___dbl_analog_wfm_with_timing___convert___valid_python_object() -> None:
 def test___dbl_analog_wfm_with_timing_no_t0___convert___valid_python_object() -> None:
     dbl_analog_wfm = DoubleAnalogWaveform(dt=0.1, y_data=[1.0, 2.0, 3.0])
 
-    analog_waveform = double_analog_waveform_to_python(dbl_analog_wfm)
+    analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
     assert analog_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
     assert analog_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
@@ -134,7 +134,7 @@ def test___dbl_analog_wfm_with_timing_no_dt___convert___valid_python_object() ->
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     dbl_analog_wfm = DoubleAnalogWaveform(t0=t0_pt, y_data=[1.0, 2.0, 3.0])
 
-    analog_waveform = double_analog_waveform_to_python(dbl_analog_wfm)
+    analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
     assert analog_waveform.timing.start_time == t0_dt._to_datetime_datetime()
     assert not analog_waveform.timing.has_sample_interval
