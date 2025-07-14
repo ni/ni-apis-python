@@ -19,7 +19,7 @@ on:
         required: true
         type: string
       output-format:
-        description: 'The format for the generated stubs. Options are submodule and __.'
+        description: 'The format for the generated stubs. Options are submodule and subpackage.'
         default: ''
         required: true
         type: string
