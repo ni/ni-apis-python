@@ -59,9 +59,8 @@ jobs:
       - name: Check for out-of-date gRPC stubs
         run: |
           git add ${{ inputs.output-basepath }}
-          git diff --exit-code --staged
-          git diff --exit-code
-        working-directory: '.'
+          git diff --exit-code --staged ${{ inputs.output-basepath }}
+          git diff --exit-code ${{ inputs.output-basepath }}
       - name: Revert gRPC stubs
         run: |
           git clean -dfx ${{ inputs.output-basepath }}
