@@ -25,7 +25,7 @@ on:
 
 jobs:
   check_codegen:
-    name: Check codegen up-to-date
+    name: Check codegen up to date
     runs-on: ubuntu-latest
     defaults:
       run:
