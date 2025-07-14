@@ -9,9 +9,17 @@ on:
   workflow_dispatch:
 
 jobs:
+  check_codegen_ni_protobuf_types:
+    name: Check codegen up-to-date for ni.protobuf.types
+    uses: ./.github/workflows/check_codegen.yml
+    with:
+      proto-subpath: ni/protobuf/types
+      output-basepath: ../../packages/ni.protobuf.types/src
+      output-format: submodule
   check_ni_protobuf_types:
     name: Check ni.protobuf.types
     uses: ./.github/workflows/check_package.yml
+    needs: [check_codegen_ni_protobuf_types]
     with:
       package-name: ni.protobuf.types
   check_ni_pythonpanel_v1_proto:
