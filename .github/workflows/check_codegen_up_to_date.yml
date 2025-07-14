@@ -61,8 +61,3 @@ jobs:
           git add ${{ inputs.output-basepath }}
           git diff --exit-code --staged ${{ inputs.output-basepath }}
           git diff --exit-code ${{ inputs.output-basepath }}
-      - name: Revert gRPC stubs
-        run: |
-          git clean -dfx ${{ inputs.output-basepath }}
-          git restore ${{ inputs.output-basepath }}
-          git restore --staged ${{ inputs.output-basepath }}
