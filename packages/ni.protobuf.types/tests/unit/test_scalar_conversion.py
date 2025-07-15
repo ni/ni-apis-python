@@ -57,14 +57,14 @@ def test___string_scalar_protobuf___convert___valid_str_scalar() -> None:
     assert python_value.units == "Volts"
 
 
-def test___scalar_protobuf_value_unset___convert___throws_type_error() -> None:
+def test___scalar_protobuf_value_unset___convert___throws_value_error() -> None:
     attributes = {"NI_UnitDescription": AttributeValue(string_value="Volts")}
     protobuf_value = scalar_pb2.Scalar(attributes=attributes)
 
     with pytest.raises(ValueError) as exc:
         _ = scalar_from_protobuf(protobuf_value)
 
-    assert exc.value.args[0].startswith("Unexpected value for protobuf_value.WhichOneOf")
+    assert exc.value.args[0].startswith("Could not determine the data type of 'value'.")
 
 
 def test___scalar_protobuf_units_unset___convert___python_units_blank() -> None:

@@ -38,7 +38,10 @@ def scalar_to_protobuf(value: Scalar[_AnyScalarType], /) -> scalar_pb2.Scalar:
 def scalar_from_protobuf(message: scalar_pb2.Scalar, /) -> Scalar[_AnyScalarType]:
     """Convert the protobuf scalar_pb2.Scalar to a Python Scalar."""
     # Convert the scalar value.
-    pb_type = str(message.WhichOneof("value"))
+    pb_type = message.WhichOneof("value")
+    if pb_type is None:
+        raise ValueError("Could not determine the data type of 'value'.")
+
     if pb_type not in _SCALAR_TYPE_TO_PB_ATTR_MAP.values():
         raise ValueError(f"Unexpected value for protobuf_value.WhichOneOf: {pb_type}")
     value = getattr(message, pb_type)
@@ -50,7 +53,9 @@ def scalar_from_protobuf(message: scalar_pb2.Scalar, /) -> Scalar[_AnyScalarType
     # Transfer attributes to extended_properties
     for key, value in message.attributes.items():
         attr_type = value.WhichOneof("attribute")
-        scalar.extended_properties[key] = getattr(value, str(attr_type))
+        if attr_type is None:
+            raise ValueError("Could not determine the data type of 'attribute'.")
+        scalar.extended_properties[key] = getattr(value, attr_type)
 
     return scalar
 
