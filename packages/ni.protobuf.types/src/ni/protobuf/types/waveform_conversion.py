@@ -14,15 +14,17 @@ from nitypes.waveform import (
     ExtendedPropertyDictionary,
     ExtendedPropertyValue,
     NoneScaleMode,
+    Spectrum,
     Timing,
 )
 
 from ni.protobuf.types.precision_timestamp_conversion import (
-    bintime_datetime_to_protobuf,
     bintime_datetime_from_protobuf,
+    bintime_datetime_to_protobuf,
 )
 from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
+    DoubleSpectrum,
     WaveformAttributeValue,
 )
 
@@ -91,6 +93,39 @@ def float64_analog_waveform_from_protobuf(
         copy_extended_properties=True,
         timing=timing,
         scale_mode=NoneScaleMode(),
+    )
+
+
+def float64_spectrum_waveform_to_protobuf(value: Spectrum[np.float64], /) -> DoubleSpectrum:
+    """Convert the Python Spectrum to a protobuf DoubleSpectrum."""
+    attributes = _extended_properties_to_attributes(value.extended_properties)
+
+    return DoubleSpectrum(
+        start_frequency=value.start_frequency,
+        frequency_increment=value.frequency_increment,
+        data=value.data,
+        attributes=attributes,
+    )
+
+
+def float64_spectrum_waveform_from_protobuf(message: DoubleSpectrum, /) -> Spectrum[np.float64]:
+    """Convert the protobuf DoubleSpectrum to a Python Spectrum."""
+    extended_properties = {}
+    for key, value in message.attributes.items():
+        attr_type = value.WhichOneof("attribute")
+        extended_properties[key] = getattr(value, str(attr_type))
+
+    data_array = np.array(message.data)
+    return Spectrum(
+        data=data_array,
+        dtype=np.float64,
+        start_index=0,
+        capacity=data_array.size,
+        sample_count=data_array.size,
+        start_frequency=message.start_frequency,
+        frequency_increment=message.frequency_increment,
+        extended_properties=extended_properties,
+        copy_extended_properties=True,
     )
 
 
