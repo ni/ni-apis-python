@@ -11,6 +11,7 @@ import numpy as np
 from nitypes.time import convert_datetime
 from nitypes.waveform import (
     AnalogWaveform,
+    ComplexWaveform,
     ExtendedPropertyDictionary,
     ExtendedPropertyValue,
     NoneScaleMode,
@@ -23,6 +24,8 @@ from ni.protobuf.types.precision_timestamp_conversion import (
 )
 from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
+    DoubleComplexWaveform,
+    I16ComplexWaveform,
     WaveformAttributeValue,
 )
 
@@ -82,6 +85,83 @@ def float64_analog_waveform_from_protobuf(
 
     data_array = np.array(message.y_data)
     return AnalogWaveform(
+        sample_count=data_array.size,
+        dtype=np.float64,
+        raw_data=data_array,
+        start_index=0,
+        capacity=data_array.size,
+        extended_properties=extended_properties,
+        copy_extended_properties=True,
+        timing=timing,
+        scale_mode=NoneScaleMode(),
+    )
+
+
+def float64_complex_waveform_to_protobuf(
+    value: ComplexWaveform[np.float64], /
+) -> DoubleComplexWaveform:
+    """Convert the Python ComplexWaveform to a protobuf DoubleComplexWaveform."""
+    if value.timing.has_start_time:
+        bin_datetime = convert_datetime(bt.DateTime, value.timing.start_time)
+        precision_timestamp = bintime_datetime_to_protobuf(bin_datetime)
+    else:
+        precision_timestamp = None
+
+    if value.timing.has_sample_interval:
+        time_interval = value.timing.sample_interval.total_seconds()
+    else:
+        time_interval = 0
+
+    attributes = _extended_properties_to_attributes(value.extended_properties)
+
+    return DoubleComplexWaveform(
+        t0=precision_timestamp,
+        dt=time_interval,
+        y_data=value.scaled_data,
+        attributes=attributes,
+    )
+
+
+def float64_complex_waveform_from_protobuf(
+    message: DoubleComplexWaveform, /
+) -> ComplexWaveform[np.float64]:
+    """Convert the protobuf DoubleComplexWaveform to a Python ComplexWaveform."""
+    # Declare timing to accept both bintime and dt.datetime to satisfy mypy.
+    timing: Timing[bt.DateTime | dt.datetime]
+    if not message.dt and not message.HasField("t0"):
+        # If both dt and t0 are unset, use Timing.empty.
+        timing = Timing.empty
+    else:
+        # Timestamp
+        bin_datetime = bintime_datetime_from_protobuf(message.t0)
+
+        # Sample Interval
+        if not message.dt:
+            timing = Timing.create_with_no_interval(timestamp=bin_datetime)
+        else:
+            sample_interval = ht.timedelta(seconds=message.dt)
+            timing = Timing.create_with_regular_interval(
+                sample_interval=sample_interval,
+                timestamp=bin_datetime,
+            )
+
+    extended_properties = {}
+    for key, value in message.attributes.items():
+        attr_type = value.WhichOneof("attribute")
+        extended_properties[key] = getattr(value, str(attr_type))
+
+    real_data = message.y_data[0::2]
+    imaginary_data = message.y_data[1::2]
+    if len(real_data) != len(imaginary_data):
+        raise ValueError("Interleaved data must have an even number of elements.")
+    
+    data_array = np.array(message.y_data)
+    real_data = data_array[0::2]
+    imaginary_data = data_array[1::2]
+    if len(real_data) != len(imaginary_data):
+        raise ValueError("Interleaved data must have an even number of elements.")
+    wfm = ComplexWaveform.from_array_1d()
+    return ComplexWaveform(
         sample_count=data_array.size,
         dtype=np.float64,
         raw_data=data_array,
