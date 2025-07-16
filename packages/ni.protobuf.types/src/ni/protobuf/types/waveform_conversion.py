@@ -93,7 +93,7 @@ def float64_analog_waveform_from_protobuf(
     )
 
 
-def float64_spectrum_waveform_to_protobuf(value: Spectrum[np.float64], /) -> DoubleSpectrum:
+def float64_spectrum_to_protobuf(value: Spectrum[np.float64], /) -> DoubleSpectrum:
     """Convert the Python Spectrum to a protobuf DoubleSpectrum."""
     attributes = _extended_properties_to_attributes(value.extended_properties)
 
@@ -105,7 +105,7 @@ def float64_spectrum_waveform_to_protobuf(value: Spectrum[np.float64], /) -> Dou
     )
 
 
-def float64_spectrum_waveform_from_protobuf(message: DoubleSpectrum, /) -> Spectrum[np.float64]:
+def float64_spectrum_from_protobuf(message: DoubleSpectrum, /) -> Spectrum[np.float64]:
     """Convert the protobuf DoubleSpectrum to a Python Spectrum."""
     extended_properties = {}
     for key, value in message.attributes.items():
@@ -117,8 +117,8 @@ def float64_spectrum_waveform_from_protobuf(message: DoubleSpectrum, /) -> Spect
     return Spectrum.from_array_1d(
         message.data,
         dtype=np.float64,
-        frequency_increment=message.frequency_increment,
         start_frequency=message.start_frequency,
+        frequency_increment=message.frequency_increment,
         extended_properties=extended_properties,
     )
 

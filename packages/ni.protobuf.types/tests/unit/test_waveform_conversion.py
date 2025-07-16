@@ -16,8 +16,8 @@ from ni.protobuf.types.precision_timestamp_conversion import (
 from ni.protobuf.types.waveform_conversion import (
     float64_analog_waveform_from_protobuf,
     float64_analog_waveform_to_protobuf,
-    float64_spectrum_waveform_from_protobuf,
-    float64_spectrum_waveform_to_protobuf,
+    float64_spectrum_from_protobuf,
+    float64_spectrum_to_protobuf,
 )
 from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
@@ -156,37 +156,37 @@ def test___dbl_analog_wfm_with_timing_no_dt___convert___valid_python_object() ->
 # Spectrum to DoubleSpectrum
 # ========================================================
 def test___default_spectrum___convert___valid_protobuf() -> None:
-    spectrum_waveform = Spectrum()
+    spectrum = Spectrum()
 
-    dbl_spectrum_waveform = float64_spectrum_waveform_to_protobuf(spectrum_waveform)
+    dbl_spectrum = float64_spectrum_to_protobuf(spectrum)
 
-    assert not dbl_spectrum_waveform.attributes
-    assert spectrum_waveform.start_frequency == 0.0
-    assert spectrum_waveform.frequency_increment == 0.0
-    assert list(dbl_spectrum_waveform.data) == []
+    assert not dbl_spectrum.attributes
+    assert spectrum.start_frequency == 0.0
+    assert spectrum.frequency_increment == 0.0
+    assert list(dbl_spectrum.data) == []
 
 
 def test___spectrum_with_data___convert___valid_protobuf() -> None:
-    spectrum_waveform = Spectrum.from_array_1d(numpy.array([1.0, 2.0, 3.0]))
-    spectrum_waveform.start_frequency = 100.0
-    spectrum_waveform.frequency_increment = 10.0
+    spectrum = Spectrum.from_array_1d(numpy.array([1.0, 2.0, 3.0]))
+    spectrum.start_frequency = 100.0
+    spectrum.frequency_increment = 10.0
 
-    dbl_spectrum_waveform = float64_spectrum_waveform_to_protobuf(spectrum_waveform)
+    dbl_spectrum = float64_spectrum_to_protobuf(spectrum)
 
-    assert list(dbl_spectrum_waveform.data) == [1.0, 2.0, 3.0]
-    assert dbl_spectrum_waveform.start_frequency == 100.0
-    assert dbl_spectrum_waveform.frequency_increment == 10.0
+    assert list(dbl_spectrum.data) == [1.0, 2.0, 3.0]
+    assert dbl_spectrum.start_frequency == 100.0
+    assert dbl_spectrum.frequency_increment == 10.0
 
 
 def test___spectrum_with_extended_properties___convert___valid_protobuf() -> None:
-    spectrum_waveform = Spectrum()
-    spectrum_waveform.channel_name = "Dev1/ai0"
-    spectrum_waveform.unit_description = "Volts"
+    spectrum = Spectrum()
+    spectrum.channel_name = "Dev1/ai0"
+    spectrum.unit_description = "Volts"
 
-    dbl_spectrum_waveform = float64_spectrum_waveform_to_protobuf(spectrum_waveform)
+    dbl_spectrum = float64_spectrum_to_protobuf(spectrum)
 
-    assert dbl_spectrum_waveform.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
-    assert dbl_spectrum_waveform.attributes["NI_UnitDescription"].string_value == "Volts"
+    assert dbl_spectrum.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
+    assert dbl_spectrum.attributes["NI_UnitDescription"].string_value == "Volts"
 
 
 # ========================================================
@@ -195,13 +195,13 @@ def test___spectrum_with_extended_properties___convert___valid_protobuf() -> Non
 def test___default_dbl_spectrum___convert___valid_python_object() -> None:
     dbl_spectrum = DoubleSpectrum()
 
-    spectrum_waveform = float64_spectrum_waveform_from_protobuf(dbl_spectrum)
+    spectrum = float64_spectrum_from_protobuf(dbl_spectrum)
 
-    assert not spectrum_waveform.extended_properties
-    assert spectrum_waveform.start_frequency == 0.0
-    assert spectrum_waveform.frequency_increment == 0.0
-    assert spectrum_waveform.sample_count == 0
-    assert spectrum_waveform.data.size == 0
+    assert not spectrum.extended_properties
+    assert spectrum.start_frequency == 0.0
+    assert spectrum.frequency_increment == 0.0
+    assert spectrum.sample_count == 0
+    assert spectrum.data.size == 0
 
 
 def test___dbl_spectrum_with_data___convert___valid_python_object() -> None:
@@ -209,11 +209,11 @@ def test___dbl_spectrum_with_data___convert___valid_python_object() -> None:
         data=[1.0, 2.0, 3.0], start_frequency=100.0, frequency_increment=10.0
     )
 
-    spectrum_waveform = float64_spectrum_waveform_from_protobuf(dbl_spectrum)
+    spectrum = float64_spectrum_from_protobuf(dbl_spectrum)
 
-    assert list(spectrum_waveform.data) == [1.0, 2.0, 3.0]
-    assert spectrum_waveform.start_frequency == 100.0
-    assert spectrum_waveform.frequency_increment == 10.0
+    assert list(spectrum.data) == [1.0, 2.0, 3.0]
+    assert spectrum.start_frequency == 100.0
+    assert spectrum.frequency_increment == 10.0
 
 
 def test___dbl_spectrum_with_attributes___convert___valid_python_object() -> None:
@@ -223,7 +223,7 @@ def test___dbl_spectrum_with_attributes___convert___valid_python_object() -> Non
     }
     dbl_spectrum = DoubleSpectrum(attributes=attributes)
 
-    spectrum_waveform = float64_spectrum_waveform_from_protobuf(dbl_spectrum)
+    spectrum = float64_spectrum_from_protobuf(dbl_spectrum)
 
-    assert spectrum_waveform.channel_name == "Dev1/ai0"
-    assert spectrum_waveform.unit_description == "Volts"
+    assert spectrum.channel_name == "Dev1/ai0"
+    assert spectrum.unit_description == "Volts"
