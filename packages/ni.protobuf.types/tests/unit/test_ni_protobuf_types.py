@@ -1,7 +1,9 @@
 """Tests for the ni.protobuf.types package."""
 
 from ni.protobuf.types.array_pb2 import Double2DArray, String2DArray
+from ni.protobuf.types.attribute_value_pb2 import AttributeValue
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
+from ni.protobuf.types.scalar_pb2 import Scalar
 from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
     DoubleComplexWaveform,
@@ -17,6 +19,10 @@ EXPECTED_DT = 0.01
 EXPECTED_ATTRIBUTES = {
     "attr1": WaveformAttributeValue(integer_value=1),
     "attr2": WaveformAttributeValue(string_value="two"),
+}
+EXPECTED_SCALAR_ATTRIBUTES = {
+    "attr1": AttributeValue(integer_value=1),
+    "attr2": AttributeValue(string_value="two"),
 }
 
 
@@ -114,3 +120,31 @@ def test___valid_inputs___create_doublexydata___message_created() -> None:
 
     assert list(test_wfm.x_data) == [1.0, 2.0, 3.0]
     assert list(test_wfm.y_data) == [4.0, 5.0, 6.0]
+
+
+def test___valid_inputs___create_double_scalar___message_created() -> None:
+    test_scalar = Scalar(attributes=EXPECTED_SCALAR_ATTRIBUTES, double_value=1.0)
+
+    assert test_scalar.double_value == 1.0
+    assert test_scalar.attributes == EXPECTED_SCALAR_ATTRIBUTES
+
+
+def test___valid_inputs___create_int_scalar___message_created() -> None:
+    test_scalar = Scalar(attributes=EXPECTED_SCALAR_ATTRIBUTES, int32_value=1)
+
+    assert test_scalar.int32_value == 1
+    assert test_scalar.attributes == EXPECTED_SCALAR_ATTRIBUTES
+
+
+def test___valid_inputs___create_bool_scalar___message_created() -> None:
+    test_scalar = Scalar(attributes=EXPECTED_SCALAR_ATTRIBUTES, bool_value=True)
+
+    assert test_scalar.bool_value is True
+    assert test_scalar.attributes == EXPECTED_SCALAR_ATTRIBUTES
+
+
+def test___valid_inputs___create_string_scalar___message_created() -> None:
+    test_scalar = Scalar(attributes=EXPECTED_SCALAR_ATTRIBUTES, string_value="one")
+
+    assert test_scalar.string_value == "one"
+    assert test_scalar.attributes == EXPECTED_SCALAR_ATTRIBUTES
