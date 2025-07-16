@@ -1,9 +1,11 @@
 import datetime as dt
 
-import numpy
+import numpy as np
 from nitypes.bintime import DateTime
+from nitypes.complex import ComplexInt32DType
 from nitypes.waveform import (
     AnalogWaveform,
+    ComplexWaveform,
     NoneScaleMode,
     SampleIntervalMode,
     Spectrum,
@@ -16,12 +18,18 @@ from ni.protobuf.types.precision_timestamp_conversion import (
 from ni.protobuf.types.waveform_conversion import (
     float64_analog_waveform_from_protobuf,
     float64_analog_waveform_to_protobuf,
+    float64_complex_waveform_from_protobuf,
+    float64_complex_waveform_to_protobuf,
     float64_spectrum_from_protobuf,
     float64_spectrum_to_protobuf,
+    int16_complex_waveform_from_protobuf,
+    int16_complex_waveform_to_protobuf,
 )
 from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
+    DoubleComplexWaveform,
     DoubleSpectrum,
+    I16ComplexWaveform,
     WaveformAttributeValue,
 )
 
@@ -49,7 +57,7 @@ def test___analog_waveform_samples_only___convert___valid_protobuf() -> None:
 
 
 def test___analog_waveform_non_zero_samples___convert___valid_protobuf() -> None:
-    analog_waveform = AnalogWaveform.from_array_1d(numpy.array([1.0, 2.0, 3.0]))
+    analog_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]))
 
     dbl_analog_waveform = float64_analog_waveform_to_protobuf(analog_waveform)
 
@@ -68,7 +76,7 @@ def test___analog_waveform_with_extended_properties___convert___valid_protobuf()
 
 
 def test___analog_waveform_with_standard_timing___convert___valid_protobuf() -> None:
-    analog_waveform = AnalogWaveform.from_array_1d(numpy.array([1.0, 2.0, 3.0]))
+    analog_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]))
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
     analog_waveform.timing = Timing.create_with_regular_interval(
         sample_interval=dt.timedelta(milliseconds=1000),
@@ -153,6 +161,260 @@ def test___dbl_analog_wfm_with_timing_no_dt___convert___valid_python_object() ->
 
 
 # ========================================================
+# ComplexWaveform to DoubleComplexWaveform
+# ========================================================
+def test___default_float64_complex_waveform___convert___valid_protobuf() -> None:
+    complex_waveform = ComplexWaveform(0, np.complex128)
+
+    dbl_complex_waveform = float64_complex_waveform_to_protobuf(complex_waveform)
+
+    assert not dbl_complex_waveform.attributes
+    assert dbl_complex_waveform.dt == 0
+    assert not dbl_complex_waveform.HasField("t0")
+    assert list(dbl_complex_waveform.y_data) == []
+
+
+def test___float64_complex_waveform_samples_only___convert___valid_protobuf() -> None:
+    complex_waveform = ComplexWaveform(2, np.complex128)
+
+    dbl_complex_waveform = float64_complex_waveform_to_protobuf(complex_waveform)
+
+    # Interleaved real/imaginary data.
+    assert list(dbl_complex_waveform.y_data) == [0.0, 0.0, 0.0, 0.0]
+
+
+def test___float64_complex_waveform_non_zero_samples___convert___valid_protobuf() -> None:
+    complex_waveform = ComplexWaveform.from_array_1d([1.5 + 2.5j, 3.5 + 4.5j], np.complex128)
+
+    dbl_complex_waveform = float64_complex_waveform_to_protobuf(complex_waveform)
+
+    assert list(dbl_complex_waveform.y_data) == [1.5, 2.5, 3.5, 4.5]
+
+
+def test___float64_complex_waveform_with_extended_properties___convert___valid_protobuf() -> None:
+    complex_waveform = ComplexWaveform(0, np.complex128)
+    complex_waveform.channel_name = "Dev1/ai0"
+    complex_waveform.unit_description = "Volts"
+
+    dbl_complex_waveform = float64_complex_waveform_to_protobuf(complex_waveform)
+
+    assert dbl_complex_waveform.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
+    assert dbl_complex_waveform.attributes["NI_UnitDescription"].string_value == "Volts"
+
+
+def test___float64_complex_waveform_with_standard_timing___convert___valid_protobuf() -> None:
+    complex_waveform = ComplexWaveform.from_array_1d([1.5 + 2.5j, 3.5 + 4.5j], np.complex128)
+    t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
+    complex_waveform.timing = Timing.create_with_regular_interval(
+        sample_interval=dt.timedelta(milliseconds=1000),
+        timestamp=t0_dt,
+    )
+
+    dbl_complex_waveform = float64_complex_waveform_to_protobuf(complex_waveform)
+
+    assert dbl_complex_waveform.dt == 1.0
+    bin_dt = DateTime(t0_dt)
+    converted_t0 = bintime_datetime_to_protobuf(bin_dt)
+    assert dbl_complex_waveform.t0 == converted_t0
+
+
+# ========================================================
+# DoubleComplexWaveform to ComplexWaveform
+# ========================================================
+def test___default_dbl_complex_wfm___convert___valid_python_object() -> None:
+    dbl_complex_waveform = DoubleComplexWaveform()
+
+    complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
+
+    assert not complex_waveform.extended_properties
+    assert complex_waveform.timing == Timing.empty
+    assert complex_waveform.scaled_data.size == 0
+    assert complex_waveform.scale_mode == NoneScaleMode()
+
+
+def test___dbl_complex_wfm_with_y_data___convert___valid_python_object() -> None:
+    dbl_complex_waveform = DoubleComplexWaveform(y_data=[1.0, 2.0, 3.0, 4.0])
+
+    complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
+
+    assert list(complex_waveform.scaled_data) == [1.0 + 2.0j, 3.0 + 4.0j]
+
+
+def test___dbl_complex_wfm_with_attributes___convert___valid_python_object() -> None:
+    attributes = {
+        "NI_ChannelName": WaveformAttributeValue(string_value="Dev1/ai0"),
+        "NI_UnitDescription": WaveformAttributeValue(string_value="Volts"),
+    }
+    dbl_complex_waveform = DoubleComplexWaveform(attributes=attributes)
+
+    complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
+
+    assert complex_waveform.channel_name == "Dev1/ai0"
+    assert complex_waveform.unit_description == "Volts"
+
+
+def test___dbl_complex_wfm_with_timing___convert___valid_python_object() -> None:
+    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_pt = bintime_datetime_to_protobuf(t0_dt)
+    dbl_complex_waveform = DoubleComplexWaveform(t0=t0_pt, dt=0.1, y_data=[1.0, 2.0, 3.0, 4.0])
+
+    complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
+
+    assert complex_waveform.timing.start_time == t0_dt._to_datetime_datetime()
+    assert complex_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
+    assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
+
+
+def test___dbl_complex_wfm_with_timing_no_t0___convert___valid_python_object() -> None:
+    dbl_complex_waveform = DoubleComplexWaveform(dt=0.1, y_data=[1.0, 2.0, 3.0, 4.0])
+
+    complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
+
+    assert complex_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    assert complex_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
+    assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
+
+
+def test___dbl_complex_wfm_with_timing_no_dt___convert___valid_python_object() -> None:
+    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_pt = bintime_datetime_to_protobuf(t0_dt)
+    dbl_complex_waveform = DoubleComplexWaveform(t0=t0_pt, y_data=[1.0, 2.0, 3.0, 4.0])
+
+    complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
+
+    assert complex_waveform.timing.start_time == t0_dt._to_datetime_datetime()
+    assert not complex_waveform.timing.has_sample_interval
+    assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+
+
+# ========================================================
+# ComplexWaveform to I16ComplexWaveform
+# ========================================================
+def test___default_int16_complex_waveform___convert___valid_protobuf() -> None:
+    complex_waveform = ComplexWaveform(0, ComplexInt32DType)
+
+    i16_complex_waveform = int16_complex_waveform_to_protobuf(complex_waveform)
+
+    assert not i16_complex_waveform.attributes
+    assert i16_complex_waveform.dt == 0
+    assert not i16_complex_waveform.HasField("t0")
+    assert list(i16_complex_waveform.y_data) == []
+
+
+def test___int16_complex_waveform_samples_only___convert___valid_protobuf() -> None:
+    complex_waveform = ComplexWaveform(2, ComplexInt32DType)
+
+    i16_complex_waveform = int16_complex_waveform_to_protobuf(complex_waveform)
+
+    # Interleaved real/imaginary data.
+    assert list(i16_complex_waveform.y_data) == [0, 0, 0, 0]
+
+
+def test___int16_complex_waveform_non_zero_samples___convert___valid_protobuf() -> None:
+    complex_waveform = ComplexWaveform.from_array_1d([(1, 2), (3, 4)], ComplexInt32DType)
+
+    i16_complex_waveform = int16_complex_waveform_to_protobuf(complex_waveform)
+
+    assert list(i16_complex_waveform.y_data) == [1, 2, 3, 4]
+
+
+def test___int16_complex_waveform_with_extended_properties___convert___valid_protobuf() -> None:
+    complex_waveform = ComplexWaveform(0, ComplexInt32DType)
+    complex_waveform.channel_name = "Dev1/ai0"
+    complex_waveform.unit_description = "Volts"
+
+    i16_complex_waveform = int16_complex_waveform_to_protobuf(complex_waveform)
+
+    assert i16_complex_waveform.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
+    assert i16_complex_waveform.attributes["NI_UnitDescription"].string_value == "Volts"
+
+
+def test___int16_complex_waveform_with_standard_timing___convert___valid_protobuf() -> None:
+    complex_waveform = ComplexWaveform.from_array_1d([(1, 2), (3, 4)], ComplexInt32DType)
+    t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
+    complex_waveform.timing = Timing.create_with_regular_interval(
+        sample_interval=dt.timedelta(milliseconds=1000),
+        timestamp=t0_dt,
+    )
+
+    i16_complex_waveform = int16_complex_waveform_to_protobuf(complex_waveform)
+
+    assert i16_complex_waveform.dt == 1.0
+    bin_dt = DateTime(t0_dt)
+    converted_t0 = bintime_datetime_to_protobuf(bin_dt)
+    assert i16_complex_waveform.t0 == converted_t0
+
+
+# ========================================================
+# I16ComplexWaveform to ComplexWaveform
+# ========================================================
+def test___default_int16_complex_wfm___convert___valid_python_object() -> None:
+    i16_complex_waveform = I16ComplexWaveform()
+
+    complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
+
+    assert not complex_waveform.extended_properties
+    assert complex_waveform.timing == Timing.empty
+    assert complex_waveform.scaled_data.size == 0
+    assert complex_waveform.scale_mode == NoneScaleMode()
+
+
+def test___int16_complex_wfm_with_y_data___convert___valid_python_object() -> None:
+    i16_complex_waveform = I16ComplexWaveform(y_data=[1, 2, 3, 4])
+
+    complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
+
+    assert list(complex_waveform.scaled_data) == [1 + 2j, 3 + 4j]
+
+
+def test___int16_complex_wfm_with_attributes___convert___valid_python_object() -> None:
+    attributes = {
+        "NI_ChannelName": WaveformAttributeValue(string_value="Dev1/ai0"),
+        "NI_UnitDescription": WaveformAttributeValue(string_value="Volts"),
+    }
+    i16_complex_waveform = I16ComplexWaveform(attributes=attributes)
+
+    complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
+
+    assert complex_waveform.channel_name == "Dev1/ai0"
+    assert complex_waveform.unit_description == "Volts"
+
+
+def test___int16_complex_wfm_with_timing___convert___valid_python_object() -> None:
+    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_pt = bintime_datetime_to_protobuf(t0_dt)
+    i16_complex_waveform = I16ComplexWaveform(t0=t0_pt, dt=0.1, y_data=[1, 2, 3, 4])
+
+    complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
+
+    assert complex_waveform.timing.start_time == t0_dt._to_datetime_datetime()
+    assert complex_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
+    assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
+
+
+def test___int16_complex_wfm_with_timing_no_t0___convert___valid_python_object() -> None:
+    i16_complex_waveform = I16ComplexWaveform(dt=0.1, y_data=[1, 2, 3, 4])
+
+    complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
+
+    assert complex_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    assert complex_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
+    assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
+
+
+def test___int16_complex_wfm_with_timing_no_dt___convert___valid_python_object() -> None:
+    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_pt = bintime_datetime_to_protobuf(t0_dt)
+    i16_complex_waveform = I16ComplexWaveform(t0=t0_pt, y_data=[1, 2, 3, 4])
+
+    complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
+
+    assert complex_waveform.timing.start_time == t0_dt._to_datetime_datetime()
+    assert not complex_waveform.timing.has_sample_interval
+    assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+
+
+# ========================================================
 # Spectrum to DoubleSpectrum
 # ========================================================
 def test___default_spectrum___convert___valid_protobuf() -> None:
@@ -167,7 +429,7 @@ def test___default_spectrum___convert___valid_protobuf() -> None:
 
 
 def test___spectrum_with_data___convert___valid_protobuf() -> None:
-    spectrum = Spectrum.from_array_1d(numpy.array([1.0, 2.0, 3.0]))
+    spectrum = Spectrum.from_array_1d(np.array([1.0, 2.0, 3.0]))
     spectrum.start_frequency = 100.0
     spectrum.frequency_increment = 10.0
 
