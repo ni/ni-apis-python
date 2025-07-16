@@ -155,7 +155,7 @@ def test___dbl_analog_wfm_with_timing_no_dt___convert___valid_python_object() ->
 # ========================================================
 # Spectrum to DoubleSpectrum
 # ========================================================
-def test___default_spectrum_waveform___convert___valid_protobuf() -> None:
+def test___default_spectrum___convert___valid_protobuf() -> None:
     spectrum_waveform = Spectrum()
 
     dbl_spectrum_waveform = float64_spectrum_waveform_to_protobuf(spectrum_waveform)
@@ -166,7 +166,7 @@ def test___default_spectrum_waveform___convert___valid_protobuf() -> None:
     assert list(dbl_spectrum_waveform.data) == []
 
 
-def test___spectrum_waveform_with_data___convert___valid_protobuf() -> None:
+def test___spectrum_with_data___convert___valid_protobuf() -> None:
     spectrum_waveform = Spectrum.from_array_1d(numpy.array([1.0, 2.0, 3.0]))
     spectrum_waveform.start_frequency = 100.0
     spectrum_waveform.frequency_increment = 10.0
@@ -178,7 +178,7 @@ def test___spectrum_waveform_with_data___convert___valid_protobuf() -> None:
     assert dbl_spectrum_waveform.frequency_increment == 10.0
 
 
-def test___spectrum_waveform_with_extended_properties___convert___valid_protobuf() -> None:
+def test___spectrum_with_extended_properties___convert___valid_protobuf() -> None:
     spectrum_waveform = Spectrum()
     spectrum_waveform.channel_name = "Dev1/ai0"
     spectrum_waveform.unit_description = "Volts"
