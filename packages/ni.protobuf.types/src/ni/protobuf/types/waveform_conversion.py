@@ -80,7 +80,9 @@ def float64_analog_waveform_from_protobuf(
     extended_properties = {}
     for key, value in message.attributes.items():
         attr_type = value.WhichOneof("attribute")
-        extended_properties[key] = getattr(value, str(attr_type))
+        if attr_type is None:
+            raise ValueError("Could not determine the datatype of 'attribute'.")
+        extended_properties[key] = getattr(value, attr_type)
 
     data_array = np.array(message.y_data)
     return AnalogWaveform(
