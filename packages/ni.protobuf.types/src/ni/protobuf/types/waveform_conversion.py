@@ -84,15 +84,10 @@ def float64_analog_waveform_from_protobuf(
             raise ValueError("Could not determine the datatype of 'attribute'.")
         extended_properties[key] = getattr(value, attr_type)
 
-    data_array = np.array(message.y_data)
-    return AnalogWaveform(
-        sample_count=data_array.size,
+    return AnalogWaveform.from_array_1d(
+        message.y_data,
         dtype=np.float64,
-        raw_data=data_array,
-        start_index=0,
-        capacity=data_array.size,
         extended_properties=extended_properties,
-        copy_extended_properties=True,
         timing=timing,
         scale_mode=NoneScaleMode(),
     )
@@ -115,19 +110,16 @@ def float64_spectrum_waveform_from_protobuf(message: DoubleSpectrum, /) -> Spect
     extended_properties = {}
     for key, value in message.attributes.items():
         attr_type = value.WhichOneof("attribute")
-        extended_properties[key] = getattr(value, str(attr_type))
+        if attr_type is None:
+            raise ValueError("Could not determine the datatype of 'attribute'.")
+        extended_properties[key] = getattr(value, attr_type)
 
-    data_array = np.array(message.data)
-    return Spectrum(
-        data=data_array,
+    return Spectrum.from_array_1d(
+        message.data,
         dtype=np.float64,
-        start_index=0,
-        capacity=data_array.size,
-        sample_count=data_array.size,
-        start_frequency=message.start_frequency,
         frequency_increment=message.frequency_increment,
+        start_frequency=message.start_frequency,
         extended_properties=extended_properties,
-        copy_extended_properties=True,
     )
 
 
