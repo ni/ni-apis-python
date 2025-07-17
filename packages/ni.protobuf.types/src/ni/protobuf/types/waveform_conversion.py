@@ -251,8 +251,10 @@ def _scale_from_waveform(waveform: AnalogWaveform[Any] | ComplexWaveform[Any]) -
     if isinstance(waveform.scale_mode, LinearScaleMode):
         linear_scale = LinearScale(gain=waveform.scale_mode.gain, offset=waveform.scale_mode.offset)
         return Scale(linear_scale=linear_scale)
-    else:
+    elif isinstance(waveform.scale_mode, NoneScaleMode):
         return None
+    else:
+        raise ValueError(f"The waveform scale mode {waveform.scale_mode} is not supported.")
 
 
 def _scale_mode_from_waveform_message(
