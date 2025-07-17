@@ -9,13 +9,14 @@ from typing import Any
 import hightime as ht
 import nitypes.bintime as bt
 import numpy as np
-from nitypes.complex import convert_complex, ComplexInt32Base, ComplexInt32DType
+from nitypes.complex import ComplexInt32Base, ComplexInt32DType
 from nitypes.time import convert_datetime
 from nitypes.waveform import (
     AnalogWaveform,
     ComplexWaveform,
     ExtendedPropertyDictionary,
     ExtendedPropertyValue,
+    LinearScaleMode,
     NoneScaleMode,
     Spectrum,
     Timing,
@@ -29,8 +30,10 @@ from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
 from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
     DoubleComplexWaveform,
-    I16ComplexWaveform,
     DoubleSpectrum,
+    I16ComplexWaveform,
+    LinearScale,
+    Scale,
     WaveformAttributeValue,
 )
 
@@ -97,6 +100,7 @@ def float64_complex_waveform_from_protobuf(
 
     return ComplexWaveform.from_array_1d(
         data_array,
+        copy=False,
         extended_properties=extended_properties,
         timing=timing,
         scale_mode=NoneScaleMode(),
@@ -111,14 +115,20 @@ def int16_complex_waveform_to_protobuf(
     time_interval = _time_interval_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
 
-    scaled_array = convert_complex(ComplexInt32DType, value.scaled_data)
-    interleaved_array = scaled_array.view(np.int16)
+    interleaved_array = value.raw_data.view(np.int16)
+
+    if isinstance(value.scale_mode, LinearScaleMode):
+        linear_scale = LinearScale(gain=value.scale_mode.gain, offset=value.scale_mode.offset)
+        scale = Scale(linear_scale=linear_scale)
+    else:
+        scale = None
 
     return I16ComplexWaveform(
         t0=t0,
         dt=time_interval,
         y_data=interleaved_array,
         attributes=attributes,
+        scale=scale,
     )
 
 
@@ -132,11 +142,20 @@ def int16_complex_waveform_from_protobuf(
     y_array = np.array(message.y_data, np.int16)
     data_array = y_array.view(ComplexInt32DType)
 
+    scale_mode: LinearScaleMode | NoneScaleMode
+    if message.HasField("scale"):
+        scale_mode = LinearScaleMode(
+            message.scale.linear_scale.gain, message.scale.linear_scale.offset
+        )
+    else:
+        scale_mode = NoneScaleMode()
+
     return ComplexWaveform.from_array_1d(
         data_array,
+        copy=False,
         extended_properties=extended_properties,
         timing=timing,
-        scale_mode=NoneScaleMode(),
+        scale_mode=scale_mode,
     )
 
 

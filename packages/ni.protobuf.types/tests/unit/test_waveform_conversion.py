@@ -6,6 +6,7 @@ from nitypes.complex import ComplexInt32DType
 from nitypes.waveform import (
     AnalogWaveform,
     ComplexWaveform,
+    LinearScaleMode,
     NoneScaleMode,
     SampleIntervalMode,
     Spectrum,
@@ -30,6 +31,8 @@ from ni.protobuf.types.waveform_pb2 import (
     DoubleComplexWaveform,
     DoubleSpectrum,
     I16ComplexWaveform,
+    LinearScale,
+    Scale,
     WaveformAttributeValue,
 )
 
@@ -298,6 +301,7 @@ def test___default_int16_complex_waveform___convert___valid_protobuf() -> None:
     assert not i16_complex_waveform.attributes
     assert i16_complex_waveform.dt == 0
     assert not i16_complex_waveform.HasField("t0")
+    assert not i16_complex_waveform.HasField("scale")
     assert list(i16_complex_waveform.y_data) == []
 
 
@@ -345,11 +349,26 @@ def test___int16_complex_waveform_with_standard_timing___convert___valid_protobu
     assert i16_complex_waveform.t0 == converted_t0
 
 
+def test___int16_complex_waveform_with_scaling___convert___valid_protobuf() -> None:
+    scale_mode = LinearScaleMode(2.0, 3.0)
+    complex_waveform = ComplexWaveform.from_array_1d(
+        [(1, 2), (3, 4)],
+        ComplexInt32DType,
+        scale_mode=scale_mode,
+    )
+
+    i16_complex_waveform = int16_complex_waveform_to_protobuf(complex_waveform)
+
+    assert i16_complex_waveform.scale.linear_scale.gain == 2.0
+    assert i16_complex_waveform.scale.linear_scale.offset == 3.0
+
+
 # ========================================================
 # I16ComplexWaveform to ComplexWaveform
 # ========================================================
 def test___default_int16_complex_wfm___convert___valid_python_object() -> None:
     i16_complex_waveform = I16ComplexWaveform()
+    print(i16_complex_waveform.HasField("scale"))
 
     complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
 
@@ -364,7 +383,8 @@ def test___int16_complex_wfm_with_y_data___convert___valid_python_object() -> No
 
     complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
 
-    assert list(complex_waveform.scaled_data) == [1 + 2j, 3 + 4j]
+    expected_raw_data = np.array([(1, 2), (3, 4)], ComplexInt32DType)
+    assert np.array_equal(complex_waveform.raw_data, expected_raw_data)
 
 
 def test___int16_complex_wfm_with_attributes___convert___valid_python_object() -> None:
@@ -412,6 +432,18 @@ def test___int16_complex_wfm_with_timing_no_dt___convert___valid_python_object()
     assert complex_waveform.timing.start_time == t0_dt._to_datetime_datetime()
     assert not complex_waveform.timing.has_sample_interval
     assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+
+
+def test___int16_complex_wfm_with_scaling___convert___valid_python_object() -> None:
+    linear_scale = LinearScale(gain=2.0, offset=3.0)
+    scale = Scale(linear_scale=linear_scale)
+    i16_complex_waveform = I16ComplexWaveform(y_data=[1, 2, 3, 4], scale=scale)
+
+    complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
+
+    assert isinstance(complex_waveform.scale_mode, LinearScaleMode)
+    assert complex_waveform.scale_mode.gain == 2.0
+    assert complex_waveform.scale_mode.offset == 3.0
 
 
 # ========================================================
