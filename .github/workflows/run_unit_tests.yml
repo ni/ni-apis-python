@@ -35,3 +35,8 @@ jobs:
         uses: ./.github/actions/run_and_upload_unit_tests
         with:
           package-name: ni.pythonpanel.v1.proto
+      - name: Run and upload unit tests - grpc_generator
+        uses: ./.github/actions/run_and_upload_unit_tests
+        with:
+          package-name: grpc_generator
+          package-basepath: tools
