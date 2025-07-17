@@ -263,7 +263,7 @@ def _scale_mode_from_waveform_message(
     if message.HasField("scale"):
         mode = message.scale.WhichOneof("mode")
         if mode is None:
-            raise ValueError("Could not determine type of 'mode'.")
+            raise ValueError("Could not determine waveform scale mode.")
         elif mode == "linear_scale":
             return LinearScaleMode(
                 message.scale.linear_scale.gain, message.scale.linear_scale.offset
