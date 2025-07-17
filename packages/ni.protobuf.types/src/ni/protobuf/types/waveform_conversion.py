@@ -114,14 +114,9 @@ def int16_complex_waveform_to_protobuf(
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
+    scale = _scale_from_waveform(value)
 
     interleaved_array = value.raw_data.view(np.int16)
-
-    if isinstance(value.scale_mode, LinearScaleMode):
-        linear_scale = LinearScale(gain=value.scale_mode.gain, offset=value.scale_mode.offset)
-        scale = Scale(linear_scale=linear_scale)
-    else:
-        scale = None
 
     return I16ComplexWaveform(
         t0=t0,
@@ -138,17 +133,10 @@ def int16_complex_waveform_from_protobuf(
     """Convert the protobuf DoubleComplexWaveform to a Python ComplexWaveform."""
     timing = _timing_from_waveform_message(message)
     extended_properties = _attributes_to_extended_properties(message.attributes)
+    scale_mode = _scale_mode_from_waveform_message(message)
 
     y_array = np.array(message.y_data, np.int16)
     data_array = y_array.view(ComplexInt32DType)
-
-    scale_mode: LinearScaleMode | NoneScaleMode
-    if message.HasField("scale"):
-        scale_mode = LinearScaleMode(
-            message.scale.linear_scale.gain, message.scale.linear_scale.offset
-        )
-    else:
-        scale_mode = NoneScaleMode()
 
     return ComplexWaveform.from_array_1d(
         data_array,
@@ -257,3 +245,26 @@ def _timing_from_waveform_message(
             )
 
     return timing
+
+
+def _scale_from_waveform(waveform: AnalogWaveform[Any] | ComplexWaveform[Any]) -> Scale | None:
+    if isinstance(waveform.scale_mode, LinearScaleMode):
+        linear_scale = LinearScale(gain=waveform.scale_mode.gain, offset=waveform.scale_mode.offset)
+        return Scale(linear_scale=linear_scale)
+    else:
+        return None
+
+
+def _scale_mode_from_waveform_message(
+    message: I16ComplexWaveform,
+) -> LinearScaleMode | NoneScaleMode:
+    if message.HasField("scale"):
+        mode = message.scale.WhichOneof("mode")
+        if mode is None:
+            raise ValueError("Could not determine type of 'mode'.")
+        if mode == "linear_scale":
+            return LinearScaleMode(
+                message.scale.linear_scale.gain, message.scale.linear_scale.offset
+            )
+
+    return NoneScaleMode()
