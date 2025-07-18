@@ -37,7 +37,7 @@ jobs:
           package-name: ni.pythonpanel.v1.proto
       # Run grpc_generator unit tests on its oldest supported version.
       - name: Run and upload unit tests - grpc_generator
-        if: matrix.python-version) == 3.11
+        if: matrix.python-version == '3.11'
         uses: ./.github/actions/run_and_upload_unit_tests
         with:
           package-name: grpc_generator
