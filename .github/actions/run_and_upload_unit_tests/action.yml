@@ -6,7 +6,7 @@ inputs:
     required: true
   package-basepath:
     description: 'Relative path to the parent directory of the package.'
-    required: true
+    required: false
     default: 'packages'
 runs:
   using: "composite"
