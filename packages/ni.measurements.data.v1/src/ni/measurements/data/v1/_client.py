@@ -1,5 +1,6 @@
 import logging
 
+from google.protobuf import timestamp_pb2
 from ni.apis.python import GrpcClient
 from ni.measurementlink.discovery.v1 import DiscoveryClient, discovery_service_pb2
 
@@ -24,11 +25,10 @@ class DataStoreClient(GrpcClient):
         return service_location
 
     @GrpcClient.log_errors
-    async def create_session(self, session_name: str) -> str:
-        logger.info(f"Creating session with name: {session_name}")
+    async def create_session(self, session_metadata: data_store_pb2.SessionMetadata) -> str:
+        logger.info(f"Creating session with name: {session_metadata.session_name}")
 
         stub = await self._get_stub()
-        session_metadata = data_store_pb2.SessionMetadata(session_name=session_name)
         create_session_request = data_store_service_pb2.CreateSessionRequest(
             session_metadata=session_metadata
         )
@@ -39,11 +39,14 @@ class DataStoreClient(GrpcClient):
         return create_session_response.session_id
 
     @GrpcClient.log_errors
-    async def create_measurement(self, name: str, session_id: str) -> str:
-        logger.info(f"Creating measurement with name: {name} in session: {session_id}")
+    async def create_measurement(
+        self, measurement_metadata: data_store_pb2.MeasurementMetadata
+    ) -> str:
+        logger.info(
+            f"Creating measurement with name: {measurement_metadata.name} in session: {measurement_metadata.session_id}"
+        )
 
         stub = await self._get_stub()
-        measurement_metadata = data_store_pb2.MeasurementMetadata(name=name, session_id=session_id)
         create_measurement_request = data_store_service_pb2.CreateMeasurementRequest(
             measurement=measurement_metadata
         )
@@ -55,13 +58,27 @@ class DataStoreClient(GrpcClient):
 
     @GrpcClient.log_errors
     async def publish_data(
-        self, data: data_store_pb2.PublishableData, measurement_id: str
+        self,
+        data: data_store_pb2.PublishableData,
+        publish_location: data_store_pb2.PublishDataLocation,
+        timestamp: timestamp_pb2.Timestamp,
+        measurement_id: str,
+        notes: str = "",
+        pass_fail_status: data_store_pb2.PassFailStatus = data_store_pb2.PassFailStatus.PASS_FAIL_STATUS_UNSPECIFIED,
+        error_state: data_store_pb2.ErrorState = data_store_pb2.ErrorState.ERROR_STATE_UNSPECIFIED,
+        error_message: data_store_pb2.ErrorMessage = data_store_pb2.ErrorMessage(),
     ) -> data_store_pb2.StoredDataValue:
         logger.info(f"Publishing data with name: {data.name} for measurement: {measurement_id}")
 
         stub = await self._get_stub()
         publish_data_request = data_store_service_pb2.PublishDataRequest(
             data=data,
+            notes=notes,
+            publish_location=publish_location,
+            timestamp=timestamp,
+            pass_fail_status=pass_fail_status,
+            error_state=error_state,
+            error_message=error_message,
             measurement_id=measurement_id,
         )
         publish_data_response = await stub.PublishData(publish_data_request)
