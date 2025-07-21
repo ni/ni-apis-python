@@ -790,8 +790,11 @@ nitypes = ">=0.1.0dev3"
 protobuf = ">=4.21"
 
 [package.source]
-type = "directory"
-url = "../ni.apis.python"
+type = "git"
+url = "https://github.com/ni/ni-apis-python.git"
+reference = "users/pkurlak/add-services"
+resolved_reference = "df5a5e71f2936260d1144572fb6fb146e9e4c62a"
+subdirectory = "packages/ni.apis.python"
 
 [[package]]
 name = "ni-python-styleguide"
@@ -1650,4 +1653,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.12"
-content-hash = "b2f6b435b2ec57e124629567a99b7fb8e047531533cd019b6588df0d2218281b"
+content-hash = "fd572f6d09c048692c5b72c5b42f166886f906e1d3154b96eccf970b015c1b99"

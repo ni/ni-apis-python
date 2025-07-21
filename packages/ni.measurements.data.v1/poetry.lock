@@ -790,30 +790,11 @@ nitypes = ">=0.1.0dev3"
 protobuf = ">=4.21"
 
 [package.source]
-type = "directory"
-url = "../ni.apis.python"
-
-[[package]]
-name = "ni-datamonikers-v1"
-version = "0.1.0"
-description = "Protobuf data types for NI gRPC APIs"
-optional = false
-python-versions = ">=3.11,<3.12"
-groups = ["main"]
-files = []
-develop = false
-
-[package.dependencies]
-grpcio = "^1.73.1"
-ni-apis-python = {path = "../ni.apis.python"}
-ni-measurementlink-discovery-v1 = {path = "../ni.measurementlink.discovery.v1"}
-ni-protobuf-types = {path = "../ni.protobuf.types"}
-nitypes = ">=0.1.0dev3"
-protobuf = ">=4.21"
-
-[package.source]
-type = "directory"
-url = "../ni.datamonikers.v1"
+type = "git"
+url = "https://github.com/ni/ni-apis-python.git"
+reference = "users/pkurlak/add-services"
+resolved_reference = "81027de8e2fceb3d8569f941e006c6b80c288572"
+subdirectory = "packages/ni.apis.python"
 
 [[package]]
 name = "ni-measurementlink-discovery-v1"
@@ -826,50 +807,17 @@ files = []
 develop = false
 
 [package.dependencies]
-ni-apis-python = {path = "../ni.apis.python"}
+ni-apis-python = {git = "https://github.com/ni/ni-apis-python.git", branch = "users/pkurlak/add-services", subdirectory = "packages/ni.apis.python"}
 nitypes = ">=0.1.0dev3"
 protobuf = ">=4.21"
 pywin32 = "^311"
 
 [package.source]
-type = "directory"
-url = "../ni.measurementlink.discovery.v1"
-
-[[package]]
-name = "ni-measurements-metadata-v1"
-version = "0.1.0"
-description = "Protobuf data types for NI gRPC APIs"
-optional = false
-python-versions = ">=3.11,<3.12"
-groups = ["main"]
-files = []
-develop = false
-
-[package.dependencies]
-nitypes = ">=0.1.0dev3"
-protobuf = ">=4.21"
-
-[package.source]
-type = "directory"
-url = "../ni.measurements.metadata.v1"
-
-[[package]]
-name = "ni-protobuf-types"
-version = "0.1.0"
-description = "Protobuf data types for NI gRPC APIs"
-optional = false
-python-versions = "^3.9"
-groups = ["main"]
-files = []
-develop = false
-
-[package.dependencies]
-nitypes = ">=0.1.0dev3"
-protobuf = ">=4.21"
-
-[package.source]
-type = "directory"
-url = "../ni.protobuf.types"
+type = "git"
+url = "https://github.com/ni/ni-apis-python.git"
+reference = "users/pkurlak/add-services"
+resolved_reference = "81027de8e2fceb3d8569f941e006c6b80c288572"
+subdirectory = "packages/ni.measurementlink.discovery.v1"
 
 [[package]]
 name = "ni-python-styleguide"
@@ -1728,4 +1676,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.12"
-content-hash = "9c5909326aa9a3827fb33677ce8cf1781b9ea3b975ee934430789edf5567f95d"
+content-hash = "a7c940991de9ababbcf2714a636abb156f6236e9fd6dbfb5ffc57ba5791aaa77"
