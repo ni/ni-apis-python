@@ -1670,6 +1670,17 @@ files = [
 ]
 
 [[package]]
+name = "tomlkit"
+version = "0.13.3"
+description = "Style preserving TOML library"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "tomlkit-0.13.3-py3-none-any.whl", hash = "sha256:c89c649d79ee40629a9fda55f8ace8c6a1b42deb912b2a8fd8d942ddadb606b0"},
+    {file = "tomlkit-0.13.3.tar.gz", hash = "sha256:430cf247ee57df2b94ee3fbe588e71d362a941ebb545dec29b53961d61add2a1"},
+]
+
+[[package]]
 name = "types-grpcio"
 version = "1.0.0.20250703"
 description = "Typing stubs for grpcio"
@@ -1722,4 +1733,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "9d84e3e88808f4c267b9465ffea30d851b501af97ecb76abe784211203bca4ac"
+content-hash = "9d6748b9c0c725febdd792552361d6b7b6aeee04d1d178fcac586b74d11efdc7"
