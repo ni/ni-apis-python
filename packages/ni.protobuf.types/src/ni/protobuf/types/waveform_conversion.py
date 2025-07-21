@@ -43,7 +43,7 @@ def float64_analog_waveform_to_protobuf(
     value: AnalogWaveform[np.float64], /
 ) -> DoubleAnalogWaveform:
     """Convert the Python AnalogWaveform to a protobuf DoubleAnalogWaveform."""
-    _error_if_irregular_timing(value)
+    _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
@@ -76,7 +76,7 @@ def float64_complex_waveform_to_protobuf(
     value: ComplexWaveform[np.complex128], /
 ) -> DoubleComplexWaveform:
     """Convert the Python ComplexWaveform to a protobuf DoubleComplexWaveform."""
-    _error_if_irregular_timing(value)
+    _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
@@ -114,7 +114,7 @@ def int16_complex_waveform_to_protobuf(
     value: ComplexWaveform[ComplexInt32Base], /
 ) -> I16ComplexWaveform:
     """Convert the Python ComplexWaveform to a protobuf DoubleComplexWaveform."""
-    _error_if_irregular_timing(value)
+    _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
@@ -209,7 +209,7 @@ def _value_to_attribute(value: ExtendedPropertyValue) -> WaveformAttributeValue:
     return attr_value
 
 
-def _error_if_irregular_timing(
+def _validate_timing(
     waveform: AnalogWaveform[Any] | ComplexWaveform[Any],
 ) -> None:
     if waveform.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
