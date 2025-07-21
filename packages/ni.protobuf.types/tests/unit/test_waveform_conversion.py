@@ -1,6 +1,7 @@
 import datetime as dt
 
 import numpy as np
+import pytest
 from nitypes.bintime import DateTime
 from nitypes.complex import ComplexInt32DType
 from nitypes.waveform import (
@@ -92,6 +93,19 @@ def test___analog_waveform_with_standard_timing___convert___valid_protobuf() -> 
     bin_dt = DateTime(t0_dt)
     converted_t0 = bintime_datetime_to_protobuf(bin_dt)
     assert dbl_analog_waveform.t0 == converted_t0
+
+
+def test___analog_waveform_with_irregular_timing___convert___raises_value_error() -> None:
+    analog_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]))
+    t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
+    analog_waveform.timing = Timing.create_with_irregular_interval(
+        [t0_dt, t0_dt + dt.timedelta(milliseconds=1000), t0_dt + dt.timedelta(milliseconds=3000)]
+    )
+
+    with pytest.raises(ValueError) as exc:
+        _ = float64_analog_waveform_to_protobuf(analog_waveform)
+
+    assert exc.value.args[0].startswith("Cannot convert irregular sample interval to protobuf.")
 
 
 # ========================================================
@@ -221,6 +235,19 @@ def test___float64_complex_waveform_with_standard_timing___convert___valid_proto
     assert dbl_complex_waveform.t0 == converted_t0
 
 
+def test___float64_complex_waveform_with_irregular_timing___convert___raises_value_error() -> None:
+    complex_waveform = ComplexWaveform.from_array_1d([1.5 + 2.5j, 3.5 + 4.5j], np.complex128)
+    t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
+    complex_waveform.timing = Timing.create_with_irregular_interval(
+        [t0_dt, t0_dt + dt.timedelta(milliseconds=1000)]
+    )
+
+    with pytest.raises(ValueError) as exc:
+        _ = float64_complex_waveform_to_protobuf(complex_waveform)
+
+    assert exc.value.args[0].startswith("Cannot convert irregular sample interval to protobuf.")
+
+
 # ========================================================
 # DoubleComplexWaveform to ComplexWaveform
 # ========================================================
@@ -347,6 +374,19 @@ def test___int16_complex_waveform_with_standard_timing___convert___valid_protobu
     bin_dt = DateTime(t0_dt)
     converted_t0 = bintime_datetime_to_protobuf(bin_dt)
     assert i16_complex_waveform.t0 == converted_t0
+
+
+def test___int1664_complex_waveform_with_irregular_timing___convert___raises_value_error() -> None:
+    complex_waveform = ComplexWaveform.from_array_1d([(1, 2), (3, 4)], ComplexInt32DType)
+    t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
+    complex_waveform.timing = Timing.create_with_irregular_interval(
+        [t0_dt, t0_dt + dt.timedelta(milliseconds=1000)]
+    )
+
+    with pytest.raises(ValueError) as exc:
+        _ = int16_complex_waveform_to_protobuf(complex_waveform)
+
+    assert exc.value.args[0].startswith("Cannot convert irregular sample interval to protobuf.")
 
 
 def test___int16_complex_waveform_with_scaling___convert___valid_protobuf() -> None:
