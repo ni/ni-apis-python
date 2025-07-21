@@ -22,15 +22,15 @@ jobs:
     needs: [check_codegen_ni_protobuf_types]
     with:
       package-name: ni.protobuf.types
-  check_ni_pythonpanel_v1_proto:
-    name: Check ni.pythonpanel.v1.proto
+  check_ni_panels_v1_proto:
+    name: Check ni.panels.v1.proto
     uses: ./.github/workflows/check_package.yml
     with:
-      package-name: ni.pythonpanel.v1.proto
+      package-name: ni.panels.v1.proto
   run_unit_tests:
     name: Run unit tests
     uses: ./.github/workflows/run_unit_tests.yml
-    needs: [check_ni_protobuf_types, check_ni_pythonpanel_v1_proto]
+    needs: [check_ni_protobuf_types, check_ni_panels_v1_proto]
   report_test_results:
     name: Report test results
     uses: ./.github/workflows/report_test_results.yml
