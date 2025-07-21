@@ -31,10 +31,10 @@ classifiers = [
 packages = [{ include = "ni", from = "src" }]
 
 [tool.poetry.dependencies]
-python = ">=3.11,<3.12"
-protobuf = { version = ">=4.21" }
-nitypes = { version = ">=0.1.0dev3", allow-prereleases = true }
 grpcio = "^1.73.1"
+nitypes = { version = ">=0.1.0dev3", allow-prereleases = true }
+protobuf = { version = ">=4.21" }
+python = ">=3.11,<3.12"
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
