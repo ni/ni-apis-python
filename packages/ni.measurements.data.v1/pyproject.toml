@@ -37,6 +37,7 @@ nitypes = { version = ">=0.1.0dev3", allow-prereleases = true }
 ni-measurements-metadata-v1 = {path = "../ni.measurements.metadata.v1"}
 ni-protobuf-types = {path = "../ni.protobuf.types"}
 ni-datamonikers-v1 = {path = "../ni.datamonikers.v1"}
+ni-measurementlink-discovery-v1 = {path = "../ni.measurementlink.discovery.v1"}
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"

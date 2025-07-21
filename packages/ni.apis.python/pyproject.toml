@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "ni.datamonikers.v1"
+name = "ni.apis.python"
 version = "0.1.0"
 license = "MIT"
-description = "Protobuf data types for NI gRPC APIs"
+description = "Common code to support NI APIs in Python."
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",
@@ -34,10 +34,7 @@ packages = [{ include = "ni", from = "src" }]
 python = ">=3.11,<3.12"
 protobuf = { version = ">=4.21" }
 nitypes = { version = ">=0.1.0dev3", allow-prereleases = true }
-ni-protobuf-types = { path = "../ni.protobuf.types" }
 grpcio = "^1.73.1"
-ni-measurementlink-discovery-v1 = {path = "../ni.measurementlink.discovery.v1"}
-ni-apis-python = {path = "../ni.apis.python"}
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"

@@ -34,6 +34,8 @@ packages = [{ include = "ni", from = "src" }]
 python = ">=3.11,<3.12"
 protobuf = { version = ">=4.21" }
 nitypes = { version = ">=0.1.0dev3", allow-prereleases = true }
+ni-apis-python = {path = "../ni.apis.python"}
+pywin32 = "^311"
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"

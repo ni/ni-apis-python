@@ -775,6 +775,25 @@ files = [
 ]
 
 [[package]]
+name = "ni-apis-python"
+version = "0.1.0"
+description = "Common code to support NI APIs in Python."
+optional = false
+python-versions = ">=3.11,<3.12"
+groups = ["main"]
+files = []
+develop = false
+
+[package.dependencies]
+grpcio = "^1.73.1"
+nitypes = ">=0.1.0dev3"
+protobuf = ">=4.21"
+
+[package.source]
+type = "directory"
+url = "../ni.apis.python"
+
+[[package]]
 name = "ni-measurementlink-discovery-v1"
 version = "0.1.0"
 description = "Protobuf data types for NI gRPC APIs"
@@ -785,51 +804,13 @@ files = []
 develop = false
 
 [package.dependencies]
+ni-apis-python = {path = "../ni.apis.python"}
 nitypes = ">=0.1.0dev3"
 protobuf = ">=4.21"
 
 [package.source]
 type = "directory"
 url = "../ni.measurementlink.discovery.v1"
-
-[[package]]
-name = "ni-measurements-data-v1"
-version = "0.1.0"
-description = "Protobuf data types for NI gRPC APIs"
-optional = false
-python-versions = ">=3.11,<3.12"
-groups = ["main"]
-files = []
-develop = false
-
-[package.dependencies]
-ni-datamonikers-v1 = {path = "../ni.datamonikers.v1"}
-ni-measurements-metadata-v1 = {path = "../ni.measurements.metadata.v1"}
-ni-protobuf-types = {path = "../ni.protobuf.types"}
-nitypes = ">=0.1.0dev3"
-protobuf = ">=4.21"
-
-[package.source]
-type = "directory"
-url = "../ni.measurements.data.v1"
-
-[[package]]
-name = "ni-measurements-metadata-v1"
-version = "0.1.0"
-description = "Protobuf data types for NI gRPC APIs"
-optional = false
-python-versions = ">=3.11,<3.12"
-groups = ["main"]
-files = []
-develop = false
-
-[package.dependencies]
-nitypes = ">=0.1.0dev3"
-protobuf = ">=4.21"
-
-[package.source]
-type = "directory"
-url = "../ni.measurements.metadata.v1"
 
 [[package]]
 name = "ni-protobuf-types"
@@ -1676,4 +1657,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<3.12"
-content-hash = "c9cf87722aa2ec8b2ba8984b263fd0028ee9413f52e3f70861ba699068c3ff33"
+content-hash = "a28f34bf8adf346f1e856c1c96153e5219b7a1c4a0a76ca079c9bbf0fabe77bc"
