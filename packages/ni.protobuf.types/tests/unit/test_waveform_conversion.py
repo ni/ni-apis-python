@@ -376,7 +376,7 @@ def test___int16_complex_waveform_with_standard_timing___convert___valid_protobu
     assert i16_complex_waveform.t0 == converted_t0
 
 
-def test___int1664_complex_waveform_with_irregular_timing___convert___raises_value_error() -> None:
+def test___int16_complex_waveform_with_irregular_timing___convert___raises_value_error() -> None:
     complex_waveform = ComplexWaveform.from_array_1d([(1, 2), (3, 4)], ComplexInt32DType)
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
     complex_waveform.timing = Timing.create_with_irregular_interval(
