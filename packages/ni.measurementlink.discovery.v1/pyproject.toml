@@ -31,16 +31,16 @@ classifiers = [
 packages = [{ include = "ni", from = "src" }]
 
 [tool.poetry.dependencies]
+# Only submit this one, comment out for local development
 ni-apis-python = { git = "https://github.com/ni/ni-apis-python.git", branch = "users/pkurlak/add-services", subdirectory = "packages/ni.apis.python" }
-ni-measurementlink-discovery-v1 = { git = "https://github.com/ni/ni-apis-python.git", branch = "users/pkurlak/add-services", subdirectory = "packages/ni.measurementlink.discovery.v1" }
+# Uncomment for local development
+# ni-apis-python = { path = "../ni.apis.python", develop = true }
 nitypes = { version = ">=0.1.0dev3", allow-prereleases = true }
 protobuf = { version = ">=4.21" }
 python = ">=3.11,<3.12"
 pywin32 = "^311"
 
 [tool.poetry.group.dev.dependencies]
-ni-apis-python = { path = "../ni.apis.python" }
-ni-measurementlink-discovery-v1 = { path = "../ni.measurementlink.discovery.v1" }
 types-grpcio = ">=1.0"
 types-protobuf = ">=4.21"
 
