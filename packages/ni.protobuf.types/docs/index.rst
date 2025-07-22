@@ -1,6 +1,6 @@
-#######################################
-Python Interfaces for NI Protobuf Types
-#######################################
+####################################
+Protobuf data types for NI gRPC APIs
+####################################
 
 .. include:: intro.inc
 
@@ -8,7 +8,7 @@ Table of Contents
 =================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 8
 
    autoapi/index
 

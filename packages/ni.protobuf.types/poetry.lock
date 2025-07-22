@@ -769,9 +769,9 @@ files = [
 hightime = ">=0.2.2"
 numpy = [
     {version = ">=1.22", markers = "implementation_name != \"pypy\" and python_version >= \"3.9\" and python_version < \"3.12\""},
-    {version = ">=1.26", markers = "python_version >= \"3.12\" and python_version < \"3.13\" and implementation_name != \"pypy\""},
     {version = ">=2.1", markers = "python_version >= \"3.10\" and python_version < \"3.11\" and implementation_name == \"pypy\" or python_version >= \"3.13\" and python_version < \"4.0\" and implementation_name != \"pypy\""},
     {version = ">=2.3", markers = "implementation_name == \"pypy\" and python_version >= \"3.11\" and python_version < \"4.0\""},
+    {version = ">=1.26", markers = "python_version >= \"3.12\" and python_version < \"3.13\" and implementation_name != \"pypy\""},
 ]
 typing-extensions = ">=4.13.2"
 
@@ -1670,17 +1670,6 @@ files = [
 ]
 
 [[package]]
-name = "tomlkit"
-version = "0.13.3"
-description = "Style preserving TOML library"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "tomlkit-0.13.3-py3-none-any.whl", hash = "sha256:c89c649d79ee40629a9fda55f8ace8c6a1b42deb912b2a8fd8d942ddadb606b0"},
-    {file = "tomlkit-0.13.3.tar.gz", hash = "sha256:430cf247ee57df2b94ee3fbe588e71d362a941ebb545dec29b53961d61add2a1"},
-]
-
-[[package]]
 name = "types-grpcio"
 version = "1.0.0.20250703"
 description = "Typing stubs for grpcio"
@@ -1733,4 +1722,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "9d6748b9c0c725febdd792552361d6b7b6aeee04d1d178fcac586b74d11efdc7"
+content-hash = "f1bfae87964e0ca09aea0470886a5d59dd5ef63a3bab982a188d41bfb3216699"
