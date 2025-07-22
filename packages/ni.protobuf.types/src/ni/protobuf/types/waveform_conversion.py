@@ -32,6 +32,7 @@ from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
     DoubleComplexWaveform,
     DoubleSpectrum,
+    I16AnalogWaveform,
     I16ComplexWaveform,
     LinearScale,
     Scale,
@@ -174,6 +175,38 @@ def float64_spectrum_from_protobuf(message: DoubleSpectrum, /) -> Spectrum[np.fl
     )
 
 
+def int16_analog_waveform_to_protobuf(value: AnalogWaveform[np.int16], /) -> I16AnalogWaveform:
+    """Convert the Python AnalogWaveform to a protobuf I16AnalogWaveform."""
+    _validate_timing(value)
+    t0 = _t0_from_waveform(value)
+    time_interval = _time_interval_from_waveform(value)
+    attributes = _extended_properties_to_attributes(value.extended_properties)
+    scale = _scale_from_waveform(value)
+
+    return I16AnalogWaveform(
+        t0=t0,
+        dt=time_interval,
+        y_data=value.raw_data,
+        attributes=attributes,
+        scale=scale,
+    )
+
+
+def int16_analog_waveform_from_protobuf(message: I16AnalogWaveform, /) -> AnalogWaveform[np.int16]:
+    """Convert the protobuf I16AnalogWaveform to a Python AnalogWaveform."""
+    timing = _timing_from_waveform_message(message)
+    extended_properties = _attributes_to_extended_properties(message.attributes)
+    scale_mode = _scale_mode_from_waveform_message(message)
+
+    return AnalogWaveform.from_array_1d(
+        message.y_data,
+        dtype=np.int16,
+        extended_properties=extended_properties,
+        timing=timing,
+        scale_mode=scale_mode,
+    )
+
+
 def _attributes_to_extended_properties(
     attributes: Mapping[str, WaveformAttributeValue],
 ) -> Mapping[str, ExtendedPropertyValue]:
@@ -234,7 +267,7 @@ def _time_interval_from_waveform(waveform: AnalogWaveform[Any] | ComplexWaveform
 
 
 def _timing_from_waveform_message(
-    message: DoubleAnalogWaveform | DoubleComplexWaveform | I16ComplexWaveform,
+    message: DoubleAnalogWaveform | DoubleComplexWaveform | I16AnalogWaveform | I16ComplexWaveform,
 ) -> Timing[bt.DateTime | dt.datetime]:
     # Declare timing to accept both bintime and dt.datetime to satisfy mypy.
     timing: Timing[bt.DateTime | dt.datetime]
@@ -269,7 +302,7 @@ def _scale_from_waveform(waveform: AnalogWaveform[Any] | ComplexWaveform[Any]) -
 
 
 def _scale_mode_from_waveform_message(
-    message: I16ComplexWaveform,
+    message: I16AnalogWaveform | I16ComplexWaveform,
 ) -> LinearScaleMode | NoneScaleMode:
     if message.HasField("scale"):
         mode = message.scale.WhichOneof("mode")
