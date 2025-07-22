@@ -16,8 +16,7 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 @typing.final
 class Double2DArray(google.protobuf.message.Message):
-    """---------------------------------------------------------------------
-    Defines a 2D array of values. The 2D array is stored as a repeated field of
+    """Defines a 2D array of values. The 2D array is stored as a repeated field of
     the appropriate element type, a 1D array. It is stored in row major order.
 
     Example:
@@ -38,7 +37,6 @@ class Double2DArray(google.protobuf.message.Message):
      The length of the 'data' field must be equal to rows * columns.
      If it is not, implementations should treat this state as invalid
      and return INVALID_ARGUMENT status code if appropriate.
-    ---------------------------------------------------------------------
     """
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
