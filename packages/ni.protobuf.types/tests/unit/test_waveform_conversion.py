@@ -1,8 +1,8 @@
 import datetime as dt
 
+import nitypes.bintime as bt
 import numpy as np
 import pytest
-from nitypes.bintime import DateTime
 from nitypes.complex import ComplexInt32DType
 from nitypes.waveform import (
     AnalogWaveform,
@@ -90,7 +90,7 @@ def test___analog_waveform_with_standard_timing___convert___valid_protobuf() -> 
     dbl_analog_waveform = float64_analog_waveform_to_protobuf(analog_waveform)
 
     assert dbl_analog_waveform.dt == 1.0
-    bin_dt = DateTime(t0_dt)
+    bin_dt = bt.DateTime(t0_dt)
     converted_t0 = bintime_datetime_to_protobuf(bin_dt)
     assert dbl_analog_waveform.t0 == converted_t0
 
@@ -144,7 +144,7 @@ def test___dbl_analog_wfm_with_attributes___convert___valid_python_object() -> N
 
 
 def test___dbl_analog_wfm_with_timing___convert___valid_python_object() -> None:
-    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     dbl_analog_wfm = DoubleAnalogWaveform(t0=t0_pt, dt=0.1, y_data=[1.0, 2.0, 3.0])
 
@@ -166,7 +166,7 @@ def test___dbl_analog_wfm_with_timing_no_t0___convert___valid_python_object() ->
 
 
 def test___dbl_analog_wfm_with_timing_no_dt___convert___valid_python_object() -> None:
-    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     dbl_analog_wfm = DoubleAnalogWaveform(t0=t0_pt, y_data=[1.0, 2.0, 3.0])
 
@@ -230,7 +230,7 @@ def test___float64_complex_waveform_with_standard_timing___convert___valid_proto
     dbl_complex_waveform = float64_complex_waveform_to_protobuf(complex_waveform)
 
     assert dbl_complex_waveform.dt == 1.0
-    bin_dt = DateTime(t0_dt)
+    bin_dt = bt.DateTime(t0_dt)
     converted_t0 = bintime_datetime_to_protobuf(bin_dt)
     assert dbl_complex_waveform.t0 == converted_t0
 
@@ -284,7 +284,7 @@ def test___dbl_complex_wfm_with_attributes___convert___valid_python_object() -> 
 
 
 def test___dbl_complex_wfm_with_timing___convert___valid_python_object() -> None:
-    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     dbl_complex_waveform = DoubleComplexWaveform(t0=t0_pt, dt=0.1, y_data=[1.0, 2.0, 3.0, 4.0])
 
@@ -306,7 +306,7 @@ def test___dbl_complex_wfm_with_timing_no_t0___convert___valid_python_object() -
 
 
 def test___dbl_complex_wfm_with_timing_no_dt___convert___valid_python_object() -> None:
-    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     dbl_complex_waveform = DoubleComplexWaveform(t0=t0_pt, y_data=[1.0, 2.0, 3.0, 4.0])
 
@@ -371,7 +371,7 @@ def test___int16_complex_waveform_with_standard_timing___convert___valid_protobu
     i16_complex_waveform = int16_complex_waveform_to_protobuf(complex_waveform)
 
     assert i16_complex_waveform.dt == 1.0
-    bin_dt = DateTime(t0_dt)
+    bin_dt = bt.DateTime(t0_dt)
     converted_t0 = bintime_datetime_to_protobuf(bin_dt)
     assert i16_complex_waveform.t0 == converted_t0
 
@@ -441,7 +441,7 @@ def test___int16_complex_wfm_with_attributes___convert___valid_python_object() -
 
 
 def test___int16_complex_wfm_with_timing___convert___valid_python_object() -> None:
-    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     i16_complex_waveform = I16ComplexWaveform(t0=t0_pt, dt=0.1, y_data=[1, 2, 3, 4])
 
@@ -463,7 +463,7 @@ def test___int16_complex_wfm_with_timing_no_t0___convert___valid_python_object()
 
 
 def test___int16_complex_wfm_with_timing_no_dt___convert___valid_python_object() -> None:
-    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     i16_complex_waveform = I16ComplexWaveform(t0=t0_pt, y_data=[1, 2, 3, 4])
 
