@@ -31,10 +31,10 @@ jobs:
         uses: ./.github/actions/run_and_upload_unit_tests
         with:
           package-name: ni.protobuf.types
-      - name: Run and upload unit tests - ni.pythonpanel.v1.proto
+      - name: Run and upload unit tests - ni.panels.v1.proto
         uses: ./.github/actions/run_and_upload_unit_tests
         with:
-          package-name: ni.pythonpanel.v1.proto
+          package-name: ni.panels.v1.proto
       # Run grpc_generator unit tests on its oldest supported version.
       - name: Run and upload unit tests - grpc_generator
         if: ${{ !contains(fromJSON('["3.9", "3.10"]'), matrix.python-version) }}
