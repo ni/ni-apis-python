@@ -24,6 +24,8 @@ from ni.protobuf.types.waveform_conversion import (
     float64_complex_waveform_to_protobuf,
     float64_spectrum_from_protobuf,
     float64_spectrum_to_protobuf,
+    int16_analog_waveform_from_protobuf,
+    int16_analog_waveform_to_protobuf,
     int16_complex_waveform_from_protobuf,
     int16_complex_waveform_to_protobuf,
 )
@@ -31,6 +33,7 @@ from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
     DoubleComplexWaveform,
     DoubleSpectrum,
+    I16AnalogWaveform,
     I16ComplexWaveform,
     LinearScale,
     Scale,
@@ -484,6 +487,172 @@ def test___int16_complex_wfm_with_scaling___convert___valid_python_object() -> N
     assert isinstance(complex_waveform.scale_mode, LinearScaleMode)
     assert complex_waveform.scale_mode.gain == 2.0
     assert complex_waveform.scale_mode.offset == 3.0
+
+
+# ========================================================
+# AnalogWaveform to I16AnalogWaveform
+# ========================================================
+def test___default_int16_analog_waveform___convert___valid_protobuf() -> None:
+    analog_waveform = AnalogWaveform(0, np.int16)
+
+    i16_analog_waveform = int16_analog_waveform_to_protobuf(analog_waveform)
+
+    assert not i16_analog_waveform.attributes
+    assert i16_analog_waveform.dt == 0
+    assert not i16_analog_waveform.HasField("t0")
+    assert not i16_analog_waveform.HasField("scale")
+    assert list(i16_analog_waveform.y_data) == []
+
+
+def test___int16_analog_waveform_samples_only___convert___valid_protobuf() -> None:
+    analog_waveform = AnalogWaveform(5, np.int16)
+
+    i16_analog_waveform = int16_analog_waveform_to_protobuf(analog_waveform)
+
+    assert list(i16_analog_waveform.y_data) == [0, 0, 0, 0, 0]
+
+
+def test___int16_analog_waveform_non_zero_samples___convert___valid_protobuf() -> None:
+    analog_waveform = AnalogWaveform.from_array_1d(np.array([1, 2, 3], dtype=np.int16))
+
+    i16_analog_waveform = int16_analog_waveform_to_protobuf(analog_waveform)
+
+    assert list(i16_analog_waveform.y_data) == [1, 2, 3]
+
+
+def test___int16_analog_waveform_with_extended_properties___convert___valid_protobuf() -> None:
+    analog_waveform = AnalogWaveform(0, np.int16)
+    analog_waveform.channel_name = "Dev1/ai0"
+    analog_waveform.unit_description = "Volts"
+
+    i16_analog_waveform = int16_analog_waveform_to_protobuf(analog_waveform)
+
+    assert i16_analog_waveform.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
+    assert i16_analog_waveform.attributes["NI_UnitDescription"].string_value == "Volts"
+
+
+def test___int16_analog_waveform_with_standard_timing___convert___valid_protobuf() -> None:
+    analog_waveform = AnalogWaveform.from_array_1d(np.array([1, 2, 3], dtype=np.int16))
+    t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
+    analog_waveform.timing = Timing.create_with_regular_interval(
+        sample_interval=dt.timedelta(milliseconds=1000),
+        timestamp=t0_dt,
+    )
+
+    i16_analog_waveform = int16_analog_waveform_to_protobuf(analog_waveform)
+
+    assert i16_analog_waveform.dt == 1.0
+    bin_dt = DateTime(t0_dt)
+    converted_t0 = bintime_datetime_to_protobuf(bin_dt)
+    assert i16_analog_waveform.t0 == converted_t0
+
+
+def test___int16_analog_waveform_with_irregular_timing___convert___raises_value_error() -> None:
+    analog_waveform = AnalogWaveform.from_array_1d(np.array([1, 2, 3], dtype=np.int16))
+    t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
+    analog_waveform.timing = Timing.create_with_irregular_interval(
+        [t0_dt, t0_dt + dt.timedelta(milliseconds=1000), t0_dt + dt.timedelta(milliseconds=3000)]
+    )
+
+    with pytest.raises(ValueError) as exc:
+        _ = int16_analog_waveform_to_protobuf(analog_waveform)
+
+    assert exc.value.args[0].startswith("Cannot convert irregular sample interval to protobuf.")
+
+
+def test___int16_analog_waveform_with_scaling___convert___valid_protobuf() -> None:
+    scale_mode = LinearScaleMode(2.0, 3.0)
+    analog_waveform = AnalogWaveform.from_array_1d(
+        np.array([1, 2, 3], dtype=np.int16),
+        scale_mode=scale_mode,
+    )
+
+    i16_analog_waveform = int16_analog_waveform_to_protobuf(analog_waveform)
+
+    assert i16_analog_waveform.scale.linear_scale.gain == 2.0
+    assert i16_analog_waveform.scale.linear_scale.offset == 3.0
+
+
+# ========================================================
+# I16AnalogWaveform to AnalogWaveform
+# ========================================================
+def test___default_i16_analog_wfm___convert___valid_python_object() -> None:
+    i16_analog_wfm = I16AnalogWaveform()
+
+    analog_waveform = int16_analog_waveform_from_protobuf(i16_analog_wfm)
+
+    assert not analog_waveform.extended_properties
+    assert analog_waveform.timing == Timing.empty
+    assert analog_waveform.scaled_data.size == 0
+    assert analog_waveform.scale_mode == NoneScaleMode()
+
+
+def test___i16_analog_wfm_with_y_data___convert___valid_python_object() -> None:
+    i16_analog_wfm = I16AnalogWaveform(y_data=[1, 2, 3])
+
+    analog_waveform = int16_analog_waveform_from_protobuf(i16_analog_wfm)
+
+    expected_raw_data = np.array([1, 2, 3], dtype=np.int16)
+    assert np.array_equal(analog_waveform.raw_data, expected_raw_data)
+
+
+def test___i16_analog_wfm_with_attributes___convert___valid_python_object() -> None:
+    attributes = {
+        "NI_ChannelName": WaveformAttributeValue(string_value="Dev1/ai0"),
+        "NI_UnitDescription": WaveformAttributeValue(string_value="Volts"),
+    }
+    i16_analog_wfm = I16AnalogWaveform(attributes=attributes)
+
+    analog_waveform = int16_analog_waveform_from_protobuf(i16_analog_wfm)
+
+    assert analog_waveform.channel_name == "Dev1/ai0"
+    assert analog_waveform.unit_description == "Volts"
+
+
+def test___i16_analog_wfm_with_timing___convert___valid_python_object() -> None:
+    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_pt = bintime_datetime_to_protobuf(t0_dt)
+    i16_analog_wfm = I16AnalogWaveform(t0=t0_pt, dt=0.1, y_data=[1, 2, 3])
+
+    analog_waveform = int16_analog_waveform_from_protobuf(i16_analog_wfm)
+
+    assert analog_waveform.timing.start_time == t0_dt._to_datetime_datetime()
+    assert analog_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
+    assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
+
+
+def test___i16_analog_wfm_with_timing_no_t0___convert___valid_python_object() -> None:
+    i16_analog_wfm = I16AnalogWaveform(dt=0.1, y_data=[1, 2, 3])
+
+    analog_waveform = int16_analog_waveform_from_protobuf(i16_analog_wfm)
+
+    assert analog_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    assert analog_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
+    assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
+
+
+def test___i16_analog_wfm_with_timing_no_dt___convert___valid_python_object() -> None:
+    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_pt = bintime_datetime_to_protobuf(t0_dt)
+    i16_analog_wfm = I16AnalogWaveform(t0=t0_pt, y_data=[1, 2, 3])
+
+    analog_waveform = int16_analog_waveform_from_protobuf(i16_analog_wfm)
+
+    assert analog_waveform.timing.start_time == t0_dt._to_datetime_datetime()
+    assert not analog_waveform.timing.has_sample_interval
+    assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+
+
+def test___i16_analog_wfm_with_scaling___convert___valid_python_object() -> None:
+    linear_scale = LinearScale(gain=2.0, offset=3.0)
+    scale = Scale(linear_scale=linear_scale)
+    i16_analog_wfm = I16AnalogWaveform(y_data=[1, 2, 3], scale=scale)
+
+    analog_waveform = int16_analog_waveform_from_protobuf(i16_analog_wfm)
+
+    assert isinstance(analog_waveform.scale_mode, LinearScaleMode)
+    assert analog_waveform.scale_mode.gain == 2.0
+    assert analog_waveform.scale_mode.offset == 3.0
 
 
 # ========================================================
