@@ -4,8 +4,8 @@ Introduction
 About
 -----
 
-The ``ni.protobuf.types`` Python package contains generated Python interfaces for proto files in the ni-apis repo.
-Additionally, this package contains methods for converting between python and protobuf types.
+The ``ni.protobuf.types`` Python package contains generated Python interfaces for proto files in the ``ni-apis`` repo.
+Additionally, this package contains methods for converting between Python and protobuf types.
 
 NI created and supports this package.
 

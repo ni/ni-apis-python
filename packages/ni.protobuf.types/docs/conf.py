@@ -52,10 +52,6 @@ autoapi_type = "python"
 autodoc_typehints = "description"
 autoapi_file_patterns = ["*.pyi", "*.py"]
 
-# TODO: https://github.com/ni/nitypes-python/issues/47 - _numpy.py helper module generates autoapi
-# import warnings
-suppress_warnings = ["autoapi.python_import_resolution"]
-
 
 def skip_aliases(app, what, name, obj, skip, options):
     """Skip documentation for internal methods in conversion modules."""
@@ -77,6 +73,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 intersphinx_mapping = {
     "hightime": ("https://hightime.readthedocs.io/en/latest/", None),
+    "nitypes": ("https://nitypes.readthedocs.io/en/latest/", None),
     "numpy": ("https://numpy.org/doc/stable/", None),
     "python": ("https://docs.python.org/3", None),
 }
