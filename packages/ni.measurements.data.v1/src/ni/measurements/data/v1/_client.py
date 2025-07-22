@@ -13,6 +13,7 @@ logger = logging.getLogger(__name__)
 class DataStoreClient(GrpcClient):
     def __init__(self):
         super().__init__("DataStore")
+        self._stub: data_store_service_pb2_grpc.DataStoreServiceStub | None = None
 
     async def _get_service_location(self) -> discovery_service_pb2.ServiceLocation:
         discovery_client = DiscoveryClient()
