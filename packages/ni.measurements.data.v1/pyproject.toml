@@ -33,10 +33,16 @@ packages = [{ include = "ni", from = "src" }]
 [tool.poetry.dependencies]
 # Only submit these; comment out for local development
 ni-apis-python = { git = "https://github.com/ni/ni-apis-python.git", branch = "users/pkurlak/add-services", subdirectory = "packages/ni.apis.python" }
+ni-datamonikers-v1 = { git = "https://github.com/ni/ni-apis-python.git", branch = "users/pkurlak/add-services", subdirectory = "packages/ni.datamonikers.v1" }
 ni-measurementlink-discovery-v1 = { git = "https://github.com/ni/ni-apis-python.git", branch = "users/pkurlak/add-services", subdirectory = "packages/ni.measurementlink.discovery.v1" }
+ni-measurements-metadata-v1 = { git = "https://github.com/ni/ni-apis-python.git", branch = "users/pkurlak/add-services", subdirectory = "packages/ni.measurements.metadata.v1" }
+ni-protobuf-types = { git = "https://github.com/ni/ni-apis-python.git", branch = "users/pkurlak/add-services", subdirectory = "packages/ni.protobuf.types" }
 # Uncomment for local development
 # ni-apis-python = { path = "../ni.apis.python", develop = true }
+# ni-datamonikers-v1 = { path = "../ni.datamonikers.v1", develop = true }
 # ni-measurementlink-discovery-v1 = { path = "../ni.measurementlink.discovery.v1", develop = true }
+# ni-measurements-metadata-v1 = { path = "../ni.measurements.metadata.v1", develop = true }
+# ni-protobuf-types = { path = "../ni.protobuf.types", develop = true }
 nitypes = { version = ">=0.1.0dev3", allow-prereleases = true }
 protobuf = { version = ">=4.21" }
 python = ">=3.11,<3.12"
