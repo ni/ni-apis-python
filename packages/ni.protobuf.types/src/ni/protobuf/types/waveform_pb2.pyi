@@ -357,6 +357,67 @@ class WaveformAttributeValue(google.protobuf.message.Message):
 global___WaveformAttributeValue = WaveformAttributeValue
 
 @typing.final
+class DigitalWaveform(google.protobuf.message.Message):
+    """A digital waveform, which encapsulates digital data as integers, timing information, and extended properties."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class AttributesEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+        @property
+        def value(self) -> global___WaveformAttributeValue: ...
+        def __init__(
+            self,
+            *,
+            key: builtins.str = ...,
+            value: global___WaveformAttributeValue | None = ...,
+        ) -> None: ...
+        def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
+
+    T0_FIELD_NUMBER: builtins.int
+    DT_FIELD_NUMBER: builtins.int
+    SIGNAL_COUNT_FIELD_NUMBER: builtins.int
+    Y_DATA_FIELD_NUMBER: builtins.int
+    ATTRIBUTES_FIELD_NUMBER: builtins.int
+    dt: builtins.float
+    """The time interval in seconds between data points in the waveform."""
+    signal_count: builtins.int
+    """The number of signals in each sample of data."""
+    y_data: builtins.bytes
+    """The data values of the waveform. This data is a flattened array of bytes
+    that are ordered such that each signal_count bytes represents a sample.
+    """
+    @property
+    def t0(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+        """The time of the first sample in y_data."""
+
+    @property
+    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
+        """The names and values of all waveform attributes.
+        See the comment at near the top of this file for more details.
+        """
+
+    def __init__(
+        self,
+        *,
+        t0: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        dt: builtins.float = ...,
+        signal_count: builtins.int = ...,
+        y_data: builtins.bytes = ...,
+        attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["t0", b"t0"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "signal_count", b"signal_count", "t0", b"t0", "y_data", b"y_data"]) -> None: ...
+
+global___DigitalWaveform = DigitalWaveform
+
+@typing.final
 class Scale(google.protobuf.message.Message):
     """Scaling information which can be used to convert unscaled data represented by this waveform to scaled data."""
 
