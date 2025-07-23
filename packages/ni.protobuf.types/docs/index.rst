@@ -8,7 +8,7 @@ Table of Contents
 =================
 
 .. toctree::
-   :maxdepth: 8
+   :maxdepth: 4
 
    autoapi/index
 
