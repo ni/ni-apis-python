@@ -45,7 +45,6 @@ htmlhelp_basename = f"{project}doc"
 # tell autoapi to doc the public options
 autoapi_options = list(autoapi.extension._DEFAULT_OPTIONS)
 autoapi_options.remove("private-members")  # note: remove this to include "_" members in docs
-autoapi_options.append("inherited-members")
 autoapi_dirs = [root_path / "src" / "ni"]
 autoapi_python_use_implicit_namespaces = True
 autoapi_template_dir = "templates/autoapi"
@@ -56,9 +55,15 @@ autoapi_file_patterns = ["*.pyi", "*.py"]
 
 
 def skip_aliases(app, what, name, obj, skip, options):
-    """Skip documentation for internal methods in conversion modules."""
+    """Skip aliases as needed."""
+    print(f"what={what} ... name={name}")
     if "conversion._" in name:
+        # Skip documentation for internal methods in conversion modules.
         return True
+    elif "_conversion." in name and what == "class":
+        # Skip classes that are imported into _conversion.py files.
+        return True
+
     return False
 
 
