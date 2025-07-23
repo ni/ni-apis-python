@@ -769,9 +769,9 @@ files = [
 hightime = ">=0.2.2"
 numpy = [
     {version = ">=1.22", markers = "implementation_name != \"pypy\" and python_version >= \"3.9\" and python_version < \"3.12\""},
-    {version = ">=1.26", markers = "python_version >= \"3.12\" and python_version < \"3.13\" and implementation_name != \"pypy\""},
     {version = ">=2.1", markers = "python_version >= \"3.10\" and python_version < \"3.11\" and implementation_name == \"pypy\" or python_version >= \"3.13\" and python_version < \"4.0\" and implementation_name != \"pypy\""},
     {version = ">=2.3", markers = "implementation_name == \"pypy\" and python_version >= \"3.11\" and python_version < \"4.0\""},
+    {version = ">=1.26", markers = "python_version >= \"3.12\" and python_version < \"3.13\" and implementation_name != \"pypy\""},
 ]
 typing-extensions = ">=4.13.2"
 
@@ -1722,4 +1722,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "9d84e3e88808f4c267b9465ffea30d851b501af97ecb76abe784211203bca4ac"
+content-hash = "f1bfae87964e0ca09aea0470886a5d59dd5ef63a3bab982a188d41bfb3216699"

@@ -23,10 +23,7 @@ from nitypes.waveform import (
     Timing,
 )
 
-from ni.protobuf.types.precision_timestamp_conversion import (
-    bintime_datetime_from_protobuf,
-    bintime_datetime_to_protobuf,
-)
+import ni.protobuf.types.precision_timestamp_conversion as ptc
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
 from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
@@ -254,7 +251,7 @@ def _t0_from_waveform(
 ) -> PrecisionTimestamp | None:
     if waveform.timing.has_start_time:
         bin_datetime = convert_datetime(bt.DateTime, waveform.timing.start_time)
-        return bintime_datetime_to_protobuf(bin_datetime)
+        return ptc.bintime_datetime_to_protobuf(bin_datetime)
     else:
         return None
 
@@ -276,7 +273,7 @@ def _timing_from_waveform_message(
         timing = Timing.empty
     else:
         # Timestamp
-        bin_datetime = bintime_datetime_from_protobuf(message.t0)
+        bin_datetime = ptc.bintime_datetime_from_protobuf(message.t0)
 
         # Sample Interval
         if not message.dt:

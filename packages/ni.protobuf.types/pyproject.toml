@@ -62,6 +62,7 @@ Sphinx = { version = ">=8.2", python = "^3.11" }
 sphinx-rtd-theme = ">=1.0.0"
 sphinx-autoapi = ">=1.8.4"
 m2r2 = ">=0.3.2"
+toml = ">=0.10.2"
 
 [build-system]
 requires = ["poetry-core>=1.8"]
@@ -74,10 +75,10 @@ skips = [
 ]
 
 [tool.ni-python-styleguide]
-extend_exclude = "*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi"
+extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi"
 
 [tool.black]
-extend-exclude = '_pb2(_grpc)?\.(py|pyi)$'
+extend-exclude = 'docs/|_pb2(_grpc)?\.(py|pyi)$'
 line-length = 100
 
 [tool.mypy]
@@ -86,6 +87,7 @@ files = "."
 namespace_packages = true
 strict = true
 explicit_package_bases = true
+exclude = ["docs"]
 
 [tool.pyright]
 include = ["src/", "tests/"]

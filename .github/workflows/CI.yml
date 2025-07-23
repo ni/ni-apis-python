@@ -27,6 +27,12 @@ jobs:
     uses: ./.github/workflows/check_package.yml
     with:
       package-name: ni.panels.v1.proto
+  check_docs_ni_protobuf_types:
+    name: Check docs ni.protobuf.types
+    uses: ./.github/workflows/check_docs.yml
+    needs: [check_ni_protobuf_types]
+    with:
+      package-name: ni.protobuf.types
   run_unit_tests:
     name: Run unit tests
     uses: ./.github/workflows/run_unit_tests.yml
