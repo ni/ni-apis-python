@@ -542,7 +542,7 @@ def test___int16_analog_waveform_with_standard_timing___convert___valid_protobuf
     i16_analog_waveform = int16_analog_waveform_to_protobuf(analog_waveform)
 
     assert i16_analog_waveform.dt == 1.0
-    bin_dt = DateTime(t0_dt)
+    bin_dt = bt.DateTime(t0_dt)
     converted_t0 = bintime_datetime_to_protobuf(bin_dt)
     assert i16_analog_waveform.t0 == converted_t0
 
@@ -610,7 +610,7 @@ def test___i16_analog_wfm_with_attributes___convert___valid_python_object() -> N
 
 
 def test___i16_analog_wfm_with_timing___convert___valid_python_object() -> None:
-    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     i16_analog_wfm = I16AnalogWaveform(t0=t0_pt, dt=0.1, y_data=[1, 2, 3])
 
@@ -632,7 +632,7 @@ def test___i16_analog_wfm_with_timing_no_t0___convert___valid_python_object() ->
 
 
 def test___i16_analog_wfm_with_timing_no_dt___convert___valid_python_object() -> None:
-    t0_dt = DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     i16_analog_wfm = I16AnalogWaveform(t0=t0_pt, y_data=[1, 2, 3])
 
