@@ -7,7 +7,9 @@
 
 # About
 
-`ni.protobuf.types` is a Python package that provides Protobuf data types for NI gRPC APIs in the [ni.protobuf.types package](https://github.com/ni/ni-apis/tree/main/ni/protobuf/types).
+`ni.protobuf.types` is a Python package that provides Protobuf data types for NI gRPC APIs in
+the [ni.protobuf.types package](https://github.com/ni/ni-apis/tree/main/ni/protobuf/types).
+Additionally, this package contains methods for converting between Python and protobuf types.
 
 NI created and supports this package.
 
@@ -18,3 +20,8 @@ NI created and supports this package.
 ## Python Version Support
 
 `ni.protobuf.types` supports CPython 3.9+ and PyPy3.
+
+## Installation
+
+You can directly install the `ni.protobuf.types` package using `pip` or by listing it as a
+dependency in your project's `pyproject.toml` file.
