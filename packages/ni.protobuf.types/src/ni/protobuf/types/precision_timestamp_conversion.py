@@ -32,6 +32,5 @@ def hightime_datetime_to_protobuf(value: ht.datetime, /) -> PrecisionTimestamp:
 def hightime_datetime_from_protobuf(message: PrecisionTimestamp, /) -> ht.datetime:
     """Convert a protobuf PrecisionTimestamp to a hightime.datetime."""
     bt_datetime = bintime_datetime_from_protobuf(message)
-    ht_datetime: ht.datetime
     ht_datetime = convert_datetime(ht.datetime, bt_datetime)
     return ht_datetime
