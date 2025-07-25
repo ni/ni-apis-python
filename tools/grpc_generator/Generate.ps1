@@ -2,6 +2,7 @@ $packages = @(
     "ni\datamonikers\v1"
     "ni\measurementlink\discovery\v1"
     "ni\measurementlink\measurement\v3"
+    "ni\measurementlink"
     "ni\measurementlink\pinmap\v1"
     "ni\measurements\data\v1"
     "ni\measurements\metadata\v1"
