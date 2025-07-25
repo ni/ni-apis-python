@@ -26,7 +26,11 @@ if _version_not_supported:
 
 
 class DataStoreServiceStub(object):
-    """Missing associated documentation comment in .proto file."""
+    """This service provides endpoints for the publishing of measurement data.
+    This includes associating data with the conditions associated with the data,
+    querying for the published data with OData queries, and querying for the
+    data with natural language.
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -34,6 +38,51 @@ class DataStoreServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.CreateSession = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/CreateSession',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionResponse.FromString,
+                _registered_method=True)
+        self.GetSession = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/GetSession',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionResponse.FromString,
+                _registered_method=True)
+        self.CreateMeasurement = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/CreateMeasurement',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementResponse.FromString,
+                _registered_method=True)
+        self.GetMeasurement = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/GetMeasurement',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementResponse.FromString,
+                _registered_method=True)
+        self.QueryMeasurements = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/QueryMeasurements',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsResponse.FromString,
+                _registered_method=True)
+        self.PublishConditionSet = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/PublishConditionSet',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetResponse.FromString,
+                _registered_method=True)
+        self.PublishConditionSetBatch = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/PublishConditionSetBatch',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchResponse.FromString,
+                _registered_method=True)
+        self.PublishData = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/PublishData',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataResponse.FromString,
+                _registered_method=True)
+        self.PublishDataBatch = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/PublishDataBatch',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchResponse.FromString,
+                _registered_method=True)
         self.EvaluateDataQuery = channel.unary_unary(
                 '/ni.measurements.data.v1.DataStoreService/EvaluateDataQuery',
                 request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.EvaluateDataQueryRequest.SerializeToString,
@@ -59,118 +108,41 @@ class DataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryDataRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryDataResponse.FromString,
                 _registered_method=True)
-        self.PublishConditionSet = channel.unary_unary(
-                '/ni.measurements.data.v1.DataStoreService/PublishConditionSet',
-                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetResponse.FromString,
-                _registered_method=True)
-        self.PublishConditionSetBatch = channel.unary_unary(
-                '/ni.measurements.data.v1.DataStoreService/PublishConditionSetBatch',
-                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchResponse.FromString,
-                _registered_method=True)
-        self.PublishData = channel.unary_unary(
-                '/ni.measurements.data.v1.DataStoreService/PublishData',
-                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataResponse.FromString,
-                _registered_method=True)
-        self.PublishDataBatch = channel.unary_unary(
-                '/ni.measurements.data.v1.DataStoreService/PublishDataBatch',
-                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchResponse.FromString,
-                _registered_method=True)
-        self.CreateSession = channel.unary_unary(
-                '/ni.measurements.data.v1.DataStoreService/CreateSession',
-                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionResponse.FromString,
-                _registered_method=True)
-        self.GetSession = channel.unary_unary(
-                '/ni.measurements.data.v1.DataStoreService/GetSession',
-                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionResponse.FromString,
-                _registered_method=True)
-        self.GetMeasurement = channel.unary_unary(
-                '/ni.measurements.data.v1.DataStoreService/GetMeasurement',
-                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementResponse.FromString,
-                _registered_method=True)
-        self.QueryMeasurements = channel.unary_unary(
-                '/ni.measurements.data.v1.DataStoreService/QueryMeasurements',
-                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsResponse.FromString,
-                _registered_method=True)
-        self.CreateMeasurement = channel.unary_unary(
-                '/ni.measurements.data.v1.DataStoreService/CreateMeasurement',
-                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementResponse.FromString,
-                _registered_method=True)
 
 
 class DataStoreServiceServicer(object):
-    """Missing associated documentation comment in .proto file."""
-
-    def EvaluateDataQuery(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def ProvideEvaluationFeedback(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def EnumerateData(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def QueryConditionSets(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def QueryData(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def PublishConditionSet(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def PublishConditionSetBatch(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def PublishData(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def PublishDataBatch(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
+    """This service provides endpoints for the publishing of measurement data.
+    This includes associating data with the conditions associated with the data,
+    querying for the published data with OData queries, and querying for the
+    data with natural language.
+    """
 
     def CreateSession(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Creates a session object for publishing measurement data.  Once a session is created,
+        you can publish an arbitrary number of data values to the session.  The data values
+        with be associated with each of the metadata type specified in the session.  For instance,
+        if you specify an operator when creating a session, all data values published to the session
+        will be associated with that operator.  The response will include the session id,
+        which can be used to reference the session in subsequent requests, and to get the session
+        metadata via the GetSession method.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def GetSession(self, request, context):
-        """Missing associated documentation comment in .proto file."""
+        """Gets the session associated with the identifier given in the request.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateMeasurement(self, request, context):
+        """Creates a new measurement in the metadata store.  A measurement is owned by a session,
+        and is a logical grouping of published data.  All published data must be associated
+        with a measurement.  If you publish data without specifying a measurement, a new
+        measurement will be created for you, and the data will be associated with that measurement.
+        """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -183,14 +155,99 @@ class DataStoreServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def QueryMeasurements(self, request, context):
-        """Perform an OData query
+        """Query for measurement matching the given OData query.  For information about the OData query syntax,
+        see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def CreateMeasurement(self, request, context):
-        """Creates a new measurement in the metadata store.
+    def PublishConditionSet(self, request, context):
+        """Publishes a single condition set for a measurement.  A condition set is a set of conditions
+        that are present when publishing data.  For instance, if you are measuring the temperature
+        of a device, you might publish a condition set indicating the input voltage, the ambient
+        temperature, and the humidity at the time of the measurement.  This allows you to associate
+        the conditions with the data, and to query for data based on the conditions.  With this method,
+        you publish a single set of conditions for a single set of measurement data. If the total set
+        of conditions for all your measurements is a "frame" of data, this method allows you to publish
+        a single "row" of that frame. If you want to publish the entire frame of data, you can use the
+        PublishConditionSetBatch method instead.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def PublishConditionSetBatch(self, request, context):
+        """Publishes the complete set of conditions for a measurement. It is expected that all sets of condition
+        values will be the same length, creating a "frame" of condition data.  If you only want to publish a "row"
+        of conditions for a single set of measurement data, you can use the PublishConditionSet method instead.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def PublishData(self, request, context):
+        """Publishes a single data value.  The type of this data can be a scalar value, an array of scalar values,
+        a waveform, or a set of x/y pairs. The data value will be associated with the measurement specified. The
+        conditions associated with the data can be found on the associated measurement.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def PublishDataBatch(self, request, context):
+        """Allows you to publish a batch of scalar data values.  The use case for this method is to publish all the
+        the results of a parametric sweep at once, rather than publishing each value individually using the PublishData
+        endpoint instead.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def EvaluateDataQuery(self, request, context):
+        """Evaluates a natural language query and returns a representation of the query
+        that can be used to directly query the data store.  This method only translates
+        the query.  It does not execute the query or return any data.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ProvideEvaluationFeedback(self, request, context):
+        """Provides feedback on the evaluation of a natural language query.
+        This feedback is used to improve the evaluation of future queries.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def EnumerateData(self, request, context):
+        """Enumerates the data in the data store, based on a natural language query.  You can either
+        provide the raw natural language query, or the result of the EvaluateDataQuery method.
+        By pairing this method with EvaluateDataQuery, you can examine the result of the natural language
+        query translation prior to executing the query.
+        The results are paginated, so you can specify how many results to return in each page,
+        and the token to use for the next page.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def QueryConditionSets(self, request, context):
+        """Queries the condition sets in the data store, based on an OData query.
+        The OData query can be used to filter the condition sets based on their metadata.
+        For information about the OData query syntax,
+        see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def QueryData(self, request, context):
+        """Queries the data in the data store, based on an OData query.
+        The OData query can be used to filter the data based on its metadata.
+        For information about the OData query syntax,
+        see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -199,6 +256,51 @@ class DataStoreServiceServicer(object):
 
 def add_DataStoreServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'CreateSession': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateSession,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionResponse.SerializeToString,
+            ),
+            'GetSession': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSession,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionResponse.SerializeToString,
+            ),
+            'CreateMeasurement': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateMeasurement,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementResponse.SerializeToString,
+            ),
+            'GetMeasurement': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetMeasurement,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementResponse.SerializeToString,
+            ),
+            'QueryMeasurements': grpc.unary_unary_rpc_method_handler(
+                    servicer.QueryMeasurements,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsResponse.SerializeToString,
+            ),
+            'PublishConditionSet': grpc.unary_unary_rpc_method_handler(
+                    servicer.PublishConditionSet,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetResponse.SerializeToString,
+            ),
+            'PublishConditionSetBatch': grpc.unary_unary_rpc_method_handler(
+                    servicer.PublishConditionSetBatch,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchResponse.SerializeToString,
+            ),
+            'PublishData': grpc.unary_unary_rpc_method_handler(
+                    servicer.PublishData,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataResponse.SerializeToString,
+            ),
+            'PublishDataBatch': grpc.unary_unary_rpc_method_handler(
+                    servicer.PublishDataBatch,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchResponse.SerializeToString,
+            ),
             'EvaluateDataQuery': grpc.unary_unary_rpc_method_handler(
                     servicer.EvaluateDataQuery,
                     request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.EvaluateDataQueryRequest.FromString,
@@ -224,51 +326,6 @@ def add_DataStoreServiceServicer_to_server(servicer, server):
                     request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryDataRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryDataResponse.SerializeToString,
             ),
-            'PublishConditionSet': grpc.unary_unary_rpc_method_handler(
-                    servicer.PublishConditionSet,
-                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetResponse.SerializeToString,
-            ),
-            'PublishConditionSetBatch': grpc.unary_unary_rpc_method_handler(
-                    servicer.PublishConditionSetBatch,
-                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchResponse.SerializeToString,
-            ),
-            'PublishData': grpc.unary_unary_rpc_method_handler(
-                    servicer.PublishData,
-                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataResponse.SerializeToString,
-            ),
-            'PublishDataBatch': grpc.unary_unary_rpc_method_handler(
-                    servicer.PublishDataBatch,
-                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchResponse.SerializeToString,
-            ),
-            'CreateSession': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateSession,
-                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionResponse.SerializeToString,
-            ),
-            'GetSession': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetSession,
-                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionResponse.SerializeToString,
-            ),
-            'GetMeasurement': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetMeasurement,
-                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementResponse.SerializeToString,
-            ),
-            'QueryMeasurements': grpc.unary_unary_rpc_method_handler(
-                    servicer.QueryMeasurements,
-                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsResponse.SerializeToString,
-            ),
-            'CreateMeasurement': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateMeasurement,
-                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementResponse.SerializeToString,
-            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'ni.measurements.data.v1.DataStoreService', rpc_method_handlers)
@@ -278,7 +335,254 @@ def add_DataStoreServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class DataStoreService(object):
-    """Missing associated documentation comment in .proto file."""
+    """This service provides endpoints for the publishing of measurement data.
+    This includes associating data with the conditions associated with the data,
+    querying for the published data with OData queries, and querying for the
+    data with natural language.
+    """
+
+    @staticmethod
+    def CreateSession(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.data.v1.DataStoreService/CreateSession',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetSession(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.data.v1.DataStoreService/GetSession',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def CreateMeasurement(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.data.v1.DataStoreService/CreateMeasurement',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetMeasurement(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.data.v1.DataStoreService/GetMeasurement',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def QueryMeasurements(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.data.v1.DataStoreService/QueryMeasurements',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def PublishConditionSet(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.data.v1.DataStoreService/PublishConditionSet',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def PublishConditionSetBatch(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.data.v1.DataStoreService/PublishConditionSetBatch',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def PublishData(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.data.v1.DataStoreService/PublishData',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def PublishDataBatch(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.data.v1.DataStoreService/PublishDataBatch',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def EvaluateDataQuery(request,
@@ -405,249 +709,6 @@ class DataStoreService(object):
             '/ni.measurements.data.v1.DataStoreService/QueryData',
             ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryDataRequest.SerializeToString,
             ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryDataResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def PublishConditionSet(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/ni.measurements.data.v1.DataStoreService/PublishConditionSet',
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetRequest.SerializeToString,
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def PublishConditionSetBatch(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/ni.measurements.data.v1.DataStoreService/PublishConditionSetBatch',
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchRequest.SerializeToString,
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishConditionSetBatchResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def PublishData(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/ni.measurements.data.v1.DataStoreService/PublishData',
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataRequest.SerializeToString,
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def PublishDataBatch(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/ni.measurements.data.v1.DataStoreService/PublishDataBatch',
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchRequest.SerializeToString,
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.PublishDataBatchResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def CreateSession(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/ni.measurements.data.v1.DataStoreService/CreateSession',
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionRequest.SerializeToString,
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateSessionResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def GetSession(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/ni.measurements.data.v1.DataStoreService/GetSession',
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionRequest.SerializeToString,
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetSessionResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def GetMeasurement(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/ni.measurements.data.v1.DataStoreService/GetMeasurement',
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementRequest.SerializeToString,
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetMeasurementResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def QueryMeasurements(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/ni.measurements.data.v1.DataStoreService/QueryMeasurements',
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsRequest.SerializeToString,
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def CreateMeasurement(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/ni.measurements.data.v1.DataStoreService/CreateMeasurement',
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementRequest.SerializeToString,
-            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateMeasurementResponse.FromString,
             options,
             channel_credentials,
             insecure,

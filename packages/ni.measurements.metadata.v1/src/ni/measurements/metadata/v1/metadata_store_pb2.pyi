@@ -7,10 +7,46 @@ import builtins
 import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
+import google.protobuf.internal.enum_type_wrapper
 import google.protobuf.message
+import sys
 import typing
 
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
+
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+
+class _AliasTargetType:
+    ValueType = typing.NewType("ValueType", builtins.int)
+    V: typing_extensions.TypeAlias = ValueType
+
+class _AliasTargetTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_AliasTargetType.ValueType], builtins.type):
+    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+    ALIAS_TARGET_TYPE_UNSPECIFIED: _AliasTargetType.ValueType  # 0
+    ALIAS_TARGET_TYPE_DUT: _AliasTargetType.ValueType  # 1
+    ALIAS_TARGET_TYPE_PRODUCT: _AliasTargetType.ValueType  # 2
+    ALIAS_TARGET_TYPE_HARDWARE: _AliasTargetType.ValueType  # 3
+    ALIAS_TARGET_TYPE_SOFTWARE: _AliasTargetType.ValueType  # 4
+    ALIAS_TARGET_TYPE_OPERATOR: _AliasTargetType.ValueType  # 5
+    ALIAS_TARGET_TYPE_TEST_PLAN: _AliasTargetType.ValueType  # 6
+    ALIAS_TARGET_TYPE_TEST: _AliasTargetType.ValueType  # 7
+    ALIAS_TARGET_TYPE_TEST_STATION: _AliasTargetType.ValueType  # 8
+
+class AliasTargetType(_AliasTargetType, metaclass=_AliasTargetTypeEnumTypeWrapper): ...
+
+ALIAS_TARGET_TYPE_UNSPECIFIED: AliasTargetType.ValueType  # 0
+ALIAS_TARGET_TYPE_DUT: AliasTargetType.ValueType  # 1
+ALIAS_TARGET_TYPE_PRODUCT: AliasTargetType.ValueType  # 2
+ALIAS_TARGET_TYPE_HARDWARE: AliasTargetType.ValueType  # 3
+ALIAS_TARGET_TYPE_SOFTWARE: AliasTargetType.ValueType  # 4
+ALIAS_TARGET_TYPE_OPERATOR: AliasTargetType.ValueType  # 5
+ALIAS_TARGET_TYPE_TEST_PLAN: AliasTargetType.ValueType  # 6
+ALIAS_TARGET_TYPE_TEST: AliasTargetType.ValueType  # 7
+ALIAS_TARGET_TYPE_TEST_STATION: AliasTargetType.ValueType  # 8
+global___AliasTargetType = AliasTargetType
 
 @typing.final
 class DUTMetadata(google.protobuf.message.Message):
@@ -45,7 +81,8 @@ class DUTMetadata(google.protobuf.message.Message):
     CUSTOM_METADATA_SCHEMA_ID_FIELD_NUMBER: builtins.int
     product_id: builtins.str
     """The id of the product associated with this device under test.
-    This value is expected to be a parsable GUID.
+    This value is expected to be a parsable GUID or an alias. It will always
+    be returned from the service as a GUID.
     See ni.measurements.metadata.MetadataStoreService for more information.
     """
     serial_number: builtins.str
@@ -563,3 +600,27 @@ class MetadataSchema(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["schema", b"schema", "schema_id", b"schema_id"]) -> None: ...
 
 global___MetadataSchema = MetadataSchema
+
+@typing.final
+class Alias(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    NAME_FIELD_NUMBER: builtins.int
+    TARGET_TYPE_FIELD_NUMBER: builtins.int
+    TARGET_ID_FIELD_NUMBER: builtins.int
+    name: builtins.str
+    """The registered alias name for the aliased metadata instance."""
+    target_type: global___AliasTargetType.ValueType
+    """The type of the aliased metadata instance."""
+    target_id: builtins.str
+    """The unique identifier for the aliased metadata instance."""
+    def __init__(
+        self,
+        *,
+        name: builtins.str = ...,
+        target_type: global___AliasTargetType.ValueType = ...,
+        target_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["name", b"name", "target_id", b"target_id", "target_type", b"target_type"]) -> None: ...
+
+global___Alias = Alias

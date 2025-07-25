@@ -20,7 +20,11 @@ class EvaluateDataQueryRequest(google.protobuf.message.Message):
 
     QUERY_FIELD_NUMBER: builtins.int
     @property
-    def query(self) -> ni.measurements.data.v1.data_store_pb2.UnevaluatedQuery: ...
+    def query(self) -> ni.measurements.data.v1.data_store_pb2.UnevaluatedQuery:
+        """The natural language query to evaluate. Contains which sources should be
+        queried, as well as a filter for specific data types.
+        """
+
     def __init__(
         self,
         *,
@@ -37,7 +41,11 @@ class EvaluateDataQueryResponse(google.protobuf.message.Message):
 
     EVALUATED_QUERIES_FIELD_NUMBER: builtins.int
     @property
-    def evaluated_queries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.EvaluatedQuery]: ...
+    def evaluated_queries(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.EvaluatedQuery]:
+        """Returns the list of evaluated queries. This contains the transformed query,
+        a description of what the transformed query does, and the source of the data.
+        """
+
     def __init__(
         self,
         *,
@@ -55,8 +63,13 @@ class ProvideEvaluationFeedbackRequest(google.protobuf.message.Message):
     SQL_FIELD_NUMBER: builtins.int
     VALID_FIELD_NUMBER: builtins.int
     query: builtins.str
+    """The natural language query that was evaluated"""
     sql: builtins.str
+    """The result of the natural language query evaluation"""
     valid: builtins.bool
+    """Instructs the model as to whether the evaluation of the natural
+    language query was valid or not. If true, the evaluation was correct.
+    """
     def __init__(
         self,
         *,
@@ -74,6 +87,7 @@ class ProvideEvaluationFeedbackResponse(google.protobuf.message.Message):
 
     HANDLED_FIELD_NUMBER: builtins.int
     handled: builtins.bool
+    """Indicates whether the feedback was handled successfully."""
     def __init__(
         self,
         *,
@@ -93,7 +107,7 @@ class EnumerateDataRequest(google.protobuf.message.Message):
     PAGE_TOKEN_FIELD_NUMBER: builtins.int
     page_size: builtins.int
     """How many results to include in the paginated response.
-    Uses the default page size if not provided.
+    Uses the default page size of 20 if not provided.
     """
     page_token: builtins.str
     """The starting token for the next page to request.
@@ -101,9 +115,17 @@ class EnumerateDataRequest(google.protobuf.message.Message):
     Use EnumerateDataResponse.next_page_token for subsequent requests.
     """
     @property
-    def unevaluated_query(self) -> ni.measurements.data.v1.data_store_pb2.UnevaluatedQuery: ...
+    def unevaluated_query(self) -> ni.measurements.data.v1.data_store_pb2.UnevaluatedQuery:
+        """An unevaluated query that will be evaluated by the service.
+        This is the raw natural language query that the user provided.
+        """
+
     @property
-    def evaluated_query_list(self) -> ni.measurements.data.v1.data_store_pb2.EvaluatedQueryList: ...
+    def evaluated_query_list(self) -> ni.measurements.data.v1.data_store_pb2.EvaluatedQueryList:
+        """An evaluated query list that contains the results of the evaluation.
+        This is the result of the EvaluateDataQuery method.
+        """
+
     def __init__(
         self,
         *,
@@ -126,9 +148,18 @@ class EnumerateDataResponse(google.protobuf.message.Message):
     NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
     HAS_NEXT_PAGE_FIELD_NUMBER: builtins.int
     next_page_token: builtins.str
+    """If there are more results to return, this will contain the token to use for
+    the next page of results. If there are no more results, this will be an empty string.
+    """
     has_next_page: builtins.bool
+    """Indicates whether there are more results to return."""
     @property
-    def stored_data_values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.StoredDataValue]: ...
+    def stored_data_values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.StoredDataValue]:
+        """The list of data values that match the query. This will include the metadata
+        for each data value, such as the measurement ID, as well as the moniker that
+        can be used to retrieve the data itself.
+        """
+
     def __init__(
         self,
         *,
@@ -147,7 +178,9 @@ class QueryConditionSetsRequest(google.protobuf.message.Message):
     ODATA_QUERY_FIELD_NUMBER: builtins.int
     odata_query: builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
-    $expand is not supported
+    An empty string will return all condition sets.
+    $expand, $count, and $select are not supported. For more information,
+    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
     def __init__(
         self,
@@ -165,7 +198,10 @@ class QueryConditionSetsResponse(google.protobuf.message.Message):
     STORED_CONDITION_SET_VALUES_FIELD_NUMBER: builtins.int
     @property
     def stored_condition_set_values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.StoredConditionSetValue]:
-        """The moniker of the condition set and its metadata."""
+        """The list of matching condition sets. Each item contains a moniker for
+        retrieving the condition set data, as well as the metadata associated
+        with the condition set.
+        """
 
     def __init__(
         self,
@@ -183,7 +219,9 @@ class QueryDataRequest(google.protobuf.message.Message):
     ODATA_QUERY_FIELD_NUMBER: builtins.int
     odata_query: builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
-    $expand is not supported
+    An empty string will return all data values.
+    $expand, $count, and $select are not supported. For more information,
+    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
     def __init__(
         self,
@@ -200,7 +238,11 @@ class QueryDataResponse(google.protobuf.message.Message):
 
     STORED_DATA_VALUES_FIELD_NUMBER: builtins.int
     @property
-    def stored_data_values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.StoredDataValue]: ...
+    def stored_data_values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.StoredDataValue]:
+        """The list of matching data values. Each item contains a moniker for
+        retrieving the data, as well as the metadata associated with the data.
+        """
+
     def __init__(
         self,
         *,
@@ -226,7 +268,12 @@ class PublishConditionSetRequest(google.protobuf.message.Message):
     """
     @property
     def condition_set(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.Condition]:
-        """Required. The set of conditions present for one published data (output) of a measurement"""
+        """Required. The set of conditions present for one published data (output) of a measurement
+        Each item in the list corresponds to a cell in a column in the overall frame of the
+        condition set.  The entire list of condition values makes up a single row of the
+        condition set.  If you want to publish the entire frame of condition data, you can
+        use the PublishConditionSetBatch method instead.
+        """
 
     @property
     def measurement_metadata(self) -> ni.measurements.data.v1.data_store_pb2.MeasurementMetadata:
@@ -254,7 +301,7 @@ class PublishConditionSetResponse(google.protobuf.message.Message):
     @property
     def stored_condition_set_value(self) -> ni.measurements.data.v1.data_store_pb2.StoredConditionSetValue:
         """A shared data value for *all* condition data present for the specified measurement.
-        Note: This data value's Metadata contains a reference to the measurement ID associated with this set of condition set.
+        This value's Metadata contains a reference to the measurement ID associated with this set of condition set.
         """
 
     def __init__(
@@ -283,7 +330,11 @@ class PublishConditionSetBatchRequest(google.protobuf.message.Message):
     """
     @property
     def condition_set(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.ConditionArray]:
-        """Required. The set of conditions for N iterations of published data of a measurement"""
+        """Required. The set of conditions for N iterations of published data of a measurement.
+        Each item in the list corresponds to an entire column in the overall frame of the
+        condition set.  The entire list of condition values makes up the entire frame of the
+        condition set.
+        """
 
     @property
     def measurement_metadata(self) -> ni.measurements.data.v1.data_store_pb2.MeasurementMetadata:
@@ -310,7 +361,9 @@ class PublishConditionSetBatchResponse(google.protobuf.message.Message):
     STORED_CONDITION_SET_VALUE_FIELD_NUMBER: builtins.int
     @property
     def stored_condition_set_value(self) -> ni.measurements.data.v1.data_store_pb2.StoredConditionSetValue:
-        """A shared  value for *all* condition data present for the specified measurement."""
+        """A shared  value for *all* condition data present for the specified measurement.
+        This value's Metadata contains a reference to the measurement ID associated with this set of condition set.
+        """
 
     def __init__(
         self,
@@ -373,7 +426,9 @@ class PublishDataRequest(google.protobuf.message.Message):
 
     @property
     def hardware_identifier_list(self) -> ni.measurements.data.v1.data_store_pb2.IdentifierList:
-        """The ids of the hardware associated with this data."""
+        """The ids of the hardware associated with this data. These values are expected
+        to be parsable GUIDs or aliases.
+        """
 
     @property
     def software_list(self) -> ni.measurements.data.v1.data_store_pb2.SoftwareMetadataList:
@@ -381,7 +436,9 @@ class PublishDataRequest(google.protobuf.message.Message):
 
     @property
     def software_identifier_list(self) -> ni.measurements.data.v1.data_store_pb2.IdentifierList:
-        """The ids of the software associated with this data."""
+        """The ids of the software associated with this data. These values are expected
+        to be parsable GUIDs or aliases.
+        """
 
     def __init__(
         self,
@@ -506,7 +563,9 @@ class PublishDataBatchRequest(google.protobuf.message.Message):
 
     @property
     def hardware_identifier_list(self) -> ni.measurements.data.v1.data_store_pb2.IdentifierList:
-        """The ids of the hardware associated with this data."""
+        """The ids of the hardware associated with this data. These values are expected
+        to be parsable GUIDs or aliases.
+        """
 
     @property
     def software_list(self) -> ni.measurements.data.v1.data_store_pb2.SoftwareMetadataList:
@@ -514,7 +573,9 @@ class PublishDataBatchRequest(google.protobuf.message.Message):
 
     @property
     def software_identifier_list(self) -> ni.measurements.data.v1.data_store_pb2.IdentifierList:
-        """The ids of the software associated with this data."""
+        """The ids of the software associated with this data. These values are expected
+        to be parsable GUIDs or aliases.
+        """
 
     def __init__(
         self,
@@ -688,7 +749,9 @@ class QueryMeasurementsRequest(google.protobuf.message.Message):
     ODATA_QUERY_FIELD_NUMBER: builtins.int
     odata_query: builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
-    $expand is not supported
+    An empty string will return all measurements.
+    $expand, $count, and $select are not supported. For more information,
+    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
     def __init__(
         self,
@@ -705,7 +768,9 @@ class QueryMeasurementsResponse(google.protobuf.message.Message):
 
     MEASUREMENTS_FIELD_NUMBER: builtins.int
     @property
-    def measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.MeasurementMetadata]: ...
+    def measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.MeasurementMetadata]:
+        """The list of measurements that match the query."""
+
     def __init__(
         self,
         *,
@@ -717,8 +782,6 @@ global___QueryMeasurementsResponse = QueryMeasurementsResponse
 
 @typing.final
 class CreateMeasurementRequest(google.protobuf.message.Message):
-    """Message sent to create a new measurement in the metadata store."""
-
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     MEASUREMENT_FIELD_NUMBER: builtins.int
@@ -738,8 +801,6 @@ global___CreateMeasurementRequest = CreateMeasurementRequest
 
 @typing.final
 class CreateMeasurementResponse(google.protobuf.message.Message):
-    """Message returned when creating a new measurement in the metadata store."""
-
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ID_FIELD_NUMBER: builtins.int
