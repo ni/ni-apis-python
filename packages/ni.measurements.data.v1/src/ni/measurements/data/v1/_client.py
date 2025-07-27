@@ -1,3 +1,4 @@
+from collections.abc import Sequence
 import logging
 
 from google.protobuf import timestamp_pb2
@@ -58,15 +59,41 @@ class DataStoreClient(GrpcClient):
         return create_measurement_response.id
 
     @GrpcClient.log_errors
+    async def publish_condition_set_batch(
+        self,
+        condition_set: Sequence[data_store_pb2.ConditionArray],
+        measurement_id: str,
+        publish_location: data_store_pb2.PublishDataLocation.ValueType = data_store_pb2.PublishDataLocation.PUBLISH_DATA_LOCATION_LOCAL,
+    ) -> data_store_pb2.StoredConditionSetValue:
+        logger.info(f"Publishing condition set batch for measurement: {measurement_id}")
+
+        stub = await self._get_stub()
+        publish_condition_set_batch_request = (
+            data_store_service_pb2.PublishConditionSetBatchRequest(
+                condition_set=condition_set,
+                publish_location=publish_location,
+                measurement_id=measurement_id,
+            )
+        )
+        publish_condition_set_batch_response = await stub.PublishConditionSetBatch(
+            publish_condition_set_batch_request
+        )
+        logger.info(
+            f"Successfully published condition set batch with id: {publish_condition_set_batch_response.stored_condition_set_value.metadata.id}"
+        )
+
+        return publish_condition_set_batch_response.stored_condition_set_value
+
+    @GrpcClient.log_errors
     async def publish_data(
         self,
         data: data_store_pb2.PublishableData,
-        publish_location: data_store_pb2.PublishDataLocation,
         timestamp: timestamp_pb2.Timestamp,
         measurement_id: str,
         notes: str = "",
-        pass_fail_status: data_store_pb2.PassFailStatus = data_store_pb2.PassFailStatus.PASS_FAIL_STATUS_UNSPECIFIED,
-        error_state: data_store_pb2.ErrorState = data_store_pb2.ErrorState.ERROR_STATE_UNSPECIFIED,
+        publish_location: data_store_pb2.PublishDataLocation.ValueType = data_store_pb2.PublishDataLocation.PUBLISH_DATA_LOCATION_LOCAL,
+        pass_fail_status: data_store_pb2.PassFailStatus.ValueType = data_store_pb2.PassFailStatus.PASS_FAIL_STATUS_UNSPECIFIED,
+        error_state: data_store_pb2.ErrorState.ValueType = data_store_pb2.ErrorState.ERROR_STATE_UNSPECIFIED,
         error_message: data_store_pb2.ErrorMessage = data_store_pb2.ErrorMessage(),
     ) -> data_store_pb2.StoredDataValue:
         logger.info(f"Publishing data with name: {data.name} for measurement: {measurement_id}")
@@ -83,12 +110,43 @@ class DataStoreClient(GrpcClient):
             measurement_id=measurement_id,
         )
         publish_data_response = await stub.PublishData(publish_data_request)
-
         logger.info(
             f"Successfully published data with id: {publish_data_response.stored_data_value.metadata.id}"
         )
 
         return publish_data_response.stored_data_value
+
+    @GrpcClient.log_errors
+    async def publish_data_batch(
+        self,
+        data: data_store_pb2.PublishableDataBatch,
+        timestamp: Sequence[timestamp_pb2.Timestamp],
+        measurement_id: str,
+        publish_location: data_store_pb2.PublishDataLocation.ValueType = data_store_pb2.PublishDataLocation.PUBLISH_DATA_LOCATION_LOCAL,
+        pass_fail_status: Sequence[data_store_pb2.PassFailStatus.ValueType] = [],
+        error_state: Sequence[data_store_pb2.ErrorState.ValueType] = [],
+        error_message: Sequence[data_store_pb2.ErrorMessage] = [],
+    ) -> Sequence[data_store_pb2.StoredDataValue]:
+        logger.info(
+            f"Publishing data batch with name: {data.name} for measurement: {measurement_id}"
+        )
+
+        stub = await self._get_stub()
+        publish_data_batch_request = data_store_service_pb2.PublishDataBatchRequest(
+            data=data,
+            publish_location=publish_location,
+            timestamp=timestamp,
+            pass_fail_status=pass_fail_status,
+            error_state=error_state,
+            error_message=error_message,
+            measurement_id=measurement_id,
+        )
+        publish_data_batch_response = await stub.PublishDataBatch(publish_data_batch_request)
+        logger.info(
+            f"Successfully published data batch with {len(publish_data_batch_response.stored_data_values)} items"
+        )
+
+        return publish_data_batch_response.stored_data_values
 
     async def _get_stub(self) -> data_store_service_pb2_grpc.DataStoreServiceStub:
         if self._stub is None:
