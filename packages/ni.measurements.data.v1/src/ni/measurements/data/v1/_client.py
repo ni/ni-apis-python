@@ -148,6 +148,19 @@ class DataStoreClient(GrpcClient):
 
         return publish_data_batch_response.stored_data_values
 
+    async def query_data(self, odata_query: str) -> Sequence[data_store_pb2.StoredDataValue]:
+        logger.info(f"Querying data with OData query: {odata_query}")
+
+        stub = await self._get_stub()
+        query_data_request = data_store_service_pb2.QueryDataRequest(odata_query=odata_query)
+        query_data_response = await stub.QueryData(query_data_request)
+
+        logger.info(
+            f"Successfully queried data and received {len(query_data_response.stored_data_values)} items"
+        )
+
+        return query_data_response.stored_data_values
+
     async def _get_stub(self) -> data_store_service_pb2_grpc.DataStoreServiceStub:
         if self._stub is None:
             channel = await self._get_or_create_channel()
