@@ -7,6 +7,7 @@ from nitypes.complex import ComplexInt32DType
 from nitypes.waveform import (
     AnalogWaveform,
     ComplexWaveform,
+    DigitalWaveform,
     LinearScaleMode,
     NoneScaleMode,
     SampleIntervalMode,
@@ -18,6 +19,8 @@ from ni.protobuf.types.precision_timestamp_conversion import (
     bintime_datetime_to_protobuf,
 )
 from ni.protobuf.types.waveform_conversion import (
+    digital_waveform_from_protobuf,
+    digital_waveform_to_protobuf,
     float64_analog_waveform_from_protobuf,
     float64_analog_waveform_to_protobuf,
     float64_complex_waveform_from_protobuf,
@@ -30,6 +33,7 @@ from ni.protobuf.types.waveform_conversion import (
     int16_complex_waveform_to_protobuf,
 )
 from ni.protobuf.types.waveform_pb2 import (
+    DigitalWaveform as DigitalWaveformProto,
     DoubleAnalogWaveform,
     DoubleComplexWaveform,
     DoubleSpectrum,
@@ -730,3 +734,152 @@ def test___dbl_spectrum_with_attributes___convert___valid_python_object() -> Non
 
     assert spectrum.channel_name == "Dev1/ai0"
     assert spectrum.unit_description == "Volts"
+
+
+# ========================================================
+# DigitalWaveform to DigitalWaveform
+# ========================================================
+def test___default_digital_waveform___convert___valid_protobuf() -> None:
+    digital_waveform = DigitalWaveform()
+
+    digital_waveform_proto = digital_waveform_to_protobuf(digital_waveform)
+
+    assert not digital_waveform_proto.attributes
+    assert digital_waveform_proto.dt == 0
+    assert not digital_waveform_proto.HasField("t0")
+    assert digital_waveform_proto.y_data == b""
+    assert digital_waveform_proto.signal_count == 1
+
+
+def test___digital_waveform_with_data___convert___valid_protobuf() -> None:
+    data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
+    digital_waveform = DigitalWaveform.from_lines(data, signal_count=3)
+
+    digital_waveform_proto = digital_waveform_to_protobuf(digital_waveform)
+
+    assert digital_waveform_proto.y_data == data.tobytes()
+    assert digital_waveform_proto.signal_count == 3
+
+
+def test___digital_waveform_with_extended_properties___convert___valid_protobuf() -> None:
+    digital_waveform = DigitalWaveform()
+    digital_waveform.channel_name = "Dev1/port0"
+
+    digital_waveform_proto = digital_waveform_to_protobuf(digital_waveform)
+
+    assert digital_waveform_proto.attributes["NI_ChannelName"].string_value == "Dev1/port0"
+
+
+def test___digital_waveform_with_standard_timing___convert___valid_protobuf() -> None:
+    data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
+    digital_waveform = DigitalWaveform.from_lines(data, signal_count=3)
+    t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
+    digital_waveform.timing = Timing.create_with_regular_interval(
+        sample_interval=dt.timedelta(milliseconds=1000),
+        timestamp=t0_dt,
+    )
+
+    digital_waveform_proto = digital_waveform_to_protobuf(digital_waveform)
+
+    assert digital_waveform_proto.dt == 1.0
+    bin_dt = bt.DateTime(t0_dt)
+    converted_t0 = bintime_datetime_to_protobuf(bin_dt)
+    assert digital_waveform_proto.t0 == converted_t0
+    assert digital_waveform_proto.signal_count == 3
+
+
+def test___digital_waveform_with_irregular_timing___convert___raises_value_error() -> None:
+    data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
+    digital_waveform = DigitalWaveform.from_lines(data, signal_count=3)
+    t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
+    digital_waveform.timing = Timing.create_with_irregular_interval(
+        [t0_dt, t0_dt + dt.timedelta(milliseconds=1000)]
+    )
+
+    with pytest.raises(ValueError) as exc:
+        _ = digital_waveform_to_protobuf(digital_waveform)
+
+    assert exc.value.args[0].startswith("Cannot convert irregular sample interval to protobuf.")
+
+
+# ========================================================
+# DigitalWaveform to DigitalWaveform
+# ========================================================
+def test___default_digital_waveform_proto___convert___valid_python_object() -> None:
+    digital_waveform_proto = DigitalWaveformProto()
+
+    digital_waveform = digital_waveform_from_protobuf(digital_waveform_proto)
+
+    assert not digital_waveform.extended_properties
+    assert digital_waveform.timing == Timing.empty
+    assert digital_waveform.data.size == 0
+    assert digital_waveform.signal_count == 0
+
+
+def test___digital_waveform_proto_with_data___convert___valid_python_object() -> None:
+    data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
+    digital_waveform_proto = DigitalWaveformProto(y_data=data.tobytes(), signal_count=3)
+
+    digital_waveform = digital_waveform_from_protobuf(digital_waveform_proto)
+
+    assert np.array_equal(digital_waveform.data, data)
+    assert digital_waveform.signal_count == 3
+
+
+def test___digital_waveform_proto_with_attributes___convert___valid_python_object() -> None:
+    attributes = {
+        "NI_ChannelName": WaveformAttributeValue(string_value="Dev1/port0"),
+    }
+    digital_waveform_proto = DigitalWaveformProto(attributes=attributes)
+
+    digital_waveform = digital_waveform_from_protobuf(digital_waveform_proto)
+
+    assert digital_waveform.channel_name == "Dev1/port0"
+
+
+def test___digital_waveform_proto_with_timing___convert___valid_python_object() -> None:
+    data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
+    t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_pt = bintime_datetime_to_protobuf(t0_dt)
+    digital_waveform_proto = DigitalWaveformProto(
+        t0=t0_pt, dt=0.1, y_data=data.tobytes(), signal_count=3
+    )
+
+    digital_waveform = digital_waveform_from_protobuf(digital_waveform_proto)
+
+    assert digital_waveform.timing.start_time == t0_dt._to_datetime_datetime()
+    assert digital_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
+    assert digital_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
+
+
+def test___digital_waveform_proto_with_timing_no_t0___convert___valid_python_object() -> None:
+    data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
+    digital_waveform_proto = DigitalWaveformProto(dt=0.1, y_data=data.tobytes(), signal_count=3)
+
+    digital_waveform = digital_waveform_from_protobuf(digital_waveform_proto)
+
+    assert digital_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    assert digital_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
+    assert digital_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
+
+
+def test___digital_waveform_proto_with_timing_no_dt___convert___valid_python_object() -> None:
+    data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
+    t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
+    t0_pt = bintime_datetime_to_protobuf(t0_dt)
+    digital_waveform_proto = DigitalWaveformProto(t0=t0_pt, y_data=data.tobytes(), signal_count=3)
+
+    digital_waveform = digital_waveform_from_protobuf(digital_waveform_proto)
+
+    assert digital_waveform.timing.start_time == t0_dt._to_datetime_datetime()
+    assert not digital_waveform.timing.has_sample_interval
+    assert digital_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+
+
+def test___digital_waveform_proto_empty_data___convert___valid_python_object() -> None:
+    digital_waveform_proto = DigitalWaveformProto(y_data=b"", signal_count=0)
+
+    digital_waveform = digital_waveform_from_protobuf(digital_waveform_proto)
+
+    assert digital_waveform.data.size == 0
+    assert digital_waveform.signal_count == 0

@@ -14,6 +14,7 @@ from nitypes.time import convert_datetime
 from nitypes.waveform import (
     AnalogWaveform,
     ComplexWaveform,
+    DigitalWaveform,
     ExtendedPropertyDictionary,
     LinearScaleMode,
     NoneScaleMode,
@@ -26,6 +27,7 @@ from nitypes.waveform.typing import ExtendedPropertyValue
 import ni.protobuf.types.precision_timestamp_conversion as ptc
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
 from ni.protobuf.types.waveform_pb2 import (
+    DigitalWaveform as DigitalWaveformProto,
     DoubleAnalogWaveform,
     DoubleComplexWaveform,
     DoubleSpectrum,
@@ -204,6 +206,44 @@ def int16_analog_waveform_from_protobuf(message: I16AnalogWaveform, /) -> Analog
     )
 
 
+def digital_waveform_to_protobuf(value: DigitalWaveform[np.uint8], /) -> DigitalWaveformProto:
+    """Convert the Python DigitalWaveform to a protobuf DigitalWaveform."""
+    _validate_timing(value)
+    t0 = _t0_from_waveform(value)
+    time_interval = _time_interval_from_waveform(value)
+    attributes = _extended_properties_to_attributes(value.extended_properties)
+
+    return DigitalWaveformProto(
+        t0=t0,
+        dt=time_interval,
+        signal_count=value.signal_count,
+        y_data=value.data.tobytes(),
+        attributes=attributes,
+    )
+
+
+def digital_waveform_from_protobuf(message: DigitalWaveformProto, /) -> DigitalWaveform[np.uint8]:
+    """Convert the protobuf DigitalWaveform to a Python DigitalWaveform."""
+    timing = _timing_from_waveform_message(message)
+    extended_properties = _attributes_to_extended_properties(message.attributes)
+
+    # Convert bytes back to numpy array
+    data_array = np.frombuffer(message.y_data, dtype=np.uint8)
+
+    if message.signal_count > 0:
+        samples_per_signal = len(data_array) // message.signal_count
+        reshaped_data = data_array.reshape(samples_per_signal, message.signal_count)
+    else:
+        reshaped_data = data_array.reshape(1, -1)  # Fallback for signal_count=0
+
+    return DigitalWaveform.from_lines(
+        reshaped_data,
+        signal_count=message.signal_count,
+        extended_properties=extended_properties,
+        timing=timing,
+    )
+
+
 def _attributes_to_extended_properties(
     attributes: Mapping[str, WaveformAttributeValue],
 ) -> Mapping[str, ExtendedPropertyValue]:
@@ -240,14 +280,14 @@ def _value_to_attribute(value: ExtendedPropertyValue) -> WaveformAttributeValue:
 
 
 def _validate_timing(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any],
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
 ) -> None:
     if waveform.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
         raise ValueError("Cannot convert irregular sample interval to protobuf.")
 
 
 def _t0_from_waveform(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any],
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
 ) -> PrecisionTimestamp | None:
     if waveform.timing.has_start_time:
         bin_datetime = convert_datetime(bt.DateTime, waveform.timing.start_time)
@@ -256,7 +296,9 @@ def _t0_from_waveform(
         return None
 
 
-def _time_interval_from_waveform(waveform: AnalogWaveform[Any] | ComplexWaveform[Any]) -> float:
+def _time_interval_from_waveform(
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
+) -> float:
     if waveform.timing.has_sample_interval:
         return waveform.timing.sample_interval.total_seconds()
     else:
@@ -264,7 +306,13 @@ def _time_interval_from_waveform(waveform: AnalogWaveform[Any] | ComplexWaveform
 
 
 def _timing_from_waveform_message(
-    message: DoubleAnalogWaveform | DoubleComplexWaveform | I16AnalogWaveform | I16ComplexWaveform,
+    message: (
+        DoubleAnalogWaveform
+        | DoubleComplexWaveform
+        | I16AnalogWaveform
+        | I16ComplexWaveform
+        | DigitalWaveformProto
+    ),
 ) -> Timing[bt.DateTime | dt.datetime]:
     # Declare timing to accept both bintime and dt.datetime to satisfy mypy.
     timing: Timing[bt.DateTime | dt.datetime]
