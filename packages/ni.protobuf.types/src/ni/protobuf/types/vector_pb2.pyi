@@ -15,9 +15,7 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 @typing.final
 class Vector(google.protobuf.message.Message):
-    """A vector data class, which encapsulates an array of values and associated
-    attributes, including units.
-    """
+    """A vector value with associated attributes, such as units."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -107,6 +105,7 @@ class Vector(google.protobuf.message.Message):
     @property
     def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, ni.protobuf.types.attribute_value_pb2.AttributeValue]:
         """The names and values of all vector attributes.
+
         A vector attribute is metadata attached to a vector.
         It is represented in this message as a map associating the name of
         the attribute with the value described by AttributeValue.

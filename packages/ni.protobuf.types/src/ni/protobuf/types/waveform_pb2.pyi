@@ -17,18 +17,7 @@ DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 @typing.final
 class DoubleAnalogWaveform(google.protobuf.message.Message):
-    """Detailed documentation for waveform attributes:
-    A waveform attribute is metadata attached to a waveform.
-    It is represented in this message as a map associating the name of the attribute with the value described by WaveformAttributeValue.
-    The NI-DAQmx driver sets the following string attributes:
-    NI_ChannelName: the name of the virtual channel producing the waveform.
-    NI_LineNames: the name of the digital line in the waveform.
-    NI_UnitDescription: the units of measure for the waveform.
-    NI_dBReference: the reference value to use when converting measurement levels to decibel.
-    For additional information on waveform attributes, please visit https://www.ni.com/docs/en-US/bundle/labview-api-ref/page/functions/get-waveform-attribute.html
-
-    An analog waveform, which encapsulates analog data as doubles and timing information.
-    """
+    """A double-precision analog waveform with timing and extended properties."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -66,9 +55,7 @@ class DoubleAnalogWaveform(google.protobuf.message.Message):
 
     @property
     def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
-        """The names and values of all waveform attributes.
-        See the comment at near the top of this file for more details.
-        """
+        """Attribute names and values. See WaveformAttributeValue for more details."""
 
     def __init__(
         self,
@@ -85,7 +72,7 @@ global___DoubleAnalogWaveform = DoubleAnalogWaveform
 
 @typing.final
 class I16AnalogWaveform(google.protobuf.message.Message):
-    """An analog waveform, which encapsulates analog data as 16 bit integers and timing information."""
+    """A 16-bit integer analog waveform with timing and extended properties."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -124,13 +111,11 @@ class I16AnalogWaveform(google.protobuf.message.Message):
 
     @property
     def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
-        """The names and values of all waveform attributes.
-        See the comment at near the top of this file for more details.
-        """
+        """Attribute names and values. See WaveformAttributeValue for more details."""
 
     @property
     def scale(self) -> global___Scale:
-        """Optional scaling information which can be used to convert unscaled data represented by this waveform to scaled data."""
+        """Optional scaling information used to convert raw data to scaled data."""
 
     def __init__(
         self,
@@ -148,7 +133,7 @@ global___I16AnalogWaveform = I16AnalogWaveform
 
 @typing.final
 class DoubleComplexWaveform(google.protobuf.message.Message):
-    """A complex waveform, which encapsulates complex data as doubles and timing information."""
+    """A double-precision complex waveform with timing and extended properties."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -183,14 +168,14 @@ class DoubleComplexWaveform(google.protobuf.message.Message):
     @property
     def y_data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
         """The data values of the waveform.
-        Real and imaginary parts interleaved.  Example: [1.0+2.0j, 3.0+4.0j] is represented as [1.0, 2.0, 3.0, 4.0].
+
+        This data consists of interleaved real and imaginary parts.
+        Example: [1.0+2.0j, 3.0+4.0j] is represented as [1.0, 2.0, 3.0, 4.0].
         """
 
     @property
     def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
-        """The names and values of all waveform attributes.
-        See the comment at near the top of this file for more details.
-        """
+        """Attribute names and values. See WaveformAttributeValue for more details."""
 
     def __init__(
         self,
@@ -207,7 +192,7 @@ global___DoubleComplexWaveform = DoubleComplexWaveform
 
 @typing.final
 class I16ComplexWaveform(google.protobuf.message.Message):
-    """A complex waveform, which encapsulates complex data as 16 bit integers and timing information."""
+    """A 16-bit integer complex waveform with timing and extended properties."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -243,18 +228,18 @@ class I16ComplexWaveform(google.protobuf.message.Message):
     @property
     def y_data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
         """The data values of the waveform.
-        Real and imaginary parts interleaved. Example: [1+2j, 3+4j] is represented as [1, 2, 3, 4].
+
+        This data consists of interleaved real and imaginary parts.
+        Example: [1+2j, 3+4j] is represented as [1, 2, 3, 4].
         """
 
     @property
     def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
-        """The names and values of all waveform attributes.
-        See the comment at near the top of this file for more details.
-        """
+        """Attribute names and values. See WaveformAttributeValue for more details."""
 
     @property
     def scale(self) -> global___Scale:
-        """Optional scaling information which can be used to convert unscaled data represented by this waveform to scaled data."""
+        """Optional scaling information used to convert raw data to scaled data."""
 
     def __init__(
         self,
@@ -272,7 +257,7 @@ global___I16ComplexWaveform = I16ComplexWaveform
 
 @typing.final
 class DoubleSpectrum(google.protobuf.message.Message):
-    """A frequency spectrum, which encapsulates analog data and frequency information."""
+    """A double-precision frequency spectrum with extended properties."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -308,9 +293,7 @@ class DoubleSpectrum(google.protobuf.message.Message):
 
     @property
     def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
-        """The names and values of all waveform attributes.
-        See the comment at near the top of this file for more details.
-        """
+        """Attribute names and values. See WaveformAttributeValue for more details."""
 
     def __init__(
         self,
@@ -326,7 +309,18 @@ global___DoubleSpectrum = DoubleSpectrum
 
 @typing.final
 class WaveformAttributeValue(google.protobuf.message.Message):
-    """Waveform Attribute Value"""
+    """Metadata attached to a waveform.
+
+    The NI-DAQmx driver sets the following string attributes:
+
+    - NI_ChannelName: the name of the virtual channel producing the waveform.
+    - NI_LineNames: the name of the digital line in the waveform.
+    - NI_UnitDescription: the units of measure for the waveform.
+    - NI_dBReference: the reference value to use when converting measurement levels to decibel.
+
+    For additional information on waveform attributes, please visit
+    https://www.ni.com/docs/en-US/bundle/labview-api-ref/page/functions/get-waveform-attribute.html
+    """
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -358,7 +352,7 @@ global___WaveformAttributeValue = WaveformAttributeValue
 
 @typing.final
 class DigitalWaveform(google.protobuf.message.Message):
-    """A digital waveform, which encapsulates digital data as integers, timing information, and extended properties."""
+    """A digital waveform as bytes with timing and extended properties."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -390,8 +384,10 @@ class DigitalWaveform(google.protobuf.message.Message):
     signal_count: builtins.int
     """The number of signals in each sample of data."""
     y_data: builtins.bytes
-    """The data values of the waveform. This data is a flattened array of bytes
-    that are ordered such that each signal_count bytes represents a sample.
+    """The data values of the waveform.
+
+    This data is a flattened array of bytes that are ordered such that each
+    signal_count bytes represents a sample.
     """
     @property
     def t0(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
@@ -399,9 +395,7 @@ class DigitalWaveform(google.protobuf.message.Message):
 
     @property
     def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
-        """The names and values of all waveform attributes.
-        See the comment at near the top of this file for more details.
-        """
+        """Attribute names and values. See WaveformAttributeValue for more details."""
 
     def __init__(
         self,
@@ -419,7 +413,7 @@ global___DigitalWaveform = DigitalWaveform
 
 @typing.final
 class Scale(google.protobuf.message.Message):
-    """Scaling information which can be used to convert unscaled data represented by this waveform to scaled data."""
+    """Scaling information for converting unscaled waveform data to scaled data."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -439,7 +433,7 @@ global___Scale = Scale
 
 @typing.final
 class LinearScale(google.protobuf.message.Message):
-    """LinearScale datatype."""
+    """A linear scale consisting of a gain and an offset."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
