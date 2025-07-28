@@ -94,7 +94,7 @@ class DataStoreClient(GrpcClient):
         publish_location: data_store_pb2.PublishDataLocation.ValueType = data_store_pb2.PublishDataLocation.PUBLISH_DATA_LOCATION_LOCAL,
         pass_fail_status: data_store_pb2.PassFailStatus.ValueType = data_store_pb2.PassFailStatus.PASS_FAIL_STATUS_UNSPECIFIED,
         error_state: data_store_pb2.ErrorState.ValueType = data_store_pb2.ErrorState.ERROR_STATE_UNSPECIFIED,
-        error_message: data_store_pb2.ErrorMessage = data_store_pb2.ErrorMessage(),
+        error_message: data_store_pb2.ErrorMessage | None = None,
     ) -> data_store_pb2.StoredDataValue:
         logger.info(f"Publishing data with name: {data.name} for measurement: {measurement_id}")
 
@@ -123,9 +123,9 @@ class DataStoreClient(GrpcClient):
         timestamp: Sequence[timestamp_pb2.Timestamp],
         measurement_id: str,
         publish_location: data_store_pb2.PublishDataLocation.ValueType = data_store_pb2.PublishDataLocation.PUBLISH_DATA_LOCATION_LOCAL,
-        pass_fail_status: Sequence[data_store_pb2.PassFailStatus.ValueType] = [],
-        error_state: Sequence[data_store_pb2.ErrorState.ValueType] = [],
-        error_message: Sequence[data_store_pb2.ErrorMessage] = [],
+        pass_fail_status: Sequence[data_store_pb2.PassFailStatus.ValueType] | None = None,
+        error_state: Sequence[data_store_pb2.ErrorState.ValueType] | None = None,
+        error_message: Sequence[data_store_pb2.ErrorMessage] | None = None,
     ) -> Sequence[data_store_pb2.StoredDataValue]:
         logger.info(
             f"Publishing data batch with name: {data.name} for measurement: {measurement_id}"
