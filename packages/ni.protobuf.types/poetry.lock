@@ -790,9 +790,9 @@ files = [
 hightime = ">=0.2.2"
 numpy = [
     {version = ">=1.22", markers = "implementation_name != \"pypy\" and python_version >= \"3.9\" and python_version < \"3.12\""},
+    {version = ">=1.26", markers = "python_version >= \"3.12\" and python_version < \"3.13\" and implementation_name != \"pypy\""},
     {version = ">=2.1", markers = "python_version >= \"3.10\" and python_version < \"3.11\" and implementation_name == \"pypy\" or python_version >= \"3.13\" and python_version < \"4.0\" and implementation_name != \"pypy\""},
     {version = ">=2.3", markers = "implementation_name == \"pypy\" and python_version >= \"3.11\" and python_version < \"4.0\""},
-    {version = ">=1.26", markers = "python_version >= \"3.12\" and python_version < \"3.13\" and implementation_name != \"pypy\""},
 ]
 typing-extensions = ">=4.13.2"
 

@@ -15,8 +15,6 @@ from nitypes.waveform import (
     Timing,
 )
 
-from nitypes.waveform.typing import AnyDigitalState
-
 from ni.protobuf.types.precision_timestamp_conversion import (
     bintime_datetime_to_protobuf,
 )
@@ -773,7 +771,7 @@ def test___digital_waveform_with_extended_properties___convert___valid_protobuf(
 
 
 def test___digital_waveform_with_standard_timing___convert___valid_protobuf() -> None:
-    data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
+    data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.bool)
     digital_waveform = DigitalWaveform.from_lines(data, signal_count=3)
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
     digital_waveform.timing = Timing.create_with_regular_interval(
@@ -805,7 +803,7 @@ def test___digital_waveform_with_irregular_timing___convert___raises_value_error
 
 
 def test___digital_waveform_round_trip___convert___valid_protobuf() -> None:
-    data = np.array([[0, 1], [2, 3], [4, 5], [6, 7]], dtype=np.bool)
+    data = np.array([[0, 1], [2, 3], [4, 5], [6, 7]], dtype=np.uint8)
     digital_waveform = DigitalWaveform.from_lines(data, signal_count=2)
 
     digital_waveform_proto = digital_waveform_to_protobuf(digital_waveform)

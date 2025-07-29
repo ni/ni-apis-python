@@ -22,7 +22,7 @@ from nitypes.waveform import (
     Spectrum,
     Timing,
 )
-from nitypes.waveform.typing import AnyDigitalState, ExtendedPropertyValue
+from nitypes.waveform.typing import ExtendedPropertyValue
 
 import ni.protobuf.types.precision_timestamp_conversion as ptc
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
@@ -206,9 +206,7 @@ def int16_analog_waveform_from_protobuf(message: I16AnalogWaveform, /) -> Analog
     )
 
 
-def digital_waveform_to_protobuf(
-    value: DigitalWaveform[AnyDigitalState], /
-) -> DigitalWaveformProto:
+def digital_waveform_to_protobuf(value: DigitalWaveform[Any], /) -> DigitalWaveformProto:
     """Convert the Python DigitalWaveform to a protobuf DigitalWaveform."""
     _validate_timing(value)
     t0 = _t0_from_waveform(value)
@@ -224,9 +222,7 @@ def digital_waveform_to_protobuf(
     )
 
 
-def digital_waveform_from_protobuf(
-    message: DigitalWaveformProto, /
-) -> DigitalWaveform[AnyDigitalState]:
+def digital_waveform_from_protobuf(message: DigitalWaveformProto, /) -> DigitalWaveform[Any]:
     """Convert the protobuf DigitalWaveform to a Python DigitalWaveform."""
     timing = _timing_from_waveform_message(message)
     extended_properties = _attributes_to_extended_properties(message.attributes)
@@ -285,14 +281,14 @@ def _value_to_attribute(value: ExtendedPropertyValue) -> WaveformAttributeValue:
 
 
 def _validate_timing(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[AnyDigitalState],
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
 ) -> None:
     if waveform.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
         raise ValueError("Cannot convert irregular sample interval to protobuf.")
 
 
 def _t0_from_waveform(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[AnyDigitalState],
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
 ) -> PrecisionTimestamp | None:
     if waveform.timing.has_start_time:
         bin_datetime = convert_datetime(bt.DateTime, waveform.timing.start_time)
@@ -302,7 +298,7 @@ def _t0_from_waveform(
 
 
 def _time_interval_from_waveform(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[AnyDigitalState],
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
 ) -> float:
     if waveform.timing.has_sample_interval:
         return waveform.timing.sample_interval.total_seconds()
