@@ -6,7 +6,8 @@ from collections.abc import Mapping
 from typing import Union
 
 from nitypes.scalar import Scalar
-from nitypes.waveform import ExtendedPropertyDictionary, ExtendedPropertyValue
+from nitypes.waveform import ExtendedPropertyDictionary
+from nitypes.waveform.typing import ExtendedPropertyValue
 from typing_extensions import TypeAlias
 
 import ni.protobuf.types.scalar_pb2 as scalar_pb2

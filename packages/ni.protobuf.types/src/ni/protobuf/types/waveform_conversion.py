@@ -15,13 +15,13 @@ from nitypes.waveform import (
     AnalogWaveform,
     ComplexWaveform,
     ExtendedPropertyDictionary,
-    ExtendedPropertyValue,
     LinearScaleMode,
     NoneScaleMode,
     SampleIntervalMode,
     Spectrum,
     Timing,
 )
+from nitypes.waveform.typing import ExtendedPropertyValue
 
 import ni.protobuf.types.precision_timestamp_conversion as ptc
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
