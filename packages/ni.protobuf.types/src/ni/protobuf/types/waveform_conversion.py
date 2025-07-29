@@ -22,7 +22,7 @@ from nitypes.waveform import (
     Spectrum,
     Timing,
 )
-from nitypes.waveform.typing import ExtendedPropertyValue
+from nitypes.waveform.typing import AnyDigitalState, ExtendedPropertyValue
 
 import ni.protobuf.types.precision_timestamp_conversion as ptc
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
@@ -206,7 +206,9 @@ def int16_analog_waveform_from_protobuf(message: I16AnalogWaveform, /) -> Analog
     )
 
 
-def digital_waveform_to_protobuf(value: DigitalWaveform[np.uint8], /) -> DigitalWaveformProto:
+def digital_waveform_to_protobuf(
+    value: DigitalWaveform[AnyDigitalState], /
+) -> DigitalWaveformProto:
     """Convert the Python DigitalWaveform to a protobuf DigitalWaveform."""
     _validate_timing(value)
     t0 = _t0_from_waveform(value)
@@ -222,22 +224,25 @@ def digital_waveform_to_protobuf(value: DigitalWaveform[np.uint8], /) -> Digital
     )
 
 
-def digital_waveform_from_protobuf(message: DigitalWaveformProto, /) -> DigitalWaveform[np.uint8]:
+def digital_waveform_from_protobuf(
+    message: DigitalWaveformProto, /
+) -> DigitalWaveform[AnyDigitalState]:
     """Convert the protobuf DigitalWaveform to a Python DigitalWaveform."""
     timing = _timing_from_waveform_message(message)
     extended_properties = _attributes_to_extended_properties(message.attributes)
 
-    # Convert bytes back to numpy array
-    data_array = np.frombuffer(message.y_data, dtype=np.uint8)
+    if message.signal_count <= 0:
+        raise ValueError("signal_count must be greater than zero.")
 
-    if message.signal_count > 0:
-        samples_per_signal = len(data_array) // message.signal_count
-        reshaped_data = data_array.reshape(samples_per_signal, message.signal_count)
-    else:
-        reshaped_data = data_array.reshape(1, -1)  # Fallback for signal_count=0
+    data_array = np.frombuffer(message.y_data, dtype=np.uint8)
+    samples_per_signal = len(data_array) // message.signal_count
+    if len(data_array) != samples_per_signal * message.signal_count:
+        raise ValueError(f"Data array length ({len(data_array)}) does not match expected shape ")
+    reshaped_data = data_array.reshape(samples_per_signal, message.signal_count)
 
     return DigitalWaveform.from_lines(
         reshaped_data,
+        dtype=np.uint8,
         signal_count=message.signal_count,
         extended_properties=extended_properties,
         timing=timing,
@@ -280,14 +285,14 @@ def _value_to_attribute(value: ExtendedPropertyValue) -> WaveformAttributeValue:
 
 
 def _validate_timing(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[AnyDigitalState],
 ) -> None:
     if waveform.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
         raise ValueError("Cannot convert irregular sample interval to protobuf.")
 
 
 def _t0_from_waveform(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[AnyDigitalState],
 ) -> PrecisionTimestamp | None:
     if waveform.timing.has_start_time:
         bin_datetime = convert_datetime(bt.DateTime, waveform.timing.start_time)
@@ -297,7 +302,7 @@ def _t0_from_waveform(
 
 
 def _time_interval_from_waveform(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[AnyDigitalState],
 ) -> float:
     if waveform.timing.has_sample_interval:
         return waveform.timing.sample_interval.total_seconds()
