@@ -886,11 +886,10 @@ def test___digital_waveform_proto_with_timing_no_dt___convert___valid_python_obj
     assert digital_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
 
 
-def test___digital_waveform_proto_empty_data___convert___valid_python_object() -> None:
+def test___digital_waveform_proto_signal_count_zero___convert___raises_value_error() -> None:
     digital_waveform_proto = DigitalWaveformProto(y_data=b"", signal_count=0)
 
-    # with pytest.raises(ValueError) as exc:
-    # _ = digital_waveform_from_protobuf(digital_waveform_proto)
+    with pytest.raises(ValueError) as exc:
+        _ = digital_waveform_from_protobuf(digital_waveform_proto)
 
-    # assert exc.value.args[0].startswith("signal_count must be greater than zero.")
-    assert digital_waveform_proto.signal_count == 0
+    assert exc.value.args[0].startswith("signal_count must be greater than zero.")
