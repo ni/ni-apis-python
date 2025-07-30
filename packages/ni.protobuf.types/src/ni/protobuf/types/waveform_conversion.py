@@ -222,7 +222,7 @@ def digital_waveform_to_protobuf(value: DigitalWaveform[Any], /) -> DigitalWavef
     )
 
 
-def digital_waveform_from_protobuf(message: DigitalWaveformProto, /) -> DigitalWaveform[Any]:
+def digital_waveform_from_protobuf(message: DigitalWaveformProto, /) -> DigitalWaveform[np.uint8]:
     """Convert the protobuf DigitalWaveform to a Python DigitalWaveform."""
     timing = _timing_from_waveform_message(message)
     extended_properties = _attributes_to_extended_properties(message.attributes)
@@ -233,7 +233,7 @@ def digital_waveform_from_protobuf(message: DigitalWaveformProto, /) -> DigitalW
     data_array = np.frombuffer(message.y_data, dtype=np.uint8)
     samples_per_signal = len(data_array) // message.signal_count
     if len(data_array) != samples_per_signal * message.signal_count:
-        raise ValueError(f"Data array length ({len(data_array)}) does not match expected shape ")
+        raise ValueError(f"Data array length ({len(data_array)}) does not match expected shape.")
     reshaped_data = data_array.reshape(samples_per_signal, message.signal_count)
 
     return DigitalWaveform.from_lines(
