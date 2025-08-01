@@ -32,6 +32,13 @@ packages = [{include = "ni", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+grpcio = {version=">=1.49.0,<2.0"}
+protobuf = {version=">=4.21"}
+nitypes = {version=">=0.1.0dev3", allow-prereleases=true}
+
+[tool.poetry.group.dev.dependencies]
+types-grpcio = ">=1.0"
+types-protobuf = ">=4.21"
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
@@ -65,16 +72,24 @@ skips = [
   "B101", # assert_used
 ]
 
+[tool.ni-python-styleguide]
+extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi"
+
 [tool.black]
+extend-exclude = 'docs/|_pb2(_grpc)?\.(py|pyi)$'
 line-length = 100
 
 [tool.mypy]
-files = "src/,tests/"
+mypy_path = "src"
+files = "."
 namespace_packages = true
 strict = true
+explicit_package_bases = true
+exclude = ["docs"]
 
 [tool.pyright]
 include = ["src/", "tests/"]
+exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi"]
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
