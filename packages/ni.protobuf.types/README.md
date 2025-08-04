@@ -19,7 +19,7 @@ NI created and supports this package.
 
 ## Python Version Support
 
-`ni.protobuf.types` supports CPython 3.9+ and PyPy3.
+`ni.protobuf.types` supports CPython 3.9+.
 
 ## Installation
 
