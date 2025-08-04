@@ -16,7 +16,6 @@ on:
           - testpypi
       package-name:
           description: The name of the package to publish.
-          default: 'none'
           required: true
           type: choice
           options:
