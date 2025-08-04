@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest]
-        python-version: [3.9, '3.10', 3.11, 3.12, 3.13, pypy3.10, pypy3.11]
+        python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
       # Fail-fast skews the pass/fail ratio and seems to make pytest produce
       # incomplete JUnit XML results.
       fail-fast: false
@@ -37,7 +37,6 @@ jobs:
           package-name: ni.panels.v1.proto
       # Run grpc_generator unit tests on its oldest supported version.
       - name: Run and upload unit tests - grpc_generator
-        if: ${{ !contains(fromJSON('["3.9", "3.10", "pypy3.10", "pypy3.11"]'), matrix.python-version) }}
         uses: ./.github/actions/run_and_upload_unit_tests
         with:
           package-name: grpc_generator

@@ -17,4 +17,4 @@ NI created and supports this package.
 
 ## Python Version Support
 
-`ni.panels.v1.proto` supports CPython 3.9+ and PyPy3.
+`ni.panels.v1.proto` supports CPython 3.9+.
