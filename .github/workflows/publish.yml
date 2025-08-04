@@ -95,7 +95,8 @@ jobs:
     - name: Upload to ${{ env.environment }}
       uses: pypa/gh-action-pypi-publish@76f52bc884231f62b9a034ebfe128415bbaabdfc # v1.12.4
       with:
-        repository-url: ${{ fromJson(env.environment-info)[env.environment].upload-url }} 
+        repository-url: ${{ fromJson(env.environment-info)[env.environment].upload-url }}
+        packages-dir: ./packages/${{ inputs.package-name }}/dist
   update_version:
     name: Update package version
     runs-on: ubuntu-latest
