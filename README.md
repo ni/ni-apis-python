@@ -11,7 +11,8 @@
 
 NI created and supports these packages.
 
-- `ni.protobuf.types` -- provides Python stubs for the definitions in the `ni.protobuf.types` package
+- `ni.protobuf.types` -- provides Python stubs for the definitions in the `ni.protobuf.types` package.
+- `ni.panels.v1.proto` -- provides Python stubs for the definitions in the `ni.panels.v1.proto` pckage.
 
 ## Operating System Support
 
