@@ -19,4 +19,4 @@ NI created and supports these packages.
 
 ## Python Version Support
 
-`ni-apis-python` supports CPython 3.9+ and PyPy3.
+`ni-apis-python` supports CPython 3.9+.
