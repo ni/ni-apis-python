@@ -130,23 +130,20 @@ To preview in-work `.proto` file changes, (waiting for upload -- AB#3159540).
 You can publish one of the packages in the `packages` folder by creating a GitHub release
 in the ni-apis-python repo. Here are the steps to follow to publish a package:
 
-1. Use the `git tag <name>` command to create a tag for your release. The tag must be in the
+1. From the main GitHub repo page, select "Create a new release".
+2. On the "New Release" page, create a new tag using the "Select Tag" drop down. The tag must be in the
 format `<package-name>/<package-version>` where `package-name` and `package-version` match the
-values found in pyproject.toml. Here's an example tag: `ni.protobuf.types/0.1.0-dev0`. If you'd
-like to create the release from a specific commit, you can pass the commit hash to the
-`git tag <name> <commit-hash>` command.
-2. Push your tag to the remote repo by running `git push --tags`.
-3. From the main GitHub repo page, select "Create a new release".
-4. On the "New Release" page, select the tag you just created from the "Select Tag" drop down.
-5. Enter a title in the "Release title" field. The title should contain the package name and
-version in the format `<package-name>-<package-version>`. For example: `ni.protobuf.types-0.1.0-dev0`.
-6. Click "Generate release notes" or provide your own release notes.
-7. If this is a pre-release release, check the "Set as a pre-release" checkbox.
-8. Click "Publish release". This should kick off a new publish workflow in the "Actions" page of
-the GitHub repo.
+values found in pyproject.toml. Example: `ni.protobuf.types/0.1.0-dev0`.
+3. Enter a title in the "Release title" field. The title should contain the package name and
+version in the format `<package-name> <package-version>`. For example: `ni.protobuf.types 0.1.0-dev0`.
+4. Click "Generate release notes" or provide your own release notes.
+5. If this is a pre-release release, check the "Set as a pre-release" checkbox.
+6. Click "Publish release".
+7. Publishing a package to pypi requires code owner approval. Code owners should navigate to the
+publish workflow on the Actions page and approve the deployment.
+8. After receiving code owner approval, a new publish workflow will start. You can track the
+progress of this workflow in the "Actions" page of the GitHub repo.
 9. Once the publish workflow has finished, you should see your release on pypi.
-10. The publish workflow will create a pull request to update the version in `pyproject.toml`.
-Please review that pull request and approve/submit if it is correct.
 
 # Developer Certificate of Origin (DCO)
 
