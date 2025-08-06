@@ -16,6 +16,13 @@ jobs:
       proto-subpath: ni/protobuf/types
       output-basepath: ../../packages/ni.protobuf.types/src
       output-format: submodule
+  check_codegen_ni_panels_v1_proto:
+    name: Check codegen up-to-date for ni.panels.v1.proto
+    uses: ./.github/workflows/check_codegen.yml
+    with:
+      proto-subpath: ni/panels/v1
+      output-basepath: ../../packages/ni.panels.v1.proto/src
+      output-format: submodule
   check_ni_protobuf_types:
     name: Check ni.protobuf.types
     uses: ./.github/workflows/check_package.yml
@@ -33,6 +40,12 @@ jobs:
     needs: [check_ni_protobuf_types]
     with:
       package-name: ni.protobuf.types
+  check_docs_ni_panels_v1_proto:
+    name: Check docs ni.panels.v1.proto
+    uses: ./.github/workflows/check_docs.yml
+    needs: [check_ni_panels_v1_proto]
+    with:
+      package-name: ni.panels.v1.proto
   run_unit_tests:
     name: Run unit tests
     uses: ./.github/workflows/run_unit_tests.yml
