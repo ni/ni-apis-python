@@ -61,7 +61,7 @@ jobs:
             echo "package_version=$PKG_VERSION" >> $GITHUB_OUTPUT
           else
             echo "package_name=${{ inputs.package-name }}" >> $GITHUB_OUTPUT
-            echo "package_version=dummy" >> $GITHUB_OUTPUT
+            echo "package_version=unused" >> $GITHUB_OUTPUT
           fi
   check_package:
     name: Check ${{ needs.get_package_name_and_version.outputs.package_name }}
