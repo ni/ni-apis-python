@@ -11,6 +11,7 @@ Table of Contents
    :maxdepth: 4
 
    autoapi/index
+   glossary.rst
 
 Indices and tables
 ==================
