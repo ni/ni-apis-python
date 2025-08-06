@@ -26,7 +26,7 @@ on:
 
 env:
   dist-artifact-name: ni-apis-python-distribution-packages
-  environment: ${{ github.event_name == 'release' && 'testpypi' || inputs.environment }}
+  environment: ${{ github.event_name == 'release' && 'pypi' || inputs.environment }}
   environment-info: |
     {
       "pypi": {
@@ -107,7 +107,7 @@ jobs:
     needs: [get_package_name_and_version, build_package]
     environment:
       # This logic is duplicated because `name` doesn't support the `env` context.
-      name: ${{ github.event_name == 'release' && 'testpypi' || inputs.environment }}
+      name: ${{ github.event_name == 'release' && 'pypi' || inputs.environment }}
       url: ${{ fromJson(env.environment-info)[env.environment].base-url }}/p/${{ needs.get_package_name_and_version.outputs.package_name }}
     permissions:
       id-token: write
