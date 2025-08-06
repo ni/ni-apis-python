@@ -4,7 +4,7 @@ Introduction
 About
 -----
 
-``ni.panels.v1.proto`` is a Python package that provides Protobuf generated code for the ni.panels.v1 gRPC API.
+``ni.panels.v1.proto`` is a Python package that provides Protobuf generated code for the ``ni.panels.v1`` gRPC API.
 
 NI created and supports this package.
 
