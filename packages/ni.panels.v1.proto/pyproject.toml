@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ni.panels.v1.proto"
-version = "0.1.0-dev0"
+version = "0.1.0-dev1"
 license = "MIT"
 description = "Protobuf generated code for the ni.panels.v1 gRPC API"
 authors = ["NI <opensource@ni.com>"]
