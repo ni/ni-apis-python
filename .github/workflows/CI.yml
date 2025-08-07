@@ -8,39 +8,52 @@ on:
   workflow_call:
   workflow_dispatch:
 
+env:
+  package-info: |
+    [
+      {
+        "package-name": "ni.protobuf.types",
+        "proto-subpath": "ni/protobuf/types"
+      },
+      {
+        "package-name": "ni.panels.v1.proto",
+        "proto-subpath": "ni/panels/v1"
+      }
+    ]
+
 jobs:
-  ci_matrix:
-    name: CI for ${{ matrix.package-name }}
-    runs-on: ubuntu-latest
+  check_codegen:
     strategy:
       matrix:
-        include:
-          - package-name: ni.protobuf.types
-            proto-subpath: ni/protobuf/types
-          - package-name: ni.panels.v1.proto
-            proto-subpath: ni/panels/v1
-
-    steps:
-      - name: Check out repo
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - name: Check codegen up-to-date
-        uses: ./.github/workflows/check_codegen.yml
-        with:
-          proto-subpath: ${{ matrix.proto-subpath }}
-          output-basepath: ../../packages/${{ matrix.package-name }}/src
-          output-format: submodule
-      - name: Check package
-        uses: ./.github/workflows/check_package.yml
-        with:
-          package-name: ${{ matrix.package-name }}
-      - name: Check docs
-        uses: ./.github/workflows/check_docs.yml
-        with:
-          package-name: ${{ matrix.package-name }}
+        include: ${{ fromJson(env.package-info) }}
+    name: Check codegen up-to-date for ${{ matrix.package-name }}
+    uses: ./.github/workflows/check_codegen.yml
+    with:
+      proto-subpath: ${{ matrix.proto-subpath }}
+      output-basepath: ../../packages/${{ matrix.package-name }}/src
+      output-format: submodule
+  check_package:
+    strategy:
+      matrix:
+        include: ${{ fromJson(env.package-info) }}
+    name: Check ${{ matrix.package-name }}
+    uses: ./.github/workflows/check_package.yml
+    needs: check_codegen
+    with:
+      package-name: ${{ matrix.package-name }}
+  check_docs:
+    strategy:
+      matrix:
+        include: ${{ fromJson(env.package-info) }}
+    name: Check docs for ${{ matrix.package-name }}
+    uses: ./.github/workflows/check_docs.yml
+    needs: check_package
+    with:
+      package-name: ${{ matrix.package-name }}
   run_unit_tests:
     name: Run unit tests
     uses: ./.github/workflows/run_unit_tests.yml
-    needs: [ci_matrix]
+    needs: [check_docs]
   report_test_results:
     name: Report test results
     uses: ./.github/workflows/report_test_results.yml
