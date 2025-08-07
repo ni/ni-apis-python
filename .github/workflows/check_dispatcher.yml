@@ -1,4 +1,4 @@
-name: Check dispatch
+name: Check dispatcher
 
 on:
   workflow_call:
@@ -19,6 +19,7 @@ jobs:
     name: Check codegen for ${{ inputs.package-name }}
     uses: ./.github/workflows/check_codegen.yml
     with:
+      package-name: ${{ inputs.package-name }}
       proto-subpath: ${{ inputs.proto-subpath }}
       output-basepath: ../../packages/${{ inputs.package-name }}/src
       output-format: submodule
