@@ -8,52 +8,24 @@ on:
   workflow_call:
   workflow_dispatch:
 
-env:
-  package-info: |
-    [
-      {
-        "package-name": "ni.protobuf.types",
-        "proto-subpath": "ni/protobuf/types"
-      },
-      {
-        "package-name": "ni.panels.v1.proto",
-        "proto-subpath": "ni/panels/v1"
-      }
-    ]
-
 jobs:
-  check_codegen:
-    strategy:
-      matrix:
-        include: ${{ fromJson(env.package-info) }}
-    name: Check codegen up-to-date for ${{ matrix.package-name }}
-    uses: ./.github/workflows/check_codegen.yml
-    with:
-      proto-subpath: ${{ matrix.proto-subpath }}
-      output-basepath: ../../packages/${{ matrix.package-name }}/src
-      output-format: submodule
-  check_package:
-    strategy:
-      matrix:
-        include: ${{ fromJson(env.package-info) }}
+  check_dispatch:
     name: Check ${{ matrix.package-name }}
-    uses: ./.github/workflows/check_package.yml
-    needs: check_codegen
-    with:
-      package-name: ${{ matrix.package-name }}
-  check_docs:
     strategy:
       matrix:
-        include: ${{ fromJson(env.package-info) }}
-    name: Check docs for ${{ matrix.package-name }}
-    uses: ./.github/workflows/check_docs.yml
-    needs: check_package
+        include:
+          - package-name: ni.protobuf.types
+            proto-subpath: ni/protobuf/types
+          - package-name: ni.panels.v1.proto
+            proto-subpath: ni/panels/v1
+    uses: ./.github/workflows/check_dispatch.yml
     with:
       package-name: ${{ matrix.package-name }}
+      proto-subpath: ${{ matrix.proto-subpath }}
   run_unit_tests:
     name: Run unit tests
     uses: ./.github/workflows/run_unit_tests.yml
-    needs: [check_docs]
+    needs: [check_dispatch]
   report_test_results:
     name: Report test results
     uses: ./.github/workflows/report_test_results.yml

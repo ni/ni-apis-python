@@ -1,0 +1,36 @@
+name: Check dispatch
+
+on:
+  workflow_call:
+    inputs:
+      package-name:
+        description: 'The name of the package to check.'
+        default: ''
+        required: true
+        type: string
+      proto-subpath:
+        description: 'The subpath for the proto files.'
+        default: ''
+        required: true
+        type: string
+
+jobs:
+  check_codegen:
+    name: Check codegen for ${{ inputs.package-name }}
+    uses: ./.github/workflows/check_codegen.yml
+    with:
+      proto-subpath: ${{ inputs.proto-subpath }}
+      output-basepath: ../../packages/${{ inputs.package-name }}/src
+      output-format: submodule
+  check_package:
+    name: Check package for ${{ inputs.package-name }}
+    uses: ./.github/workflows/check_package.yml
+    needs: [check_codegen]
+    with:
+      package-name: ${{ inputs.package-name }}
+  check_docs:
+    name: Check docs for ${{ inputs.package-name }}
+    uses: ./.github/workflows/check_docs.yml
+    needs: [check_package]
+    with:
+      package-name: ${{ inputs.package-name }}
