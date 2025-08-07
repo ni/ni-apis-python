@@ -139,3 +139,4 @@ jobs:
         uses: ni/python-actions/update-project-version@5286c12d65d90b2ea738bd57d452dc4366497581 # v0.4.1
         with:
           project-directory: ./packages/${{ needs.get_package_info.outputs.package-name }}
+          branch-prefix: users/build/${{ needs.get_package_info.outputs.package-name }}-
