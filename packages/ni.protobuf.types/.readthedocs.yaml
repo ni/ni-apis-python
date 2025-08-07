@@ -13,4 +13,4 @@ build:
       - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry -C packages/ni.protobuf.types install --only main,docs
 
 sphinx:
-  configuration: docs/conf.py
+  configuration: packages/ni.protobuf.types/docs/conf.py
