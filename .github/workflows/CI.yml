@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check_dispatcher:
+  check_package:
     name: Check ${{ matrix.package-name }}
     strategy:
       matrix:
@@ -18,14 +18,14 @@ jobs:
             proto-subpath: ni/protobuf/types
           - package-name: ni.panels.v1.proto
             proto-subpath: ni/panels/v1
-    uses: ./.github/workflows/check_dispatcher.yml
+    uses: ./.github/workflows/check_package.yml
     with:
       package-name: ${{ matrix.package-name }}
       proto-subpath: ${{ matrix.proto-subpath }}
   run_unit_tests:
     name: Run unit tests
     uses: ./.github/workflows/run_unit_tests.yml
-    needs: [check_dispatcher]
+    needs: [check_package]
   report_test_results:
     name: Report test results
     uses: ./.github/workflows/report_test_results.yml
