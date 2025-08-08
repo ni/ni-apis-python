@@ -8,6 +8,11 @@ on:
         default: ''
         required: true
         type: string
+      package-base-path:
+        description: 'The parent directory of the package to check. Defaults to packages.'
+        default: 'packages'
+        required: false
+        type: string
 
 jobs:
   check_analyzers:
@@ -16,7 +21,7 @@ jobs:
     defaults:
       run:
         # Set the working-directory for all steps in this job.
-        working-directory: ./packages/${{ inputs.package-name }}
+        working-directory: ./${{ inputs.package-base-path }}/${{ inputs.package-name }}
     steps:
       - name: Check out repo
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -32,8 +37,8 @@ jobs:
       - name: Cache virtualenv
         uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
         with:
-          path: packages/${{ inputs.package-name }}/.venv
-          key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles(format('packages/{0}/poetry.lock', inputs.package-name)) }}
+          path: ${{ inputs.package-base-path }}/${{ inputs.package-name }}/.venv
+          key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles(format('{0}/{1}/poetry.lock', inputs.package-base-path, inputs.package-name)) }}
       - name: Install ${{ inputs.package-name }}
         run: poetry install -v
       - name: Lint
@@ -51,10 +56,10 @@ jobs:
         with:
           python-platform: Linux
           version: PATH
-          working-directory: ./packages/${{ inputs.package-name }}
+          working-directory: ./${{ inputs.package-base-path }}/${{ inputs.package-name }}
       - name: Pyright static analysis (Windows)
         uses: jakebailey/pyright-action@b5d50e5cde6547546a5c4ac92e416a8c2c1a1dfe # v2.3.2
         with:
           python-platform: Windows
           version: PATH
-          working-directory: ./packages/${{ inputs.package-name }}
+          working-directory: ./${{ inputs.package-base-path }}/${{ inputs.package-name }}
