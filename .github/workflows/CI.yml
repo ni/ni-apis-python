@@ -22,6 +22,12 @@ jobs:
     with:
       package-name: ${{ matrix.package-name }}
       proto-subpath: ${{ matrix.proto-subpath }}
+  check_analyzers_grpc_gen:
+    name: Check analyzers for grpc_generator
+    uses: ./.github/workflows/check_analyzers.yml
+    with:
+      package-name: grpc_generator
+      package-base-path: tools
   run_unit_tests:
     name: Run unit tests
     uses: ./.github/workflows/run_unit_tests.yml
