@@ -42,11 +42,13 @@ def vector_from_protobuf(message: vector_pb2.Vector, /) -> Vector[AnyScalarType]
 
     if pb_type not in _VECTOR_TYPE_TO_PB_ATTR_MAP.values():
         raise ValueError(f"Unexpected value for protobuf_value.WhichOneOf: {pb_type}")
+    
+    value: vector_pb2.Vector.BoolArray | vector_pb2.Vector.Int32Array | vector_pb2.Vector.DoubleArray | vector_pb2.Vector.StringArray
     value = getattr(message, pb_type)
 
     # Create with blank units. Units from the protobuf message will be populated
     # when attributes are converted to an ExtendedPropertyDictionary.
-    scalar = Vector(value, "")
+    scalar = Vector(value.values, "")
 
     # Transfer attributes to extended_properties
     attributes_to_extended_properties(message.attributes, scalar.extended_properties)
@@ -58,15 +60,19 @@ def _create_vector(
     attributes: dict[str, AttributeValue],
     array_value: Iterable[AnyScalarType],
     array_value_type: type[AnyScalarType],
-):
+) -> vector_pb2.Vector:
     if array_value_type == bool:
-        return vector_pb2.Vector(attributes=attributes, bool_array=array_value)
+        array_obj = vector_pb2.Vector.BoolArray(values=array_value)
+        return vector_pb2.Vector(attributes=attributes, bool_array=array_obj)
     elif array_value_type == int:
-        return vector_pb2.Vector(attributes=attributes, int32_array=array_value)
+        array_obj = vector_pb2.Vector.Int32Array(values=array_value)
+        return vector_pb2.Vector(attributes=attributes, int32_array=array_obj)
     elif array_value_type == float:
-        return vector_pb2.Vector(attributes=attributes, double_array=array_value)
+        array_obj = vector_pb2.Vector.DoubleArray(values=array_value)
+        return vector_pb2.Vector(attributes=attributes, double_array=array_obj)
     elif array_value_type == str:
-        return vector_pb2.Vector(attributes=attributes, string_array=array_value)
+        array_obj = vector_pb2.Vector.StringArray(values=array_value)
+        return vector_pb2.Vector(attributes=attributes, string_array=array_obj)
     else:
         raise TypeError(f"Invalid array value type: {array_value_type}")
 

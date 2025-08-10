@@ -11,53 +11,69 @@ from ni.protobuf.types.vector_conversion import vector_from_protobuf, vector_to_
 # ========================================================
 def test___bool_vector_protobuf___convert___valid_bool_vector() -> None:
     attributes = {"NI_UnitDescription": AttributeValue(string_value="Volts")}
-    protobuf_value = vector_pb2.Vector(attributes=attributes, bool_array=[True, False])
+    expected_value = [True, False]
+    protobuf_value = vector_pb2.Vector(
+        attributes=attributes,
+        bool_array=vector_pb2.Vector.BoolArray(values=expected_value),
+    )
 
     python_value = vector_from_protobuf(protobuf_value)
 
     assert isinstance(python_value, Vector)
     assert isinstance(python_value[0], bool)
     assert len(python_value) == 2
-    assert list(python_value) == [True, False]
+    assert list(python_value) == expected_value
     assert python_value.units == "Volts"
 
 
 def test___int32_vector_protobuf___convert___valid_int_vector() -> None:
     attributes = {"NI_UnitDescription": AttributeValue(string_value="Volts")}
-    protobuf_value = vector_pb2.Vector(attributes=attributes, int32_array=[10, 20, 30])
+    expected_value = [10, 20, 30]
+    protobuf_value = vector_pb2.Vector(
+        attributes=attributes,
+        int32_array=vector_pb2.Vector.Int32Array(values=expected_value),
+    )
 
     python_value = vector_from_protobuf(protobuf_value)
 
     assert isinstance(python_value, Vector)
     assert isinstance(python_value[0], int)
     assert len(python_value) == 3
-    assert list(python_value) == [10, 20, 30]
+    assert list(python_value) == expected_value
     assert python_value.units == "Volts"
 
 
 def test___double_vector_protobuf___convert___valid_float_vector() -> None:
     attributes = {"NI_UnitDescription": AttributeValue(string_value="Volts")}
-    protobuf_value = vector_pb2.Vector(attributes=attributes, double_array=[20.0, 30.0, 40.5])
+    expected_value = [20.0, 30.0, 40.5]
+    protobuf_value = vector_pb2.Vector(
+        attributes=attributes,
+        double_array=vector_pb2.Vector.DoubleArray(values=expected_value),
+    )
 
     python_value = vector_from_protobuf(protobuf_value)
 
     assert isinstance(python_value, Vector)
     assert isinstance(python_value[0], float)
     assert len(python_value) == 3
-    assert list(python_value) == [20.0, 30.0, 40.5]
+    assert list(python_value) == expected_value
     assert python_value.units == "Volts"
 
 
 def test___string_vector_protobuf___convert___valid_str_vector() -> None:
     attributes = {"NI_UnitDescription": AttributeValue(string_value="Volts")}
-    protobuf_value = vector_pb2.Vector(attributes=attributes, string_array=["one"])
+    expected_value = ["one"]
+    protobuf_value = vector_pb2.Vector(
+        attributes=attributes,
+        string_array=vector_pb2.Vector.StringArray(values=expected_value),
+    )
 
     python_value = vector_from_protobuf(protobuf_value)
 
     assert isinstance(python_value, Vector)
     assert isinstance(python_value[0], str)
     assert len(python_value) == 1
-    assert list(python_value) == ["one"]
+    assert list(python_value) == expected_value
     assert python_value.units == "Volts"
 
 
@@ -72,14 +88,17 @@ def test___vector_protobuf_value_unset___convert___throws_value_error() -> None:
 
 
 def test___vector_protobuf_units_unset___convert___python_units_blank() -> None:
-    protobuf_value = vector_pb2.Vector(bool_array=[True, False])
+    expected_value = [True, False]
+    protobuf_value = vector_pb2.Vector(
+        bool_array=vector_pb2.Vector.BoolArray(values=expected_value)
+    )
 
     python_value = vector_from_protobuf(protobuf_value)
 
     assert isinstance(python_value, Vector)
     assert isinstance(python_value[0], bool)
     assert len(python_value) == 2
-    assert list(python_value) == [True, False]
+    assert list(python_value) == expected_value
     assert python_value.units == ""
 
 
@@ -88,7 +107,11 @@ def test___vector_with_non_units_attributes___to_python___attributes_converted()
         "NI_ChannelName": AttributeValue(string_value="Dev1/ai0"),
         "NI_UnitDescription": AttributeValue(string_value="Volts"),
     }
-    protobuf_value = vector_pb2.Vector(attributes=attributes, string_array=["one", "two", "three"])
+    expected_value = ["one", "two", "three"]
+    protobuf_value = vector_pb2.Vector(
+        attributes=attributes,
+        string_array=vector_pb2.Vector.StringArray(values=expected_value),
+    )
 
     python_value = vector_from_protobuf(protobuf_value)
     channel_name = python_value.extended_properties["NI_ChannelName"]
@@ -96,7 +119,7 @@ def test___vector_with_non_units_attributes___to_python___attributes_converted()
     assert isinstance(python_value, Vector)
     assert isinstance(python_value[0], str)
     assert len(python_value) == 3
-    assert list(python_value) == ["one", "two", "three"]
+    assert list(python_value) == expected_value
     assert python_value.units == "Volts"
     assert isinstance(channel_name, str)
     assert channel_name == "Dev1/ai0"
@@ -112,7 +135,7 @@ def test___bool_vector___convert___valid_bool_vector_protobuf() -> None:
 
     assert isinstance(protobuf_value, vector_pb2.Vector)
     assert protobuf_value.WhichOneof("value") == "bool_array"
-    assert list(protobuf_value.bool_array) == [True, False]
+    assert protobuf_value.bool_array.values == [True, False]
     assert protobuf_value.attributes["NI_UnitDescription"].string_value == "Volts"
 
 
@@ -123,7 +146,7 @@ def test___int_vector___convert___valid_int32_vector_protobuf() -> None:
 
     assert isinstance(protobuf_value, vector_pb2.Vector)
     assert protobuf_value.WhichOneof("value") == "int32_array"
-    assert list(protobuf_value.int32_array) == [10, 20, 30]
+    assert protobuf_value.int32_array.values == [10, 20, 30]
     assert protobuf_value.attributes["NI_UnitDescription"].string_value == "Volts"
 
 
@@ -134,7 +157,7 @@ def test___float_vector___convert___valid_double_vector_protobuf() -> None:
 
     assert isinstance(protobuf_value, vector_pb2.Vector)
     assert protobuf_value.WhichOneof("value") == "double_array"
-    assert list(protobuf_value.double_array) == [20.0, 30.0, 40.5]
+    assert protobuf_value.double_array.values == [20.0, 30.0, 40.5]
     assert protobuf_value.attributes["NI_UnitDescription"].string_value == "Volts"
 
 
@@ -145,7 +168,7 @@ def test___str_vector___convert___valid_string_vector_protobuf() -> None:
 
     assert isinstance(protobuf_value, vector_pb2.Vector)
     assert protobuf_value.WhichOneof("value") == "string_array"
-    assert list(protobuf_value.string_array) == ["one", "two", "three"]
+    assert protobuf_value.string_array.values == ["one", "two", "three"]
     assert protobuf_value.attributes["NI_UnitDescription"].string_value == "Volts"
 
 
@@ -156,7 +179,7 @@ def test___vector_units_unset___convert___protobuf_units_blank() -> None:
 
     assert isinstance(protobuf_value, vector_pb2.Vector)
     assert protobuf_value.WhichOneof("value") == "int32_array"
-    assert list(protobuf_value.int32_array) == [10, 20, 30]
+    assert protobuf_value.int32_array.values == [10, 20, 30]
     assert protobuf_value.attributes["NI_UnitDescription"].string_value == ""
 
 
@@ -168,7 +191,7 @@ def test___vector_with_non_units_attributes___to_protobuf___attributes_converted
 
     assert isinstance(protobuf_value, vector_pb2.Vector)
     assert protobuf_value.WhichOneof("value") == "string_array"
-    assert list(protobuf_value.string_array) == ["value"]
+    assert protobuf_value.string_array.values == ["value"]
     assert protobuf_value.attributes["NI_UnitDescription"].string_value == "Volts"
     assert protobuf_value.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
 

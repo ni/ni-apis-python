@@ -4,6 +4,7 @@ from ni.protobuf.types.array_pb2 import Double2DArray, String2DArray
 from ni.protobuf.types.attribute_value_pb2 import AttributeValue
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
 from ni.protobuf.types.scalar_pb2 import Scalar
+from ni.protobuf.types.vector_pb2 import Vector
 from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
     DoubleComplexWaveform,
@@ -148,3 +149,47 @@ def test___valid_inputs___create_string_scalar___message_created() -> None:
 
     assert test_scalar.string_value == "one"
     assert test_scalar.attributes == EXPECTED_SCALAR_ATTRIBUTES
+
+
+def test___valid_inputs___create_double_vector___message_created() -> None:
+    expected_value = [10.0, 20.0]
+    test_vector = Vector(
+        attributes=EXPECTED_SCALAR_ATTRIBUTES,
+        double_array=Vector.DoubleArray(values=expected_value),
+    )
+
+    assert test_vector.double_array.values == expected_value
+    assert test_vector.attributes == EXPECTED_SCALAR_ATTRIBUTES
+
+
+def test___valid_inputs___create_int_vector___message_created() -> None:
+    expected_value = [50, 60]
+    test_vector = Vector(
+        attributes=EXPECTED_SCALAR_ATTRIBUTES,
+        int32_array=Vector.Int32Array(values=expected_value),
+    )
+
+    assert test_vector.int32_array.values == expected_value
+    assert test_vector.attributes == EXPECTED_SCALAR_ATTRIBUTES
+
+
+def test___valid_inputs___create_bool_vector___message_created() -> None:
+    expected_value = [True, False]
+    test_vector = Vector(
+        attributes=EXPECTED_SCALAR_ATTRIBUTES,
+        bool_array=Vector.BoolArray(values=expected_value),
+    )
+
+    assert test_vector.bool_array.values == expected_value
+    assert test_vector.attributes == EXPECTED_SCALAR_ATTRIBUTES
+
+
+def test___valid_inputs___create_string_vector___message_created() -> None:
+    expected_value = ["one", "two"]
+    test_vector = Vector(
+        attributes=EXPECTED_SCALAR_ATTRIBUTES,
+        string_array=Vector.StringArray(values=expected_value),
+    )
+
+    assert test_vector.string_array.values == expected_value
+    assert test_vector.attributes == EXPECTED_SCALAR_ATTRIBUTES
