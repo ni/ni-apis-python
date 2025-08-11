@@ -13,6 +13,7 @@ from ni.protobuf.types.attribute_value_conversion import (
     extended_properties_to_attributes,
 )
 
+# This TypeAlias is public so it can also used by vector_conversion.
 AnyScalarType: TypeAlias = Union[bool, int, float, str]
 _SCALAR_TYPE_TO_PB_ATTR_MAP = {
     bool: "bool_value",
@@ -31,7 +32,7 @@ def scalar_to_protobuf(value: Scalar[AnyScalarType], /) -> scalar_pb2.Scalar:
     check_scalar_value(value.value)
     value_attr = _SCALAR_TYPE_TO_PB_ATTR_MAP.get(type(value.value), None)
     if not value_attr:
-        raise TypeError(f"Unexpected type for python_value.value: {type(value.value)}")
+        raise TypeError(f"Unexpected type for value.value: {type(value.value)}")
 
     setattr(message, value_attr, value.value)
 
@@ -60,6 +61,9 @@ def scalar_from_protobuf(message: scalar_pb2.Scalar, /) -> Scalar[AnyScalarType]
 
 
 def check_scalar_value(value: AnyScalarType) -> None:
+    """Perform value checking on a scalar value."""
     if isinstance(value, int):
         if value <= -0x80000000 or value >= 0x7FFFFFFF:
-            raise ValueError("Integer values within a vector must be within the range of an Int32.")
+            raise ValueError(
+                "Integer values in a vector or scalar must be within the range of an Int32."
+            )

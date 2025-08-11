@@ -202,4 +202,4 @@ def test___empty_vector___to_protobuf___raises_value_error() -> None:
     with pytest.raises(ValueError) as exc:
         _ = vector_to_protobuf(python_value)
 
-    assert exc.value.args[0].startswith("Cannot convert a vector with no values.")
+    assert exc.value.args[0].startswith("Cannot convert an empty vector.")

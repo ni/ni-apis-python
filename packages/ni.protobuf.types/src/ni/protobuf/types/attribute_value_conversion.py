@@ -1,4 +1,4 @@
-"""Methods to convert to and from scalar protobuf messages."""
+"""Methods to convert betweem AttributeValue maps and ExtendedPropertyDictionaries."""
 
 from __future__ import annotations
 
@@ -8,6 +8,7 @@ from nitypes.waveform import ExtendedPropertyDictionary
 from nitypes.waveform.typing import ExtendedPropertyValue
 
 from ni.protobuf.types.attribute_value_pb2 import AttributeValue
+
 
 def extended_properties_to_attributes(
     extended_properties: ExtendedPropertyDictionary,
@@ -36,9 +37,9 @@ def attributes_to_extended_properties(
     attributes: Mapping[str, AttributeValue],
     extended_properties: ExtendedPropertyDictionary,
 ) -> None:
-    """Convert an AttributeValue map and insert values into an ExtendedPropertyDictionary"""
+    """Convert an AttributeValue map and insert values into an ExtendedPropertyDictionary."""
     for key, value in attributes.items():
-            attr_type = value.WhichOneof("attribute")
-            if attr_type is None:
-                raise ValueError("Could not determine the data type of 'attribute'.")
-            extended_properties[key] = getattr(value, attr_type)
+        attr_type = value.WhichOneof("attribute")
+        if attr_type is None:
+            raise ValueError("Could not determine the data type of 'attribute'.")
+        extended_properties[key] = getattr(value, attr_type)
