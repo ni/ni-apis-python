@@ -2,17 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Any, MutableSequence, cast
+from typing import Any, cast
 
 from nitypes.vector import Vector
 
 import ni.protobuf.types.vector_pb2 as vector_pb2
-from ni.protobuf.types.attribute_value_conversion import (
-    attributes_to_extended_properties,
-    extended_properties_to_attributes,
-)
 from ni.protobuf.types.attribute_value_pb2 import AttributeValue
-from ni.protobuf.types.scalar_conversion import AnyScalarType, check_scalar_value
+from ni.protobuf.types.extended_properties_conversion import (
+    extended_properties_from_protobuf,
+    extended_properties_to_protobuf,
+)
+from ni.protobuf.types.scalar_conversion import AnyScalarType
 
 _VECTOR_TYPE_TO_PB_ATTR_MAP = {
     bool: "bool_array",
@@ -28,10 +28,8 @@ def vector_to_protobuf(value: Vector[Any], /) -> vector_pb2.Vector:
         raise ValueError("Cannot convert an empty vector.")
 
     _check_vector_values(value)
-    return _create_vector_message(
-        attributes=extended_properties_to_attributes(value.extended_properties),
-        array_value=value[0:],
-    )
+    attributes = extended_properties_to_protobuf(value.extended_properties)
+    return _create_vector_message(value, attributes)
 
 
 def vector_from_protobuf(message: vector_pb2.Vector, /) -> Vector[AnyScalarType]:
@@ -56,42 +54,37 @@ def vector_from_protobuf(message: vector_pb2.Vector, /) -> Vector[AnyScalarType]
     vector = Vector(value.values, "")
 
     # Transfer attributes to extended_properties
-    attributes_to_extended_properties(message.attributes, vector.extended_properties)
+    extended_properties_from_protobuf(message.attributes, vector.extended_properties)
 
     return vector
 
 
 def _create_vector_message(
+    vector_obj: Vector[Any],
     attributes: dict[str, AttributeValue],
-    array_value: MutableSequence[AnyScalarType],
 ) -> vector_pb2.Vector:
-    """Create a vector_pb2 object with the given value and value_type.
-
-    This method was created Because creating a Vector requires passing
-    in a type specific array object.
-
-    This method assumes that all values of array_value are of the same type.
-    """
-    if isinstance(array_value[0], bool):
-        bool_seq = cast(MutableSequence[bool], array_value)
-        bool_array = vector_pb2.Vector.BoolArray(values=bool_seq)
+    if isinstance(vector_obj[0], bool):
+        bool_vector = cast(Vector[bool], vector_obj)
+        bool_array = vector_pb2.Vector.BoolArray(values=bool_vector)
         return vector_pb2.Vector(attributes=attributes, bool_array=bool_array)
-    elif isinstance(array_value[0], int):
-        int_seq = cast(MutableSequence[int], array_value)
-        int_array = vector_pb2.Vector.Int32Array(values=int_seq)
+    elif isinstance(vector_obj[0], int):
+        int_vector = cast(Vector[int], vector_obj)
+        int_array = vector_pb2.Vector.Int32Array(values=int_vector)
         return vector_pb2.Vector(attributes=attributes, int32_array=int_array)
-    elif isinstance(array_value[0], float):
-        double_seq = cast(MutableSequence[float], array_value)
-        double_array = vector_pb2.Vector.DoubleArray(values=double_seq)
+    elif isinstance(vector_obj[0], float):
+        double_vector = cast(Vector[float], vector_obj)
+        double_array = vector_pb2.Vector.DoubleArray(values=double_vector)
         return vector_pb2.Vector(attributes=attributes, double_array=double_array)
-    elif isinstance(array_value[0], str):
-        string_seq = cast(MutableSequence[str], array_value)
-        string_array = vector_pb2.Vector.StringArray(values=string_seq)
+    elif isinstance(vector_obj[0], str):
+        string_vector = cast(Vector[str], vector_obj)
+        string_array = vector_pb2.Vector.StringArray(values=string_vector)
         return vector_pb2.Vector(attributes=attributes, string_array=string_array)
     else:
-        raise TypeError(f"Invalid array value type: {type(array_value[0])}")
+        raise TypeError(f"Invalid array value type: {type(vector_obj[0])}")
 
 
 def _check_vector_values(vector: Vector[AnyScalarType]) -> None:
     for value in vector:
-        check_scalar_value(value)
+        if isinstance(value, int):
+            if value <= -0x80000000 or value >= 0x7FFFFFFF:
+                raise ValueError("Integer values in a vector must be within the range of an Int32.")

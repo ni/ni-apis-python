@@ -159,3 +159,14 @@ def test___non_units_attributes___to_protobuf___attributes_converted() -> None:
     assert protobuf_value.string_value == "value"
     assert protobuf_value.attributes["NI_UnitDescription"].string_value == "Volts"
     assert protobuf_value.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
+
+
+def test___int_scalar_out_of_range___convert___raises_value_error() -> None:
+    # AB#3227866: We should do range checking during the conversion, not in the python object.
+    with pytest.raises(ValueError) as exc:
+        python_value = Scalar(0x8FFFFFFF, "Volts")
+        _ = scalar_to_protobuf(python_value)
+
+    assert exc.value.args[0].startswith(
+        "The integer scalar value must be a within the range of Int32."
+    )

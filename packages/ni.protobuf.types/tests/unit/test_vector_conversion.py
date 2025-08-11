@@ -203,3 +203,14 @@ def test___empty_vector___to_protobuf___raises_value_error() -> None:
         _ = vector_to_protobuf(python_value)
 
     assert exc.value.args[0].startswith("Cannot convert an empty vector.")
+
+
+def test___int_vector_out_of_range___convert___raises_value_error() -> None:
+    python_value = Vector([10, 20, 0x8FFFFFFF], "Volts")
+
+    with pytest.raises(ValueError) as exc:
+        _ = vector_to_protobuf(python_value)
+
+    assert exc.value.args[0].startswith(
+        "Integer values in a vector must be within the range of an Int32."
+    )

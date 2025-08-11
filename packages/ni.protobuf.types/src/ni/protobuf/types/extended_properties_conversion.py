@@ -1,4 +1,4 @@
-"""Methods to convert betweem AttributeValue maps and ExtendedPropertyDictionaries."""
+"""Methods to convert between ExtendedPropertyDictionaries and AttributeValue maps."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from nitypes.waveform.typing import ExtendedPropertyValue
 from ni.protobuf.types.attribute_value_pb2 import AttributeValue
 
 
-def extended_properties_to_attributes(
+def extended_properties_to_protobuf(
     extended_properties: ExtendedPropertyDictionary,
 ) -> dict[str, AttributeValue]:
     """Convert an ExtendedPropertyDictionary to an AttributeValue map."""
@@ -33,7 +33,7 @@ def _value_to_attribute(value: ExtendedPropertyValue) -> AttributeValue:
     return attr_value
 
 
-def attributes_to_extended_properties(
+def extended_properties_from_protobuf(
     attributes: Mapping[str, AttributeValue],
     extended_properties: ExtendedPropertyDictionary,
 ) -> None:

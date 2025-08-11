@@ -8,12 +8,11 @@ from nitypes.scalar import Scalar
 from typing_extensions import TypeAlias
 
 import ni.protobuf.types.scalar_pb2 as scalar_pb2
-from ni.protobuf.types.attribute_value_conversion import (
-    attributes_to_extended_properties,
-    extended_properties_to_attributes,
+from ni.protobuf.types.extended_properties_conversion import (
+    extended_properties_from_protobuf,
+    extended_properties_to_protobuf,
 )
 
-# This TypeAlias is public so it can also used by vector_conversion.
 AnyScalarType: TypeAlias = Union[bool, int, float, str]
 _SCALAR_TYPE_TO_PB_ATTR_MAP = {
     bool: "bool_value",
@@ -25,11 +24,11 @@ _SCALAR_TYPE_TO_PB_ATTR_MAP = {
 
 def scalar_to_protobuf(value: Scalar[AnyScalarType], /) -> scalar_pb2.Scalar:
     """Convert a Scalar python object to a protobuf scalar_pb2.Scalar."""
-    attributes = extended_properties_to_attributes(value.extended_properties)
+    attributes = extended_properties_to_protobuf(value.extended_properties)
     message = scalar_pb2.Scalar(attributes=attributes)
 
     # Convert the scalar value
-    check_scalar_value(value.value)
+    _check_scalar_value(value.value)
     value_attr = _SCALAR_TYPE_TO_PB_ATTR_MAP.get(type(value.value), None)
     if not value_attr:
         raise TypeError(f"Unexpected type for value.value: {type(value.value)}")
@@ -55,15 +54,13 @@ def scalar_from_protobuf(message: scalar_pb2.Scalar, /) -> Scalar[AnyScalarType]
     scalar = Scalar(value, "")
 
     # Transfer attributes to extended_properties
-    attributes_to_extended_properties(message.attributes, scalar.extended_properties)
+    extended_properties_from_protobuf(message.attributes, scalar.extended_properties)
 
     return scalar
 
 
-def check_scalar_value(value: AnyScalarType) -> None:
+def _check_scalar_value(value: AnyScalarType) -> None:
     """Perform value checking on a scalar value."""
     if isinstance(value, int):
         if value <= -0x80000000 or value >= 0x7FFFFFFF:
-            raise ValueError(
-                "Integer values in a vector or scalar must be within the range of an Int32."
-            )
+            raise ValueError("The integer value in a scalar must be within the range of an Int32.")
