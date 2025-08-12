@@ -16,7 +16,7 @@ from ni.protobuf.types.attribute_value_pb2 import AttributeValue
 _AnyScalarType: TypeAlias = Union[bool, int, float, str]
 _SCALAR_TYPE_TO_PB_ATTR_MAP = {
     bool: "bool_value",
-    int: "int32_value",
+    int: "sint32_value",
     float: "double_value",
     str: "string_value",
 }
