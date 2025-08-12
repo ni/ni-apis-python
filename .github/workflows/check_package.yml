@@ -1,4 +1,4 @@
-name: Check Package
+name: Check package
 
 on:
   workflow_call:
@@ -8,53 +8,30 @@ on:
         default: ''
         required: true
         type: string
+      proto-subpath:
+        description: 'The subpath for the proto files.'
+        default: ''
+        required: true
+        type: string
 
 jobs:
-  check_package:
-    name: Check ${{ inputs.package-name }}
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        # Set the working-directory for all steps in this job.
-        working-directory: ./packages/${{ inputs.package-name }}
-    steps:
-      - name: Check out repo
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          submodules: true
-      - name: Set up Python
-        uses: ni/python-actions/setup-python@5286c12d65d90b2ea738bd57d452dc4366497581 # v0.4.1
-        id: setup-python
-      - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@5286c12d65d90b2ea738bd57d452dc4366497581 # v0.4.1
-      - name: Check for lock changes
-        run: poetry check --lock
-      - name: Cache virtualenv
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
-        with:
-          path: packages/${{ inputs.package-name }}/.venv
-          key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles(format('packages/{0}/poetry.lock', inputs.package-name)) }}
-      - name: Install ${{ inputs.package-name }}
-        run: poetry install -v
-      - name: Lint
-        run: poetry run ni-python-styleguide lint
-      - name: Mypy static analysis (Linux)
-        run:  poetry run mypy
-      - name: Mypy static analysis (Windows)
-        run:  poetry run mypy --platform win32
-      - name: Bandit security checks
-        run:  poetry run bandit -c pyproject.toml -r src/
-      - name: Add virtualenv to the path for pyright-action
-        run: echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
-      - name: Pyright static analysis (Linux)
-        uses: jakebailey/pyright-action@b5d50e5cde6547546a5c4ac92e416a8c2c1a1dfe # v2.3.2
-        with:
-          python-platform: Linux
-          version: PATH
-          working-directory: ./packages/${{ inputs.package-name }}
-      - name: Pyright static analysis (Windows)
-        uses: jakebailey/pyright-action@b5d50e5cde6547546a5c4ac92e416a8c2c1a1dfe # v2.3.2
-        with:
-          python-platform: Windows
-          version: PATH
-          working-directory: ./packages/${{ inputs.package-name }}
+  check_codegen:
+    name: Check codegen for ${{ inputs.package-name }}
+    uses: ./.github/workflows/check_codegen.yml
+    with:
+      package-name: ${{ inputs.package-name }}
+      proto-subpath: ${{ inputs.proto-subpath }}
+      output-basepath: ../../packages/${{ inputs.package-name }}/src
+      output-format: submodule
+  check_analyzers:
+    name: Check analyzers for ${{ inputs.package-name }}
+    uses: ./.github/workflows/check_analyzers.yml
+    needs: [check_codegen]
+    with:
+      package-name: ${{ inputs.package-name }}
+  check_docs:
+    name: Check docs for ${{ inputs.package-name }}
+    uses: ./.github/workflows/check_docs.yml
+    needs: [check_analyzers]
+    with:
+      package-name: ${{ inputs.package-name }}

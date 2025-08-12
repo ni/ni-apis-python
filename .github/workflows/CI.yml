@@ -9,34 +9,29 @@ on:
   workflow_dispatch:
 
 jobs:
-  check_codegen_ni_protobuf_types:
-    name: Check codegen up-to-date for ni.protobuf.types
-    uses: ./.github/workflows/check_codegen.yml
-    with:
-      proto-subpath: ni/protobuf/types
-      output-basepath: ../../packages/ni.protobuf.types/src
-      output-format: submodule
-  check_ni_protobuf_types:
-    name: Check ni.protobuf.types
-    uses: ./.github/workflows/check_package.yml
-    needs: [check_codegen_ni_protobuf_types]
-    with:
-      package-name: ni.protobuf.types
-  check_ni_panels_v1_proto:
-    name: Check ni.panels.v1.proto
+  check_package:
+    name: Check ${{ matrix.package-name }}
+    strategy:
+      matrix:
+        include:
+          - package-name: ni.protobuf.types
+            proto-subpath: ni/protobuf/types
+          - package-name: ni.panels.v1.proto
+            proto-subpath: ni/panels/v1
     uses: ./.github/workflows/check_package.yml
     with:
-      package-name: ni.panels.v1.proto
-  check_docs_ni_protobuf_types:
-    name: Check docs ni.protobuf.types
-    uses: ./.github/workflows/check_docs.yml
-    needs: [check_ni_protobuf_types]
+      package-name: ${{ matrix.package-name }}
+      proto-subpath: ${{ matrix.proto-subpath }}
+  check_analyzers_grpc_gen:
+    name: Check analyzers for grpc_generator
+    uses: ./.github/workflows/check_analyzers.yml
     with:
-      package-name: ni.protobuf.types
+      package-name: grpc_generator
+      package-base-path: tools
   run_unit_tests:
     name: Run unit tests
     uses: ./.github/workflows/run_unit_tests.yml
-    needs: [check_ni_protobuf_types, check_ni_panels_v1_proto]
+    needs: [check_package, check_analyzers_grpc_gen]
   report_test_results:
     name: Report test results
     uses: ./.github/workflows/report_test_results.yml

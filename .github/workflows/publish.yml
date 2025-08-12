@@ -1,0 +1,142 @@
+name: Publish package
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: The environment to publish to.
+        default: 'none'
+        required: true
+        type: choice
+        options:
+          - none
+          - pypi
+          - testpypi
+      package-name:
+          description: The name of the package to publish.
+          default: 'none'
+          required: true
+          type: choice
+          options:
+            - none
+            - ni.panels.v1.proto
+            - ni.protobuf.types
+
+env:
+  environment: ${{ github.event_name == 'release' && 'pypi' || inputs.environment }}
+  environment-info: |
+    {
+      "pypi": {
+        "base-url": "https://pypi.org",
+        "upload-url": "https://upload.pypi.org/legacy/"
+      },
+      "testpypi": {
+        "base-url": "https://test.pypi.org",
+        "upload-url": "https://test.pypi.org/legacy/"
+      }
+    }
+
+jobs:
+  get_package_info:
+    name: Get package info
+    runs-on: ubuntu-latest
+    outputs:
+      package-name: ${{ steps.get_package_name_and_version.outputs.package-name }}
+      package-version: ${{ steps.get_package_name_and_version.outputs.package-version }}
+    steps:
+      - name: Get package name and package version
+        id: get_package_name_and_version
+        run: |
+          EVENT_NAME="${{ github.event_name }}"
+          if [ "$EVENT_NAME" == "release" ]; then
+            EVENT_TAG="${{ github.event.release.tag_name }}"
+            PKG_NAME=$(echo "$EVENT_TAG" | cut -d / -f 1)
+            echo "package-name=$PKG_NAME" >> $GITHUB_OUTPUT
+            PKG_VERSION=$(echo "$EVENT_TAG" | cut -d / -f 2)
+            echo "package-version=$PKG_VERSION" >> $GITHUB_OUTPUT
+          else
+            echo "package-name=${{ inputs.package-name }}" >> $GITHUB_OUTPUT
+            echo "package-version=unused" >> $GITHUB_OUTPUT
+          fi
+  check_analyzers:
+    name: Check analyzers for ${{ needs.get_package_info.outputs.package-name }}
+    uses: ./.github/workflows/check_analyzers.yml
+    needs: get_package_info
+    with:
+      package-name: ${{ needs.get_package_info.outputs.package-name }}
+  check_docs:
+    name: Check docs
+    uses: ./.github/workflows/check_docs.yml
+    needs: get_package_info
+    with:
+      package-name: ${{ needs.get_package_info.outputs.package-name }}
+  build_package:
+    name: Build ${{ needs.get_package_info.outputs.package-name }}
+    runs-on: ubuntu-latest
+    needs: [get_package_info, check_analyzers, check_docs]
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Set up Python
+        uses: ni/python-actions/setup-python@5286c12d65d90b2ea738bd57d452dc4366497581 # v0.4.1
+      - name: Set up Poetry
+        uses: ni/python-actions/setup-poetry@5286c12d65d90b2ea738bd57d452dc4366497581 # v0.4.1
+      - name: Check project version
+        if: github.event_name == 'release'
+        uses: ni/python-actions/check-project-version@5286c12d65d90b2ea738bd57d452dc4366497581 # v0.4.1
+        with:
+          project-directory: ./packages/${{ needs.get_package_info.outputs.package-name }}
+          expected-version: ${{ needs.get_package_info.outputs.package-version }}
+      - name: Build distribution packages
+        run: poetry build
+        working-directory: ./packages/${{ needs.get_package_info.outputs.package-name }}
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ${{ needs.get_package_info.outputs.package-name }}-distribution-packages
+          path: ./packages/${{ needs.get_package_info.outputs.package-name }}/dist/*
+  publish_to_pypi:
+    name: Publish ${{ needs.get_package_info.outputs.package-name }} to PyPI
+    if: github.event_name == 'release' || inputs.environment != 'none'
+    runs-on: ubuntu-latest
+    needs: [get_package_info, build_package]
+    environment:
+      # This logic is duplicated because `name` doesn't support the `env` context.
+      name: ${{ github.event_name == 'release' && 'pypi' || inputs.environment }}
+      url: ${{ fromJson(env.environment-info)[env.environment].base-url }}/p/${{ needs.get_package_info.outputs.package-name }}
+    permissions:
+      id-token: write
+    steps:
+    - name: Download build artifacts
+      uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+      with:
+        name: ${{ needs.get_package_info.outputs.package-name }}-distribution-packages
+        path: ./packages/${{ needs.get_package_info.outputs.package-name }}/dist/
+    - run: ls -lR
+      working-directory: ./packages/${{ needs.get_package_info.outputs.package-name }}
+    - name: Upload to ${{ env.environment }}
+      uses: pypa/gh-action-pypi-publish@76f52bc884231f62b9a034ebfe128415bbaabdfc # v1.12.4
+      with:
+        repository-url: ${{ fromJson(env.environment-info)[env.environment].upload-url }}
+        packages-dir: ./packages/${{ needs.get_package_info.outputs.package-name }}/dist
+  update_version:
+    name: Update ${{ needs.get_package_info.outputs.package-name }} version
+    runs-on: ubuntu-latest
+    needs: [get_package_info, build_package]
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Set up Python
+        uses: ni/python-actions/setup-python@5286c12d65d90b2ea738bd57d452dc4366497581 # v0.4.1
+      - name: Set up Poetry
+        uses: ni/python-actions/setup-poetry@5286c12d65d90b2ea738bd57d452dc4366497581 # v0.4.1
+      - name: Update project version
+        uses: ni/python-actions/update-project-version@5286c12d65d90b2ea738bd57d452dc4366497581 # v0.4.1
+        with:
+          project-directory: ./packages/${{ needs.get_package_info.outputs.package-name }}
+          branch-prefix: users/build/${{ needs.get_package_info.outputs.package-name }}-

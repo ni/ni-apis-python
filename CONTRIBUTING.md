@@ -125,6 +125,29 @@ To regenerate the Python files for a package, run the code generator on its dire
 
 To preview in-work `.proto` file changes, (waiting for upload -- AB#3159540).
 
+# Publishing Packages
+
+You can publish one of the packages in the `packages` folder by creating a GitHub release
+in the ni-apis-python repo. Here are the steps to follow to publish a package:
+
+1. From the main GitHub repo page, select "Create a new release".
+2. On the "New Release" page, create a new tag using the "Select Tag" drop down. The tag must be in the
+format `<package-name>/<package-version>` where `package-name` and `package-version` match the
+values found in pyproject.toml. Example: `ni.protobuf.types/0.1.0-dev0`.
+3. Enter a title in the "Release title" field. The title should contain the package name and
+version in the format `<package-name> <package-version>`. For example: `ni.protobuf.types 0.1.0-dev0`.
+4. Click "Generate release notes" and edit the release notes.
+  - Delete entries for PRs that do not affect users, such as "chore(deps):" and "fix(deps):" PRs.
+  - Consider grouping related entries.
+  - Reformat entries to be more readable. For example, change "Blah blah by so-and-so in \#123" to "Blah blah (\#123)".
+5. If this is a pre-release release, check the "Set as a pre-release" checkbox.
+6. Click "Publish release".
+7. Creating a release will start the publish workflow. You can track the
+progress of this workflow in the "Actions" page of the GitHub repo.
+8. The workflow job that publishes a package to pypi requires code owner approval. This job will automatically send code owners a notification email, then it will wait for them to log in and approve the deployment.
+9. After receiving code owner approval, the publish workflow will resume.
+10. Once the publish workflow has finished, you should see your release on pypi.
+
 # Developer Certificate of Origin (DCO)
 
    Developer's Certificate of Origin 1.1
