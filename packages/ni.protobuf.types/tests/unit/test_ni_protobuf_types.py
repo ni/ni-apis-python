@@ -1,6 +1,13 @@
 """Tests for the ni.protobuf.types package."""
 
-from ni.protobuf.types.array_pb2 import Double2DArray, String2DArray
+from ni.protobuf.types.array_pb2 import (
+    BoolArray,
+    Double2DArray,
+    DoubleArray,
+    SInt32Array,
+    String2DArray,
+    StringArray,
+)
 from ni.protobuf.types.attribute_value_pb2 import AttributeValue
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
 from ni.protobuf.types.scalar_pb2 import Scalar
@@ -155,7 +162,7 @@ def test___valid_inputs___create_double_vector___message_created() -> None:
     expected_value = [10.0, 20.0]
     test_vector = Vector(
         attributes=EXPECTED_SCALAR_ATTRIBUTES,
-        double_array=Vector.DoubleArray(values=expected_value),
+        double_array=DoubleArray(values=expected_value),
     )
 
     assert test_vector.double_array.values == expected_value
@@ -166,10 +173,10 @@ def test___valid_inputs___create_int_vector___message_created() -> None:
     expected_value = [50, 60]
     test_vector = Vector(
         attributes=EXPECTED_SCALAR_ATTRIBUTES,
-        int32_array=Vector.Int32Array(values=expected_value),
+        sint32_array=SInt32Array(values=expected_value),
     )
 
-    assert test_vector.int32_array.values == expected_value
+    assert test_vector.sint32_array.values == expected_value
     assert test_vector.attributes == EXPECTED_SCALAR_ATTRIBUTES
 
 
@@ -177,7 +184,7 @@ def test___valid_inputs___create_bool_vector___message_created() -> None:
     expected_value = [True, False]
     test_vector = Vector(
         attributes=EXPECTED_SCALAR_ATTRIBUTES,
-        bool_array=Vector.BoolArray(values=expected_value),
+        bool_array=BoolArray(values=expected_value),
     )
 
     assert test_vector.bool_array.values == expected_value
@@ -188,7 +195,7 @@ def test___valid_inputs___create_string_vector___message_created() -> None:
     expected_value = ["one", "two"]
     test_vector = Vector(
         attributes=EXPECTED_SCALAR_ATTRIBUTES,
-        string_array=Vector.StringArray(values=expected_value),
+        string_array=StringArray(values=expected_value),
     )
 
     assert test_vector.string_array.values == expected_value

@@ -6,6 +6,7 @@ from typing import Any, cast
 
 from nitypes.vector import Vector
 
+import ni.protobuf.types.array_pb2 as array_pb2
 import ni.protobuf.types.vector_pb2 as vector_pb2
 from ni.protobuf.types.attribute_value_pb2 import AttributeValue
 from ni.protobuf.types.extended_property_conversion import (
@@ -16,7 +17,7 @@ from ni.protobuf.types.scalar_conversion import AnyScalarType
 
 _VECTOR_TYPE_TO_PB_ATTR_MAP = {
     bool: "bool_array",
-    int: "int32_array",
+    int: "sint32_array",
     float: "double_array",
     str: "string_array",
 }
@@ -42,10 +43,7 @@ def vector_from_protobuf(message: vector_pb2.Vector, /) -> Vector[AnyScalarType]
         raise ValueError(f"Unexpected value for protobuf_value.WhichOneOf: {pb_type}")
 
     value: (
-        vector_pb2.Vector.BoolArray
-        | vector_pb2.Vector.Int32Array
-        | vector_pb2.Vector.DoubleArray
-        | vector_pb2.Vector.StringArray
+        array_pb2.BoolArray | array_pb2.SInt32Array | array_pb2.DoubleArray | array_pb2.StringArray
     )
     value = getattr(message, pb_type)
 
@@ -65,19 +63,19 @@ def _create_vector_message(
 ) -> vector_pb2.Vector:
     if isinstance(vector_obj[0], bool):
         bool_vector = cast(Vector[bool], vector_obj)
-        bool_array = vector_pb2.Vector.BoolArray(values=bool_vector)
+        bool_array = array_pb2.BoolArray(values=bool_vector)
         return vector_pb2.Vector(attributes=attributes, bool_array=bool_array)
     elif isinstance(vector_obj[0], int):
         int_vector = cast(Vector[int], vector_obj)
-        int_array = vector_pb2.Vector.Int32Array(values=int_vector)
-        return vector_pb2.Vector(attributes=attributes, int32_array=int_array)
+        int_array = array_pb2.SInt32Array(values=int_vector)
+        return vector_pb2.Vector(attributes=attributes, sint32_array=int_array)
     elif isinstance(vector_obj[0], float):
         double_vector = cast(Vector[float], vector_obj)
-        double_array = vector_pb2.Vector.DoubleArray(values=double_vector)
+        double_array = array_pb2.DoubleArray(values=double_vector)
         return vector_pb2.Vector(attributes=attributes, double_array=double_array)
     elif isinstance(vector_obj[0], str):
         string_vector = cast(Vector[str], vector_obj)
-        string_array = vector_pb2.Vector.StringArray(values=string_vector)
+        string_array = array_pb2.StringArray(values=string_vector)
         return vector_pb2.Vector(attributes=attributes, string_array=string_array)
     else:
         raise TypeError(f"Invalid array value type: {type(vector_obj[0])}")
