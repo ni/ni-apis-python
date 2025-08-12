@@ -8,7 +8,7 @@ from nitypes.vector import Vector
 
 import ni.protobuf.types.vector_pb2 as vector_pb2
 from ni.protobuf.types.attribute_value_pb2 import AttributeValue
-from ni.protobuf.types.extended_properties_conversion import (
+from ni.protobuf.types.extended_property_conversion import (
     extended_properties_from_protobuf,
     extended_properties_to_protobuf,
 )
