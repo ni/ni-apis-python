@@ -131,9 +131,9 @@ def test___valid_inputs___create_double_scalar___message_created() -> None:
 
 
 def test___valid_inputs___create_int_scalar___message_created() -> None:
-    test_scalar = Scalar(attributes=EXPECTED_SCALAR_ATTRIBUTES, int32_value=1)
+    test_scalar = Scalar(attributes=EXPECTED_SCALAR_ATTRIBUTES, sint32_value=1)
 
-    assert test_scalar.int32_value == 1
+    assert test_scalar.sint32_value == 1
     assert test_scalar.attributes == EXPECTED_SCALAR_ATTRIBUTES
 
 
