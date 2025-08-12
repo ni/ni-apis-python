@@ -11,10 +11,11 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from ni.protobuf.types import array_pb2 as ni_dot_protobuf_dot_types_dot_array__pb2
 from ni.protobuf.types import attribute_value_pb2 as ni_dot_protobuf_dot_types_dot_attribute__value__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1eni/protobuf/types/vector.proto\x12\x11ni.protobuf.types\x1a\'ni/protobuf/types/attribute_value.proto\"\x95\x04\n\x06Vector\x12=\n\nattributes\x18\x01 \x03(\x0b\x32).ni.protobuf.types.Vector.AttributesEntry\x12=\n\x0c\x64ouble_array\x18\x02 \x01(\x0b\x32%.ni.protobuf.types.Vector.DoubleArrayH\x00\x12;\n\x0bint32_array\x18\x03 \x01(\x0b\x32$.ni.protobuf.types.Vector.Int32ArrayH\x00\x12\x39\n\nbool_array\x18\x04 \x01(\x0b\x32#.ni.protobuf.types.Vector.BoolArrayH\x00\x12=\n\x0cstring_array\x18\x05 \x01(\x0b\x32%.ni.protobuf.types.Vector.StringArrayH\x00\x1a\x1d\n\x0b\x44oubleArray\x12\x0e\n\x06values\x18\x01 \x03(\x01\x1a\x1c\n\nInt32Array\x12\x0e\n\x06values\x18\x01 \x03(\x05\x1a\x1b\n\tBoolArray\x12\x0e\n\x06values\x18\x01 \x03(\x08\x1a\x1d\n\x0bStringArray\x12\x0e\n\x06values\x18\x01 \x03(\t\x1aT\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x30\n\x05value\x18\x02 \x01(\x0b\x32!.ni.protobuf.types.AttributeValue:\x02\x38\x01\x42\x07\n\x05valueB\x83\x01\n\x15\x63om.ni.protobuf.typesB\x0bVectorProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1eni/protobuf/types/vector.proto\x12\x11ni.protobuf.types\x1a\x1dni/protobuf/types/array.proto\x1a\'ni/protobuf/types/attribute_value.proto\"\x82\x03\n\x06Vector\x12=\n\nattributes\x18\x01 \x03(\x0b\x32).ni.protobuf.types.Vector.AttributesEntry\x12\x36\n\x0c\x64ouble_array\x18\x02 \x01(\x0b\x32\x1e.ni.protobuf.types.DoubleArrayH\x00\x12\x36\n\x0csint32_array\x18\x03 \x01(\x0b\x32\x1e.ni.protobuf.types.SInt32ArrayH\x00\x12\x32\n\nbool_array\x18\x04 \x01(\x0b\x32\x1c.ni.protobuf.types.BoolArrayH\x00\x12\x36\n\x0cstring_array\x18\x05 \x01(\x0b\x32\x1e.ni.protobuf.types.StringArrayH\x00\x1aT\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x30\n\x05value\x18\x02 \x01(\x0b\x32!.ni.protobuf.types.AttributeValue:\x02\x38\x01\x42\x07\n\x05valueB\x83\x01\n\x15\x63om.ni.protobuf.typesB\x0bVectorProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ni.protobuf.types.vector_pb2', globals())
@@ -24,16 +25,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._serialized_options = b'\n\025com.ni.protobuf.typesB\013VectorProtoP\001Z\005types\242\002\004NIPT\252\002\"NationalInstruments.Protobuf.Types\312\002\021NI\\PROTOBUF\\TYPES\352\002\023NI::Protobuf::Types'
   _VECTOR_ATTRIBUTESENTRY._options = None
   _VECTOR_ATTRIBUTESENTRY._serialized_options = b'8\001'
-  _VECTOR._serialized_start=95
-  _VECTOR._serialized_end=628
-  _VECTOR_DOUBLEARRAY._serialized_start=414
-  _VECTOR_DOUBLEARRAY._serialized_end=443
-  _VECTOR_INT32ARRAY._serialized_start=445
-  _VECTOR_INT32ARRAY._serialized_end=473
-  _VECTOR_BOOLARRAY._serialized_start=475
-  _VECTOR_BOOLARRAY._serialized_end=502
-  _VECTOR_STRINGARRAY._serialized_start=504
-  _VECTOR_STRINGARRAY._serialized_end=533
-  _VECTOR_ATTRIBUTESENTRY._serialized_start=535
-  _VECTOR_ATTRIBUTESENTRY._serialized_end=619
+  _VECTOR._serialized_start=126
+  _VECTOR._serialized_end=512
+  _VECTOR_ATTRIBUTESENTRY._serialized_start=419
+  _VECTOR_ATTRIBUTESENTRY._serialized_end=503
 # @@protoc_insertion_point(module_scope)

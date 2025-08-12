@@ -24,7 +24,7 @@ def test___bool_scalar_protobuf___convert___valid_bool_scalar() -> None:
 def test___int32_scalar_protobuf___convert___valid_int_scalar() -> None:
     attributes = {"NI_UnitDescription": AttributeValue(string_value="Volts")}
     protobuf_value = scalar_pb2.Scalar(attributes=attributes)
-    protobuf_value.int32_value = 10
+    protobuf_value.sint32_value = 10
 
     python_value = scalar_from_protobuf(protobuf_value)
 
@@ -114,8 +114,8 @@ def test___int_scalar___convert___valid_int32_scalar_protobuf() -> None:
 
     protobuf_value = scalar_to_protobuf(python_value)
 
-    assert protobuf_value.WhichOneof("value") == "int32_value"
-    assert protobuf_value.int32_value == 10
+    assert protobuf_value.WhichOneof("value") == "sint32_value"
+    assert protobuf_value.sint32_value == 10
     assert protobuf_value.attributes["NI_UnitDescription"].string_value == "Volts"
 
 
@@ -144,8 +144,8 @@ def test___scalar_units_unset___convert___protobuf_units_blank() -> None:
 
     protobuf_value = scalar_to_protobuf(python_value)
 
-    assert protobuf_value.WhichOneof("value") == "int32_value"
-    assert protobuf_value.int32_value == 10
+    assert protobuf_value.WhichOneof("value") == "sint32_value"
+    assert protobuf_value.sint32_value == 10
     assert protobuf_value.attributes["NI_UnitDescription"].string_value == ""
 
 

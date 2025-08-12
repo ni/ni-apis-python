@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1dni/protobuf/types/array.proto\x12\x11ni.protobuf.types\"<\n\rDouble2DArray\x12\x0c\n\x04rows\x18\x01 \x01(\x05\x12\x0f\n\x07\x63olumns\x18\x02 \x01(\x05\x12\x0c\n\x04\x64\x61ta\x18\x03 \x03(\x01\"<\n\rString2DArray\x12\x0c\n\x04rows\x18\x01 \x01(\x05\x12\x0f\n\x07\x63olumns\x18\x02 \x01(\x05\x12\x0c\n\x04\x64\x61ta\x18\x03 \x03(\tB\x82\x01\n\x15\x63om.ni.protobuf.typesB\nArrayProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1dni/protobuf/types/array.proto\x12\x11ni.protobuf.types\"\x1b\n\tBoolArray\x12\x0e\n\x06values\x18\x01 \x03(\x08\"\x1c\n\nBytesArray\x12\x0e\n\x06values\x18\x01 \x03(\x0c\"\x1d\n\x0b\x44oubleArray\x12\x0e\n\x06values\x18\x01 \x03(\x01\"\x1d\n\x0bSInt32Array\x12\x0e\n\x06values\x18\x01 \x03(\x11\"\x1d\n\x0bSInt64Array\x12\x0e\n\x06values\x18\x01 \x03(\x12\"\x1d\n\x0bStringArray\x12\x0e\n\x06values\x18\x01 \x03(\t\"<\n\rDouble2DArray\x12\x0c\n\x04rows\x18\x01 \x01(\x05\x12\x0f\n\x07\x63olumns\x18\x02 \x01(\x05\x12\x0c\n\x04\x64\x61ta\x18\x03 \x03(\x01\"<\n\rString2DArray\x12\x0c\n\x04rows\x18\x01 \x01(\x05\x12\x0f\n\x07\x63olumns\x18\x02 \x01(\x05\x12\x0c\n\x04\x64\x61ta\x18\x03 \x03(\tB\x82\x01\n\x15\x63om.ni.protobuf.typesB\nArrayProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ni.protobuf.types.array_pb2', globals())
@@ -21,8 +21,20 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\025com.ni.protobuf.typesB\nArrayProtoP\001Z\005types\242\002\004NIPT\252\002\"NationalInstruments.Protobuf.Types\312\002\021NI\\PROTOBUF\\TYPES\352\002\023NI::Protobuf::Types'
-  _DOUBLE2DARRAY._serialized_start=52
-  _DOUBLE2DARRAY._serialized_end=112
-  _STRING2DARRAY._serialized_start=114
-  _STRING2DARRAY._serialized_end=174
+  _BOOLARRAY._serialized_start=52
+  _BOOLARRAY._serialized_end=79
+  _BYTESARRAY._serialized_start=81
+  _BYTESARRAY._serialized_end=109
+  _DOUBLEARRAY._serialized_start=111
+  _DOUBLEARRAY._serialized_end=140
+  _SINT32ARRAY._serialized_start=142
+  _SINT32ARRAY._serialized_end=171
+  _SINT64ARRAY._serialized_start=173
+  _SINT64ARRAY._serialized_end=202
+  _STRINGARRAY._serialized_start=204
+  _STRINGARRAY._serialized_end=233
+  _DOUBLE2DARRAY._serialized_start=235
+  _DOUBLE2DARRAY._serialized_end=295
+  _STRING2DARRAY._serialized_start=297
+  _STRING2DARRAY._serialized_end=357
 # @@protoc_insertion_point(module_scope)
