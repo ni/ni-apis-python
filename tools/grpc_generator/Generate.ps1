@@ -11,5 +11,5 @@ $packages | Foreach-Object {
         --proto-basepath ..\..\third_party\ni-apis `
         --proto-subpath $_ `
         --output-basepath ..\..\packages\$($_ -replace '\\', '.')\src `
-        --output-format submodule
+        --output-format subpackage
 }
