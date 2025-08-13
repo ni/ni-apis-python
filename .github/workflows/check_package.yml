@@ -13,6 +13,11 @@ on:
         default: ''
         required: true
         type: string
+      output-format:
+        description: 'submodule or subpackage'
+        default: 'submodule'
+        required: false
+        type: string
 
 jobs:
   check_codegen:
@@ -22,7 +27,7 @@ jobs:
       package-name: ${{ inputs.package-name }}
       proto-subpath: ${{ inputs.proto-subpath }}
       output-basepath: ../../packages/${{ inputs.package-name }}/src
-      output-format: submodule
+      output-format: ${{ inputs.output-format }}
   check_analyzers:
     name: Check analyzers for ${{ inputs.package-name }}
     uses: ./.github/workflows/check_analyzers.yml

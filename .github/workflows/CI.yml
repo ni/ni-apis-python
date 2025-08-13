@@ -20,6 +20,7 @@ jobs:
             proto-subpath: ni/panels/v1
           - package-name: ni.measurementlink.discovery.v1
             proto-subpath: ni/measurementlink/discovery/v1
+            output-format: subpackage
     uses: ./.github/workflows/check_package.yml
     with:
       package-name: ${{ matrix.package-name }}
