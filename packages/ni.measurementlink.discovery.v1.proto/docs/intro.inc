@@ -17,7 +17,7 @@ Operating System Support
 Python Version Support
 ----------------------
 
-``ni.measurementlink.discovery.v1`` supports CPython 3.9+ and PyPy3.
+``ni.measurementlink.discovery.v1`` supports CPython 3.9+.
 
 Installation
 ------------
