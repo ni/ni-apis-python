@@ -10,7 +10,7 @@ build:
     post_create_environment:
       - pip install poetry==1.8.2
     post_install:
-      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry -C packages/ni.measurementlink install --only main,docs
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry -C packages/ni.protobuf.types install --only main,docs
 
 sphinx:
-  configuration: packages/ni.measurementlink/docs/conf.py
+  configuration: packages/ni.protobuf.types/docs/conf.py
