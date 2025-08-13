@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ni.measurementlink.discovery.v1"
+name = "ni.measurementlink.discovery.v1.proto"
 version = "0.1.0-dev0"
 license = "MIT"
 description = "Protobuf data types for NI discovery gRPC APIs"
