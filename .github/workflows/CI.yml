@@ -16,12 +16,15 @@ jobs:
         include:
           - package-name: ni.protobuf.types
             proto-subpath: ni/protobuf/types
+            output-format: submodule
           - package-name: ni.panels.v1.proto
             proto-subpath: ni/panels/v1
+            output-format: submodule
     uses: ./.github/workflows/check_package.yml
     with:
       package-name: ${{ matrix.package-name }}
       proto-subpath: ${{ matrix.proto-subpath }}
+      output-format: ${{ matrix.output-format }}
   check_analyzers_grpc_gen:
     name: Check analyzers for grpc_generator
     uses: ./.github/workflows/check_analyzers.yml

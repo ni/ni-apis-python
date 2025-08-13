@@ -15,8 +15,8 @@ on:
         type: string
       output-format:
         description: 'submodule or subpackage'
-        default: 'submodule'
-        required: false
+        default: ''
+        required: true
         type: string
 
 jobs:
