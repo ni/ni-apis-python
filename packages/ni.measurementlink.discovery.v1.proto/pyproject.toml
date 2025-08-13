@@ -90,7 +90,7 @@ exclude = ["docs"]
 
 [tool.pyright]
 include = ["src/", "tests/"]
-exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi", "src/ni/measurementlink/discovery/v1/**/__init__.py"]
+exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi", "src/ni/measurementlink/discovery/v1/**/__init__.py*"]
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
