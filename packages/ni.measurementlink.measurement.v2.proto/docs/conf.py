@@ -28,7 +28,6 @@ company = "National Instruments"
 copyright = f"2025-%Y, {company}"
 if datetime.datetime.now().year == 2025:
     copyright = f"%Y, {company}"
-    copyright = f"%Y, {company}"
 
 
 # The version info for the project you're documenting, acts as replacement for
