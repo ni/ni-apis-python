@@ -37,6 +37,11 @@ nitypes = {version=">=0.1.0dev8", allow-prereleases=true}
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
 types-protobuf = ">=4.21"
+numpy = [
+  { version = ">=1.22", python = ">=3.9,<3.12" },
+  { version = ">=1.26", python = ">=3.12,<3.13" },
+  { version = ">=2.1", python = "^3.13" },
+]
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
