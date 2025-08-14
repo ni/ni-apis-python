@@ -1,5 +1,5 @@
 #########################################
-Protobuf types for NI discovery gRPC APIs
+Protobuf Types for NI Discovery gRPC APIs
 #########################################
 
 .. toctree::
