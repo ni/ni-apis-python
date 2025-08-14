@@ -71,10 +71,9 @@ def setup(sphinx):
 # This patterns also effect to html_static_path and html_extra_path
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "__init__.py"]
 
-# intersphinx_mapping = {
-    # "python": ("https://docs.python.org/3", None),
-# }
-
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3", None),
+}
 
 # -- Options for HTML output ----------------------------------------------
 
