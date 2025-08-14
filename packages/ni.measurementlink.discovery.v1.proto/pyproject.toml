@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "ni.protobuf.types"
-version = "0.1.0-dev2"
+name = "ni.measurementlink.discovery.v1.proto"
+version = "0.1.0-dev0"
 license = "MIT"
-description = "Protobuf data types for NI gRPC APIs"
+description = "Protobuf data types for NI discovery gRPC APIs"
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",
@@ -10,7 +10,7 @@ maintainers = [
 ]
 readme = "README.md"
 repository = "https://github.com/ni/ni-apis-python"
-keywords = ["ni-apis", "protobuf"]
+keywords = ["ni-apis", "discovery"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -32,7 +32,6 @@ packages = [{include = "ni", from = "src"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 protobuf = {version=">=4.21"}
-nitypes = {version=">=0.1.0dev3", allow-prereleases=true}
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
@@ -74,7 +73,7 @@ skips = [
 ]
 
 [tool.ni-python-styleguide]
-extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi"
+extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi,src/ni/measurementlink/discovery/v1/**/__init__.py"
 
 [tool.black]
 extend-exclude = 'docs/|_pb2(_grpc)?\.(py|pyi)$'
@@ -90,7 +89,7 @@ exclude = ["docs"]
 
 [tool.pyright]
 include = ["src/", "tests/"]
-exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi"]
+exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi", "src/ni/measurementlink/discovery/v1/**/__init__.py*"]
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
