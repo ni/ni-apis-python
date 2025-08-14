@@ -74,7 +74,7 @@ skips = [
 ]
 
 [tool.ni-python-styleguide]
-extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi,src/ni/measurementlink/measurement/v2/**/__init__.py"
+extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi,src/ni/measurementlink/measurement/v1/**/__init__.py"
 
 [tool.black]
 extend-exclude = 'docs/|_pb2(_grpc)?\.(py|pyi)$'
@@ -90,7 +90,7 @@ exclude = ["docs"]
 
 [tool.pyright]
 include = ["src/", "tests/"]
-exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi", "src/ni/measurementlink/measurement/v2/**/__init__.py*"]
+exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi", "src/ni/measurementlink/measurement/v1/**/__init__.py*"]
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
