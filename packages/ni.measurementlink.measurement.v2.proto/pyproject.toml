@@ -86,7 +86,11 @@ files = "."
 namespace_packages = true
 strict = true
 explicit_package_bases = true
-exclude = ["docs"]
+exclude = [
+    "docs",
+    ".*\\.pyi$",
+    ".*\\.py$",
+]
 
 [tool.pyright]
 include = ["src/", "tests/"]
