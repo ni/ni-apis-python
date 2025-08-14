@@ -10,12 +10,12 @@ import toml
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "autoapi.extension",
-    "m2r2",
-    "sphinx.ext.autodoc",
-    "sphinx.ext.intersphinx",
-    "sphinx.ext.napoleon",
-    "sphinx.ext.viewcode",
+    # "autoapi.extension",
+    # "m2r2",
+    # "sphinx.ext.autodoc",
+    # "sphinx.ext.intersphinx",
+    # "sphinx.ext.napoleon",
+    # "sphinx.ext.viewcode",
 ]
 
 root_path = pathlib.Path(__file__).parent.parent
@@ -27,6 +27,7 @@ project = proj_config["tool"]["poetry"]["name"]
 company = "National Instruments"
 copyright = f"2025-%Y, {company}"
 if datetime.datetime.now().year == 2025:
+    copyright = f"%Y, {company}"
     copyright = f"%Y, {company}"
 
 
@@ -45,26 +46,16 @@ htmlhelp_basename = f"{project}doc"
 # tell autoapi to doc the public options
 autoapi_options = list(autoapi.extension._DEFAULT_OPTIONS)
 autoapi_options.remove("private-members")  # note: remove this to include "_" members in docs
-autoapi_dirs = [root_path / "src" / "ni"]
+# autoapi_dirs = [root_path / "src" / "ni"]
 autoapi_python_use_implicit_namespaces = True
 autoapi_template_dir = "templates/autoapi"
 autoapi_python_class_content = "both"
 autoapi_type = "python"
 autodoc_typehints = "description"
 autoapi_file_patterns = ["*.pyi", "*.py"]
-
-
-def skip_aliases(app, what, name, obj, skip, options):
-    """Skip aliases as needed."""
-    print(f"what={what} ... name={name}")
-    if "conversion._" in name:
-        # Skip documentation for internal methods in conversion modules.
-        return True
-    elif "_conversion." in name and what == "class":
-        # Skip classes that are imported into _conversion.py files.
-        return True
-
-    return False
+autoapi_ignore = [
+    '**/__init__.py',
+]
 
 
 def process_docstring(app, what, name, obj, options, lines):
@@ -75,22 +66,17 @@ def process_docstring(app, what, name, obj, options, lines):
 
 def setup(sphinx):
     """Sphinx setup callback."""
-    sphinx.connect("autoapi-skip-member", skip_aliases)
-    sphinx.connect("autodoc-process-docstring", process_docstring)
+    # sphinx.connect("autodoc-process-docstring", process_docstring)
 
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "__init__.py"]
 
-
-intersphinx_mapping = {
-    "hightime": ("https://hightime.readthedocs.io/en/latest/", None),
-    "nitypes": ("https://nitypes.readthedocs.io/en/latest/", None),
-    "numpy": ("https://numpy.org/doc/stable/", None),
-    "python": ("https://docs.python.org/3", None),
-}
+# intersphinx_mapping = {
+    # "python": ("https://docs.python.org/3", None),
+# }
 
 
 # -- Options for HTML output ----------------------------------------------

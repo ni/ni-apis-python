@@ -1,20 +1,7 @@
-####################################
-Protobuf data types for NI gRPC APIs
-####################################
-
-.. include:: intro.inc
-
-Table of Contents
-=================
+Welcome to the docs!
+====================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 1
+   :caption: Contents:
 
-   autoapi/index
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
