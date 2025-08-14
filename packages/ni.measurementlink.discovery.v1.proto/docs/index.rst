@@ -1,5 +1,6 @@
-Welcome to the docs!
-====================
+#########################################
+Protobuf types for NI discovery gRPC APIs
+#########################################
 
 .. toctree::
    :maxdepth: 1
