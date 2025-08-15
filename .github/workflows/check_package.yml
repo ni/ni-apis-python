@@ -15,7 +15,7 @@ on:
         type: string
       proto-include-path:
         description: 'Additional path to include in the proto generation.'
-        default: ''
+        default: 'abc'
         type: string
       output-format:
         description: 'submodule or subpackage'
