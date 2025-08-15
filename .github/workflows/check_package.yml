@@ -30,6 +30,7 @@ jobs:
     with:
       package-name: ${{ inputs.package-name }}
       proto-subpath: ${{ inputs.proto-subpath }}
+      proto-include-path: ${{ inputs.proto-subpath }}
       output-basepath: ../../packages/${{ inputs.package-name }}/src
       output-format: ${{ inputs.output-format }}
   check_analyzers:
