@@ -20,6 +20,9 @@ jobs:
           - package-name: ni.panels.v1.proto
             proto-subpath: ni/panels/v1
             output-format: submodule
+          - package-name: ni.measurementlink.proto
+            proto-subpath: ni/measurementlink
+            output-format: subpackage
           - package-name: ni.measurementlink.discovery.v1.proto
             proto-subpath: ni/measurementlink/discovery/v1
             output-format: subpackage
