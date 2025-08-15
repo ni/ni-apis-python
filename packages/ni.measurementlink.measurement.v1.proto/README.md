@@ -8,7 +8,7 @@
 # About
 
 `ni.measurementlink.measurement.v1.proto` is a Python package that provides data types for NI gRPC APIs in
-the [ni.measurementlink.measurement.v1 package](https://github.com/ni/ni-apis/tree/main/ni/measurementlink/measurement/v2).
+the [ni.measurementlink.measurement.v1 package](https://github.com/ni/ni-apis/tree/main/ni/measurementlink/measurement/v1).
 
 NI created and supports this package.
 
