@@ -89,8 +89,18 @@ explicit_package_bases = true
 exclude = [
     "docs",
     ".*\\.pyi$",
-    ".*\\.py$",
 ]
+[[tool.mypy.overrides]]
+module = [
+    "ni.measurementlink.pin_map_context_pb2",
+    "ni.measurementlink.measurement.v2.measurement_service_pb2"
+]
+ignore_missing_imports = true
+allow_untyped_calls = true
+ignore_errors = true
+[[tool.mypy.overrides]]
+module = ["ni.measurementlink.measurement.v2.measurement_service_pb2_grpc"]
+ignore_errors = true
 
 [tool.pyright]
 include = ["src/", "tests/"]
