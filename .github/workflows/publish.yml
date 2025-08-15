@@ -21,12 +21,13 @@ on:
           type: choice
           options:
             - none
-            - ni.panels.v1.proto
-            - ni.protobuf.types
-            - ni.measurementlink.proto
             - ni.measurementlink.discovery.v1.proto
             - ni.measurementlink.measurement.v1.proto
             - ni.measurementlink.measurement.v2.proto
+            - ni.measurementlink.proto
+            - ni.measurementlink.sessionmanagement.v1.proto
+            - ni.panels.v1.proto
+            - ni.protobuf.types
 
 env:
   environment: ${{ github.event_name == 'release' && 'pypi' || inputs.environment }}

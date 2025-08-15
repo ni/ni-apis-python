@@ -1,6 +1,6 @@
-#########################################
-Protobuf types for NI discovery gRPC APIs
-#########################################
+##############################################
+Protobuf Types for NI Measurement V1 gRPC APIs
+##############################################
 
 .. toctree::
    :maxdepth: 1

@@ -13,6 +13,10 @@ on:
         default: ''
         required: true
         type: string
+      proto-include-path:
+        description: 'Additional path to include in the proto generation.'
+        default: '../../third_party/ni-apis'
+        type: string
       output-format:
         description: 'submodule or subpackage'
         default: ''
@@ -26,6 +30,7 @@ jobs:
     with:
       package-name: ${{ inputs.package-name }}
       proto-subpath: ${{ inputs.proto-subpath }}
+      proto-include-path: ${{ inputs.proto-include-path }}
       output-basepath: ../../packages/${{ inputs.package-name }}/src
       output-format: ${{ inputs.output-format }}
   check_analyzers:
