@@ -60,7 +60,7 @@ jobs:
         run: poetry install -v --only main
       - name: Generate gRPC stubs
         run: |
-          poetry run grpc-generator --proto-basepath ${{ inputs.proto-basepath }} --proto-subpath ${{ inputs.proto-subpath }} --output-basepath ${{ inputs.output-basepath }} --output-format ${{ inputs.output-format }}
+          poetry run grpc-generator --proto-basepath ${{ inputs.proto-basepath }} --proto-subpath ${{ inputs.proto-subpath }} --proto-include-path '../../third_party/ni-apis/ni/grpcdevice/v1' --output-basepath ${{ inputs.output-basepath }} --output-format ${{ inputs.output-format }}
       - name: Check for out-of-date gRPC stubs
         run: |
           git add ${{ inputs.output-basepath }}
