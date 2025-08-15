@@ -23,6 +23,7 @@ on:
             - none
             - ni.panels.v1.proto
             - ni.protobuf.types
+            - ni.measurementlink.discovery.v1.proto
 
 env:
   environment: ${{ github.event_name == 'release' && 'pypi' || inputs.environment }}

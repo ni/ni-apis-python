@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "ni.panels.v1.proto"
-version = "0.1.0-dev2"
+name = "ni.measurementlink.discovery.v1.proto"
+version = "0.1.0-dev1"
 license = "MIT"
-description = "Protobuf generated code for the ni.panels.v1 gRPC API"
+description = "Protobuf data types for NI discovery gRPC APIs"
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",
@@ -10,7 +10,7 @@ maintainers = [
 ]
 readme = "README.md"
 repository = "https://github.com/ni/ni-apis-python"
-keywords = ["ni-apis", "protobuf", "panels"]
+keywords = ["ni-apis", "discovery"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -31,7 +31,6 @@ packages = [{include = "ni", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-grpcio = {version=">=1.49.0,<2.0"}
 protobuf = {version=">=4.21"}
 
 [tool.poetry.group.dev.dependencies]
@@ -49,6 +48,8 @@ pytest = ">=7.2"
 pytest-cov = ">=4.0"
 pytest-doctestplus = ">=1.4"
 pytest-mock = ">=3.0"
+# Use a prerelease version of hightime for testing.
+hightime = { version = ">=0.3.0.dev0", allow-prereleases = true }
 
 [tool.poetry.group.docs]
 optional = true
@@ -72,7 +73,7 @@ skips = [
 ]
 
 [tool.ni-python-styleguide]
-extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi"
+extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi,src/ni/measurementlink/discovery/v1/**/__init__.py"
 
 [tool.black]
 extend-exclude = 'docs/|_pb2(_grpc)?\.(py|pyi)$'
@@ -88,7 +89,7 @@ exclude = ["docs"]
 
 [tool.pyright]
 include = ["src/", "tests/"]
-exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi"]
+exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi", "src/ni/measurementlink/discovery/v1/**/__init__.py*"]
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
