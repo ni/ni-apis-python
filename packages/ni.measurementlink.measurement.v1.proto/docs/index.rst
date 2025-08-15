@@ -1,6 +1,6 @@
-##################################################
-Protobuf Types for NI Session Management gRPC APIs
-##################################################
+##############################################
+Protobuf Types for NI Measurement V1 gRPC APIs
+##############################################
 
 .. toctree::
    :maxdepth: 1
