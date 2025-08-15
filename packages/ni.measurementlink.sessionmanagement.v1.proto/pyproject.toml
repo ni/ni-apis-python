@@ -2,7 +2,7 @@
 name = "ni.measurementlink.sessionmanagement.v1.proto"
 version = "0.1.0-dev0"
 license = "MIT"
-description = "Protobuf data types for NI measurement gRPC APIs"
+description = "Protobuf data types for NI session management gRPC APIs"
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",
@@ -74,7 +74,7 @@ skips = [
 ]
 
 [tool.ni-python-styleguide]
-extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi,src/ni/measurementlink/measurement/v2/**/__init__.py"
+extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi,src/ni/measurementlink/sessionmanagement/v1/**/__init__.py"
 
 [tool.black]
 extend-exclude = 'docs/|_pb2(_grpc)?\.(py|pyi)$'
@@ -93,13 +93,13 @@ exclude = [
 [[tool.mypy.overrides]]
 module = [
     "ni.measurementlink.pin_map_context_pb2",
-    "ni.measurementlink.sessionmanagement.v1.measurement_service_pb2"
+    "ni.measurementlink.sessionmanagement.v1.session_management_service_pb2"
 ]
 ignore_missing_imports = true
 allow_untyped_calls = true
 ignore_errors = true
 [[tool.mypy.overrides]]
-module = ["ni.measurementlink.sessionmanagement.v1.measurement_service_pb2_grpc"]
+module = ["ni.measurementlink.sessionmanagement.v1.session_management_service_pb2_grpc"]
 ignore_errors = true
 
 [tool.pyright]
