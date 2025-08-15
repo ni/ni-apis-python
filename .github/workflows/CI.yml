@@ -23,6 +23,12 @@ jobs:
           - package-name: ni.measurementlink.discovery.v1.proto
             proto-subpath: ni/measurementlink/discovery/v1
             output-format: subpackage
+          - package-name: ni.measurementlink.measurement.v1.proto
+            proto-subpath: ni/measurementlink/measurement/v1
+            output-format: subpackage
+          - package-name: ni.measurementlink.measurement.v2.proto
+            proto-subpath: ni/measurementlink/measurement/v2
+            output-format: subpackage
     uses: ./.github/workflows/check_package.yml
     with:
       package-name: ${{ matrix.package-name }}
