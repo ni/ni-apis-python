@@ -48,8 +48,6 @@ pytest = ">=7.2"
 pytest-cov = ">=4.0"
 pytest-doctestplus = ">=1.4"
 pytest-mock = ">=3.0"
-# Use a prerelease version of hightime for testing.
-hightime = { version = ">=0.3.0.dev0", allow-prereleases = true }
 
 [tool.poetry.group.docs]
 optional = true
