@@ -90,6 +90,7 @@ exclude = [
     "docs",
     ".*\\.pyi$",
 ]
+disable_error_code = ["no-untyped-call", "name-defined"]
 
 [tool.pyright]
 include = ["src/", "tests/"]
