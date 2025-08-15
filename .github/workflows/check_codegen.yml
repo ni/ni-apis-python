@@ -19,7 +19,7 @@ on:
         type: string
       proto-include-path:
         description: 'Additional path to include in the proto generation.'
-        default: ''
+        default: '../../third_party/ni-apis'
         type: string
       output-basepath:
         description: 'The base output path for codegened files.'
