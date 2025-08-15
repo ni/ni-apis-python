@@ -447,17 +447,6 @@ pycodestyle = "*"
 setuptools = "*"
 
 [[package]]
-name = "hightime"
-version = "0.3.0.dev1"
-description = "Hightime Python API"
-optional = false
-python-versions = "<4.0,>=3.9"
-files = [
-    {file = "hightime-0.3.0.dev1-py3-none-any.whl", hash = "sha256:33b05864264655929f6ecaade8a1f27070f1e3a2028e304e051825cbe6a505c9"},
-    {file = "hightime-0.3.0.dev1.tar.gz", hash = "sha256:e1ad569c034b61be5b906a5dc4b226af6b6fe4985f2550edc8b575a4df5fdaf0"},
-]
-
-[[package]]
 name = "idna"
 version = "3.10"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -1534,4 +1523,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "de289d1ebc452c6fc43ac71f9f87a0f12e4b9402e1b72203116881fc1339d29b"
+content-hash = "7863107c0f203cf336ce66d515dfb446e7cf31a7ebf143b888cec263a35c7915"
