@@ -10,7 +10,7 @@ maintainers = [
 ]
 readme = "README.md"
 repository = "https://github.com/ni/ni-apis-python"
-keywords = ["ni-apis", "discovery"]
+keywords = ["ni-apis", "measurement"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -32,11 +32,19 @@ packages = [{include = "ni", from = "src"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 protobuf = {version=">=4.21"}
-nitypes = {version=">=0.1.0dev3", allow-prereleases=true}
+ni-measurementlink-proto = ">=0.1.0dev0"
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
 types-protobuf = ">=4.21"
+# During development, use file paths to reference the latest source for packages
+# in the same Git repository.
+ni-measurementlink-proto = {path = "../../packages/ni.measurementlink.proto", develop = true}
+numpy = [
+  { version = ">=1.22", python = ">=3.9,<3.12" },
+  { version = ">=1.26", python = ">=3.12,<3.13" },
+  { version = ">=2.1", python = "^3.13" },
+]
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
@@ -86,13 +94,9 @@ files = "."
 namespace_packages = true
 strict = true
 explicit_package_bases = true
-exclude = [
-    "docs",
-    ".*\\.pyi$",
-]
+exclude = ["docs"]
 [[tool.mypy.overrides]]
 module = [
-    "ni.measurementlink.pin_map_context_pb2",
     "ni.measurementlink.measurement.v1.measurement_service_pb2"
 ]
 ignore_missing_imports = true
