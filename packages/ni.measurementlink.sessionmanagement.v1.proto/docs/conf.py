@@ -10,11 +10,12 @@ import toml
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "m2r2",
-    "sphinx.ext.autodoc",
-    "sphinx.ext.intersphinx",
-    "sphinx.ext.napoleon",
-    "sphinx.ext.viewcode",
+    # "autoapi.extension",
+    # "m2r2",
+    # "sphinx.ext.autodoc",
+    # "sphinx.ext.intersphinx",
+    # "sphinx.ext.napoleon",
+    # "sphinx.ext.viewcode",
 ]
 
 root_path = pathlib.Path(__file__).parent.parent
@@ -44,8 +45,6 @@ htmlhelp_basename = f"{project}doc"
 # tell autoapi to doc the public options
 autoapi_options = list(autoapi.extension._DEFAULT_OPTIONS)
 autoapi_options.remove("private-members")  # note: remove this to include "_" members in docs
-# Restore this to start building docs for source again
-# AB#3233030
 # autoapi_dirs = [root_path / "src" / "ni"]
 autoapi_python_use_implicit_namespaces = True
 autoapi_template_dir = "templates/autoapi"
@@ -74,9 +73,9 @@ def setup(sphinx):
 # This patterns also effect to html_static_path and html_extra_path
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "__init__.py"]
 
-intersphinx_mapping = {
-    "python": ("https://docs.python.org/3", None),
-}
+# intersphinx_mapping = {
+    # "python": ("https://docs.python.org/3", None),
+# }
 
 
 # -- Options for HTML output ----------------------------------------------

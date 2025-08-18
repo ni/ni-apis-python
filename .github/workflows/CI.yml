@@ -14,29 +14,40 @@ jobs:
     strategy:
       matrix:
         include:
-          - package-name: ni.protobuf.types
-            proto-subpath: ni/protobuf/types
-            output-format: submodule
-          - package-name: ni.panels.v1.proto
-            proto-subpath: ni/panels/v1
-            output-format: submodule
-          - package-name: ni.measurementlink.proto
-            proto-subpath: ni/measurementlink
-            output-format: subpackage
           - package-name: ni.measurementlink.discovery.v1.proto
             proto-subpath: ni/measurementlink/discovery/v1
+            proto-include-path: ../../third_party/ni-apis
             output-format: subpackage
           - package-name: ni.measurementlink.measurement.v1.proto
             proto-subpath: ni/measurementlink/measurement/v1
+            proto-include-path: ../../third_party/ni-apis
             output-format: subpackage
           - package-name: ni.measurementlink.measurement.v2.proto
             proto-subpath: ni/measurementlink/measurement/v2
+            proto-include-path: ../../third_party/ni-apis
             output-format: subpackage
+          - package-name: ni.measurementlink.proto
+            proto-subpath: ni/measurementlink
+            proto-include-path: ../../third_party/ni-apis
+            output-format: subpackage
+          - package-name: ni.measurementlink.sessionmanagement.v1.proto
+            proto-subpath: ni/measurementlink/sessionmanagement/v1
+            proto-include-path: ../../third_party/ni-apis/ni/grpcdevice/v1
+            output-format: subpackage
+          - package-name: ni.panels.v1.proto
+            proto-subpath: ni/panels/v1
+            proto-include-path: ../../third_party/ni-apis
+            output-format: submodule
+          - package-name: ni.protobuf.types
+            proto-subpath: ni/protobuf/types
+            proto-include-path: ../../third_party/ni-apis
+            output-format: submodule
     uses: ./.github/workflows/check_package.yml
     with:
       package-name: ${{ matrix.package-name }}
       proto-subpath: ${{ matrix.proto-subpath }}
       output-format: ${{ matrix.output-format }}
+      proto-include-path: ${{ matrix.proto-include-path }}
   check_analyzers_grpc_gen:
     name: Check analyzers for grpc_generator
     uses: ./.github/workflows/check_analyzers.yml
