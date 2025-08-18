@@ -41,6 +41,7 @@ jobs:
       package-name: ${{ matrix.package-name }}
       proto-subpath: ${{ matrix.proto-subpath }}
       output-format: ${{ matrix.output-format }}
+      proto-include-path: ${{ matrix.proto-include-path }}
   check_analyzers_grpc_gen:
     name: Check analyzers for grpc_generator
     uses: ./.github/workflows/check_analyzers.yml
