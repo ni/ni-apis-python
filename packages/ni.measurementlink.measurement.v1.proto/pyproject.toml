@@ -86,10 +86,7 @@ files = "."
 namespace_packages = true
 strict = true
 explicit_package_bases = true
-exclude = [
-    "docs",
-    ".*\\.pyi$",
-]
+exclude = ["docs"]
 [[tool.mypy.overrides]]
 module = [
     "ni.measurementlink.measurement.v1.measurement_service_pb2"
