@@ -1,4 +1,4 @@
-"""Tests for the ni.measurementlink.proto package."""
+"""Tests for the ni.measurementlink.measurement.v2.proto package."""
 
 from ni.measurementlink.measurement.v2.measurement_service_pb2 import (
     GetMetadataRequest,
