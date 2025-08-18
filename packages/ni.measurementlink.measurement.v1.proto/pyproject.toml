@@ -37,6 +37,8 @@ ni-measurementlink-proto = ">=0.1.0dev0"
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
 types-protobuf = ">=4.21"
+# Uncomment to use local dependency
+# ni-measurementlink-proto = {path = "../../packages/ni.measurementlink.proto", develop = true}
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
