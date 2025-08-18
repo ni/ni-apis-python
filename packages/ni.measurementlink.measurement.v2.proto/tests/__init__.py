@@ -1,1 +1,1 @@
-"""Tests for the ni.protobuf.types package."""
+"""Tests for the package."""
