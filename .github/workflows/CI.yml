@@ -15,7 +15,7 @@ jobs:
       matrix:
         include:
           - package-name: ni.grpcdevice.v1.proto
-            proto-base-path: ../../proto
+            proto-basepath: ../../proto
             proto-subpath: ni/grpcdevice/v1
             proto-include-path: ../../proto
             output-format: subpackage
@@ -53,6 +53,7 @@ jobs:
       proto-subpath: ${{ matrix.proto-subpath }}
       output-format: ${{ matrix.output-format }}
       proto-include-path: ${{ matrix.proto-include-path }}
+      proto-basepath: ${{ matrix.proto-basepath }}
   check_analyzers_grpc_gen:
     name: Check analyzers for grpc_generator
     uses: ./.github/workflows/check_analyzers.yml
