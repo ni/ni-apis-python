@@ -4,7 +4,7 @@ Introduction
 About
 -----
 
-The ``ni.grpcdevice.v1.proto`` Python package contains generated Python interfaces for proto files in the ``ni-apis`` repo.
+The ``ni.grpcdevice.v1.proto`` Python package contains generated Python interfaces for the ``nidevice_grpc`` gRPC API.
 
 NI created and supports this package.
 
