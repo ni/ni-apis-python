@@ -5,6 +5,8 @@ option java_package = "com.ni.grpc.device";
 option java_outer_classname = "NiDevice";
 option csharp_namespace = "NationalInstruments.Grpc.Device";
 
+package ni.grpcdevice.v1;
+
 service SessionUtilities {
   // Provides a list of devices or chassis connected to server under localhost
   rpc EnumerateDevices(EnumerateDevicesRequest)
