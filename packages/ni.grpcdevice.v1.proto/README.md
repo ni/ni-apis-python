@@ -7,7 +7,7 @@
 
 # About
 
-`ni.grpcdevice.v1.proto` is a Python package that provides Protobuf generated code for the ni.grpcdevice.v1 gRPC API
+`ni.grpcdevice.v1.proto` is a Python package that provides Protobuf generated code for the `nidevice_grpc` gRPC API
 
 NI created and supports this package.
 
