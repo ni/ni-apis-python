@@ -57,10 +57,10 @@ jobs:
     uses: ./.github/workflows/check_package.yml
     with:
       package-name: ${{ matrix.package-name }}
-      proto-subpath: ${{ matrix.proto-subpath }}
-      output-format: ${{ matrix.output-format }}
-      proto-include-path: ${{ matrix.proto-include-path }}
       proto-basepath: ${{ matrix.proto-basepath }}
+      proto-subpath: ${{ matrix.proto-subpath }}
+      proto-include-path: ${{ matrix.proto-include-path }}
+      output-format: ${{ matrix.output-format }}
   check_analyzers_grpc_gen:
     name: Check analyzers for grpc_generator
     uses: ./.github/workflows/check_analyzers.yml

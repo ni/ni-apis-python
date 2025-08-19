@@ -33,8 +33,8 @@ jobs:
     uses: ./.github/workflows/check_codegen.yml
     with:
       package-name: ${{ inputs.package-name }}
-      proto-subpath: ${{ inputs.proto-subpath }}
       proto-basepath: ${{ inputs.proto-basepath }}
+      proto-subpath: ${{ inputs.proto-subpath }}
       proto-include-path: ${{ inputs.proto-include-path }}
       output-basepath: ../../packages/${{ inputs.package-name }}/src
       output-format: ${{ inputs.output-format }}
