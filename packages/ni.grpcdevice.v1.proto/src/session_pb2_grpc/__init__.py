@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from ni.grpcdevice.v1 import session_pb2 as ni_dot_grpcdevice_dot_v1_dot_session__pb2
+import session_pb2 as session__pb2
 
 
 class SessionUtilitiesStub(object):
@@ -16,28 +16,28 @@ class SessionUtilitiesStub(object):
         """
         self.EnumerateDevices = channel.unary_unary(
                 '/ni.grpcdevice.v1.SessionUtilities/EnumerateDevices',
-                request_serializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.EnumerateDevicesRequest.SerializeToString,
-                response_deserializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.EnumerateDevicesResponse.FromString,
+                request_serializer=session__pb2.EnumerateDevicesRequest.SerializeToString,
+                response_deserializer=session__pb2.EnumerateDevicesResponse.FromString,
                 )
         self.Reserve = channel.unary_unary(
                 '/ni.grpcdevice.v1.SessionUtilities/Reserve',
-                request_serializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.ReserveRequest.SerializeToString,
-                response_deserializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.ReserveResponse.FromString,
+                request_serializer=session__pb2.ReserveRequest.SerializeToString,
+                response_deserializer=session__pb2.ReserveResponse.FromString,
                 )
         self.IsReservedByClient = channel.unary_unary(
                 '/ni.grpcdevice.v1.SessionUtilities/IsReservedByClient',
-                request_serializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.IsReservedByClientRequest.SerializeToString,
-                response_deserializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.IsReservedByClientResponse.FromString,
+                request_serializer=session__pb2.IsReservedByClientRequest.SerializeToString,
+                response_deserializer=session__pb2.IsReservedByClientResponse.FromString,
                 )
         self.Unreserve = channel.unary_unary(
                 '/ni.grpcdevice.v1.SessionUtilities/Unreserve',
-                request_serializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.UnreserveRequest.SerializeToString,
-                response_deserializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.UnreserveResponse.FromString,
+                request_serializer=session__pb2.UnreserveRequest.SerializeToString,
+                response_deserializer=session__pb2.UnreserveResponse.FromString,
                 )
         self.ResetServer = channel.unary_unary(
                 '/ni.grpcdevice.v1.SessionUtilities/ResetServer',
-                request_serializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.ResetServerRequest.SerializeToString,
-                response_deserializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.ResetServerResponse.FromString,
+                request_serializer=session__pb2.ResetServerRequest.SerializeToString,
+                response_deserializer=session__pb2.ResetServerResponse.FromString,
                 )
 
 
@@ -85,28 +85,28 @@ def add_SessionUtilitiesServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'EnumerateDevices': grpc.unary_unary_rpc_method_handler(
                     servicer.EnumerateDevices,
-                    request_deserializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.EnumerateDevicesRequest.FromString,
-                    response_serializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.EnumerateDevicesResponse.SerializeToString,
+                    request_deserializer=session__pb2.EnumerateDevicesRequest.FromString,
+                    response_serializer=session__pb2.EnumerateDevicesResponse.SerializeToString,
             ),
             'Reserve': grpc.unary_unary_rpc_method_handler(
                     servicer.Reserve,
-                    request_deserializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.ReserveRequest.FromString,
-                    response_serializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.ReserveResponse.SerializeToString,
+                    request_deserializer=session__pb2.ReserveRequest.FromString,
+                    response_serializer=session__pb2.ReserveResponse.SerializeToString,
             ),
             'IsReservedByClient': grpc.unary_unary_rpc_method_handler(
                     servicer.IsReservedByClient,
-                    request_deserializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.IsReservedByClientRequest.FromString,
-                    response_serializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.IsReservedByClientResponse.SerializeToString,
+                    request_deserializer=session__pb2.IsReservedByClientRequest.FromString,
+                    response_serializer=session__pb2.IsReservedByClientResponse.SerializeToString,
             ),
             'Unreserve': grpc.unary_unary_rpc_method_handler(
                     servicer.Unreserve,
-                    request_deserializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.UnreserveRequest.FromString,
-                    response_serializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.UnreserveResponse.SerializeToString,
+                    request_deserializer=session__pb2.UnreserveRequest.FromString,
+                    response_serializer=session__pb2.UnreserveResponse.SerializeToString,
             ),
             'ResetServer': grpc.unary_unary_rpc_method_handler(
                     servicer.ResetServer,
-                    request_deserializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.ResetServerRequest.FromString,
-                    response_serializer=ni_dot_grpcdevice_dot_v1_dot_session__pb2.ResetServerResponse.SerializeToString,
+                    request_deserializer=session__pb2.ResetServerRequest.FromString,
+                    response_serializer=session__pb2.ResetServerResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -130,8 +130,8 @@ class SessionUtilities(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/ni.grpcdevice.v1.SessionUtilities/EnumerateDevices',
-            ni_dot_grpcdevice_dot_v1_dot_session__pb2.EnumerateDevicesRequest.SerializeToString,
-            ni_dot_grpcdevice_dot_v1_dot_session__pb2.EnumerateDevicesResponse.FromString,
+            session__pb2.EnumerateDevicesRequest.SerializeToString,
+            session__pb2.EnumerateDevicesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -147,8 +147,8 @@ class SessionUtilities(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/ni.grpcdevice.v1.SessionUtilities/Reserve',
-            ni_dot_grpcdevice_dot_v1_dot_session__pb2.ReserveRequest.SerializeToString,
-            ni_dot_grpcdevice_dot_v1_dot_session__pb2.ReserveResponse.FromString,
+            session__pb2.ReserveRequest.SerializeToString,
+            session__pb2.ReserveResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -164,8 +164,8 @@ class SessionUtilities(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/ni.grpcdevice.v1.SessionUtilities/IsReservedByClient',
-            ni_dot_grpcdevice_dot_v1_dot_session__pb2.IsReservedByClientRequest.SerializeToString,
-            ni_dot_grpcdevice_dot_v1_dot_session__pb2.IsReservedByClientResponse.FromString,
+            session__pb2.IsReservedByClientRequest.SerializeToString,
+            session__pb2.IsReservedByClientResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -181,8 +181,8 @@ class SessionUtilities(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/ni.grpcdevice.v1.SessionUtilities/Unreserve',
-            ni_dot_grpcdevice_dot_v1_dot_session__pb2.UnreserveRequest.SerializeToString,
-            ni_dot_grpcdevice_dot_v1_dot_session__pb2.UnreserveResponse.FromString,
+            session__pb2.UnreserveRequest.SerializeToString,
+            session__pb2.UnreserveResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -198,7 +198,7 @@ class SessionUtilities(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/ni.grpcdevice.v1.SessionUtilities/ResetServer',
-            ni_dot_grpcdevice_dot_v1_dot_session__pb2.ResetServerRequest.SerializeToString,
-            ni_dot_grpcdevice_dot_v1_dot_session__pb2.ResetServerResponse.FromString,
+            session__pb2.ResetServerRequest.SerializeToString,
+            session__pb2.ResetServerResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
