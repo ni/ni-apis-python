@@ -16,7 +16,7 @@ if sys.platform == "win32":
         _event_provider = None
 else:
     if TYPE_CHECKING:
-        import traceloggingdynamic
+        import traceloggingdynamic  # type: ignore
 
     _event_provider = None
 
