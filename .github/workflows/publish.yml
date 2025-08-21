@@ -25,6 +25,7 @@ on:
             - ni.measurementlink.discovery.v1.proto
             - ni.measurementlink.measurement.v1.proto
             - ni.measurementlink.measurement.v2.proto
+            - ni.measuremelink.pinmap.v1.proto
             - ni.measurementlink.proto
             - ni.measurementlink.sessionmanagement.v1.proto
             - ni.panels.v1.proto

@@ -1,0 +1,94 @@
+[tool.poetry]
+name = "ni.measurementlink.pinmap.v1.proto"
+version = "0.1.0-dev0"
+license = "MIT"
+description = "Protobuf data types for NI pinmap gRPC APIs"
+authors = ["NI <opensource@ni.com>"]
+maintainers = [
+  "Brad Keryan <brad.keryan@emerson.com>",
+  "Joe Friedrichsen <joe.friedrichsen@emerson.com>",
+]
+readme = "README.md"
+repository = "https://github.com/ni/ni-apis-python"
+keywords = ["ni-apis", "pinmap"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Manufacturing",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+packages = [{include = "ni", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+protobuf = {version=">=4.21"}
+
+[tool.poetry.group.dev.dependencies]
+types-grpcio = ">=1.0"
+types-protobuf = ">=4.21"
+
+[tool.poetry.group.lint.dependencies]
+bandit = { version = ">=1.7", extras = ["toml"] }
+ni-python-styleguide = ">=0.4.1"
+mypy = ">=1.0"
+pyright = { version = ">=1.1.400", extras = ["nodejs"] }
+
+[tool.poetry.group.test.dependencies]
+pytest = ">=7.2"
+pytest-cov = ">=4.0"
+pytest-doctestplus = ">=1.4"
+pytest-mock = ">=3.0"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+# The latest Sphinx requires a recent Python version.
+Sphinx = { version = ">=8.2", python = "^3.11" }
+sphinx-rtd-theme = ">=1.0.0"
+sphinx-autoapi = ">=1.8.4"
+m2r2 = ">=0.3.2"
+toml = ">=0.10.2"
+
+[build-system]
+requires = ["poetry-core>=1.8"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.bandit]
+skips = [
+  "B101", # assert_used
+]
+
+[tool.ni-python-styleguide]
+extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi,src/ni/measurementlink/pinmap/v1/**/__init__.py"
+
+[tool.black]
+extend-exclude = 'docs/|_pb2(_grpc)?\.(py|pyi)$'
+line-length = 100
+
+[tool.mypy]
+mypy_path = "src"
+files = "."
+namespace_packages = true
+strict = true
+explicit_package_bases = true
+exclude = ["docs"]
+
+[tool.pyright]
+include = ["src/", "tests/"]
+exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi", "src/ni/measurementlink/pinmap/v1/**/__init__.py*"]
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules --doctest-plus --strict-markers"
+testpaths = ["tests"]
