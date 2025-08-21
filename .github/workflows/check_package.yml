@@ -10,7 +10,7 @@ on:
         type: string
       package-information-path:
         description: 'Path to the JSON file containing package information.'
-        default: '/packages.json'
+        default: './packages.json'
         type: string
 
 jobs:
