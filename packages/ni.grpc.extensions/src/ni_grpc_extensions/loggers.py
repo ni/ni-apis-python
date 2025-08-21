@@ -392,8 +392,8 @@ class _LoggingResponseIterator(Generic[_T]):
 
 if TYPE_CHECKING:
     # These types only exist in grpc-stubs.
-    _CallFuture = grpc._CallFuture  # type: ignore
-    _CallIterator = grpc._CallIterator  # type: ignore
+    _CallFuture = grpc._CallFuture  # pyright: ignore
+    _CallIterator = grpc._CallIterator  # pyright: ignore
 else:
 
     class _CallFuture(Generic[_T]):
@@ -405,7 +405,7 @@ else:
 
 @grpc.Call.register
 @grpc.Future.register
-class _LoggingResponseCallFuture(_CallFuture[_T]):  # type: ignore
+class _LoggingResponseCallFuture(_CallFuture[_T]):  # pyright: ignore
     __slots__ = ["_call_logger", "_inner_call_future"]
 
     def __init__(self, call_logger: _CallLogger, inner_call_future: grpc._CallFuture[_T]) -> None:
@@ -450,7 +450,7 @@ class _LoggingResponseCallFuture(_CallFuture[_T]):  # type: ignore
 
 @grpc.Call.register
 @grpc.Future.register
-class _LoggingResponseCallIterator(_CallIterator[_T]):  # type: ignore
+class _LoggingResponseCallIterator(_CallIterator[_T]):  # pyright: ignore
     __slots__ = ["_call_logger", "_inner_call_iterator"]
 
     def __init__(
