@@ -27,7 +27,7 @@ jobs:
       - name: Get package info from JSON
         id: parse_json
         run: |
-          info=$(jq -c --arg name "${{ inputs.package-name }}" '.[$name]' "${{ inputs.package-json-path }}")
+          info=$(jq -c --arg name "${{ inputs.package-name }}" '.[$name]' "${{ inputs.package-information-path }}")
           if [ "$info" = "null" ]; then
             echo "Error: Package '${{ inputs.package-name }}' not found in JSON file." >&2
             exit 1
