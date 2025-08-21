@@ -13,14 +13,13 @@ from types import TracebackType
 from typing import TYPE_CHECKING, Any, Callable, Generic, TypeVar
 
 import grpc
+from ni_grpc_extensions import _tracelogging
 
 if TYPE_CHECKING:
     if sys.version_info >= (3, 11):
         from typing import Self
     else:
         from typing_extensions import Self
-
-from ni_grpc_extensions import _tracelogging
 
 _logger = logging.getLogger(__name__)
 
@@ -393,8 +392,8 @@ class _LoggingResponseIterator(Generic[_T]):
 
 if TYPE_CHECKING:
     # These types only exist in grpc-stubs.
-    _CallFuture = grpc._CallFuture
-    _CallIterator = grpc._CallIterator
+    _CallFuture = grpc._CallFuture  # type: ignore
+    _CallIterator = grpc._CallIterator  # type: ignore
 else:
 
     class _CallFuture(Generic[_T]):
@@ -406,7 +405,7 @@ else:
 
 @grpc.Call.register
 @grpc.Future.register
-class _LoggingResponseCallFuture(_CallFuture[_T]):
+class _LoggingResponseCallFuture(_CallFuture[_T]):  # type: ignore
     __slots__ = ["_call_logger", "_inner_call_future"]
 
     def __init__(self, call_logger: _CallLogger, inner_call_future: grpc._CallFuture[_T]) -> None:
@@ -451,7 +450,7 @@ class _LoggingResponseCallFuture(_CallFuture[_T]):
 
 @grpc.Call.register
 @grpc.Future.register
-class _LoggingResponseCallIterator(_CallIterator[_T]):
+class _LoggingResponseCallIterator(_CallIterator[_T]):  # type: ignore
     __slots__ = ["_call_logger", "_inner_call_iterator"]
 
     def __init__(

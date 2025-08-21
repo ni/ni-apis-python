@@ -91,3 +91,6 @@ include = ["src/", "tests/"]
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
 testpaths = ["tests"]
+
+[tool.isort]
+known_first_party = ["ni_grpc_extensions"]
