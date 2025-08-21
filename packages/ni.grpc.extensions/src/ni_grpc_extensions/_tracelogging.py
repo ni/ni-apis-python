@@ -10,7 +10,7 @@ if sys.platform == "win32":
         import traceloggingdynamic
 
         _event_provider: traceloggingdynamic.Provider | None = traceloggingdynamic.Provider(
-            b"NI-gRPC-Extensions-Python"
+            b"NI-Grpc-Python"
         )
     except ImportError:
         _event_provider = None
