@@ -32,7 +32,6 @@ packages = [{include = "ni", from = "src"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 protobuf = {version=">=4.21"}
-nitypes = {version=">=0.1.0dev3", allow-prereleases=true}
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
