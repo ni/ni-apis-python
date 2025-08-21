@@ -29,6 +29,7 @@ on:
 
 jobs:
   check_codegen:
+    if: ${{ inputs.proto-subpath != '' }}
     name: Check codegen for ${{ inputs.package-name }}
     uses: ./.github/workflows/check_codegen.yml
     with:
