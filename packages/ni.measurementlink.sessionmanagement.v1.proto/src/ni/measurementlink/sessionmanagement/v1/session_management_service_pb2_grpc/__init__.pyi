@@ -27,14 +27,21 @@ class SessionManagementServiceStub:
     ]
     """Reserve session(s) for the given I/O resources (pins, relays, channels), sites, and instrument type ID and returns the information needed to create or access the session.
     Also reserves the session so other processes cannot access it with a ReserveSessions() call.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - INVALID_ARGUMENT:
+
         - Pin Map Context references a site number that is not defined in the pin map
         - Pin or relay name does not match any pin, pin group, relay, or relay group names in the pin map
         - Timeout specified is less than -1.
+
     - NOT_FOUND:
+
         - Pin Map Context has a pin map ID that does not match any pin maps registered with the Pin Map Service.
+
     - UNAVAILABLE:
+
         - Session(s) were already reserved and didn't become available before the specified timeout expired.
     """
 
@@ -43,7 +50,9 @@ class SessionManagementServiceStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsResponse,
     ]
     """Unreserves sessions so they can be accessed by other clients.
+
     - RESOURCE_EXHAUSTED:
+
         - Error occurred while unreserving sessions.
     """
 
@@ -52,10 +61,14 @@ class SessionManagementServiceStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsResponse,
     ]
     """Registers the sessions with this service. Indicates that the sessions are open and will need to be closed later.
-    Status Codes for errors:
+    Status codes for errors:
+
     - ALREADY_EXISTS:
+
         - Session by the same name is already registered.
+
     - INVALID_ARGUMENT:
+
         - Session names list has an empty string.
     """
 
@@ -70,9 +83,13 @@ class SessionManagementServiceStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsResponse,
     ]
     """Reserves and gets all sessions currently registered with this service.
+
     - INVALID_ARGUMENT:
+
         - Timeout specified is less than -1.
+
     - UNAVAILABLE:
+
         - Session(s) were already reserved and didn't become available before the specified timeout expired.
     """
 
@@ -81,10 +98,14 @@ class SessionManagementServiceStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse,
     ]
     """Registers the multiplexer sessions with this service. Indicates that the sessions are open and will need to be closed later.
-    Status Codes for errors:
+    Status codes for errors:
+
     - ALREADY_EXISTS:
+
         - Session by the same name is already registered.
+
     - INVALID_ARGUMENT:
+
         - Session names list has an empty string.
     """
 
@@ -99,10 +120,14 @@ class SessionManagementServiceStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse,
     ]
     """Gets all the connected multiplexer session(s) for the given pin map context and returns information needed to create or access the session.
-    Status Codes for errors:
+    Status codes for errors:
+
     - INVALID_ARGUMENT:
+
         - Pin Map Context references a site number that is not defined in the pin map.
+
     - NOT_FOUND:
+
         - Pin Map Context has a pin map ID that does not match any pin maps registered with the Pin Map Service.
     """
 
@@ -127,14 +152,21 @@ class SessionManagementServiceAsyncStub:
     ]
     """Reserve session(s) for the given I/O resources (pins, relays, channels), sites, and instrument type ID and returns the information needed to create or access the session.
     Also reserves the session so other processes cannot access it with a ReserveSessions() call.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - INVALID_ARGUMENT:
+
         - Pin Map Context references a site number that is not defined in the pin map
         - Pin or relay name does not match any pin, pin group, relay, or relay group names in the pin map
         - Timeout specified is less than -1.
+
     - NOT_FOUND:
+
         - Pin Map Context has a pin map ID that does not match any pin maps registered with the Pin Map Service.
+
     - UNAVAILABLE:
+
         - Session(s) were already reserved and didn't become available before the specified timeout expired.
     """
 
@@ -143,7 +175,9 @@ class SessionManagementServiceAsyncStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsResponse,
     ]
     """Unreserves sessions so they can be accessed by other clients.
+
     - RESOURCE_EXHAUSTED:
+
         - Error occurred while unreserving sessions.
     """
 
@@ -152,10 +186,14 @@ class SessionManagementServiceAsyncStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsResponse,
     ]
     """Registers the sessions with this service. Indicates that the sessions are open and will need to be closed later.
-    Status Codes for errors:
+    Status codes for errors:
+
     - ALREADY_EXISTS:
+
         - Session by the same name is already registered.
+
     - INVALID_ARGUMENT:
+
         - Session names list has an empty string.
     """
 
@@ -170,9 +208,13 @@ class SessionManagementServiceAsyncStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsResponse,
     ]
     """Reserves and gets all sessions currently registered with this service.
+
     - INVALID_ARGUMENT:
+
         - Timeout specified is less than -1.
+
     - UNAVAILABLE:
+
         - Session(s) were already reserved and didn't become available before the specified timeout expired.
     """
 
@@ -181,10 +223,14 @@ class SessionManagementServiceAsyncStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse,
     ]
     """Registers the multiplexer sessions with this service. Indicates that the sessions are open and will need to be closed later.
-    Status Codes for errors:
+    Status codes for errors:
+
     - ALREADY_EXISTS:
+
         - Session by the same name is already registered.
+
     - INVALID_ARGUMENT:
+
         - Session names list has an empty string.
     """
 
@@ -199,10 +245,14 @@ class SessionManagementServiceAsyncStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse,
     ]
     """Gets all the connected multiplexer session(s) for the given pin map context and returns information needed to create or access the session.
-    Status Codes for errors:
+    Status codes for errors:
+
     - INVALID_ARGUMENT:
+
         - Pin Map Context references a site number that is not defined in the pin map.
+
     - NOT_FOUND:
+
         - Pin Map Context has a pin map ID that does not match any pin maps registered with the Pin Map Service.
     """
 
@@ -229,14 +279,21 @@ class SessionManagementServiceServicer(metaclass=abc.ABCMeta):
     ) -> typing.Union[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsResponse, collections.abc.Awaitable[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsResponse]]:
         """Reserve session(s) for the given I/O resources (pins, relays, channels), sites, and instrument type ID and returns the information needed to create or access the session.
         Also reserves the session so other processes cannot access it with a ReserveSessions() call.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - INVALID_ARGUMENT:
+
             - Pin Map Context references a site number that is not defined in the pin map
             - Pin or relay name does not match any pin, pin group, relay, or relay group names in the pin map
             - Timeout specified is less than -1.
+
         - NOT_FOUND:
+
             - Pin Map Context has a pin map ID that does not match any pin maps registered with the Pin Map Service.
+
         - UNAVAILABLE:
+
             - Session(s) were already reserved and didn't become available before the specified timeout expired.
         """
 
@@ -247,7 +304,9 @@ class SessionManagementServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsResponse, collections.abc.Awaitable[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsResponse]]:
         """Unreserves sessions so they can be accessed by other clients.
+
         - RESOURCE_EXHAUSTED:
+
             - Error occurred while unreserving sessions.
         """
 
@@ -258,10 +317,14 @@ class SessionManagementServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsResponse, collections.abc.Awaitable[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsResponse]]:
         """Registers the sessions with this service. Indicates that the sessions are open and will need to be closed later.
-        Status Codes for errors:
+        Status codes for errors:
+
         - ALREADY_EXISTS:
+
             - Session by the same name is already registered.
+
         - INVALID_ARGUMENT:
+
             - Session names list has an empty string.
         """
 
@@ -280,9 +343,13 @@ class SessionManagementServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsResponse, collections.abc.Awaitable[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsResponse]]:
         """Reserves and gets all sessions currently registered with this service.
+
         - INVALID_ARGUMENT:
+
             - Timeout specified is less than -1.
+
         - UNAVAILABLE:
+
             - Session(s) were already reserved and didn't become available before the specified timeout expired.
         """
 
@@ -293,10 +360,14 @@ class SessionManagementServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse, collections.abc.Awaitable[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse]]:
         """Registers the multiplexer sessions with this service. Indicates that the sessions are open and will need to be closed later.
-        Status Codes for errors:
+        Status codes for errors:
+
         - ALREADY_EXISTS:
+
             - Session by the same name is already registered.
+
         - INVALID_ARGUMENT:
+
             - Session names list has an empty string.
         """
 
@@ -315,10 +386,14 @@ class SessionManagementServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse, collections.abc.Awaitable[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse]]:
         """Gets all the connected multiplexer session(s) for the given pin map context and returns information needed to create or access the session.
-        Status Codes for errors:
+        Status codes for errors:
+
         - INVALID_ARGUMENT:
+
             - Pin Map Context references a site number that is not defined in the pin map.
+
         - NOT_FOUND:
+
             - Pin Map Context has a pin map ID that does not match any pin maps registered with the Pin Map Service.
         """
 
