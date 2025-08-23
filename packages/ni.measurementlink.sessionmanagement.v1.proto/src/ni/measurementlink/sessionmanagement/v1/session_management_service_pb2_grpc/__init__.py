@@ -74,14 +74,21 @@ class SessionManagementServiceServicer(object):
     def ReserveSessions(self, request, context):
         """Reserve session(s) for the given I/O resources (pins, relays, channels), sites, and instrument type ID and returns the information needed to create or access the session.
         Also reserves the session so other processes cannot access it with a ReserveSessions() call.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - INVALID_ARGUMENT:
+
         - Pin Map Context references a site number that is not defined in the pin map
         - Pin or relay name does not match any pin, pin group, relay, or relay group names in the pin map
         - Timeout specified is less than -1.
+
         - NOT_FOUND:
+
         - Pin Map Context has a pin map ID that does not match any pin maps registered with the Pin Map Service.
+
         - UNAVAILABLE:
+
         - Session(s) were already reserved and didn't become available before the specified timeout expired.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -90,7 +97,9 @@ class SessionManagementServiceServicer(object):
 
     def UnreserveSessions(self, request, context):
         """Unreserves sessions so they can be accessed by other clients.
+
         - RESOURCE_EXHAUSTED:
+
         - Error occurred while unreserving sessions.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -99,10 +108,14 @@ class SessionManagementServiceServicer(object):
 
     def RegisterSessions(self, request, context):
         """Registers the sessions with this service. Indicates that the sessions are open and will need to be closed later.
-        Status Codes for errors:
+        Status codes for errors:
+
         - ALREADY_EXISTS:
+
         - Session by the same name is already registered.
+
         - INVALID_ARGUMENT:
+
         - Session names list has an empty string.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -118,9 +131,13 @@ class SessionManagementServiceServicer(object):
 
     def ReserveAllRegisteredSessions(self, request, context):
         """Reserves and gets all sessions currently registered with this service.
+
         - INVALID_ARGUMENT:
+
         - Timeout specified is less than -1.
+
         - UNAVAILABLE:
+
         - Session(s) were already reserved and didn't become available before the specified timeout expired.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -129,10 +146,15 @@ class SessionManagementServiceServicer(object):
 
     def RegisterMultiplexerSessions(self, request, context):
         """Registers the multiplexer sessions with this service. Indicates that the sessions are open and will need to be closed later.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - ALREADY_EXISTS:
+
         - Session by the same name is already registered.
+
         - INVALID_ARGUMENT:
+
         - Session names list has an empty string.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -148,10 +170,15 @@ class SessionManagementServiceServicer(object):
 
     def GetMultiplexerSessions(self, request, context):
         """Gets all the connected multiplexer session(s) for the given pin map context and returns information needed to create or access the session.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - INVALID_ARGUMENT:
+
         - Pin Map Context references a site number that is not defined in the pin map.
+
         - NOT_FOUND:
+
         - Pin Map Context has a pin map ID that does not match any pin maps registered with the Pin Map Service.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)

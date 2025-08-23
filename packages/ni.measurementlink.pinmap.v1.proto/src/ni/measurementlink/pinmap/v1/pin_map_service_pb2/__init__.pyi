@@ -96,13 +96,16 @@ class QueryPinsRequest(google.protobuf.message.Message):
     """Required. The resource id of the registered pin map resource."""
     instrument_type_id: builtins.str
     """Optional. Filter pins by instrument type.
+
     Pin maps have built in instrument definitions using the following NI driver based instrument type ids:
-         "niDCPower"
-         "niDigitalPattern"
-         "niScope"
-         "niDMM"
-         "niDAQmx"
-         "niFGen"
+
+    - "niDCPower"
+    - "niDigitalPattern"
+    - "niScope"
+    - "niDMM"
+    - "niDAQmx"
+    - "niFGen"
+
     For custom instruments the user defined instrument type id is defined in the pin map file.
     """
     def __init__(

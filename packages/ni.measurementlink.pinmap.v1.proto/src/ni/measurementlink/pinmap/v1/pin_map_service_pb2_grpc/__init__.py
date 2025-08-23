@@ -53,7 +53,9 @@ class PinMapServiceServicer(object):
 
     def CreatePinMapFromXml(self, request, context):
         """Registers pin map with the PinMapService and returns a pin map resource.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - INVALID_ARGUMENT: Pin map id is empty or has whitespace, or pin map xml string is not valid
         - ALREADY_EXISTS: Pin map resource with the specified pin map id already exists
         """
@@ -64,7 +66,9 @@ class PinMapServiceServicer(object):
     def UpdatePinMapFromXml(self, request, context):
         """Updates registered pin map contents and returns it.
         Creates and registers a pin map if a pin map resource for the specified pin map id is not found.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - INVALID_ARGUMENT: Pin map xml string is not valid
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -73,7 +77,9 @@ class PinMapServiceServicer(object):
 
     def GetPinMap(self, request, context):
         """Get registered pin map resource.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - NOT_FOUND: Pin map resource for the specified pin map id is not found
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -82,7 +88,9 @@ class PinMapServiceServicer(object):
 
     def QueryPins(self, request, context):
         """Returns list of pins from the registered pin map resource.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - NOT_FOUND: Pin map resource for the specified pin map id is not found
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -91,7 +99,9 @@ class PinMapServiceServicer(object):
 
     def QueryRelays(self, request, context):
         """Returns list of relays from the registered pin map resource.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - NOT_FOUND: Pin map resource for the specified pin map id is not found
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -100,11 +110,15 @@ class PinMapServiceServicer(object):
 
     def QueryResourceAccessInformation(self, request, context):
         """Get instrument resource names, channels, and instrument type for the specified sites, pins or pin groups, relays or relay groups, instrument type in the registered pin map resource.
-        Status Codes for errors:
+        Status codes for errors:
+
         - NOT_FOUND:
+
         - Pin map resource for the specified pin map id is not found.
         - Specified site number is not in the valid range for the registered pin map.
+
         - INVALID_ARGUMENT:
+
         - Specified pin or relay is not present in the registered pin map resource.
         - Empty string specified for a pin or relay name.
         """

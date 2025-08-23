@@ -10,6 +10,7 @@ import toml
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "autoapi.extension",
     "m2r2",
     "sphinx.ext.autodoc",
     "sphinx.ext.intersphinx",
@@ -44,11 +45,10 @@ htmlhelp_basename = f"{project}doc"
 # tell autoapi to doc the public options
 autoapi_options = list(autoapi.extension._DEFAULT_OPTIONS)
 autoapi_options.remove("private-members")  # note: remove this to include "_" members in docs
-# Restore this to start building docs for source again
-# AB#3233030
-# autoapi_dirs = [root_path / "src" / "ni"]
+autoapi_dirs = [
+    root_path / "src" / "ni" / "measurementlink" / "pin_map_context_pb2",
+]
 autoapi_python_use_implicit_namespaces = True
-autoapi_template_dir = "templates/autoapi"
 autoapi_python_class_content = "both"
 autoapi_type = "python"
 autodoc_typehints = "description"

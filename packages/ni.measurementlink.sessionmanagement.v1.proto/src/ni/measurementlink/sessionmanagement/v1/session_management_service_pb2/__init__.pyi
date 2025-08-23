@@ -36,15 +36,19 @@ class SessionInformation(google.protobuf.message.Message):
     """
     instrument_type_id: builtins.str
     """Instrument type ID to identify which type of instrument the session represents.
+
     The session management service has built in instrument definitions using the following NI driver based instrument type ids:
-         "niDCPower"
-         "niDigitalPattern"
-         "niScope"
-         "niDMM"
-         "niDAQmx"
-         "niFGen"
-         "niRelayDriver"
+
+    - "niDCPower"
+    - "niDigitalPattern"
+    - "niScope"
+    - "niDMM"
+    - "niDAQmx"
+    - "niFGen"
+    - "niRelayDriver"
+
     For custom instruments the user defined instrument type id is defined in the pin map file or custom session management plugin service.
+
     This field is readonly.
     """
     session_exists: builtins.bool
@@ -168,14 +172,17 @@ class ReserveSessionsRequest(google.protobuf.message.Message):
     TIMEOUT_IN_MILLISECONDS_FIELD_NUMBER: builtins.int
     instrument_type_id: builtins.str
     """Optional. Instrument type ID for the measurement. If unspecified, reserve sessions for all instrument types connected in the registered pin map resource.
+
     The session management service has built in instrument definitions using the following NI driver based instrument type ids:
-         "niDCPower"
-         "niDigitalPattern"
-         "niScope"
-         "niDMM"
-         "niDAQmx"
-         "niFGen"
-         "niRelayDriver"
+
+    - "niDCPower"
+    - "niDigitalPattern"
+    - "niScope"
+    - "niDMM"
+    - "niDAQmx"
+    - "niFGen"
+    - "niRelayDriver"
+
     For custom instruments the user defined instrument type id is defined in the pin map file or custom session management plugin service.
     """
     timeout_in_milliseconds: builtins.int
@@ -347,14 +354,17 @@ class ReserveAllRegisteredSessionsRequest(google.protobuf.message.Message):
     """
     instrument_type_id: builtins.str
     """Optional. Instrument type ID of the registered sessions to reserve. If unspecified, reserve sessions for all instrument types connected in the registered pin map resource.
+
     The session management service has built in instrument definitions using the following NI driver based instrument type ids:
-         "niDCPower"
-         "niDigitalPattern"
-         "niScope"
-         "niDMM"
-         "niDAQmx"
-         "niFGen"
-         "niRelayDriver"
+
+    - "niDCPower"
+    - "niDigitalPattern"
+    - "niScope"
+    - "niDMM"
+    - "niDAQmx"
+    - "niFGen"
+    - "niRelayDriver"
+
     For custom instruments the user defined instrument type id is defined in the pin map file or custom session management plugin service.
     """
     def __init__(

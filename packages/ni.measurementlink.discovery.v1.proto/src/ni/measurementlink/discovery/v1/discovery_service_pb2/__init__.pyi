@@ -61,16 +61,23 @@ class ServiceDescriptor(google.protobuf.message.Message):
     @property
     def annotations(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
         """Optional. Represents a set of annotations on the service.
+
         Well-known annotations:
+
         - Description
+
           - Key: "ni/service.description"
           - Expected format: string
           - Example: "Measure inrush current with a shorted load and validate results against configured limits."
+
         - Collection
+
           - Key: "ni/service.collection"
           - Expected format: "." delimited namespace/hierarchy case-insensitive string
           - Example: "CurrentTests.Inrush"
+
         - Tags
+
           - Key: "ni/service.tags"
           - Expected format: serialized JSON string of an array of strings
           - Example: "[\\"powerup\\", \\"current\\"]"

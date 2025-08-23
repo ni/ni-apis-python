@@ -11,9 +11,10 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from ni.protobuf.types import attribute_value_pb2 as ni_dot_protobuf_dot_types_dot_attribute__value__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1eni/protobuf/types/xydata.proto\x12\x11ni.protobuf.types\".\n\x0c\x44oubleXYData\x12\x0e\n\x06x_data\x18\x01 \x03(\x01\x12\x0e\n\x06y_data\x18\x02 \x03(\x01\x42\x83\x01\n\x15\x63om.ni.protobuf.typesB\x0bXYDataProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1eni/protobuf/types/xydata.proto\x12\x11ni.protobuf.types\x1a\'ni/protobuf/types/attribute_value.proto\"\xc9\x01\n\x0c\x44oubleXYData\x12\x0e\n\x06x_data\x18\x01 \x03(\x01\x12\x0e\n\x06y_data\x18\x02 \x03(\x01\x12\x43\n\nattributes\x18\x03 \x03(\x0b\x32/.ni.protobuf.types.DoubleXYData.AttributesEntry\x1aT\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x30\n\x05value\x18\x02 \x01(\x0b\x32!.ni.protobuf.types.AttributeValue:\x02\x38\x01\x42\x83\x01\n\x15\x63om.ni.protobuf.typesB\x0bXYDataProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ni.protobuf.types.xydata_pb2', globals())
@@ -21,6 +22,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\025com.ni.protobuf.typesB\013XYDataProtoP\001Z\005types\242\002\004NIPT\252\002\"NationalInstruments.Protobuf.Types\312\002\021NI\\PROTOBUF\\TYPES\352\002\023NI::Protobuf::Types'
-  _DOUBLEXYDATA._serialized_start=53
-  _DOUBLEXYDATA._serialized_end=99
+  _DOUBLEXYDATA_ATTRIBUTESENTRY._options = None
+  _DOUBLEXYDATA_ATTRIBUTESENTRY._serialized_options = b'8\001'
+  _DOUBLEXYDATA._serialized_start=95
+  _DOUBLEXYDATA._serialized_end=296
+  _DOUBLEXYDATA_ATTRIBUTESENTRY._serialized_start=212
+  _DOUBLEXYDATA_ATTRIBUTESENTRY._serialized_end=296
 # @@protoc_insertion_point(module_scope)
