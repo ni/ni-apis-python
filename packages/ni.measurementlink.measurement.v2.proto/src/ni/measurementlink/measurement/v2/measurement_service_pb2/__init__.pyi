@@ -249,6 +249,7 @@ class ConfigurationParameter(google.protobuf.message.Message):
     @property
     def annotations(self) -> google.protobuf.internal.containers.ScalarMap[builtins.str, builtins.str]:
         """Optional. Represents a set of annotations on the type.
+
         Well-known annotations:
 
         - Type specialization. The keys to other annotations will be read based on the value of `ni/type_specialization` annotation.
