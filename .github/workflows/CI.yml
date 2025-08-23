@@ -34,6 +34,11 @@ jobs:
             proto-subpath: ni/measurementlink/measurement/v2
             proto-include-path: ../../third_party/ni-apis
             output-format: subpackage
+          - package-name: ni.measurementlink.pinmap.v1.proto
+            proto-basepath: ../../third_party/ni-apis
+            proto-subpath: ni/measurementlink/pinmap/v1
+            proto-include-path: ../../third_party/ni-apis
+            output-format: subpackage
           - package-name: ni.measurementlink.proto
             proto-basepath: ../../third_party/ni-apis
             proto-subpath: ni/measurementlink

@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "ni.grpcdevice.v1.proto"
-version = "0.1.0-dev3"
+name = "ni.measurementlink.pinmap.v1.proto"
+version = "0.1.0-dev1"
 license = "MIT"
-description = "Protobuf generated code for the nidevice_grpc gRPC API"
+description = "Protobuf data types for NI pinmap gRPC APIs"
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",
@@ -10,7 +10,7 @@ maintainers = [
 ]
 readme = "README.md"
 repository = "https://github.com/ni/ni-apis-python"
-keywords = ["ni-apis", "grpc-device", "ni_grpc_device_server"]
+keywords = ["ni-apis", "pinmap"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -27,14 +27,10 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython",
 ]
-packages = [
-  {include = "session_pb2", from = "src"},
-  {include = "session_pb2_grpc", from = "src"},
-]
+packages = [{include = "ni", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-grpcio = {version=">=1.49.0,<2.0"}
 protobuf = {version=">=4.21"}
 
 [tool.poetry.group.dev.dependencies]
@@ -75,7 +71,7 @@ skips = [
 ]
 
 [tool.ni-python-styleguide]
-extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi,src/**/__init__.py"
+extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi,src/ni/measurementlink/pinmap/v1/**/__init__.py"
 
 [tool.black]
 extend-exclude = 'docs/|_pb2(_grpc)?\.(py|pyi)$'
@@ -91,7 +87,7 @@ exclude = ["docs"]
 
 [tool.pyright]
 include = ["src/", "tests/"]
-exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi","src/**/__init__.py*"]
+exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi", "src/ni/measurementlink/pinmap/v1/**/__init__.py*"]
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
