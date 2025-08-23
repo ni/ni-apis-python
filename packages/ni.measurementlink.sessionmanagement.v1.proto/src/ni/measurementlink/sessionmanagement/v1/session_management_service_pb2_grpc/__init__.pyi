@@ -98,6 +98,7 @@ class SessionManagementServiceStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse,
     ]
     """Registers the multiplexer sessions with this service. Indicates that the sessions are open and will need to be closed later.
+
     Status codes for errors:
 
     - ALREADY_EXISTS:
@@ -120,6 +121,7 @@ class SessionManagementServiceStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse,
     ]
     """Gets all the connected multiplexer session(s) for the given pin map context and returns information needed to create or access the session.
+
     Status codes for errors:
 
     - INVALID_ARGUMENT:
@@ -223,6 +225,7 @@ class SessionManagementServiceAsyncStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse,
     ]
     """Registers the multiplexer sessions with this service. Indicates that the sessions are open and will need to be closed later.
+
     Status codes for errors:
 
     - ALREADY_EXISTS:
@@ -245,6 +248,7 @@ class SessionManagementServiceAsyncStub:
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse,
     ]
     """Gets all the connected multiplexer session(s) for the given pin map context and returns information needed to create or access the session.
+
     Status codes for errors:
 
     - INVALID_ARGUMENT:
@@ -360,6 +364,7 @@ class SessionManagementServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse, collections.abc.Awaitable[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse]]:
         """Registers the multiplexer sessions with this service. Indicates that the sessions are open and will need to be closed later.
+
         Status codes for errors:
 
         - ALREADY_EXISTS:
@@ -386,6 +391,7 @@ class SessionManagementServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse, collections.abc.Awaitable[ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse]]:
         """Gets all the connected multiplexer session(s) for the given pin map context and returns information needed to create or access the session.
+
         Status codes for errors:
 
         - INVALID_ARGUMENT:
