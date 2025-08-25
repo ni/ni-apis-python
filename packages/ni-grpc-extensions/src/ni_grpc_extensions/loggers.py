@@ -392,9 +392,11 @@ class _LoggingResponseIterator(Generic[_T]):
 
 
 if TYPE_CHECKING:
-    # These types only exist in grpc-stubs.
-    _CallFuture = grpc._CallFuture  # pyright: ignore
-    _CallIterator = grpc._CallIterator  # pyright: ignore
+    # These types are marked as @type_check_only and can be used only in type annotations,
+    # so we redefine them as empty classes at run time. Pyright still warns due to the behavior
+    # described in https://github.com/microsoft/pyright/issues/9934
+    _CallFuture = grpc._CallFuture  # pyright: ignore[reportGeneralTypeIssues]
+    _CallIterator = grpc._CallIterator  # pyright: ignore[reportGeneralTypeIssues]
 else:
 
     class _CallFuture(Generic[_T]):
@@ -406,7 +408,7 @@ else:
 
 @grpc.Call.register
 @grpc.Future.register
-class _LoggingResponseCallFuture(_CallFuture[_T]):  # pyright: ignore
+class _LoggingResponseCallFuture(_CallFuture[_T]):  # pyright: ignore[reportGeneralTypeIssues]
     __slots__ = ["_call_logger", "_inner_call_future"]
 
     def __init__(self, call_logger: _CallLogger, inner_call_future: grpc._CallFuture[_T]) -> None:

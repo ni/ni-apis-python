@@ -50,6 +50,7 @@ pytest = ">=7.2"
 pytest-cov = ">=4.0"
 pytest-doctestplus = ">=1.4"
 pytest-mock = ">=3.0"
+ni-measurementlink-discovery-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
 
 [tool.poetry.group.docs]
 optional = true

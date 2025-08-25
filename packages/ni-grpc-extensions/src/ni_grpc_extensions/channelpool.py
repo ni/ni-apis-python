@@ -22,10 +22,10 @@ if TYPE_CHECKING:
 
 
 class GrpcChannelPool:
-    """Class that manages gRPC channel lifetimes."""
+    """Class that manages :any:`grpc.Channel` lifetimes."""
 
     def __init__(self) -> None:
-        """Initialize the GrpcChannelPool object."""
+        """Initialize the :class:`GrpcChannelPool` object."""
         self._lock: Lock = Lock()
         self._channel_cache: dict[str, grpc.Channel] = {}
 
@@ -44,7 +44,7 @@ class GrpcChannelPool:
         return False
 
     def get_channel(self, target: str) -> grpc.Channel:
-        """Return a gRPC channel.
+        """Return a :any:`grpc.Channel`.
 
         Args:
             target (str): The server address
