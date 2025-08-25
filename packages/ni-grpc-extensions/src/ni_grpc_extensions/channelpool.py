@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING, Literal
 from urllib.parse import urlparse
 
 import grpc
+
 from ni_grpc_extensions.loggers import ClientLogger
 
 if TYPE_CHECKING:

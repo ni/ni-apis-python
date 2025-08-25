@@ -13,6 +13,7 @@ from types import TracebackType
 from typing import TYPE_CHECKING, Any, Callable, Generic, TypeVar
 
 import grpc
+
 from ni_grpc_extensions import _tracelogging
 
 if TYPE_CHECKING:

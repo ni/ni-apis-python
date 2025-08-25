@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         include:
-          - package-name: ni.grpc.extensions
+          - package-name: ni-grpc-extensions
             proto-subpath: ''
             output-format: ''
           - package-name: ni.grpcdevice.v1.proto
