@@ -7,14 +7,14 @@
 
 # About
 
-`ni.grpc.extensions` is a Python package that provides channel pool handling for gRPC communication.
+`ni-grpc-extensions` is a Python package that provides channel pool handling for gRPC communication.
 
 NI created and supports this package.
 
 ## Operating System Support
 
-``ni.grpc.extensions` supports Windows and Linux operating systems.
+``ni-grpc-extensions` supports Windows and Linux operating systems.
 
 ## Python Version Support
 
-``ni.grpc.extensions` supports CPython 3.9+.
+``ni-grpc-extensions` supports CPython 3.9+.

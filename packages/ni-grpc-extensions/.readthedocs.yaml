@@ -10,7 +10,7 @@ build:
     post_create_environment:
       - pip install poetry==1.8.2
     post_install:
-      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry -C packages/ni.grpc.extensions install --only main,docs
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry -C packages/ni-grpc-extensions install --only main,docs
 
 sphinx:
-  configuration: packages/ni.grpc.extensions/docs/conf.py
+  configuration: packages/ni-grpc-extensions/docs/conf.py
