@@ -1,6 +1,7 @@
 import logging
 
 import grpc
+import pytest
 from ni.measurementlink.discovery.v1.discovery_service_pb2 import ResolveServiceRequest
 from ni.measurementlink.discovery.v1.discovery_service_pb2_grpc import DiscoveryServiceStub
 from pytest import LogCaptureFixture
@@ -16,10 +17,8 @@ def test___client_logger___logs_grpc_call(caplog: LogCaptureFixture) -> None:
     )
     stub = DiscoveryServiceStub(intercept_channel)
     with caplog.at_level(logging.DEBUG):
-        try:
+        with pytest.raises(grpc.RpcError):
             stub.ResolveService(ResolveServiceRequest())
-        except Exception:
-            pass  # Expected: no server running
 
     method_name = "/ni.measurementlink.discovery.v1.DiscoveryService/ResolveService"
     debug_messages = [r.message for r in caplog.records if r.levelno == logging.DEBUG]

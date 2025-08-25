@@ -792,17 +792,19 @@ files = [
 
 [[package]]
 name = "ni-measurementlink-discovery-v1-proto"
-version = "0.1.0.dev0"
+version = "0.1.0-dev1"
 description = "Protobuf data types for NI discovery gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
-files = [
-    {file = "ni_measurementlink_discovery_v1_proto-0.1.0.dev0-py3-none-any.whl", hash = "sha256:6e267ae51614703b9835d693264bf888b653e8e40b9a7f7455e99434e5e3d8e7"},
-    {file = "ni_measurementlink_discovery_v1_proto-0.1.0.dev0.tar.gz", hash = "sha256:190b62e4d0f59ff8ab4f06b34075d215ac85d4c6fe8b4fb8c4109af5ba07dfb8"},
-]
+python-versions = "^3.9"
+files = []
+develop = false
 
 [package.dependencies]
 protobuf = ">=4.21"
+
+[package.source]
+type = "directory"
+url = "../ni.measurementlink.discovery.v1.proto"
 
 [[package]]
 name = "ni-python-styleguide"
@@ -1600,4 +1602,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "5130aa4e1e48331b596c758478eccc1303289148665b0498222e53a33782f30d"
+content-hash = "76b552807a1d58af37d9bca12aa75a9da44e0ae24e6ca7262fd564eb756b886a"

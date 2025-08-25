@@ -36,6 +36,7 @@ traceloggingdynamic = { version = ">=1.0", platform = "win32" }
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
+# grpc-stubs = "^1.53"
 # Install traceloggingdynamic on Linux for type checking.
 traceloggingdynamic = { version = ">=1.0", platform = "linux" }
 
@@ -50,7 +51,7 @@ pytest = ">=7.2"
 pytest-cov = ">=4.0"
 pytest-doctestplus = ">=1.4"
 pytest-mock = ">=3.0"
-ni-measurementlink-discovery-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
+ni-measurementlink-discovery-v1-proto = { path = "../ni.measurementlink.discovery.v1.proto" }
 
 [tool.poetry.group.docs]
 optional = true
