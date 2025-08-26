@@ -1,0 +1,99 @@
+[tool.poetry]
+name = "ni-grpc-extensions"
+version = "0.1.0-dev0"
+license = "MIT"
+description = "gRPC Extensions"
+authors = ["NI <opensource@ni.com>"]
+maintainers = [
+  "Brad Keryan <brad.keryan@emerson.com>",
+  "Joe Friedrichsen <joe.friedrichsen@emerson.com>",
+]
+readme = "README.md"
+repository = "https://github.com/ni/ni-apis-python"
+keywords = ["grpc", "extensions", "channel_pool"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Manufacturing",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: POSIX",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+]
+packages = [{include = "ni_grpc_extensions", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+grpcio = {version=">=1.49.0,<2.0"}
+traceloggingdynamic = { version = ">=1.0", platform = "win32" }
+
+[tool.poetry.group.dev.dependencies]
+types-grpcio = ">=1.0"
+# Install traceloggingdynamic on Linux for type checking.
+traceloggingdynamic = { version = ">=1.0", platform = "linux" }
+
+[tool.poetry.group.lint.dependencies]
+bandit = { version = ">=1.7", extras = ["toml"] }
+ni-python-styleguide = ">=0.4.1"
+mypy = ">=1.0"
+pyright = { version = ">=1.1.400", extras = ["nodejs"] }
+
+[tool.poetry.group.test.dependencies]
+pytest = ">=7.2"
+pytest-cov = ">=4.0"
+pytest-doctestplus = ">=1.4"
+pytest-mock = ">=3.0"
+ni-measurementlink-discovery-v1-proto = { path = "../ni.measurementlink.discovery.v1.proto" }
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+# The latest Sphinx requires a recent Python version.
+Sphinx = { version = ">=8.2", python = "^3.11" }
+sphinx-rtd-theme = ">=1.0.0"
+sphinx-autoapi = ">=1.8.4"
+m2r2 = ">=0.3.2"
+toml = ">=0.10.2"
+
+[build-system]
+requires = ["poetry-core>=1.8"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.bandit]
+skips = [
+  "B101", # assert_used
+]
+
+[tool.ni-python-styleguide]
+extend_exclude = "docs"
+
+[tool.black]
+extend-exclude = 'docs/'
+line-length = 100
+
+[tool.mypy]
+mypy_path = "src"
+files = "."
+namespace_packages = true
+strict = true
+explicit_package_bases = true
+exclude = ["docs"]
+
+[tool.pyright]
+include = ["src/", "tests/"]
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules --doctest-plus --strict-markers"
+testpaths = ["tests"]
+
+[tool.isort]
+known_first_party = ["ni_grpc_extensions"]

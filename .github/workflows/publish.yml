@@ -30,6 +30,7 @@ on:
             - ni.measurementlink.sessionmanagement.v1.proto
             - ni.panels.v1.proto
             - ni.protobuf.types
+            - ni-grpc-extensions
 
 env:
   environment: ${{ github.event_name == 'release' && 'pypi' || inputs.environment }}
