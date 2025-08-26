@@ -46,8 +46,7 @@ htmlhelp_basename = f"{project}doc"
 autoapi_options = list(autoapi.extension._DEFAULT_OPTIONS)
 autoapi_options.remove("private-members")  # note: remove this to include "_" members in docs
 autoapi_dirs = [
-    root_path / "src" / "ni" / "measurementlink" / "sessionmanagement" / "v1" / "session_management_service_pb2",
-    root_path / "src" / "ni" / "measurementlink" / "sessionmanagement" / "v1" / "session_management_service_pb2_grpc",
+    root_path / "src" / "ni",
 ]
 autoapi_python_use_implicit_namespaces = True
 autoapi_python_class_content = "both"
@@ -77,6 +76,8 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "__init__.py"]
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
+    "protobuf": ("https://googleapis.dev/python/protobuf/latest/", None),
+    "grpc": ("https://grpc.github.io/grpc/python/", None),
 }
 
 
