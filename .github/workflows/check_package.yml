@@ -8,10 +8,6 @@ on:
         default: ''
         required: true
         type: string
-      package-information-path:
-        description: 'Path to the JSON file containing package information.'
-        default: './packages/packages.json'
-        type: string
 
 jobs:
   get_package_info:
@@ -19,9 +15,8 @@ jobs:
     uses: ./.github/workflows/get_package_info.yml
     with:
       package-name: ${{ inputs.package-name }}
-      package-information-path: ${{ inputs.package-information-path }}
   check_codegen:
-    if: ${{ inputs.proto-subpath != '' }}
+    if: ${{ needs.get_package_info.outputs.proto-subpath != '' }}
     name: Check codegen for ${{ inputs.package-name }}
     needs: get_package_info
     uses: ./.github/workflows/check_codegen.yml
