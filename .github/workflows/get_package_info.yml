@@ -8,10 +8,6 @@ on:
         default: ''
         required: true
         type: string
-      package-information-path:
-        description: 'Path to the JSON file containing package information.'
-        default: './packages.json'
-        type: string
     outputs:
       proto-basepath:
         description: 'Base path for proto files.'
@@ -41,7 +37,7 @@ jobs:
       - name: Get package info from JSON
         id: parse_json
         run: |
-          info=$(jq -c --arg name "${{ inputs.package-name }}" '.[$name]' "${{ inputs.package-information-path }}")
+          info=$(jq -c --arg name "${{ inputs.package-name }}" '.[$name]' "./packages.json")
           if [ "$info" = "null" ]; then
             echo "Error: Package '${{ inputs.package-name }}' not found in JSON file." >&2
             exit 1
