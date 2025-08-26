@@ -30,8 +30,11 @@ class DiscoveryServiceStub:
         ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceResponse,
     ]
     """Registers a service instance with the discovery service.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - INVALID_ARGUMENT:
+
       - ServiceDescriptor.display_name is empty
       - ServiceDescriptor.provided_interfaces is empty
       - ServiceDescriptor.service_class is empty
@@ -64,7 +67,9 @@ class DiscoveryServiceStub:
     which includes information describing the service. Services that register a .serviceconfig file must
     call RegisterService when their service is started or this call will never complete successfully when
     the discovery service attempts to start it.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - INVALID_ARGUMENT: provided_interfaces is empty
     - NOT_FOUND: No service matching the resolve request was found
     - FAILED_PRECONDITION: More than one service matching the resolve request was found
@@ -99,8 +104,11 @@ class DiscoveryServiceAsyncStub:
         ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceResponse,
     ]
     """Registers a service instance with the discovery service.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - INVALID_ARGUMENT:
+
       - ServiceDescriptor.display_name is empty
       - ServiceDescriptor.provided_interfaces is empty
       - ServiceDescriptor.service_class is empty
@@ -133,7 +141,9 @@ class DiscoveryServiceAsyncStub:
     which includes information describing the service. Services that register a .serviceconfig file must
     call RegisterService when their service is started or this call will never complete successfully when
     the discovery service attempts to start it.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - INVALID_ARGUMENT: provided_interfaces is empty
     - NOT_FOUND: No service matching the resolve request was found
     - FAILED_PRECONDITION: More than one service matching the resolve request was found
@@ -170,8 +180,11 @@ class DiscoveryServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceResponse, collections.abc.Awaitable[ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceResponse]]:
         """Registers a service instance with the discovery service.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - INVALID_ARGUMENT:
+
           - ServiceDescriptor.display_name is empty
           - ServiceDescriptor.provided_interfaces is empty
           - ServiceDescriptor.service_class is empty
@@ -210,7 +223,9 @@ class DiscoveryServiceServicer(metaclass=abc.ABCMeta):
         which includes information describing the service. Services that register a .serviceconfig file must
         call RegisterService when their service is started or this call will never complete successfully when
         the discovery service attempts to start it.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - INVALID_ARGUMENT: provided_interfaces is empty
         - NOT_FOUND: No service matching the resolve request was found
         - FAILED_PRECONDITION: More than one service matching the resolve request was found

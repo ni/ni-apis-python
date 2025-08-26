@@ -55,8 +55,11 @@ class DiscoveryServiceServicer(object):
 
     def RegisterService(self, request, context):
         """Registers a service instance with the discovery service.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - INVALID_ARGUMENT:
+
         - ServiceDescriptor.display_name is empty
         - ServiceDescriptor.provided_interfaces is empty
         - ServiceDescriptor.service_class is empty
@@ -90,7 +93,9 @@ class DiscoveryServiceServicer(object):
         which includes information describing the service. Services that register a .serviceconfig file must
         call RegisterService when their service is started or this call will never complete successfully when
         the discovery service attempts to start it.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - INVALID_ARGUMENT: provided_interfaces is empty
         - NOT_FOUND: No service matching the resolve request was found
         - FAILED_PRECONDITION: More than one service matching the resolve request was found
