@@ -9,21 +9,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  get_packages:
-    runs-on: ubuntu-latest
-    outputs:
-      package-names: ${{ steps.parse_json.outputs.package-names }}
-    steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - id: parse_json
-        run: |
-          echo "package-names=$(jq -c 'keys' ./packages.json)" >> $GITHUB_OUTPUT
+  get_package_names:
+    name: Get package names
+    uses: ./.github/workflows/get_package_names.yml
   check_package:
-    needs: get_packages
+    name: Check ${{ matrix.package-name }}
+    needs: get_package_names
     strategy:
       matrix:
-        package-name: ${{ fromJson(needs.get_packages.outputs.package-names) }}
-    name: Check ${{ matrix.package-name }}
+        package-name: ${{ fromJson(needs.get_package_names.outputs.package-names) }}
     uses: ./.github/workflows/check_package.yml
     with:
       package-name: ${{ matrix.package-name }}

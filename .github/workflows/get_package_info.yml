@@ -39,7 +39,7 @@ jobs:
         run: |
           info=$(jq -c --arg name "${{ inputs.package-name }}" '.[$name]' "./packages.json")
           if [ "$info" = "null" ]; then
-            echo "Error: Package '${{ inputs.package-name }}' not found in JSON file." >&2
+            echo "Error: Package '${{ inputs.package-name }}' not found in packages.json." >&2
             exit 1
           fi
           echo "Package info: $info"

@@ -1,0 +1,27 @@
+name: Get package names
+
+on:
+  workflow_call:
+    outputs:
+      package-names:
+        description: "List of package names from packages.json"
+        value: ${{ jobs.get_package_names.outputs.package-names }}
+
+jobs:
+  get_package_names:
+    name: Get package names
+    runs-on: ubuntu-latest
+    outputs:
+      package-names: ${{ steps.parse_json.outputs.package-names }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Get package info from JSON
+        id: parse_json
+        run: |
+          info=$(jq -c 'keys' ./packages.json)
+          if [ -z "$info" ] || [ "$info" = "[]" ]; then
+            echo "Error: No package names found in packages.json" >&2
+            exit 1
+          fi
+          echo "Package names: $info"
+          echo "package-names=$info" >> $GITHUB_OUTPUT
