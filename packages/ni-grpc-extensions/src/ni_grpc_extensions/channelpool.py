@@ -44,7 +44,7 @@ class GrpcChannelPool:
         return False
 
     def get_channel(self, target: str) -> grpc.Channel:
-        """Return a :any:`grpc.Channel`.
+        """Return a gRPC channel.
 
         Args:
             target (str): The server address

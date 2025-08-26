@@ -26,10 +26,10 @@ _logger = logging.getLogger(__name__)
 
 
 class ClientLogger(
-    grpc.UnaryUnaryClientInterceptor,  # type: ignore
-    grpc.UnaryStreamClientInterceptor,  # type: ignore
-    grpc.StreamUnaryClientInterceptor,  # type: ignore
-    grpc.StreamStreamClientInterceptor,  # type: ignore
+    grpc.UnaryUnaryClientInterceptor,  # type: ignore[type-arg]
+    grpc.UnaryStreamClientInterceptor,  # type: ignore[type-arg]
+    grpc.StreamUnaryClientInterceptor,  # type: ignore[type-arg]
+    grpc.StreamStreamClientInterceptor,  # type: ignore[type-arg]
 ):
     """Intercepts gRPC client calls and logs them for debugging."""
 
@@ -123,7 +123,7 @@ class ClientLogger(
             return continuation(client_call_details, request_iterator)
 
 
-class ServerLogger(grpc.ServerInterceptor):  # type: ignore
+class ServerLogger(grpc.ServerInterceptor):  # type: ignore[type-arg]
     """Intercepts gRPC server calls and logs them for debugging."""
 
     @classmethod
