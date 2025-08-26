@@ -72,6 +72,6 @@ jobs:
             --output-format ${{ inputs.output-format }}
       - name: Check for out-of-date gRPC stubs
         run: |
-          git add ${{ inputs.output-basepath }}
-          git diff --exit-code --staged ${{ inputs.output-basepath }}
-          git diff --exit-code ${{ inputs.output-basepath }}
+          git add ${{ github.workspace }}/${{ inputs.output-basepath }}
+          git diff --exit-code --staged ${{ github.workspace }}/${{ inputs.output-basepath }}
+          git diff --exit-code ${{ github.workspace }}/${{ inputs.output-basepath }}
