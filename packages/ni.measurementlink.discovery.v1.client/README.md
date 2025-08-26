@@ -7,20 +7,20 @@
 
 # About
 
-`ni.measurementlink.discovery.v1.proto` is a Python package that provides data types for NI gRPC APIs in
+`ni.measurementlink.discovery.v1.client` is a Python package that provides a discovery client for the discovery service in
 the [ni.measurementlink.discovery.v1.proto package](https://github.com/ni/ni-apis/tree/main/ni/measurementlink/discovery/v1).
 
 NI created and supports this package.
 
 ## Operating System Support
 
-`ni.measurementlink.discovery.v1.proto` supports Windows and Linux operating systems.
+`ni.measurementlink.discovery.v1.client` supports Windows and Linux operating systems.
 
 ## Python Version Support
 
-`ni.measurementlink.discovery.v1.proto` supports CPython 3.9+.
+`ni.measurementlink.discovery.v1.client` supports CPython 3.9+.
 
 ## Installation
 
-You can directly install the `ni.measurementlink.discovery.v1.proto` package using `pip` or by listing it as a
+You can directly install the `ni.measurementlink.discovery.v1.client` package using `pip` or by listing it as a
 dependency in your project's `pyproject.toml` file.
