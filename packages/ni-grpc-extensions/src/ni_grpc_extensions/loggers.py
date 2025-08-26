@@ -1,5 +1,10 @@
 """gRPC logging interceptors."""
 
+# Suppress mypy errors related to interceptor base classes.
+# https://github.com/grpc/grpc/issues/40550
+# https://github.com/python/typeshed/issues/14641
+# mypy: allow-any-generics
+
 from __future__ import annotations
 
 import abc
@@ -26,10 +31,10 @@ _logger = logging.getLogger(__name__)
 
 
 class ClientLogger(
-    grpc.UnaryUnaryClientInterceptor,  # type: ignore[type-arg]
-    grpc.UnaryStreamClientInterceptor,  # type: ignore[type-arg]
-    grpc.StreamUnaryClientInterceptor,  # type: ignore[type-arg]
-    grpc.StreamStreamClientInterceptor,  # type: ignore[type-arg]
+    grpc.UnaryUnaryClientInterceptor,
+    grpc.UnaryStreamClientInterceptor,
+    grpc.StreamUnaryClientInterceptor,
+    grpc.StreamStreamClientInterceptor,
 ):
     """Intercepts gRPC client calls and logs them for debugging."""
 
@@ -123,7 +128,7 @@ class ClientLogger(
             return continuation(client_call_details, request_iterator)
 
 
-class ServerLogger(grpc.ServerInterceptor):  # type: ignore[type-arg]
+class ServerLogger(grpc.ServerInterceptor):
     """Intercepts gRPC server calls and logs them for debugging."""
 
     @classmethod
