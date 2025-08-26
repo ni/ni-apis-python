@@ -54,9 +54,6 @@ autoapi_python_class_content = "both"
 autoapi_type = "python"
 autodoc_typehints = "description"
 autoapi_file_patterns = ["*.pyi", "*.py"]
-autoapi_ignore = [
-    '**/__init__.py',
-]
 
 
 def process_docstring(app, what, name, obj, options, lines):
