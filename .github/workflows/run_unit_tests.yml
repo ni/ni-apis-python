@@ -21,12 +21,12 @@ jobs:
         with:
           submodules: true
       - name: Set up Python
-        uses: ni/python-actions/setup-python@5286c12d65d90b2ea738bd57d452dc4366497581 # v0.4.1
+        uses: ni/python-actions/setup-python@f0276f7f58868ec0d0d1a86377287c9e6fe0c6e7 # v0.5.0
         id: setup-python
         with:
           python-version: ${{ matrix.python-version }}
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@5286c12d65d90b2ea738bd57d452dc4366497581 # v0.4.1
+        uses: ni/python-actions/setup-poetry@f0276f7f58868ec0d0d1a86377287c9e6fe0c6e7 # v0.5.0
       - name: Run and upload unit tests - ni.protobuf.types
         uses: ./.github/actions/run_and_upload_unit_tests
         with:
