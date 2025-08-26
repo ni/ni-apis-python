@@ -36,7 +36,6 @@ traceloggingdynamic = { version = ">=1.0", platform = "win32" }
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
-# grpc-stubs = "^1.53"
 # Install traceloggingdynamic on Linux for type checking.
 traceloggingdynamic = { version = ">=1.0", platform = "linux" }
 
