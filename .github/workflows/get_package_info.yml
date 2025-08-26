@@ -33,9 +33,10 @@ jobs:
       output-format: ${{ steps.parse_json.outputs.output-format }}
     steps:
       - name: Check out repo
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Get package info from JSON
         id: parse_json
+        # NOTE: jq only supports standard JSON, not JSONC or JSON5
         run: |
           info=$(jq -c --arg name "${{ inputs.package-name }}" '.[$name]' "./packages.json")
           if [ "$info" = "null" ]; then
