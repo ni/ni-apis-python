@@ -11,6 +11,8 @@ Table of Contents
    :maxdepth: 4
 
    autoapi/index
+   autoapi/src/session_pb2/index
+   autoapi/src/session_pb2_grpc/index
 
 Indices and tables
 ==================
