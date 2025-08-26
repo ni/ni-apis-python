@@ -21,6 +21,7 @@ jobs:
       package-name: ${{ inputs.package-name }}
       package-information-path: ${{ inputs.package-information-path }}
   check_codegen:
+    if: ${{ inputs.proto-subpath != '' }}
     name: Check codegen for ${{ inputs.package-name }}
     needs: get_package_info
     uses: ./.github/workflows/check_codegen.yml
@@ -34,12 +35,10 @@ jobs:
   check_analyzers:
     name: Check analyzers for ${{ inputs.package-name }}
     uses: ./.github/workflows/check_analyzers.yml
-    needs: [check_codegen]
     with:
       package-name: ${{ inputs.package-name }}
   check_docs:
     name: Check docs for ${{ inputs.package-name }}
     uses: ./.github/workflows/check_docs.yml
-    needs: [check_analyzers]
     with:
       package-name: ${{ inputs.package-name }}

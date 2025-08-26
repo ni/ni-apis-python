@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "ni.grpcdevice.v1.proto"
-version = "0.1.0-dev3"
+name = "ni-grpc-extensions"
+version = "0.1.0-dev1"
 license = "MIT"
-description = "Protobuf generated code for the nidevice_grpc gRPC API"
+description = "gRPC Extensions"
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",
@@ -10,7 +10,7 @@ maintainers = [
 ]
 readme = "README.md"
 repository = "https://github.com/ni/ni-apis-python"
-keywords = ["ni-apis", "grpc-device", "ni_grpc_device_server"]
+keywords = ["grpc", "extensions", "channel_pool"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -27,19 +27,17 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython",
 ]
-packages = [
-  {include = "session_pb2", from = "src"},
-  {include = "session_pb2_grpc", from = "src"},
-]
+packages = [{include = "ni_grpc_extensions", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 grpcio = {version=">=1.49.0,<2.0"}
-protobuf = {version=">=4.21"}
+traceloggingdynamic = { version = ">=1.0", platform = "win32" }
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
-types-protobuf = ">=4.21"
+# Install traceloggingdynamic on Linux for type checking.
+traceloggingdynamic = { version = ">=1.0", platform = "linux" }
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
@@ -52,6 +50,7 @@ pytest = ">=7.2"
 pytest-cov = ">=4.0"
 pytest-doctestplus = ">=1.4"
 pytest-mock = ">=3.0"
+ni-measurementlink-discovery-v1-proto = { path = "../ni.measurementlink.discovery.v1.proto" }
 
 [tool.poetry.group.docs]
 optional = true
@@ -75,10 +74,10 @@ skips = [
 ]
 
 [tool.ni-python-styleguide]
-extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi,src/**/__init__.py"
+extend_exclude = "docs"
 
 [tool.black]
-extend-exclude = 'docs/|_pb2(_grpc)?\.(py|pyi)$'
+extend-exclude = 'docs/'
 line-length = 100
 
 [tool.mypy]
@@ -91,8 +90,10 @@ exclude = ["docs"]
 
 [tool.pyright]
 include = ["src/", "tests/"]
-exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi","src/**/__init__.py*"]
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
 testpaths = ["tests"]
+
+[tool.isort]
+known_first_party = ["ni_grpc_extensions"]
