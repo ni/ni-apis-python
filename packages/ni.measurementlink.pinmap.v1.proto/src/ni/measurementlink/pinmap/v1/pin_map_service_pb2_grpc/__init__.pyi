@@ -26,7 +26,9 @@ class PinMapServiceStub:
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
     ]
     """Registers pin map with the PinMapService and returns a pin map resource.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - INVALID_ARGUMENT: Pin map id is empty or has whitespace, or pin map xml string is not valid
     - ALREADY_EXISTS: Pin map resource with the specified pin map id already exists
     """
@@ -37,7 +39,9 @@ class PinMapServiceStub:
     ]
     """Updates registered pin map contents and returns it.
     Creates and registers a pin map if a pin map resource for the specified pin map id is not found.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - INVALID_ARGUMENT: Pin map xml string is not valid
     """
 
@@ -46,7 +50,9 @@ class PinMapServiceStub:
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
     ]
     """Get registered pin map resource.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - NOT_FOUND: Pin map resource for the specified pin map id is not found
     """
 
@@ -55,7 +61,9 @@ class PinMapServiceStub:
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsResponse,
     ]
     """Returns list of pins from the registered pin map resource.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - NOT_FOUND: Pin map resource for the specified pin map id is not found
     """
 
@@ -64,7 +72,9 @@ class PinMapServiceStub:
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysResponse,
     ]
     """Returns list of relays from the registered pin map resource.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - NOT_FOUND: Pin map resource for the specified pin map id is not found
     """
 
@@ -73,11 +83,15 @@ class PinMapServiceStub:
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationResponse,
     ]
     """Get instrument resource names, channels, and instrument type for the specified sites, pins or pin groups, relays or relay groups, instrument type in the registered pin map resource.
-    Status Codes for errors:
+    Status codes for errors:
+
     - NOT_FOUND:
+
       - Pin map resource for the specified pin map id is not found.
       - Specified site number is not in the valid range for the registered pin map.
+
     - INVALID_ARGUMENT:
+
       - Specified pin or relay is not present in the registered pin map resource.
       - Empty string specified for a pin or relay name.
     """
@@ -90,7 +104,9 @@ class PinMapServiceAsyncStub:
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
     ]
     """Registers pin map with the PinMapService and returns a pin map resource.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - INVALID_ARGUMENT: Pin map id is empty or has whitespace, or pin map xml string is not valid
     - ALREADY_EXISTS: Pin map resource with the specified pin map id already exists
     """
@@ -101,7 +117,9 @@ class PinMapServiceAsyncStub:
     ]
     """Updates registered pin map contents and returns it.
     Creates and registers a pin map if a pin map resource for the specified pin map id is not found.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - INVALID_ARGUMENT: Pin map xml string is not valid
     """
 
@@ -110,7 +128,9 @@ class PinMapServiceAsyncStub:
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
     ]
     """Get registered pin map resource.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - NOT_FOUND: Pin map resource for the specified pin map id is not found
     """
 
@@ -119,7 +139,9 @@ class PinMapServiceAsyncStub:
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsResponse,
     ]
     """Returns list of pins from the registered pin map resource.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - NOT_FOUND: Pin map resource for the specified pin map id is not found
     """
 
@@ -128,7 +150,9 @@ class PinMapServiceAsyncStub:
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysResponse,
     ]
     """Returns list of relays from the registered pin map resource.
-    Status Codes for errors:
+
+    Status codes for errors:
+
     - NOT_FOUND: Pin map resource for the specified pin map id is not found
     """
 
@@ -137,11 +161,15 @@ class PinMapServiceAsyncStub:
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationResponse,
     ]
     """Get instrument resource names, channels, and instrument type for the specified sites, pins or pin groups, relays or relay groups, instrument type in the registered pin map resource.
-    Status Codes for errors:
+    Status codes for errors:
+
     - NOT_FOUND:
+
       - Pin map resource for the specified pin map id is not found.
       - Specified site number is not in the valid range for the registered pin map.
+
     - INVALID_ARGUMENT:
+
       - Specified pin or relay is not present in the registered pin map resource.
       - Empty string specified for a pin or relay name.
     """
@@ -156,7 +184,9 @@ class PinMapServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap, collections.abc.Awaitable[ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap]]:
         """Registers pin map with the PinMapService and returns a pin map resource.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - INVALID_ARGUMENT: Pin map id is empty or has whitespace, or pin map xml string is not valid
         - ALREADY_EXISTS: Pin map resource with the specified pin map id already exists
         """
@@ -169,7 +199,9 @@ class PinMapServiceServicer(metaclass=abc.ABCMeta):
     ) -> typing.Union[ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap, collections.abc.Awaitable[ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap]]:
         """Updates registered pin map contents and returns it.
         Creates and registers a pin map if a pin map resource for the specified pin map id is not found.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - INVALID_ARGUMENT: Pin map xml string is not valid
         """
 
@@ -180,7 +212,9 @@ class PinMapServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap, collections.abc.Awaitable[ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap]]:
         """Get registered pin map resource.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - NOT_FOUND: Pin map resource for the specified pin map id is not found
         """
 
@@ -191,7 +225,9 @@ class PinMapServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsResponse, collections.abc.Awaitable[ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsResponse]]:
         """Returns list of pins from the registered pin map resource.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - NOT_FOUND: Pin map resource for the specified pin map id is not found
         """
 
@@ -202,7 +238,9 @@ class PinMapServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysResponse, collections.abc.Awaitable[ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysResponse]]:
         """Returns list of relays from the registered pin map resource.
-        Status Codes for errors:
+
+        Status codes for errors:
+
         - NOT_FOUND: Pin map resource for the specified pin map id is not found
         """
 
@@ -213,11 +251,15 @@ class PinMapServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationResponse, collections.abc.Awaitable[ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationResponse]]:
         """Get instrument resource names, channels, and instrument type for the specified sites, pins or pin groups, relays or relay groups, instrument type in the registered pin map resource.
-        Status Codes for errors:
+        Status codes for errors:
+
         - NOT_FOUND:
+
           - Pin map resource for the specified pin map id is not found.
           - Specified site number is not in the valid range for the registered pin map.
+
         - INVALID_ARGUMENT:
+
           - Specified pin or relay is not present in the registered pin map resource.
           - Empty string specified for a pin or relay name.
         """
