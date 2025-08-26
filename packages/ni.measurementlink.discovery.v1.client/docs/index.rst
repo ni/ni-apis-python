@@ -1,6 +1,6 @@
-#########################################
-Protobuf Types for NI Discovery gRPC APIs
-#########################################
+########################
+NI discovery gRPC client
+########################
 
 .. toctree::
    :maxdepth: 1
