@@ -9,6 +9,10 @@
     "proto-include-path": "./proto",
     "output-format": "subpackage"
   },
+  "ni.measurementlink.discovery.v1.client": {
+    "proto-subpath": "",
+    "output-format": ""
+  },
   "ni.measurementlink.discovery.v1.proto": {
     "proto-basepath": "./third_party/ni-apis",
     "proto-subpath": "ni/measurementlink/discovery/v1",
