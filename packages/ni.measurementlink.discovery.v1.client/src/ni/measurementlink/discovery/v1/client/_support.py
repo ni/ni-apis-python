@@ -25,7 +25,7 @@ if sys.platform == "win32":
 
 _logger = logging.getLogger(__name__)
 # Save Popen object to avoid "ResourceWarning: subprocess N is still running"
-_discovery_service_subprocess: subprocess.Popen | None = None  # type: ignore[type-arg]
+_discovery_service_subprocess: subprocess.Popen[str] | None = None
 
 _START_SERVICE_TIMEOUT = 30.0
 _START_SERVICE_POLLING_INTERVAL = 100e-3
@@ -75,7 +75,7 @@ def _key_file_exists(key_file_path: pathlib.Path) -> bool:
 
 def _start_service(
     exe_file_path: pathlib.PurePath, key_file_path: pathlib.Path
-) -> subprocess.Popen:  # type: ignore[type-arg]
+) -> subprocess.Popen[str]:
     """Starts the service at the specified path and wait for the service to get up and running."""
     kwargs: dict[str, Any] = {}
     if sys.platform == "win32":
@@ -89,6 +89,7 @@ def _start_service(
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
+        text=True,
         **kwargs,
     )
     # After the execution of process, check for key file existence in the path

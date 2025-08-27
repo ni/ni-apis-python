@@ -26,6 +26,16 @@ _logger = logging.getLogger(__name__)
 class DiscoveryClient:
     """Client for accessing the NI Discovery Service."""
 
+    __slots__ = [
+        "_initialization_lock",
+        "_grpc_channel_pool",
+        "_stub",
+    ]
+
+    _initialization_lock: threading.Lock
+    _grpc_channel_pool: GrpcChannelPool | None
+    _stub: discovery_service_pb2_grpc.DiscoveryServiceStub | None
+
     def __init__(
         self,
         stub: discovery_service_pb2_grpc.DiscoveryServiceStub | None = None,
@@ -42,7 +52,6 @@ class DiscoveryClient:
         self._initialization_lock = threading.Lock()
         self._grpc_channel_pool = grpc_channel_pool
         self._stub = stub
-        self._registration_id = ""
 
     def _get_stub(self) -> discovery_service_pb2_grpc.DiscoveryServiceStub:
         if self._stub is None:
@@ -92,7 +101,6 @@ class DiscoveryClient:
 
             response = self._get_stub().RegisterService(request)
             _logger.info("Successfully registered with discovery service.")
-            self._registration_id = response.registration_id
             return response.registration_id
         except grpc.RpcError as e:
             if e.code() == grpc.StatusCode.UNAVAILABLE:
@@ -111,7 +119,7 @@ class DiscoveryClient:
             _logger.exception("Error in registering with discovery service.")
             raise
 
-    def unregister_service(self, registration_id: str = "") -> bool:
+    def unregister_service(self, registration_id: str) -> bool:
         """Unregisters the specified service from the discovery service.
 
         This method should be called before the service exits.
@@ -126,10 +134,8 @@ class DiscoveryClient:
         """
         try:
             if not registration_id:
-                registration_id = self._registration_id
-                if not registration_id:
-                    _logger.info("Not registered with discovery service.")
-                    return False
+                _logger.info("Not registered with discovery service.")
+                return False
 
             request = discovery_service_pb2.UnregisterServiceRequest(
                 registration_id=registration_id
@@ -137,9 +143,6 @@ class DiscoveryClient:
 
             _ = self._get_stub().UnregisterService(request)
             _logger.info("Successfully unregistered with discovery service.")
-
-            if registration_id == self._registration_id:
-                self._registration_id = ""
 
             return True
         except grpc.RpcError as e:

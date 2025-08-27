@@ -2,7 +2,7 @@
 name = "ni.measurementlink.discovery.v1.client"
 version = "0.1.0-dev0"
 license = "MIT"
-description = "NI discovery gRPC client"
+description = "gRPC Client for NI Discovery Service"
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",

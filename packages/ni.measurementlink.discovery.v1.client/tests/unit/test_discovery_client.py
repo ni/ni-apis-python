@@ -176,35 +176,6 @@ def test___service_not_registered___resolve_service___raises_not_found_error(
     assert exc_info.value.code() == grpc.StatusCode.NOT_FOUND
 
 
-def test___service_registered___unregister_service_no_args___sends_request_and_returns_true(
-    discovery_client: DiscoveryClient, discovery_service_stub: Mock
-) -> None:
-    discovery_service_stub.RegisterService.return_value = RegisterServiceResponse(
-        registration_id="abcd"
-    )
-    discovery_service_stub.UnregisterService.return_value = UnregisterServiceResponse()
-
-    discovery_client.register_service(
-        _TEST_SERVICE_INFO_WITHOUT_DISPLAY_NAME, _TEST_SERVICE_LOCATION
-    )
-
-    unregistration_success_flag = discovery_client.unregister_service()
-
-    discovery_service_stub.UnregisterService.assert_called_once()
-    request = discovery_service_stub.UnregisterService.call_args.args[0]
-    assert request.registration_id == "abcd"
-    assert unregistration_success_flag
-
-
-def test___service_not_registered___unregister_service_no_args___only_returns_false(
-    discovery_client: DiscoveryClient, discovery_service_stub: Mock
-) -> None:
-    unregistration_success_flag = discovery_client.unregister_service()
-
-    discovery_service_stub.UnregisterService.assert_not_called()
-    assert not unregistration_success_flag
-
-
 def test___discovery_service_not_running___get_discovery_service_address___starts_discovery_service(
     mocker: MockerFixture,
     temp_discovery_key_file_path: pathlib.Path,
@@ -236,6 +207,7 @@ def test___discovery_service_not_running___get_discovery_service_address___start
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
+        text=True,
         **subprocess_popen_kwargs,
     )
     assert _TEST_SERVICE_PORT in discovery_service_address
@@ -305,6 +277,7 @@ def test___key_file_exist_after_poll___start_discovery_service___discovery_servi
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
+        text=True,
         **subprocess_popen_kwargs,
     )
 

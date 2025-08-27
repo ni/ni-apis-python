@@ -7,8 +7,9 @@
 
 # About
 
-`ni.measurementlink.discovery.v1.client` is a Python package that provides a discovery client for the discovery service in
-the [ni.measurementlink.discovery.v1.proto package](https://github.com/ni/ni-apis/tree/main/ni/measurementlink/discovery/v1).
+`ni.measurementlink.discovery.v1.client` is a Python package that provides a gRPC client for the
+NI Discovery Service, version 1. The corresponding service is defined in the
+[ni.measurementlink.discovery.v1.proto package](https://github.com/ni/ni-apis/tree/main/ni/measurementlink/discovery/v1).
 
 NI created and supports this package.
 

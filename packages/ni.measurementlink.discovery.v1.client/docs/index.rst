@@ -1,6 +1,6 @@
-########################
-NI discovery gRPC client
-########################
+####################################
+gRPC Client for NI Discovery Service
+####################################
 
 .. toctree::
    :maxdepth: 1
