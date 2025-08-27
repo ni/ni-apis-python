@@ -9,6 +9,7 @@ packages = [{include = "grpc_generator", from = "src"}]
 
 [tool.poetry.scripts]
 grpc-generator = "grpc_generator.__main__:cli"
+generate-stubs = "grpc_generator.generate_stubs:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"

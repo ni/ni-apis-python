@@ -36,11 +36,11 @@ poetry run grpc-generator `
 
 ## Generate (stubs for all packages)
 
-You can also use the `generate_stubs.py` script to invoke `grpc_generator` and regenerate the gRPC stubs for all packages in the repository.
+You can also use `generate-stubs` to invoke `grpc_generator` and regenerate the gRPC stubs for all packages in the repository.
 
 ```pwsh
 # PowerShell
-poetry run python generate_stubs.py
+poetry run generate-stubs
 ```
 
 ## Options

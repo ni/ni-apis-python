@@ -1,13 +1,14 @@
 """Script to generate gRPC stubs for all packages in the repository."""
 
 import json
-import subprocess
 from pathlib import Path
+
+from grpc_generator import generator
 
 
 def main():
     """Executes the generation of the gRPC stubs based on the specified package information."""
-    repo_root_path = Path(__file__).parent.parent.parent
+    repo_root_path = Path(__file__).parent.parent.parent.parent.parent
 
     packages_file_path = repo_root_path / "packages.json"
 
@@ -24,25 +25,15 @@ def main():
         output_basepath = repo_root_path.joinpath(f"./packages/{package_name}/src")
         output_format = package_info["output-format"]
 
-        args = [
-            "poetry",
-            "run",
-            "grpc-generator",
-            "--proto-basepath",
-            proto_basepath,
-            "--proto-subpath",
-            proto_subpath,
-            "--proto-include-path",
-            proto_include_path,
-            "--output-basepath",
-            output_basepath,
-            "--output-format",
-            output_format,
-        ]
-
         print(f"Generating stubs for {package_name}...")
         print("------------------------------------------------------------------------")
-        subprocess.run(args, check=True)
+        generator.handle_cli(
+            proto_basepath=proto_basepath,
+            proto_subpath=proto_subpath,
+            proto_include_paths=[proto_include_path],
+            output_basepath=output_basepath,
+            output_format=generator.OutputFormat(output_format),
+        )
         print()
 
 
