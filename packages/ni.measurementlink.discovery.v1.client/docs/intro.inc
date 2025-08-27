@@ -13,7 +13,7 @@ NI created and supports this package.
 Operating System Support
 ------------------------
 
-``ni.measurementlink.discovery.v1.client`` supports Windows and Linux operating systems.
+``ni.measurementlink.discovery.v1.client`` supports Windows operating systems.
 
 Python Version Support
 ----------------------

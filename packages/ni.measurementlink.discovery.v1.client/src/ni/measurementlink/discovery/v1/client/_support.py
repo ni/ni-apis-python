@@ -25,7 +25,7 @@ if sys.platform == "win32":
 
 _logger = logging.getLogger(__name__)
 # Save Popen object to avoid "ResourceWarning: subprocess N is still running"
-_discovery_service_subprocess: subprocess.Popen[str] | None = None
+_discovery_service_subprocess: subprocess.Popen[bytes] | None = None
 
 _START_SERVICE_TIMEOUT = 30.0
 _START_SERVICE_POLLING_INTERVAL = 100e-3
@@ -66,7 +66,9 @@ def _get_registration_json_file_path() -> pathlib.Path:
             )
         return json_path
     else:
-        raise NotImplementedError("Platform not supported")
+        raise NotImplementedError(
+            f"Platform not supported: {sys.platform}. Supported platforms: win32."
+        )
 
 
 def _key_file_exists(key_file_path: pathlib.Path) -> bool:
@@ -75,7 +77,7 @@ def _key_file_exists(key_file_path: pathlib.Path) -> bool:
 
 def _start_service(
     exe_file_path: pathlib.PurePath, key_file_path: pathlib.Path
-) -> subprocess.Popen[str]:
+) -> subprocess.Popen[bytes]:
     """Starts the service at the specified path and wait for the service to get up and running."""
     kwargs: dict[str, Any] = {}
     if sys.platform == "win32":
@@ -89,7 +91,6 @@ def _start_service(
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
-        text=True,
         **kwargs,
     )
     # After the execution of process, check for key file existence in the path
@@ -98,7 +99,7 @@ def _start_service(
     while True:
         try:
             with _open_key_file(str(key_file_path)) as _:
-                return discovery_service_subprocess
+                return discovery_service_subprocess  # pyright: ignore[reportReturnType]
         except OSError:
             pass
         if time.time() >= timeout_time:
@@ -128,11 +129,14 @@ def _get_key_file_path(cluster_id: str | None = None) -> pathlib.Path:
 
 
 def _get_key_file_directory() -> pathlib.Path:
-    version = discovery_service_pb2.DESCRIPTOR.package.split(".")[-1]
+    package = typing.cast(str, discovery_service_pb2.DESCRIPTOR.package)
+    version = package.split(".")[-1]
     if sys.platform == "win32":
-        return _get_nipath("NIPUBAPPDATADIR") / "MeasurementLink" / "Discovery" / str(version)
+        return _get_nipath("NIPUBAPPDATADIR") / "MeasurementLink" / "Discovery" / version
     else:
-        raise NotImplementedError("Platform not supported")
+        raise NotImplementedError(
+            f"Platform not supported: {sys.platform}. Supported platforms: win32."
+        )
 
 
 def _open_key_file(path: str) -> typing.TextIO:
@@ -182,4 +186,6 @@ def _get_nipath(name: str) -> pathlib.Path:
             assert type == winreg.REG_SZ
             return pathlib.Path(value)
     else:
-        raise NotImplementedError("Platform not supported")
+        raise NotImplementedError(
+            f"Platform not supported: {sys.platform}. Supported platforms: win32."
+        )

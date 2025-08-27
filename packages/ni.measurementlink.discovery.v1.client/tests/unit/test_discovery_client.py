@@ -37,6 +37,7 @@ from pytest_mock import MockerFixture
 from ni.measurementlink.discovery.v1.client import (
     ComputeNodeDescriptor,
     DiscoveryClient,
+    ServiceInfo,
     ServiceLocation,
 )
 from ni.measurementlink.discovery.v1.client._client import SERVICE_PROGRAMMINGLANGUAGE_KEY
@@ -44,9 +45,6 @@ from ni.measurementlink.discovery.v1.client._support import (
     _get_discovery_service_address,
     _open_key_file,
     _start_service,
-)
-from ni.measurementlink.discovery.v1.client._types import (
-    ServiceInfo,
 )
 from tests.utilities.fake_rpc_error import FakeRpcError
 
@@ -207,7 +205,6 @@ def test___discovery_service_not_running___get_discovery_service_address___start
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
-        text=True,
         **subprocess_popen_kwargs,
     )
     assert _TEST_SERVICE_PORT in discovery_service_address
@@ -277,7 +274,6 @@ def test___key_file_exist_after_poll___start_discovery_service___discovery_servi
         stdin=subprocess.DEVNULL,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL,
-        text=True,
         **subprocess_popen_kwargs,
     )
 
