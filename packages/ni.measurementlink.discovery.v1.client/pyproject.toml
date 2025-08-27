@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ni.measurementlink.discovery.v1.client"
-version = "0.1.0-dev0"
+version = "0.1.0-dev1"
 license = "MIT"
 description = "gRPC Client for NI Discovery Service"
 authors = ["NI <opensource@ni.com>"]
