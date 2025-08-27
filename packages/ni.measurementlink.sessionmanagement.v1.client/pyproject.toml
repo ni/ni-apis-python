@@ -32,6 +32,17 @@ packages = [{include = "ni", from = "src"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 protobuf = {version=">=4.21"}
+pywin32 = { version = ">=303", platform = "win32" }
+deprecation = ">=2.1"
+traceloggingdynamic = { version = ">=1.0", platform = "win32" }
+python-decouple = ">=3.8"
+nidaqmx = { version = ">=0.8.0", extras = ["grpc"], optional = true }
+nidcpower = { version = ">=1.4.4", extras = ["grpc"], optional = true }
+nidigital = { version = ">=1.4.4", extras = ["grpc"], optional = true }
+nidmm = { version = ">=1.4.4", extras = ["grpc"], optional = true }
+nifgen = { version = ">=1.4.4", extras = ["grpc"], optional = true }
+niscope = { version = ">=1.4.4", extras = ["grpc"], optional = true }
+niswitch = { version = ">=1.4.4", extras = ["grpc"], optional = true }
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
