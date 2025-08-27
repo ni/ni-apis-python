@@ -6,7 +6,7 @@ from pathlib import Path
 from grpc_generator import generator
 
 
-def main():
+def main() -> None:
     """Executes the generation of the gRPC stubs based on the specified package information."""
     repo_root_path = Path(__file__).parent.parent.parent.parent.parent
 
