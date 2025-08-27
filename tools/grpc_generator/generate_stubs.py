@@ -1,25 +1,13 @@
 """Script to generate gRPC stubs for all packages in the repository."""
 
 import json
-import os
 import subprocess
+from pathlib import Path
 
 
-def _get_path_from_root_directory_relative_path(root_directory_relative_path) -> str:
-    return os.path.join(
-        os.path.dirname(__file__),
-        "..",
-        "..",
-        _convert_path_to_use_os_path_separators(root_directory_relative_path),
-    )
+_REPO_ROOT = Path(__file__).parent.parent.parent
 
-
-def _convert_path_to_use_os_path_separators(path) -> str:
-    return path.replace("/", os.path.sep)
-
-
-packages_file_name = "packages.json"
-packages_file_path = _get_path_from_root_directory_relative_path(packages_file_name)
+packages_file_path = _REPO_ROOT / "packages.json"
 
 with open(packages_file_path, "r", encoding="utf-8") as packages_file:
     packages = json.load(packages_file)
@@ -29,12 +17,10 @@ for package_name, package_info in packages.items():
     if not package_info.get("output-format"):
         continue
 
-    proto_basepath = _get_path_from_root_directory_relative_path(package_info["proto-basepath"])
-    proto_subpath = _convert_path_to_use_os_path_separators(package_info["proto-subpath"])
-    proto_include_path = _get_path_from_root_directory_relative_path(
-        package_info["proto-include-path"]
-    )
-    output_basepath = _get_path_from_root_directory_relative_path(f"./packages/{package_name}/src")
+    proto_basepath = _REPO_ROOT.joinpath(package_info["proto-basepath"])
+    proto_subpath = Path(package_info["proto-subpath"])
+    proto_include_path = _REPO_ROOT.joinpath(package_info["proto-include-path"])
+    output_basepath = _REPO_ROOT.joinpath(f"./packages/{package_name}/src")
     output_format = package_info["output-format"]
 
     args = [
