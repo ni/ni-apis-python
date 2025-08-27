@@ -7,22 +7,21 @@ from pathlib import Path
 
 def main():
     """Executes the generation of the gRPC stubs based on the specified package information."""
-    repo_root = Path(__file__).parent.parent.parent
+    repo_root_path = Path(__file__).parent.parent.parent
 
-    packages_file_path = repo_root / "packages.json"
+    packages_file_path = repo_root_path / "packages.json"
 
-    with open(packages_file_path, "r", encoding="utf-8") as packages_file:
-        packages = json.load(packages_file)
+    packages = json.loads(packages_file_path.read_text(encoding="utf-8"))
 
     for package_name, package_info in packages.items():
         # Skip package entries with no specified output format
         if not package_info.get("output-format"):
             continue
 
-        proto_basepath = repo_root.joinpath(package_info["proto-basepath"])
+        proto_basepath = repo_root_path.joinpath(package_info["proto-basepath"])
         proto_subpath = Path(package_info["proto-subpath"])
-        proto_include_path = repo_root.joinpath(package_info["proto-include-path"])
-        output_basepath = repo_root.joinpath(f"./packages/{package_name}/src")
+        proto_include_path = repo_root_path.joinpath(package_info["proto-include-path"])
+        output_basepath = repo_root_path.joinpath(f"./packages/{package_name}/src")
         output_format = package_info["output-format"]
 
         args = [
