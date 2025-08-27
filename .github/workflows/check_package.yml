@@ -8,37 +8,25 @@ on:
         default: ''
         required: true
         type: string
-      proto-basepath:
-        description: 'The base path for proto files used for generation.'
-        default: '../../third_party/ni-apis'
-        type: string
-      proto-subpath:
-        description: 'The subpath for the proto files.'
-        default: ''
-        required: true
-        type: string
-      proto-include-path:
-        description: 'Additional path to include in the proto generation.'
-        default: '../../third_party/ni-apis'
-        type: string
-      output-format:
-        description: 'submodule or subpackage'
-        default: ''
-        required: true
-        type: string
 
 jobs:
+  get_package_info:
+    name: Get package info for ${{ inputs.package-name }}
+    uses: ./.github/workflows/get_package_info.yml
+    with:
+      package-name: ${{ inputs.package-name }}
   check_codegen:
-    if: ${{ inputs.proto-subpath != '' }}
+    if: ${{ needs.get_package_info.outputs.proto-subpath != '' }}
     name: Check codegen for ${{ inputs.package-name }}
+    needs: get_package_info
     uses: ./.github/workflows/check_codegen.yml
     with:
       package-name: ${{ inputs.package-name }}
-      proto-basepath: ${{ inputs.proto-basepath }}
-      proto-subpath: ${{ inputs.proto-subpath }}
-      proto-include-path: ${{ inputs.proto-include-path }}
-      output-basepath: ../../packages/${{ inputs.package-name }}/src
-      output-format: ${{ inputs.output-format }}
+      proto-basepath: ${{ needs.get_package_info.outputs.proto-basepath }}
+      proto-subpath: ${{ needs.get_package_info.outputs.proto-subpath }}
+      proto-include-path: ${{ needs.get_package_info.outputs.proto-include-path }}
+      output-basepath: ./packages/${{ inputs.package-name }}/src
+      output-format: ${{ needs.get_package_info.outputs.output-format }}
   check_analyzers:
     name: Check analyzers for ${{ inputs.package-name }}
     uses: ./.github/workflows/check_analyzers.yml
