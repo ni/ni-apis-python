@@ -11,8 +11,6 @@ Table of Contents
    :maxdepth: 4
 
    autoapi/index
-   autoapi/ni/measurementlink/measurement/v2/measurement_service_pb2/index
-   autoapi/ni/measurementlink/measurement/v2/measurement_service_pb2_grpc/index
 
 Indices and tables
 ==================

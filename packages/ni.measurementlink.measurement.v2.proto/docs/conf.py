@@ -45,9 +45,7 @@ htmlhelp_basename = f"{project}doc"
 # tell autoapi to doc the public options
 autoapi_options = list(autoapi.extension._DEFAULT_OPTIONS)
 autoapi_options.remove("private-members")  # note: remove this to include "_" members in docs
-autoapi_dirs = [
-    root_path / "src" / "ni",
-]
+autoapi_dirs = [root_path / "src" / "ni"]
 autoapi_python_use_implicit_namespaces = True
 autoapi_template_dir = "templates/autoapi"
 autoapi_python_class_content = "both"
