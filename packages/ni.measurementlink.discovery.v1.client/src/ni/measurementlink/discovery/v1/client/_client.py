@@ -181,6 +181,8 @@ class DiscoveryClient:
                 specified and there is more than one matching service registered, an error
                 is returned.
             deployment_target: The deployment target from which the service should be resolved.
+                Callers should pass either the url string from a :class:`ComputeNodeSpecifier`
+                or a blank string for local execution.
             version: The version of the service to resolve. If not specified, the latest version
                 will be resolved.
 
@@ -217,6 +219,8 @@ class DiscoveryClient:
                 specified and there is more than one matching service registered, an error
                 is returned.
             deployment_target: The deployment target from which the service should be resolved.
+                Callers should pass either the url string from a :class:`ComputeNodeSpecifier`
+                or a blank string for local execution.
             version: The version of the service to resolve. If not specified, the latest version
                 will be resolved.
 
