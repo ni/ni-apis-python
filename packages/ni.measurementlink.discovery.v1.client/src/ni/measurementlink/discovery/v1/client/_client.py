@@ -30,6 +30,7 @@ class DiscoveryClient:
         "_initialization_lock",
         "_grpc_channel_pool",
         "_stub",
+        "__weakref__",
     ]
 
     _initialization_lock: threading.Lock
