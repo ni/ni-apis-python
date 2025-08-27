@@ -1,0 +1,93 @@
+ni.protobuf.types.waveform_conversion
+=====================================
+
+.. py:module:: ni.protobuf.types.waveform_conversion
+
+.. autoapi-nested-parse::
+
+   Methods to convert to and from waveform protobuf messages.
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   ni.protobuf.types.waveform_conversion.float64_analog_waveform_to_protobuf
+   ni.protobuf.types.waveform_conversion.float64_analog_waveform_from_protobuf
+   ni.protobuf.types.waveform_conversion.float64_complex_waveform_to_protobuf
+   ni.protobuf.types.waveform_conversion.float64_complex_waveform_from_protobuf
+   ni.protobuf.types.waveform_conversion.int16_complex_waveform_to_protobuf
+   ni.protobuf.types.waveform_conversion.int16_complex_waveform_from_protobuf
+   ni.protobuf.types.waveform_conversion.float64_spectrum_to_protobuf
+   ni.protobuf.types.waveform_conversion.float64_spectrum_from_protobuf
+   ni.protobuf.types.waveform_conversion.int16_analog_waveform_to_protobuf
+   ni.protobuf.types.waveform_conversion.int16_analog_waveform_from_protobuf
+   ni.protobuf.types.waveform_conversion.digital_waveform_to_protobuf
+   ni.protobuf.types.waveform_conversion.digital_waveform_from_protobuf
+
+
+Module Contents
+---------------
+
+.. py:function:: float64_analog_waveform_to_protobuf(value, /)
+
+   Convert the Python AnalogWaveform to a protobuf DoubleAnalogWaveform.
+
+
+.. py:function:: float64_analog_waveform_from_protobuf(message, /)
+
+   Convert the protobuf DoubleAnalogWaveform to a Python AnalogWaveform.
+
+
+.. py:function:: float64_complex_waveform_to_protobuf(value, /)
+
+   Convert the Python ComplexWaveform to a protobuf DoubleComplexWaveform.
+
+
+.. py:function:: float64_complex_waveform_from_protobuf(message, /)
+
+   Convert the protobuf DoubleComplexWaveform to a Python ComplexWaveform.
+
+
+.. py:function:: int16_complex_waveform_to_protobuf(value, /)
+
+   Convert the Python ComplexWaveform to a protobuf DoubleComplexWaveform.
+
+
+.. py:function:: int16_complex_waveform_from_protobuf(message, /)
+
+   Convert the protobuf DoubleComplexWaveform to a Python ComplexWaveform.
+
+
+.. py:function:: float64_spectrum_to_protobuf(value, /)
+
+   Convert the Python Spectrum to a protobuf DoubleSpectrum.
+
+
+.. py:function:: float64_spectrum_from_protobuf(message, /)
+
+   Convert the protobuf DoubleSpectrum to a Python Spectrum.
+
+
+.. py:function:: int16_analog_waveform_to_protobuf(value, /)
+
+   Convert the Python AnalogWaveform to a protobuf I16AnalogWaveform.
+
+
+.. py:function:: int16_analog_waveform_from_protobuf(message, /)
+
+   Convert the protobuf I16AnalogWaveform to a Python AnalogWaveform.
+
+
+.. py:function:: digital_waveform_to_protobuf(value, /)
+
+   Convert the Python DigitalWaveform to a protobuf DigitalWaveform.
+
+
+.. py:function:: digital_waveform_from_protobuf(message, /)
+
+   Convert the protobuf DigitalWaveform to a Python DigitalWaveform.
+
+

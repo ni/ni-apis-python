@@ -1,0 +1,475 @@
+ni.protobuf.types.attribute_value_pb2
+=====================================
+
+.. py:module:: ni.protobuf.types.attribute_value_pb2
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   ni.protobuf.types.attribute_value_pb2.DESCRIPTOR
+   ni.protobuf.types.attribute_value_pb2.global___AttributeValue
+
+
+Classes
+-------
+
+.. autoapisummary::
+
+   ni.protobuf.types.attribute_value_pb2.AttributeValue
+
+
+Module Contents
+---------------
+
+.. py:data:: DESCRIPTOR
+   :type:  google.protobuf.descriptor.FileDescriptor
+
+.. py:class:: AttributeValue(*, bool_value = ..., integer_value = ..., double_value = ..., string_value = ...)
+
+   Bases: :py:obj:`google.protobuf.message.Message`
+
+
+   An attribute that can be attached to a scalar, vector, or similar message.
+
+
+   .. py:attribute:: DESCRIPTOR
+      :type:  google.protobuf.descriptor.Descriptor
+
+
+   .. py:attribute:: BOOL_VALUE_FIELD_NUMBER
+      :type:  int
+
+
+   .. py:attribute:: INTEGER_VALUE_FIELD_NUMBER
+      :type:  int
+
+
+   .. py:attribute:: DOUBLE_VALUE_FIELD_NUMBER
+      :type:  int
+
+
+   .. py:attribute:: STRING_VALUE_FIELD_NUMBER
+      :type:  int
+
+
+   .. py:attribute:: bool_value
+      :type:  bool
+
+      Represents a bool attribute.
+
+
+   .. py:attribute:: integer_value
+      :type:  int
+
+      Represents an integer attribute.
+
+
+   .. py:attribute:: double_value
+      :type:  float
+
+      Represents a double attribute.
+
+
+   .. py:attribute:: string_value
+      :type:  str
+
+      Represents a string attribute.
+
+
+   .. py:method:: __init__(*, bool_value = ..., integer_value = ..., double_value = ..., string_value = ...)
+
+
+   .. py:method:: HasField(field_name)
+
+      Checks if a certain field is set for the message.
+
+      For a oneof group, checks if any field inside is set. Note that if the
+      field_name is not defined in the message descriptor, :exc:`ValueError` will
+      be raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :returns: Whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: ClearField(field_name)
+
+      Clears the contents of a given field.
+
+      Inside a oneof group, clears the field set. If the name neither refers to a
+      defined field or oneof group, :exc:`ValueError` is raised.
+
+      :param field_name: The name of the field to check for presence.
+      :type field_name: str
+
+      :raises ValueError: if the `field_name` is not a member of this message.
+
+
+
+   .. py:method:: WhichOneof(oneof_group)
+
+      Returns the name of the field that is set inside a oneof group.
+
+      If no field is set, returns None.
+
+      :param oneof_group: the name of the oneof group to check.
+      :type oneof_group: str
+
+      :returns: The name of the group that is set, or None.
+      :rtype: str or None
+
+      :raises ValueError: no group with the given name exists
+
+
+
+   .. py:attribute:: __slots__
+      :value: []
+
+
+
+   .. py:method:: __deepcopy__(memo=None)
+
+
+   .. py:method:: __dir__()
+
+      Provides the list of all accessible Message attributes.
+
+
+
+   .. py:method:: __eq__(other_msg)
+      :abstractmethod:
+
+
+      Recursively compares two messages by value and structure.
+
+
+
+   .. py:method:: __ne__(other_msg)
+
+
+   .. py:method:: __hash__()
+
+
+   .. py:method:: __str__()
+      :abstractmethod:
+
+
+      Outputs a human-readable representation of the message.
+
+
+
+   .. py:method:: __unicode__()
+      :abstractmethod:
+
+
+      Outputs a human-readable representation of the message.
+
+
+
+   .. py:method:: __contains__(field_name_or_key)
+      :abstractmethod:
+
+
+      Checks if a certain field is set for the message.
+
+      Has presence fields return true if the field is set, false if the field is
+      not set. Fields without presence do raise `ValueError` (this includes
+      repeated fields, map fields, and implicit presence fields).
+
+      If field_name is not defined in the message descriptor, `ValueError` will
+      be raised.
+      Note: WKT Struct checks if the key is contained in fields. ListValue checks
+      if the item is contained in the list.
+
+      :param field_name_or_key: For Struct, the key (str) of the fields map. For
+                                ListValue, any type that may be contained in the list. For other
+                                messages, name of the field (str) to check for presence.
+
+      :returns:
+
+                For Struct, whether the item is contained in fields. For ListValue,
+                      whether the item is contained in the list. For other message,
+                      whether a value has been set for the named field.
+      :rtype: bool
+
+      :raises ValueError: For normal messages,  if the `field_name_or_key` is not a
+          member of this message or `field_name_or_key` is not a string.
+
+
+
+   .. py:method:: MergeFrom(other_msg)
+      :abstractmethod:
+
+
+      Merges the contents of the specified message into current message.
+
+      This method merges the contents of the specified message into the current
+      message. Singular fields that are set in the specified message overwrite
+      the corresponding fields in the current message. Repeated fields are
+      appended. Singular sub-messages and groups are recursively merged.
+
+      :param other_msg: A message to merge into the current message.
+      :type other_msg: Message
+
+
+
+   .. py:method:: CopyFrom(other_msg)
+
+      Copies the content of the specified message into the current message.
+
+      The method clears the current message and then merges the specified
+      message using MergeFrom.
+
+      :param other_msg: A message to copy into the current one.
+      :type other_msg: Message
+
+
+
+   .. py:method:: Clear()
+      :abstractmethod:
+
+
+      Clears all data that was set in the message.
+
+
+
+   .. py:method:: SetInParent()
+      :abstractmethod:
+
+
+      Mark this as present in the parent.
+
+      This normally happens automatically when you assign a field of a
+      sub-message, but sometimes you want to make the sub-message
+      present while keeping it empty.  If you find yourself using this,
+      you may want to reconsider your design.
+
+
+
+   .. py:method:: IsInitialized()
+      :abstractmethod:
+
+
+      Checks if the message is initialized.
+
+      :returns: The method returns True if the message is initialized (i.e. all of
+                its required fields are set).
+      :rtype: bool
+
+
+
+   .. py:method:: MergeFromString(serialized)
+      :abstractmethod:
+
+
+      Merges serialized protocol buffer data into this message.
+
+      When we find a field in `serialized` that is already present
+      in this message:
+
+      -   If it's a "repeated" field, we append to the end of our list.
+      -   Else, if it's a scalar, we overwrite our field.
+      -   Else, (it's a nonrepeated composite), we recursively merge
+          into the existing composite.
+
+      :param serialized: Any object that allows us to call
+                         ``memoryview(serialized)`` to access a string of bytes using the
+                         buffer interface.
+      :type serialized: bytes
+
+      :returns: The number of bytes read from `serialized`.
+                For non-group messages, this will always be `len(serialized)`,
+                but for messages which are actually groups, this will
+                generally be less than `len(serialized)`, since we must
+                stop when we reach an ``END_GROUP`` tag.  Note that if
+                we *do* stop because of an ``END_GROUP`` tag, the number
+                of bytes returned does not include the bytes
+                for the ``END_GROUP`` tag information.
+      :rtype: int
+
+      :raises DecodeError: if the input cannot be parsed.
+
+
+
+   .. py:method:: ParseFromString(serialized)
+
+      Parse serialized protocol buffer data in binary form into this message.
+
+      Like :func:`MergeFromString()`, except we clear the object first.
+
+      :raises message.DecodeError if the input cannot be parsed.:
+
+
+
+   .. py:method:: SerializeToString(**kwargs)
+      :abstractmethod:
+
+
+      Serializes the protocol message to a binary string.
+
+      :keyword deterministic: If true, requests deterministic serialization
+                              of the protobuf, with predictable ordering of map keys.
+      :kwtype deterministic: bool
+
+      :returns: A binary string representation of the message if all of the required
+                fields in the message are set (i.e. the message is initialized).
+
+      :raises EncodeError: if the message isn't initialized (see :func:`IsInitialized`).
+
+
+
+   .. py:method:: SerializePartialToString(**kwargs)
+      :abstractmethod:
+
+
+      Serializes the protocol message to a binary string.
+
+      This method is similar to SerializeToString but doesn't check if the
+      message is initialized.
+
+      :keyword deterministic: If true, requests deterministic serialization
+                              of the protobuf, with predictable ordering of map keys.
+      :kwtype deterministic: bool
+
+      :returns: A serialized representation of the partial message.
+      :rtype: bytes
+
+
+
+   .. py:method:: ListFields()
+      :abstractmethod:
+
+
+      Returns a list of (FieldDescriptor, value) tuples for present fields.
+
+      A message field is non-empty if HasField() would return true. A singular
+      primitive field is non-empty if HasField() would return true in proto2 or it
+      is non zero in proto3. A repeated field is non-empty if it contains at least
+      one element. The fields are ordered by field number.
+
+      :returns: field descriptors and values
+                for all fields in the message which are not empty. The values vary by
+                field type.
+      :rtype: list[tuple(FieldDescriptor, value)]
+
+
+
+   .. py:method:: HasExtension(field_descriptor)
+      :abstractmethod:
+
+
+      Checks if a certain extension is present for this message.
+
+      Extensions are retrieved using the :attr:`Extensions` mapping (if present).
+
+      :param field_descriptor: The field descriptor for the extension to check.
+
+      :returns: Whether the extension is present for this message.
+      :rtype: bool
+
+      :raises KeyError: if the extension is repeated. Similar to repeated fields,
+          there is no separate notion of presence: a "not present" repeated
+          extension is an empty list.
+
+
+
+   .. py:method:: ClearExtension(field_descriptor)
+      :abstractmethod:
+
+
+      Clears the contents of a given extension.
+
+      :param field_descriptor: The field descriptor for the extension to clear.
+
+
+
+   .. py:method:: UnknownFields()
+      :abstractmethod:
+
+
+      Returns the UnknownFieldSet.
+
+      :returns: The unknown fields stored in this message.
+      :rtype: UnknownFieldSet
+
+
+
+   .. py:method:: DiscardUnknownFields()
+      :abstractmethod:
+
+
+      Clears all fields in the :class:`UnknownFieldSet`.
+
+      This operation is recursive for nested message.
+
+
+
+   .. py:method:: ByteSize()
+      :abstractmethod:
+
+
+      Returns the serialized size of this message.
+
+      Recursively calls ByteSize() on all contained messages.
+
+      :returns: The number of bytes required to serialize this message.
+      :rtype: int
+
+
+
+   .. py:method:: FromString(s)
+      :classmethod:
+
+      :abstractmethod:
+
+
+
+   .. py:method:: _SetListener(message_listener)
+      :abstractmethod:
+
+
+      Internal method used by the protocol message implementation.
+      Clients should not call this directly.
+
+      Sets a listener that this message will call on certain state transitions.
+
+      The purpose of this method is to register back-edges from children to
+      parents at runtime, for the purpose of setting "has" bits and
+      byte-size-dirty bits in the parent and ancestor objects whenever a child or
+      descendant object is modified.
+
+      If the client wants to disconnect this Message from the object tree, she
+      explicitly sets callback to None.
+
+      If message_listener is None, unregisters any existing listener.  Otherwise,
+      message_listener must implement the MessageListener interface in
+      internal/message_listener.py, and we discard any listener registered
+      via a previous _SetListener() call.
+
+
+
+   .. py:method:: __getstate__()
+
+      Support the pickle protocol.
+
+
+
+   .. py:method:: __setstate__(state)
+
+      Support the pickle protocol.
+
+
+
+   .. py:method:: __reduce__()
+
+
+.. py:data:: global___AttributeValue
+

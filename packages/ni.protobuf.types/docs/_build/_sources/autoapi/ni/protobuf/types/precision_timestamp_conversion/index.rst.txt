@@ -1,0 +1,45 @@
+ni.protobuf.types.precision_timestamp_conversion
+================================================
+
+.. py:module:: ni.protobuf.types.precision_timestamp_conversion
+
+.. autoapi-nested-parse::
+
+   Methods to convert to and from PrecisionTimestamp protobuf messages.
+
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   ni.protobuf.types.precision_timestamp_conversion.bintime_datetime_to_protobuf
+   ni.protobuf.types.precision_timestamp_conversion.bintime_datetime_from_protobuf
+   ni.protobuf.types.precision_timestamp_conversion.hightime_datetime_to_protobuf
+   ni.protobuf.types.precision_timestamp_conversion.hightime_datetime_from_protobuf
+
+
+Module Contents
+---------------
+
+.. py:function:: bintime_datetime_to_protobuf(value, /)
+
+   Convert a NI-BTF DateTime to a protobuf PrecisionTimestamp.
+
+
+.. py:function:: bintime_datetime_from_protobuf(message, /)
+
+   Convert a protobuf PrecisionTimestamp to a NI-BTF DateTime.
+
+
+.. py:function:: hightime_datetime_to_protobuf(value, /)
+
+   Convert a hightime.datetime to a protobuf PrecisionTimestamp.
+
+
+.. py:function:: hightime_datetime_from_protobuf(message, /)
+
+   Convert a protobuf PrecisionTimestamp to a hightime.datetime.
+
+

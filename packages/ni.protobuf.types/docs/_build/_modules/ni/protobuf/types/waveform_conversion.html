@@ -1,0 +1,501 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ni.protobuf.types.waveform_conversion &mdash; ni.protobuf.types 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            ni.protobuf.types
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoapi/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">ni.protobuf.types</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">ni.protobuf.types.waveform_conversion</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ni.protobuf.types.waveform_conversion</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Methods to convert to and from waveform protobuf messages.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">dt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mapping</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">hightime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ht</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nitypes.bintime</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nitypes.complex</span><span class="w"> </span><span class="kn">import</span> <span class="n">ComplexInt32Base</span><span class="p">,</span> <span class="n">ComplexInt32DType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nitypes.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nitypes.waveform</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AnalogWaveform</span><span class="p">,</span>
+    <span class="n">ComplexWaveform</span><span class="p">,</span>
+    <span class="n">DigitalWaveform</span><span class="p">,</span>
+    <span class="n">ExtendedPropertyDictionary</span><span class="p">,</span>
+    <span class="n">LinearScaleMode</span><span class="p">,</span>
+    <span class="n">NoneScaleMode</span><span class="p">,</span>
+    <span class="n">SampleIntervalMode</span><span class="p">,</span>
+    <span class="n">Spectrum</span><span class="p">,</span>
+    <span class="n">Timing</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nitypes.waveform.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtendedPropertyValue</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">ni.protobuf.types.precision_timestamp_conversion</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ptc</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ni.protobuf.types.precision_timestamp_pb2</span><span class="w"> </span><span class="kn">import</span> <span class="n">PrecisionTimestamp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ni.protobuf.types.waveform_pb2</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DigitalWaveform</span> <span class="k">as</span> <span class="n">DigitalWaveformProto</span><span class="p">,</span>
+    <span class="n">DoubleAnalogWaveform</span><span class="p">,</span>
+    <span class="n">DoubleComplexWaveform</span><span class="p">,</span>
+    <span class="n">DoubleSpectrum</span><span class="p">,</span>
+    <span class="n">I16AnalogWaveform</span><span class="p">,</span>
+    <span class="n">I16ComplexWaveform</span><span class="p">,</span>
+    <span class="n">LinearScale</span><span class="p">,</span>
+    <span class="n">Scale</span><span class="p">,</span>
+    <span class="n">WaveformAttributeValue</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<div class="viewcode-block" id="float64_analog_waveform_to_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.float64_analog_waveform_to_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">float64_analog_waveform_to_protobuf</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">AnalogWaveform</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span> <span class="o">/</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DoubleAnalogWaveform</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the Python AnalogWaveform to a protobuf DoubleAnalogWaveform.&quot;&quot;&quot;</span>
+    <span class="n">_validate_timing</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">_t0_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">time_interval</span> <span class="o">=</span> <span class="n">_time_interval_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">_extended_properties_to_attributes</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">extended_properties</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">DoubleAnalogWaveform</span><span class="p">(</span>
+        <span class="n">t0</span><span class="o">=</span><span class="n">t0</span><span class="p">,</span>
+        <span class="n">dt</span><span class="o">=</span><span class="n">time_interval</span><span class="p">,</span>
+        <span class="n">y_data</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">scaled_data</span><span class="p">,</span>
+        <span class="n">attributes</span><span class="o">=</span><span class="n">attributes</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="float64_analog_waveform_from_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.float64_analog_waveform_from_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">float64_analog_waveform_from_protobuf</span><span class="p">(</span>
+    <span class="n">message</span><span class="p">:</span> <span class="n">DoubleAnalogWaveform</span><span class="p">,</span> <span class="o">/</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnalogWaveform</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the protobuf DoubleAnalogWaveform to a Python AnalogWaveform.&quot;&quot;&quot;</span>
+    <span class="n">timing</span> <span class="o">=</span> <span class="n">_timing_from_waveform_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="n">extended_properties</span> <span class="o">=</span> <span class="n">_attributes_to_extended_properties</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">AnalogWaveform</span><span class="o">.</span><span class="n">from_array_1d</span><span class="p">(</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">y_data</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+        <span class="n">extended_properties</span><span class="o">=</span><span class="n">extended_properties</span><span class="p">,</span>
+        <span class="n">timing</span><span class="o">=</span><span class="n">timing</span><span class="p">,</span>
+        <span class="n">scale_mode</span><span class="o">=</span><span class="n">NoneScaleMode</span><span class="p">(),</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="float64_complex_waveform_to_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.float64_complex_waveform_to_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">float64_complex_waveform_to_protobuf</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">ComplexWaveform</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">],</span> <span class="o">/</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DoubleComplexWaveform</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the Python ComplexWaveform to a protobuf DoubleComplexWaveform.&quot;&quot;&quot;</span>
+    <span class="n">_validate_timing</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">_t0_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">time_interval</span> <span class="o">=</span> <span class="n">_time_interval_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">_extended_properties_to_attributes</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">extended_properties</span><span class="p">)</span>
+
+    <span class="n">interleaved_array</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">scaled_data</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">DoubleComplexWaveform</span><span class="p">(</span>
+        <span class="n">t0</span><span class="o">=</span><span class="n">t0</span><span class="p">,</span>
+        <span class="n">dt</span><span class="o">=</span><span class="n">time_interval</span><span class="p">,</span>
+        <span class="n">y_data</span><span class="o">=</span><span class="n">interleaved_array</span><span class="p">,</span>
+        <span class="n">attributes</span><span class="o">=</span><span class="n">attributes</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="float64_complex_waveform_from_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.float64_complex_waveform_from_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">float64_complex_waveform_from_protobuf</span><span class="p">(</span>
+    <span class="n">message</span><span class="p">:</span> <span class="n">DoubleComplexWaveform</span><span class="p">,</span> <span class="o">/</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComplexWaveform</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the protobuf DoubleComplexWaveform to a Python ComplexWaveform.&quot;&quot;&quot;</span>
+    <span class="n">timing</span> <span class="o">=</span> <span class="n">_timing_from_waveform_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="n">extended_properties</span> <span class="o">=</span> <span class="n">_attributes_to_extended_properties</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+
+    <span class="n">y_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">y_data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">data_array</span> <span class="o">=</span> <span class="n">y_array</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">complex128</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ComplexWaveform</span><span class="o">.</span><span class="n">from_array_1d</span><span class="p">(</span>
+        <span class="n">data_array</span><span class="p">,</span>
+        <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">extended_properties</span><span class="o">=</span><span class="n">extended_properties</span><span class="p">,</span>
+        <span class="n">timing</span><span class="o">=</span><span class="n">timing</span><span class="p">,</span>
+        <span class="n">scale_mode</span><span class="o">=</span><span class="n">NoneScaleMode</span><span class="p">(),</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="int16_complex_waveform_to_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.int16_complex_waveform_to_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">int16_complex_waveform_to_protobuf</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">ComplexWaveform</span><span class="p">[</span><span class="n">ComplexInt32Base</span><span class="p">],</span> <span class="o">/</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">I16ComplexWaveform</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the Python ComplexWaveform to a protobuf DoubleComplexWaveform.&quot;&quot;&quot;</span>
+    <span class="n">_validate_timing</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">_t0_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">time_interval</span> <span class="o">=</span> <span class="n">_time_interval_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">_extended_properties_to_attributes</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">extended_properties</span><span class="p">)</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">_scale_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="n">interleaved_array</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">raw_data</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">I16ComplexWaveform</span><span class="p">(</span>
+        <span class="n">t0</span><span class="o">=</span><span class="n">t0</span><span class="p">,</span>
+        <span class="n">dt</span><span class="o">=</span><span class="n">time_interval</span><span class="p">,</span>
+        <span class="n">y_data</span><span class="o">=</span><span class="n">interleaved_array</span><span class="p">,</span>
+        <span class="n">attributes</span><span class="o">=</span><span class="n">attributes</span><span class="p">,</span>
+        <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="int16_complex_waveform_from_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.int16_complex_waveform_from_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">int16_complex_waveform_from_protobuf</span><span class="p">(</span>
+    <span class="n">message</span><span class="p">:</span> <span class="n">I16ComplexWaveform</span><span class="p">,</span> <span class="o">/</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComplexWaveform</span><span class="p">[</span><span class="n">ComplexInt32Base</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the protobuf DoubleComplexWaveform to a Python ComplexWaveform.&quot;&quot;&quot;</span>
+    <span class="n">timing</span> <span class="o">=</span> <span class="n">_timing_from_waveform_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="n">extended_properties</span> <span class="o">=</span> <span class="n">_attributes_to_extended_properties</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+    <span class="n">scale_mode</span> <span class="o">=</span> <span class="n">_scale_mode_from_waveform_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+    <span class="n">y_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">y_data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>
+    <span class="n">data_array</span> <span class="o">=</span> <span class="n">y_array</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">ComplexInt32DType</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ComplexWaveform</span><span class="o">.</span><span class="n">from_array_1d</span><span class="p">(</span>
+        <span class="n">data_array</span><span class="p">,</span>
+        <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">extended_properties</span><span class="o">=</span><span class="n">extended_properties</span><span class="p">,</span>
+        <span class="n">timing</span><span class="o">=</span><span class="n">timing</span><span class="p">,</span>
+        <span class="n">scale_mode</span><span class="o">=</span><span class="n">scale_mode</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="float64_spectrum_to_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.float64_spectrum_to_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">float64_spectrum_to_protobuf</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Spectrum</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">],</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DoubleSpectrum</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the Python Spectrum to a protobuf DoubleSpectrum.&quot;&quot;&quot;</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">_extended_properties_to_attributes</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">extended_properties</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">DoubleSpectrum</span><span class="p">(</span>
+        <span class="n">start_frequency</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">start_frequency</span><span class="p">,</span>
+        <span class="n">frequency_increment</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">frequency_increment</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">attributes</span><span class="o">=</span><span class="n">attributes</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="float64_spectrum_from_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.float64_spectrum_from_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">float64_spectrum_from_protobuf</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">DoubleSpectrum</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Spectrum</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the protobuf DoubleSpectrum to a Python Spectrum.&quot;&quot;&quot;</span>
+    <span class="n">extended_properties</span> <span class="o">=</span> <span class="n">_attributes_to_extended_properties</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Spectrum</span><span class="o">.</span><span class="n">from_array_1d</span><span class="p">(</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span>
+        <span class="n">start_frequency</span><span class="o">=</span><span class="n">message</span><span class="o">.</span><span class="n">start_frequency</span><span class="p">,</span>
+        <span class="n">frequency_increment</span><span class="o">=</span><span class="n">message</span><span class="o">.</span><span class="n">frequency_increment</span><span class="p">,</span>
+        <span class="n">extended_properties</span><span class="o">=</span><span class="n">extended_properties</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="int16_analog_waveform_to_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.int16_analog_waveform_to_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">int16_analog_waveform_to_protobuf</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">AnalogWaveform</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">],</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">I16AnalogWaveform</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the Python AnalogWaveform to a protobuf I16AnalogWaveform.&quot;&quot;&quot;</span>
+    <span class="n">_validate_timing</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">_t0_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">time_interval</span> <span class="o">=</span> <span class="n">_time_interval_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">_extended_properties_to_attributes</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">extended_properties</span><span class="p">)</span>
+    <span class="n">scale</span> <span class="o">=</span> <span class="n">_scale_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">I16AnalogWaveform</span><span class="p">(</span>
+        <span class="n">t0</span><span class="o">=</span><span class="n">t0</span><span class="p">,</span>
+        <span class="n">dt</span><span class="o">=</span><span class="n">time_interval</span><span class="p">,</span>
+        <span class="n">y_data</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">raw_data</span><span class="p">,</span>
+        <span class="n">attributes</span><span class="o">=</span><span class="n">attributes</span><span class="p">,</span>
+        <span class="n">scale</span><span class="o">=</span><span class="n">scale</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="int16_analog_waveform_from_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.int16_analog_waveform_from_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">int16_analog_waveform_from_protobuf</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">I16AnalogWaveform</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnalogWaveform</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the protobuf I16AnalogWaveform to a Python AnalogWaveform.&quot;&quot;&quot;</span>
+    <span class="n">timing</span> <span class="o">=</span> <span class="n">_timing_from_waveform_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="n">extended_properties</span> <span class="o">=</span> <span class="n">_attributes_to_extended_properties</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+    <span class="n">scale_mode</span> <span class="o">=</span> <span class="n">_scale_mode_from_waveform_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">AnalogWaveform</span><span class="o">.</span><span class="n">from_array_1d</span><span class="p">(</span>
+        <span class="n">message</span><span class="o">.</span><span class="n">y_data</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span>
+        <span class="n">extended_properties</span><span class="o">=</span><span class="n">extended_properties</span><span class="p">,</span>
+        <span class="n">timing</span><span class="o">=</span><span class="n">timing</span><span class="p">,</span>
+        <span class="n">scale_mode</span><span class="o">=</span><span class="n">scale_mode</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="digital_waveform_to_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.digital_waveform_to_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">digital_waveform_to_protobuf</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">DigitalWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DigitalWaveformProto</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the Python DigitalWaveform to a protobuf DigitalWaveform.&quot;&quot;&quot;</span>
+    <span class="n">_validate_timing</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">_t0_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">time_interval</span> <span class="o">=</span> <span class="n">_time_interval_from_waveform</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">attributes</span> <span class="o">=</span> <span class="n">_extended_properties_to_attributes</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">extended_properties</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">DigitalWaveformProto</span><span class="p">(</span>
+        <span class="n">t0</span><span class="o">=</span><span class="n">t0</span><span class="p">,</span>
+        <span class="n">dt</span><span class="o">=</span><span class="n">time_interval</span><span class="p">,</span>
+        <span class="n">signal_count</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">signal_count</span><span class="p">,</span>
+        <span class="n">y_data</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">tobytes</span><span class="p">(),</span>
+        <span class="n">attributes</span><span class="o">=</span><span class="n">attributes</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="digital_waveform_from_protobuf">
+<a class="viewcode-back" href="../../../../autoapi/ni/protobuf/types/waveform_conversion/index.html#ni.protobuf.types.waveform_conversion.digital_waveform_from_protobuf">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">digital_waveform_from_protobuf</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="n">DigitalWaveformProto</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DigitalWaveform</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert the protobuf DigitalWaveform to a Python DigitalWaveform.&quot;&quot;&quot;</span>
+    <span class="n">timing</span> <span class="o">=</span> <span class="n">_timing_from_waveform_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="n">extended_properties</span> <span class="o">=</span> <span class="n">_attributes_to_extended_properties</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">signal_count</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;signal_count must be greater than zero.&quot;</span><span class="p">)</span>
+
+    <span class="n">data_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">y_data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+    <span class="n">samples_per_signal</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_array</span><span class="p">)</span> <span class="o">//</span> <span class="n">message</span><span class="o">.</span><span class="n">signal_count</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_array</span><span class="p">)</span> <span class="o">!=</span> <span class="n">samples_per_signal</span> <span class="o">*</span> <span class="n">message</span><span class="o">.</span><span class="n">signal_count</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data array length (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data_array</span><span class="p">)</span><span class="si">}</span><span class="s2">) does not match expected shape.&quot;</span><span class="p">)</span>
+    <span class="n">reshaped_data</span> <span class="o">=</span> <span class="n">data_array</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">samples_per_signal</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">signal_count</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">DigitalWaveform</span><span class="o">.</span><span class="n">from_lines</span><span class="p">(</span>
+        <span class="n">reshaped_data</span><span class="p">,</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span>
+        <span class="n">signal_count</span><span class="o">=</span><span class="n">message</span><span class="o">.</span><span class="n">signal_count</span><span class="p">,</span>
+        <span class="n">extended_properties</span><span class="o">=</span><span class="n">extended_properties</span><span class="p">,</span>
+        <span class="n">timing</span><span class="o">=</span><span class="n">timing</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_attributes_to_extended_properties</span><span class="p">(</span>
+    <span class="n">attributes</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">WaveformAttributeValue</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ExtendedPropertyValue</span><span class="p">]:</span>
+    <span class="n">extended_properties</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attributes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">attr_type</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">WhichOneof</span><span class="p">(</span><span class="s2">&quot;attribute&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">attr_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Could not determine the datatype of &#39;attribute&#39;.&quot;</span><span class="p">)</span>
+        <span class="n">extended_properties</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">attr_type</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">extended_properties</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_extended_properties_to_attributes</span><span class="p">(</span>
+    <span class="n">extended_properties</span><span class="p">:</span> <span class="n">ExtendedPropertyDictionary</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">WaveformAttributeValue</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">_value_to_attribute</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">extended_properties</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_value_to_attribute</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">ExtendedPropertyValue</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">WaveformAttributeValue</span><span class="p">:</span>
+    <span class="n">attr_value</span> <span class="o">=</span> <span class="n">WaveformAttributeValue</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="n">attr_value</span><span class="o">.</span><span class="n">bool_value</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">attr_value</span><span class="o">.</span><span class="n">integer_value</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="n">attr_value</span><span class="o">.</span><span class="n">double_value</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">attr_value</span><span class="o">.</span><span class="n">string_value</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected type for extended property value </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">attr_value</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_validate_timing</span><span class="p">(</span>
+    <span class="n">waveform</span><span class="p">:</span> <span class="n">AnalogWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">ComplexWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">DigitalWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">waveform</span><span class="o">.</span><span class="n">timing</span><span class="o">.</span><span class="n">sample_interval_mode</span> <span class="o">==</span> <span class="n">SampleIntervalMode</span><span class="o">.</span><span class="n">IRREGULAR</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot convert irregular sample interval to protobuf.&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_t0_from_waveform</span><span class="p">(</span>
+    <span class="n">waveform</span><span class="p">:</span> <span class="n">AnalogWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">ComplexWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">DigitalWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PrecisionTimestamp</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">waveform</span><span class="o">.</span><span class="n">timing</span><span class="o">.</span><span class="n">has_start_time</span><span class="p">:</span>
+        <span class="n">bin_datetime</span> <span class="o">=</span> <span class="n">convert_datetime</span><span class="p">(</span><span class="n">bt</span><span class="o">.</span><span class="n">DateTime</span><span class="p">,</span> <span class="n">waveform</span><span class="o">.</span><span class="n">timing</span><span class="o">.</span><span class="n">start_time</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ptc</span><span class="o">.</span><span class="n">bintime_datetime_to_protobuf</span><span class="p">(</span><span class="n">bin_datetime</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_time_interval_from_waveform</span><span class="p">(</span>
+    <span class="n">waveform</span><span class="p">:</span> <span class="n">AnalogWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">ComplexWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">DigitalWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">waveform</span><span class="o">.</span><span class="n">timing</span><span class="o">.</span><span class="n">has_sample_interval</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">waveform</span><span class="o">.</span><span class="n">timing</span><span class="o">.</span><span class="n">sample_interval</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_timing_from_waveform_message</span><span class="p">(</span>
+    <span class="n">message</span><span class="p">:</span> <span class="p">(</span>
+        <span class="n">DoubleAnalogWaveform</span>
+        <span class="o">|</span> <span class="n">DoubleComplexWaveform</span>
+        <span class="o">|</span> <span class="n">I16AnalogWaveform</span>
+        <span class="o">|</span> <span class="n">I16ComplexWaveform</span>
+        <span class="o">|</span> <span class="n">DigitalWaveformProto</span>
+    <span class="p">),</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Timing</span><span class="p">[</span><span class="n">bt</span><span class="o">.</span><span class="n">DateTime</span> <span class="o">|</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">]:</span>
+    <span class="c1"># Declare timing to accept both bintime and dt.datetime to satisfy mypy.</span>
+    <span class="n">timing</span><span class="p">:</span> <span class="n">Timing</span><span class="p">[</span><span class="n">bt</span><span class="o">.</span><span class="n">DateTime</span> <span class="o">|</span> <span class="n">dt</span><span class="o">.</span><span class="n">datetime</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">message</span><span class="o">.</span><span class="n">dt</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">message</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;t0&quot;</span><span class="p">):</span>
+        <span class="c1"># If both dt and t0 are unset, use Timing.empty.</span>
+        <span class="n">timing</span> <span class="o">=</span> <span class="n">Timing</span><span class="o">.</span><span class="n">empty</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Timestamp</span>
+        <span class="n">bin_datetime</span> <span class="o">=</span> <span class="n">ptc</span><span class="o">.</span><span class="n">bintime_datetime_from_protobuf</span><span class="p">(</span><span class="n">message</span><span class="o">.</span><span class="n">t0</span><span class="p">)</span>
+
+        <span class="c1"># Sample Interval</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">message</span><span class="o">.</span><span class="n">dt</span><span class="p">:</span>
+            <span class="n">timing</span> <span class="o">=</span> <span class="n">Timing</span><span class="o">.</span><span class="n">create_with_no_interval</span><span class="p">(</span><span class="n">timestamp</span><span class="o">=</span><span class="n">bin_datetime</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">sample_interval</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span><span class="n">seconds</span><span class="o">=</span><span class="n">message</span><span class="o">.</span><span class="n">dt</span><span class="p">)</span>
+            <span class="n">timing</span> <span class="o">=</span> <span class="n">Timing</span><span class="o">.</span><span class="n">create_with_regular_interval</span><span class="p">(</span>
+                <span class="n">sample_interval</span><span class="o">=</span><span class="n">sample_interval</span><span class="p">,</span>
+                <span class="n">timestamp</span><span class="o">=</span><span class="n">bin_datetime</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">timing</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_scale_from_waveform</span><span class="p">(</span><span class="n">waveform</span><span class="p">:</span> <span class="n">AnalogWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">ComplexWaveform</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Scale</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">waveform</span><span class="o">.</span><span class="n">scale_mode</span><span class="p">,</span> <span class="n">LinearScaleMode</span><span class="p">):</span>
+        <span class="n">linear_scale</span> <span class="o">=</span> <span class="n">LinearScale</span><span class="p">(</span><span class="n">gain</span><span class="o">=</span><span class="n">waveform</span><span class="o">.</span><span class="n">scale_mode</span><span class="o">.</span><span class="n">gain</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">waveform</span><span class="o">.</span><span class="n">scale_mode</span><span class="o">.</span><span class="n">offset</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Scale</span><span class="p">(</span><span class="n">linear_scale</span><span class="o">=</span><span class="n">linear_scale</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">waveform</span><span class="o">.</span><span class="n">scale_mode</span><span class="p">,</span> <span class="n">NoneScaleMode</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The waveform scale mode </span><span class="si">{</span><span class="n">waveform</span><span class="o">.</span><span class="n">scale_mode</span><span class="si">}</span><span class="s2"> is not supported.&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_scale_mode_from_waveform_message</span><span class="p">(</span>
+    <span class="n">message</span><span class="p">:</span> <span class="n">I16AnalogWaveform</span> <span class="o">|</span> <span class="n">I16ComplexWaveform</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LinearScaleMode</span> <span class="o">|</span> <span class="n">NoneScaleMode</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">HasField</span><span class="p">(</span><span class="s2">&quot;scale&quot;</span><span class="p">):</span>
+        <span class="n">mode</span> <span class="o">=</span> <span class="n">message</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">WhichOneof</span><span class="p">(</span><span class="s2">&quot;mode&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Could not determine waveform scale mode.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;linear_scale&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">LinearScaleMode</span><span class="p">(</span>
+                <span class="n">message</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">linear_scale</span><span class="o">.</span><span class="n">gain</span><span class="p">,</span> <span class="n">message</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">linear_scale</span><span class="o">.</span><span class="n">offset</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The waveform scale mode </span><span class="si">{</span><span class="n">mode</span><span class="si">!r}</span><span class="s2"> is not supported.&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">NoneScaleMode</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, National Instruments.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

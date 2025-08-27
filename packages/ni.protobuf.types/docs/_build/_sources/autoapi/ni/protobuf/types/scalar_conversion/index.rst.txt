@@ -1,0 +1,56 @@
+ni.protobuf.types.scalar_conversion
+===================================
+
+.. py:module:: ni.protobuf.types.scalar_conversion
+
+.. autoapi-nested-parse::
+
+   Methods to convert to and from scalar protobuf messages.
+
+
+
+Attributes
+----------
+
+.. autoapisummary::
+
+   ni.protobuf.types.scalar_conversion.AnyScalarType
+
+
+Functions
+---------
+
+.. autoapisummary::
+
+   ni.protobuf.types.scalar_conversion.extended_properties_from_protobuf
+   ni.protobuf.types.scalar_conversion.extended_properties_to_protobuf
+   ni.protobuf.types.scalar_conversion.scalar_to_protobuf
+   ni.protobuf.types.scalar_conversion.scalar_from_protobuf
+
+
+Module Contents
+---------------
+
+.. py:function:: extended_properties_from_protobuf(attributes, extended_properties)
+
+   Convert an AttributeValue map and insert values into an ExtendedPropertyDictionary.
+
+
+.. py:function:: extended_properties_to_protobuf(extended_properties)
+
+   Convert an ExtendedPropertyDictionary to an AttributeValue map.
+
+
+.. py:data:: AnyScalarType
+   :type:  typing_extensions.TypeAlias
+
+.. py:function:: scalar_to_protobuf(value, /)
+
+   Convert a Scalar python object to a protobuf scalar_pb2.Scalar.
+
+
+.. py:function:: scalar_from_protobuf(message, /)
+
+   Convert the protobuf scalar_pb2.Scalar to a Python Scalar.
+
+
