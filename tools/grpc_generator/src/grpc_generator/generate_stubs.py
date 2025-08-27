@@ -8,9 +8,10 @@ from grpc_generator import generator
 
 def main() -> None:
     """Executes the generation of the gRPC stubs based on the specified package information."""
-    repo_root_path = Path(__file__).parent.parent.parent.parent.parent
+    packages_file_name = "packages.json"
+    repo_root_path = next(p for p in Path.cwd().parents if (p / packages_file_name).is_file())
 
-    packages_file_path = repo_root_path / "packages.json"
+    packages_file_path = repo_root_path / packages_file_name
 
     packages = json.loads(packages_file_path.read_text(encoding="utf-8"))
 
