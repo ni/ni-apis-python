@@ -9,63 +9,18 @@ on:
   workflow_dispatch:
 
 jobs:
+  get_package_names:
+    name: Get package names
+    uses: ./.github/workflows/get_package_names.yml
   check_package:
     name: Check ${{ matrix.package-name }}
+    needs: get_package_names
     strategy:
       matrix:
-        include:
-          - package-name: ni.grpcdevice.v1.proto
-            proto-basepath: ../../proto
-            proto-subpath: .
-            proto-include-path: ../../proto
-            output-format: subpackage
-          - package-name: ni.measurementlink.discovery.v1.proto
-            proto-basepath: ../../third_party/ni-apis
-            proto-subpath: ni/measurementlink/discovery/v1
-            proto-include-path: ../../third_party/ni-apis
-            output-format: subpackage
-          - package-name: ni.measurementlink.measurement.v1.proto
-            proto-basepath: ../../third_party/ni-apis
-            proto-subpath: ni/measurementlink/measurement/v1
-            proto-include-path: ../../third_party/ni-apis
-            output-format: subpackage
-          - package-name: ni.measurementlink.measurement.v2.proto
-            proto-basepath: ../../third_party/ni-apis
-            proto-subpath: ni/measurementlink/measurement/v2
-            proto-include-path: ../../third_party/ni-apis
-            output-format: subpackage
-          - package-name: ni.measurementlink.pinmap.v1.proto
-            proto-basepath: ../../third_party/ni-apis
-            proto-subpath: ni/measurementlink/pinmap/v1
-            proto-include-path: ../../third_party/ni-apis
-            output-format: subpackage
-          - package-name: ni.measurementlink.proto
-            proto-basepath: ../../third_party/ni-apis
-            proto-subpath: ni/measurementlink
-            proto-include-path: ../../third_party/ni-apis
-            output-format: subpackage
-          - package-name: ni.measurementlink.sessionmanagement.v1.proto
-            proto-basepath: ../../third_party/ni-apis
-            proto-subpath: ni/measurementlink/sessionmanagement/v1
-            proto-include-path: ../../third_party/ni-apis/ni/grpcdevice/v1
-            output-format: subpackage
-          - package-name: ni.panels.v1.proto
-            proto-basepath: ../../third_party/ni-apis
-            proto-subpath: ni/panels/v1
-            proto-include-path: ../../third_party/ni-apis
-            output-format: submodule
-          - package-name: ni.protobuf.types
-            proto-basepath: ../../third_party/ni-apis
-            proto-subpath: ni/protobuf/types
-            proto-include-path: ../../third_party/ni-apis
-            output-format: submodule
+        package-name: ${{ fromJson(needs.get_package_names.outputs.package-names) }}
     uses: ./.github/workflows/check_package.yml
     with:
       package-name: ${{ matrix.package-name }}
-      proto-basepath: ${{ matrix.proto-basepath }}
-      proto-subpath: ${{ matrix.proto-subpath }}
-      proto-include-path: ${{ matrix.proto-include-path }}
-      output-format: ${{ matrix.output-format }}
   check_analyzers_grpc_gen:
     name: Check analyzers for grpc_generator
     uses: ./.github/workflows/check_analyzers.yml
