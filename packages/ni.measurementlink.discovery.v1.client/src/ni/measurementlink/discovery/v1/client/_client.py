@@ -10,12 +10,12 @@ import grpc
 from ni.measurementlink.discovery.v1 import discovery_service_pb2, discovery_service_pb2_grpc
 from ni_grpc_extensions.channelpool import GrpcChannelPool  # type: ignore[import-untyped]
 
-from ni.measurementlink.discovery.v1.client._info import ServiceInfo
 from ni.measurementlink.discovery.v1.client._support import (
     _get_discovery_service_address,
 )
 from ni.measurementlink.discovery.v1.client._types import (
     ComputeNodeDescriptor,
+    ServiceInfo,
     ServiceLocation,
 )
 

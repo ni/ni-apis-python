@@ -40,13 +40,13 @@ from ni.measurementlink.discovery.v1.client import (
     ServiceLocation,
 )
 from ni.measurementlink.discovery.v1.client._client import SERVICE_PROGRAMMINGLANGUAGE_KEY
-from ni.measurementlink.discovery.v1.client._info import (
-    ServiceInfo,
-)
 from ni.measurementlink.discovery.v1.client._support import (
     _get_discovery_service_address,
     _open_key_file,
     _start_service,
+)
+from ni.measurementlink.discovery.v1.client._types import (
+    ServiceInfo,
 )
 from tests.utilities.fake_rpc_error import FakeRpcError
 
