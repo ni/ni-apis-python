@@ -90,6 +90,9 @@ exclude = ["docs"]
 
 [tool.pyright]
 include = ["src/", "tests/"]
+# Turn off this check to avoid pyright warnings for pywin32 and pywin32-types
+# when pyright runs for the win32 platform on a Linux build agent.
+reportMissingModuleSource = false
 
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
