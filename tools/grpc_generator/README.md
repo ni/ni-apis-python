@@ -34,6 +34,15 @@ poetry run grpc-generator `
    --output-format subpackage
 ```
 
+## Generate (stubs for all packages)
+
+You can also use `generate-stubs` to invoke `grpc_generator` and regenerate the gRPC stubs for all packages in the repository.
+
+```pwsh
+# PowerShell
+poetry run generate-stubs
+```
+
 ## Options
 
 **`grpc-generator --help`**
