@@ -39,6 +39,8 @@ pywin32 = { version = ">=303", platform = "win32" }
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
 types-pywin32 = ">=304"
+# Install pywin32 on Linux for type checking.
+pywin32 = { version = ">=303", platform = "linux" }
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
