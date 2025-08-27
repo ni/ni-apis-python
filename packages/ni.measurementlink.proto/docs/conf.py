@@ -45,17 +45,13 @@ htmlhelp_basename = f"{project}doc"
 # tell autoapi to doc the public options
 autoapi_options = list(autoapi.extension._DEFAULT_OPTIONS)
 autoapi_options.remove("private-members")  # note: remove this to include "_" members in docs
-autoapi_dirs = [
-    root_path / "src" / "ni" / "measurementlink" / "pin_map_context_pb2",
-]
+autoapi_dirs = [root_path / "src" / "ni"]
 autoapi_python_use_implicit_namespaces = True
+autoapi_template_dir = "templates/autoapi"
 autoapi_python_class_content = "both"
 autoapi_type = "python"
 autodoc_typehints = "description"
 autoapi_file_patterns = ["*.pyi", "*.py"]
-autoapi_ignore = [
-    '**/__init__.py',
-]
 
 
 def process_docstring(app, what, name, obj, options, lines):
@@ -72,10 +68,11 @@ def setup(sphinx):
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "__init__.py"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
+    "protobuf": ("https://googleapis.dev/python/protobuf/latest/", None),
 }
 
 
