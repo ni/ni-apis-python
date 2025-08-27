@@ -12,8 +12,4 @@ This page contains auto-generated API reference documentation.
 .. toctree::
    :titlesonly:
 
-   {% for page in pages | sort %}
-   {% if page.display %}
-   {{ page.include_path }}
-   {% endif %}
-   {% endfor %}
+   /namespace
