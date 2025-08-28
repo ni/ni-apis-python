@@ -827,6 +827,21 @@ files = [
 ]
 
 [[package]]
+name = "ni-grpc-extensions"
+version = "0.1.0.dev0"
+description = "gRPC Extensions"
+optional = false
+python-versions = "<4.0,>=3.9"
+files = [
+    {file = "ni_grpc_extensions-0.1.0.dev0-py3-none-any.whl", hash = "sha256:a5b574d8eae2c9b153cd80083d1f6f51c626ecdef7557d3663c1e16ae44730c0"},
+    {file = "ni_grpc_extensions-0.1.0.dev0.tar.gz", hash = "sha256:ed57ebe7eee0802066bf208a5a3e047127886c6fd316643b86b5b50782c1d7cb"},
+]
+
+[package.dependencies]
+grpcio = ">=1.49.0,<2.0"
+traceloggingdynamic = {version = ">=1.0", markers = "sys_platform == \"win32\""}
+
+[[package]]
 name = "ni-grpcdevice-v1-proto"
 version = "0.1.0.dev2"
 description = "Protobuf generated code for the nidevice_grpc gRPC API"
@@ -839,6 +854,37 @@ files = [
 
 [package.dependencies]
 grpcio = ">=1.49.0,<2.0"
+protobuf = ">=4.21"
+
+[[package]]
+name = "ni-measurementlink-discovery-v1-client"
+version = "0.1.0.dev0"
+description = "gRPC Client for NI Discovery Service"
+optional = false
+python-versions = "<4.0,>=3.9"
+files = [
+    {file = "ni_measurementlink_discovery_v1_client-0.1.0.dev0-py3-none-any.whl", hash = "sha256:b27abeddb3465e2be3a8142f0884eaeabff82d89040a76d026501d8527064167"},
+    {file = "ni_measurementlink_discovery_v1_client-0.1.0.dev0.tar.gz", hash = "sha256:b964d48bc7942fc1eb6bcc5b03ce1a3fb031e9fa19d7d1a92c3c85b92fc44c17"},
+]
+
+[package.dependencies]
+grpcio = ">=1.49.0,<2.0"
+ni-grpc-extensions = ">=0.1.0.dev0"
+ni-measurementlink-discovery-v1-proto = ">=0.1.0.dev0"
+pywin32 = {version = ">=303", markers = "sys_platform == \"win32\""}
+
+[[package]]
+name = "ni-measurementlink-discovery-v1-proto"
+version = "0.1.0.dev0"
+description = "Protobuf data types for NI discovery gRPC APIs"
+optional = false
+python-versions = "<4.0,>=3.9"
+files = [
+    {file = "ni_measurementlink_discovery_v1_proto-0.1.0.dev0-py3-none-any.whl", hash = "sha256:6e267ae51614703b9835d693264bf888b653e8e40b9a7f7455e99434e5e3d8e7"},
+    {file = "ni_measurementlink_discovery_v1_proto-0.1.0.dev0.tar.gz", hash = "sha256:190b62e4d0f59ff8ab4f06b34075d215ac85d4c6fe8b4fb8c4109af5ba07dfb8"},
+]
+
+[package.dependencies]
 protobuf = ">=4.21"
 
 [[package]]
@@ -2062,4 +2108,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "daa8ad58c8c5c21d64e39f1c95ff6c67513eccddde9b9ddc10316e86ad334f35"
+content-hash = "efa4276e8cc0903e985f93f0bcdd176dede0a83e8419acd796958b2f0b405294"

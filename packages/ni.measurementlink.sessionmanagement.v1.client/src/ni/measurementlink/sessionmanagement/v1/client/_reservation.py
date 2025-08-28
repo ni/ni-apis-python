@@ -31,8 +31,8 @@ from ni_measurement_plugin_sdk_service._drivers import (
     closing_session,
     closing_session_with_ts_code_module_support,
 )
-from ni_measurement_plugin_sdk_service.discovery import DiscoveryClient
-from ni_measurement_plugin_sdk_service.session_management._constants import (
+from ni.measurementlink.discovery.v1.client import DiscoveryClient
+from ni.measurementlink.sessionmanagement.v1.client._constants import (
     INSTRUMENT_TYPE_NI_DAQMX,
     INSTRUMENT_TYPE_NI_DCPOWER,
     INSTRUMENT_TYPE_NI_DIGITAL_PATTERN,
@@ -42,7 +42,7 @@ from ni_measurement_plugin_sdk_service.session_management._constants import (
     INSTRUMENT_TYPE_NI_SCOPE,
     SITE_SYSTEM_PINS,
 )
-from ni_measurement_plugin_sdk_service.session_management._types import (
+from ni.measurementlink.sessionmanagement.v1.client._types import (
     Connection,
     MultiplexerSessionInformation,
     SessionInformation,
@@ -66,7 +66,7 @@ if TYPE_CHECKING:
     import niscope
     import niswitch
 
-    from ni_measurement_plugin_sdk_service.session_management._client import (  # circular import
+    from ni.measurementlink.sessionmanagement.v1.client import (  # circular import
         SessionManagementClient,
     )
 

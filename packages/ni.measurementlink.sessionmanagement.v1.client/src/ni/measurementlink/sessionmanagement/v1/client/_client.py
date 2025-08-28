@@ -15,17 +15,17 @@ from ni.measurementlink.sessionmanagement.v1 import (
 )
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
-from ni_measurement_plugin_sdk_service.discovery import DiscoveryClient
-from ni_measurement_plugin_sdk_service.session_management._constants import (
+from ni.measurementlink.discovery.v1.client import DiscoveryClient
+from ni.measurementlink.sessionmanagement.v1.client._constants import (
     GRPC_SERVICE_CLASS,
     GRPC_SERVICE_INTERFACE_NAME,
 )
-from ni_measurement_plugin_sdk_service.session_management._reservation import (
+from ni.measurementlink.sessionmanagement.v1.client._reservation import (
     MultiplexerSessionContainer,
     MultiSessionReservation,
     SingleSessionReservation,
 )
-from ni_measurement_plugin_sdk_service.session_management._types import (
+from ni.measurementlink.sessionmanagement.v1.client._types import (
     MultiplexerSessionInformation,
     PinMapContext,
     SessionInformation,

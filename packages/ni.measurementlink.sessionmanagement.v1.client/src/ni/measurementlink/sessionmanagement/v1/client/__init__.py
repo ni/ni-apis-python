@@ -7,10 +7,9 @@ from typing import Any
 
 from deprecation import DeprecatedWarning
 
-from ni_measurement_plugin_sdk_service.session_management._client import (
-    SessionManagementClient,
-)
-from ni_measurement_plugin_sdk_service.session_management._constants import (
+from ni.measurementlink.sessionmanagement.v1.client import SessionManagementClient
+
+from ni.measurementlink.sessionmanagement.v1.client._constants import (
     GRPC_SERVICE_CLASS,
     GRPC_SERVICE_INTERFACE_NAME,
     INSTRUMENT_TYPE_NI_DAQMX,
@@ -30,13 +29,13 @@ from ni_measurement_plugin_sdk_service.session_management._constants import (
     INSTRUMENT_TYPE_NONE,
     SITE_SYSTEM_PINS,
 )
-from ni_measurement_plugin_sdk_service.session_management._reservation import (
+from ni.measurementlink.sessionmanagement.v1.client._reservation import (
     BaseReservation,
     MultiplexerSessionContainer,
     MultiSessionReservation,
     SingleSessionReservation,
 )
-from ni_measurement_plugin_sdk_service.session_management._types import (
+from ni.measurementlink.sessionmanagement.v1.client._types import (
     ChannelMapping,
     Connection,
     PinMapContext,
