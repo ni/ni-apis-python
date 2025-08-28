@@ -2,6 +2,7 @@ ni.measurementlink.discovery.v1.client
 ======================================
 
 .. py:module:: ni.measurementlink.discovery.v1.client
+   :no-index:
 
 .. autoapi-nested-parse::
 

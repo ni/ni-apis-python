@@ -52,7 +52,6 @@ autoapi_python_class_content = "both"
 autoapi_type = "python"
 autodoc_typehints = "description"
 autoapi_file_patterns = ["*.py"]
-autoapi_keep_files = True
 
 
 def process_docstring(app, what, name, obj, options, lines):
