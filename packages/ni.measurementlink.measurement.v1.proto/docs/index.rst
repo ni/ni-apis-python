@@ -2,7 +2,19 @@
 Protobuf Types for NI Measurement V1 gRPC APIs
 ##############################################
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Contents:
+.. include:: intro.inc
 
+Table of Contents
+=================
+
+.. toctree::
+   :maxdepth: 4
+
+   autoapi/index
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

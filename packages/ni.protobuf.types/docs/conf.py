@@ -90,6 +90,7 @@ intersphinx_mapping = {
     "nitypes": ("https://nitypes.readthedocs.io/en/latest/", None),
     "numpy": ("https://numpy.org/doc/stable/", None),
     "python": ("https://docs.python.org/3", None),
+    "protobuf": ("https://googleapis.dev/python/protobuf/latest/", None),
 }
 
 

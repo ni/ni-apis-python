@@ -293,14 +293,17 @@ class QueryResourceAccessInformationRequest(google.protobuf.message.Message):
     """Required. The resource id of the registered pin map resource."""
     instrument_type_id: builtins.str
     """Optional. The instrument type for which to get instrument resource access information. If unspecified, get instrument resource information for all instrument types connected in the registered pin map resource.
+
     Pin maps have built in instrument definitions using the following NI driver based instrument type ids:
-         "niDCPower"
-         "niDigitalPattern"
-         "niScope"
-         "niDMM"
-         "niDAQmx"
-         "niFGen"
-         "niRelayDriver"
+
+    - "niDCPower"
+    - "niDigitalPattern"
+    - "niScope"
+    - "niDMM"
+    - "niDAQmx"
+    - "niFGen"
+    - "niRelayDriver"
+
     For custom instruments the user defined instrument type id is defined in the pin map file.
     """
     @property
@@ -387,14 +390,17 @@ class ResourceAccessInformation(google.protobuf.message.Message):
     """
     instrument_type_id: builtins.str
     """The instrument type of the instrument resource.
+
     Pin maps have built in instrument definitions using the following NI driver based instrument type ids:
-         "niDCPower"
-         "niDigitalPattern"
-         "niScope"
-         "niDMM"
-         "niDAQmx"
-         "niFGen"
-         "niRelayDriver"
+
+    - "niDCPower"
+    - "niDigitalPattern"
+    - "niScope"
+    - "niDMM"
+    - "niDAQmx"
+    - "niFGen"
+    - "niRelayDriver"
+
     For custom instruments the user defined instrument type id is defined in the pin map file.
     """
     @property

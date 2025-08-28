@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ni-grpc-extensions"
-version = "0.1.0-dev1"
+version = "0.1.0-dev2"
 license = "MIT"
 description = "gRPC Extensions"
 authors = ["NI <opensource@ni.com>"]
