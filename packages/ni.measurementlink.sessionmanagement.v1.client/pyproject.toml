@@ -36,13 +36,13 @@ pywin32 = { version = ">=303", platform = "win32" }
 deprecation = ">=2.1"
 traceloggingdynamic = { version = ">=1.0", platform = "win32" }
 python-decouple = ">=3.8"
-nidaqmx = { version = ">=0.8.0" }
-nidcpower = { version = ">=1.4.4" }
-nidigital = { version = ">=1.4.4" }
-nidmm = { version = ">=1.4.4" }
-nifgen = { version = ">=1.4.4" }
-niscope = { version = ">=1.4.4" }
-niswitch = { version = ">=1.4.4" }
+nidaqmx = { version = ">=0.8.0", extras = ["grpc"], optional = true }
+nidcpower = { version = ">=1.4.4", extras = ["grpc"], optional = true }
+nidigital = { version = ">=1.4.4", extras = ["grpc"], optional = true }
+nidmm = { version = ">=1.4.4", extras = ["grpc"], optional = true }
+nifgen = { version = ">=1.4.4", extras = ["grpc"], optional = true }
+niscope = { version = ">=1.4.4", extras = ["grpc"], optional = true }
+niswitch = { version = ">=1.4.4", extras = ["grpc"], optional = true }
 ni-measurementlink-sessionmanagement-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
 ni-measurementlink-pinmap-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
 ni-measurementlink-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
@@ -67,6 +67,24 @@ pytest-doctestplus = ">=1.4"
 pytest-mock = ">=3.0"
 # Use a prerelease version of hightime for testing.
 hightime = { version = ">=0.3.0.dev0", allow-prereleases = true }
+
+[tool.poetry.extras]
+drivers = [
+  "nidaqmx",
+  "nidcpower",
+  "nidigital",
+  "nidmm",
+  "nifgen",
+  "niscope",
+  "niswitch",
+]
+nidaqmx = ["nidaqmx"]
+nidcpower = ["nidcpower"]
+nidigital = ["nidigital"]
+nidmm = ["nidmm"]
+nifgen = ["nifgen"]
+niscope = ["niscope"]
+niswitch = ["niswitch"]
 
 [tool.poetry.group.docs]
 optional = true

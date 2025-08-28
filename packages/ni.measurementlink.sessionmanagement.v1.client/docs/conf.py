@@ -53,6 +53,11 @@ autoapi_type = "python"
 autodoc_typehints = "description"
 autoapi_file_patterns = ["*.pyi", "*.py"]
 
+# Optional: suppress warnings globally
+suppress_warnings = [
+    "autoapi.python_import_resolution"
+]
+
 
 def process_docstring(app, what, name, obj, options, lines):
     """Make edits to docstrings as necessary"""
