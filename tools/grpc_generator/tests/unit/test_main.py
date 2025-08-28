@@ -140,7 +140,7 @@ def test___existing_package___generate_submodules___updates_submodules(
         assert support_file.exists(), "Support file incorrectly deleted!"
 
 
-def test___subpackage_mixin___generate_subpackages___updates_subpackages(
+def test___existing_package___generate_subpackages___updates_subpackages(
     tmp_path: pathlib.Path,
 ) -> None:
     # Add files to a separate subpackage that aren't generated files.

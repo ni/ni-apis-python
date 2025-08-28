@@ -116,8 +116,8 @@ def reset_python_package(generation_spec: GenerationSpec) -> None:
 
     match generation_spec.output_format:
         case OutputFormat.SUBPACKAGE:
-            # Assuming everything in here is a directory...
-            # What if it's not, should we just delete everything in that case?
+            # Only remove generated subpackage dirs.
+            # This allows for non-generated "mixin" subpackages.
             dirs_to_remove = []
             for subpackage_dir in generation_spec.package_folder.iterdir():
                 if is_generated_subpackage_dir(subpackage_dir):
