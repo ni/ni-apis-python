@@ -68,6 +68,24 @@ pytest-mock = ">=3.0"
 # Use a prerelease version of hightime for testing.
 hightime = { version = ">=0.3.0.dev0", allow-prereleases = true }
 
+[tool.poetry.extras]
+drivers = [
+  "nidaqmx",
+  "nidcpower",
+  "nidigital",
+  "nidmm",
+  "nifgen",
+  "niscope",
+  "niswitch",
+]
+nidaqmx = ["nidaqmx"]
+nidcpower = ["nidcpower"]
+nidigital = ["nidigital"]
+nidmm = ["nidmm"]
+nifgen = ["nifgen"]
+niscope = ["niscope"]
+niswitch = ["niswitch"]
+
 [tool.poetry.group.docs]
 optional = true
 

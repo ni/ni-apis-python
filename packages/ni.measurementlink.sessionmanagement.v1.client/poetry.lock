@@ -2105,7 +2105,17 @@ h2 = ["h2 (>=4,<5)"]
 socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
 
+[extras]
+drivers = ["nidaqmx", "nidcpower", "nidigital", "nidmm", "nifgen", "niscope", "niswitch"]
+nidaqmx = ["nidaqmx"]
+nidcpower = ["nidcpower"]
+nidigital = ["nidigital"]
+nidmm = ["nidmm"]
+nifgen = ["nifgen"]
+niscope = ["niscope"]
+niswitch = ["niswitch"]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "efa4276e8cc0903e985f93f0bcdd176dede0a83e8419acd796958b2f0b405294"
+content-hash = "ba8f971d575bb0f9f228d902301caec9bac2d04242f274806c0945cffa240e2c"

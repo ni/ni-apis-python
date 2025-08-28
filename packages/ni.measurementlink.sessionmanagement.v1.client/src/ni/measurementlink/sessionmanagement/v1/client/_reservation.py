@@ -27,12 +27,12 @@ from ni.measurementlink.sessionmanagement.v1 import (
 )
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
-from ni_measurement_plugin_sdk_service._drivers import (
+from ni.measurementlink.sessionmanagement.v1.client._drivers import (
     closing_session,
     closing_session_with_ts_code_module_support,
 )
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
-from ni.measurementlink.sessionmanagement.v1.client._constants import (
+from ni.measurementlink.sessionmanagement.v1.client import (
     INSTRUMENT_TYPE_NI_DAQMX,
     INSTRUMENT_TYPE_NI_DCPOWER,
     INSTRUMENT_TYPE_NI_DIGITAL_PATTERN,
@@ -456,7 +456,7 @@ class MultiplexerSessionContainer(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`niswitch.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._niswitch import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._niswitch import (
             SessionConstructor,
         )
 
@@ -521,7 +521,7 @@ class MultiplexerSessionContainer(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`niswitch.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._niswitch import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._niswitch import (
             SessionConstructor,
         )
 
@@ -1176,7 +1176,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nidaqmx.Task`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._nidaqmx import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidaqmx import (
             SessionConstructor,
         )
 
@@ -1214,7 +1214,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nidaqmx.Task`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._nidaqmx import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidaqmx import (
             SessionConstructor,
         )
 
@@ -1381,7 +1381,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nidcpower.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._nidcpower import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidcpower import (
             SessionConstructor,
         )
 
@@ -1427,7 +1427,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nidcpower.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._nidcpower import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidcpower import (
             SessionConstructor,
         )
 
@@ -1604,7 +1604,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nidigital.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._nidigital import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidigital import (
             SessionConstructor,
         )
 
@@ -1654,7 +1654,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nidigital.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._nidigital import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidigital import (
             SessionConstructor,
         )
 
@@ -1839,7 +1839,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nidmm.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._nidmm import SessionConstructor
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidmm import SessionConstructor
 
         session_constructor = SessionConstructor(
             self._discovery_client,
@@ -1887,7 +1887,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nidmm.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._nidmm import SessionConstructor
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidmm import SessionConstructor
 
         session_constructor = SessionConstructor(
             self._discovery_client,
@@ -2056,7 +2056,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nifgen.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._nifgen import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nifgen import (
             SessionConstructor,
         )
 
@@ -2106,7 +2106,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nifgen.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._nifgen import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nifgen import (
             SessionConstructor,
         )
 
@@ -2277,7 +2277,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`niscope.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._niscope import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._niscope import (
             SessionConstructor,
         )
 
@@ -2327,7 +2327,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`niscope.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._niscope import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._niscope import (
             SessionConstructor,
         )
 
@@ -2508,7 +2508,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`niswitch.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._niswitch import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._niswitch import (
             SessionConstructor,
         )
 
@@ -2565,7 +2565,7 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`niswitch.Session`.
         """
-        from ni_measurement_plugin_sdk_service._drivers._niswitch import (
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._niswitch import (
             SessionConstructor,
         )
 
