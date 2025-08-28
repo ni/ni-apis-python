@@ -7,8 +7,9 @@ from typing import Any
 
 from deprecation import DeprecatedWarning
 
-from ni.measurementlink.sessionmanagement.v1.client._client import SessionManagementClient
-
+from ni.measurementlink.sessionmanagement.v1.client._client import (
+    SessionManagementClient,
+)
 from ni.measurementlink.sessionmanagement.v1.client._constants import (
     GRPC_SERVICE_CLASS,
     GRPC_SERVICE_INTERFACE_NAME,
@@ -38,8 +39,8 @@ from ni.measurementlink.sessionmanagement.v1.client._reservation import (
 from ni.measurementlink.sessionmanagement.v1.client._types import (
     ChannelMapping,
     Connection,
-    PinMapContext,
     MultiplexerSessionInformation,
+    PinMapContext,
     SessionInformation,
     SessionInitializationBehavior,
     TypedConnection,

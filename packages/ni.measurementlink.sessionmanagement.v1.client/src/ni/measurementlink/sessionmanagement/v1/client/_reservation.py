@@ -22,16 +22,12 @@ from typing import (
     cast,
 )
 
+from ni.measurementlink.discovery.v1.client import DiscoveryClient
 from ni.measurementlink.sessionmanagement.v1 import (
     session_management_service_pb2,
 )
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
-from ni.measurementlink.sessionmanagement.v1.client._drivers import (
-    closing_session,
-    closing_session_with_ts_code_module_support,
-)
-from ni.measurementlink.discovery.v1.client import DiscoveryClient
 from ni.measurementlink.sessionmanagement.v1.client import (
     INSTRUMENT_TYPE_NI_DAQMX,
     INSTRUMENT_TYPE_NI_DCPOWER,
@@ -41,6 +37,10 @@ from ni.measurementlink.sessionmanagement.v1.client import (
     INSTRUMENT_TYPE_NI_RELAY_DRIVER,
     INSTRUMENT_TYPE_NI_SCOPE,
     SITE_SYSTEM_PINS,
+)
+from ni.measurementlink.sessionmanagement.v1.client._drivers import (
+    closing_session,
+    closing_session_with_ts_code_module_support,
 )
 from ni.measurementlink.sessionmanagement.v1.client._types import (
     Connection,
@@ -1839,7 +1839,9 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nidmm.Session`.
         """
-        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidmm import SessionConstructor
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidmm import (
+            SessionConstructor,
+        )
 
         session_constructor = SessionConstructor(
             self._discovery_client,
@@ -1887,7 +1889,9 @@ class BaseReservation(_BaseSessionContainer):
         See Also:
             For more details, see :py:class:`nidmm.Session`.
         """
-        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidmm import SessionConstructor
+        from ni.measurementlink.sessionmanagement.v1.client._drivers._nidmm import (
+            SessionConstructor,
+        )
 
         session_constructor = SessionConstructor(
             self._discovery_client,

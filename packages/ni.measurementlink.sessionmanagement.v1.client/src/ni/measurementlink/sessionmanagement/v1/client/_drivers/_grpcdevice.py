@@ -6,13 +6,13 @@ import logging
 from urllib.parse import urlsplit
 
 import grpc
+from ni.measurementlink.discovery.v1.client import DiscoveryClient, ServiceLocation
+from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 from ni.measurementlink.sessionmanagement.v1.client._drivers._configuration import (
     GRPC_DEVICE_SERVER_ADDRESS,
     USE_GRPC_DEVICE_SERVER,
 )
-from ni.measurementlink.discovery.v1.client import DiscoveryClient, ServiceLocation
-from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 _logger = logging.getLogger(__name__)
 

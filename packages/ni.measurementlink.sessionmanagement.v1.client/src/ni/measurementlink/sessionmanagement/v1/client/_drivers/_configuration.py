@@ -7,7 +7,9 @@ from typing import TYPE_CHECKING, Any, Callable, NamedTuple, TypeVar
 
 from decouple import AutoConfig, Undefined, undefined
 
-from ni.measurementlink.sessionmanagement.v1.client._drivers._dotenvpath import get_dotenv_search_path
+from ni.measurementlink.sessionmanagement.v1.client._drivers._dotenvpath import (
+    get_dotenv_search_path,
+)
 
 if TYPE_CHECKING:
     if sys.version_info >= (3, 11):
