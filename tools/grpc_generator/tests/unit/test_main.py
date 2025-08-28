@@ -29,9 +29,13 @@ def assert_is_subpackage(output_path: pathlib.Path) -> None:
     assert not output_path.joinpath("py.typed").exists()
     assert all(entry.is_dir() for entry in output_path.iterdir())
     for entry in output_path.iterdir():
-        assert entry.joinpath("__init__.py").exists()
-        assert entry.joinpath("__init__.pyi").exists()
-        assert entry.joinpath("py.typed").exists()
+        # Assumption: Any subpackage dir that does not end in _pb2
+        # contains handwritten mixin files we want to keep and won't
+        # have the same format as a generated subpackage dir.
+        if generator.is_generated_subpackage_dir(entry):
+            assert entry.joinpath("__init__.py").exists()
+            assert entry.joinpath("__init__.pyi").exists()
+            assert entry.joinpath("py.typed").exists()
 
 
 def test___generator___call_generator_help___succeeds() -> None:
@@ -134,3 +138,66 @@ def test___existing_package___generate_submodules___updates_submodules(
         assert not previous_api_file.exists()
     for support_file in support_files:
         assert support_file.exists(), "Support file incorrectly deleted!"
+
+
+def test___subpackage_mixin___generate_subpackages___updates_subpackages(
+    tmp_path: pathlib.Path,
+) -> None:
+    # Add files to a separate subpackage that aren't generated files.
+    output_folder = tmp_path.joinpath("ni/protobuf/types")
+    mixin_folder = output_folder.joinpath("mixin")
+    mixin_folder.mkdir(parents=True, exist_ok=True)
+    support_files = [
+        mixin_folder.joinpath("helper.py"),
+        mixin_folder.joinpath("converter.py"),
+    ]
+    for support_file in support_files:
+        support_file.touch()
+
+    result = call_generate(
+        [
+            "--output-basepath",
+            f"{tmp_path!s}",
+            "--output-format",
+            generator.OutputFormat.SUBPACKAGE.value,
+            "--proto-subpath",
+            "ni/protobuf/types",
+        ]
+    )
+    assert result.exit_code == 0
+    assert_is_subpackage(output_folder)
+    assert len(sorted(output_folder.glob("*_pb2_grpc.*"))) == 0
+    for support_file in support_files:
+        assert support_file.exists(), "Support file incorrectly deleted!"
+
+    # Mimic an API change by adding "previous" generated subpackage dirs
+    previous_pb2_dir = output_folder.joinpath("prev_dir_pb2")
+    previous_pb2_dir.mkdir(parents=True, exist_ok=True)
+    previous_pb2_grpc_dir = output_folder.joinpath("prev_dir_pb2_grpc")
+    previous_pb2_grpc_dir.mkdir(parents=True, exist_ok=True)
+    previous_api_files = [
+        previous_pb2_dir.joinpath("__init__.py"),
+        previous_pb2_dir.joinpath("__init__.pyi"),
+        previous_pb2_dir.joinpath("py.typed"),
+        previous_pb2_grpc_dir.joinpath("__init__.py"),
+        previous_pb2_grpc_dir.joinpath("__init__.pyi"),
+        previous_pb2_grpc_dir.joinpath("py.typed"),
+    ]
+    for previous_api_file in previous_api_files:
+        previous_api_file.touch()
+
+    result = call_generate(
+        [
+            "--output-basepath",
+            f"{tmp_path!s}",
+            "--output-format",
+            generator.OutputFormat.SUBPACKAGE.value,
+            "--proto-subpath",
+            "ni/protobuf/types",
+        ]
+    )
+    assert result.exit_code == 0
+    assert_is_subpackage(output_folder)
+    assert len(sorted(output_folder.glob("*_pb2_grpc.*"))) == 0
+    assert not previous_pb2_dir.exists(), "Previous subpackage dir not deleted correctly!"
+    assert not previous_pb2_grpc_dir.exists(), "Previous subpackage dir not deleted correctly!"

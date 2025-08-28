@@ -116,7 +116,15 @@ def reset_python_package(generation_spec: GenerationSpec) -> None:
 
     match generation_spec.output_format:
         case OutputFormat.SUBPACKAGE:
-            shutil.rmtree(generation_spec.package_folder)
+            # Assuming everything in here is a directory...
+            # What if it's not, should we just delete everything in that case?
+            dirs_to_remove = []
+            for subpackage_dir in generation_spec.package_folder.iterdir():
+                if is_generated_subpackage_dir(subpackage_dir):
+                    dirs_to_remove.append(subpackage_dir)
+
+            for dir_to_remove in dirs_to_remove:
+                shutil.rmtree(dir_to_remove)
         case OutputFormat.SUBMODULE:
             grpc_files = sorted(generation_spec.package_folder.glob("*_pb2.py*"))
             grpc_files.extend(generation_spec.package_folder.glob("*_pb2_grpc.py*"))
@@ -232,3 +240,9 @@ def invoke_protoc(protoc_arguments: list[str]) -> None:
         raise click.ClickException(
             click.style(f"protoc exited with error code {exit_code}", "bright_magenta")
         )
+
+
+def is_generated_subpackage_dir(subpackage_dir: pathlib.Path) -> bool:
+    """Determine if the input directory is named like a generated subpackage dir."""
+    dir_as_string = str(subpackage_dir)
+    return dir_as_string.endswith("_pb2") or dir_as_string.endswith("_pb2_grpc")
