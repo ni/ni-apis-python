@@ -23,9 +23,8 @@ from typing import (
 )
 
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
-from ni.measurementlink.sessionmanagement.v1 import (
-    session_management_service_pb2,
-)
+import ni.measurementlink.sessionmanagement.v1.session_management_service_pb2 as session_management_service_pb2
+
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 from ni.measurementlink.sessionmanagement.v1.client._constants import (

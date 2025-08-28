@@ -10,9 +10,7 @@ import session_pb2
 from ni.measurementlink import (
     pin_map_context_pb2,
 )
-from ni.measurementlink.sessionmanagement.v1 import (
-    session_management_service_pb2,
-)
+import ni.measurementlink.sessionmanagement.v1.session_management_service_pb2 as session_management_service_pb2
 
 TSession = TypeVar("TSession")
 TSession_co = TypeVar("TSession_co", covariant=True)
