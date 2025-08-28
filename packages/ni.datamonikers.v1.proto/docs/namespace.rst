@@ -1,4 +1,4 @@
-ni.measurementlink
+ni.datamonikers
 ==================
 
 .. py:module:: ni.datamonikers.v1
@@ -8,7 +8,7 @@ ni.measurementlink
 
 
 
-Submodules
+Subpackages
 ----------
 
 .. toctree::
