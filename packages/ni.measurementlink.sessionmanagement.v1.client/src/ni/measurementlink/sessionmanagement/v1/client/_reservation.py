@@ -28,7 +28,7 @@ from ni.measurementlink.sessionmanagement.v1 import (
 )
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
-from ni.measurementlink.sessionmanagement.v1.client import (
+from ni.measurementlink.sessionmanagement.v1.client._constants import (
     INSTRUMENT_TYPE_NI_DAQMX,
     INSTRUMENT_TYPE_NI_DCPOWER,
     INSTRUMENT_TYPE_NI_DIGITAL_PATTERN,
@@ -66,7 +66,7 @@ if TYPE_CHECKING:
     import niscope
     import niswitch
 
-    from ni.measurementlink.sessionmanagement.v1.client import (  # circular import
+    from ni.measurementlink.sessionmanagement.v1.client._client import (  # circular import
         SessionManagementClient,
     )
 

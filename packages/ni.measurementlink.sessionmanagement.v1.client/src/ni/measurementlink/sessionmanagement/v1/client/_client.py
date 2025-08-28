@@ -9,23 +9,23 @@ from collections.abc import Iterable, Mapping
 
 import google.protobuf.internal.containers
 import grpc
-from ni.measurementlink.discovery.v1.client import DiscoveryClient
+import ni.measurementlink.discovery.v1.client.DiscoveryClient as DiscoveryClient
 from ni.measurementlink.sessionmanagement.v1 import (
     session_management_service_pb2,
     session_management_service_pb2_grpc,
 )
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
-from ni.measurementlink.sessionmanagement.v1.client import (
+from ni.measurementlink.sessionmanagement.v1.client._constants import (
     GRPC_SERVICE_CLASS,
     GRPC_SERVICE_INTERFACE_NAME,
 )
-from ni.measurementlink.sessionmanagement.v1.client import (
+from ni.measurementlink.sessionmanagement.v1.client._reservation import (
     MultiplexerSessionContainer,
     MultiSessionReservation,
     SingleSessionReservation,
 )
-from ni.measurementlink.sessionmanagement.v1.client import (
+from ni.measurementlink.sessionmanagement.v1.client._types import (
     MultiplexerSessionInformation,
     PinMapContext,
     SessionInformation,

@@ -6,7 +6,7 @@ import nidcpower
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
-from ni.measurementlink.sessionmanagement.v1.client import (
+from ni.measurementlink.sessionmanagement.v1.client._types import (
     SessionInformation,
     SessionInitializationBehavior,
 )
