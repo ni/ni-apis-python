@@ -116,7 +116,15 @@ def reset_python_package(generation_spec: GenerationSpec) -> None:
 
     match generation_spec.output_format:
         case OutputFormat.SUBPACKAGE:
-            shutil.rmtree(generation_spec.package_folder)
+            # Only remove generated subpackage dirs.
+            # This allows for non-generated "mixin" subpackages.
+            dirs_to_remove = []
+            for subpackage_dir in generation_spec.package_folder.iterdir():
+                if is_generated_subpackage_dir(subpackage_dir):
+                    dirs_to_remove.append(subpackage_dir)
+
+            for dir_to_remove in dirs_to_remove:
+                shutil.rmtree(dir_to_remove)
         case OutputFormat.SUBMODULE:
             grpc_files = sorted(generation_spec.package_folder.glob("*_pb2.py*"))
             grpc_files.extend(generation_spec.package_folder.glob("*_pb2_grpc.py*"))
@@ -232,3 +240,10 @@ def invoke_protoc(protoc_arguments: list[str]) -> None:
         raise click.ClickException(
             click.style(f"protoc exited with error code {exit_code}", "bright_magenta")
         )
+
+
+def is_generated_subpackage_dir(candidate: pathlib.Path) -> bool:
+    """Determine if the input path is named like a generated subpackage dir."""
+    if not candidate.is_dir():
+        return False
+    return candidate.name.endswith("_pb2") or candidate.name.endswith("_pb2_grpc")
