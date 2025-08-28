@@ -14,7 +14,7 @@ htmlcov/
 
 # Built artifacts
 dist/
-docs/_build/
+**/docs/**/_build/
 
 # mypy
 .mypy_cache/
