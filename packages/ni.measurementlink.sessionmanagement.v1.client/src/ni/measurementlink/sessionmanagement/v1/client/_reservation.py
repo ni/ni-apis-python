@@ -86,6 +86,7 @@ def _to_iterable(
     elif isinstance(value, Iterable) and not isinstance(value, str):
         return value
     else:
+        # pyright: ignore[reportReturnType]
         return [value]
 
 
@@ -276,6 +277,7 @@ class MultiplexerSessionContainer(_BaseSessionContainer):
         return multiplexer_session_infos
 
     @contextlib.contextmanager
+    # pyright: ignore[reportInvalidTypeVarUse]
     def _cache_multiplexer_session(
         self, session_name: str, session: TMultiplexerSession
     ) -> Generator[None]:

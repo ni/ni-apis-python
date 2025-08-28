@@ -34,6 +34,7 @@ def closing_session_with_ts_code_module_support(
     elif initialization_behavior == SessionInitializationBehavior.INITIALIZE_SESSION_THEN_DETACH:
         return contextlib.nullcontext(session)
     elif initialization_behavior == SessionInitializationBehavior.ATTACH_TO_SESSION_THEN_CLOSE:
+        # pyright: ignore[reportArgumentType]
         return contextlib.closing(session)
     else:
         raise ValueError(f"Invalid initialization behavior: '{initialization_behavior}'.")
