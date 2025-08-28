@@ -7,7 +7,8 @@ import threading
 from collections.abc import Sequence
 
 import grpc
-from ni.measurementlink.discovery.v1 import discovery_service_pb2, discovery_service_pb2_grpc
+import ni.measurementlink.discovery.v1.discovery_service_pb2 as discovery_service_pb2
+import ni.measurementlink.discovery.v1.discovery_service_pb2_grpc as discovery_service_pb2_grpc
 from ni_grpc_extensions.channelpool import GrpcChannelPool  # type: ignore[import-untyped]
 
 from ni.measurementlink.discovery.v1.client._support import (

@@ -5,9 +5,7 @@ from __future__ import annotations
 import typing
 from typing import NamedTuple
 
-from ni.measurementlink.discovery.v1 import (
-    discovery_service_pb2,
-)
+import ni.measurementlink.discovery.v1.discovery_service_pb2 as discovery_service_pb2
 
 
 class ServiceInfo(NamedTuple):
