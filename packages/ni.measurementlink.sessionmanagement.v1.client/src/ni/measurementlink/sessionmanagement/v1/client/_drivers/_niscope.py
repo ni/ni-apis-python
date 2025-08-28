@@ -6,15 +6,15 @@ import niscope
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
-from ni.measurementlink.sessionmanagement.v1.client._types import (
-    SessionInformation,
-    SessionInitializationBehavior,
-)
 from ni.measurementlink.sessionmanagement.v1.client._drivers._configuration import (
     NISCOPE_OPTIONS,
 )
 from ni.measurementlink.sessionmanagement.v1.client._drivers._grpcdevice import (
     get_insecure_grpc_device_server_channel,
+)
+from ni.measurementlink.sessionmanagement.v1.client._types import (
+    SessionInformation,
+    SessionInitializationBehavior,
 )
 
 _INITIALIZATION_BEHAVIOR = {
