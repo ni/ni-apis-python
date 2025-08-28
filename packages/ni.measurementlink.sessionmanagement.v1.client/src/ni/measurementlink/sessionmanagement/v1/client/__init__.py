@@ -7,7 +7,7 @@ from typing import Any
 
 from deprecation import DeprecatedWarning
 
-from ni.measurementlink.sessionmanagement.v1.client import SessionManagementClient
+from ni.measurementlink.sessionmanagement.v1.client._client import SessionManagementClient
 
 from ni.measurementlink.sessionmanagement.v1.client._constants import (
     GRPC_SERVICE_CLASS,

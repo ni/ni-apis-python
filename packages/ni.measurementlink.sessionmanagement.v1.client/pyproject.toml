@@ -122,6 +122,30 @@ strict = true
 explicit_package_bases = true
 exclude = ["docs"]
 
+[[tool.mypy.overrides]]
+module = [
+  "decouple",
+  "deprecation",
+  "ni_grpc_extensions.channelpool",
+  "nidaqmx",
+  "nidcpower",
+  "nidigital",
+  "nidmm",
+  "nifgen",
+  "niscope",
+  "niswitch"
+]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "ni.measurementlink.sessionmanagement.v1.client._drivers._grpcdevice"
+disable_error_code = ["no-any-return"]
+
+
+[[tool.mypy.overrides]]
+module = "ni_grpc_extensions.channelpool"
+ignore_missing_imports = true
+
 [tool.pyright]
 include = ["src/", "tests/"]
 exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi"]
