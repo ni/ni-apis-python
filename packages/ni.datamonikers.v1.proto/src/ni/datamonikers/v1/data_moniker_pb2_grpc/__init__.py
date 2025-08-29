@@ -6,8 +6,7 @@ from ni.datamonikers.v1 import data_moniker_pb2 as ni_dot_datamonikers_dot_v1_do
 
 
 class MonikerServiceStub(object):
-    """---------------------------------------------------------------------
-    ---------------------------------------------------------------------
+    """Service for reading and writing data using monikers
     """
 
     def __init__(self, channel):
@@ -49,8 +48,7 @@ class MonikerServiceStub(object):
 
 
 class MonikerServiceServicer(object):
-    """---------------------------------------------------------------------
-    ---------------------------------------------------------------------
+    """Service for reading and writing data using monikers
     """
 
     def BeginSidebandStream(self, request, context):
@@ -130,8 +128,7 @@ def add_MonikerServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class MonikerService(object):
-    """---------------------------------------------------------------------
-    ---------------------------------------------------------------------
+    """Service for reading and writing data using monikers
     """
 
     @staticmethod

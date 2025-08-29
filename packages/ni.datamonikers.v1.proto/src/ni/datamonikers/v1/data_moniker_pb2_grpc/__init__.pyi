@@ -20,9 +20,7 @@ class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type:
     ...
 
 class MonikerServiceStub:
-    """---------------------------------------------------------------------
-    ---------------------------------------------------------------------
-    """
+    """Service for reading and writing data using monikers"""
 
     def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
     BeginSidebandStream: grpc.UnaryUnaryMultiCallable[
@@ -56,9 +54,7 @@ class MonikerServiceStub:
     ]
 
 class MonikerServiceAsyncStub:
-    """---------------------------------------------------------------------
-    ---------------------------------------------------------------------
-    """
+    """Service for reading and writing data using monikers"""
 
     BeginSidebandStream: grpc.aio.UnaryUnaryMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.BeginMonikerSidebandStreamRequest,
@@ -91,9 +87,7 @@ class MonikerServiceAsyncStub:
     ]
 
 class MonikerServiceServicer(metaclass=abc.ABCMeta):
-    """---------------------------------------------------------------------
-    ---------------------------------------------------------------------
-    """
+    """Service for reading and writing data using monikers"""
 
     @abc.abstractmethod
     def BeginSidebandStream(
