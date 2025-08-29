@@ -1,5 +1,5 @@
 ###############################
-Protobuf Types for NI gRPC APIs
+Protobuf types for NI gRPC APIs
 ###############################
 
 .. include:: intro.inc
