@@ -1,5 +1,5 @@
 ##################################################
-Protobuf Types for NI Moniker gRPC APIs
+Protobuf Types for NI Data Moniker gRPC APIs
 ##################################################
 
 .. include:: intro.inc

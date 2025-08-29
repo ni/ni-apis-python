@@ -2,7 +2,7 @@
 name = "ni.datamonikers.v1.proto"
 version = "0.1.0-dev0"
 license = "MIT"
-description = "Protobuf data types and service stub for NI moniker gRPC APIs"
+description = "Protobuf data types and service stub for NI data moniker gRPC APIs"
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",
@@ -10,7 +10,7 @@ maintainers = [
 ]
 readme = "README.md"
 repository = "https://github.com/ni/ni-apis-python"
-keywords = ["ni-apis", "moniker"]
+keywords = ["ni-apis", "data-moniker"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
