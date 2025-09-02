@@ -34,7 +34,7 @@ jobs:
       proto-subpath: ${{ steps.parse_json.outputs.proto-subpath }}
       proto-include-path: ${{ steps.parse_json.outputs.proto-include-path }}
       output-format: ${{ steps.parse_json.outputs.output-format }}
-      install-drivers: ${{ steps.parse_json.outputs.install-drivers }}
+      install-drivers: ${{ steps.parse_json.outputs.install-drivers || false }}
     steps:
       - name: Check out repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
