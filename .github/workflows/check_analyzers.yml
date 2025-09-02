@@ -15,7 +15,7 @@ on:
         type: string
       install-drivers:
         description: 'Whether to install drivers extras'
-        default: true
+        default: false
         required: false
         type: boolean
 
@@ -47,7 +47,7 @@ jobs:
       - name: Install ${{ inputs.package-name }}
         run: |
           if [ "${{ inputs.install-drivers }}" = "true" ]; then
-            poetry install --extras drivers -v
+            poetry install -v --extras drivers
           else
             poetry install -v
           fi
