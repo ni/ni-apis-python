@@ -13,6 +13,11 @@ on:
         default: 'packages'
         required: false
         type: string
+      install-drivers:
+        description: 'Whether to install with the "drivers" extra.'
+        default: false
+        required: false
+        type: boolean
 
 jobs:
   check_analyzers:
@@ -40,7 +45,12 @@ jobs:
           path: ${{ inputs.package-base-path }}/${{ inputs.package-name }}/.venv
           key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles(format('{0}/{1}/poetry.lock', inputs.package-base-path, inputs.package-name)) }}
       - name: Install ${{ inputs.package-name }}
-        run: poetry install -v
+        run: |
+          if [ "${{ inputs.install-drivers }}" = "true" ]; then
+            poetry install --extras drivers -v
+          else
+            poetry install -v
+          fi
       - name: Lint
         run: poetry run ni-python-styleguide lint
       - name: Mypy static analysis (Linux)
