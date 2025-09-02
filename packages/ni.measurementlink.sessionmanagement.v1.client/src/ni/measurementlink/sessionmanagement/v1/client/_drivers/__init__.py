@@ -8,7 +8,6 @@ from typing import ContextManager, TypeVar
 from ni.measurementlink.sessionmanagement.v1.client._types import (
     SessionInitializationBehavior,
 )
-from requests import session
 
 TSession = TypeVar("TSession")
 
