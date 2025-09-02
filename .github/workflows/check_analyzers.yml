@@ -50,6 +50,7 @@ jobs:
             poetry install --extras drivers -v
           else
             poetry install -v
+          fi
       - name: Lint
         run: poetry run ni-python-styleguide lint
       - name: Mypy static analysis (Linux)
