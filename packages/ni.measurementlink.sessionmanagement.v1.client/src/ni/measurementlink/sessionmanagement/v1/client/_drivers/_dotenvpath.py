@@ -68,6 +68,6 @@ else:
 
 def _get_package_path() -> Path:
     """Get the path of this package."""
-    package = sys.modules[__package__]
+    package = sys.modules[__package__]  # pyright: ignore[reportArgumentType]
     assert package.__file__ and package.__file__.endswith("__init__.py")
     return Path(package.__file__).parent

@@ -84,8 +84,7 @@ def _to_iterable(
     elif isinstance(value, Iterable) and not isinstance(value, str):
         return value
     else:
-        # pyright: ignore[reportReturnType]
-        return [value]
+        return [value]  # pyright: ignore[reportReturnType]
 
 
 # The `dict_view` type is a set-like type. In Python 3.7 and later, dictionaries
@@ -275,10 +274,9 @@ class MultiplexerSessionContainer(_BaseSessionContainer):
         return multiplexer_session_infos
 
     @contextlib.contextmanager
-    # pyright: ignore[reportInvalidTypeVarUse]
     def _cache_multiplexer_session(
         self, session_name: str, session: TMultiplexerSession
-    ) -> Generator[None]:
+    ) -> Generator[None]:  # pyright: ignore[reportInvalidTypeVarUse]
         if session_name in self._multiplexer_session_cache:
             raise RuntimeError(f"Multiplexer session '{session_name}' already exists.")
         self._multiplexer_session_cache[session_name] = session
