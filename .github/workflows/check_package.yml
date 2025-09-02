@@ -33,7 +33,7 @@ jobs:
     uses: ./.github/workflows/check_analyzers.yml
     with:
       package-name: ${{ inputs.package-name }}
-      install-drivers: ${{ needs.get_package_info.outputs.install-drivers }}
+      install-drivers: ${{ needs.get_package_info.outputs.install-drivers || false }}
   check_docs:
     name: Check docs for ${{ inputs.package-name }}
     uses: ./.github/workflows/check_docs.yml
