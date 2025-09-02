@@ -242,7 +242,8 @@ def invoke_protoc(protoc_arguments: list[str]) -> None:
         )
 
 
-def is_generated_subpackage_dir(subpackage_dir: pathlib.Path) -> bool:
-    """Determine if the input directory is named like a generated subpackage dir."""
-    dir_as_string = str(subpackage_dir)
-    return dir_as_string.endswith("_pb2") or dir_as_string.endswith("_pb2_grpc")
+def is_generated_subpackage_dir(candidate: pathlib.Path) -> bool:
+    """Determine if the input path is named like a generated subpackage dir."""
+    if not candidate.is_dir():
+        return False
+    return candidate.name.endswith("_pb2") or candidate.name.endswith("_pb2_grpc")
