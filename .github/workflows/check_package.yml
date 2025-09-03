@@ -36,7 +36,7 @@ jobs:
       package-base-path: ${{ needs.get_package_info.outputs.package-basepath }}
       install-drivers: ${{ needs.get_package_info.outputs.install-drivers == 'true' }}
   check_docs:
-    if: ${{ hashFiles("needs.get_package_info.outputs.package-basepath/inputs.package-name/docs/conf.py") != '' }}
+    if: ${{ hashFiles(format('{0}/{1}/docs/conf.py', needs.get_package_info.outputs.package-basepath, inputs.package-name)) != '' }}
     name: Check docs for ${{ inputs.package-name }}
     uses: ./.github/workflows/check_docs.yml
     with:
