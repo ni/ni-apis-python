@@ -8,7 +8,7 @@
 # About
 
 `ni.measurements.data.v1.proto` is a Python package that provides data types and service stubs for NI gRPC APIs in
-the [ni.measurements.data.v1 package](https://github.com/ni/ni-apis/tree/main/ni/datamonikers/v1).
+the [ni.measurements.data.v1 package](https://github.com/ni/ni-apis/tree/main/ni/measurements/data/v1).
 
 NI created and supports this package.
 
