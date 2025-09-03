@@ -29,6 +29,8 @@ on:
             - ni.measuremelink.pinmap.v1.proto
             - ni.measurementlink.proto
             - ni.measurementlink.sessionmanagement.v1.proto
+            - ni.measurements.data.v1.proto
+            - ni.measurements.metadata.v1.proto
             - ni.panels.v1.proto
             - ni.protobuf.types
             - ni-grpc-extensions
