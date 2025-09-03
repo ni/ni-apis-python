@@ -49,6 +49,11 @@
     "proto-include-path": "./third_party/ni-apis",
     "output-format": "subpackage"
   },
+  "ni.measurementlink.sessionmanagement.v1.client": {
+    "proto-subpath": "",
+    "output-format": "",
+    "install-drivers": true
+  },
   "ni.measurementlink.sessionmanagement.v1.proto": {
     "proto-basepath": "./third_party/ni-apis",
     "proto-subpath": "ni/measurementlink/sessionmanagement/v1",

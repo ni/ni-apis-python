@@ -21,6 +21,9 @@ on:
       output-format:
         description: 'Output format.'
         value: ${{ jobs.get_package_info.outputs.output-format }}
+      install-drivers:
+        description: 'Whether to install drivers extra'
+        value: ${{ jobs.get_package_info.outputs.install-drivers }}
 
 jobs:
   get_package_info:
@@ -31,6 +34,7 @@ jobs:
       proto-subpath: ${{ steps.parse_json.outputs.proto-subpath }}
       proto-include-path: ${{ steps.parse_json.outputs.proto-include-path }}
       output-format: ${{ steps.parse_json.outputs.output-format }}
+      install-drivers: ${{ steps.parse_json.outputs.install-drivers }}
     steps:
       - name: Check out repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -48,3 +52,4 @@ jobs:
           echo "proto-subpath=$(echo $info | jq -r '."proto-subpath"')" >> $GITHUB_OUTPUT
           echo "proto-include-path=$(echo $info | jq -r '."proto-include-path"')" >> $GITHUB_OUTPUT
           echo "output-format=$(echo $info | jq -r '."output-format"')" >> $GITHUB_OUTPUT
+          echo "install-drivers=$(echo $info | jq -r '."install-drivers"')" >> $GITHUB_OUTPUT
