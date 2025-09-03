@@ -4,7 +4,7 @@ Introduction
 About
 -----
 
-The ``ni.measurementlink.sessionmanagement.v1.client`` Python package contains generated Python interfaces for proto files in the ``ni-apis`` repo.
+The ``ni.measurementlink.sessionmanagement.v1.client`` Python package contains client code for the session management service defined in the ``ni-apis`` repo
 
 NI created and supports this package.
 

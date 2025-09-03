@@ -2,7 +2,7 @@
 name = "ni.measurementlink.sessionmanagement.v1.client"
 version = "0.1.0-dev0"
 license = "MIT"
-description = "Protobuf data types for NI discovery gRPC APIs"
+description = "Client gRPC APIs for the session management service"
 authors = ["NI <opensource@ni.com>"]
 maintainers = [
   "Brad Keryan <brad.keryan@emerson.com>",

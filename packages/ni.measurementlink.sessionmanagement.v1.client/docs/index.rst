@@ -1,6 +1,6 @@
-#########################################
-Protobuf Types for NI Discovery gRPC APIs
-#########################################
+###################################################
+Client gRPC APIs for the session management service
+###################################################
 
 .. include:: intro.inc
 
