@@ -25,7 +25,7 @@ jobs:
       proto-basepath: ${{ needs.get_package_info.outputs.proto-basepath }}
       proto-subpath: ${{ needs.get_package_info.outputs.proto-subpath }}
       proto-include-path: ${{ needs.get_package_info.outputs.proto-include-path }}
-      output-basepath: ./packages/${{ inputs.package-name }}/src
+      output-basepath: ./${{ needs.get_package_info.outputs.package-basepath }}/${{ inputs.package-name }}/src
       output-format: ${{ needs.get_package_info.outputs.output-format }}
   check_analyzers:
     name: Check analyzers for ${{ inputs.package-name }}
@@ -33,8 +33,10 @@ jobs:
     uses: ./.github/workflows/check_analyzers.yml
     with:
       package-name: ${{ inputs.package-name }}
+      package-base-path: ${{ needs.get_package_info.outputs.package-basepath }}
       install-drivers: ${{ needs.get_package_info.outputs.install-drivers == 'true' }}
   check_docs:
+    if: ${{ hashFiles("${{ needs.get_package_info.outputs.package-basepath }}/${{ inputs.package-name }}/docs/conf.py") != '' }}
     name: Check docs for ${{ inputs.package-name }}
     uses: ./.github/workflows/check_docs.yml
     with:
