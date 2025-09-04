@@ -27,6 +27,15 @@ on:
       install-drivers:
         description: 'Whether to install drivers extra'
         value: ${{ jobs.get_package_info.outputs.install-drivers }}
+      should-check-codegen:
+        description: 'Whether to check protobuf code generation'
+        value: ${{ jobs.get_package_info.outputs.should-check-codegen }}
+      should-check-docs:
+        description: 'Whether to check documentation generation'
+        value: ${{ jobs.get_package_info.outputs.should-check-docs }}
+      should-run-tests:
+        description: 'Whether to run automated tests'
+        value: ${{ jobs.get_package_info.outputs.should-run-tests }}
 
 jobs:
   get_package_info:
@@ -39,6 +48,9 @@ jobs:
       proto-include-path: ${{ steps.parse_json.outputs.proto-include-path }}
       output-format: ${{ steps.parse_json.outputs.output-format }}
       install-drivers: ${{ steps.parse_json.outputs.install-drivers }}
+      should-check-codegen: ${{ steps.parse_json.outputs.should-check-codegen }}
+      should-check-docs: ${{ steps.parse_json.outputs.should-check-docs }}
+      should-run-tests: ${{ steps.parse_json.outputs.should-run-tests }}
     steps:
       - name: Check out repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -58,3 +70,7 @@ jobs:
           echo "proto-include-path=$(echo $info | jq -r '."proto-include-path"')" >> $GITHUB_OUTPUT
           echo "output-format=$(echo $info | jq -r '."output-format"')" >> $GITHUB_OUTPUT
           echo "install-drivers=$(echo $info | jq -r '."install-drivers"')" >> $GITHUB_OUTPUT
+          echo "should-check-codegen=true" >> $GITHUB_OUTPUT
+          echo "should-check-docs=true" >> $GITHUB_OUTPUT
+          echo "should-run-tests=true" >> $GITHUB_OUTPUT
+          echo "Result: $GITHUB_OUTPUT"
