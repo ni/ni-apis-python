@@ -71,6 +71,23 @@ jobs:
           output_format=$(echo $info | jq -r '."output-format"')
           install_drivers=$(echo $info | jq -r '."install-drivers"')
 
+          should_check_codegen=false
+          if [ -n ${proto_subpath} ]
+          then
+            should_check_codegen=true
+          fi
+
+          should_check_docs=false
+          if [ -f "${GITHUB_WORKSPACE}/${package_basepath}/${{ inputs.package-name }}/.readthedocs.yaml" ]
+          then
+            should_check_codegen=true
+          fi
+
+          should_run_tests=false
+          if [ -d "${GITHUB_WORKSPACE}/${package_basepath}/${{ inputs.package-name }}/tests" ]
+            should_run_tests=true
+          fi
+
           echo "package-basepath=${package_basepath}" >> $GITHUB_OUTPUT
           echo "proto-basepath="${proto_basepath} >> $GITHUB_OUTPUT
           echo "proto-subpath=${proto_subpath}" >> $GITHUB_OUTPUT
