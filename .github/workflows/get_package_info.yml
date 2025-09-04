@@ -80,7 +80,7 @@ jobs:
           should_check_docs=false
           if [ -f "${GITHUB_WORKSPACE}/${package_basepath}/${{ inputs.package-name }}/.readthedocs.yaml" ]
           then
-            should_check_codegen=true
+            should_check_docs=true
           fi
 
           should_run_tests=false
@@ -95,9 +95,9 @@ jobs:
           echo "proto-include-path=${proto_include_path}" >> $GITHUB_OUTPUT
           echo "output-format=${output_format}" >> $GITHUB_OUTPUT
           echo "install-drivers=${install_drivers}" >> $GITHUB_OUTPUT
-          echo "should-check-codegen=true" >> $GITHUB_OUTPUT
-          echo "should-check-docs=true" >> $GITHUB_OUTPUT
-          echo "should-run-tests=true" >> $GITHUB_OUTPUT
+          echo "should-check-codegen=${should_check_codegen}" >> $GITHUB_OUTPUT
+          echo "should-check-docs=${should_check_docs}" >> $GITHUB_OUTPUT
+          echo "should-run-tests=${should_run_tests}" >> $GITHUB_OUTPUT
       - name: Show package info
         run: |
           echo "${{ toJSON(steps.parse_json.outputs) }}"
