@@ -74,6 +74,7 @@ jobs:
           should_check_codegen=false
           if [ -n ${proto_subpath} ]
           then
+            echo proto_subpath == ."${proto_subpath}".
             should_check_codegen=true
           fi
 
