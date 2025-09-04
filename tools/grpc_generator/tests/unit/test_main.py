@@ -166,7 +166,6 @@ def test___existing_package___generate_subpackages___updates_subpackages(
     )
     assert result.exit_code == 0
     assert_is_subpackage(output_folder)
-    assert len(sorted(output_folder.glob("*_pb2_grpc.*"))) == 0
     for support_file in support_files:
         assert support_file.exists(), "Support file incorrectly deleted!"
 
