@@ -78,7 +78,7 @@ jobs:
           fi
 
           should_check_docs=false
-          if [ -f "${GITHUB_WORKSPACE}/${package_basepath}/${{ inputs.package-name }}/.readthedocs.yaml" ]
+          if [ -d "${GITHUB_WORKSPACE}/${package_basepath}/${{ inputs.package-name }}/docs" ]
           then
             should_check_docs=true
           fi
