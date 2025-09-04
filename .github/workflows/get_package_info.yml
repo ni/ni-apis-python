@@ -71,6 +71,7 @@ jobs:
           output_format=$(echo $info | jq -r '."output-format"')
           install_drivers=$(echo $info | jq -r '."install-drivers"')
 
+          echo "proto_subpath is .{$proto_subpath}."
           should_check_codegen=false
           if [ -n "${proto_subpath}" -o "${proto_subpath}" != "null" ]
           then
