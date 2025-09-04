@@ -1,4 +1,10 @@
 {
+  "ni.datamonikers.v1.proto": {
+    "proto-basepath": "./third_party/ni-apis",
+    "proto-subpath": "ni/datamonikers/v1",
+    "proto-include-path": "./third_party/ni-apis",
+    "output-format": "subpackage"
+  },
   "ni-grpc-extensions" : {
     "proto-subpath": "",
     "output-format": ""
@@ -43,10 +49,27 @@
     "proto-include-path": "./third_party/ni-apis",
     "output-format": "subpackage"
   },
+  "ni.measurementlink.sessionmanagement.v1.client": {
+    "proto-subpath": "",
+    "output-format": "",
+    "install-drivers": true
+  },
   "ni.measurementlink.sessionmanagement.v1.proto": {
     "proto-basepath": "./third_party/ni-apis",
     "proto-subpath": "ni/measurementlink/sessionmanagement/v1",
     "proto-include-path": "./third_party/ni-apis/ni/grpcdevice/v1",
+    "output-format": "subpackage"
+  },
+  "ni.measurements.data.v1.proto": {
+    "proto-basepath": "./third_party/ni-apis",
+    "proto-subpath": "ni/measurements/data/v1",
+    "proto-include-path": "./third_party/ni-apis",
+    "output-format": "subpackage"
+  },
+  "ni.measurements.metadata.v1.proto": {
+    "proto-basepath": "./third_party/ni-apis",
+    "proto-subpath": "ni/measurements/metadata/v1",
+    "proto-include-path": "./third_party/ni-apis",
     "output-format": "subpackage"
   },
   "ni.panels.v1.proto": {
