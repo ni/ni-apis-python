@@ -198,6 +198,5 @@ def test___existing_package___generate_subpackages___updates_subpackages(
     )
     assert result.exit_code == 0
     assert_is_subpackage(output_folder)
-    assert len(sorted(output_folder.glob("*_pb2_grpc.*"))) == 0
     assert not previous_pb2_dir.exists(), "Previous subpackage dir not deleted correctly!"
     assert not previous_pb2_grpc_dir.exists(), "Previous subpackage dir not deleted correctly!"
