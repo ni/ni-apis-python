@@ -8,6 +8,11 @@ on:
         default: ''
         required: true
         type: string
+      package-basepath:
+        description: 'The parent directory of the package.'
+        default: ''
+        required: true
+        type: string
 
 jobs:
   check_docs:
@@ -16,7 +21,7 @@ jobs:
     defaults:
       run:
         # Set the working-directory for all steps in this job.
-        working-directory: ./packages/${{ inputs.package-name }}
+        working-directory: ./${{ inputs.package-basepath }}/${{ inputs.package-name }}
     steps:
       - name: Check out repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -31,7 +36,7 @@ jobs:
         uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
         with:
           path: .venv
-          key: ${{ inputs.package-name }}-with-docs-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles(format('packages/{0}/poetry.lock', inputs.package-name)) }}
+          key: ${{ inputs.package-name }}-with-docs-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles(format('{0}/{1}/poetry.lock', inputs.package-basepath, inputs.package-name)) }}
       - name: Install nitypes (with docs)
         run: poetry install -v --only main,docs
       - name: Generate docs
@@ -40,4 +45,4 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ${{ inputs.package-name }}-docs
-          path: packages/${{ inputs.package-name }}/docs/_build/
+          path: ${{ inputs.package-basepath }}/${{ inputs.package-name }}/docs/_build/
