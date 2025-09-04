@@ -64,12 +64,19 @@ jobs:
             exit 1
           fi
           echo "Package info: $info"
-          echo "package-basepath=$(echo $info | jq -r '."package-basepath"')" >> $GITHUB_OUTPUT
-          echo "proto-basepath=$(echo $info | jq -r '."proto-basepath"')" >> $GITHUB_OUTPUT
-          echo "proto-subpath=$(echo $info | jq -r '."proto-subpath"')" >> $GITHUB_OUTPUT
-          echo "proto-include-path=$(echo $info | jq -r '."proto-include-path"')" >> $GITHUB_OUTPUT
-          echo "output-format=$(echo $info | jq -r '."output-format"')" >> $GITHUB_OUTPUT
-          echo "install-drivers=$(echo $info | jq -r '."install-drivers"')" >> $GITHUB_OUTPUT
+          package_basepath=$(echo $info | jq -r '."package-basepath"')
+          proto_basepath=$(echo $info | jq -r '."proto-basepath"')
+          proto_subpath=$(echo $info | jq -r '."proto-subpath"')
+          proto_include_path=$(echo $info | jq -r '."proto-include-path"')
+          output_format=$(echo $info | jq -r '."output-format"')
+          install_drivers=$(echo $info | jq -r '."install-drivers"')
+
+          echo "package-basepath=${package_basepath}" >> $GITHUB_OUTPUT
+          echo "proto-basepath="${proto_basepath} >> $GITHUB_OUTPUT
+          echo "proto-subpath=${proto_subpath}" >> $GITHUB_OUTPUT
+          echo "proto-include-path=${proto_include_path}" >> $GITHUB_OUTPUT
+          echo "output-format=${output_format}" >> $GITHUB_OUTPUT
+          echo "install-drivers=${install_drivers}" >> $GITHUB_OUTPUT
           echo "should-check-codegen=true" >> $GITHUB_OUTPUT
           echo "should-check-docs=true" >> $GITHUB_OUTPUT
           echo "should-run-tests=true" >> $GITHUB_OUTPUT
