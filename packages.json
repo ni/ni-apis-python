@@ -1,8 +1,6 @@
 {
   "grpc_generator": {
-    "package-basepath": "tools",
-    "proto-subpath": "",
-    "output-format": ""
+    "package-basepath": "tools"
   },
   "ni.datamonikers.v1.proto": {
     "package-basepath": "packages",

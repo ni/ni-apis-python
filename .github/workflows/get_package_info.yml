@@ -72,7 +72,7 @@ jobs:
           install_drivers=$(echo $info | jq -r '."install-drivers"')
 
           should_check_codegen=false
-          if [ -n "${proto_subpath}" ]
+          if [ -n "${proto_subpath}" -o "${proto_subpath}" != "null" ]
           then
             should_check_codegen=true
           fi
