@@ -85,6 +85,7 @@ jobs:
 
           should_run_tests=false
           if [ -d "${GITHUB_WORKSPACE}/${package_basepath}/${{ inputs.package-name }}/tests" ]
+          then
             should_run_tests=true
           fi
 
