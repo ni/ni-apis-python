@@ -37,6 +37,10 @@
     "proto-include-path": "./third_party/ni-apis",
     "output-format": "subpackage"
   },
+  "ni.measurementlink.pinmap.v1.client": {
+    "proto-subpath": "",
+    "output-format": ""
+  },
   "ni.measurementlink.pinmap.v1.proto": {
     "proto-basepath": "./third_party/ni-apis",
     "proto-subpath": "ni/measurementlink/pinmap/v1",
