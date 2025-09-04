@@ -98,6 +98,6 @@ jobs:
           echo "should-check-codegen=${should_check_codegen}" >> $GITHUB_OUTPUT
           echo "should-check-docs=${should_check_docs}" >> $GITHUB_OUTPUT
           echo "should-run-tests=${should_run_tests}" >> $GITHUB_OUTPUT
-      - name: Show package info
+      - name: :eyes: Show package info
         run: |
           echo "${{ toJSON(steps.parse_json.outputs) }}"
