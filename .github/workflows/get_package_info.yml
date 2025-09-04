@@ -73,4 +73,8 @@ jobs:
           echo "should-check-codegen=true" >> $GITHUB_OUTPUT
           echo "should-check-docs=true" >> $GITHUB_OUTPUT
           echo "should-run-tests=true" >> $GITHUB_OUTPUT
-          echo "Result: $GITHUB_OUTPUT"
+          echo "Result:"
+          env
+      - name: Show results
+        run: |
+          echo "${{ toJSON(steps.parse_json.outputs) }}"
