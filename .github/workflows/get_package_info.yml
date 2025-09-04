@@ -33,6 +33,7 @@ jobs:
     name: Get package info for ${{ inputs.package-name }}
     runs-on: ubuntu-latest
     outputs:
+      package-basepath: ${{ steps.parse_json.outputs.package-basepath }}
       proto-basepath: ${{ steps.parse_json.outputs.proto-basepath }}
       proto-subpath: ${{ steps.parse_json.outputs.proto-subpath }}
       proto-include-path: ${{ steps.parse_json.outputs.proto-include-path }}
