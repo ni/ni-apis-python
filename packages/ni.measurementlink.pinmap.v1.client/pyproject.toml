@@ -32,6 +32,12 @@ packages = [{include = "ni", from = "src"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 grpcio = {version=">=1.49.0,<2.0"}
+ni-grpc-extensions = { version = ">=0.1.0.dev0", allow-prereleases = true }
+ni-measurementlink-discovery-v1-client = { version = ">=0.1.0.dev0", allow-prereleases = true }
+ni-measurementlink-measurement-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
+ni-measurementlink-measurement-v2-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
+ni-measurementlink-sessionmanagement-v1-client = { version = ">=0.1.0.dev0", allow-prereleases = true }
+ni-measurementlink-pinmap-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
