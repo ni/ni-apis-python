@@ -7,11 +7,9 @@ import pathlib
 import threading
 
 import grpc
-from ni.measurementlink.discovery.v1.client import DiscoveryClient
-from ni.measurementlink.pinmap.v1 import (
-    pin_map_service_pb2,
-    pin_map_service_pb2_grpc,
-)
+from ni.measurementlink.discovery.v1.client import DiscoveryClient as DiscoveryClient
+import ni.measurementlink.pinmap.v1.pin_map_service_pb2 as pin_map_service_pb2
+import ni.measurementlink.pinmap.v1.pin_map_service_pb2_grpc as pin_map_service_pb2_grpc
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 _logger = logging.getLogger(__name__)
