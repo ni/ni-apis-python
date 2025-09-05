@@ -39,7 +39,7 @@ jobs:
     defaults:
       run:
         # Set the working-directory for all steps in this job.
-        working-directory: ./tools/grpc_generator
+        working-directory: ${{ github.workspace }}/tools/grpc_generator
     steps:
       - name: Validate package name
         if: ${{ !endsWith(inputs.package-name, '.proto') && inputs.package-name != 'ni.protobuf.types' }}
