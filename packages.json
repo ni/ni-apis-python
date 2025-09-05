@@ -1,11 +1,15 @@
 {
+  "ni.datamonikers.v1.client": {
+    "proto-subpath": "",
+    "output-format": ""
+  },
   "ni.datamonikers.v1.proto": {
     "proto-basepath": "./third_party/ni-apis",
     "proto-subpath": "ni/datamonikers/v1",
     "proto-include-path": "./third_party/ni-apis",
     "output-format": "subpackage"
   },
-  "ni-grpc-extensions" : {
+  "ni-grpc-extensions": {
     "proto-subpath": "",
     "output-format": ""
   },

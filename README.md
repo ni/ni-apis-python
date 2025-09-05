@@ -13,6 +13,8 @@ NI created and supports these packages.
 
 - [`ni-grpc-extensions`](https://github.com/ni/ni-apis-python/tree/main/packages/ni-grpc-extensions) -- provides channel pool handling for gRPC communication
 - [`ni.datamonikers.v1.proto`](https://github.com/ni/ni-apis-python/tree/main/packages/ni.datamonikers.v1.proto) -- provides Python stubs for the definitions in the `ni.datamonikers.v1` package. (.proto files at [ni/datamonikers/v1](https://github.com/ni/ni-apis/tree/main/ni/datamonikers/v1))
+- [`ni.datamonikers.v1.client`](https://github.com/ni/ni-apis-python/tree/main/packages/ni.datamonikers.v1.client) -- provides gRPC client code for the NI Data Moniker Service, version 1. The corresponding service is defined in the
+`ni.datamonikers.v1.proto` package.
 - [`ni.grpcdevice.v1.proto`](https://github.com/ni/ni-apis-python/tree/main/packages/ni.grpcdevice.v1.proto) -- provides stubs for definitions in the `nidevice_grpc` package. (.proto files at [ni/grpcdevice/v1](https://github.com/ni/ni-apis/tree/main/ni/grpcdevice/v1))
 - [`ni.measurementlink.discovery.v1.client`](https://github.com/ni/ni-apis-python/tree/main/packages/ni.measurementlink.discovery.v1.client) -- provides gRPC client code for the NI
 Discovery Service, version 1. The corresponding service is defined in the
