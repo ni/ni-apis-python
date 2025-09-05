@@ -172,15 +172,17 @@ class _BaseSessionContainer(abc.ABC):
 
     @property
     def _discovery_client(self) -> DiscoveryClient:
-        if not self._session_management_client._discovery_client:
+        client = self._session_management_client._discovery_client
+        if client is None:
             raise ValueError("This method requires a discovery client.")
-        return self._session_management_client._discovery_client
+        return client
 
     @property
     def _grpc_channel_pool(self) -> GrpcChannelPool:
-        if not self._session_management_client._grpc_channel_pool:
+        pool = self._session_management_client._grpc_channel_pool
+        if pool is None:
             raise ValueError("This method requires a gRPC channel pool.")
-        return self._session_management_client._grpc_channel_pool
+        return pool
 
 
 class MultiplexerSessionContainer(_BaseSessionContainer):
