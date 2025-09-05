@@ -1,6 +1,6 @@
-####################################
-gRPC Client for NI Discovery Service
-####################################
+##################################
+gRPC Client for NI Pin Map Service
+##################################
 
 .. include:: intro.inc
 
