@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ni.measurementlink.pinmap.v1.client"
-version = "0.1.0-dev0"
+version = "0.1.0-dev1"
 license = "MIT"
 description = "gRPC Client for NI Pin Map Service"
 authors = ["NI <opensource@ni.com>"]
