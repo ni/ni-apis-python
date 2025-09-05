@@ -3,12 +3,11 @@
 from __future__ import annotations
 
 import logging
-import threading
 import warnings
 from collections.abc import Iterable, Mapping
 
 import google.protobuf.internal.containers
-import grpc
+from ni.measurementlink.pinmap.v1.client._client_base import GrpcServiceClientBase
 import ni.measurementlink.sessionmanagement.v1.session_management_service_pb2 as session_management_service_pb2
 import ni.measurementlink.sessionmanagement.v1.session_management_service_pb2_grpc as session_management_service_pb2_grpc
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
@@ -31,35 +30,17 @@ from ni.measurementlink.sessionmanagement.v1.client._types import (
 
 _logger = logging.getLogger(__name__)
 
+class SessionManagementClient(GrpcServiceClientBase):
+    def __init__(self, *, discovery_client=None, grpc_channel=None, grpc_channel_pool=None):
+        super().__init__(
+            discovery_client=discovery_client,
+            grpc_channel=grpc_channel,
+            grpc_channel_pool=grpc_channel_pool,
+            service_interface_name=GRPC_SERVICE_INTERFACE_NAME,
+            service_class=GRPC_SERVICE_CLASS,
+            stub_class=session_management_service_pb2_grpc.SessionManagementServiceStub,
+        )
 
-class SessionManagementClient:
-    """Client for accessing the measurement plug-in session management service."""
-
-    def __init__(
-        self,
-        *,
-        discovery_client: DiscoveryClient | None = None,
-        grpc_channel: grpc.Channel | None = None,
-        grpc_channel_pool: GrpcChannelPool | None = None,
-    ) -> None:
-        """Initialize session management client.
-
-        Args:
-            discovery_client: An optional discovery client (recommended).
-
-            grpc_channel: An optional session management gRPC channel.
-
-            grpc_channel_pool: An optional gRPC channel pool (recommended).
-        """
-        self._initialization_lock = threading.Lock()
-        self._discovery_client = discovery_client
-        self._grpc_channel_pool = grpc_channel_pool
-        self._stub: session_management_service_pb2_grpc.SessionManagementServiceStub | None = None
-
-        if grpc_channel is not None:
-            self._stub = session_management_service_pb2_grpc.SessionManagementServiceStub(
-                grpc_channel
-            )
 
     def _get_stub(self) -> session_management_service_pb2_grpc.SessionManagementServiceStub:
         if self._stub is None:
