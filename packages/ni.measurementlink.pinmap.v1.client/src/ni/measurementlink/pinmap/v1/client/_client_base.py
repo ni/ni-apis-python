@@ -1,5 +1,6 @@
 import logging
 import threading
+from typing import Optional
 
 import grpc
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
@@ -14,9 +15,9 @@ class GrpcServiceClientBase:
     def __init__(
         self,
         *,
-        discovery_client: DiscoveryClient | None = None,
-        grpc_channel: grpc.Channel | None = None,
-        grpc_channel_pool: GrpcChannelPool | None = None,
+        discovery_client: Optional[DiscoveryClient] = None,
+        grpc_channel: Optional[grpc.Channel] = None,
+        grpc_channel_pool: Optional[GrpcChannelPool] = None,
         service_interface_name: str,
         service_class: str,
         stub_class: type,
