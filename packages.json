@@ -64,8 +64,12 @@
     "install-drivers": null
   },
   "ni.measurementlink.pinmap.v1.client": {
-    "proto-subpath": "",
-    "output-format": ""
+    "package-basepath": "packages",
+    "proto-basepath": null,
+    "proto-subpath": null,
+    "proto-include-path": null,
+    "output-format": null,
+    "install-drivers": null
   },
   "ni.measurementlink.pinmap.v1.proto": {
     "package-basepath": "packages",
