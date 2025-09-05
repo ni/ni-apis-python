@@ -10,7 +10,7 @@ build:
     post_create_environment:
       - pip install poetry==2.1.4
     post_install:
-      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry -C packages/ni.datamonikers.client.v1.client install --only main,docs
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry -C packages/ni.datamonikers.v1.client install --only main,docs
 
 sphinx:
   configuration: packages/ni.datamonikers.v1.client/docs/conf.py
