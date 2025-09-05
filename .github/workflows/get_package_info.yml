@@ -63,7 +63,7 @@ jobs:
             echo "Error: Package '${{ inputs.package-name }}' not found in packages.json." >&2
             exit 1
           fi
-          echo "Package info: $info"
+
           package_basepath=$(echo $info | jq -r '."package-basepath"')
           proto_basepath=$(echo $info | jq -r '."proto-basepath"')
           proto_subpath=$(echo $info | jq -r '."proto-subpath"')
