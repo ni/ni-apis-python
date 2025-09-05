@@ -7,10 +7,10 @@ import warnings
 from collections.abc import Iterable, Mapping
 
 import google.protobuf.internal.containers
-from ni.measurementlink.pinmap.v1.client._client_base import GrpcServiceClientBase
 import ni.measurementlink.sessionmanagement.v1.session_management_service_pb2 as session_management_service_pb2
 import ni.measurementlink.sessionmanagement.v1.session_management_service_pb2_grpc as session_management_service_pb2_grpc
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
+from ni.measurementlink.pinmap.v1.client._client_base import GrpcServiceClientBase
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 from ni.measurementlink.sessionmanagement.v1.client._constants import (
@@ -30,8 +30,12 @@ from ni.measurementlink.sessionmanagement.v1.client._types import (
 
 _logger = logging.getLogger(__name__)
 
+
 class SessionManagementClient(GrpcServiceClientBase):
+    """Client for accessing the NI Session Management Service via gRPC."""
+
     def __init__(self, *, discovery_client=None, grpc_channel=None, grpc_channel_pool=None):
+        """Initialize a SessionManagementClient instance."""
         super().__init__(
             discovery_client=discovery_client,
             grpc_channel=grpc_channel,
@@ -40,7 +44,6 @@ class SessionManagementClient(GrpcServiceClientBase):
             service_class=GRPC_SERVICE_CLASS,
             stub_class=session_management_service_pb2_grpc.SessionManagementServiceStub,
         )
-
 
     def _get_stub(self) -> session_management_service_pb2_grpc.SessionManagementServiceStub:
         if self._stub is None:
