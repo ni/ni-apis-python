@@ -7,5 +7,6 @@ GRPC_SERVICE_CLASS = "ni.datamonikers.v1.MonikerService"
 
 _logger = logging.getLogger(__name__)
 
+
 class MonikerClient:
     """Client for accessing the NI Data Moniker Service."""
