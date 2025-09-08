@@ -168,5 +168,5 @@ def test___int_scalar_out_of_range___convert___raises_value_error() -> None:
         _ = scalar_to_protobuf(python_value)
 
     assert exc.value.args[0].startswith(
-        "The integer scalar value must be a within the range of Int32."
+        "The integer value in a scalar must be within the range of an Int32."
     )
