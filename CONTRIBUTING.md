@@ -227,9 +227,9 @@ values found in pyproject.toml. Example: `ni.protobuf.types/0.1.0-dev0`.
 3. Enter a title in the "Release title" field. The title should contain the package name and
 version in the format `<package-name> <package-version>`. For example: `ni.protobuf.types 0.1.0-dev0`.
 4. Click "Generate release notes" and edit the release notes.
-  - Delete entries for PRs that do not affect users, such as "chore(deps):" and "fix(deps):" PRs.
-  - Consider grouping related entries.
-  - Reformat entries to be more readable. For example, change "Blah blah by so-and-so in \#123" to "Blah blah (\#123)".
+   - Delete entries for PRs that do not affect users, such as "chore(deps):" and "fix(deps):" PRs.
+   - Consider grouping related entries.
+   - Reformat entries to be more readable. For example, change "Blah blah by so-and-so in \#123" to "Blah blah (\#123)".
 5. If this is a pre-release release, check the "Set as a pre-release" checkbox.
 6. Click "Publish release".
 7. Creating a release will start the publish workflow. You can track the
