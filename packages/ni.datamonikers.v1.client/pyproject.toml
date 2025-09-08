@@ -30,7 +30,7 @@ packages = [{include = "ni", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-ni-measurementlink-discovery-v1-client = { version = ">=0.1.0.dev0", allow-prereleases = true }
+ni-grpc-extensions = { version = ">=0.1.0.dev0", allow-prereleases = true }
 ni-datamonikers-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
 
 [tool.poetry.group.dev.dependencies]
