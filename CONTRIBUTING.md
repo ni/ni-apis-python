@@ -141,10 +141,12 @@ poetry run grpc-generator `
   --output-format submodule
 ```
 
+Each package lists its required generation options in this repository's [packages.json](./packages.json) file.
+
 # Add a New Package
 
 To add a new package to this repo:
-1. Create a new folder under `packages` with the new package's name.
+1. Create a new folder under `packages` with the new package name.
 2. Create the front matter files for the package:
    - `pyproject.toml`
    - `poetry.toml`
