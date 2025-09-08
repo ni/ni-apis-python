@@ -9,7 +9,8 @@ from collections.abc import Sequence
 import grpc
 import ni.measurementlink.discovery.v1.discovery_service_pb2 as discovery_service_pb2
 import ni.measurementlink.discovery.v1.discovery_service_pb2_grpc as discovery_service_pb2_grpc
-from ni_grpc_extensions.channelpool import GrpcChannelPool  # type: ignore[import-untyped]
+from ni.measurementlink.discovery.v1.annotations import SERVICE_PROGRAMMINGLANGUAGE_KEY
+from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 from ni.measurementlink.discovery.v1.client._support import (
     _get_discovery_service_address,
@@ -20,7 +21,6 @@ from ni.measurementlink.discovery.v1.client._types import (
     ServiceLocation,
 )
 
-SERVICE_PROGRAMMINGLANGUAGE_KEY = "ni/service.programminglanguage"
 _logger = logging.getLogger(__name__)
 
 

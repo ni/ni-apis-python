@@ -39,7 +39,7 @@ requires-poetry = '>=2.0,<3.0'
 
 [tool.poetry.dependencies]
 grpcio = {version=">=1.49.0,<2.0"}
-ni-grpc-extensions = { version = ">=0.1.0.dev0", allow-prereleases = true }
+ni-grpc-extensions = { version = ">=0.1.0.dev1", allow-prereleases = true }
 ni-measurementlink-discovery-v1-proto = { version = ">=0.1.0.dev1", allow-prereleases = true }
 pywin32 = { version = ">=303", platform = "win32" }
 
