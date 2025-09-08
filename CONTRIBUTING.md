@@ -140,6 +140,24 @@ poetry run grpc-generator `
   --output-basepath ../../packages/ni.panels.v1.proto/src `
   --output-format submodule
 ```
+
+# Add a New Package
+
+To add a new package to this repo:
+1. Create a new folder under `packages` with the new package's name.
+2. Create the front matter files for the package:
+   - `pyproject.toml`
+   - `poetry.toml`
+   - `README.md`
+   - `.readthedocs.yml`
+3. Create new folders under the new package:
+   - `docs`
+   - `src`
+   - `tests`
+4. Generate the gRPC stubs using `grpc-generator`
+5. Create documentation control and content files under the `docs` folder
+6. Create tests for the package under the `tests` folder
+7. Update the `packages.json` file at the root of this repository
 ```
 
 
