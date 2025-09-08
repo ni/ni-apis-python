@@ -78,7 +78,7 @@ poetry install
 # Include dependencies for building the documentation (requires Python 3.11 or newer)
 poetry install --with docs
 
-# Include supplemental dependencies if the `pyproject.toml` has section with `extras` in its title
+# Include supplemental dependencies if pyproject.toml has a section with 'extras' in its title
 poetry install --extras "group1 group2 ..."
 ```
 
