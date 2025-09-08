@@ -4,12 +4,12 @@ on:
   workflow_call:
     inputs:
       package-name:
-        description: 'The name of the package to check.'
+        description: 'The name of the package folder to check.'
         default: ''
         required: true
         type: string
       package-basepath:
-        description: 'The parent directory of the package.'
+        description: 'The base path of the package to check, relative to the repo root.'
         default: ''
         required: true
         type: string
