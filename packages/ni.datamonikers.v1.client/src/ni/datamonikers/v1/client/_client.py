@@ -1,7 +1,7 @@
 """Client for accessing the NI Data Moniker Service."""
 
 import threading
-from typing import Generator, Optional
+from typing import Iterator, Optional
 
 import grpc
 import ni.datamonikers.v1.data_moniker_pb2 as data_moniker_pb2
@@ -49,7 +49,7 @@ class MonikerClient:
                 if self._grpc_channel_pool is None:
                     self._grpc_channel_pool = GrpcChannelPool()
 
-                channel = self._grpc_channel_pool.get_channel(self._uri)
+                channel = self._grpc_channel_pool.get_channel(self._uri)  # type: ignore
                 self._stub = data_moniker_pb2_grpc.MonikerServiceStub(channel)
 
         return self._stub
@@ -63,21 +63,21 @@ class MonikerClient:
 
     def stream_read(
         self, moniker_list: data_moniker_pb2.MonikerList
-    ) -> Generator[data_moniker_pb2.MonikerReadResult, None, None]:
+    ) -> Iterator[data_moniker_pb2.MonikerReadResult]:
         """Stream read data from monikers."""
         stub = self._get_stub()
         return stub.StreamRead(moniker_list)
 
     def stream_write(
-        self, requests: Generator[data_moniker_pb2.MonikerWriteRequest, None, None]
-    ) -> Generator[data_moniker_pb2.StreamWriteResponse, None, None]:
+        self, requests: Iterator[data_moniker_pb2.MonikerWriteRequest]
+    ) -> Iterator[data_moniker_pb2.StreamWriteResponse]:
         """Stream write data to monikers."""
         stub = self._get_stub()
         return stub.StreamWrite(requests)
 
     def stream_read_write(
-        self, requests: Generator[data_moniker_pb2.MonikerWriteRequest, None, None]
-    ) -> Generator[data_moniker_pb2.MonikerReadResult, None, None]:
+        self, requests: Iterator[data_moniker_pb2.MonikerWriteRequest]
+    ) -> Iterator[data_moniker_pb2.MonikerReadResult]:
         """Stream read and write data with monikers."""
         stub = self._get_stub()
         return stub.StreamReadWrite(requests)
