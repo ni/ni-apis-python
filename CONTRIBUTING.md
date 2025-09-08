@@ -124,18 +124,24 @@ start docs/_build/index.html
 
 # Update gRPC Stubs (If Needed)
 
-Each package in this repository contains Python files generated from the
-matching protobuf (`.proto`) package in the `ni-apis` Git submodule. These
-Python files must be regenerated whenever the `.proto` files change.
+Packages that have `.proto` in their name contain Python files generated from the
+matching protobuf package in the `ni-apis` Git submodule. These
+Python files must be regenerated whenever the upstream `.proto` files change.
 
 To regenerate the Python files for a package, run the code generator on its directory.
 
-```sh
+```powershell
 # Example: APIs used by nipanel-python
-(waiting for upload -- AB#3159540)
+cd tools/grpc_generator
+poetry install
+
+poetry run grpc-generator `
+  --proto-subpath ni/panels/v1 `
+  --output-basepath ../../packages/ni.panels.v1.proto/src `
+  --output-format submodule
+```
 ```
 
-To preview in-work `.proto` file changes, (waiting for upload -- AB#3159540).
 
 # Publishing Packages
 
