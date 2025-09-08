@@ -68,6 +68,10 @@
     "proto-include-path": "./third_party/ni-apis/ni/grpcdevice/v1",
     "output-format": "subpackage"
   },
+  "ni.measurements.data.v1.client": {
+    "proto-subpath": "",
+    "output-format": ""
+  },
   "ni.measurements.data.v1.proto": {
     "proto-basepath": "./third_party/ni-apis",
     "proto-subpath": "ni/measurements/data/v1",
