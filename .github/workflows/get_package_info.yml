@@ -4,37 +4,53 @@ on:
   workflow_call:
     inputs:
       package-name:
-        description: 'The name of the package to check.'
+        description: 'The name of the package from packages.json.'
         default: ''
         required: true
         type: string
     outputs:
+      package-basepath:
+        description: 'The path to the parent directory of the package, relative to the repo root.'
+        value: ${{ jobs.get_package_info.outputs.package-basepath }}
       proto-basepath:
-        description: 'Base path for proto files.'
+        description: 'The base path to the proto files used for generation.'
         value: ${{ jobs.get_package_info.outputs.proto-basepath }}
       proto-subpath:
-        description: 'Subpath for proto files.'
+        description: 'The specific subpath to the proto files needed for generation, relative to the proto-basepath.'
         value: ${{ jobs.get_package_info.outputs.proto-subpath }}
       proto-include-path:
-        description: 'Include path for proto files.'
+        description: 'Additional path to include during proto generation.'
         value: ${{ jobs.get_package_info.outputs.proto-include-path }}
       output-format:
-        description: 'Output format.'
+        description: 'The format for the generated stubs. Options are submodule and subpackage.'
         value: ${{ jobs.get_package_info.outputs.output-format }}
-      install-drivers:
-        description: 'Whether to install drivers extra'
-        value: ${{ jobs.get_package_info.outputs.install-drivers }}
+      install-extras:
+        description: 'A space-separated list of package extras to install.'
+        value: ${{ jobs.get_package_info.outputs.install-extras }}
+      should-check-codegen:
+        description: 'Whether to check protobuf code generation.'
+        value: ${{ jobs.get_package_info.outputs.should-check-codegen }}
+      should-check-docs:
+        description: 'Whether to check documentation generation.'
+        value: ${{ jobs.get_package_info.outputs.should-check-docs }}
+      should-run-tests:
+        description: 'Whether to run automated tests.'
+        value: ${{ jobs.get_package_info.outputs.should-run-tests }}
 
 jobs:
   get_package_info:
     name: Get package info for ${{ inputs.package-name }}
     runs-on: ubuntu-latest
     outputs:
+      package-basepath: ${{ steps.parse_json.outputs.package-basepath }}
       proto-basepath: ${{ steps.parse_json.outputs.proto-basepath }}
       proto-subpath: ${{ steps.parse_json.outputs.proto-subpath }}
       proto-include-path: ${{ steps.parse_json.outputs.proto-include-path }}
       output-format: ${{ steps.parse_json.outputs.output-format }}
-      install-drivers: ${{ steps.parse_json.outputs.install-drivers }}
+      install-extras: ${{ steps.parse_json.outputs.install-extras }}
+      should-check-codegen: ${{ steps.parse_json.outputs.should-check-codegen }}
+      should-check-docs: ${{ steps.parse_json.outputs.should-check-docs }}
+      should-run-tests: ${{ steps.parse_json.outputs.should-run-tests }}
     steps:
       - name: Check out repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -47,9 +63,42 @@ jobs:
             echo "Error: Package '${{ inputs.package-name }}' not found in packages.json." >&2
             exit 1
           fi
-          echo "Package info: $info"
-          echo "proto-basepath=$(echo $info | jq -r '."proto-basepath"')" >> $GITHUB_OUTPUT
-          echo "proto-subpath=$(echo $info | jq -r '."proto-subpath"')" >> $GITHUB_OUTPUT
-          echo "proto-include-path=$(echo $info | jq -r '."proto-include-path"')" >> $GITHUB_OUTPUT
-          echo "output-format=$(echo $info | jq -r '."output-format"')" >> $GITHUB_OUTPUT
-          echo "install-drivers=$(echo $info | jq -r '."install-drivers"')" >> $GITHUB_OUTPUT
+
+          package_basepath=$(echo $info | jq -r '."package-basepath"')
+          proto_basepath=$(echo $info | jq -r '."proto-basepath"')
+          proto_subpath=$(echo $info | jq -r '."proto-subpath"')
+          proto_include_path=$(echo $info | jq -r '."proto-include-path"')
+          output_format=$(echo $info | jq -r '."output-format"')
+          install_extras=$(echo $info | jq -r '."install-extras"')
+
+          should_check_codegen=false
+          if [ "${proto_subpath}" != "null" ]; then
+            should_check_codegen=true
+          fi
+
+          should_check_docs=false
+          if [ -d "${GITHUB_WORKSPACE}/${package_basepath}/${{ inputs.package-name }}/docs" ]; then
+            should_check_docs=true
+          fi
+
+          should_run_tests=false
+          if [ -d "${GITHUB_WORKSPACE}/${package_basepath}/${{ inputs.package-name }}/tests" ]; then
+            should_run_tests=true
+          fi
+
+          if [ "${install_extras}" == "null" ]; then
+            install_extras=""
+          fi
+
+          echo "package-basepath=${package_basepath}" >> $GITHUB_OUTPUT
+          echo "proto-basepath="${proto_basepath} >> $GITHUB_OUTPUT
+          echo "proto-subpath=${proto_subpath}" >> $GITHUB_OUTPUT
+          echo "proto-include-path=${proto_include_path}" >> $GITHUB_OUTPUT
+          echo "output-format=${output_format}" >> $GITHUB_OUTPUT
+          echo "install-extras=${install_extras}" >> $GITHUB_OUTPUT
+          echo "should-check-codegen=${should_check_codegen}" >> $GITHUB_OUTPUT
+          echo "should-check-docs=${should_check_docs}" >> $GITHUB_OUTPUT
+          echo "should-run-tests=${should_run_tests}" >> $GITHUB_OUTPUT
+      - name: Show package info
+        run: |
+          echo "${{ toJSON(steps.parse_json.outputs) }}"

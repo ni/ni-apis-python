@@ -4,25 +4,25 @@ on:
   workflow_call:
     inputs:
       package-name:
-        description: 'The name of the package to check.'
+        description: 'The name of the package folder to check.'
         default: ''
         required: true
         type: string
       proto-basepath:
-        description: 'The base path for proto files used for generation.'
-        default: './third_party/ni-apis'
+        description: 'The base path to the proto files used for generation, relative to the repo root.'
+        default: 'third_party/ni-apis'
         type: string
       proto-subpath:
-        description: 'The path to proto files relative to proto-base-path.'
+        description: 'The specific subpath to the proto files needed for generation, relative to the proto-basepath.'
         default: ''
         required: true
         type: string
       proto-include-path:
-        description: 'Additional path to include in the proto generation.'
-        default: './third_party/ni-apis'
+        description: 'Additional path to include during proto generation, relative to the repo root.'
+        default: 'third_party/ni-apis'
         type: string
       output-basepath:
-        description: 'The base output path for codegened files.'
+        description: 'The base output path for the generated files, relative to the repo root.'
         default: ''
         required: true
         type: string
@@ -39,7 +39,7 @@ jobs:
     defaults:
       run:
         # Set the working-directory for all steps in this job.
-        working-directory: ./tools/grpc_generator
+        working-directory: ${{ github.workspace }}/tools/grpc_generator
     steps:
       - name: Validate package name
         if: ${{ !endsWith(inputs.package-name, '.proto') && inputs.package-name != 'ni.protobuf.types' }}
@@ -58,7 +58,7 @@ jobs:
       - name: Cache virtualenv
         uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
         with:
-          path: tools/grpc_generator/.venv
+          path: ${{ github.workspace }}/tools/grpc_generator/.venv
           key: grpc_generator-only-main-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('tools/grpc_generator/poetry.lock') }}
       - name: Install grpc_generator
         run: poetry install -v --only main
