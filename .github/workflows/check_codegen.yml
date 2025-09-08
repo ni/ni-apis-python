@@ -9,7 +9,7 @@ on:
         required: true
         type: string
       proto-basepath:
-        description: 'The base path to the proto files used for generation.'
+        description: 'The base path to the proto files used for generation, relative to the repo root.'
         default: 'third_party/ni-apis'
         type: string
       proto-subpath:
@@ -18,11 +18,11 @@ on:
         required: true
         type: string
       proto-include-path:
-        description: 'Additional path to include during proto generation.'
+        description: 'Additional path to include during proto generation, relative to the repo root.'
         default: 'third_party/ni-apis'
         type: string
       output-basepath:
-        description: 'The base output path for the generated files.'
+        description: 'The base output path for the generated files, relative to the repo root.'
         default: ''
         required: true
         type: string
