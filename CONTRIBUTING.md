@@ -202,7 +202,6 @@ To add a new package to this repo:
 }
 ```
 
-# Publishing Packages
 ### Example for non-proto package
 
 ```json
@@ -215,6 +214,8 @@ To add a new package to this repo:
   "install-extras": "drivers"
 }
 ```
+
+# Publish a Package
 
 You can publish one of the packages in the `packages` folder by creating a GitHub release
 in the ni-apis-python repo. Here are the steps to follow to publish a package:
