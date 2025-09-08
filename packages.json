@@ -1,5 +1,6 @@
 {
   "grpc_generator": {
+    "comment.schema": "See the packages.json section in CONTRIBUTING.md",
     "package-basepath": "tools",
     "proto-basepath": null,
     "proto-subpath": null,
