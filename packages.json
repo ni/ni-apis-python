@@ -5,7 +5,7 @@
     "proto-subpath": null,
     "proto-include-path": null,
     "output-format": null,
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.datamonikers.v1.proto": {
     "package-basepath": "packages",
@@ -13,7 +13,7 @@
     "proto-subpath": "ni/datamonikers/v1",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "subpackage",
-    "install-drivers": null
+    "install-extras": null
   },
   "ni-grpc-extensions" : {
     "package-basepath": "packages",
@@ -21,7 +21,7 @@
     "proto-subpath": null,
     "proto-include-path": null,
     "output-format": null,
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.grpcdevice.v1.proto": {
     "package-basepath": "packages",
@@ -29,7 +29,7 @@
     "proto-subpath": ".",
     "proto-include-path": "proto",
     "output-format": "subpackage",
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.measurementlink.discovery.v1.client": {
     "package-basepath": "packages",
@@ -37,7 +37,7 @@
     "proto-subpath": null,
     "proto-include-path": null,
     "output-format": null,
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.measurementlink.discovery.v1.proto": {
     "package-basepath": "packages",
@@ -45,7 +45,7 @@
     "proto-subpath": "ni/measurementlink/discovery/v1",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "subpackage",
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.measurementlink.measurement.v1.proto": {
     "package-basepath": "packages",
@@ -53,7 +53,7 @@
     "proto-subpath": "ni/measurementlink/measurement/v1",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "subpackage",
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.measurementlink.measurement.v2.proto": {
     "package-basepath": "packages",
@@ -61,7 +61,7 @@
     "proto-subpath": "ni/measurementlink/measurement/v2",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "subpackage",
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.measurementlink.pinmap.v1.client": {
     "package-basepath": "packages",
@@ -69,7 +69,7 @@
     "proto-subpath": null,
     "proto-include-path": null,
     "output-format": null,
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.measurementlink.pinmap.v1.proto": {
     "package-basepath": "packages",
@@ -77,7 +77,7 @@
     "proto-subpath": "ni/measurementlink/pinmap/v1",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "subpackage",
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.measurementlink.proto": {
     "package-basepath": "packages",
@@ -85,7 +85,7 @@
     "proto-subpath": "ni/measurementlink",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "subpackage",
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.measurementlink.sessionmanagement.v1.client": {
     "package-basepath": "packages",
@@ -93,7 +93,7 @@
     "proto-subpath": null,
     "proto-include-path": null,
     "output-format": null,
-    "install-drivers": true
+    "install-extras": "drivers"
   },
   "ni.measurementlink.sessionmanagement.v1.proto": {
     "package-basepath": "packages",
@@ -101,7 +101,7 @@
     "proto-subpath": "ni/measurementlink/sessionmanagement/v1",
     "proto-include-path": "third_party/ni-apis/ni/grpcdevice/v1",
     "output-format": "subpackage",
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.measurements.data.v1.proto": {
     "package-basepath": "packages",
@@ -109,7 +109,7 @@
     "proto-subpath": "ni/measurements/data/v1",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "subpackage",
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.measurements.metadata.v1.proto": {
     "package-basepath": "packages",
@@ -117,7 +117,7 @@
     "proto-subpath": "ni/measurements/metadata/v1",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "subpackage",
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.panels.v1.proto": {
     "package-basepath": "packages",
@@ -125,7 +125,7 @@
     "proto-subpath": "ni/panels/v1",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "submodule",
-    "install-drivers": null
+    "install-extras": null
   },
   "ni.protobuf.types": {
     "package-basepath": "packages",
@@ -133,6 +133,6 @@
     "proto-subpath": "ni/protobuf/types",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "submodule",
-    "install-drivers": null
+    "install-extras": null
   }
 }

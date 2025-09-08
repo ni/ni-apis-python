@@ -13,11 +13,11 @@ on:
         default: ''
         required: true
         type: string
-      install-drivers:
-        description: 'Whether to install drivers extras'
-        default: false
+      install-extras:
+        description: 'A space-separated list of package extras to install.'
+        default: ''
         required: false
-        type: boolean
+        type: string
 
 jobs:
   check_analyzers:
@@ -46,8 +46,8 @@ jobs:
           key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles(format('{0}/{1}/poetry.lock', inputs.package-basepath, inputs.package-name)) }}
       - name: Install ${{ inputs.package-name }}
         run: |
-          if [ "${{ inputs.install-drivers }}" = "true" ]; then
-            poetry install -v --extras drivers
+          if [ -n "${{ inputs.install-extras }}" ]; then
+            poetry install -v --extras '${{ inputs.install-extras }}'
           else
             poetry install -v
           fi
