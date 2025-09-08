@@ -158,10 +158,63 @@ To add a new package to this repo:
 5. Create documentation control and content files under the `docs` folder
 6. Create tests for the package under the `tests` folder
 7. Update the `packages.json` file at the root of this repository
+
+## packages.json
+
+### Schema
+- All keys are strings
+- All values are strings or `null` when they do not apply to the package
+
+```jsonc
+// Folder name for the package
+"string": {
+
+  // Path to package folder, relative to the repo root
+  "package-basepath": "string",
+
+  // The base path to the proto files used for generation, relative to the repo root
+  "proto-basepath": "string" | null,
+
+  // The specific subpath to the proto files needed for generation, relative to the proto-basepath
+  "proto-subpath": "string" | null,
+
+  // Additional path to include during proto generation, relative to the repo root
+  "proto-include-path": "string" | null,
+
+  // The format for the generated stubs. Options are submodule and subpackage
+  "output-format": "string" | null,
+
+  // A space-separated list of package extras to install
+  "install-extras": "string" | null
+  }
 ```
 
+### Example for proto package
+
+```json
+"ni.panels.v1.proto": {
+  "package-basepath": "packages",
+  "proto-basepath": "third_party/ni-apis",
+  "proto-subpath": "ni/panels/v1",
+  "proto-include-path": "third_party/ni-apis",
+  "output-format": "submodule",
+  "install-extras": null
+}
+```
 
 # Publishing Packages
+### Example for non-proto package
+
+```json
+"ni.measurementlink.sessionmanagement.v1.client": {
+  "package-basepath": "packages",
+  "proto-basepath": null,
+  "proto-subpath": null,
+  "proto-include-path": null,
+  "output-format": null,
+  "install-extras": "drivers"
+}
+```
 
 You can publish one of the packages in the `packages` folder by creating a GitHub release
 in the ni-apis-python repo. Here are the steps to follow to publish a package:
