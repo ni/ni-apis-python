@@ -59,9 +59,9 @@ This repository includes multiple Python packages. Some examples:
 
 Open a terminal window and navigate to the package that you selected.
 
-```sh
-# Example: APIs used by nipanel-python
-cd packages\(waiting for upload -- AB#3159540)
+```powershell
+# Example: Python gRPC stubs for the NI Panel Service
+cd packages/ni.panels.v1.proto
 ```
 
 ## Install the package and its dependencies
@@ -94,8 +94,8 @@ git switch --create users/{username}/{branch-purpose}
 
 # Select and package and install its dependencies
 # Example: APIs used by nipanel-python
-cd packages\(waiting for upload -- AB#3159540)
-poetry install
+cd packages/ni.panels.v1.proto
+poetry install --with docs
 
 # ✍ Make source changes
 
