@@ -238,6 +238,12 @@ progress of this workflow in the "Actions" page of the GitHub repo.
 9. After receiving code owner approval, the publish workflow will resume.
 10. Once the publish workflow has finished, you should see your release on pypi.
 
+# gRPC and Protobuf Version Support
+
+- We use the newest version of `grpcio-tools` with binary wheels for each supported version of Python
+- We generate stubs using Python 3.11 and test on all supported Python versions
+- We rely on `poetry lock` to select the newest compatible version of `protobuf` newer than 4.21
+
 # Developer Certificate of Origin (DCO)
 
    Developer's Certificate of Origin 1.1
