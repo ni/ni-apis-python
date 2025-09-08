@@ -188,7 +188,7 @@ To add a new package to this repo:
 
   // A space-separated list of package extras to install
   "install-extras": "string" | null
-  }
+}
 ```
 
 ### Example for proto package
