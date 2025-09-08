@@ -740,7 +740,7 @@ files = [
 
 [[package]]
 name = "ni-measurementlink-proto"
-version = "0.1.0-dev0"
+version = "0.1.0-dev2"
 description = "Protobuf data types for NI gRPC APIs"
 optional = false
 python-versions = "^3.9"
@@ -748,7 +748,6 @@ files = []
 develop = true
 
 [package.dependencies]
-nitypes = ">=0.1.0dev3"
 protobuf = ">=4.21"
 
 [package.source]
@@ -784,22 +783,6 @@ pycodestyle = [
     {version = ">=2.11,<3.0", markers = "python_version >= \"3.12\" and python_version < \"4.0\""},
 ]
 toml = ">=0.10.1"
-
-[[package]]
-name = "nitypes"
-version = "0.1.0.dev8"
-description = "Data types for NI Python APIs"
-optional = false
-python-versions = "<4.0,>=3.9"
-files = [
-    {file = "nitypes-0.1.0.dev8-py3-none-any.whl", hash = "sha256:2d717ae65b65a573cd488610fd413eafa0ebec801c7219c8ee8475d877e6cb48"},
-    {file = "nitypes-0.1.0.dev8.tar.gz", hash = "sha256:50bd1b728c7dce1a6b4bb716525d59b9352543daf622528b4b34bc844d4cd9b7"},
-]
-
-[package.dependencies]
-hightime = ">=0.2.2"
-numpy = ">=1.22"
-typing-extensions = ">=4.13.2"
 
 [[package]]
 name = "nodeenv"
@@ -1141,13 +1124,13 @@ windows-terminal = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "pyright"
-version = "1.1.403"
+version = "1.1.405"
 description = "Command line wrapper for pyright"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyright-1.1.403-py3-none-any.whl", hash = "sha256:c0eeca5aa76cbef3fcc271259bbd785753c7ad7bcac99a9162b4c4c7daed23b3"},
-    {file = "pyright-1.1.403.tar.gz", hash = "sha256:3ab69b9f41c67fb5bbb4d7a36243256f0d549ed3608678d381d5f51863921104"},
+    {file = "pyright-1.1.405-py3-none-any.whl", hash = "sha256:a2cb13700b5508ce8e5d4546034cb7ea4aedb60215c6c33f56cec7f53996035a"},
+    {file = "pyright-1.1.405.tar.gz", hash = "sha256:5c2a30e1037af27eb463a1cc0b9f6d65fec48478ccf092c1ac28385a15c55763"},
 ]
 
 [package.dependencies]
@@ -1664,13 +1647,13 @@ files = [
 
 [[package]]
 name = "types-protobuf"
-version = "6.30.2.20250809"
+version = "6.30.2.20250822"
 description = "Typing stubs for protobuf"
 optional = false
 python-versions = ">=3.9"
 files = [
-    {file = "types_protobuf-6.30.2.20250809-py3-none-any.whl", hash = "sha256:7afc2d3f569d281dd22f339179577243be60bf7d1dfb4bc13d0109859fb1f1be"},
-    {file = "types_protobuf-6.30.2.20250809.tar.gz", hash = "sha256:b04f2998edf0d81bd8600bbd5db0b2adf547837eef6362ba364925cee21a33b4"},
+    {file = "types_protobuf-6.30.2.20250822-py3-none-any.whl", hash = "sha256:5584c39f7e36104b5f8bdfd31815fa1d5b7b3455a79ddddc097b62320f4b1841"},
+    {file = "types_protobuf-6.30.2.20250822.tar.gz", hash = "sha256:faacbbe87bd8cba4472361c0bd86f49296bd36f7761e25d8ada4f64767c1bde9"},
 ]
 
 [[package]]
