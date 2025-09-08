@@ -78,7 +78,7 @@ def test___analog_waveform_non_zero_samples___convert___valid_protobuf() -> None
 def test___analog_waveform_with_extended_properties___convert___valid_protobuf() -> None:
     analog_waveform = AnalogWaveform()
     analog_waveform.channel_name = "Dev1/ai0"
-    analog_waveform.unit_description = "Volts"
+    analog_waveform.units = "Volts"
 
     dbl_analog_waveform = float64_analog_waveform_to_protobuf(analog_waveform)
 
@@ -147,7 +147,7 @@ def test___dbl_analog_wfm_with_attributes___convert___valid_python_object() -> N
     analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
     assert analog_waveform.channel_name == "Dev1/ai0"
-    assert analog_waveform.unit_description == "Volts"
+    assert analog_waveform.units == "Volts"
 
 
 def test___dbl_analog_wfm_with_timing___convert___valid_python_object() -> None:
@@ -218,7 +218,7 @@ def test___float64_complex_waveform_non_zero_samples___convert___valid_protobuf(
 def test___float64_complex_waveform_with_extended_properties___convert___valid_protobuf() -> None:
     complex_waveform = ComplexWaveform(0, np.complex128)
     complex_waveform.channel_name = "Dev1/ai0"
-    complex_waveform.unit_description = "Volts"
+    complex_waveform.units = "Volts"
 
     dbl_complex_waveform = float64_complex_waveform_to_protobuf(complex_waveform)
 
@@ -287,7 +287,7 @@ def test___dbl_complex_wfm_with_attributes___convert___valid_python_object() -> 
     complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
 
     assert complex_waveform.channel_name == "Dev1/ai0"
-    assert complex_waveform.unit_description == "Volts"
+    assert complex_waveform.units == "Volts"
 
 
 def test___dbl_complex_wfm_with_timing___convert___valid_python_object() -> None:
@@ -359,7 +359,7 @@ def test___int16_complex_waveform_non_zero_samples___convert___valid_protobuf() 
 def test___int16_complex_waveform_with_extended_properties___convert___valid_protobuf() -> None:
     complex_waveform = ComplexWaveform(0, ComplexInt32DType)
     complex_waveform.channel_name = "Dev1/ai0"
-    complex_waveform.unit_description = "Volts"
+    complex_waveform.units = "Volts"
 
     i16_complex_waveform = int16_complex_waveform_to_protobuf(complex_waveform)
 
@@ -444,7 +444,7 @@ def test___int16_complex_wfm_with_attributes___convert___valid_python_object() -
     complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
 
     assert complex_waveform.channel_name == "Dev1/ai0"
-    assert complex_waveform.unit_description == "Volts"
+    assert complex_waveform.units == "Volts"
 
 
 def test___int16_complex_wfm_with_timing___convert___valid_python_object() -> None:
@@ -527,7 +527,7 @@ def test___int16_analog_waveform_non_zero_samples___convert___valid_protobuf() -
 def test___int16_analog_waveform_with_extended_properties___convert___valid_protobuf() -> None:
     analog_waveform = AnalogWaveform(0, np.int16)
     analog_waveform.channel_name = "Dev1/ai0"
-    analog_waveform.unit_description = "Volts"
+    analog_waveform.units = "Volts"
 
     i16_analog_waveform = int16_analog_waveform_to_protobuf(analog_waveform)
 
@@ -610,7 +610,7 @@ def test___i16_analog_wfm_with_attributes___convert___valid_python_object() -> N
     analog_waveform = int16_analog_waveform_from_protobuf(i16_analog_wfm)
 
     assert analog_waveform.channel_name == "Dev1/ai0"
-    assert analog_waveform.unit_description == "Volts"
+    assert analog_waveform.units == "Volts"
 
 
 def test___i16_analog_wfm_with_timing___convert___valid_python_object() -> None:
@@ -688,7 +688,7 @@ def test___spectrum_with_data___convert___valid_protobuf() -> None:
 def test___spectrum_with_extended_properties___convert___valid_protobuf() -> None:
     spectrum = Spectrum()
     spectrum.channel_name = "Dev1/ai0"
-    spectrum.unit_description = "Volts"
+    spectrum.units = "Volts"
 
     dbl_spectrum = float64_spectrum_to_protobuf(spectrum)
 
@@ -733,7 +733,7 @@ def test___dbl_spectrum_with_attributes___convert___valid_python_object() -> Non
     spectrum = float64_spectrum_from_protobuf(dbl_spectrum)
 
     assert spectrum.channel_name == "Dev1/ai0"
-    assert spectrum.unit_description == "Volts"
+    assert spectrum.units == "Volts"
 
 
 # ========================================================
