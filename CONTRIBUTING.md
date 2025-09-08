@@ -71,8 +71,15 @@ command. This creates an in-project virtual environment (`.venv`) and installs
 the package's dependencies and dev-dependencies, as specified in its
 `pyproject.toml` and `poetry.lock` files.
 
-```cmd
+```powershell
+# Include dependencies for linting, analyzing, and testing the package
 poetry install
+
+# Include dependencies for building the documentation (requires Python 3.11 or newer)
+poetry install --with docs
+
+# Include supplemental dependencies if the `pyproject.toml` has section with `extras` in its title
+poetry install --extras "group1 group2 ..."
 ```
 
 ## Activate the virtual environment (if needed)
@@ -83,7 +90,7 @@ poetry install
 
 # Simple Development Loop
 
-```sh
+```powershell
 # Update from main
 git checkout main
 git pull
@@ -109,6 +116,10 @@ poetry run nps fix
 
 # Run the tests
 poetry run pytest -v
+
+# Build the documentation
+poetry run sphinx-build docs docs/_build --builder html --fail-on-warning
+start docs/_build/index.html
 ```
 
 # Update gRPC Stubs (If Needed)
