@@ -54,7 +54,8 @@ git submodule update --init --recursive
 
 This repository includes multiple Python packages. Some examples:
 - `ni.protobuf.types`: types used by [NI's gRPC APIs](https://github.com/ni/ni-apis/)
-- _(waiting for upload -- AB#3159540)_: APIs used by [`nipanel-python`](https://github.com/ni/nipanel-python)
+- `ni.measurementlink.discovery.v1.client`: gRPC client for the NI Discovery Service
+- `ni.panels.v1.proto`: Python gRPC stubs for the NI Panel Service
 
 Open a terminal window and navigate to the package that you selected.
 
