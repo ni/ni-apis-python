@@ -9,7 +9,7 @@
 
 `ni.datamonikers.v1.client` is a Python package that provides a gRPC client for the
 NI Data Moniker Service, version 1. The corresponding service is defined in the
-[ni.datamonikers.v1.proto package](https://github.com/ni/ni-apis/tree/main/ni/datamonikers/v1).
+[ni.datamonikers.v1 package](https://github.com/ni/ni-apis/tree/main/ni/datamonikers/v1).
 
 NI created and supports this package.
 

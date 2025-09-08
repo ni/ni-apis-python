@@ -9,7 +9,7 @@
 
 `ni.measurements.data.v1.client` is a Python package that provides a gRPC client for the
 NI Data Store Service, version 1. The corresponding service is defined in the
-[ni.measurements.data.v1.proto package](https://github.com/ni/ni-apis-python/tree/main/packages/ni.measurements.data.v1.proto).
+[ni.measurements.data.v1 package](https://github.com/ni/ni-apis/tree/main/ni/measurements/data/v1).
 
 NI created and supports this package.
 

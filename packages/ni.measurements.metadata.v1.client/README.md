@@ -9,7 +9,7 @@
 
 `ni.measurements.metadata.v1.client` is a Python package that provides a gRPC client for the
 NI Metadata Store Service, version 1. The corresponding service is defined in the
-[ni.measurements.metadata.v1.proto package](https://github.com/ni/ni-apis/tree/main/ni/measurements/metadata/v1).
+[ni.measurements.metadata.v1 package](https://github.com/ni/ni-apis/tree/main/ni/measurements/metadata/v1).
 
 NI created and supports this package.
 
