@@ -13,7 +13,7 @@ from ni.measurements.data.v1.client._client_base import GrpcServiceClientBase
 GRPC_SERVICE_INTERFACE_NAME = "ni.measurements.data.v1.DataStoreService"
 
 
-class DataStoreClient(GrpcServiceClientBase):
+class DataStoreClient(GrpcServiceClientBase[data_store_service_pb2_grpc.DataStoreServiceStub]):
     """Client for accessing the NI Data Store Service."""
 
     def __init__(
@@ -45,96 +45,82 @@ class DataStoreClient(GrpcServiceClientBase):
         self, request: data_store_service_pb2.CreateSessionRequest
     ) -> data_store_service_pb2.CreateSessionResponse:
         """Creates a new session in the data store."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.CreateSession(request)
+        return self._get_stub().CreateSession(request)
 
     def get_session(
         self, request: data_store_service_pb2.GetSessionRequest
     ) -> data_store_service_pb2.GetSessionResponse:
         """Gets the session associated with the identifier given in the request."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.GetSession(request)
+        return self._get_stub().GetSession(request)
 
     def create_measurement(
         self, request: data_store_service_pb2.CreateMeasurementRequest
     ) -> data_store_service_pb2.CreateMeasurementResponse:
         """Creates a new measurement in the data store."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.CreateMeasurement(request)
+        return self._get_stub().CreateMeasurement(request)
 
     def get_measurement(
         self, request: data_store_service_pb2.GetMeasurementRequest
     ) -> data_store_service_pb2.GetMeasurementResponse:
         """Gets the measurement associated with the identifier given in the request."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.GetMeasurement(request)
+        return self._get_stub().GetMeasurement(request)
 
     def query_measurements(
         self, request: data_store_service_pb2.QueryMeasurementsRequest
     ) -> data_store_service_pb2.QueryMeasurementsResponse:
         """Query for measurements matching the given OData query."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.QueryMeasurements(request)
+        return self._get_stub().QueryMeasurements(request)
 
     def publish_condition_set(
         self, request: data_store_service_pb2.PublishConditionSetRequest
     ) -> data_store_service_pb2.PublishConditionSetResponse:
         """Publishes a single condition set for a measurement."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.PublishConditionSet(request)
+        return self._get_stub().PublishConditionSet(request)
 
     def publish_condition(
         self, request: data_store_service_pb2.PublishConditionRequest
     ) -> data_store_service_pb2.PublishConditionResponse:
         """Publishes a single condition value for a measurement."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.PublishCondition(request)
+        return self._get_stub().PublishCondition(request)
 
     def publish_condition_set_batch(
         self, request: data_store_service_pb2.PublishConditionSetBatchRequest
     ) -> data_store_service_pb2.PublishConditionSetBatchResponse:
         """Publishes the complete set of conditions for a measurement."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.PublishConditionSetBatch(request)
+        return self._get_stub().PublishConditionSetBatch(request)
 
     def publish_condition_batch(
         self, request: data_store_service_pb2.PublishConditionBatchRequest
     ) -> data_store_service_pb2.PublishConditionBatchResponse:
         """Publishes a batch of condition values for a measurement."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.PublishConditionBatch(request)
+        return self._get_stub().PublishConditionBatch(request)
 
     def publish_data(
         self, request: data_store_service_pb2.PublishDataRequest
     ) -> data_store_service_pb2.PublishDataResponse:
         """Publishes a single data value."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.PublishData(request)
+        return self._get_stub().PublishData(request)
 
     def publish_data_batch(
         self, request: data_store_service_pb2.PublishDataBatchRequest
     ) -> data_store_service_pb2.PublishDataBatchResponse:
         """Publishes a batch of scalar data values."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.PublishDataBatch(request)
+        return self._get_stub().PublishDataBatch(request)
 
     def query_condition_sets(
         self, request: data_store_service_pb2.QueryConditionSetsRequest
     ) -> data_store_service_pb2.QueryConditionSetsResponse:
         """Queries the condition sets in the data store, based on an OData query."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.QueryConditionSets(request)
+        return self._get_stub().QueryConditionSets(request)
 
     def query_conditions(
         self, request: data_store_service_pb2.QueryConditionsRequest
     ) -> data_store_service_pb2.QueryConditionsResponse:
         """Queries the conditions in the data store, based on an OData query."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.QueryConditions(request)
+        return self._get_stub().QueryConditions(request)
 
     def query_data(
         self, request: data_store_service_pb2.QueryDataRequest
     ) -> data_store_service_pb2.QueryDataResponse:
         """Queries the data in the data store, based on an OData query."""
-        stub: data_store_service_pb2_grpc.DataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.QueryData(request)
+        return self._get_stub().QueryData(request)
