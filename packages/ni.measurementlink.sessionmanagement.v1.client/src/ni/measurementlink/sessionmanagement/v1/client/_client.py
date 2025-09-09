@@ -18,6 +18,10 @@ from ni.measurementlink.sessionmanagement.v1.client._constants import (
     GRPC_SERVICE_CLASS,
     GRPC_SERVICE_INTERFACE_NAME,
 )
+from ni.measurementlink.sessionmanagement.v1.client._helpers import (
+    get_machine_details,
+    remove_reservation_annotations,
+)
 from ni.measurementlink.sessionmanagement.v1.client._reservation import (
     MultiplexerSessionContainer,
     MultiSessionReservation,
@@ -55,6 +59,7 @@ class SessionManagementClient:
         self._discovery_client = discovery_client
         self._grpc_channel_pool = grpc_channel_pool
         self._stub: session_management_service_pb2_grpc.SessionManagementServiceStub | None = None
+        self._reserved_annotations, self._registered_annotations = get_machine_details()
 
         if grpc_channel is not None:
             self._stub = session_management_service_pb2_grpc.SessionManagementServiceStub(
@@ -214,6 +219,7 @@ class SessionManagementClient:
         request = session_management_service_pb2.ReserveSessionsRequest(
             pin_map_context=context._to_grpc(),
             timeout_in_milliseconds=_timeout_to_milliseconds(timeout),
+            annotations=self._reserved_annotations,
         )
         if instrument_type_id is not None:
             request.instrument_type_id = instrument_type_id
@@ -239,6 +245,15 @@ class SessionManagementClient:
         Args:
             session_info: Sessions to register.
         """
+        session_info = [
+            info._replace(
+                annotations={
+                    **remove_reservation_annotations(info.annotations),
+                    **self._registered_annotations,
+                }
+            )
+            for info in session_info
+        ]
         request = session_management_service_pb2.RegisterSessionsRequest(
             sessions=(info._to_grpc_v1() for info in session_info),
         )
@@ -287,7 +302,8 @@ class SessionManagementClient:
             unreserve them.
         """
         request = session_management_service_pb2.ReserveAllRegisteredSessionsRequest(
-            timeout_in_milliseconds=_timeout_to_milliseconds(timeout)
+            timeout_in_milliseconds=_timeout_to_milliseconds(timeout),
+            annotations=self._reserved_annotations,
         )
         if instrument_type_id is not None:
             request.instrument_type_id = instrument_type_id
@@ -307,6 +323,15 @@ class SessionManagementClient:
         Args:
             multiplexer_session_info: Sessions to register.
         """
+        multiplexer_session_info = [
+            info._replace(
+                annotations={
+                    **remove_reservation_annotations(info.annotations),
+                    **self._registered_annotations,
+                }
+            )
+            for info in multiplexer_session_info
+        ]
         request = session_management_service_pb2.RegisterMultiplexerSessionsRequest(
             multiplexer_sessions=(info._to_grpc_v1() for info in multiplexer_session_info),
         )
