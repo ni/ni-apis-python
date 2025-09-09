@@ -19,9 +19,9 @@ class PinMapClient(GrpcServiceClientBase):
     def __init__(
         self,
         *,
-        discovery_client: "DiscoveryClient | None" = None,
-        grpc_channel: "grpc.Channel | None" = None,
-        grpc_channel_pool: "GrpcChannelPool | None" = None,
+        discovery_client: DiscoveryClient | None = None,
+        grpc_channel: grpc.Channel | None = None,
+        grpc_channel_pool: GrpcChannelPool | None = None,
     ) -> None:
         """Initialize a PinMapClient instance."""
         super().__init__(
