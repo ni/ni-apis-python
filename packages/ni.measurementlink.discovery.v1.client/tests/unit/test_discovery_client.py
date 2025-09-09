@@ -13,6 +13,7 @@ from unittest.mock import Mock
 
 import grpc
 import pytest
+from ni.measurementlink.discovery.v1.annotations import SERVICE_PROGRAMMINGLANGUAGE_KEY
 from ni.measurementlink.discovery.v1.discovery_service_pb2 import (
     ComputeNodeDescriptor as GrpcComputeNodeDescriptor,
     EnumerateComputeNodesResponse,
@@ -31,7 +32,7 @@ from ni.measurementlink.discovery.v1.discovery_service_pb2 import (
 from ni.measurementlink.discovery.v1.discovery_service_pb2_grpc import (
     DiscoveryServiceStub,
 )
-from ni_grpc_extensions.channelpool import GrpcChannelPool  # type: ignore[import-untyped]
+from ni_grpc_extensions.channelpool import GrpcChannelPool
 from pytest_mock import MockerFixture
 
 from ni.measurementlink.discovery.v1.client import (
@@ -40,7 +41,6 @@ from ni.measurementlink.discovery.v1.client import (
     ServiceInfo,
     ServiceLocation,
 )
-from ni.measurementlink.discovery.v1.client._client import SERVICE_PROGRAMMINGLANGUAGE_KEY
 from ni.measurementlink.discovery.v1.client._support import (
     _get_discovery_service_address,
     _open_key_file,
