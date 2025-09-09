@@ -276,9 +276,7 @@ class MultiplexerSessionContainer(_BaseSessionContainer):
         return multiplexer_session_infos
 
     @contextlib.contextmanager
-    def _cache_multiplexer_session(
-        self, session_name: str, session: TMultiplexerSession
-    ) -> Generator[None]:  # pyright: ignore[reportInvalidTypeVarUse]
+    def _cache_multiplexer_session(self, session_name: str, session: object) -> Generator[None]:
         if session_name in self._multiplexer_session_cache:
             raise RuntimeError(f"Multiplexer session '{session_name}' already exists.")
         self._multiplexer_session_cache[session_name] = session
@@ -666,7 +664,7 @@ class BaseReservation(_BaseSessionContainer):
         self._session_management_client._unreserve_sessions(self._grpc_session_info)
 
     @contextlib.contextmanager
-    def _cache_session(self, session_name: str, session: TSession) -> Generator[None]:
+    def _cache_session(self, session_name: str, session: object) -> Generator[None]:
         if session_name in self._session_cache:
             raise RuntimeError(f"Session '{session_name}' already exists.")
         self._session_cache[session_name] = session

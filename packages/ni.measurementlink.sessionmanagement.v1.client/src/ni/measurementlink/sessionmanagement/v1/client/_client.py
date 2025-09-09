@@ -34,7 +34,9 @@ from ni.measurementlink.sessionmanagement.v1.client._types import (
 _logger = logging.getLogger(__name__)
 
 
-class SessionManagementClient(GrpcServiceClientBase):
+class SessionManagementClient(
+    GrpcServiceClientBase[session_management_service_pb2_grpc.SessionManagementServiceStub]
+):
     """Client for accessing the NI Session Management Service via gRPC."""
 
     def __init__(

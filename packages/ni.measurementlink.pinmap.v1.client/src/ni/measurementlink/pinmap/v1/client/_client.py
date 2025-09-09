@@ -13,7 +13,7 @@ from ni_grpc_extensions.channelpool import GrpcChannelPool
 from ni.measurementlink.pinmap.v1.client._client_base import GrpcServiceClientBase
 
 
-class PinMapClient(GrpcServiceClientBase):
+class PinMapClient(GrpcServiceClientBase[pin_map_service_pb2_grpc.PinMapServiceStub]):
     """Client for accessing the NI Pin Map Service via gRPC."""
 
     def __init__(
@@ -57,6 +57,6 @@ class PinMapClient(GrpcServiceClientBase):
             pin_map_id=str(pin_map_path),
             pin_map_xml=pathlib.Path(pin_map_path).read_text(encoding="utf-8-sig"),
         )
-        stub: pin_map_service_pb2_grpc.PinMapServiceStub = self._get_stub()  # type: ignore
+        stub: pin_map_service_pb2_grpc.PinMapServiceStub = self._get_stub()
         response = stub.UpdatePinMapFromXml(request)
         return response.pin_map_id
