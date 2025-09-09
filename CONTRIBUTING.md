@@ -128,13 +128,30 @@ Packages that have `.proto` in their name contain Python files generated from th
 matching protobuf package in the `ni-apis` Git submodule. These
 Python files must be regenerated whenever the upstream `.proto` files change.
 
-To regenerate the Python files for a package, run the code generator on its directory.
+The Python package in `tools/grpc_generator` has scripts to help.
 
 ```powershell
-# Example: APIs used by nipanel-python
+# Initialize the tool
 cd tools/grpc_generator
 poetry install
+```
 
+## All packages
+
+Regenerate the Python files for every package by running the `generate-stubs` script.
+
+```powershell
+# From tools/grpc_generator
+poetry run generate-stubs
+```
+
+## Single package
+
+Regenerate the Python files for a specific package by running the `grpc-generator` script.
+
+```powershell
+# From tools/grpc_generator
+# Example: APIs used by nipanel-python
 poetry run grpc-generator `
   --proto-subpath ni/panels/v1 `
   --output-basepath ../../packages/ni.panels.v1.proto/src `
