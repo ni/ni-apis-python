@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import logging
 import threading
-from typing import Optional
+from typing import Generic, Protocol, TypeVar
 
 import grpc
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
@@ -9,20 +11,57 @@ from ni_grpc_extensions.channelpool import GrpcChannelPool
 _logger = logging.getLogger(__name__)
 
 
-class GrpcServiceClientBase:
+class StubProtocol(Protocol):
+    """Protocol for gRPC stub classes."""
+
+    def __init__(self, channel: grpc.Channel) -> None:
+        """Initialize the gRPC client."""
+
+
+TStub = TypeVar("TStub", bound=StubProtocol)
+
+
+class GrpcServiceClientBase(Generic[TStub]):
     """Base class for NI gRPC service clients."""
+
+    __slots__ = (
+        "_initialization_lock",
+        "_discovery_client",
+        "_grpc_channel_pool",
+        "_stub",
+        "_service_interface_name",
+        "_service_class",
+        "_stub_class",
+    )
+
+    _initialization_lock: threading.Lock
+    _discovery_client: DiscoveryClient | None
+    _grpc_channel_pool: GrpcChannelPool | None
+    _stub: TStub | None
+    _service_interface_name: str
+    _service_class: str
+    _stub_class: type[TStub]
 
     def __init__(
         self,
         *,
-        discovery_client: Optional[DiscoveryClient] = None,
-        grpc_channel: Optional[grpc.Channel] = None,
-        grpc_channel_pool: Optional[GrpcChannelPool] = None,
+        discovery_client: DiscoveryClient | None = None,
+        grpc_channel: grpc.Channel | None = None,
+        grpc_channel_pool: GrpcChannelPool | None = None,
         service_interface_name: str,
         service_class: str,
-        stub_class: type,
+        stub_class: type[TStub],
     ) -> None:
-        """Initialize a GrpcServiceClientBase instance."""
+        """Initialize the gRPC client.
+
+        Args:
+            discovery_client: An optional discovery client (recommended).
+            grpc_channel: An optional pin map gRPC channel.
+            grpc_channel_pool: An optional gRPC channel pool (recommended).
+            service_interface_name: The fully qualified name of the service interface.
+            service_class: The name of the service class.
+            stub_class: The gRPC stub class for the service.
+        """
         self._initialization_lock = threading.Lock()
         self._discovery_client = discovery_client
         self._grpc_channel_pool = grpc_channel_pool
@@ -31,7 +70,7 @@ class GrpcServiceClientBase:
         self._service_class = service_class
         self._stub_class = stub_class
 
-    def _get_stub(self) -> object:
+    def _get_stub(self) -> TStub:
         if self._stub is None:
             with self._initialization_lock:
                 if self._grpc_channel_pool is None:

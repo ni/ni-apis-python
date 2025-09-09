@@ -45,22 +45,19 @@ class MetadataStoreClient(GrpcServiceClientBase):
         self, request: metadata_store_service_pb2.GetDutRequest
     ) -> metadata_store_service_pb2.GetDutResponse:
         """Gets the device under test associated with the identifier given in the request."""
-        stub: metadata_store_service_pb2_grpc.MetadataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.GetDut(request)
+        return self._get_stub().GetDut(request)
 
     def query_duts(
         self, request: metadata_store_service_pb2.QueryDutsRequest
     ) -> metadata_store_service_pb2.QueryDutsResponse:
         """Perform an OData query on DUTs."""
-        stub: metadata_store_service_pb2_grpc.MetadataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.QueryDuts(request)
+        return self._get_stub().QueryDuts(request)
 
     def create_dut(
         self, request: metadata_store_service_pb2.CreateDutRequest
     ) -> metadata_store_service_pb2.CreateDutResponse:
         """Creates a new device under test in the metadata store."""
-        stub: metadata_store_service_pb2_grpc.MetadataStoreServiceStub = self._get_stub()  # type: ignore
-        return stub.CreateDut(request)
+        return self._get_stub().CreateDut(request)
 
     def get_product(
         self, request: metadata_store_service_pb2.GetProductRequest
