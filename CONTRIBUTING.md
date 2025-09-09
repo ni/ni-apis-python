@@ -181,32 +181,17 @@ To add a new package to this repo:
 ## packages.json
 
 ### Schema
-- All keys are strings
-- All values are strings or `null` when they do not apply to the package
 
-```jsonc
-// Folder name for the package
-"string": {
+All values are strings or `null` when they do not apply to the package
 
-  // Path to package folder, relative to the repo root
-  "package-basepath": "string",
-
-  // The base path to the proto files used for generation, relative to the repo root
-  "proto-basepath": "string" | null,
-
-  // The specific subpath to the proto files needed for generation, relative to the proto-basepath
-  "proto-subpath": "string" | null,
-
-  // Additional path to include during proto generation, relative to the repo root
-  "proto-include-path": "string" | null,
-
-  // The format for the generated stubs. Options are submodule and subpackage
-  "output-format": "string" | null,
-
-  // A space-separated list of package extras to install
-  "install-extras": "string" | null
-}
-```
+| Key | Contents |
+|-----|----------|
+| `package-basepath` | Path to package folder, relative to the repo root |
+| `proto-basepath` | The base path to the proto files used for generation, relative to the repo root |
+| `proto-subpath` | The specific subpath to the proto files needed for generation, relative to the proto-basepath |
+| `proto-include-path` | Additional path to include during proto generation, relative to the repo root |
+| `output-format` | The format for the generated stubs. Options are submodule and subpackage |
+| `install-extras` | A space-separated list of package extras to install |
 
 ### Example for proto package
 
