@@ -173,10 +173,10 @@ To add a new package to this repo:
    - `docs`
    - `src`
    - `tests`
-4. Generate the gRPC stubs using `grpc-generator`
-5. Create documentation control and content files under the `docs` folder
-6. Create tests for the package under the `tests` folder
-7. Update the `packages.json` file at the root of this repository
+4. Update the `packages.json` file at the root of this repository
+5. Generate the gRPC stubs using the `generate-stubs` script
+6. Create documentation control and content files under the `docs` folder
+7. Create tests for the package under the `tests` folder
 
 ## packages.json
 
