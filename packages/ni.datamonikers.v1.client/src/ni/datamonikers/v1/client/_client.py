@@ -58,40 +58,34 @@ class MonikerClient:
         self, request: data_moniker_pb2.BeginMonikerSidebandStreamRequest
     ) -> data_moniker_pb2.BeginMonikerSidebandStreamResponse:
         """Begin a sideband stream."""
-        stub = self._get_stub()
-        return stub.BeginSidebandStream(request)
+        return self._get_stub().BeginSidebandStream(request)
 
     def stream_read(
         self, moniker_list: data_moniker_pb2.MonikerList
     ) -> Iterator[data_moniker_pb2.MonikerReadResult]:
         """Stream read data from monikers."""
-        stub = self._get_stub()
-        return stub.StreamRead(moniker_list)
+        return self._get_stub().StreamRead(moniker_list)
 
     def stream_write(
         self, requests: Iterator[data_moniker_pb2.MonikerWriteRequest]
     ) -> Iterator[data_moniker_pb2.StreamWriteResponse]:
         """Stream write data to monikers."""
-        stub = self._get_stub()
-        return stub.StreamWrite(requests)
+        return self._get_stub().StreamWrite(requests)
 
     def stream_read_write(
         self, requests: Iterator[data_moniker_pb2.MonikerWriteRequest]
     ) -> Iterator[data_moniker_pb2.MonikerReadResult]:
         """Stream read and write data with monikers."""
-        stub = self._get_stub()
-        return stub.StreamReadWrite(requests)
+        return self._get_stub().StreamReadWrite(requests)
 
     def read_from_moniker(
         self, moniker: data_moniker_pb2.Moniker
     ) -> data_moniker_pb2.ReadFromMonikerResult:
         """Read data from a moniker."""
-        stub = self._get_stub()
-        return stub.ReadFromMoniker(moniker)
+        return self._get_stub().ReadFromMoniker(moniker)
 
     def write_to_moniker(
         self, request: data_moniker_pb2.WriteToMonikerRequest
     ) -> data_moniker_pb2.WriteToMonikerResponse:
         """Write data to a moniker."""
-        stub = self._get_stub()
-        return stub.WriteToMoniker(request)
+        return self._get_stub().WriteToMoniker(request)
