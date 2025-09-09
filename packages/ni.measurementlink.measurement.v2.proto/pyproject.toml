@@ -93,7 +93,7 @@ skips = [
 
 [tool.ni-python-styleguide]
 extend_exclude = "docs,*_pb2_grpc.py,*_pb2_grpc.pyi,*_pb2.py,*_pb2.pyi,src/ni/measurementlink/measurement/v2/**/__init__.py"
-application-import-names = "ni.measurementlink.discovery.v2.proto"
+application-import-names = "ni.measurementlink.measurement.v2.proto"
 
 [tool.black]
 extend-exclude = 'docs/|_pb2(_grpc)?\.(py|pyi)$'
