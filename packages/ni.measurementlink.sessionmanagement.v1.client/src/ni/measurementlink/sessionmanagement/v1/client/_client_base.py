@@ -24,6 +24,24 @@ TStub = TypeVar("TStub", bound=StubProtocol)
 class GrpcServiceClientBase(Generic[TStub]):
     """Base class for NI gRPC service clients."""
 
+    __slots__ = (
+        "_initialization_lock",
+        "_discovery_client",
+        "_grpc_channel_pool",
+        "_stub",
+        "_service_interface_name",
+        "_service_class",
+        "_stub_class",
+    )
+
+    _initialization_lock: threading.Lock
+    _discovery_client: DiscoveryClient | None
+    _grpc_channel_pool: GrpcChannelPool | None
+    _stub: TStub | None
+    _service_interface_name: str
+    _service_class: str
+    _stub_class: type[TStub]
+
     def __init__(
         self,
         *,
@@ -38,15 +56,10 @@ class GrpcServiceClientBase(Generic[TStub]):
 
         Args:
             discovery_client: An optional discovery client (recommended).
-
             grpc_channel: An optional pin map gRPC channel.
-
             grpc_channel_pool: An optional gRPC channel pool (recommended).
-
             service_interface_name: The fully qualified name of the service interface.
-
             service_class: The name of the service class.
-
             stub_class: The gRPC stub class for the service.
         """
         self._initialization_lock = threading.Lock()

@@ -39,6 +39,8 @@ class SessionManagementClient(
 ):
     """Client for accessing the NI Session Management Service via gRPC."""
 
+    __slots__ = ()
+
     def __init__(
         self,
         *,
@@ -55,9 +57,6 @@ class SessionManagementClient(
             service_class=GRPC_SERVICE_CLASS,
             stub_class=session_management_service_pb2_grpc.SessionManagementServiceStub,
         )
-        self._discovery_client: DiscoveryClient | None = discovery_client
-        self._grpc_channel_pool: GrpcChannelPool | None = grpc_channel_pool
-        self._stub: session_management_service_pb2_grpc.SessionManagementServiceStub | None = None
 
     def reserve_session(
         self,
