@@ -13,7 +13,9 @@ from ni.measurements.metadata.v1.client._client_base import GrpcServiceClientBas
 GRPC_SERVICE_INTERFACE_NAME = "ni.measurements.metadata.v1.MetadataStoreService"
 
 
-class MetadataStoreClient(GrpcServiceClientBase[metadata_store_service_pb2_grpc.MetadataStoreServiceStub]):
+class MetadataStoreClient(
+    GrpcServiceClientBase[metadata_store_service_pb2_grpc.MetadataStoreServiceStub]
+):
     """Client for accessing the NI Metadata Store Service."""
 
     def __init__(
