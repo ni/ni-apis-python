@@ -15,27 +15,27 @@ class MonikerClient:
     def __init__(
         self,
         *,
-        service_location_uri: Optional[str] = None,
+        service_location: Optional[str] = None,
         grpc_channel: Optional[grpc.Channel] = None,
         grpc_channel_pool: Optional[GrpcChannelPool] = None,
     ) -> None:
         """Initialize the Moniker Client.
 
         Args:
-            service_location_uri: A URI of the data moniker service location (recommended).
+            service_location: The address of the data moniker service location (recommended).
 
-            grpc_channel: A data moniker gRPC channel.
+            grpc_channel: A data moniker gRPC channel (optional).
 
-            grpc_channel_pool: An optional gRPC channel pool (recommended).
+            grpc_channel_pool: A gRPC channel pool (recommended).
 
-        Either `uri` or `grpc_channel` must be provided. If both are provided,
+        Either `service_location` or `grpc_channel` must be provided. If both are provided,
         `grpc_channel` takes precedence.
         """
-        if service_location_uri is None and grpc_channel is None:
-            raise ValueError("Either 'uri' or 'grpc_channel' must be provided.")
+        if service_location is None and grpc_channel is None:
+            raise ValueError("Either 'service_location' or 'grpc_channel' must be provided.")
 
         self._initialization_lock = threading.Lock()
-        self._service_location_uri = service_location_uri
+        self._service_location = service_location
         self._grpc_channel_pool = grpc_channel_pool
         self._stub = (
             data_moniker_pb2_grpc.MonikerServiceStub(grpc_channel)
@@ -49,7 +49,7 @@ class MonikerClient:
                 if self._grpc_channel_pool is None:
                     self._grpc_channel_pool = GrpcChannelPool()
 
-                channel = self._grpc_channel_pool.get_channel(self._service_location_uri)  # type: ignore
+                channel = self._grpc_channel_pool.get_channel(self._service_location)  # type: ignore
                 self._stub = data_moniker_pb2_grpc.MonikerServiceStub(channel)
 
         return self._stub
