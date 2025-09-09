@@ -55,6 +55,18 @@ jobs:
         uses: ./.github/actions/run_and_upload_unit_tests
         with:
           package-name: ni.measurementlink.pinmap.v1.client
+      - name: Run and upload unit tests - ni.datamonikers.v1.client
+        uses: ./.github/actions/run_and_upload_unit_tests
+        with:
+          package-name: ni.datamonikers.v1.client
+      - name: Run and upload unit tests - ni.measurements.metadata.v1.client
+        uses: ./.github/actions/run_and_upload_unit_tests
+        with:
+          package-name: ni.measurements.metadata.v1.client
+      - name: Run and upload unit tests - ni.measurements.data.v1.client
+        uses: ./.github/actions/run_and_upload_unit_tests
+        with:
+          package-name: ni.measurements.data.v1.client
       # Run grpc_generator unit tests on its oldest supported version.
       - name: Run and upload unit tests - grpc_generator
         if: ${{ !contains(fromJSON('["3.9", "3.10"]'), matrix.python-version) }}
