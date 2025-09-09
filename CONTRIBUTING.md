@@ -29,7 +29,7 @@ for more details.
 - Install [Git](https://git-scm.com)
   -  _(Optional)_ Configure git to automatically add the `--recurse-submodules` flag with `git config submodule.recurse true`
 - Install [Python](https://www.python.org/downloads/), any version from the [README](README.md)
-- Install [Poetry](https://python-poetry.org/docs/#installation), version >= 1.8.2
+- Install [Poetry](https://python-poetry.org/docs/#installation), version >= 2.1.4
 
 ## Clone or update the Git repository
 
