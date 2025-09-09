@@ -59,36 +59,6 @@ class SessionManagementClient(
         self._grpc_channel_pool: GrpcChannelPool | None = grpc_channel_pool
         self._stub: session_management_service_pb2_grpc.SessionManagementServiceStub | None = None
 
-    def _get_stub(self) -> session_management_service_pb2_grpc.SessionManagementServiceStub:
-        if self._stub is None:
-            with self._initialization_lock:
-                if self._grpc_channel_pool is None:
-                    _logger.debug("Creating unshared GrpcChannelPool.")
-                    self._grpc_channel_pool = GrpcChannelPool()
-                if self._discovery_client is None:
-                    _logger.debug("Creating unshared DiscoveryClient.")
-                    self._discovery_client = DiscoveryClient(
-                        grpc_channel_pool=self._grpc_channel_pool
-                    )
-                if self._stub is None:
-                    compute_nodes = self._discovery_client.enumerate_compute_nodes()
-                    remote_compute_nodes = [node for node in compute_nodes if not node.is_local]
-                    # Use remote node URL as deployment target if only one remote node is found.
-                    # If more than one remote node exists, use empty string for deployment target.
-                    first_remote_node_url = (
-                        remote_compute_nodes[0].url if len(remote_compute_nodes) == 1 else ""
-                    )
-                    service_location = self._discovery_client.resolve_service(
-                        provided_interface=GRPC_SERVICE_INTERFACE_NAME,
-                        deployment_target=first_remote_node_url,
-                        service_class=GRPC_SERVICE_CLASS,
-                    )
-                    channel = self._grpc_channel_pool.get_channel(service_location.insecure_address)
-                    self._stub = session_management_service_pb2_grpc.SessionManagementServiceStub(
-                        channel
-                    )
-        return self._stub
-
     def reserve_session(
         self,
         context: PinMapContext,
