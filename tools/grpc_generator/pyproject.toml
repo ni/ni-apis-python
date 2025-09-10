@@ -12,8 +12,11 @@ grpc-generator = "grpc_generator.__main__:cli"
 generate-stubs = "grpc_generator.generate_stubs:main"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-click = "^8.2.1"
+python = "^3.9"
+click = [
+  { version = "^8.1.8", python = ">=3.9,<3.10" },
+  { version = "^8.2.1", python = "^3.10" },
+]
 # When updating the grpcio-tools version, also update the minimum grpcio version
 # and regenerate gRPC stubs.
 grpcio-tools = [
