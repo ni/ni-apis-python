@@ -1,5 +1,7 @@
 """Client for accessing the NI Data Moniker Service."""
 
+from __future__ import annotations
+
 import logging
 import threading
 from typing import Iterator

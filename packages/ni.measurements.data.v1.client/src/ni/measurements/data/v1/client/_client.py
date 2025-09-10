@@ -1,5 +1,7 @@
 """Client for accessing the NI Data Store Service."""
 
+from __future__ import annotations
+
 import grpc
 import ni.measurements.data.v1.data_store_service_pb2 as data_store_service_pb2
 import ni.measurements.data.v1.data_store_service_pb2_grpc as data_store_service_pb2_grpc

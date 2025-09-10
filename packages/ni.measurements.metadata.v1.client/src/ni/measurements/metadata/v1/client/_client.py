@@ -1,5 +1,7 @@
 """Client for accessing the NI Metadata Store Service."""
 
+from __future__ import annotations
+
 import grpc
 import ni.measurements.metadata.v1.metadata_store_service_pb2 as metadata_store_service_pb2
 import ni.measurements.metadata.v1.metadata_store_service_pb2_grpc as metadata_store_service_pb2_grpc
