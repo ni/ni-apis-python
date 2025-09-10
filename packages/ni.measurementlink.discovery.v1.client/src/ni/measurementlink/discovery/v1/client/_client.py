@@ -7,9 +7,10 @@ import threading
 from collections.abc import Sequence
 
 import grpc
+import ni.measurementlink.discovery.v1.annotations as discovery_annotations
 import ni.measurementlink.discovery.v1.discovery_service_pb2 as discovery_service_pb2
 import ni.measurementlink.discovery.v1.discovery_service_pb2_grpc as discovery_service_pb2_grpc
-from ni_grpc_extensions.channelpool import GrpcChannelPool  # type: ignore[import-untyped]
+from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 from ni.measurementlink.discovery.v1.client._support import (
     _get_discovery_service_address,
@@ -20,7 +21,6 @@ from ni.measurementlink.discovery.v1.client._types import (
     ServiceLocation,
 )
 
-SERVICE_PROGRAMMINGLANGUAGE_KEY = "ni/service.programminglanguage"
 _logger = logging.getLogger(__name__)
 
 
@@ -79,7 +79,7 @@ class DiscoveryClient:
             ID that can be used to unregister the service.
         """
         annotations = service_info.annotations.copy()
-        annotations[SERVICE_PROGRAMMINGLANGUAGE_KEY] = "Python"
+        annotations[discovery_annotations.SERVICE_PROGRAMMINGLANGUAGE_KEY] = "Python"
         try:
             grpc_service_description = discovery_service_pb2.ServiceDescriptor(
                 display_name=service_info.display_name,
