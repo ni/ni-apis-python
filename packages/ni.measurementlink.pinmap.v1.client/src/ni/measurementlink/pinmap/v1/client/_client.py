@@ -16,6 +16,8 @@ from ni.measurementlink.pinmap.v1.client._client_base import GrpcServiceClientBa
 class PinMapClient(GrpcServiceClientBase[pin_map_service_pb2_grpc.PinMapServiceStub]):
     """Client for accessing the NI Pin Map Service via gRPC."""
 
+    __slots__ = ()
+
     def __init__(
         self,
         *,
@@ -53,10 +55,10 @@ class PinMapClient(GrpcServiceClientBase[pin_map_service_pb2_grpc.PinMapServiceS
         Returns:
             The resource id of the pin map that is registered to the pin map service.
         """
+        # By convention, the pin map id is the .pinmap file path.
         request = pin_map_service_pb2.UpdatePinMapFromXmlRequest(
             pin_map_id=str(pin_map_path),
             pin_map_xml=pathlib.Path(pin_map_path).read_text(encoding="utf-8-sig"),
         )
-        stub: pin_map_service_pb2_grpc.PinMapServiceStub = self._get_stub()
-        response = stub.UpdatePinMapFromXml(request)
+        response = self._get_stub().UpdatePinMapFromXml(request)
         return response.pin_map_id
