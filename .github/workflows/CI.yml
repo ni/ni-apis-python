@@ -21,14 +21,19 @@ jobs:
     uses: ./.github/workflows/check_package.yml
     with:
       package-name: ${{ matrix.package-name }}
-  run_unit_tests:
-    name: Run unit tests
-    uses: ./.github/workflows/run_unit_tests.yml
-    needs: check_package
+  test_package:
+    name: Test ${{ matrix.package-name }}
+    needs: [get_package_names, check_package]
+    strategy:
+      matrix:
+        package-name: ${{ fromJson(needs.get_package_names.outputs.package-names) }}
+    uses: ./.github/workflows/test_package.yml
+    with:
+      package-name: ${{ matrix.package-name }}
   report_test_results:
     name: Report test results
     uses: ./.github/workflows/report_test_results.yml
-    needs: run_unit_tests
+    needs: test_package
     if: always()
     permissions:
       contents: read

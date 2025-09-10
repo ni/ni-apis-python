@@ -2,12 +2,38 @@ name: Run unit tests
 
 on:
   workflow_call:
+    inputs:
+      package-name:
+        description: 'The name of the package folder to check.'
+        default: ''
+        required: true
+        type: string
+      package-basepath:
+        description: 'The base path of the package to check, relative to the repo root.'
+        default: ''
+        required: true
+        type: string
   workflow_dispatch:
+    inputs:
+      package-name:
+        description: 'The name of the package folder to check.'
+        default: ''
+        required: true
+        type: string
+      package-basepath:
+        description: 'The base path of the package to check, relative to the repo root.'
+        default: ''
+        required: true
+        type: string
 
 jobs:
   run_unit_tests:
-    name: Run unit tests
+    name: Run unit tests for ${{ inputs.package-name }}
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        # Set the working-directory for all steps in this job.
+        working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest]
@@ -27,38 +53,44 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Set up Poetry
         uses: ni/python-actions/setup-poetry@f0276f7f58868ec0d0d1a86377287c9e6fe0c6e7 # v0.5.0
-      - name: Run and upload unit tests - ni.protobuf.types
+      - name: Run and upload unit tests for ${{ inputs.package-name }}
         uses: ./.github/actions/run_and_upload_unit_tests
         with:
-          package-name: ni.protobuf.types
-      - name: Run and upload unit tests - ni.panels.v1.proto
-        uses: ./.github/actions/run_and_upload_unit_tests
-        with:
-          package-name: ni.panels.v1.proto
-      - name: Run and upload unit tests - ni.measurementlink.measurement.v1.proto
-        uses: ./.github/actions/run_and_upload_unit_tests
-        with:
-          package-name: ni.measurementlink.measurement.v1.proto
-      - name: Run and upload unit tests - ni.measurementlink.measurement.v2.proto
-        uses: ./.github/actions/run_and_upload_unit_tests
-        with:
-          package-name: ni.measurementlink.measurement.v2.proto
-      - name: Run and upload unit tests - ni-grpc-extensions
-        uses: ./.github/actions/run_and_upload_unit_tests
-        with:
-          package-name: ni-grpc-extensions
-      - name: Run and upload unit tests - ni.measurementlink.discovery.v1.client
-        uses: ./.github/actions/run_and_upload_unit_tests
-        with:
-          package-name: ni.measurementlink.discovery.v1.client
-      - name: Run and upload unit tests - ni.measurementlink.pinmap.v1.client
-        uses: ./.github/actions/run_and_upload_unit_tests
-        with:
-          package-name: ni.measurementlink.pinmap.v1.client
-      # Run grpc_generator unit tests on its oldest supported version.
-      - name: Run and upload unit tests - grpc_generator
-        if: ${{ !contains(fromJSON('["3.9", "3.10"]'), matrix.python-version) }}
-        uses: ./.github/actions/run_and_upload_unit_tests
-        with:
-          package-name: grpc_generator
-          package-basepath: tools
+          package-name: ${{ inputs.package-name }}
+          package-basepath: ${{ inputs.package-basepath }}
+
+      #   - name: Run and upload unit tests - ni.protobuf.types
+      #   uses: ./.github/actions/run_and_upload_unit_tests
+      #   with:
+      #     package-name: ni.protobuf.types
+      # - name: Run and upload unit tests - ni.panels.v1.proto
+      #   uses: ./.github/actions/run_and_upload_unit_tests
+      #   with:
+      #     package-name: ni.panels.v1.proto
+      # - name: Run and upload unit tests - ni.measurementlink.measurement.v1.proto
+      #   uses: ./.github/actions/run_and_upload_unit_tests
+      #   with:
+      #     package-name: ni.measurementlink.measurement.v1.proto
+      # - name: Run and upload unit tests - ni.measurementlink.measurement.v2.proto
+      #   uses: ./.github/actions/run_and_upload_unit_tests
+      #   with:
+      #     package-name: ni.measurementlink.measurement.v2.proto
+      # - name: Run and upload unit tests - ni-grpc-extensions
+      #   uses: ./.github/actions/run_and_upload_unit_tests
+      #   with:
+      #     package-name: ni-grpc-extensions
+      # - name: Run and upload unit tests - ni.measurementlink.discovery.v1.client
+      #   uses: ./.github/actions/run_and_upload_unit_tests
+      #   with:
+      #     package-name: ni.measurementlink.discovery.v1.client
+      # - name: Run and upload unit tests - ni.measurementlink.pinmap.v1.client
+      #   uses: ./.github/actions/run_and_upload_unit_tests
+      #   with:
+      #     package-name: ni.measurementlink.pinmap.v1.client
+      # # Run grpc_generator unit tests on its oldest supported version.
+      # - name: Run and upload unit tests - grpc_generator
+      #   if: ${{ !contains(fromJSON('["3.9", "3.10"]'), matrix.python-version) }}
+      #   uses: ./.github/actions/run_and_upload_unit_tests
+      #   with:
+      #     package-name: grpc_generator
+      #     package-basepath: tools
