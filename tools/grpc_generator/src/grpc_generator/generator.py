@@ -1,10 +1,10 @@
 """Generate gRPC Python stubs from proto files."""
 
+import enum
 import importlib.resources
 import pathlib
 import shutil
 from dataclasses import dataclass
-from enum import StrEnum
 
 import click
 import grpc_tools.protoc  # type: ignore[import-untyped]
@@ -17,7 +17,7 @@ USAGE_EXAMPLE = """Example:
 grpc-generator  --proto-subpath ni/protobuf/types  --output-basepath ../../packages/ni.protobuf.types/src  --output-format submodule"""
 
 
-class OutputFormat(StrEnum):
+class OutputFormat(str, enum.Enum):
     """Supported Python output formats for generated gRPC packages."""
 
     SUBMODULE = "submodule"
