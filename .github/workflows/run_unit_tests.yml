@@ -18,6 +18,10 @@ on:
         default: 3.11.9
         required: true
         type: string
+      os:
+        description: 'The name of the OS to use'
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       package-name:
@@ -35,6 +39,10 @@ on:
         default: 3.11.9
         required: true
         type: string
+      os:
+        description: 'The name of the OS to use'
+        required: true
+        type: string
 
 jobs:
   run_unit_tests:
@@ -45,8 +53,8 @@ jobs:
         # Set the working-directory for all steps in this job.
         working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
     strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest]
+      # matrix:
+        # os: [windows-latest, ubuntu-latest]
         # python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
       # Fail-fast skews the pass/fail ratio and seems to make pytest produce
       # incomplete JUnit XML results.
@@ -69,6 +77,7 @@ jobs:
           package-name: ${{ inputs.package-name }}
           package-basepath: ${{ inputs.package-basepath }}
           python-version: ${{ inputs.python-version }}
+          os: ${{ inputs.os }}
 
       #   - name: Run and upload unit tests - ni.protobuf.types
       #   uses: ./.github/actions/run_and_upload_unit_tests

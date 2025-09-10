@@ -19,6 +19,7 @@ jobs:
     if: ${{ needs.get_package_info.outputs.should-run-tests == 'true' }}
     strategy:
       matrix:
+        os: [windows-latest, ubuntu-latest]
         python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
     name: Run unit tests for ${{ inputs.package-name }} with ${{ matrix.python-version }}
     needs: get_package_info
@@ -27,3 +28,4 @@ jobs:
       package-name: ${{ inputs.package-name }}
       package-basepath: ${{ needs.get_package_info.outputs.package-basepath }}
       python-version: ${{ matrix.python-version }}
+      os: ${{ matrix.os }}
