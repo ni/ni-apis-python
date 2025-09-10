@@ -8,6 +8,9 @@ inputs:
     description: 'Relative path to the parent directory of the package.'
     required: false
     default: 'packages'
+  python-version:
+    description: 'The version of Python to use'
+    required: true
 runs:
   using: "composite"
   steps:
@@ -21,12 +24,12 @@ runs:
       working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
       shell: bash
     - name: Run ${{ inputs.package-name }} unit tests and code coverage
-      run: poetry run pytest ./tests/unit -v --cov=${{ inputs.package-name }} --junitxml=test_results/${{ inputs.package-name }}-${{ matrix.os }}-py${{ matrix.python-version }}.xml
+      run: poetry run pytest ./tests/unit -v --cov=${{ inputs.package-name }} --junitxml=test_results/${{ inputs.package-name }}-${{ matrix.os }}-py${{ inputs.python-version }}.xml
       working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
       shell: bash
     - name: Upload ${{ inputs.package-name }} test results
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
-        name: test_results_unit_${{ inputs.package-name }}_${{ matrix.os }}_py${{ matrix.python-version }}
+        name: test_results_unit_${{ inputs.package-name }}_${{ matrix.os }}_py${{ inputs.python-version }}
         path: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}/test_results/*.xml
       if: always()

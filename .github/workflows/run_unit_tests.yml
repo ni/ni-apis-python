@@ -68,6 +68,7 @@ jobs:
         with:
           package-name: ${{ inputs.package-name }}
           package-basepath: ${{ inputs.package-basepath }}
+          python-version: ${{ inputs.python-version }}
 
       #   - name: Run and upload unit tests - ni.protobuf.types
       #   uses: ./.github/actions/run_and_upload_unit_tests
