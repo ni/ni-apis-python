@@ -14,13 +14,13 @@ import ni.measurementlink.sessionmanagement.v1.session_management_service_pb2_gr
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
-from ni.measurementlink.sessionmanagement.v1.client._constants import (
-    GRPC_SERVICE_CLASS,
-    GRPC_SERVICE_INTERFACE_NAME,
-)
 from ni.measurementlink.sessionmanagement.v1.client._annotations import (
     get_machine_details,
     remove_reservation_annotations,
+)
+from ni.measurementlink.sessionmanagement.v1.client._constants import (
+    GRPC_SERVICE_CLASS,
+    GRPC_SERVICE_INTERFACE_NAME,
 )
 from ni.measurementlink.sessionmanagement.v1.client._reservation import (
     MultiplexerSessionContainer,
