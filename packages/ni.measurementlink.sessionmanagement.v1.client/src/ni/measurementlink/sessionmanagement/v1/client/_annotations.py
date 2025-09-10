@@ -1,4 +1,5 @@
 import socket
+import sys
 
 import win32api
 
@@ -16,7 +17,7 @@ def get_machine_details() -> tuple[dict[str, str], dict[str, str]]:
     """Get the machine details for reserved and registered annotations."""
     hostname = _get_hostname()
     username = _get_username()
-    ip_address = _get_ip_address(hostname)
+    ip_address = _get_ip_address()
 
     reserved = {
         RESERVED_HOSTNAME: hostname,
@@ -44,21 +45,31 @@ def remove_reservation_annotations(annotations: dict[str, str]) -> dict[str, str
 
 
 def _get_hostname() -> str:
-    try:
-        return win32api.GetComputerName()
-    except Exception:
-        return ""
+    if sys.platform == "win32":
+        try:
+            return win32api.GetComputerName()
+        except Exception:
+            return ""
+    else:
+        raise NotImplementedError(
+            f"Platform not supported: {sys.platform}. Supported platforms: win32."
+        )
 
 
 def _get_username() -> str:
-    try:
-        return win32api.GetUserName()
-    except Exception:
-        return ""
+    if sys.platform == "win32":
+        try:
+            return win32api.GetUserName()
+        except Exception:
+            return ""
+    else:
+        raise NotImplementedError(
+            f"Platform not supported: {sys.platform}. Supported platforms: win32."
+        )
 
 
-def _get_ip_address(hostname: str) -> str:
+def _get_ip_address() -> str:
     try:
-        return socket.gethostbyname(hostname)
+        return socket.gethostbyname_ex("")[2][0]
     except Exception:
         return ""

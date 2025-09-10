@@ -18,7 +18,7 @@ from ni.measurementlink.sessionmanagement.v1.client._constants import (
     GRPC_SERVICE_CLASS,
     GRPC_SERVICE_INTERFACE_NAME,
 )
-from ni.measurementlink.sessionmanagement.v1.client._helpers import (
+from ni.measurementlink.sessionmanagement.v1.client._annotations import (
     get_machine_details,
     remove_reservation_annotations,
 )
