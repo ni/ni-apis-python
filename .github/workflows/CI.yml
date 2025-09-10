@@ -27,13 +27,9 @@ jobs:
     strategy:
       matrix:
         package-name: ${{ fromJson(needs.get_package_names.outputs.package-names) }}
-        os: [windows-latest, ubuntu-latest]
-        python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
     uses: ./.github/workflows/test_package.yml
     with:
       package-name: ${{ matrix.package-name }}
-      os: ${{ matrix.os }}
-      python-version: ${{ matrix.python-version }}
   report_test_results:
     name: Report test results
     uses: ./.github/workflows/report_test_results.yml
