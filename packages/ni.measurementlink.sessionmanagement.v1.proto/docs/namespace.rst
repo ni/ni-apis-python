@@ -15,5 +15,6 @@ Submodules
 .. toctree::
    :maxdepth: 1
 
+   /autoapi/ni/measurementlink/sessionmanagement/v1/annotations/index
    /autoapi/ni/measurementlink/sessionmanagement/v1/session_management_service_pb2/index
    /autoapi/ni/measurementlink/sessionmanagement/v1/session_management_service_pb2_grpc/index
