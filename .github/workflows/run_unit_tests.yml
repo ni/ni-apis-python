@@ -46,16 +46,13 @@ on:
 
 jobs:
   run_unit_tests:
-    name: Run unit tests for ${{ inputs.package-name }} on ${{ inputs.os }}
+    name: Run unit tests for ${{ inputs.package-name }} with ${{ inputs.python-version }} on ${{ inputs.os }}
     runs-on: ${{ inputs.os }}
     defaults:
       run:
         # Set the working-directory for all steps in this job.
         working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
     strategy:
-      # matrix:
-        # os: [windows-latest, ubuntu-latest]
-        # python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
       # Fail-fast skews the pass/fail ratio and seems to make pytest produce
       # incomplete JUnit XML results.
       fail-fast: false
@@ -78,39 +75,3 @@ jobs:
           package-basepath: ${{ inputs.package-basepath }}
           python-version: ${{ inputs.python-version }}
           os: ${{ inputs.os }}
-
-      #   - name: Run and upload unit tests - ni.protobuf.types
-      #   uses: ./.github/actions/run_and_upload_unit_tests
-      #   with:
-      #     package-name: ni.protobuf.types
-      # - name: Run and upload unit tests - ni.panels.v1.proto
-      #   uses: ./.github/actions/run_and_upload_unit_tests
-      #   with:
-      #     package-name: ni.panels.v1.proto
-      # - name: Run and upload unit tests - ni.measurementlink.measurement.v1.proto
-      #   uses: ./.github/actions/run_and_upload_unit_tests
-      #   with:
-      #     package-name: ni.measurementlink.measurement.v1.proto
-      # - name: Run and upload unit tests - ni.measurementlink.measurement.v2.proto
-      #   uses: ./.github/actions/run_and_upload_unit_tests
-      #   with:
-      #     package-name: ni.measurementlink.measurement.v2.proto
-      # - name: Run and upload unit tests - ni-grpc-extensions
-      #   uses: ./.github/actions/run_and_upload_unit_tests
-      #   with:
-      #     package-name: ni-grpc-extensions
-      # - name: Run and upload unit tests - ni.measurementlink.discovery.v1.client
-      #   uses: ./.github/actions/run_and_upload_unit_tests
-      #   with:
-      #     package-name: ni.measurementlink.discovery.v1.client
-      # - name: Run and upload unit tests - ni.measurementlink.pinmap.v1.client
-      #   uses: ./.github/actions/run_and_upload_unit_tests
-      #   with:
-      #     package-name: ni.measurementlink.pinmap.v1.client
-      # # Run grpc_generator unit tests on its oldest supported version.
-      # - name: Run and upload unit tests - grpc_generator
-      #   if: ${{ !contains(fromJSON('["3.9", "3.10"]'), matrix.python-version) }}
-      #   uses: ./.github/actions/run_and_upload_unit_tests
-      #   with:
-      #     package-name: grpc_generator
-      #     package-basepath: tools

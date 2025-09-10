@@ -21,7 +21,7 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest]
         python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
-    name: Run unit tests for ${{ inputs.package-name }} with ${{ matrix.python-version }}
+    name: Run unit tests for ${{ inputs.package-name }} with ${{ matrix.python-version }} on ${{ matrix.os }}
     needs: get_package_info
     uses: ./.github/workflows/run_unit_tests.yml
     with:
