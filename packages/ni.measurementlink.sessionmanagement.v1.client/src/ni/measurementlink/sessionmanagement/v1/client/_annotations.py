@@ -1,8 +1,6 @@
 import socket
 import sys
 
-import win32api
-
 from ni.measurementlink.sessionmanagement.v1.client._constants import (
     REGISTERED_HOSTNAME,
     REGISTERED_IPADDRESS,
@@ -47,6 +45,8 @@ def remove_reservation_annotations(annotations: dict[str, str]) -> dict[str, str
 def _get_hostname() -> str:
     if sys.platform == "win32":
         try:
+            import win32api
+
             return win32api.GetComputerName()
         except Exception:
             return ""
@@ -59,6 +59,8 @@ def _get_hostname() -> str:
 def _get_username() -> str:
     if sys.platform == "win32":
         try:
+            import win32api
+
             return win32api.GetUserName()
         except Exception:
             return ""
