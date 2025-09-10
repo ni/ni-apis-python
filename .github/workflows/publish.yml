@@ -77,12 +77,15 @@ jobs:
     needs: get_package_info
     with:
       package-name: ${{ needs.get_package_info.outputs.package-name }}
+      package-basepath: ${{ needs.get_package_info.outputs.package-basepath }}
+      install-extras: ${{ needs.get_package_info.outputs.install-extras }}
   check_docs:
     name: Check docs
     uses: ./.github/workflows/check_docs.yml
     needs: get_package_info
     with:
       package-name: ${{ needs.get_package_info.outputs.package-name }}
+      package-basepath: ${{ needs.get_package_info.outputs.package-basepath }}
   build_package:
     name: Build ${{ needs.get_package_info.outputs.package-name }}
     runs-on: ubuntu-latest
