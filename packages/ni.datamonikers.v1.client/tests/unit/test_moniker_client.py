@@ -40,13 +40,13 @@ def test__stream_read__request_and_response_pass_through(
     ]
     moniker_stub.StreamRead.return_value = iter(stub_response_iter)
 
-    client_response = moniker_client.stream_read(client_request)
-    response_list = list(client_response)
+    client_response_iter = moniker_client.stream_read(client_request)
+    client_response_list = list(client_response_iter)
 
     moniker_stub.StreamRead.assert_called_once()
     stub_request = moniker_stub.StreamRead.call_args[0][0]
     assert stub_request == client_request
-    assert len(response_list) == 2
+    assert len(client_response_list) == 2
 
 
 def test__stream_write__request_and_response_pass_through(
@@ -62,13 +62,13 @@ def test__stream_write__request_and_response_pass_through(
     ]
     moniker_stub.StreamWrite.return_value = iter(stub_response_iter)
 
-    client_response = moniker_client.stream_write(iter(client_requests))
-    response_list = list(client_response)
+    client_response_iter = moniker_client.stream_write(iter(client_requests))
+    client_response_list = list(client_response_iter)
 
     moniker_stub.StreamWrite.assert_called_once()
     stub_request_iter = moniker_stub.StreamWrite.call_args[0][0]
     assert len(list(stub_request_iter)) == 2
-    assert len(response_list) == 2
+    assert len(client_response_list) == 2
 
 
 def test__stream_read_write__request_and_response_pass_through(
@@ -84,13 +84,13 @@ def test__stream_read_write__request_and_response_pass_through(
     ]
     moniker_stub.StreamReadWrite.return_value = iter(stub_response_iter)
 
-    client_response = moniker_client.stream_read_write(iter(client_requests))
-    response_list = list(client_response)
+    client_response_iter = moniker_client.stream_read_write(iter(client_requests))
+    client_response_list = list(client_response_iter)
 
     moniker_stub.StreamReadWrite.assert_called_once()
     stub_request_iter = moniker_stub.StreamReadWrite.call_args[0][0]
     assert len(list(stub_request_iter)) == 2
-    assert len(response_list) == 2
+    assert len(client_response_list) == 2
 
 
 def test__read_from_moniker__request_and_response_pass_through(
