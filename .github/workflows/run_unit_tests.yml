@@ -13,6 +13,11 @@ on:
         default: ''
         required: true
         type: string
+      python-version:
+        description: 'The version of Python to use'
+        default: 3.11.9
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       package-name:
@@ -25,10 +30,15 @@ on:
         default: ''
         required: true
         type: string
+      python-version:
+        description: 'The version of Python to use'
+        default: 3.11.9
+        required: true
+        type: string
 
 jobs:
   run_unit_tests:
-    name: Run unit tests for ${{ inputs.package-name }}
+    name: Run unit tests for ${{ inputs.package-name }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -37,7 +47,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest]
-        python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
+        # python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
       # Fail-fast skews the pass/fail ratio and seems to make pytest produce
       # incomplete JUnit XML results.
       fail-fast: false
@@ -50,7 +60,7 @@ jobs:
         uses: ni/python-actions/setup-python@f0276f7f58868ec0d0d1a86377287c9e6fe0c6e7 # v0.5.0
         id: setup-python
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: ${{ inputs.python-version }}
       - name: Set up Poetry
         uses: ni/python-actions/setup-poetry@f0276f7f58868ec0d0d1a86377287c9e6fe0c6e7 # v0.5.0
       - name: Run and upload unit tests for ${{ inputs.package-name }}
