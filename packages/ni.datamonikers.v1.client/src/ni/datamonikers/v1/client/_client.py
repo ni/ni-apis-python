@@ -2,7 +2,7 @@
 
 import logging
 import threading
-from typing import Iterator, Optional
+from typing import Iterator
 
 import grpc
 import ni.datamonikers.v1.data_moniker_pb2 as data_moniker_pb2
@@ -18,9 +18,9 @@ class MonikerClient:
     def __init__(
         self,
         *,
-        service_location: Optional[str] = None,
-        grpc_channel: Optional[grpc.Channel] = None,
-        grpc_channel_pool: Optional[GrpcChannelPool] = None,
+        service_location: str | None = None,
+        grpc_channel: grpc.Channel | None = None,
+        grpc_channel_pool: GrpcChannelPool | None = None,
     ) -> None:
         """Initialize the Moniker Client.
 

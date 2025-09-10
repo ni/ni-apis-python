@@ -1,7 +1,5 @@
 """Client for accessing the NI Metadata Store Service."""
 
-from typing import Optional
-
 import grpc
 import ni.measurements.metadata.v1.metadata_store_service_pb2 as metadata_store_service_pb2
 import ni.measurements.metadata.v1.metadata_store_service_pb2_grpc as metadata_store_service_pb2_grpc
@@ -9,8 +7,6 @@ from ni.measurementlink.discovery.v1.client import DiscoveryClient
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 from ni.measurements.metadata.v1.client._client_base import GrpcServiceClientBase
-
-GRPC_SERVICE_INTERFACE_NAME = "ni.measurements.metadata.v1.MetadataStoreService"
 
 
 class MetadataStoreClient(
@@ -23,9 +19,9 @@ class MetadataStoreClient(
     def __init__(
         self,
         *,
-        discovery_client: Optional[DiscoveryClient] = None,
-        grpc_channel: Optional[grpc.Channel] = None,
-        grpc_channel_pool: Optional[GrpcChannelPool] = None,
+        discovery_client: DiscoveryClient | None = None,
+        grpc_channel: grpc.Channel | None = None,
+        grpc_channel_pool: GrpcChannelPool | None = None,
     ) -> None:
         """Initialize the Metadata Store Client.
 
@@ -40,7 +36,7 @@ class MetadataStoreClient(
             discovery_client=discovery_client,
             grpc_channel=grpc_channel,
             grpc_channel_pool=grpc_channel_pool,
-            service_interface_name=GRPC_SERVICE_INTERFACE_NAME,
+            service_interface_name="ni.measurements.metadata.v1.MetadataStoreService",
             service_class="",
             stub_class=metadata_store_service_pb2_grpc.MetadataStoreServiceStub,
         )
