@@ -23,7 +23,7 @@ jobs:
       package-name: ${{ matrix.package-name }}
   test_package:
     name: Test ${{ matrix.package-name }}
-    needs: [get_package_names, check_package]
+    needs: get_package_names
     strategy:
       matrix:
         package-name: ${{ fromJson(needs.get_package_names.outputs.package-names) }}
