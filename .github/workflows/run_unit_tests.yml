@@ -46,8 +46,8 @@ on:
 
 jobs:
   run_unit_tests:
-    name: Run unit tests for ${{ inputs.package-name }} on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: Run unit tests for ${{ inputs.package-name }} on ${{ inputs.os }}
+    runs-on: ${{ inputs.os }}
     defaults:
       run:
         # Set the working-directory for all steps in this job.
