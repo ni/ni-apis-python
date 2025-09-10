@@ -18,6 +18,8 @@ class MetadataStoreClient(
 ):
     """Client for accessing the NI Metadata Store Service."""
 
+    __slots__ = ()
+
     def __init__(
         self,
         *,

@@ -16,6 +16,8 @@ GRPC_SERVICE_INTERFACE_NAME = "ni.measurements.data.v1.DataStoreService"
 class DataStoreClient(GrpcServiceClientBase[data_store_service_pb2_grpc.DataStoreServiceStub]):
     """Client for accessing the NI Data Store Service."""
 
+    __slots__ = ()
+
     def __init__(
         self,
         *,

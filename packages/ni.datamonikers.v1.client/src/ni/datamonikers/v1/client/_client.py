@@ -1,5 +1,6 @@
 """Client for accessing the NI Data Moniker Service."""
 
+import logging
 import threading
 from typing import Iterator, Optional
 
@@ -7,6 +8,8 @@ import grpc
 import ni.datamonikers.v1.data_moniker_pb2 as data_moniker_pb2
 import ni.datamonikers.v1.data_moniker_pb2_grpc as data_moniker_pb2_grpc
 from ni_grpc_extensions.channelpool import GrpcChannelPool
+
+_logger = logging.getLogger(__name__)
 
 
 class MonikerClient:
@@ -47,10 +50,12 @@ class MonikerClient:
         if self._stub is None:
             with self._initialization_lock:
                 if self._grpc_channel_pool is None:
+                    _logger.debug("Creating unshared GrpcChannelPool.")
                     self._grpc_channel_pool = GrpcChannelPool()
 
-                channel = self._grpc_channel_pool.get_channel(self._service_location)  # type: ignore
-                self._stub = data_moniker_pb2_grpc.MonikerServiceStub(channel)
+                if self._stub is None:
+                    channel = self._grpc_channel_pool.get_channel(self._service_location)  # type: ignore
+                    self._stub = data_moniker_pb2_grpc.MonikerServiceStub(channel)
 
         return self._stub
 

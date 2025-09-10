@@ -44,23 +44,23 @@ class GrpcServiceClientBase(Generic[TStub]):
 
     def __init__(
         self,
+        service_interface_name: str,
+        service_class: str,
+        stub_class: type[TStub],
         *,
         discovery_client: DiscoveryClient | None = None,
         grpc_channel: grpc.Channel | None = None,
         grpc_channel_pool: GrpcChannelPool | None = None,
-        service_interface_name: str,
-        service_class: str,
-        stub_class: type[TStub],
     ) -> None:
         """Initialize the gRPC client.
 
         Args:
-            discovery_client: An optional discovery client (recommended).
-            grpc_channel: An optional pin map gRPC channel.
-            grpc_channel_pool: An optional gRPC channel pool (recommended).
             service_interface_name: The fully qualified name of the service interface.
             service_class: The name of the service class.
             stub_class: The gRPC stub class for the service.
+            discovery_client: An optional discovery client (recommended).
+            grpc_channel: An optional pin map gRPC channel.
+            grpc_channel_pool: An optional gRPC channel pool (recommended).
         """
         self._initialization_lock = threading.Lock()
         self._discovery_client = discovery_client
@@ -83,17 +83,18 @@ class GrpcServiceClientBase(Generic[TStub]):
                         grpc_channel_pool=self._grpc_channel_pool
                     )
 
-                compute_nodes = self._discovery_client.enumerate_compute_nodes()
-                remote_nodes = [node for node in compute_nodes if not node.is_local]
-                target_url = remote_nodes[0].url if len(remote_nodes) == 1 else ""
+                if self._stub is None:
+                    compute_nodes = self._discovery_client.enumerate_compute_nodes()
+                    remote_nodes = [node for node in compute_nodes if not node.is_local]
+                    target_url = remote_nodes[0].url if len(remote_nodes) == 1 else ""
 
-                service_location = self._discovery_client.resolve_service(
-                    provided_interface=self._service_interface_name,
-                    deployment_target=target_url,
-                    service_class=self._service_class,
-                )
+                    service_location = self._discovery_client.resolve_service(
+                        provided_interface=self._service_interface_name,
+                        deployment_target=target_url,
+                        service_class=self._service_class,
+                    )
 
-                channel = self._grpc_channel_pool.get_channel(service_location.insecure_address)
-                self._stub = self._stub_class(channel)
+                    channel = self._grpc_channel_pool.get_channel(service_location.insecure_address)
+                    self._stub = self._stub_class(channel)
 
         return self._stub
