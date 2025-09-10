@@ -69,7 +69,12 @@ def _get_username() -> str:
 
 
 def _get_ip_address() -> str:
-    try:
-        return socket.gethostbyname_ex("")[2][0]
-    except Exception:
-        return ""
+    if sys.platform == "win32":
+        try:
+            return socket.gethostbyname_ex("")[2][0]
+        except Exception:
+            return ""
+    else:
+        raise NotImplementedError(
+            f"Platform not supported: {sys.platform}. Supported platforms: win32."
+        )
