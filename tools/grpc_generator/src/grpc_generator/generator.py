@@ -128,6 +128,8 @@ def reset_python_package(generation_spec: GenerationSpec) -> None:
         grpc_files = sorted(generation_spec.package_folder.glob("*_pb2.py*"))
         grpc_files.extend(generation_spec.package_folder.glob("*_pb2_grpc.py*"))
         remove_files(grpc_files)
+    else:
+        raise ValueError(f"Invalid output format: {generation_spec.output_format}")
 
 
 def generate_python_files(generation_spec: GenerationSpec) -> None:
@@ -185,6 +187,8 @@ def finalize_python_package(generation_spec: GenerationSpec) -> None:
         transform_files_for_namespace(generation_spec)
     elif generation_spec.output_format == OutputFormat.SUBMODULE:
         add_submodule_files(generation_spec)
+    else:
+        raise ValueError(f"Invalid output format: {generation_spec.output_format}")
 
     generation_spec.package_descriptor_file.unlink()
 
