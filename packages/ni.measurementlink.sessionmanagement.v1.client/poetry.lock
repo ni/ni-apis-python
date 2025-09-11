@@ -1047,14 +1047,14 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurementlink-sessionmanagement-v1-proto"
-version = "0.1.0.dev1"
+version = "0.1.0.dev2"
 description = "Protobuf data types for NI session management gRPC APIs"
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["main"]
 files = [
-    {file = "ni_measurementlink_sessionmanagement_v1_proto-0.1.0.dev1-py3-none-any.whl", hash = "sha256:5b1637d7c32c7c2ee10c872c23a4155b213b65fc9b753fd53dccd852f602b578"},
-    {file = "ni_measurementlink_sessionmanagement_v1_proto-0.1.0.dev1.tar.gz", hash = "sha256:0a08c9b25f0e30bdc7cbe8f8994fc20e4877361ad93391ef238c546bb98af7da"},
+    {file = "ni_measurementlink_sessionmanagement_v1_proto-0.1.0.dev2-py3-none-any.whl", hash = "sha256:2eba194e4c05a33727906426183687aabf4291ef0d765e021f6b17afaa6d7706"},
+    {file = "ni_measurementlink_sessionmanagement_v1_proto-0.1.0.dev2.tar.gz", hash = "sha256:5b50c8cdde57ef1ce757432ef7646b590c18d89c43dcf33dbeb0324c8bc17ce6"},
 ]
 
 [package.dependencies]

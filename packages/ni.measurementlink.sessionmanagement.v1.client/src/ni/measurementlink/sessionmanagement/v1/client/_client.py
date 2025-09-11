@@ -53,6 +53,7 @@ class SessionManagementClient(
         grpc_channel_pool: GrpcChannelPool | None = None,
     ) -> None:
         """Initialize a SessionManagementClient instance."""
+        self._reserved_annotations, self._registered_annotations = get_machine_details()
         super().__init__(
             discovery_client=discovery_client,
             grpc_channel=grpc_channel,
@@ -60,10 +61,9 @@ class SessionManagementClient(
             service_interface_name=GRPC_SERVICE_INTERFACE_NAME,
             service_class=GRPC_SERVICE_CLASS,
             stub_class=session_management_service_pb2_grpc.SessionManagementServiceStub,
-            self._reserved_annotations, self._registered_annotations = get_machine_details()
         )
 
-    def reserve_session(
+    def reserve_session(    
         self,
         context: PinMapContext,
         pin_or_relay_names: str | Iterable[str] | None = None,

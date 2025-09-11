@@ -1,7 +1,7 @@
 import socket
 import sys
 
-from ni.measurementlink.sessionmanagement.v1.client._constants import (
+from ni.measurementlink.sessionmanagement.v1.annotations import (
     REGISTERED_HOSTNAME,
     REGISTERED_IPADDRESS,
     REGISTERED_USERNAME,
