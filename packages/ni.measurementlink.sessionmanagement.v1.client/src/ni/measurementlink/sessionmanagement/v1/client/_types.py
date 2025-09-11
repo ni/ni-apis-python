@@ -139,7 +139,7 @@ class SessionInformation(NamedTuple):
     This field is None until the appropriate initialize_session(s) method is called.
     """
 
-    annotations: dict[str, str] = {}
+    annotations: dict[str, str] | None = None
     """Annotations to attach to the session.
 
     This field is optional and can be used to store any additional metadata
@@ -169,7 +169,7 @@ class SessionInformation(NamedTuple):
             instrument_type_id=other.instrument_type_id,
             session_exists=other.session_exists,
             channel_mappings=[ChannelMapping._from_grpc_v1(m) for m in other.channel_mappings],
-            annotations=dict(other.annotations),
+            annotations=dict(other.annotations) if other.annotations else None,
         )
 
     def _to_grpc_v1(
@@ -182,7 +182,7 @@ class SessionInformation(NamedTuple):
             instrument_type_id=self.instrument_type_id,
             session_exists=self.session_exists,
             channel_mappings=[m._to_grpc_v1() for m in self.channel_mappings],
-            annotations=self.annotations,
+            annotations=self.annotations if self.annotations else {},
         )
 
 

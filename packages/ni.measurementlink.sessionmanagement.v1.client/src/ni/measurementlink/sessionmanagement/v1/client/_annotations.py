@@ -33,8 +33,10 @@ def get_machine_details() -> tuple[dict[str, str], dict[str, str]]:
     return reserved, registered
 
 
-def remove_reservation_annotations(annotations: dict[str, str]) -> dict[str, str]:
+def remove_reservation_annotations(annotations: dict[str, str] | None) -> dict[str, str]:
     """Remove reserved annotations from the provided annotations."""
+    if annotations is None:
+        return {}
     reservation_keys = {
         RESERVED_HOSTNAME,
         RESERVED_USERNAME,
