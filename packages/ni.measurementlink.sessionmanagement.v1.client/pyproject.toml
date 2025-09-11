@@ -59,6 +59,7 @@ ni-measurementlink-discovery-v1-client = { version = ">=0.1.0.dev0", allow-prere
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
 types-protobuf = ">=4.21"
+types-pywin32 = ">=311.0.0.20250822"
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
