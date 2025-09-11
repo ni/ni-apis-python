@@ -62,7 +62,7 @@ def process_docstring(app, what, name, obj, options, lines):
 
 def setup(sphinx):
     """Sphinx setup callback."""
-    pass
+    sphinx.connect("autodoc-process-docstring", process_docstring)
 
 
 # List of patterns, relative to source directory, that match files and

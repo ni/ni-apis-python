@@ -172,15 +172,17 @@ class _BaseSessionContainer(abc.ABC):
 
     @property
     def _discovery_client(self) -> DiscoveryClient:
-        if not self._session_management_client._discovery_client:
+        client = self._session_management_client._discovery_client
+        if client is None:
             raise ValueError("This method requires a discovery client.")
-        return self._session_management_client._discovery_client
+        return client
 
     @property
     def _grpc_channel_pool(self) -> GrpcChannelPool:
-        if not self._session_management_client._grpc_channel_pool:
+        pool = self._session_management_client._grpc_channel_pool
+        if pool is None:
             raise ValueError("This method requires a gRPC channel pool.")
-        return self._session_management_client._grpc_channel_pool
+        return pool
 
 
 class MultiplexerSessionContainer(_BaseSessionContainer):
@@ -274,9 +276,7 @@ class MultiplexerSessionContainer(_BaseSessionContainer):
         return multiplexer_session_infos
 
     @contextlib.contextmanager
-    def _cache_multiplexer_session(
-        self, session_name: str, session: TMultiplexerSession
-    ) -> Generator[None]:  # pyright: ignore[reportInvalidTypeVarUse]
+    def _cache_multiplexer_session(self, session_name: str, session: object) -> Generator[None]:
         if session_name in self._multiplexer_session_cache:
             raise RuntimeError(f"Multiplexer session '{session_name}' already exists.")
         self._multiplexer_session_cache[session_name] = session
@@ -664,7 +664,7 @@ class BaseReservation(_BaseSessionContainer):
         self._session_management_client._unreserve_sessions(self._grpc_session_info)
 
     @contextlib.contextmanager
-    def _cache_session(self, session_name: str, session: TSession) -> Generator[None]:
+    def _cache_session(self, session_name: str, session: object) -> Generator[None]:
         if session_name in self._session_cache:
             raise RuntimeError(f"Session '{session_name}' already exists.")
         self._session_cache[session_name] = session
