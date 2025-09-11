@@ -12,6 +12,7 @@ from ni.measurementlink.sessionmanagement.v1.client import _annotations
 
 def test___machine_details___get_machine_details___returns_reserved_and_registered() -> None:
     reserved, registered = _annotations.get_machine_details()
+
     assert RESERVED_HOSTNAME in reserved
     assert RESERVED_USERNAME in reserved
     assert RESERVED_IPADDRESS in reserved
@@ -33,7 +34,9 @@ def test___annotations_dict_with_reserved_keys___remove_reservation_annotations_
         RESERVED_IPADDRESS: "ip",
         REGISTERED_HOSTNAME: "host2",
     }
+
     result = _annotations.remove_reservation_annotations(annotations)
+
     assert RESERVED_HOSTNAME not in result
     assert RESERVED_USERNAME not in result
     assert RESERVED_IPADDRESS not in result
@@ -43,6 +46,7 @@ def test___annotations_dict_with_reserved_keys___remove_reservation_annotations_
 
 def test___machine_details___get_machine_details___values_not_empty() -> None:
     reserved, registered = _annotations.get_machine_details()
+
     for v in reserved.values():
         assert v != ""
     for v in registered.values():
