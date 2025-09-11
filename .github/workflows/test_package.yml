@@ -8,6 +8,13 @@ on:
         default: ''
         required: true
         type: string
+  workflow_dispatch:
+    inputs:
+      package-name:
+        description: 'The name of the package folder to test.'
+        default: ''
+        required: true
+        type: string
 
 jobs:
   get_package_info:

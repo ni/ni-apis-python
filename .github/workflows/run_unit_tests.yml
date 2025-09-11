@@ -15,28 +15,7 @@ on:
         type: string
       python-version:
         description: 'The version of Python to use'
-        default: 3.11.9
-        required: true
-        type: string
-      os:
-        description: 'The name of the OS to use'
-        required: true
-        type: string
-  workflow_dispatch:
-    inputs:
-      package-name:
-        description: 'The name of the package folder to check.'
         default: ''
-        required: true
-        type: string
-      package-basepath:
-        description: 'The base path of the package to check, relative to the repo root.'
-        default: ''
-        required: true
-        type: string
-      python-version:
-        description: 'The version of Python to use'
-        default: 3.11.9
         required: true
         type: string
       os:
