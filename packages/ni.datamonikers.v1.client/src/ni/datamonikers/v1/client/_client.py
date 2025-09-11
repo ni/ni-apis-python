@@ -17,6 +17,18 @@ _logger = logging.getLogger(__name__)
 class MonikerClient:
     """Client for accessing the NI Data Moniker Service."""
 
+    __slots__ = (
+        "_initialization_lock",
+        "_service_location",
+        "_grpc_channel_pool",
+        "_stub",
+    )
+
+    _initialization_lock: threading.Lock
+    _service_location: str | None
+    _grpc_channel_pool: GrpcChannelPool | None
+    _stub: data_moniker_pb2_grpc.MonikerServiceStub | None
+
     def __init__(
         self,
         *,
