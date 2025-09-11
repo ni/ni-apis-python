@@ -74,6 +74,7 @@ intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "protobuf": ("https://googleapis.dev/python/protobuf/latest/", None),
     "grpc": ("https://grpc.github.io/grpc/python/", None),
+    "ni.measurementlink.proto": ("https://nimeasurementlinkproto.readthedocs.io/en/latest/", None),
 }
 
 
