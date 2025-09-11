@@ -50,8 +50,8 @@ env:
     }
 
 jobs:
-  get_package_info:
-    name: Get package info
+  get_publish_info:
+    name: Get publish info
     runs-on: ubuntu-latest
     outputs:
       package-name: ${{ steps.get_package_name_and_version.outputs.package-name }}
@@ -71,22 +71,31 @@ jobs:
             echo "package-name=${{ inputs.package-name }}" >> $GITHUB_OUTPUT
             echo "package-version=unused" >> $GITHUB_OUTPUT
           fi
-  check_analyzers:
-    name: Check analyzers for ${{ needs.get_package_info.outputs.package-name }}
-    uses: ./.github/workflows/check_analyzers.yml
-    needs: get_package_info
+  get_package_info:
+    name: Get package info for ${{ needs.get_publish_info.outputs.package-name }}
+    uses: ./.github/workflows/get_package_info.yml
+    needs: get_publish_info
     with:
-      package-name: ${{ needs.get_package_info.outputs.package-name }}
+      package-name: ${{ needs.get_publish_info.outputs.package-name }}
+  check_analyzers:
+    name: Check analyzers for ${{ needs.get_publish_info.outputs.package-name }}
+    uses: ./.github/workflows/check_analyzers.yml
+    needs: [get_publish_info, get_package_info]
+    with:
+      package-name: ${{ needs.get_publish_info.outputs.package-name }}
+      package-basepath: ${{ needs.get_package_info.outputs.package-basepath }}
+      install-extras: ${{ needs.get_package_info.outputs.install-extras }}
   check_docs:
     name: Check docs
     uses: ./.github/workflows/check_docs.yml
-    needs: get_package_info
+    needs: [get_publish_info, get_package_info]
     with:
-      package-name: ${{ needs.get_package_info.outputs.package-name }}
+      package-name: ${{ needs.get_publish_info.outputs.package-name }}
+      package-basepath: ${{ needs.get_package_info.outputs.package-basepath }}
   build_package:
-    name: Build ${{ needs.get_package_info.outputs.package-name }}
+    name: Build ${{ needs.get_publish_info.outputs.package-name }}
     runs-on: ubuntu-latest
-    needs: [get_package_info, check_analyzers, check_docs]
+    needs: [get_publish_info, get_package_info, check_analyzers, check_docs]
     steps:
       - name: Check out repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
@@ -98,44 +107,44 @@ jobs:
         if: github.event_name == 'release'
         uses: ni/python-actions/check-project-version@f0276f7f58868ec0d0d1a86377287c9e6fe0c6e7 # v0.5.0
         with:
-          project-directory: ./packages/${{ needs.get_package_info.outputs.package-name }}
-          expected-version: ${{ needs.get_package_info.outputs.package-version }}
+          project-directory: ./${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}
+          expected-version: ${{ needs.get_publish_info.outputs.package-version }}
       - name: Build distribution packages
         run: poetry build
-        working-directory: ${{ github.workspace }}/packages/${{ needs.get_package_info.outputs.package-name }}
+        working-directory: ${{ github.workspace }}/${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}
       - name: Upload build artifacts
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: ${{ needs.get_package_info.outputs.package-name }}-distribution-packages
-          path: ./packages/${{ needs.get_package_info.outputs.package-name }}/dist/*
+          name: ${{ needs.get_publish_info.outputs.package-name }}-distribution-packages
+          path: ./${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}/dist/*
   publish_to_pypi:
-    name: Publish ${{ needs.get_package_info.outputs.package-name }} to PyPI
+    name: Publish ${{ needs.get_publish_info.outputs.package-name }} to PyPI
     if: github.event_name == 'release' || inputs.environment != 'none'
     runs-on: ubuntu-latest
-    needs: [get_package_info, build_package]
+    needs: [get_publish_info, get_package_info, build_package]
     environment:
       # This logic is duplicated because `name` doesn't support the `env` context.
       name: ${{ github.event_name == 'release' && 'pypi' || inputs.environment }}
-      url: ${{ fromJson(env.environment-info)[env.environment].base-url }}/p/${{ needs.get_package_info.outputs.package-name }}
+      url: ${{ fromJson(env.environment-info)[env.environment].base-url }}/p/${{ needs.get_publish_info.outputs.package-name }}
     permissions:
       id-token: write
     steps:
     - name: Download build artifacts
       uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5.0.0
       with:
-        name: ${{ needs.get_package_info.outputs.package-name }}-distribution-packages
-        path: ./packages/${{ needs.get_package_info.outputs.package-name }}/dist/
+        name: ${{ needs.get_publish_info.outputs.package-name }}-distribution-packages
+        path: ./${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}/dist/
     - run: ls -lR
-      working-directory: ${{ github.workspace }}/packages/${{ needs.get_package_info.outputs.package-name }}
+      working-directory: ${{ github.workspace }}/${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}
     - name: Upload to ${{ env.environment }}
       uses: pypa/gh-action-pypi-publish@76f52bc884231f62b9a034ebfe128415bbaabdfc # v1.12.4
       with:
         repository-url: ${{ fromJson(env.environment-info)[env.environment].upload-url }}
-        packages-dir: ./packages/${{ needs.get_package_info.outputs.package-name }}/dist
+        packages-dir: ./${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}/dist
   update_version:
-    name: Update ${{ needs.get_package_info.outputs.package-name }} version
+    name: Update ${{ needs.get_publish_info.outputs.package-name }} version
     runs-on: ubuntu-latest
-    needs: [get_package_info, build_package]
+    needs: [get_publish_info, get_package_info, build_package]
     permissions:
       contents: write
       pull-requests: write
@@ -149,5 +158,5 @@ jobs:
       - name: Update project version
         uses: ni/python-actions/update-project-version@f0276f7f58868ec0d0d1a86377287c9e6fe0c6e7 # v0.5.0
         with:
-          project-directory: ./packages/${{ needs.get_package_info.outputs.package-name }}
-          branch-prefix: users/build/${{ needs.get_package_info.outputs.package-name }}-
+          project-directory: ./${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}
+          branch-prefix: users/build/${{ needs.get_publish_info.outputs.package-name }}-
