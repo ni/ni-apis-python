@@ -52,5 +52,3 @@ jobs:
         with:
           package-name: ${{ inputs.package-name }}
           package-basepath: ${{ inputs.package-basepath }}
-          python-version: ${{ inputs.python-version }}
-          os: ${{ inputs.os }}
