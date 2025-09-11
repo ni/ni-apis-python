@@ -8,15 +8,12 @@ inputs:
     description: 'Relative path to the parent directory of the package.'
     required: false
     default: 'packages'
-  python-version:
-    description: 'The version of Python to use'
-    required: true
-  os:
-    description: 'The name of the OS to use'
-    required: true
 runs:
   using: "composite"
   steps:
+    - name: Get OS version
+      run: echo "osVersion=$ImageOS" >> "$GITHUB_ENV"
+      shell: bash
     - name: Cache ${{ inputs.package-name }} virtualenv
       uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
       with:
@@ -27,12 +24,12 @@ runs:
       working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
       shell: bash
     - name: Run ${{ inputs.package-name }} unit tests and code coverage
-      run: poetry run pytest ./tests/unit -v --cov=${{ inputs.package-name }} --junitxml=test_results/${{ inputs.package-name }}-${{ inputs.os }}-py${{ inputs.python-version }}.xml
+      run: poetry run pytest ./tests/unit -v --cov=${{ inputs.package-name }} --junitxml=test_results/${{ inputs.package-name }}-${{ env.osVersion }}-py${{ env.pythonVersion }}.xml
       working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
       shell: bash
     - name: Upload ${{ inputs.package-name }} test results
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
-        name: test_results_unit_${{ inputs.package-name }}_${{ inputs.os }}_py${{ inputs.python-version }}
+        name: test_results_unit_${{ inputs.package-name }}_${{ env.osVersion }}_py${{ env.pythonVersion }}
         path: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}/test_results/*.xml
       if: always()
