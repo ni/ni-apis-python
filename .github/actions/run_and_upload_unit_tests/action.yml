@@ -24,7 +24,7 @@ runs:
       working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
       shell: bash
     - name: Run ${{ inputs.package-name }} unit tests and code coverage
-      run: poetry run pytest ./tests/unit -v --cov=${{ inputs.package-name }} --junitxml=test_results/${{ inputs.package-name }}-${{ inputs.os }}-py${{ inputs.python-version }}.xml
+      run: poetry run pytest ./tests/unit -v --cov=${{ inputs.package-name }} --junitxml=test_results/${{ inputs.package-name }}-${{ inputs.os }}-py${{ env.pythonVersion }}.xml
       working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
       shell: bash
     - name: Upload ${{ inputs.package-name }} test results
