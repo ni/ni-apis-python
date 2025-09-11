@@ -1,15 +1,14 @@
-[tool.poetry]
+[project]
 name = "ni.measurements.metadata.v1.client"
 version = "0.1.0-dev0"
 license = "MIT"
 description = "gRPC Client for NI Metadata Store Service"
-authors = ["NI <opensource@ni.com>"]
+authors = [{name = "NI", email = "opensource@ni.com"}]
 maintainers = [
-  "Brad Keryan <brad.keryan@emerson.com>",
-  "Joe Friedrichsen <joe.friedrichsen@emerson.com>",
+  {name = "Joe Friedrichsen", email = "joe.friedrichsen@emerson.com"},
+  {name = "Brad Keryan", email = "brad.keryan@emerson.com"}
 ]
 readme = "README.md"
-repository = "https://github.com/ni/ni-apis-python"
 keywords = ["metadata-store", "client"]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -26,10 +25,17 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython",
 ]
+dynamic = ["dependencies"]
+requires-python = '>=3.9,<4.0'
+
+[project.urls]
+repository = "https://github.com/ni/ni-apis-python"
+
+[tool.poetry]
 packages = [{include = "ni", from = "src"}]
+requires-poetry = '>=2.1,<3.0'
 
 [tool.poetry.dependencies]
-python = "^3.9"
 ni-measurementlink-discovery-v1-client = { version = ">=0.1.0.dev0", allow-prereleases = true }
 ni-measurements-metadata-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
 
@@ -54,14 +60,18 @@ optional = true
 
 [tool.poetry.group.docs.dependencies]
 # The latest Sphinx requires a recent Python version.
-Sphinx = { version = ">=8.2", python = "^3.11" }
+Sphinx = [
+  { version = ">=7.4", python = ">=3.9,<3.10" },
+  { version = ">=8.1", python = ">=3.10,<3.11" },
+  { version = ">=8.2", python = "^3.11" },
+]
 sphinx-rtd-theme = ">=1.0.0"
 sphinx-autoapi = ">=1.8.4"
 m2r2 = ">=0.3.2"
 toml = ">=0.10.2"
 
 [build-system]
-requires = ["poetry-core>=1.8"]
+requires = ["poetry-core>=2.1.0,<3.0"]
 build-backend = "poetry.core.masonry.api"
 
 
@@ -72,6 +82,7 @@ skips = [
 
 [tool.ni-python-styleguide]
 extend_exclude = "docs"
+application-import-names = "ni.measurements.metadata.v1.client"
 
 [tool.black]
 extend-exclude = 'docs/'
