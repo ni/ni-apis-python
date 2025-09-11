@@ -12,7 +12,7 @@ runs:
   using: "composite"
   steps:
     - name: debug
-      run: echo $GITHUB_ENV
+      run: env
       shell: bash
     - name: Cache ${{ inputs.package-name }} virtualenv
       uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
