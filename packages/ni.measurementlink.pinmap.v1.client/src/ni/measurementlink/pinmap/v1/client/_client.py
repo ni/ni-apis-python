@@ -2,24 +2,21 @@
 
 from __future__ import annotations
 
-import logging
 import pathlib
-import threading
 
 import grpc
 import ni.measurementlink.pinmap.v1.pin_map_service_pb2 as pin_map_service_pb2
-import ni.measurementlink.pinmap.v1.pin_map_service_pb2_grpc as pin_map_service_pb2_grpc
-from ni.measurementlink.discovery.v1.client import DiscoveryClient as DiscoveryClient
+from ni.measurementlink.discovery.v1.client import DiscoveryClient
+from ni.measurementlink.pinmap.v1 import pin_map_service_pb2_grpc
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
-_logger = logging.getLogger(__name__)
-
-GRPC_SERVICE_INTERFACE_NAME = "ni.measurementlink.pinmap.v1.PinMapService"
-GRPC_SERVICE_CLASS = "ni.measurementlink.pinmap.v1.PinMapService"
+from ni.measurementlink.pinmap.v1.client._client_base import GrpcServiceClientBase
 
 
-class PinMapClient:
-    """Client for accessing the NI Pin Map Service."""
+class PinMapClient(GrpcServiceClientBase[pin_map_service_pb2_grpc.PinMapServiceStub]):
+    """Client for accessing the NI Pin Map Service via gRPC."""
+
+    __slots__ = ()
 
     def __init__(
         self,
@@ -37,41 +34,14 @@ class PinMapClient:
 
             grpc_channel_pool: An optional gRPC channel pool (recommended).
         """
-        self._initialization_lock = threading.Lock()
-        self._discovery_client = discovery_client
-        self._grpc_channel_pool = grpc_channel_pool
-        self._stub: pin_map_service_pb2_grpc.PinMapServiceStub | None = None
-
-        if grpc_channel is not None:
-            self._stub = pin_map_service_pb2_grpc.PinMapServiceStub(grpc_channel)
-
-    def _get_stub(self) -> pin_map_service_pb2_grpc.PinMapServiceStub:
-        if self._stub is None:
-            with self._initialization_lock:
-                if self._grpc_channel_pool is None:
-                    _logger.debug("Creating unshared GrpcChannelPool.")
-                    self._grpc_channel_pool = GrpcChannelPool()
-                if self._discovery_client is None:
-                    _logger.debug("Creating unshared DiscoveryClient.")
-                    self._discovery_client = DiscoveryClient(
-                        grpc_channel_pool=self._grpc_channel_pool
-                    )
-                if self._stub is None:
-                    compute_nodes = self._discovery_client.enumerate_compute_nodes()
-                    remote_compute_nodes = [node for node in compute_nodes if not node.is_local]
-                    # Use remote node URL as deployment target if only one remote node is found.
-                    # If more than one remote node exists, use empty string for deployment target.
-                    first_remote_node_url = (
-                        remote_compute_nodes[0].url if len(remote_compute_nodes) == 1 else ""
-                    )
-                    service_location = self._discovery_client.resolve_service(
-                        provided_interface=GRPC_SERVICE_INTERFACE_NAME,
-                        deployment_target=first_remote_node_url,
-                        service_class=GRPC_SERVICE_CLASS,
-                    )
-                    channel = self._grpc_channel_pool.get_channel(service_location.insecure_address)
-                    self._stub = pin_map_service_pb2_grpc.PinMapServiceStub(channel)
-        return self._stub
+        super().__init__(
+            discovery_client=discovery_client,
+            grpc_channel=grpc_channel,
+            grpc_channel_pool=grpc_channel_pool,
+            service_interface_name="ni.measurementlink.pinmap.v1.PinMapService",
+            service_class="ni.measurementlink.pinmap.v1.PinMapService",
+            stub_class=pin_map_service_pb2_grpc.PinMapServiceStub,
+        )
 
     def update_pin_map(self, pin_map_path: str | pathlib.Path) -> str:
         """Update registered pin map contents.
