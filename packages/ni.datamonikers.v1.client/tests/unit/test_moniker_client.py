@@ -33,7 +33,7 @@ def test__stream_read__request_and_response_pass_through(
 ) -> None:
     client_request = data_moniker_types.MonikerList()
     read_moniker = client_request.read_monikers.add()
-    read_moniker.service_location = "http://localhost:8080"
+    read_moniker.service_location = "location"
     stub_response_iter = [
         data_moniker_types.MonikerReadResult(),
         data_moniker_types.MonikerReadResult(),
