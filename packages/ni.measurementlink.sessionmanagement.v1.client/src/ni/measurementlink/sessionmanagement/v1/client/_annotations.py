@@ -1,3 +1,4 @@
+import os
 import socket
 import sys
 
@@ -45,38 +46,32 @@ def remove_reservation_annotations(annotations: dict[str, str]) -> dict[str, str
 def _get_hostname() -> str:
     if sys.platform == "win32":
         try:
-            import win32api
+            import win32api  # pyright: ignore[reportMissingModuleSource]
 
             return win32api.GetComputerName()
         except Exception:
             return ""
     else:
-        raise NotImplementedError(
-            f"Platform not supported: {sys.platform}. Supported platforms: win32."
-        )
+        return socket.gethostname()
 
 
 def _get_username() -> str:
     if sys.platform == "win32":
         try:
-            import win32api
+            import win32api  # pyright: ignore[reportMissingModuleSource]
 
             return win32api.GetUserName()
         except Exception:
             return ""
     else:
-        raise NotImplementedError(
-            f"Platform not supported: {sys.platform}. Supported platforms: win32."
-        )
+        return os.environ.get("USER", "")
 
 
 def _get_ip_address() -> str:
-    if sys.platform == "win32":
-        try:
-            return socket.gethostbyname_ex("")[2][0]
-        except Exception:
-            return ""
-    else:
-        raise NotImplementedError(
-            f"Platform not supported: {sys.platform}. Supported platforms: win32."
-        )
+    try:
+        ipv4_addresses = [
+            info[4][0] for info in socket.getaddrinfo(socket.gethostname(), None, socket.AF_INET)
+        ]
+        return str(ipv4_addresses[0]) if ipv4_addresses else ""
+    except Exception:
+        return ""

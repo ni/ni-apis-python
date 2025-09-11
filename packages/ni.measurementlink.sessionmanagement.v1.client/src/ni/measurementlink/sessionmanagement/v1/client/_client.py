@@ -43,7 +43,7 @@ class SessionManagementClient(
 ):
     """Client for accessing the NI Session Management Service via gRPC."""
 
-    __slots__ = ()
+    __slots__ = ("_reserved_annotations", "_registered_annotations")
 
     def __init__(
         self,
@@ -63,7 +63,7 @@ class SessionManagementClient(
             stub_class=session_management_service_pb2_grpc.SessionManagementServiceStub,
         )
 
-    def reserve_session(    
+    def reserve_session(
         self,
         context: PinMapContext,
         pin_or_relay_names: str | Iterable[str] | None = None,
