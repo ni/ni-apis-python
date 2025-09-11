@@ -1,10 +1,10 @@
 """Generate gRPC Python stubs from proto files."""
 
+import enum
 import importlib.resources
 import pathlib
 import shutil
 from dataclasses import dataclass
-from enum import StrEnum
 
 import click
 import grpc_tools.protoc  # type: ignore[import-untyped]
@@ -17,7 +17,7 @@ USAGE_EXAMPLE = """Example:
 grpc-generator  --proto-subpath ni/protobuf/types  --output-basepath ../../packages/ni.protobuf.types/src  --output-format submodule"""
 
 
-class OutputFormat(StrEnum):
+class OutputFormat(str, enum.Enum):
     """Supported Python output formats for generated gRPC packages."""
 
     SUBMODULE = "submodule"
@@ -114,21 +114,22 @@ def reset_python_package(generation_spec: GenerationSpec) -> None:
     if not generation_spec.package_folder.exists():
         return
 
-    match generation_spec.output_format:
-        case OutputFormat.SUBPACKAGE:
-            # Only remove generated subpackage dirs.
-            # This allows for non-generated "mixin" subpackages.
-            dirs_to_remove = []
-            for subpackage_dir in generation_spec.package_folder.iterdir():
-                if is_generated_subpackage_dir(subpackage_dir):
-                    dirs_to_remove.append(subpackage_dir)
+    if generation_spec.output_format == OutputFormat.SUBPACKAGE:
+        # Only remove generated subpackage dirs.
+        # This allows for non-generated "mixin" subpackages.
+        dirs_to_remove = []
+        for subpackage_dir in generation_spec.package_folder.iterdir():
+            if is_generated_subpackage_dir(subpackage_dir):
+                dirs_to_remove.append(subpackage_dir)
 
-            for dir_to_remove in dirs_to_remove:
-                shutil.rmtree(dir_to_remove)
-        case OutputFormat.SUBMODULE:
-            grpc_files = sorted(generation_spec.package_folder.glob("*_pb2.py*"))
-            grpc_files.extend(generation_spec.package_folder.glob("*_pb2_grpc.py*"))
-            remove_files(grpc_files)
+        for dir_to_remove in dirs_to_remove:
+            shutil.rmtree(dir_to_remove)
+    elif generation_spec.output_format == OutputFormat.SUBMODULE:
+        grpc_files = sorted(generation_spec.package_folder.glob("*_pb2.py*"))
+        grpc_files.extend(generation_spec.package_folder.glob("*_pb2_grpc.py*"))
+        remove_files(grpc_files)
+    else:
+        raise ValueError(f"Invalid output format: {generation_spec.output_format}")
 
 
 def generate_python_files(generation_spec: GenerationSpec) -> None:
@@ -182,11 +183,12 @@ def finalize_python_package(generation_spec: GenerationSpec) -> None:
             )
             remove_files(generation_spec.get_matching_service_files(relative_proto_file_path))
 
-    match generation_spec.output_format:
-        case OutputFormat.SUBPACKAGE:
-            transform_files_for_namespace(generation_spec)
-        case OutputFormat.SUBMODULE:
-            add_submodule_files(generation_spec)
+    if generation_spec.output_format == OutputFormat.SUBPACKAGE:
+        transform_files_for_namespace(generation_spec)
+    elif generation_spec.output_format == OutputFormat.SUBMODULE:
+        add_submodule_files(generation_spec)
+    else:
+        raise ValueError(f"Invalid output format: {generation_spec.output_format}")
 
     generation_spec.package_descriptor_file.unlink()
 
