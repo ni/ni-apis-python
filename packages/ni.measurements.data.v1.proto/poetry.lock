@@ -828,18 +828,20 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurements-metadata-v1-proto"
-version = "0.1.0.dev0"
+version = "0.1.0-dev1"
 description = "Protobuf data types and service stub for NI metadata store gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = ">=3.9,<4.0"
 groups = ["main"]
-files = [
-    {file = "ni_measurements_metadata_v1_proto-0.1.0.dev0-py3-none-any.whl", hash = "sha256:cab8ae264cd33ea16758f37b72efa5d1dc4ee06d635be7c5225de54c420b5641"},
-    {file = "ni_measurements_metadata_v1_proto-0.1.0.dev0.tar.gz", hash = "sha256:37768f4187d76f508ebbbcd178b8754ea587e6eddff5bcc15f1685732c008854"},
-]
+files = []
+develop = false
 
 [package.dependencies]
 protobuf = ">=4.21"
+
+[package.source]
+type = "directory"
+url = "../ni.measurements.metadata.v1.proto"
 
 [[package]]
 name = "ni-protobuf-types"
@@ -1946,4 +1948,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.9,<4.0"
-content-hash = "8771260ce1e7787d516ba17784da7806ef5c40459f2604feb0795aa25d629c63"
+content-hash = "bbbb6f99299daf83866b54de536c47d0fbf9446b63e9263ce0bf10e9bf6f137a"
