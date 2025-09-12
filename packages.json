@@ -8,6 +8,14 @@
     "output-format": null,
     "install-extras": null
   },
+ "ni.datamonikers.v1.client": {
+    "package-basepath": "packages",
+    "proto-basepath": null,
+    "proto-subpath": null,
+    "proto-include-path": null,
+    "output-format": null,
+    "install-extras": null
+  },
   "ni.datamonikers.v1.proto": {
     "package-basepath": "packages",
     "proto-basepath": "third_party/ni-apis",
@@ -16,7 +24,7 @@
     "output-format": "subpackage",
     "install-extras": null
   },
-  "ni-grpc-extensions" : {
+  "ni-grpc-extensions": {
     "package-basepath": "packages",
     "proto-basepath": null,
     "proto-subpath": null,
@@ -104,12 +112,28 @@
     "output-format": "subpackage",
     "install-extras": null
   },
+  "ni.measurements.data.v1.client": {
+    "package-basepath": "packages",
+    "proto-basepath": null,
+    "proto-subpath": null,
+    "proto-include-path": null,
+    "output-format": null,
+    "install-extras": null
+  },
   "ni.measurements.data.v1.proto": {
     "package-basepath": "packages",
     "proto-basepath": "third_party/ni-apis",
     "proto-subpath": "ni/measurements/data/v1",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "subpackage",
+    "install-extras": null
+  },
+  "ni.measurements.metadata.v1.client": {
+    "package-basepath": "packages",
+    "proto-basepath": null,
+    "proto-subpath": null,
+    "proto-include-path": null,
+    "output-format": null,
     "install-extras": null
   },
   "ni.measurements.metadata.v1.proto": {
