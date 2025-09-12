@@ -8,175 +8,170 @@ import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
-import google.protobuf.timestamp_pb2
 import ni.measurements.data.v1.data_store_pb2
+import ni.protobuf.types.precision_timestamp_pb2
+import ni.protobuf.types.scalar_pb2
+import ni.protobuf.types.vector_pb2
+import ni.protobuf.types.waveform_pb2
+import ni.protobuf.types.xydata_pb2
 import typing
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 @typing.final
-class CreateSessionRequest(google.protobuf.message.Message):
+class CreateTestResultRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    SESSION_METADATA_FIELD_NUMBER: builtins.int
+    TEST_RESULT_FIELD_NUMBER: builtins.int
     @property
-    def session_metadata(self) -> ni.measurements.data.v1.data_store_pb2.SessionMetadata:
-        """The metadata of the session to be created."""
+    def test_result(self) -> ni.measurements.data.v1.data_store_pb2.TestResult:
+        """The metadata of the test result to be created."""
 
     def __init__(
         self,
         *,
-        session_metadata: ni.measurements.data.v1.data_store_pb2.SessionMetadata | None = ...,
+        test_result: ni.measurements.data.v1.data_store_pb2.TestResult | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["session_metadata", b"session_metadata"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["session_metadata", b"session_metadata"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_result", b"test_result"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_result", b"test_result"]) -> None: ...
 
-global___CreateSessionRequest = CreateSessionRequest
+global___CreateTestResultRequest = CreateTestResultRequest
 
 @typing.final
-class CreateSessionResponse(google.protobuf.message.Message):
+class CreateTestResultResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    SESSION_ID_FIELD_NUMBER: builtins.int
-    session_id: builtins.str
-    """If a session id was specified in the request, this will be the same value.
-    If a session id was not specified in the request, this will be the generated id.
-    """
+    TEST_RESULT_ID_FIELD_NUMBER: builtins.int
+    test_result_id: builtins.str
+    """The test result id. Generated if not specified in the request."""
     def __init__(
         self,
         *,
-        session_id: builtins.str = ...,
+        test_result_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["session_id", b"session_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_result_id", b"test_result_id"]) -> None: ...
 
-global___CreateSessionResponse = CreateSessionResponse
+global___CreateTestResultResponse = CreateTestResultResponse
 
 @typing.final
-class GetSessionRequest(google.protobuf.message.Message):
+class GetTestResultRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    SESSION_ID_FIELD_NUMBER: builtins.int
-    INCLUDE_VALUES_FIELD_NUMBER: builtins.int
-    session_id: builtins.str
-    """The id of the desired session.
+    TEST_RESULT_ID_FIELD_NUMBER: builtins.int
+    test_result_id: builtins.str
+    """The id of the desired test result.
     This value is expected to be a parsable GUID.
     """
-    include_values: builtins.bool
-    """If true, the SessionMetadata will include the actual metadata values
-    for each of the metadata fields. If false, only the ids of the metadata
-    fields will be included in the response.
-    """
     def __init__(
         self,
         *,
-        session_id: builtins.str = ...,
-        include_values: builtins.bool = ...,
+        test_result_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["include_values", b"include_values", "session_id", b"session_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_result_id", b"test_result_id"]) -> None: ...
 
-global___GetSessionRequest = GetSessionRequest
+global___GetTestResultRequest = GetTestResultRequest
 
 @typing.final
-class GetSessionResponse(google.protobuf.message.Message):
+class GetTestResultResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    SESSION_METADATA_FIELD_NUMBER: builtins.int
+    TEST_RESULT_FIELD_NUMBER: builtins.int
     @property
-    def session_metadata(self) -> ni.measurements.data.v1.data_store_pb2.SessionMetadata:
-        """The SessionMetadata object that corresponds to the requested id."""
+    def test_result(self) -> ni.measurements.data.v1.data_store_pb2.TestResult:
+        """The TestResult object that corresponds to the requested id."""
 
     def __init__(
         self,
         *,
-        session_metadata: ni.measurements.data.v1.data_store_pb2.SessionMetadata | None = ...,
+        test_result: ni.measurements.data.v1.data_store_pb2.TestResult | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["session_metadata", b"session_metadata"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["session_metadata", b"session_metadata"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_result", b"test_result"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_result", b"test_result"]) -> None: ...
 
-global___GetSessionResponse = GetSessionResponse
+global___GetTestResultResponse = GetTestResultResponse
 
 @typing.final
-class CreateMeasurementRequest(google.protobuf.message.Message):
+class CreateStepRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_FIELD_NUMBER: builtins.int
+    STEP_FIELD_NUMBER: builtins.int
     @property
-    def measurement(self) -> ni.measurements.data.v1.data_store_pb2.MeasurementMetadata:
-        """Required. The metadata of the measurement to be created."""
+    def step(self) -> ni.measurements.data.v1.data_store_pb2.Step:
+        """Required. The metadata of the step to be created."""
 
     def __init__(
         self,
         *,
-        measurement: ni.measurements.data.v1.data_store_pb2.MeasurementMetadata | None = ...,
+        step: ni.measurements.data.v1.data_store_pb2.Step | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["measurement", b"measurement"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["measurement", b"measurement"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["step", b"step"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["step", b"step"]) -> None: ...
 
-global___CreateMeasurementRequest = CreateMeasurementRequest
+global___CreateStepRequest = CreateStepRequest
 
 @typing.final
-class CreateMeasurementResponse(google.protobuf.message.Message):
+class CreateStepResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """The identifier of the created measurement."""
+    STEP_ID_FIELD_NUMBER: builtins.int
+    step_id: builtins.str
+    """The identifier of the created step."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        step_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["step_id", b"step_id"]) -> None: ...
 
-global___CreateMeasurementResponse = CreateMeasurementResponse
+global___CreateStepResponse = CreateStepResponse
 
 @typing.final
-class GetMeasurementRequest(google.protobuf.message.Message):
-    """Message sent to get the measurement associated with the given identifier."""
+class GetStepRequest(google.protobuf.message.Message):
+    """Message sent to get the step associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """Required. The identifier of the desired measurement."""
+    STEP_ID_FIELD_NUMBER: builtins.int
+    step_id: builtins.str
+    """Required. The identifier of the desired step."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        step_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["step_id", b"step_id"]) -> None: ...
 
-global___GetMeasurementRequest = GetMeasurementRequest
+global___GetStepRequest = GetStepRequest
 
 @typing.final
-class GetMeasurementResponse(google.protobuf.message.Message):
-    """Message returned when getting a measurement associated with the given identifier."""
+class GetStepResponse(google.protobuf.message.Message):
+    """Message returned when getting a step associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_FIELD_NUMBER: builtins.int
+    STEP_FIELD_NUMBER: builtins.int
     @property
-    def measurement(self) -> ni.measurements.data.v1.data_store_pb2.MeasurementMetadata:
-        """The metadata of the requested measurement."""
+    def step(self) -> ni.measurements.data.v1.data_store_pb2.Step:
+        """The metadata of the requested step."""
 
     def __init__(
         self,
         *,
-        measurement: ni.measurements.data.v1.data_store_pb2.MeasurementMetadata | None = ...,
+        step: ni.measurements.data.v1.data_store_pb2.Step | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["measurement", b"measurement"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["measurement", b"measurement"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["step", b"step"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["step", b"step"]) -> None: ...
 
-global___GetMeasurementResponse = GetMeasurementResponse
+global___GetStepResponse = GetStepResponse
 
 @typing.final
-class QueryMeasurementsRequest(google.protobuf.message.Message):
+class QueryStepsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ODATA_QUERY_FIELD_NUMBER: builtins.int
     odata_query: builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
-    An empty string will return all measurements.
+    An empty string will return all steps.
     $expand, $count, and $select are not supported. For more information,
     see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
@@ -187,115 +182,56 @@ class QueryMeasurementsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryMeasurementsRequest = QueryMeasurementsRequest
+global___QueryStepsRequest = QueryStepsRequest
 
 @typing.final
-class QueryMeasurementsResponse(google.protobuf.message.Message):
+class QueryStepsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENTS_FIELD_NUMBER: builtins.int
+    STEPS_FIELD_NUMBER: builtins.int
     @property
-    def measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.MeasurementMetadata]:
-        """The list of measurements that match the query."""
+    def steps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.Step]:
+        """The list of steps that match the query."""
 
     def __init__(
         self,
         *,
-        measurements: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.MeasurementMetadata] | None = ...,
+        steps: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.Step] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["measurements", b"measurements"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["steps", b"steps"]) -> None: ...
 
-global___QueryMeasurementsResponse = QueryMeasurementsResponse
-
-@typing.final
-class PublishConditionSetRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    CONDITION_SET_FIELD_NUMBER: builtins.int
-    MEASUREMENT_METADATA_FIELD_NUMBER: builtins.int
-    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
-    measurement_id: builtins.str
-    """The id of the measurement associated with this condition set.
-    This value is expected to be a parsable GUID.
-    """
-    @property
-    def condition_set(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.Condition]:
-        """Required. The set of conditions present for one published data (output) of a measurement
-        Each item in the list corresponds to a cell in a column in the overall frame of the
-        condition set.  The entire list of condition values makes up a single row of the
-        condition set.  If you want to publish the entire frame of condition data, you can
-        use the PublishConditionSetBatch method instead.
-        """
-
-    @property
-    def measurement_metadata(self) -> ni.measurements.data.v1.data_store_pb2.MeasurementMetadata:
-        """The metadata of the measurement associated with this condition set."""
-
-    def __init__(
-        self,
-        *,
-        condition_set: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.Condition] | None = ...,
-        measurement_metadata: ni.measurements.data.v1.data_store_pb2.MeasurementMetadata | None = ...,
-        measurement_id: builtins.str = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["condition_set", b"condition_set", "measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["measurement", b"measurement"]) -> typing.Literal["measurement_metadata", "measurement_id"] | None: ...
-
-global___PublishConditionSetRequest = PublishConditionSetRequest
-
-@typing.final
-class PublishConditionSetResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    STORED_CONDITION_SET_VALUE_FIELD_NUMBER: builtins.int
-    @property
-    def stored_condition_set_value(self) -> ni.measurements.data.v1.data_store_pb2.StoredConditionSetValue:
-        """A shared data value for *all* condition data present for the specified measurement.
-        This value's Metadata contains a reference to the measurement ID associated with this condition set.
-        """
-
-    def __init__(
-        self,
-        *,
-        stored_condition_set_value: ni.measurements.data.v1.data_store_pb2.StoredConditionSetValue | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["stored_condition_set_value", b"stored_condition_set_value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["stored_condition_set_value", b"stored_condition_set_value"]) -> None: ...
-
-global___PublishConditionSetResponse = PublishConditionSetResponse
+global___QueryStepsResponse = QueryStepsResponse
 
 @typing.final
 class PublishConditionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    CONDITION_FIELD_NUMBER: builtins.int
-    MEASUREMENT_METADATA_FIELD_NUMBER: builtins.int
-    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
-    measurement_id: builtins.str
-    """The id of the measurement associated with this condition.
+    CONDITION_NAME_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
+    SCALAR_FIELD_NUMBER: builtins.int
+    STEP_ID_FIELD_NUMBER: builtins.int
+    condition_name: builtins.str
+    """Required. Identifier describing the condition value. For example, "Voltage"."""
+    type: builtins.str
+    """Required. The type of this condition. For example, "Upper Limit" or "Environment"."""
+    step_id: builtins.str
+    """Required.
+    The id of the step associated with this condition.
     This value is expected to be a parsable GUID.
     """
     @property
-    def condition(self) -> ni.measurements.data.v1.data_store_pb2.Condition:
-        """Required. The single condition present for one published data (output) of a measurement
-        This condition corresponds to a single value associated with the measurement.
-        """
-
-    @property
-    def measurement_metadata(self) -> ni.measurements.data.v1.data_store_pb2.MeasurementMetadata:
-        """The metadata of the measurement associated with this condition."""
-
+    def scalar(self) -> ni.protobuf.types.scalar_pb2.Scalar: ...
     def __init__(
         self,
         *,
-        condition: ni.measurements.data.v1.data_store_pb2.Condition | None = ...,
-        measurement_metadata: ni.measurements.data.v1.data_store_pb2.MeasurementMetadata | None = ...,
-        measurement_id: builtins.str = ...,
+        condition_name: builtins.str = ...,
+        type: builtins.str = ...,
+        scalar: ni.protobuf.types.scalar_pb2.Scalar | None = ...,
+        step_id: builtins.str = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["condition", b"condition", "measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["condition", b"condition", "measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["measurement", b"measurement"]) -> typing.Literal["measurement_metadata", "measurement_id"] | None: ...
+    def HasField(self, field_name: typing.Literal["scalar", b"scalar", "value", b"value"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["condition_name", b"condition_name", "scalar", b"scalar", "step_id", b"step_id", "type", b"type", "value", b"value"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["scalar"] | None: ...
 
 global___PublishConditionRequest = PublishConditionRequest
 
@@ -303,107 +239,51 @@ global___PublishConditionRequest = PublishConditionRequest
 class PublishConditionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STORED_CONDITION_VALUE_FIELD_NUMBER: builtins.int
+    PUBLISHED_CONDITION_FIELD_NUMBER: builtins.int
     @property
-    def stored_condition_value(self) -> ni.measurements.data.v1.data_store_pb2.StoredConditionValue:
-        """A single condition present for the specified measurement."""
+    def published_condition(self) -> ni.measurements.data.v1.data_store_pb2.PublishedCondition:
+        """A single condition present for the specified step."""
 
     def __init__(
         self,
         *,
-        stored_condition_value: ni.measurements.data.v1.data_store_pb2.StoredConditionValue | None = ...,
+        published_condition: ni.measurements.data.v1.data_store_pb2.PublishedCondition | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["stored_condition_value", b"stored_condition_value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["stored_condition_value", b"stored_condition_value"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> None: ...
 
 global___PublishConditionResponse = PublishConditionResponse
-
-@typing.final
-class PublishConditionSetBatchRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    CONDITION_SET_FIELD_NUMBER: builtins.int
-    MEASUREMENT_METADATA_FIELD_NUMBER: builtins.int
-    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
-    measurement_id: builtins.str
-    """The id of the measurement associated with this condition set.
-    This value is expected to be a parsable GUID.
-    """
-    @property
-    def condition_set(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.ConditionArray]:
-        """Required. The set of conditions for N iterations of published data of a measurement.
-        Each item in the list corresponds to an entire column in the overall frame of the
-        condition set.  The entire list of condition values makes up the entire frame of the
-        condition set.
-        """
-
-    @property
-    def measurement_metadata(self) -> ni.measurements.data.v1.data_store_pb2.MeasurementMetadata:
-        """The metadata of the measurement associated with this condition set."""
-
-    def __init__(
-        self,
-        *,
-        condition_set: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.ConditionArray] | None = ...,
-        measurement_metadata: ni.measurements.data.v1.data_store_pb2.MeasurementMetadata | None = ...,
-        measurement_id: builtins.str = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["condition_set", b"condition_set", "measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["measurement", b"measurement"]) -> typing.Literal["measurement_metadata", "measurement_id"] | None: ...
-
-global___PublishConditionSetBatchRequest = PublishConditionSetBatchRequest
-
-@typing.final
-class PublishConditionSetBatchResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    STORED_CONDITION_SET_VALUE_FIELD_NUMBER: builtins.int
-    @property
-    def stored_condition_set_value(self) -> ni.measurements.data.v1.data_store_pb2.StoredConditionSetValue:
-        """A single condition present for the specified measurement.
-        This value's Metadata contains a reference to the measurement ID associated with this condition.
-        """
-
-    def __init__(
-        self,
-        *,
-        stored_condition_set_value: ni.measurements.data.v1.data_store_pb2.StoredConditionSetValue | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["stored_condition_set_value", b"stored_condition_set_value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["stored_condition_set_value", b"stored_condition_set_value"]) -> None: ...
-
-global___PublishConditionSetBatchResponse = PublishConditionSetBatchResponse
 
 @typing.final
 class PublishConditionBatchRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    CONDITION_FIELD_NUMBER: builtins.int
-    MEASUREMENT_METADATA_FIELD_NUMBER: builtins.int
-    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
-    measurement_id: builtins.str
-    """The id of the measurement associated with this condition.
+    CONDITION_NAME_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
+    SCALAR_VALUES_FIELD_NUMBER: builtins.int
+    STEP_ID_FIELD_NUMBER: builtins.int
+    condition_name: builtins.str
+    """Required. Identifier describing the condition values. For example, "Voltage"."""
+    type: builtins.str
+    """Required. The type of this condition. For example, "Upper Limit" or "Environment"."""
+    step_id: builtins.str
+    """Required.
+    The id of the step associated with this batch of condition values.
     This value is expected to be a parsable GUID.
     """
     @property
-    def condition(self) -> ni.measurements.data.v1.data_store_pb2.ConditionArray:
-        """Required. The batch of conditions for N iterations of published data of a measurement."""
-
-    @property
-    def measurement_metadata(self) -> ni.measurements.data.v1.data_store_pb2.MeasurementMetadata:
-        """The metadata of the measurement associated with this condition."""
-
+    def scalar_values(self) -> ni.protobuf.types.vector_pb2.Vector: ...
     def __init__(
         self,
         *,
-        condition: ni.measurements.data.v1.data_store_pb2.ConditionArray | None = ...,
-        measurement_metadata: ni.measurements.data.v1.data_store_pb2.MeasurementMetadata | None = ...,
-        measurement_id: builtins.str = ...,
+        condition_name: builtins.str = ...,
+        type: builtins.str = ...,
+        scalar_values: ni.protobuf.types.vector_pb2.Vector | None = ...,
+        step_id: builtins.str = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["condition", b"condition", "measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["condition", b"condition", "measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["measurement", b"measurement"]) -> typing.Literal["measurement_metadata", "measurement_id"] | None: ...
+    def HasField(self, field_name: typing.Literal["scalar_values", b"scalar_values", "values", b"values"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["condition_name", b"condition_name", "scalar_values", b"scalar_values", "step_id", b"step_id", "type", b"type", "values", b"values"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["values", b"values"]) -> typing.Literal["scalar_values"] | None: ...
 
 global___PublishConditionBatchRequest = PublishConditionBatchRequest
 
@@ -411,304 +291,258 @@ global___PublishConditionBatchRequest = PublishConditionBatchRequest
 class PublishConditionBatchResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STORED_CONDITION_VALUE_FIELD_NUMBER: builtins.int
+    PUBLISHED_CONDITION_FIELD_NUMBER: builtins.int
     @property
-    def stored_condition_value(self) -> ni.measurements.data.v1.data_store_pb2.StoredConditionValue:
-        """A shared value for *all* condition data present for the specified measurement."""
+    def published_condition(self) -> ni.measurements.data.v1.data_store_pb2.PublishedCondition:
+        """A shared value for *all* condition measurements present for the specified step."""
 
     def __init__(
         self,
         *,
-        stored_condition_value: ni.measurements.data.v1.data_store_pb2.StoredConditionValue | None = ...,
+        published_condition: ni.measurements.data.v1.data_store_pb2.PublishedCondition | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["stored_condition_value", b"stored_condition_value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["stored_condition_value", b"stored_condition_value"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> None: ...
 
 global___PublishConditionBatchResponse = PublishConditionBatchResponse
 
 @typing.final
-class PublishDataRequest(google.protobuf.message.Message):
+class PublishMeasurementRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    DATA_FIELD_NUMBER: builtins.int
+    MEASUREMENT_NAME_FIELD_NUMBER: builtins.int
+    SCALAR_FIELD_NUMBER: builtins.int
+    VECTOR_FIELD_NUMBER: builtins.int
+    DOUBLE_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
+    X_Y_DATA_FIELD_NUMBER: builtins.int
+    I16_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
+    DOUBLE_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
+    I16_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
+    DOUBLE_SPECTRUM_FIELD_NUMBER: builtins.int
+    DIGITAL_WAVEFORM_FIELD_NUMBER: builtins.int
     NOTES_FIELD_NUMBER: builtins.int
     TIMESTAMP_FIELD_NUMBER: builtins.int
-    PASS_FAIL_STATUS_FIELD_NUMBER: builtins.int
-    ERROR_STATE_FIELD_NUMBER: builtins.int
-    ERROR_MESSAGE_FIELD_NUMBER: builtins.int
-    MEASUREMENT_METADATA_FIELD_NUMBER: builtins.int
-    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
-    HARDWARE_LIST_FIELD_NUMBER: builtins.int
-    HARDWARE_IDENTIFIER_LIST_FIELD_NUMBER: builtins.int
-    SOFTWARE_LIST_FIELD_NUMBER: builtins.int
-    SOFTWARE_IDENTIFIER_LIST_FIELD_NUMBER: builtins.int
+    OUTCOME_FIELD_NUMBER: builtins.int
+    ERROR_INFORMATION_FIELD_NUMBER: builtins.int
+    STEP_ID_FIELD_NUMBER: builtins.int
+    HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
+    SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    measurement_name: builtins.str
+    """Required for measurement. This name is used for associating/grouping conceptually alike measurements across multiple publish iterations.
+    For example, a shared name of "Temperature" can be used for associating temperature readings across multiple iterations of publishing.
+    """
     notes: builtins.str
-    """Optional. Any notes to be associated with the captured data."""
-    pass_fail_status: ni.measurements.data.v1.data_store_pb2.PassFailStatus.ValueType
-    """Optional. The pass fail status of the measurement."""
-    error_state: ni.measurements.data.v1.data_store_pb2.ErrorState.ValueType
-    """Optional. The error state of the measurement."""
-    measurement_id: builtins.str
-    """The id of the measurement associated with this data.
+    """Optional. Any notes to be associated with the captured measurement."""
+    outcome: ni.measurements.data.v1.data_store_pb2.Outcome.ValueType
+    """Optional. The outcome of the measurement."""
+    step_id: builtins.str
+    """Required.
+    The id of the step associated with this measurement.
     This value is expected to be a parsable GUID.
     """
     @property
-    def data(self) -> ni.measurements.data.v1.data_store_pb2.PublishableData:
-        """Required. The data to be published."""
-
+    def scalar(self) -> ni.protobuf.types.scalar_pb2.Scalar: ...
     @property
-    def timestamp(self) -> google.protobuf.timestamp_pb2.Timestamp:
+    def vector(self) -> ni.protobuf.types.vector_pb2.Vector: ...
+    @property
+    def double_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.DoubleAnalogWaveform: ...
+    @property
+    def x_y_data(self) -> ni.protobuf.types.xydata_pb2.DoubleXYData: ...
+    @property
+    def i16_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.I16AnalogWaveform: ...
+    @property
+    def double_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.DoubleComplexWaveform: ...
+    @property
+    def i16_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.I16ComplexWaveform: ...
+    @property
+    def double_spectrum(self) -> ni.protobuf.types.waveform_pb2.DoubleSpectrum: ...
+    @property
+    def digital_waveform(self) -> ni.protobuf.types.waveform_pb2.DigitalWaveform: ...
+    @property
+    def timestamp(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
         """Required. The timestamp of the measurement."""
 
     @property
-    def error_message(self) -> ni.measurements.data.v1.data_store_pb2.ErrorMessage:
-        """Optional. The error message of the measurement."""
+    def error_information(self) -> ni.measurements.data.v1.data_store_pb2.ErrorInformation:
+        """Optional. Error or exception information in JSON format."""
 
     @property
-    def measurement_metadata(self) -> ni.measurements.data.v1.data_store_pb2.MeasurementMetadata:
-        """The metadata of the measurement associated with this data."""
-
-    @property
-    def hardware_list(self) -> ni.measurements.data.v1.data_store_pb2.HardwareMetadataList:
-        """The list of hardware associated with this data."""
-
-    @property
-    def hardware_identifier_list(self) -> ni.measurements.data.v1.data_store_pb2.IdentifierList:
-        """The ids of the hardware associated with this data. These values are expected
+    def hardware_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Optional. The ids of the hardware items associated with this measurement. These values are expected
         to be parsable GUIDs or aliases.
         """
 
     @property
-    def software_list(self) -> ni.measurements.data.v1.data_store_pb2.SoftwareMetadataList:
-        """The list of software associated with this data."""
+    def test_adapter_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Optional. The ids of the test adapters associated with this measurement. These values are expected
+        to be parsable GUIDs or aliases.
+        """
 
     @property
-    def software_identifier_list(self) -> ni.measurements.data.v1.data_store_pb2.IdentifierList:
-        """The ids of the software associated with this data. These values are expected
+    def software_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Optional. The ids of the software items associated with this measurement. These values are expected
         to be parsable GUIDs or aliases.
         """
 
     def __init__(
         self,
         *,
-        data: ni.measurements.data.v1.data_store_pb2.PublishableData | None = ...,
+        measurement_name: builtins.str = ...,
+        scalar: ni.protobuf.types.scalar_pb2.Scalar | None = ...,
+        vector: ni.protobuf.types.vector_pb2.Vector | None = ...,
+        double_analog_waveform: ni.protobuf.types.waveform_pb2.DoubleAnalogWaveform | None = ...,
+        x_y_data: ni.protobuf.types.xydata_pb2.DoubleXYData | None = ...,
+        i16_analog_waveform: ni.protobuf.types.waveform_pb2.I16AnalogWaveform | None = ...,
+        double_complex_waveform: ni.protobuf.types.waveform_pb2.DoubleComplexWaveform | None = ...,
+        i16_complex_waveform: ni.protobuf.types.waveform_pb2.I16ComplexWaveform | None = ...,
+        double_spectrum: ni.protobuf.types.waveform_pb2.DoubleSpectrum | None = ...,
+        digital_waveform: ni.protobuf.types.waveform_pb2.DigitalWaveform | None = ...,
         notes: builtins.str = ...,
-        timestamp: google.protobuf.timestamp_pb2.Timestamp | None = ...,
-        pass_fail_status: ni.measurements.data.v1.data_store_pb2.PassFailStatus.ValueType = ...,
-        error_state: ni.measurements.data.v1.data_store_pb2.ErrorState.ValueType = ...,
-        error_message: ni.measurements.data.v1.data_store_pb2.ErrorMessage | None = ...,
-        measurement_metadata: ni.measurements.data.v1.data_store_pb2.MeasurementMetadata | None = ...,
-        measurement_id: builtins.str = ...,
-        hardware_list: ni.measurements.data.v1.data_store_pb2.HardwareMetadataList | None = ...,
-        hardware_identifier_list: ni.measurements.data.v1.data_store_pb2.IdentifierList | None = ...,
-        software_list: ni.measurements.data.v1.data_store_pb2.SoftwareMetadataList | None = ...,
-        software_identifier_list: ni.measurements.data.v1.data_store_pb2.IdentifierList | None = ...,
+        timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        outcome: ni.measurements.data.v1.data_store_pb2.Outcome.ValueType = ...,
+        error_information: ni.measurements.data.v1.data_store_pb2.ErrorInformation | None = ...,
+        step_id: builtins.str = ...,
+        hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["data", b"data", "error_message", b"error_message", "hardware", b"hardware", "hardware_identifier_list", b"hardware_identifier_list", "hardware_list", b"hardware_list", "measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata", "software", b"software", "software_identifier_list", b"software_identifier_list", "software_list", b"software_list", "timestamp", b"timestamp"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["data", b"data", "error_message", b"error_message", "error_state", b"error_state", "hardware", b"hardware", "hardware_identifier_list", b"hardware_identifier_list", "hardware_list", b"hardware_list", "measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata", "notes", b"notes", "pass_fail_status", b"pass_fail_status", "software", b"software", "software_identifier_list", b"software_identifier_list", "software_list", b"software_list", "timestamp", b"timestamp"]) -> None: ...
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing.Literal["hardware", b"hardware"]) -> typing.Literal["hardware_list", "hardware_identifier_list"] | None: ...
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing.Literal["measurement", b"measurement"]) -> typing.Literal["measurement_metadata", "measurement_id"] | None: ...
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing.Literal["software", b"software"]) -> typing.Literal["software_list", "software_identifier_list"] | None: ...
+    def HasField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "error_information", b"error_information", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "scalar", b"scalar", "timestamp", b"timestamp", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "measurement_name", b"measurement_name", "notes", b"notes", "outcome", b"outcome", "scalar", b"scalar", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamp", b"timestamp", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["scalar", "vector", "double_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "i16_complex_waveform", "double_spectrum", "digital_waveform"] | None: ...
 
-global___PublishDataRequest = PublishDataRequest
+global___PublishMeasurementRequest = PublishMeasurementRequest
 
 @typing.final
-class PublishDataResponse(google.protobuf.message.Message):
+class PublishMeasurementResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STORED_DATA_VALUE_FIELD_NUMBER: builtins.int
+    PUBLISHED_MEASUREMENT_FIELD_NUMBER: builtins.int
     @property
-    def stored_data_value(self) -> ni.measurements.data.v1.data_store_pb2.StoredDataValue:
-        """The moniker of the published data and its metadata."""
+    def published_measurement(self) -> ni.measurements.data.v1.data_store_pb2.PublishedMeasurement:
+        """The moniker of the published measurement and its metadata."""
 
     def __init__(
         self,
         *,
-        stored_data_value: ni.measurements.data.v1.data_store_pb2.StoredDataValue | None = ...,
+        published_measurement: ni.measurements.data.v1.data_store_pb2.PublishedMeasurement | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["stored_data_value", b"stored_data_value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["stored_data_value", b"stored_data_value"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["published_measurement", b"published_measurement"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["published_measurement", b"published_measurement"]) -> None: ...
 
-global___PublishDataResponse = PublishDataResponse
+global___PublishMeasurementResponse = PublishMeasurementResponse
 
 @typing.final
-class PublishDataBatchRequest(google.protobuf.message.Message):
+class PublishMeasurementBatchRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    DATA_FIELD_NUMBER: builtins.int
+    MEASUREMENT_NAME_FIELD_NUMBER: builtins.int
+    SCALAR_VALUES_FIELD_NUMBER: builtins.int
     TIMESTAMP_FIELD_NUMBER: builtins.int
-    PASS_FAIL_STATUS_FIELD_NUMBER: builtins.int
-    ERROR_STATE_FIELD_NUMBER: builtins.int
-    ERROR_MESSAGE_FIELD_NUMBER: builtins.int
-    MEASUREMENT_METADATA_FIELD_NUMBER: builtins.int
-    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
-    HARDWARE_LIST_FIELD_NUMBER: builtins.int
-    HARDWARE_IDENTIFIER_LIST_FIELD_NUMBER: builtins.int
-    SOFTWARE_LIST_FIELD_NUMBER: builtins.int
-    SOFTWARE_IDENTIFIER_LIST_FIELD_NUMBER: builtins.int
-    measurement_id: builtins.str
-    """The id of the measurement associated with this data.
+    OUTCOME_FIELD_NUMBER: builtins.int
+    ERROR_INFORMATION_FIELD_NUMBER: builtins.int
+    STEP_ID_FIELD_NUMBER: builtins.int
+    HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
+    SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    measurement_name: builtins.str
+    """Required for measurement. This name is used for associating/grouping conceptually alike measurements across multiple publish iterations.
+    For example, a shared name of "Temperature" can be used for associating temperature readings across multiple iterations of publishing.
+    """
+    step_id: builtins.str
+    """Required.
+    The id of the step associated with this measurement.
     This value is expected to be a parsable GUID.
     """
     @property
-    def data(self) -> ni.measurements.data.v1.data_store_pb2.PublishableDataBatch:
-        """Required. The batch of N data values to be published."""
-
+    def scalar_values(self) -> ni.protobuf.types.vector_pb2.Vector: ...
     @property
-    def timestamp(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.timestamp_pb2.Timestamp]:
-        """Optional. The timestamps corresponding to the N iterations of batched data being published.
+    def timestamp(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp]:
+        """Optional. The timestamps corresponding to the N iterations of batched measurement being published.
         This field must meet one of the following requirements:
 
-          1. The field may be empty. (No timestamp information is recorded for the data.)
-          2. The field may contain a single value. This value will be associated with each value of the batched data.
-          3. The field may contain N values, where N is the number of individual batched data values being published.
-             In this case, each timestamp aligns with the data value at the corresponding index within the PublishableDataBatch.
+          1. The field may be empty. (No timestamp information is recorded for the measurement.)
+          2. The field may contain a single value. This value will be associated with each value of the batched measurement.
+          3. The field may contain N values, where N is the number of individual batched measurements being published.
+             In this case, each timestamp aligns with the scalar value at the corresponding index within the vector.
         """
 
     @property
-    def pass_fail_status(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[ni.measurements.data.v1.data_store_pb2.PassFailStatus.ValueType]:
-        """Optional. The pass/fail statuses corresponding to the N iterations of batched data being published.
+    def outcome(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[ni.measurements.data.v1.data_store_pb2.Outcome.ValueType]:
+        """Optional. The outcomes corresponding to the N iterations of batched measurement being published.
         This field must meet one of the following requirements:
 
-          1. The field may be empty. (No pass/fail status information is recorded for the data.)
-          2. The field may contain a single value. This value will be associated with each value of the batched data.
-          3. The field may contain N values, where N is the number of individual batched data values being published.
-             In this case, each pass/fail status aligns with the data value at the corresponding index within the PublishableDataBatch.
+          1. The field may be empty. (No outcome information is recorded for the measurement.)
+          2. The field may contain a single value. This value will be associated with each value of the batched measurement.
+          3. The field may contain N values, where N is the number of individual batched measurements being published.
+             In this case, each outcome aligns with the scalar value at the corresponding index within the vector.
         """
 
     @property
-    def error_state(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[ni.measurements.data.v1.data_store_pb2.ErrorState.ValueType]:
-        """Optional. The error states corresponding to the N iterations of batched data being published.
+    def error_information(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.ErrorInformation]:
+        """Optional. The error information corresponding to the N iterations of batched measurement being published.
         This field must meet one of the following requirements:
 
-          1. The field may be empty. (No error state information is recorded for the data.)
-          2. The field may contain a single value. This value will be associated with each value of the batched data.
-          3. The field may contain N values, where N is the number of individual batched data values being published.
-             In this case, each error state aligns with the data value at the corresponding index within the PublishableDataBatch.
+          1. The field may be empty. (No error information is recorded for the measurement.)
+          2. The field may contain a single value. This value will be associated with each value of the batched measurement.
+          3. The field may contain N values, where N is the number of individual batched measurements being published.
+             In this case, each error information aligns with the scalar value at the corresponding index within the vector.
         """
 
     @property
-    def error_message(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.ErrorMessage]:
-        """Optional. The error messages corresponding to the N iterations of batched data being published.
-        This field must meet one of the following requirements:
-
-          1. The field may be empty. (No error message information is recorded for the data.)
-          2. The field may contain a single value. This value will be associated with each value of the batched data.
-          3. The field may contain N values, where N is the number of individual batched data values being published.
-             In this case, each error message aligns with the data value at the corresponding index within the PublishableDataBatch.
-        """
-
-    @property
-    def measurement_metadata(self) -> ni.measurements.data.v1.data_store_pb2.MeasurementMetadata:
-        """The metadata of the measurement associated with this data."""
-
-    @property
-    def hardware_list(self) -> ni.measurements.data.v1.data_store_pb2.HardwareMetadataList:
-        """The list of hardware associated with this data."""
-
-    @property
-    def hardware_identifier_list(self) -> ni.measurements.data.v1.data_store_pb2.IdentifierList:
-        """The ids of the hardware associated with this data. These values are expected
+    def hardware_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Optional. The ids of the hardware items associated with this measurement. These values are expected
         to be parsable GUIDs or aliases.
         """
 
     @property
-    def software_list(self) -> ni.measurements.data.v1.data_store_pb2.SoftwareMetadataList:
-        """The list of software associated with this data."""
+    def test_adapter_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Optional. The ids of the test adapters associated with this measurement. These values are expected
+        to be parsable GUIDs or aliases.
+        """
 
     @property
-    def software_identifier_list(self) -> ni.measurements.data.v1.data_store_pb2.IdentifierList:
-        """The ids of the software associated with this data. These values are expected
+    def software_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Optional. The ids of the software items associated with this measurement. These values are expected
         to be parsable GUIDs or aliases.
         """
 
     def __init__(
         self,
         *,
-        data: ni.measurements.data.v1.data_store_pb2.PublishableDataBatch | None = ...,
-        timestamp: collections.abc.Iterable[google.protobuf.timestamp_pb2.Timestamp] | None = ...,
-        pass_fail_status: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.PassFailStatus.ValueType] | None = ...,
-        error_state: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.ErrorState.ValueType] | None = ...,
-        error_message: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.ErrorMessage] | None = ...,
-        measurement_metadata: ni.measurements.data.v1.data_store_pb2.MeasurementMetadata | None = ...,
-        measurement_id: builtins.str = ...,
-        hardware_list: ni.measurements.data.v1.data_store_pb2.HardwareMetadataList | None = ...,
-        hardware_identifier_list: ni.measurements.data.v1.data_store_pb2.IdentifierList | None = ...,
-        software_list: ni.measurements.data.v1.data_store_pb2.SoftwareMetadataList | None = ...,
-        software_identifier_list: ni.measurements.data.v1.data_store_pb2.IdentifierList | None = ...,
+        measurement_name: builtins.str = ...,
+        scalar_values: ni.protobuf.types.vector_pb2.Vector | None = ...,
+        timestamp: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
+        outcome: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.Outcome.ValueType] | None = ...,
+        error_information: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.ErrorInformation] | None = ...,
+        step_id: builtins.str = ...,
+        hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["data", b"data", "hardware", b"hardware", "hardware_identifier_list", b"hardware_identifier_list", "hardware_list", b"hardware_list", "measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata", "software", b"software", "software_identifier_list", b"software_identifier_list", "software_list", b"software_list"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["data", b"data", "error_message", b"error_message", "error_state", b"error_state", "hardware", b"hardware", "hardware_identifier_list", b"hardware_identifier_list", "hardware_list", b"hardware_list", "measurement", b"measurement", "measurement_id", b"measurement_id", "measurement_metadata", b"measurement_metadata", "pass_fail_status", b"pass_fail_status", "software", b"software", "software_identifier_list", b"software_identifier_list", "software_list", b"software_list", "timestamp", b"timestamp"]) -> None: ...
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing.Literal["hardware", b"hardware"]) -> typing.Literal["hardware_list", "hardware_identifier_list"] | None: ...
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing.Literal["measurement", b"measurement"]) -> typing.Literal["measurement_metadata", "measurement_id"] | None: ...
-    @typing.overload
-    def WhichOneof(self, oneof_group: typing.Literal["software", b"software"]) -> typing.Literal["software_list", "software_identifier_list"] | None: ...
+    def HasField(self, field_name: typing.Literal["scalar_values", b"scalar_values", "values", b"values"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "measurement_name", b"measurement_name", "outcome", b"outcome", "scalar_values", b"scalar_values", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamp", b"timestamp", "values", b"values"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["values", b"values"]) -> typing.Literal["scalar_values"] | None: ...
 
-global___PublishDataBatchRequest = PublishDataBatchRequest
+global___PublishMeasurementBatchRequest = PublishMeasurementBatchRequest
 
 @typing.final
-class PublishDataBatchResponse(google.protobuf.message.Message):
+class PublishMeasurementBatchResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STORED_DATA_VALUES_FIELD_NUMBER: builtins.int
+    PUBLISHED_MEASUREMENTS_FIELD_NUMBER: builtins.int
     @property
-    def stored_data_values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.StoredDataValue]:
-        """The monikers of the published data and their corresponding metadata."""
+    def published_measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.PublishedMeasurement]:
+        """The monikers of the published measurements and their corresponding metadata."""
 
     def __init__(
         self,
         *,
-        stored_data_values: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.StoredDataValue] | None = ...,
+        published_measurements: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.PublishedMeasurement] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["stored_data_values", b"stored_data_values"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["published_measurements", b"published_measurements"]) -> None: ...
 
-global___PublishDataBatchResponse = PublishDataBatchResponse
-
-@typing.final
-class QueryConditionSetsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    ODATA_QUERY_FIELD_NUMBER: builtins.int
-    odata_query: builtins.str
-    """an OData query string.  example "$filter=name eq 'Value'"
-    An empty string will return all condition sets.
-    $expand, $count, and $select are not supported. For more information,
-    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
-    """
-    def __init__(
-        self,
-        *,
-        odata_query: builtins.str = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
-
-global___QueryConditionSetsRequest = QueryConditionSetsRequest
-
-@typing.final
-class QueryConditionSetsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    STORED_CONDITION_SET_VALUES_FIELD_NUMBER: builtins.int
-    @property
-    def stored_condition_set_values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.StoredConditionSetValue]:
-        """The list of matching condition sets. Each item contains a moniker for
-        retrieving the condition set data, as well as the metadata associated
-        with the condition set.
-        """
-
-    def __init__(
-        self,
-        *,
-        stored_condition_set_values: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.StoredConditionSetValue] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["stored_condition_set_values", b"stored_condition_set_values"]) -> None: ...
-
-global___QueryConditionSetsResponse = QueryConditionSetsResponse
+global___PublishMeasurementBatchResponse = PublishMeasurementBatchResponse
 
 @typing.final
 class QueryConditionsRequest(google.protobuf.message.Message):
@@ -734,31 +568,31 @@ global___QueryConditionsRequest = QueryConditionsRequest
 class QueryConditionsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STORED_CONDITION_VALUES_FIELD_NUMBER: builtins.int
+    PUBLISHED_CONDITIONS_FIELD_NUMBER: builtins.int
     @property
-    def stored_condition_values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.StoredConditionValue]:
+    def published_conditions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.PublishedCondition]:
         """The list of matching conditions. Each item contains a moniker for
-        retrieving the condition data, as well as the metadata associated
+        retrieving the condition measurements, as well as the metadata associated
         with the condition.
         """
 
     def __init__(
         self,
         *,
-        stored_condition_values: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.StoredConditionValue] | None = ...,
+        published_conditions: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.PublishedCondition] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["stored_condition_values", b"stored_condition_values"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["published_conditions", b"published_conditions"]) -> None: ...
 
 global___QueryConditionsResponse = QueryConditionsResponse
 
 @typing.final
-class QueryDataRequest(google.protobuf.message.Message):
+class QueryMeasurementsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ODATA_QUERY_FIELD_NUMBER: builtins.int
     odata_query: builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
-    An empty string will return all data values.
+    An empty string will return all measurements.
     $expand, $count, and $select are not supported. For more information,
     see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
@@ -769,24 +603,24 @@ class QueryDataRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryDataRequest = QueryDataRequest
+global___QueryMeasurementsRequest = QueryMeasurementsRequest
 
 @typing.final
-class QueryDataResponse(google.protobuf.message.Message):
+class QueryMeasurementsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STORED_DATA_VALUES_FIELD_NUMBER: builtins.int
+    PUBLISHED_MEASUREMENTS_FIELD_NUMBER: builtins.int
     @property
-    def stored_data_values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.StoredDataValue]:
-        """The list of matching data values. Each item contains a moniker for
-        retrieving the data, as well as the metadata associated with the data.
+    def published_measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.PublishedMeasurement]:
+        """The list of matching measurements. Each item contains a moniker for
+        retrieving the measurement, as well as the metadata associated with the measurement.
         """
 
     def __init__(
         self,
         *,
-        stored_data_values: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.StoredDataValue] | None = ...,
+        published_measurements: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.PublishedMeasurement] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["stored_data_values", b"stored_data_values"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["published_measurements", b"published_measurements"]) -> None: ...
 
-global___QueryDataResponse = QueryDataResponse
+global___QueryMeasurementsResponse = QueryMeasurementsResponse

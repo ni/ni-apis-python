@@ -26,260 +26,273 @@ class _AliasTargetType:
 class _AliasTargetTypeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_AliasTargetType.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     ALIAS_TARGET_TYPE_UNSPECIFIED: _AliasTargetType.ValueType  # 0
-    ALIAS_TARGET_TYPE_DUT: _AliasTargetType.ValueType  # 1
-    ALIAS_TARGET_TYPE_PRODUCT: _AliasTargetType.ValueType  # 2
-    ALIAS_TARGET_TYPE_HARDWARE: _AliasTargetType.ValueType  # 3
-    ALIAS_TARGET_TYPE_SOFTWARE: _AliasTargetType.ValueType  # 4
+    ALIAS_TARGET_TYPE_UUT_INSTANCE: _AliasTargetType.ValueType  # 1
+    ALIAS_TARGET_TYPE_UUT: _AliasTargetType.ValueType  # 2
+    ALIAS_TARGET_TYPE_HARDWARE_ITEM: _AliasTargetType.ValueType  # 3
+    ALIAS_TARGET_TYPE_SOFTWARE_ITEM: _AliasTargetType.ValueType  # 4
     ALIAS_TARGET_TYPE_OPERATOR: _AliasTargetType.ValueType  # 5
-    ALIAS_TARGET_TYPE_TEST_PLAN: _AliasTargetType.ValueType  # 6
+    ALIAS_TARGET_TYPE_TEST_DESCRIPTION: _AliasTargetType.ValueType  # 6
     ALIAS_TARGET_TYPE_TEST: _AliasTargetType.ValueType  # 7
     ALIAS_TARGET_TYPE_TEST_STATION: _AliasTargetType.ValueType  # 8
+    ALIAS_TARGET_TYPE_TEST_ADAPTER: _AliasTargetType.ValueType  # 9
 
 class AliasTargetType(_AliasTargetType, metaclass=_AliasTargetTypeEnumTypeWrapper):
     """The type of the aliased metadata instance."""
 
 ALIAS_TARGET_TYPE_UNSPECIFIED: AliasTargetType.ValueType  # 0
-ALIAS_TARGET_TYPE_DUT: AliasTargetType.ValueType  # 1
-ALIAS_TARGET_TYPE_PRODUCT: AliasTargetType.ValueType  # 2
-ALIAS_TARGET_TYPE_HARDWARE: AliasTargetType.ValueType  # 3
-ALIAS_TARGET_TYPE_SOFTWARE: AliasTargetType.ValueType  # 4
+ALIAS_TARGET_TYPE_UUT_INSTANCE: AliasTargetType.ValueType  # 1
+ALIAS_TARGET_TYPE_UUT: AliasTargetType.ValueType  # 2
+ALIAS_TARGET_TYPE_HARDWARE_ITEM: AliasTargetType.ValueType  # 3
+ALIAS_TARGET_TYPE_SOFTWARE_ITEM: AliasTargetType.ValueType  # 4
 ALIAS_TARGET_TYPE_OPERATOR: AliasTargetType.ValueType  # 5
-ALIAS_TARGET_TYPE_TEST_PLAN: AliasTargetType.ValueType  # 6
+ALIAS_TARGET_TYPE_TEST_DESCRIPTION: AliasTargetType.ValueType  # 6
 ALIAS_TARGET_TYPE_TEST: AliasTargetType.ValueType  # 7
 ALIAS_TARGET_TYPE_TEST_STATION: AliasTargetType.ValueType  # 8
+ALIAS_TARGET_TYPE_TEST_ADAPTER: AliasTargetType.ValueType  # 9
 global___AliasTargetType = AliasTargetType
 
 @typing.final
-class DUTMetadata(google.protobuf.message.Message):
-    """Represents the metadata of a device under test"""
+class UutInstance(google.protobuf.message.Message):
+    """Represents the metadata of a UUT instance"""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class CustomMetadataEntry(google.protobuf.message.Message):
+    class ExtensionsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___CustomMetadataValue: ...
+        def value(self) -> global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___CustomMetadataValue | None = ...,
+            value: global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
 
-    PRODUCT_METADATA_FIELD_NUMBER: builtins.int
-    PRODUCT_ID_FIELD_NUMBER: builtins.int
+    UUT_ID_FIELD_NUMBER: builtins.int
     SERIAL_NUMBER_FIELD_NUMBER: builtins.int
     MANUFACTURE_DATE_FIELD_NUMBER: builtins.int
+    FIRMWARE_VERSION_FIELD_NUMBER: builtins.int
+    HARDWARE_VERSION_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_SCHEMA_ID_FIELD_NUMBER: builtins.int
-    product_id: builtins.str
-    """The id of the product associated with this device under test.
+    EXTENSIONS_FIELD_NUMBER: builtins.int
+    SCHEMA_ID_FIELD_NUMBER: builtins.int
+    uut_id: builtins.str
+    """The id of the UUT associated with this UUT instance.
     This value is expected to be a parsable GUID or an alias. It will always
     be returned from the service as a GUID.
     See ni.measurements.metadata.MetadataStoreService for more information.
     """
     serial_number: builtins.str
-    """The serial number of the device under test"""
+    """The serial number of the UUT instance"""
     manufacture_date: builtins.str
-    """The date the device under test was manufactured"""
+    """The date the UUT instance was manufactured"""
+    firmware_version: builtins.str
+    """Version of the firmware on the UUT instance"""
+    hardware_version: builtins.str
+    """Hardware version of the UUT instance"""
     link: builtins.str
-    """A link to a resource that describes the device under test.
+    """A link to a resource that describes the UUT instance.
     This value is expected to be a valid URI.
     """
-    custom_metadata_schema_id: builtins.str
-    """The unique identifier of the custom metadata schema that applies to
-    this instance's custom metadata.  If any custom_metadata is associated
-    with this instance, a custom_metadata_schema_id must be provided, unless
-    the dut is created within the context of a session, in which case
-    the session must have a custom_metadata_schema_id.
+    schema_id: builtins.str
+    """The unique identifier of the schema that applies to this instance's extension.
+    If any extension is associated with this instance, a schema_id must be provided, unless
+    the UUT instance is created within the context of a test result, in which case
+    the test result must have a schema_id.
     """
     @property
-    def product_metadata(self) -> global___ProductMetadata:
-        """The product associated with this device under test."""
-
-    @property
-    def custom_metadata(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___CustomMetadataValue]:
-        """Any custom metadata to be associated with the device under test"""
+    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Any extensions to be associated with the UUT instance"""
 
     def __init__(
         self,
         *,
-        product_metadata: global___ProductMetadata | None = ...,
-        product_id: builtins.str = ...,
+        uut_id: builtins.str = ...,
         serial_number: builtins.str = ...,
         manufacture_date: builtins.str = ...,
+        firmware_version: builtins.str = ...,
+        hardware_version: builtins.str = ...,
         link: builtins.str = ...,
-        custom_metadata: collections.abc.Mapping[builtins.str, global___CustomMetadataValue] | None = ...,
-        custom_metadata_schema_id: builtins.str = ...,
+        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        schema_id: builtins.str = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["product", b"product", "product_id", b"product_id", "product_metadata", b"product_metadata"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["custom_metadata", b"custom_metadata", "custom_metadata_schema_id", b"custom_metadata_schema_id", "link", b"link", "manufacture_date", b"manufacture_date", "product", b"product", "product_id", b"product_id", "product_metadata", b"product_metadata", "serial_number", b"serial_number"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["product", b"product"]) -> typing.Literal["product_metadata", "product_id"] | None: ...
+    def ClearField(self, field_name: typing.Literal["extensions", b"extensions", "firmware_version", b"firmware_version", "hardware_version", b"hardware_version", "link", b"link", "manufacture_date", b"manufacture_date", "schema_id", b"schema_id", "serial_number", b"serial_number", "uut_id", b"uut_id"]) -> None: ...
 
-global___DUTMetadata = DUTMetadata
+global___UutInstance = UutInstance
 
 @typing.final
-class ProductMetadata(google.protobuf.message.Message):
-    """Represents the metadata of a product"""
+class Uut(google.protobuf.message.Message):
+    """Represents the metadata of a UUT"""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class CustomMetadataEntry(google.protobuf.message.Message):
+    class ExtensionsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___CustomMetadataValue: ...
+        def value(self) -> global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___CustomMetadataValue | None = ...,
+            value: global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
 
-    NAME_FIELD_NUMBER: builtins.int
+    MODEL_NAME_FIELD_NUMBER: builtins.int
+    FAMILY_FIELD_NUMBER: builtins.int
+    MANUFACTURERS_FIELD_NUMBER: builtins.int
     PART_NUMBER_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_SCHEMA_ID_FIELD_NUMBER: builtins.int
-    name: builtins.str
-    """The name of the product"""
+    EXTENSIONS_FIELD_NUMBER: builtins.int
+    SCHEMA_ID_FIELD_NUMBER: builtins.int
+    model_name: builtins.str
+    """The name of the UUT model"""
+    family: builtins.str
+    """The UUT family"""
     part_number: builtins.str
-    """The part number of the product"""
+    """The part number of the UUT"""
     link: builtins.str
-    """A link to a resource that describes the product.
+    """A link to a resource that describes the UUT.
     This value is expected to be a valid URI.
     """
-    custom_metadata_schema_id: builtins.str
-    """The unique identifier of the custom metadata schema that applies to
-    this instance's custom metadata.  If any custom_metadata is associated
-    with this instance, a custom_metadata_schema_id must be provided, unless
-    the product is created within the context of a session, in which case
-    the session must have a custom_metadata_schema_id.
+    schema_id: builtins.str
+    """The unique identifier of the schema that applies to this instance's extension.
+    If any extension is associated with this instance, a schema_id must be provided, unless
+    the UUT is created within the context of a test result, in which case
+    the test result must have a schema_id.
     """
     @property
-    def custom_metadata(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___CustomMetadataValue]:
-        """Any custom metadata to be associated with the product"""
+    def manufacturers(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """List of manufacturers of the UUT"""
+
+    @property
+    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Any extensions to be associated with the UUT"""
 
     def __init__(
         self,
         *,
-        name: builtins.str = ...,
+        model_name: builtins.str = ...,
+        family: builtins.str = ...,
+        manufacturers: collections.abc.Iterable[builtins.str] | None = ...,
         part_number: builtins.str = ...,
         link: builtins.str = ...,
-        custom_metadata: collections.abc.Mapping[builtins.str, global___CustomMetadataValue] | None = ...,
-        custom_metadata_schema_id: builtins.str = ...,
+        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["custom_metadata", b"custom_metadata", "custom_metadata_schema_id", b"custom_metadata_schema_id", "link", b"link", "name", b"name", "part_number", b"part_number"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["extensions", b"extensions", "family", b"family", "link", b"link", "manufacturers", b"manufacturers", "model_name", b"model_name", "part_number", b"part_number", "schema_id", b"schema_id"]) -> None: ...
 
-global___ProductMetadata = ProductMetadata
+global___Uut = Uut
 
 @typing.final
-class HardwareMetadata(google.protobuf.message.Message):
-    """Represents the metadata of hardware used to take a given measurement."""
+class HardwareItem(google.protobuf.message.Message):
+    """Represents the metadata of the hardware item used to take given measurements."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class CustomMetadataEntry(google.protobuf.message.Message):
+    class ExtensionsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___CustomMetadataValue: ...
+        def value(self) -> global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___CustomMetadataValue | None = ...,
+            value: global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
 
-    VENDOR_FIELD_NUMBER: builtins.int
+    MANUFACTURER_FIELD_NUMBER: builtins.int
     MODEL_FIELD_NUMBER: builtins.int
-    PART_NUMBER_FIELD_NUMBER: builtins.int
     SERIAL_NUMBER_FIELD_NUMBER: builtins.int
-    CALIBRATION_DATE_FIELD_NUMBER: builtins.int
+    PART_NUMBER_FIELD_NUMBER: builtins.int
+    ASSET_IDENTIFIER_FIELD_NUMBER: builtins.int
+    CALIBRATION_DUE_DATE_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_SCHEMA_ID_FIELD_NUMBER: builtins.int
-    vendor: builtins.str
-    """The vendor of the hardware"""
+    EXTENSIONS_FIELD_NUMBER: builtins.int
+    SCHEMA_ID_FIELD_NUMBER: builtins.int
+    manufacturer: builtins.str
+    """The manufacturer or vendor of the hardware item"""
     model: builtins.str
-    """The name of the hardware"""
-    part_number: builtins.str
-    """The part number of the hardware"""
+    """The name of the hardware item"""
     serial_number: builtins.str
-    """The serial number of the hardware"""
-    calibration_date: builtins.str
-    """The date the calibration was performed on the hardware"""
+    """The serial number of the hardware item"""
+    part_number: builtins.str
+    """The part number of the hardware item"""
+    asset_identifier: builtins.str
+    """The asset identifier for tracking and inventory purposes"""
+    calibration_due_date: builtins.str
+    """The date when calibration is due for the hardware item"""
     link: builtins.str
-    """A link to a resource that describes the hardware.
+    """A link to a resource that describes the hardware item.
     This value is expected to be a valid URI.
     """
-    custom_metadata_schema_id: builtins.str
-    """The unique identifier of the custom metadata schema that applies to
-    this instance's custom metadata.  If any custom_metadata is associated
-    with this instance, a custom_metadata_schema_id must be provided, unless
-    the hardware is created within the context of a session, in which case
-    the session must have a custom_metadata_schema_id.
+    schema_id: builtins.str
+    """The unique identifier of the schema that applies to this instance's extension.
+    If any extension is associated with this instance, a schema_id must be provided, unless
+    the hardware item is created within the context of a test result, in which case
+    the test result must have a schema_id.
     """
     @property
-    def custom_metadata(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___CustomMetadataValue]:
-        """Any custom metadata to be associated with the hardware"""
+    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Any extensions to be associated with the hardware item"""
 
     def __init__(
         self,
         *,
-        vendor: builtins.str = ...,
+        manufacturer: builtins.str = ...,
         model: builtins.str = ...,
-        part_number: builtins.str = ...,
         serial_number: builtins.str = ...,
-        calibration_date: builtins.str = ...,
+        part_number: builtins.str = ...,
+        asset_identifier: builtins.str = ...,
+        calibration_due_date: builtins.str = ...,
         link: builtins.str = ...,
-        custom_metadata: collections.abc.Mapping[builtins.str, global___CustomMetadataValue] | None = ...,
-        custom_metadata_schema_id: builtins.str = ...,
+        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["calibration_date", b"calibration_date", "custom_metadata", b"custom_metadata", "custom_metadata_schema_id", b"custom_metadata_schema_id", "link", b"link", "model", b"model", "part_number", b"part_number", "serial_number", b"serial_number", "vendor", b"vendor"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "calibration_due_date", b"calibration_due_date", "extensions", b"extensions", "link", b"link", "manufacturer", b"manufacturer", "model", b"model", "part_number", b"part_number", "schema_id", b"schema_id", "serial_number", b"serial_number"]) -> None: ...
 
-global___HardwareMetadata = HardwareMetadata
+global___HardwareItem = HardwareItem
 
 @typing.final
-class SoftwareMetadata(google.protobuf.message.Message):
-    """Represents the metadata of the software that was used to take a measurement."""
+class SoftwareItem(google.protobuf.message.Message):
+    """Represents the metadata of the software item that was used to take measurements."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class CustomMetadataEntry(google.protobuf.message.Message):
+    class ExtensionsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___CustomMetadataValue: ...
+        def value(self) -> global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___CustomMetadataValue | None = ...,
+            value: global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -287,8 +300,8 @@ class SoftwareMetadata(google.protobuf.message.Message):
     PRODUCT_FIELD_NUMBER: builtins.int
     VERSION_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_SCHEMA_ID_FIELD_NUMBER: builtins.int
+    EXTENSIONS_FIELD_NUMBER: builtins.int
+    SCHEMA_ID_FIELD_NUMBER: builtins.int
     product: builtins.str
     """This value should only contain letters, numbers, spaces, hyphens,
     underscores, parentheses, periods and spaces. It must begin and
@@ -297,21 +310,20 @@ class SoftwareMetadata(google.protobuf.message.Message):
     An empty value is also permitted.
     """
     version: builtins.str
-    """The version of the software"""
+    """The version of the software item"""
     link: builtins.str
-    """A link to a resource that describes the software.
+    """A link to a resource that describes the software item.
     This value is expected to be a valid URI.
     """
-    custom_metadata_schema_id: builtins.str
-    """The unique identifier of the custom metadata schema that applies to
-    this instance's custom metadata.  If any custom_metadata is associated
-    with this instance, a custom_metadata_schema_id must be provided, unless
-    the software is created within the context of a session, in which case
-    the session must have a custom_metadata_schema_id.
+    schema_id: builtins.str
+    """The unique identifier of the schema that applies to this instance's extension.
+    If any extension is associated with this instance, a schema_id must be provided, unless
+    the software item is created within the context of a test result, in which case
+    the test result must have a schema_id.
     """
     @property
-    def custom_metadata(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___CustomMetadataValue]:
-        """Any custom metadata to be associated with the software"""
+    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Any extensions to be associated with the software item"""
 
     def __init__(
         self,
@@ -319,43 +331,43 @@ class SoftwareMetadata(google.protobuf.message.Message):
         product: builtins.str = ...,
         version: builtins.str = ...,
         link: builtins.str = ...,
-        custom_metadata: collections.abc.Mapping[builtins.str, global___CustomMetadataValue] | None = ...,
-        custom_metadata_schema_id: builtins.str = ...,
+        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["custom_metadata", b"custom_metadata", "custom_metadata_schema_id", b"custom_metadata_schema_id", "link", b"link", "product", b"product", "version", b"version"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["extensions", b"extensions", "link", b"link", "product", b"product", "schema_id", b"schema_id", "version", b"version"]) -> None: ...
 
-global___SoftwareMetadata = SoftwareMetadata
+global___SoftwareItem = SoftwareItem
 
 @typing.final
-class OperatorMetadata(google.protobuf.message.Message):
-    """Represents the metadata of the operator that took the measurement."""
+class Operator(google.protobuf.message.Message):
+    """Represents the metadata of the operator that took the test step."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class CustomMetadataEntry(google.protobuf.message.Message):
+    class ExtensionsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___CustomMetadataValue: ...
+        def value(self) -> global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___CustomMetadataValue | None = ...,
+            value: global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
 
-    NAME_FIELD_NUMBER: builtins.int
+    OPERATOR_NAME_FIELD_NUMBER: builtins.int
     ROLE_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_SCHEMA_ID_FIELD_NUMBER: builtins.int
-    name: builtins.str
+    EXTENSIONS_FIELD_NUMBER: builtins.int
+    SCHEMA_ID_FIELD_NUMBER: builtins.int
+    operator_name: builtins.str
     """The name of the operator"""
     role: builtins.str
     """The role of the operator"""
@@ -363,204 +375,292 @@ class OperatorMetadata(google.protobuf.message.Message):
     """A link to a resource that describes the operator.
     This value is expected to be a valid URI.
     """
-    custom_metadata_schema_id: builtins.str
-    """The unique identifier of the custom metadata schema that applies to 
-    this instance's custom metadata.  If any custom_metadata is associated
-    with this instance, a custom_metadata_schema_id must be provided, unless
-    the operator is created within the context of a session, in which case
-    the session must have a custom_metadata_schema_id.
+    schema_id: builtins.str
+    """The unique identifier of the schema that applies to this instance's extension.
+    If any extension is associated with this instance, a schema_id must be provided, unless
+    the operator is created within the context of a test result, in which case
+    the test result must have a schema_id.
     """
     @property
-    def custom_metadata(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___CustomMetadataValue]:
-        """Any custom metadata to be associated with the operator"""
+    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Any extensions to be associated with the operator"""
 
     def __init__(
         self,
         *,
-        name: builtins.str = ...,
+        operator_name: builtins.str = ...,
         role: builtins.str = ...,
         link: builtins.str = ...,
-        custom_metadata: collections.abc.Mapping[builtins.str, global___CustomMetadataValue] | None = ...,
-        custom_metadata_schema_id: builtins.str = ...,
+        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["custom_metadata", b"custom_metadata", "custom_metadata_schema_id", b"custom_metadata_schema_id", "link", b"link", "name", b"name", "role", b"role"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["extensions", b"extensions", "link", b"link", "operator_name", b"operator_name", "role", b"role", "schema_id", b"schema_id"]) -> None: ...
 
-global___OperatorMetadata = OperatorMetadata
+global___Operator = Operator
 
 @typing.final
-class TestPlanMetadata(google.protobuf.message.Message):
-    """Represents the metadata of a test plan"""
+class TestDescription(google.protobuf.message.Message):
+    """Represents the metadata of a test description"""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class CustomMetadataEntry(google.protobuf.message.Message):
+    class ExtensionsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___CustomMetadataValue: ...
+        def value(self) -> global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___CustomMetadataValue | None = ...,
+            value: global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
 
-    NAME_FIELD_NUMBER: builtins.int
+    UUT_ID_FIELD_NUMBER: builtins.int
+    TEST_DESCRIPTION_NAME_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_SCHEMA_ID_FIELD_NUMBER: builtins.int
-    name: builtins.str
-    """The name of the test plan"""
+    EXTENSIONS_FIELD_NUMBER: builtins.int
+    SCHEMA_ID_FIELD_NUMBER: builtins.int
+    uut_id: builtins.str
+    """The id of the UUT this test is designed for"""
+    test_description_name: builtins.str
+    """The name of the test description"""
     link: builtins.str
-    """A link to a resource that describes the test plan.
+    """A link to a resource that describes the test description.
     This value is expected to be a valid URI.
     """
-    custom_metadata_schema_id: builtins.str
-    """The unique identifier of the custom metadata schema that applies to 
-    this instance's custom metadata.  If any custom_metadata is associated
-    with this instance, a custom_metadata_schema_id must be provided, unless
-    the test plan is created within the context of a session, in which case
-    the session must have a custom_metadata_schema_id.
+    schema_id: builtins.str
+    """The unique identifier of the schema that applies to this instance's extension.
+    If any extension is associated with this instance, a schema_id must be provided, unless
+    the test description is created within the context of a test result, in which case
+    the test result must have a schema_id.
     """
     @property
-    def custom_metadata(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___CustomMetadataValue]:
-        """Any custom metadata to be associated with the test plan"""
+    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Any extensions to be associated with the test description"""
 
     def __init__(
         self,
         *,
-        name: builtins.str = ...,
+        uut_id: builtins.str = ...,
+        test_description_name: builtins.str = ...,
         link: builtins.str = ...,
-        custom_metadata: collections.abc.Mapping[builtins.str, global___CustomMetadataValue] | None = ...,
-        custom_metadata_schema_id: builtins.str = ...,
+        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["custom_metadata", b"custom_metadata", "custom_metadata_schema_id", b"custom_metadata_schema_id", "link", b"link", "name", b"name"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["extensions", b"extensions", "link", b"link", "schema_id", b"schema_id", "test_description_name", b"test_description_name", "uut_id", b"uut_id"]) -> None: ...
 
-global___TestPlanMetadata = TestPlanMetadata
+global___TestDescription = TestDescription
 
 @typing.final
-class TestMetadata(google.protobuf.message.Message):
+class Test(google.protobuf.message.Message):
     """Represents the metadata of a test"""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class CustomMetadataEntry(google.protobuf.message.Message):
+    class ExtensionsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___CustomMetadataValue: ...
+        def value(self) -> global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___CustomMetadataValue | None = ...,
+            value: global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
 
-    NAME_FIELD_NUMBER: builtins.int
+    TEST_NAME_FIELD_NUMBER: builtins.int
+    DESCRIPTION_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_SCHEMA_ID_FIELD_NUMBER: builtins.int
-    name: builtins.str
+    EXTENSIONS_FIELD_NUMBER: builtins.int
+    SCHEMA_ID_FIELD_NUMBER: builtins.int
+    test_name: builtins.str
     """The name of the test"""
+    description: builtins.str
+    """Explanation of what the test does"""
     link: builtins.str
     """A link to a resource that describes the test.
     This value is expected to be a valid URI.
     """
-    custom_metadata_schema_id: builtins.str
-    """The unique identifier of the custom metadata schema that applies to 
-    this instance's custom metadata.  If any custom_metadata is associated
-    with this instance, a custom_metadata_schema_id must be provided, unless
-    the test is created within the context of a session, in which case
-    the session must have a custom_metadata_schema_id.
+    schema_id: builtins.str
+    """The unique identifier of the schema that applies to this instance's extension.
+    If any extension is associated with this instance, a schema_id must be provided, unless
+    the test is created within the context of a test result, in which case
+    the test result must have a schema_id.
     """
     @property
-    def custom_metadata(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___CustomMetadataValue]:
-        """Any custom metadata to be associated with the test"""
+    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Any extensions to be associated with the test"""
 
     def __init__(
         self,
         *,
-        name: builtins.str = ...,
+        test_name: builtins.str = ...,
+        description: builtins.str = ...,
         link: builtins.str = ...,
-        custom_metadata: collections.abc.Mapping[builtins.str, global___CustomMetadataValue] | None = ...,
-        custom_metadata_schema_id: builtins.str = ...,
+        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["custom_metadata", b"custom_metadata", "custom_metadata_schema_id", b"custom_metadata_schema_id", "link", b"link", "name", b"name"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["description", b"description", "extensions", b"extensions", "link", b"link", "schema_id", b"schema_id", "test_name", b"test_name"]) -> None: ...
 
-global___TestMetadata = TestMetadata
+global___Test = Test
 
 @typing.final
-class TestStationMetadata(google.protobuf.message.Message):
+class TestStation(google.protobuf.message.Message):
     """Represents the metadata of a test station"""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class CustomMetadataEntry(google.protobuf.message.Message):
+    class ExtensionsEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___CustomMetadataValue: ...
+        def value(self) -> global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___CustomMetadataValue | None = ...,
+            value: global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
 
-    NAME_FIELD_NUMBER: builtins.int
+    TEST_STATION_NAME_FIELD_NUMBER: builtins.int
+    ASSET_IDENTIFIER_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_FIELD_NUMBER: builtins.int
-    CUSTOM_METADATA_SCHEMA_ID_FIELD_NUMBER: builtins.int
-    name: builtins.str
+    EXTENSIONS_FIELD_NUMBER: builtins.int
+    SCHEMA_ID_FIELD_NUMBER: builtins.int
+    test_station_name: builtins.str
     """The name of the test station"""
+    asset_identifier: builtins.str
+    """The asset identifier for tracking and inventory purposes"""
     link: builtins.str
     """A link to a resource that describes the test station.
     This value is expected to be a valid URI.
     """
-    custom_metadata_schema_id: builtins.str
-    """The unique identifier of the custom metadata schema that applies to 
-    this instance's custom metadata.  If any custom_metadata is associated
-    with this instance, a custom_metadata_schema_id must be provided, unless
-    the test station is created within the context of a session, in which case
-    the session must have a custom_metadata_schema_id.
+    schema_id: builtins.str
+    """The unique identifier of the schema that applies to this instance's extension.
+    If any extension is associated with this instance, a schema_id must be provided, unless
+    the test station is created within the context of a test result, in which case
+    the test result must have a schema_id.
     """
     @property
-    def custom_metadata(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___CustomMetadataValue]:
-        """Any custom metadata to be associated with the test station"""
+    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Any extensions to be associated with the test station"""
 
     def __init__(
         self,
         *,
-        name: builtins.str = ...,
+        test_station_name: builtins.str = ...,
+        asset_identifier: builtins.str = ...,
         link: builtins.str = ...,
-        custom_metadata: collections.abc.Mapping[builtins.str, global___CustomMetadataValue] | None = ...,
-        custom_metadata_schema_id: builtins.str = ...,
+        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["custom_metadata", b"custom_metadata", "custom_metadata_schema_id", b"custom_metadata_schema_id", "link", b"link", "name", b"name"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "extensions", b"extensions", "link", b"link", "schema_id", b"schema_id", "test_station_name", b"test_station_name"]) -> None: ...
 
-global___TestStationMetadata = TestStationMetadata
+global___TestStation = TestStation
 
 @typing.final
-class CustomMetadataValue(google.protobuf.message.Message):
-    """Represents the value of a custom metadata field.
+class TestAdapter(google.protobuf.message.Message):
+    """Represents a test adapter or mechanical setup used to hold, connect, or interface the UUT with the test system."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    @typing.final
+    class ExtensionsEntry(google.protobuf.message.Message):
+        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+        KEY_FIELD_NUMBER: builtins.int
+        VALUE_FIELD_NUMBER: builtins.int
+        key: builtins.str
+        @property
+        def value(self) -> global___ExtensionValue: ...
+        def __init__(
+            self,
+            *,
+            key: builtins.str = ...,
+            value: global___ExtensionValue | None = ...,
+        ) -> None: ...
+        def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
+        def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
+
+    TEST_ADAPTER_NAME_FIELD_NUMBER: builtins.int
+    MANUFACTURER_FIELD_NUMBER: builtins.int
+    MODEL_FIELD_NUMBER: builtins.int
+    SERIAL_NUMBER_FIELD_NUMBER: builtins.int
+    PART_NUMBER_FIELD_NUMBER: builtins.int
+    ASSET_IDENTIFIER_FIELD_NUMBER: builtins.int
+    CALIBRATION_DUE_DATE_FIELD_NUMBER: builtins.int
+    LINK_FIELD_NUMBER: builtins.int
+    EXTENSIONS_FIELD_NUMBER: builtins.int
+    SCHEMA_ID_FIELD_NUMBER: builtins.int
+    test_adapter_name: builtins.str
+    """The name or label for the adapter"""
+    manufacturer: builtins.str
+    """The manufacturer or vendor of the adapter"""
+    model: builtins.str
+    """The model number or name of the adapter"""
+    serial_number: builtins.str
+    """The serial number of the adapter"""
+    part_number: builtins.str
+    """The part number of the adapter"""
+    asset_identifier: builtins.str
+    """The asset identifier for tracking and inventory purposes"""
+    calibration_due_date: builtins.str
+    """The date when calibration is due for the adapter"""
+    link: builtins.str
+    """A link to a resource that describes the test adapter.
+    This value is expected to be a valid URI.
+    """
+    schema_id: builtins.str
+    """The unique identifier of the schema that applies to this instance's extension.
+    If any extension is associated with this instance, a schema_id must be provided, unless
+    the test adapter is created within the context of a test result, in which case
+    the test result must have a schema_id.
+    """
+    @property
+    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Any extensions to be associated with the test adapter"""
+
+    def __init__(
+        self,
+        *,
+        test_adapter_name: builtins.str = ...,
+        manufacturer: builtins.str = ...,
+        model: builtins.str = ...,
+        serial_number: builtins.str = ...,
+        part_number: builtins.str = ...,
+        asset_identifier: builtins.str = ...,
+        calibration_due_date: builtins.str = ...,
+        link: builtins.str = ...,
+        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        schema_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "calibration_due_date", b"calibration_due_date", "extensions", b"extensions", "link", b"link", "manufacturer", b"manufacturer", "model", b"model", "part_number", b"part_number", "schema_id", b"schema_id", "serial_number", b"serial_number", "test_adapter_name", b"test_adapter_name"]) -> None: ...
+
+global___TestAdapter = TestAdapter
+
+@typing.final
+class ExtensionValue(google.protobuf.message.Message):
+    """Represents the value of an extension field.
     Currently, only string values are supported.
     """
 
@@ -568,7 +668,7 @@ class CustomMetadataValue(google.protobuf.message.Message):
 
     STRING_VALUE_FIELD_NUMBER: builtins.int
     string_value: builtins.str
-    """The string value of the metadata field."""
+    """The string value of the extension field."""
     def __init__(
         self,
         *,
@@ -578,11 +678,11 @@ class CustomMetadataValue(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["metadata", b"metadata", "string_value", b"string_value"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["metadata", b"metadata"]) -> typing.Literal["string_value"] | None: ...
 
-global___CustomMetadataValue = CustomMetadataValue
+global___ExtensionValue = ExtensionValue
 
 @typing.final
-class MetadataSchema(google.protobuf.message.Message):
-    """A message that represents a metadata schema stored on this system."""
+class ExtensionSchema(google.protobuf.message.Message):
+    """A message that represents an extension schema stored on this system."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -600,16 +700,16 @@ class MetadataSchema(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["schema", b"schema", "schema_id", b"schema_id"]) -> None: ...
 
-global___MetadataSchema = MetadataSchema
+global___ExtensionSchema = ExtensionSchema
 
 @typing.final
 class Alias(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    NAME_FIELD_NUMBER: builtins.int
+    ALIAS_NAME_FIELD_NUMBER: builtins.int
     TARGET_TYPE_FIELD_NUMBER: builtins.int
     TARGET_ID_FIELD_NUMBER: builtins.int
-    name: builtins.str
+    alias_name: builtins.str
     """The registered alias name for the aliased metadata instance."""
     target_type: global___AliasTargetType.ValueType
     """The type of the aliased metadata instance."""
@@ -618,10 +718,10 @@ class Alias(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        name: builtins.str = ...,
+        alias_name: builtins.str = ...,
         target_type: global___AliasTargetType.ValueType = ...,
         target_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["name", b"name", "target_id", b"target_id", "target_type", b"target_type"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name", "target_id", b"target_id", "target_type", b"target_type"]) -> None: ...
 
 global___Alias = Alias

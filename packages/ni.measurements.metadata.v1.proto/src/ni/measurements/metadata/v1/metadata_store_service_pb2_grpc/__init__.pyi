@@ -18,44 +18,44 @@ class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type:
     ...
 
 class MetadataStoreServiceStub:
-    """This service is responsible for storing and retrieving metadata associated with measurement data."""
+    """This service is responsible for storing and retrieving metadata associated with test step measurements."""
 
     def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
-    GetDut: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetDutRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetDutResponse,
+    GetUutInstance: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceResponse,
     ]
-    """Gets the device under test associated with the identifier given in the request."""
+    """Gets the UUT instance associated with the identifier given in the request."""
 
-    QueryDuts: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryDutsRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryDutsResponse,
+    QueryUutInstances: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesResponse,
     ]
     """Perform an OData query"""
 
-    CreateDut: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateDutRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateDutResponse,
+    CreateUutInstance: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse,
     ]
-    """Creates a new device under test in the metadata store."""
+    """Creates a new UUT instance in the metadata store."""
 
-    GetProduct: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetProductRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetProductResponse,
+    GetUut: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse,
     ]
-    """Gets the product associated with the identifier given in the request."""
+    """Gets the UUT associated with the identifier given in the request."""
 
-    QueryProducts: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryProductsRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryProductsResponse,
+    QueryUuts: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsResponse,
     ]
     """Perform an OData query"""
 
-    CreateProduct: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateProductRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateProductResponse,
+    CreateUut: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
     ]
-    """Creates a new product in the metadata store."""
+    """Creates a new UUT in the metadata store."""
 
     GetOperator: grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorRequest,
@@ -75,23 +75,23 @@ class MetadataStoreServiceStub:
     ]
     """Creates a new operator in the metadata store."""
 
-    GetTestPlan: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestPlanRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestPlanResponse,
+    GetTestDescription: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse,
     ]
-    """Gets the test plan associated with the identifier given in the request."""
+    """Gets the test description associated with the identifier given in the request."""
 
-    QueryTestPlans: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestPlansRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestPlansResponse,
+    QueryTestDescriptions: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsResponse,
     ]
     """Perform an OData query"""
 
-    CreateTestPlan: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestPlanRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestPlanResponse,
+    CreateTestDescription: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
     ]
-    """Creates a new test plan in the metadata store."""
+    """Creates a new test description in the metadata store."""
 
     GetTest: grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestRequest,
@@ -129,59 +129,77 @@ class MetadataStoreServiceStub:
     ]
     """Creates a new test station in the metadata store."""
 
-    GetHardware: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareResponse,
+    GetHardwareItem: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemResponse,
     ]
-    """Gets the hardware associated with the identifier given in the request."""
+    """Gets the hardware item associated with the identifier given in the request."""
 
-    QueryHardware: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateHardware: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareResponse,
-    ]
-    """Creates a new hardware in the metadata store."""
-
-    GetSoftware: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareResponse,
-    ]
-    """Gets the software associated with the identifier given in the request."""
-
-    QuerySoftware: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareResponse,
+    QueryHardwareItems: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsResponse,
     ]
     """Perform an OData query"""
 
-    CreateSoftware: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareResponse,
+    CreateHardwareItem: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse,
     ]
-    """Creates a new software in the metadata store."""
+    """Creates a new hardware item in the metadata store."""
 
-    RegisterMetadataSchema: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterMetadataSchemaRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterMetadataSchemaResponse,
+    GetSoftwareItem: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse,
+    ]
+    """Gets the software item associated with the identifier given in the request."""
+
+    QuerySoftwareItems: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsResponse,
+    ]
+    """Perform an OData query"""
+
+    CreateSoftwareItem: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
+    ]
+    """Creates a new software item in the metadata store."""
+
+    GetTestAdapter: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterResponse,
+    ]
+    """Gets the test adapter associated with the identifier given in the request."""
+
+    QueryTestAdapters: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersResponse,
+    ]
+    """Perform an OData query"""
+
+    CreateTestAdapter: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse,
+    ]
+    """Creates a new test adapter in the metadata store."""
+
+    RegisterSchema: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse,
     ]
     """Registers a schema. Once a schema has been published, it cannot be modified or removed."""
 
-    EnumerateMetadataSchemas: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.EnumerateMetadataSchemasRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.EnumerateMetadataSchemasResponse,
+    ListSchemas: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
     ]
-    """Enumerate the metadata schemas that have been previously registered"""
+    """Lists the schemas that have been previously registered"""
 
-    ResolveAlias: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.ResolveAliasRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.ResolveAliasResponse,
+    GetAlias: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasResponse,
     ]
-    """Resolves a given alias to its target (i.e., the underlying metadata that it represents)"""
+    """Gets the alias and its target (i.e., the underlying metadata that it represents)"""
 
     QueryAliases: grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesRequest,
@@ -189,61 +207,60 @@ class MetadataStoreServiceStub:
     ]
     """Perform an OData query on the registered aliases"""
 
-    RegisterAlias: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterAliasRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterAliasResponse,
+    CreateAlias: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasResponse,
     ]
-    """Registers an alias of the specified metadata for use/reference when creating other metadata or publishing.
+    """Creates (registers) an alias of the specified metadata for use/reference when creating other metadata or publishing.
     Notes:
-
     - The specified metadata must have already been created prior to the alias registration.
     - This method may be called with an already registered alias name in order to update the target mapped for that existing alias.
     """
 
-    UnregisterAlias: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.UnregisterAliasRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.UnregisterAliasResponse,
+    DeleteAlias: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
     ]
     """Removes a registered alias"""
 
 class MetadataStoreServiceAsyncStub:
-    """This service is responsible for storing and retrieving metadata associated with measurement data."""
+    """This service is responsible for storing and retrieving metadata associated with test step measurements."""
 
-    GetDut: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetDutRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetDutResponse,
+    GetUutInstance: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceResponse,
     ]
-    """Gets the device under test associated with the identifier given in the request."""
+    """Gets the UUT instance associated with the identifier given in the request."""
 
-    QueryDuts: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryDutsRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryDutsResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateDut: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateDutRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateDutResponse,
-    ]
-    """Creates a new device under test in the metadata store."""
-
-    GetProduct: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetProductRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetProductResponse,
-    ]
-    """Gets the product associated with the identifier given in the request."""
-
-    QueryProducts: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryProductsRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryProductsResponse,
+    QueryUutInstances: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesResponse,
     ]
     """Perform an OData query"""
 
-    CreateProduct: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateProductRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateProductResponse,
+    CreateUutInstance: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse,
     ]
-    """Creates a new product in the metadata store."""
+    """Creates a new UUT instance in the metadata store."""
+
+    GetUut: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse,
+    ]
+    """Gets the UUT associated with the identifier given in the request."""
+
+    QueryUuts: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsResponse,
+    ]
+    """Perform an OData query"""
+
+    CreateUut: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
+    ]
+    """Creates a new UUT in the metadata store."""
 
     GetOperator: grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorRequest,
@@ -263,23 +280,23 @@ class MetadataStoreServiceAsyncStub:
     ]
     """Creates a new operator in the metadata store."""
 
-    GetTestPlan: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestPlanRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestPlanResponse,
+    GetTestDescription: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse,
     ]
-    """Gets the test plan associated with the identifier given in the request."""
+    """Gets the test description associated with the identifier given in the request."""
 
-    QueryTestPlans: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestPlansRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestPlansResponse,
+    QueryTestDescriptions: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsResponse,
     ]
     """Perform an OData query"""
 
-    CreateTestPlan: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestPlanRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestPlanResponse,
+    CreateTestDescription: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
     ]
-    """Creates a new test plan in the metadata store."""
+    """Creates a new test description in the metadata store."""
 
     GetTest: grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestRequest,
@@ -317,59 +334,77 @@ class MetadataStoreServiceAsyncStub:
     ]
     """Creates a new test station in the metadata store."""
 
-    GetHardware: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareResponse,
+    GetHardwareItem: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemResponse,
     ]
-    """Gets the hardware associated with the identifier given in the request."""
+    """Gets the hardware item associated with the identifier given in the request."""
 
-    QueryHardware: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateHardware: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareResponse,
-    ]
-    """Creates a new hardware in the metadata store."""
-
-    GetSoftware: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareResponse,
-    ]
-    """Gets the software associated with the identifier given in the request."""
-
-    QuerySoftware: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareResponse,
+    QueryHardwareItems: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsResponse,
     ]
     """Perform an OData query"""
 
-    CreateSoftware: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareResponse,
+    CreateHardwareItem: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse,
     ]
-    """Creates a new software in the metadata store."""
+    """Creates a new hardware item in the metadata store."""
 
-    RegisterMetadataSchema: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterMetadataSchemaRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterMetadataSchemaResponse,
+    GetSoftwareItem: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse,
+    ]
+    """Gets the software item associated with the identifier given in the request."""
+
+    QuerySoftwareItems: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsResponse,
+    ]
+    """Perform an OData query"""
+
+    CreateSoftwareItem: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
+    ]
+    """Creates a new software item in the metadata store."""
+
+    GetTestAdapter: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterResponse,
+    ]
+    """Gets the test adapter associated with the identifier given in the request."""
+
+    QueryTestAdapters: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersResponse,
+    ]
+    """Perform an OData query"""
+
+    CreateTestAdapter: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse,
+    ]
+    """Creates a new test adapter in the metadata store."""
+
+    RegisterSchema: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse,
     ]
     """Registers a schema. Once a schema has been published, it cannot be modified or removed."""
 
-    EnumerateMetadataSchemas: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.EnumerateMetadataSchemasRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.EnumerateMetadataSchemasResponse,
+    ListSchemas: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
     ]
-    """Enumerate the metadata schemas that have been previously registered"""
+    """Lists the schemas that have been previously registered"""
 
-    ResolveAlias: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.ResolveAliasRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.ResolveAliasResponse,
+    GetAlias: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasResponse,
     ]
-    """Resolves a given alias to its target (i.e., the underlying metadata that it represents)"""
+    """Gets the alias and its target (i.e., the underlying metadata that it represents)"""
 
     QueryAliases: grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesRequest,
@@ -377,73 +412,72 @@ class MetadataStoreServiceAsyncStub:
     ]
     """Perform an OData query on the registered aliases"""
 
-    RegisterAlias: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterAliasRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterAliasResponse,
+    CreateAlias: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasResponse,
     ]
-    """Registers an alias of the specified metadata for use/reference when creating other metadata or publishing.
+    """Creates (registers) an alias of the specified metadata for use/reference when creating other metadata or publishing.
     Notes:
-
     - The specified metadata must have already been created prior to the alias registration.
     - This method may be called with an already registered alias name in order to update the target mapped for that existing alias.
     """
 
-    UnregisterAlias: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.UnregisterAliasRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.UnregisterAliasResponse,
+    DeleteAlias: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
     ]
     """Removes a registered alias"""
 
 class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
-    """This service is responsible for storing and retrieving metadata associated with measurement data."""
+    """This service is responsible for storing and retrieving metadata associated with test step measurements."""
 
     @abc.abstractmethod
-    def GetDut(
+    def GetUutInstance(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetDutRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetDutResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetDutResponse]]:
-        """Gets the device under test associated with the identifier given in the request."""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceResponse]]:
+        """Gets the UUT instance associated with the identifier given in the request."""
 
     @abc.abstractmethod
-    def QueryDuts(
+    def QueryUutInstances(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.QueryDutsRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryDutsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryDutsResponse]]:
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesResponse]]:
         """Perform an OData query"""
 
     @abc.abstractmethod
-    def CreateDut(
+    def CreateUutInstance(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateDutRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateDutResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateDutResponse]]:
-        """Creates a new device under test in the metadata store."""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse]]:
+        """Creates a new UUT instance in the metadata store."""
 
     @abc.abstractmethod
-    def GetProduct(
+    def GetUut(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetProductRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetProductResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetProductResponse]]:
-        """Gets the product associated with the identifier given in the request."""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse]]:
+        """Gets the UUT associated with the identifier given in the request."""
 
     @abc.abstractmethod
-    def QueryProducts(
+    def QueryUuts(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.QueryProductsRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryProductsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryProductsResponse]]:
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsResponse]]:
         """Perform an OData query"""
 
     @abc.abstractmethod
-    def CreateProduct(
+    def CreateUut(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateProductRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateProductResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateProductResponse]]:
-        """Creates a new product in the metadata store."""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse]]:
+        """Creates a new UUT in the metadata store."""
 
     @abc.abstractmethod
     def GetOperator(
@@ -470,28 +504,28 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         """Creates a new operator in the metadata store."""
 
     @abc.abstractmethod
-    def GetTestPlan(
+    def GetTestDescription(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestPlanRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestPlanResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestPlanResponse]]:
-        """Gets the test plan associated with the identifier given in the request."""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse]]:
+        """Gets the test description associated with the identifier given in the request."""
 
     @abc.abstractmethod
-    def QueryTestPlans(
+    def QueryTestDescriptions(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestPlansRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestPlansResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestPlansResponse]]:
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsResponse]]:
         """Perform an OData query"""
 
     @abc.abstractmethod
-    def CreateTestPlan(
+    def CreateTestDescription(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestPlanRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestPlanResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestPlanResponse]]:
-        """Creates a new test plan in the metadata store."""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse]]:
+        """Creates a new test description in the metadata store."""
 
     @abc.abstractmethod
     def GetTest(
@@ -542,76 +576,100 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         """Creates a new test station in the metadata store."""
 
     @abc.abstractmethod
-    def GetHardware(
+    def GetHardwareItem(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareResponse]]:
-        """Gets the hardware associated with the identifier given in the request."""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemResponse]]:
+        """Gets the hardware item associated with the identifier given in the request."""
 
     @abc.abstractmethod
-    def QueryHardware(
+    def QueryHardwareItems(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareResponse]]:
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsResponse]]:
         """Perform an OData query"""
 
     @abc.abstractmethod
-    def CreateHardware(
+    def CreateHardwareItem(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareResponse]]:
-        """Creates a new hardware in the metadata store."""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse]]:
+        """Creates a new hardware item in the metadata store."""
 
     @abc.abstractmethod
-    def GetSoftware(
+    def GetSoftwareItem(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareResponse]]:
-        """Gets the software associated with the identifier given in the request."""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse]]:
+        """Gets the software item associated with the identifier given in the request."""
 
     @abc.abstractmethod
-    def QuerySoftware(
+    def QuerySoftwareItems(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareResponse]]:
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsResponse]]:
         """Perform an OData query"""
 
     @abc.abstractmethod
-    def CreateSoftware(
+    def CreateSoftwareItem(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareResponse]]:
-        """Creates a new software in the metadata store."""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse]]:
+        """Creates a new software item in the metadata store."""
 
     @abc.abstractmethod
-    def RegisterMetadataSchema(
+    def GetTestAdapter(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterMetadataSchemaRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterMetadataSchemaResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterMetadataSchemaResponse]]:
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterResponse]]:
+        """Gets the test adapter associated with the identifier given in the request."""
+
+    @abc.abstractmethod
+    def QueryTestAdapters(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersResponse]]:
+        """Perform an OData query"""
+
+    @abc.abstractmethod
+    def CreateTestAdapter(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse]]:
+        """Creates a new test adapter in the metadata store."""
+
+    @abc.abstractmethod
+    def RegisterSchema(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse]]:
         """Registers a schema. Once a schema has been published, it cannot be modified or removed."""
 
     @abc.abstractmethod
-    def EnumerateMetadataSchemas(
+    def ListSchemas(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.EnumerateMetadataSchemasRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.EnumerateMetadataSchemasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.EnumerateMetadataSchemasResponse]]:
-        """Enumerate the metadata schemas that have been previously registered"""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse]]:
+        """Lists the schemas that have been previously registered"""
 
     @abc.abstractmethod
-    def ResolveAlias(
+    def GetAlias(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.ResolveAliasRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.ResolveAliasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.ResolveAliasResponse]]:
-        """Resolves a given alias to its target (i.e., the underlying metadata that it represents)"""
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasResponse]]:
+        """Gets the alias and its target (i.e., the underlying metadata that it represents)"""
 
     @abc.abstractmethod
     def QueryAliases(
@@ -622,24 +680,23 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         """Perform an OData query on the registered aliases"""
 
     @abc.abstractmethod
-    def RegisterAlias(
+    def CreateAlias(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterAliasRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterAliasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterAliasResponse]]:
-        """Registers an alias of the specified metadata for use/reference when creating other metadata or publishing.
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasResponse]]:
+        """Creates (registers) an alias of the specified metadata for use/reference when creating other metadata or publishing.
         Notes:
-
         - The specified metadata must have already been created prior to the alias registration.
         - This method may be called with an already registered alias name in order to update the target mapped for that existing alias.
         """
 
     @abc.abstractmethod
-    def UnregisterAlias(
+    def DeleteAlias(
         self,
-        request: ni.measurements.metadata.v1.metadata_store_service_pb2.UnregisterAliasRequest,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.UnregisterAliasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.UnregisterAliasResponse]]:
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse]]:
         """Removes a registered alias"""
 
 def add_MetadataStoreServiceServicer_to_server(servicer: MetadataStoreServiceServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...

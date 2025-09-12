@@ -14,46 +14,46 @@ import typing
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
 @typing.final
-class GetDutRequest(google.protobuf.message.Message):
-    """Message sent to get the device under test associated with the given identifier."""
+class GetUutInstanceRequest(google.protobuf.message.Message):
+    """Message sent to get the UUT instance associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """Required. The identifier of the desired device under test."""
+    UUT_INSTANCE_ID_FIELD_NUMBER: builtins.int
+    uut_instance_id: builtins.str
+    """Required. The identifier of the desired UUT instance."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        uut_instance_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["uut_instance_id", b"uut_instance_id"]) -> None: ...
 
-global___GetDutRequest = GetDutRequest
+global___GetUutInstanceRequest = GetUutInstanceRequest
 
 @typing.final
-class GetDutResponse(google.protobuf.message.Message):
-    """Message returned when getting a device under test associated with the given identifier."""
+class GetUutInstanceResponse(google.protobuf.message.Message):
+    """Message returned when getting a UUT instance associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    DUT_FIELD_NUMBER: builtins.int
+    UUT_INSTANCE_FIELD_NUMBER: builtins.int
     @property
-    def dut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.DUTMetadata:
-        """The metadata of the requested device under test."""
+    def uut_instance(self) -> ni.measurements.metadata.v1.metadata_store_pb2.UutInstance:
+        """The metadata of the requested UUT instance."""
 
     def __init__(
         self,
         *,
-        dut: ni.measurements.metadata.v1.metadata_store_pb2.DUTMetadata | None = ...,
+        uut_instance: ni.measurements.metadata.v1.metadata_store_pb2.UutInstance | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["dut", b"dut"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["dut", b"dut"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> None: ...
 
-global___GetDutResponse = GetDutResponse
+global___GetUutInstanceResponse = GetUutInstanceResponse
 
 @typing.final
-class QueryDutsRequest(google.protobuf.message.Message):
+class QueryUutInstancesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ODATA_QUERY_FIELD_NUMBER: builtins.int
@@ -68,104 +68,104 @@ class QueryDutsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryDutsRequest = QueryDutsRequest
+global___QueryUutInstancesRequest = QueryUutInstancesRequest
 
 @typing.final
-class QueryDutsResponse(google.protobuf.message.Message):
+class QueryUutInstancesResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    DUTS_FIELD_NUMBER: builtins.int
+    UUT_INSTANCES_FIELD_NUMBER: builtins.int
     @property
-    def duts(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.DUTMetadata]: ...
+    def uut_instances(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance]: ...
     def __init__(
         self,
         *,
-        duts: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.DUTMetadata] | None = ...,
+        uut_instances: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["duts", b"duts"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["uut_instances", b"uut_instances"]) -> None: ...
 
-global___QueryDutsResponse = QueryDutsResponse
+global___QueryUutInstancesResponse = QueryUutInstancesResponse
 
 @typing.final
-class CreateDutRequest(google.protobuf.message.Message):
-    """Message sent to create a new device under test in the metadata store."""
+class CreateUutInstanceRequest(google.protobuf.message.Message):
+    """Message sent to create a new UUT instance in the metadata store."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    DUT_FIELD_NUMBER: builtins.int
+    UUT_INSTANCE_FIELD_NUMBER: builtins.int
     @property
-    def dut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.DUTMetadata:
-        """Required. The metadata of the device under test to be created."""
+    def uut_instance(self) -> ni.measurements.metadata.v1.metadata_store_pb2.UutInstance:
+        """Required. The metadata of the UUT instance to be created."""
 
     def __init__(
         self,
         *,
-        dut: ni.measurements.metadata.v1.metadata_store_pb2.DUTMetadata | None = ...,
+        uut_instance: ni.measurements.metadata.v1.metadata_store_pb2.UutInstance | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["dut", b"dut"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["dut", b"dut"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> None: ...
 
-global___CreateDutRequest = CreateDutRequest
+global___CreateUutInstanceRequest = CreateUutInstanceRequest
 
 @typing.final
-class CreateDutResponse(google.protobuf.message.Message):
-    """Message returned when creating a new device under test in the metadata store."""
+class CreateUutInstanceResponse(google.protobuf.message.Message):
+    """Message returned when creating a new UUT instance in the metadata store."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """The identifier of the created device under test."""
+    UUT_INSTANCE_ID_FIELD_NUMBER: builtins.int
+    uut_instance_id: builtins.str
+    """The identifier of the created UUT instance."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        uut_instance_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["uut_instance_id", b"uut_instance_id"]) -> None: ...
 
-global___CreateDutResponse = CreateDutResponse
+global___CreateUutInstanceResponse = CreateUutInstanceResponse
 
 @typing.final
-class GetProductRequest(google.protobuf.message.Message):
-    """Message sent to get the product associated with the given identifier."""
+class GetUutRequest(google.protobuf.message.Message):
+    """Message sent to get the UUT associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """Required. The identifier of the desired product."""
+    UUT_ID_FIELD_NUMBER: builtins.int
+    uut_id: builtins.str
+    """Required. The identifier of the desired UUT."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        uut_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["uut_id", b"uut_id"]) -> None: ...
 
-global___GetProductRequest = GetProductRequest
+global___GetUutRequest = GetUutRequest
 
 @typing.final
-class GetProductResponse(google.protobuf.message.Message):
-    """Message returned when getting a product associated with the given identifier."""
+class GetUutResponse(google.protobuf.message.Message):
+    """Message returned when getting a UUT associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    PRODUCT_FIELD_NUMBER: builtins.int
+    UUT_FIELD_NUMBER: builtins.int
     @property
-    def product(self) -> ni.measurements.metadata.v1.metadata_store_pb2.ProductMetadata:
-        """The metadata of the requested product."""
+    def uut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Uut:
+        """The metadata of the requested UUT."""
 
     def __init__(
         self,
         *,
-        product: ni.measurements.metadata.v1.metadata_store_pb2.ProductMetadata | None = ...,
+        uut: ni.measurements.metadata.v1.metadata_store_pb2.Uut | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["product", b"product"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["product", b"product"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["uut", b"uut"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["uut", b"uut"]) -> None: ...
 
-global___GetProductResponse = GetProductResponse
+global___GetUutResponse = GetUutResponse
 
 @typing.final
-class QueryProductsRequest(google.protobuf.message.Message):
+class QueryUutsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ODATA_QUERY_FIELD_NUMBER: builtins.int
@@ -180,62 +180,62 @@ class QueryProductsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryProductsRequest = QueryProductsRequest
+global___QueryUutsRequest = QueryUutsRequest
 
 @typing.final
-class QueryProductsResponse(google.protobuf.message.Message):
+class QueryUutsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    PRODUCTS_FIELD_NUMBER: builtins.int
+    UUTS_FIELD_NUMBER: builtins.int
     @property
-    def products(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.ProductMetadata]: ...
+    def uuts(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Uut]: ...
     def __init__(
         self,
         *,
-        products: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.ProductMetadata] | None = ...,
+        uuts: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Uut] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["products", b"products"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["uuts", b"uuts"]) -> None: ...
 
-global___QueryProductsResponse = QueryProductsResponse
+global___QueryUutsResponse = QueryUutsResponse
 
 @typing.final
-class CreateProductRequest(google.protobuf.message.Message):
-    """Message sent to create a new product in the metadata store."""
+class CreateUutRequest(google.protobuf.message.Message):
+    """Message sent to create a new UUT in the metadata store."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    PRODUCT_FIELD_NUMBER: builtins.int
+    UUT_FIELD_NUMBER: builtins.int
     @property
-    def product(self) -> ni.measurements.metadata.v1.metadata_store_pb2.ProductMetadata:
-        """Required. The metadata of the product to be created."""
+    def uut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Uut:
+        """Required. The metadata of the UUT to be created."""
 
     def __init__(
         self,
         *,
-        product: ni.measurements.metadata.v1.metadata_store_pb2.ProductMetadata | None = ...,
+        uut: ni.measurements.metadata.v1.metadata_store_pb2.Uut | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["product", b"product"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["product", b"product"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["uut", b"uut"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["uut", b"uut"]) -> None: ...
 
-global___CreateProductRequest = CreateProductRequest
+global___CreateUutRequest = CreateUutRequest
 
 @typing.final
-class CreateProductResponse(google.protobuf.message.Message):
-    """Message returned when creating a new product in the metadata store."""
+class CreateUutResponse(google.protobuf.message.Message):
+    """Message returned when creating a new UUT in the metadata store."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """The identifier of the created product."""
+    UUT_ID_FIELD_NUMBER: builtins.int
+    uut_id: builtins.str
+    """The identifier of the created UUT."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        uut_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["uut_id", b"uut_id"]) -> None: ...
 
-global___CreateProductResponse = CreateProductResponse
+global___CreateUutResponse = CreateUutResponse
 
 @typing.final
 class GetOperatorRequest(google.protobuf.message.Message):
@@ -243,15 +243,15 @@ class GetOperatorRequest(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
+    OPERATOR_ID_FIELD_NUMBER: builtins.int
+    operator_id: builtins.str
     """Required. The identifier of the desired operator."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        operator_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["operator_id", b"operator_id"]) -> None: ...
 
 global___GetOperatorRequest = GetOperatorRequest
 
@@ -263,13 +263,13 @@ class GetOperatorResponse(google.protobuf.message.Message):
 
     OPERATOR_FIELD_NUMBER: builtins.int
     @property
-    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.OperatorMetadata:
+    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Operator:
         """The metadata of the requested operator."""
 
     def __init__(
         self,
         *,
-        operator: ni.measurements.metadata.v1.metadata_store_pb2.OperatorMetadata | None = ...,
+        operator: ni.measurements.metadata.v1.metadata_store_pb2.Operator | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["operator", b"operator"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["operator", b"operator"]) -> None: ...
@@ -300,11 +300,11 @@ class QueryOperatorsResponse(google.protobuf.message.Message):
 
     OPERATORS_FIELD_NUMBER: builtins.int
     @property
-    def operators(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.OperatorMetadata]: ...
+    def operators(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Operator]: ...
     def __init__(
         self,
         *,
-        operators: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.OperatorMetadata] | None = ...,
+        operators: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Operator] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["operators", b"operators"]) -> None: ...
 
@@ -318,13 +318,13 @@ class CreateOperatorRequest(google.protobuf.message.Message):
 
     OPERATOR_FIELD_NUMBER: builtins.int
     @property
-    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.OperatorMetadata:
+    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Operator:
         """Required. The metadata of the operator to be created."""
 
     def __init__(
         self,
         *,
-        operator: ni.measurements.metadata.v1.metadata_store_pb2.OperatorMetadata | None = ...,
+        operator: ni.measurements.metadata.v1.metadata_store_pb2.Operator | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["operator", b"operator"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["operator", b"operator"]) -> None: ...
@@ -337,59 +337,59 @@ class CreateOperatorResponse(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
+    OPERATOR_ID_FIELD_NUMBER: builtins.int
+    operator_id: builtins.str
     """The identifier of the created operator."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        operator_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["operator_id", b"operator_id"]) -> None: ...
 
 global___CreateOperatorResponse = CreateOperatorResponse
 
 @typing.final
-class GetTestPlanRequest(google.protobuf.message.Message):
-    """Message sent to get the test plan associated with the given identifier."""
+class GetTestDescriptionRequest(google.protobuf.message.Message):
+    """Message sent to get the test description associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """Required. The identifier of the desired test plan."""
+    TEST_DESCRIPTION_ID_FIELD_NUMBER: builtins.int
+    test_description_id: builtins.str
+    """Required. The identifier of the desired test description."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        test_description_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_description_id", b"test_description_id"]) -> None: ...
 
-global___GetTestPlanRequest = GetTestPlanRequest
+global___GetTestDescriptionRequest = GetTestDescriptionRequest
 
 @typing.final
-class GetTestPlanResponse(google.protobuf.message.Message):
-    """Message returned when getting a test plan associated with the given identifier."""
+class GetTestDescriptionResponse(google.protobuf.message.Message):
+    """Message returned when getting a test description associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_PLAN_FIELD_NUMBER: builtins.int
+    TEST_DESCRIPTION_FIELD_NUMBER: builtins.int
     @property
-    def test_plan(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestPlanMetadata:
-        """The metadata of the requested test plan."""
+    def test_description(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestDescription:
+        """The metadata of the requested test description."""
 
     def __init__(
         self,
         *,
-        test_plan: ni.measurements.metadata.v1.metadata_store_pb2.TestPlanMetadata | None = ...,
+        test_description: ni.measurements.metadata.v1.metadata_store_pb2.TestDescription | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test_plan", b"test_plan"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test_plan", b"test_plan"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_description", b"test_description"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_description", b"test_description"]) -> None: ...
 
-global___GetTestPlanResponse = GetTestPlanResponse
+global___GetTestDescriptionResponse = GetTestDescriptionResponse
 
 @typing.final
-class QueryTestPlansRequest(google.protobuf.message.Message):
+class QueryTestDescriptionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ODATA_QUERY_FIELD_NUMBER: builtins.int
@@ -404,62 +404,62 @@ class QueryTestPlansRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryTestPlansRequest = QueryTestPlansRequest
+global___QueryTestDescriptionsRequest = QueryTestDescriptionsRequest
 
 @typing.final
-class QueryTestPlansResponse(google.protobuf.message.Message):
+class QueryTestDescriptionsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_PLANS_FIELD_NUMBER: builtins.int
+    TEST_DESCRIPTIONS_FIELD_NUMBER: builtins.int
     @property
-    def test_plans(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestPlanMetadata]: ...
+    def test_descriptions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription]: ...
     def __init__(
         self,
         *,
-        test_plans: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestPlanMetadata] | None = ...,
+        test_descriptions: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_plans", b"test_plans"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_descriptions", b"test_descriptions"]) -> None: ...
 
-global___QueryTestPlansResponse = QueryTestPlansResponse
+global___QueryTestDescriptionsResponse = QueryTestDescriptionsResponse
 
 @typing.final
-class CreateTestPlanRequest(google.protobuf.message.Message):
-    """Message sent to create a new test plan in the metadata store."""
+class CreateTestDescriptionRequest(google.protobuf.message.Message):
+    """Message sent to create a new test description in the metadata store."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_PLAN_FIELD_NUMBER: builtins.int
+    TEST_DESCRIPTION_FIELD_NUMBER: builtins.int
     @property
-    def test_plan(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestPlanMetadata:
-        """Required. The metadata of the test plan to be created."""
+    def test_description(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestDescription:
+        """Required. The metadata of the test description to be created."""
 
     def __init__(
         self,
         *,
-        test_plan: ni.measurements.metadata.v1.metadata_store_pb2.TestPlanMetadata | None = ...,
+        test_description: ni.measurements.metadata.v1.metadata_store_pb2.TestDescription | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test_plan", b"test_plan"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test_plan", b"test_plan"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_description", b"test_description"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_description", b"test_description"]) -> None: ...
 
-global___CreateTestPlanRequest = CreateTestPlanRequest
+global___CreateTestDescriptionRequest = CreateTestDescriptionRequest
 
 @typing.final
-class CreateTestPlanResponse(google.protobuf.message.Message):
-    """Message returned when creating a new test plan in the metadata store."""
+class CreateTestDescriptionResponse(google.protobuf.message.Message):
+    """Message returned when creating a new test description in the metadata store."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """The identifier of the created test plan."""
+    TEST_DESCRIPTION_ID_FIELD_NUMBER: builtins.int
+    test_description_id: builtins.str
+    """The identifier of the created test description."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        test_description_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_description_id", b"test_description_id"]) -> None: ...
 
-global___CreateTestPlanResponse = CreateTestPlanResponse
+global___CreateTestDescriptionResponse = CreateTestDescriptionResponse
 
 @typing.final
 class GetTestRequest(google.protobuf.message.Message):
@@ -467,15 +467,15 @@ class GetTestRequest(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
+    TEST_ID_FIELD_NUMBER: builtins.int
+    test_id: builtins.str
     """Required. The identifier of the desired test."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        test_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_id", b"test_id"]) -> None: ...
 
 global___GetTestRequest = GetTestRequest
 
@@ -487,13 +487,13 @@ class GetTestResponse(google.protobuf.message.Message):
 
     TEST_FIELD_NUMBER: builtins.int
     @property
-    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestMetadata:
+    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Test:
         """The metadata of the requested test."""
 
     def __init__(
         self,
         *,
-        test: ni.measurements.metadata.v1.metadata_store_pb2.TestMetadata | None = ...,
+        test: ni.measurements.metadata.v1.metadata_store_pb2.Test | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["test", b"test"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test", b"test"]) -> None: ...
@@ -524,11 +524,11 @@ class QueryTestsResponse(google.protobuf.message.Message):
 
     TESTS_FIELD_NUMBER: builtins.int
     @property
-    def tests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestMetadata]: ...
+    def tests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Test]: ...
     def __init__(
         self,
         *,
-        tests: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestMetadata] | None = ...,
+        tests: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Test] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["tests", b"tests"]) -> None: ...
 
@@ -542,13 +542,13 @@ class CreateTestRequest(google.protobuf.message.Message):
 
     TEST_FIELD_NUMBER: builtins.int
     @property
-    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestMetadata:
+    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Test:
         """Required. The metadata of the test to be created."""
 
     def __init__(
         self,
         *,
-        test: ni.measurements.metadata.v1.metadata_store_pb2.TestMetadata | None = ...,
+        test: ni.measurements.metadata.v1.metadata_store_pb2.Test | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["test", b"test"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test", b"test"]) -> None: ...
@@ -561,15 +561,15 @@ class CreateTestResponse(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
+    TEST_ID_FIELD_NUMBER: builtins.int
+    test_id: builtins.str
     """The identifier of the created test."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        test_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_id", b"test_id"]) -> None: ...
 
 global___CreateTestResponse = CreateTestResponse
 
@@ -579,15 +579,15 @@ class GetTestStationRequest(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
+    TEST_STATION_ID_FIELD_NUMBER: builtins.int
+    test_station_id: builtins.str
     """Required. The identifier of the desired test station."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        test_station_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_station_id", b"test_station_id"]) -> None: ...
 
 global___GetTestStationRequest = GetTestStationRequest
 
@@ -599,13 +599,13 @@ class GetTestStationResponse(google.protobuf.message.Message):
 
     TEST_STATION_FIELD_NUMBER: builtins.int
     @property
-    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStationMetadata:
+    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStation:
         """The metadata of the requested test station."""
 
     def __init__(
         self,
         *,
-        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStationMetadata | None = ...,
+        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStation | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["test_station", b"test_station"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_station", b"test_station"]) -> None: ...
@@ -636,11 +636,11 @@ class QueryTestStationsResponse(google.protobuf.message.Message):
 
     TEST_STATIONS_FIELD_NUMBER: builtins.int
     @property
-    def test_stations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestStationMetadata]: ...
+    def test_stations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestStation]: ...
     def __init__(
         self,
         *,
-        test_stations: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestStationMetadata] | None = ...,
+        test_stations: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestStation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_stations", b"test_stations"]) -> None: ...
 
@@ -654,13 +654,13 @@ class CreateTestStationRequest(google.protobuf.message.Message):
 
     TEST_STATION_FIELD_NUMBER: builtins.int
     @property
-    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStationMetadata:
+    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStation:
         """Required. The metadata of the test station to be created."""
 
     def __init__(
         self,
         *,
-        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStationMetadata | None = ...,
+        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStation | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["test_station", b"test_station"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_station", b"test_station"]) -> None: ...
@@ -673,59 +673,59 @@ class CreateTestStationResponse(google.protobuf.message.Message):
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
+    TEST_STATION_ID_FIELD_NUMBER: builtins.int
+    test_station_id: builtins.str
     """The identifier of the created test station."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        test_station_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_station_id", b"test_station_id"]) -> None: ...
 
 global___CreateTestStationResponse = CreateTestStationResponse
 
 @typing.final
-class GetHardwareRequest(google.protobuf.message.Message):
-    """Message sent to get the hardware associated with the given identifier."""
+class GetHardwareItemRequest(google.protobuf.message.Message):
+    """Message sent to get the hardware item associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """Required. The identifier of the desired hardware."""
+    HARDWARE_ITEM_ID_FIELD_NUMBER: builtins.int
+    hardware_item_id: builtins.str
+    """Required. The identifier of the desired hardware item."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        hardware_item_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["hardware_item_id", b"hardware_item_id"]) -> None: ...
 
-global___GetHardwareRequest = GetHardwareRequest
+global___GetHardwareItemRequest = GetHardwareItemRequest
 
 @typing.final
-class GetHardwareResponse(google.protobuf.message.Message):
-    """Message returned when getting the hardware associated with the given identifier."""
+class GetHardwareItemResponse(google.protobuf.message.Message):
+    """Message returned when getting the hardware item associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    HARDWARE_FIELD_NUMBER: builtins.int
+    HARDWARE_ITEM_FIELD_NUMBER: builtins.int
     @property
-    def hardware(self) -> ni.measurements.metadata.v1.metadata_store_pb2.HardwareMetadata:
-        """The metadata of the requested hardware."""
+    def hardware_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem:
+        """The metadata of the requested hardware item."""
 
     def __init__(
         self,
         *,
-        hardware: ni.measurements.metadata.v1.metadata_store_pb2.HardwareMetadata | None = ...,
+        hardware_item: ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["hardware", b"hardware"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["hardware", b"hardware"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> None: ...
 
-global___GetHardwareResponse = GetHardwareResponse
+global___GetHardwareItemResponse = GetHardwareItemResponse
 
 @typing.final
-class QueryHardwareRequest(google.protobuf.message.Message):
+class QueryHardwareItemsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ODATA_QUERY_FIELD_NUMBER: builtins.int
@@ -740,104 +740,104 @@ class QueryHardwareRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryHardwareRequest = QueryHardwareRequest
+global___QueryHardwareItemsRequest = QueryHardwareItemsRequest
 
 @typing.final
-class QueryHardwareResponse(google.protobuf.message.Message):
+class QueryHardwareItemsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    HARDWARE_FIELD_NUMBER: builtins.int
+    HARDWARE_ITEMS_FIELD_NUMBER: builtins.int
     @property
-    def hardware(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.HardwareMetadata]: ...
+    def hardware_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem]: ...
     def __init__(
         self,
         *,
-        hardware: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.HardwareMetadata] | None = ...,
+        hardware_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["hardware", b"hardware"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["hardware_items", b"hardware_items"]) -> None: ...
 
-global___QueryHardwareResponse = QueryHardwareResponse
+global___QueryHardwareItemsResponse = QueryHardwareItemsResponse
 
 @typing.final
-class CreateHardwareRequest(google.protobuf.message.Message):
-    """Message sent to create new hardware in the metadata store."""
+class CreateHardwareItemRequest(google.protobuf.message.Message):
+    """Message sent to create new hardware item in the metadata store."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    HARDWARE_FIELD_NUMBER: builtins.int
+    HARDWARE_ITEM_FIELD_NUMBER: builtins.int
     @property
-    def hardware(self) -> ni.measurements.metadata.v1.metadata_store_pb2.HardwareMetadata:
-        """Required. The metadata of the hardware to be created."""
+    def hardware_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem:
+        """Required. The metadata of the hardware item to be created."""
 
     def __init__(
         self,
         *,
-        hardware: ni.measurements.metadata.v1.metadata_store_pb2.HardwareMetadata | None = ...,
+        hardware_item: ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["hardware", b"hardware"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["hardware", b"hardware"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> None: ...
 
-global___CreateHardwareRequest = CreateHardwareRequest
+global___CreateHardwareItemRequest = CreateHardwareItemRequest
 
 @typing.final
-class CreateHardwareResponse(google.protobuf.message.Message):
-    """Message returned when creating new hardware in the metadata store."""
+class CreateHardwareItemResponse(google.protobuf.message.Message):
+    """Message returned when creating new hardware item in the metadata store."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """The identifier of the created hardware."""
+    HARDWARE_ITEM_ID_FIELD_NUMBER: builtins.int
+    hardware_item_id: builtins.str
+    """The identifier of the created hardware item."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        hardware_item_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["hardware_item_id", b"hardware_item_id"]) -> None: ...
 
-global___CreateHardwareResponse = CreateHardwareResponse
+global___CreateHardwareItemResponse = CreateHardwareItemResponse
 
 @typing.final
-class GetSoftwareRequest(google.protobuf.message.Message):
-    """Message sent to get the software associated with the given identifier."""
+class GetSoftwareItemRequest(google.protobuf.message.Message):
+    """Message sent to get the software item associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """Required. The identifier of the desired software."""
+    SOFTWARE_ITEM_ID_FIELD_NUMBER: builtins.int
+    software_item_id: builtins.str
+    """Required. The identifier of the desired software item."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        software_item_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["software_item_id", b"software_item_id"]) -> None: ...
 
-global___GetSoftwareRequest = GetSoftwareRequest
+global___GetSoftwareItemRequest = GetSoftwareItemRequest
 
 @typing.final
-class GetSoftwareResponse(google.protobuf.message.Message):
-    """Message returned when getting the software associated with the given identifier."""
+class GetSoftwareItemResponse(google.protobuf.message.Message):
+    """Message returned when getting the software item associated with the given identifier."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    SOFTWARE_FIELD_NUMBER: builtins.int
+    SOFTWARE_ITEM_FIELD_NUMBER: builtins.int
     @property
-    def software(self) -> ni.measurements.metadata.v1.metadata_store_pb2.SoftwareMetadata:
-        """The metadata of the requested software."""
+    def software_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem:
+        """The metadata of the requested software item."""
 
     def __init__(
         self,
         *,
-        software: ni.measurements.metadata.v1.metadata_store_pb2.SoftwareMetadata | None = ...,
+        software_item: ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["software", b"software"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["software", b"software"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["software_item", b"software_item"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["software_item", b"software_item"]) -> None: ...
 
-global___GetSoftwareResponse = GetSoftwareResponse
+global___GetSoftwareItemResponse = GetSoftwareItemResponse
 
 @typing.final
-class QuerySoftwareRequest(google.protobuf.message.Message):
+class QuerySoftwareItemsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ODATA_QUERY_FIELD_NUMBER: builtins.int
@@ -852,65 +852,177 @@ class QuerySoftwareRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QuerySoftwareRequest = QuerySoftwareRequest
+global___QuerySoftwareItemsRequest = QuerySoftwareItemsRequest
 
 @typing.final
-class QuerySoftwareResponse(google.protobuf.message.Message):
+class QuerySoftwareItemsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    SOFTWARE_FIELD_NUMBER: builtins.int
+    SOFTWARE_ITEMS_FIELD_NUMBER: builtins.int
     @property
-    def software(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareMetadata]: ...
+    def software_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem]: ...
     def __init__(
         self,
         *,
-        software: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareMetadata] | None = ...,
+        software_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["software", b"software"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["software_items", b"software_items"]) -> None: ...
 
-global___QuerySoftwareResponse = QuerySoftwareResponse
+global___QuerySoftwareItemsResponse = QuerySoftwareItemsResponse
 
 @typing.final
-class CreateSoftwareRequest(google.protobuf.message.Message):
-    """Message sent to create new software in the metadata store."""
+class CreateSoftwareItemRequest(google.protobuf.message.Message):
+    """Message sent to create new software item in the metadata store."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    SOFTWARE_FIELD_NUMBER: builtins.int
+    SOFTWARE_ITEM_FIELD_NUMBER: builtins.int
     @property
-    def software(self) -> ni.measurements.metadata.v1.metadata_store_pb2.SoftwareMetadata:
-        """Required. The metadata of the software to be created."""
+    def software_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem:
+        """Required. The metadata of the software item to be created."""
 
     def __init__(
         self,
         *,
-        software: ni.measurements.metadata.v1.metadata_store_pb2.SoftwareMetadata | None = ...,
+        software_item: ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["software", b"software"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["software", b"software"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["software_item", b"software_item"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["software_item", b"software_item"]) -> None: ...
 
-global___CreateSoftwareRequest = CreateSoftwareRequest
+global___CreateSoftwareItemRequest = CreateSoftwareItemRequest
 
 @typing.final
-class CreateSoftwareResponse(google.protobuf.message.Message):
-    """Message returned when creating new software in the metadata store."""
+class CreateSoftwareItemResponse(google.protobuf.message.Message):
+    """Message returned when creating new software item in the metadata store."""
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    id: builtins.str
-    """The identifier of the created software."""
+    SOFTWARE_ITEM_ID_FIELD_NUMBER: builtins.int
+    software_item_id: builtins.str
+    """The identifier of the created software item."""
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
+        software_item_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["software_item_id", b"software_item_id"]) -> None: ...
 
-global___CreateSoftwareResponse = CreateSoftwareResponse
+global___CreateSoftwareItemResponse = CreateSoftwareItemResponse
 
 @typing.final
-class RegisterMetadataSchemaRequest(google.protobuf.message.Message):
+class GetTestAdapterRequest(google.protobuf.message.Message):
+    """Message sent to get the test adapter associated with the given identifier."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_ADAPTER_ID_FIELD_NUMBER: builtins.int
+    test_adapter_id: builtins.str
+    """Required. The identifier of the desired test adapter."""
+    def __init__(
+        self,
+        *,
+        test_adapter_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_adapter_id", b"test_adapter_id"]) -> None: ...
+
+global___GetTestAdapterRequest = GetTestAdapterRequest
+
+@typing.final
+class GetTestAdapterResponse(google.protobuf.message.Message):
+    """Message returned when getting the test adapter associated with the given identifier."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_ADAPTER_FIELD_NUMBER: builtins.int
+    @property
+    def test_adapter(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter:
+        """The metadata of the requested test adapter."""
+
+    def __init__(
+        self,
+        *,
+        test_adapter: ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> None: ...
+
+global___GetTestAdapterResponse = GetTestAdapterResponse
+
+@typing.final
+class QueryTestAdaptersRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    ODATA_QUERY_FIELD_NUMBER: builtins.int
+    odata_query: builtins.str
+    """an OData query string.  example "$filter=name eq 'Value'"
+    $expand is not supported
+    """
+    def __init__(
+        self,
+        *,
+        odata_query: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+
+global___QueryTestAdaptersRequest = QueryTestAdaptersRequest
+
+@typing.final
+class QueryTestAdaptersResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_ADAPTERS_FIELD_NUMBER: builtins.int
+    @property
+    def test_adapters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter]: ...
+    def __init__(
+        self,
+        *,
+        test_adapters: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_adapters", b"test_adapters"]) -> None: ...
+
+global___QueryTestAdaptersResponse = QueryTestAdaptersResponse
+
+@typing.final
+class CreateTestAdapterRequest(google.protobuf.message.Message):
+    """Message sent to create new test adapter in the metadata store."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_ADAPTER_FIELD_NUMBER: builtins.int
+    @property
+    def test_adapter(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter:
+        """Required. The metadata of the test adapter to be created."""
+
+    def __init__(
+        self,
+        *,
+        test_adapter: ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> None: ...
+
+global___CreateTestAdapterRequest = CreateTestAdapterRequest
+
+@typing.final
+class CreateTestAdapterResponse(google.protobuf.message.Message):
+    """Message returned when creating new test adapter in the metadata store."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_ADAPTER_ID_FIELD_NUMBER: builtins.int
+    test_adapter_id: builtins.str
+    """The identifier of the created test adapter."""
+    def __init__(
+        self,
+        *,
+        test_adapter_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_adapter_id", b"test_adapter_id"]) -> None: ...
+
+global___CreateTestAdapterResponse = CreateTestAdapterResponse
+
+@typing.final
+class RegisterSchemaRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     SCHEMA_FIELD_NUMBER: builtins.int
@@ -926,10 +1038,10 @@ class RegisterMetadataSchemaRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["schema", b"schema"]) -> None: ...
 
-global___RegisterMetadataSchemaRequest = RegisterMetadataSchemaRequest
+global___RegisterSchemaRequest = RegisterSchemaRequest
 
 @typing.final
-class RegisterMetadataSchemaResponse(google.protobuf.message.Message):
+class RegisterSchemaResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     SCHEMA_ID_FIELD_NUMBER: builtins.int
@@ -942,36 +1054,36 @@ class RegisterMetadataSchemaResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["schema_id", b"schema_id"]) -> None: ...
 
-global___RegisterMetadataSchemaResponse = RegisterMetadataSchemaResponse
+global___RegisterSchemaResponse = RegisterSchemaResponse
 
 @typing.final
-class EnumerateMetadataSchemasRequest(google.protobuf.message.Message):
+class ListSchemasRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(
         self,
     ) -> None: ...
 
-global___EnumerateMetadataSchemasRequest = EnumerateMetadataSchemasRequest
+global___ListSchemasRequest = ListSchemasRequest
 
 @typing.final
-class EnumerateMetadataSchemasResponse(google.protobuf.message.Message):
+class ListSchemasResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     SCHEMAS_FIELD_NUMBER: builtins.int
     @property
-    def schemas(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.MetadataSchema]: ...
+    def schemas(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.ExtensionSchema]: ...
     def __init__(
         self,
         *,
-        schemas: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.MetadataSchema] | None = ...,
+        schemas: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.ExtensionSchema] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["schemas", b"schemas"]) -> None: ...
 
-global___EnumerateMetadataSchemasResponse = EnumerateMetadataSchemasResponse
+global___ListSchemasResponse = ListSchemasResponse
 
 @typing.final
-class ResolveAliasRequest(google.protobuf.message.Message):
+class GetAliasRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ALIAS_NAME_FIELD_NUMBER: builtins.int
@@ -983,10 +1095,10 @@ class ResolveAliasRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name"]) -> None: ...
 
-global___ResolveAliasRequest = ResolveAliasRequest
+global___GetAliasRequest = GetAliasRequest
 
 @typing.final
-class ResolveAliasResponse(google.protobuf.message.Message):
+class GetAliasResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ALIAS_FIELD_NUMBER: builtins.int
@@ -1000,7 +1112,7 @@ class ResolveAliasResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["alias", b"alias"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["alias", b"alias"]) -> None: ...
 
-global___ResolveAliasResponse = ResolveAliasResponse
+global___GetAliasResponse = GetAliasResponse
 
 @typing.final
 class QueryAliasesRequest(google.protobuf.message.Message):
@@ -1037,57 +1149,61 @@ class QueryAliasesResponse(google.protobuf.message.Message):
 global___QueryAliasesResponse = QueryAliasesResponse
 
 @typing.final
-class RegisterAliasRequest(google.protobuf.message.Message):
+class CreateAliasRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ALIAS_NAME_FIELD_NUMBER: builtins.int
-    DUT_FIELD_NUMBER: builtins.int
-    PRODUCT_FIELD_NUMBER: builtins.int
-    HARDWARE_FIELD_NUMBER: builtins.int
-    SOFTWARE_FIELD_NUMBER: builtins.int
+    UUT_INSTANCE_FIELD_NUMBER: builtins.int
+    UUT_FIELD_NUMBER: builtins.int
+    HARDWARE_ITEM_FIELD_NUMBER: builtins.int
+    SOFTWARE_ITEM_FIELD_NUMBER: builtins.int
     OPERATOR_FIELD_NUMBER: builtins.int
-    TEST_PLAN_FIELD_NUMBER: builtins.int
+    TEST_DESCRIPTION_FIELD_NUMBER: builtins.int
     TEST_FIELD_NUMBER: builtins.int
     TEST_STATION_FIELD_NUMBER: builtins.int
+    TEST_ADAPTER_FIELD_NUMBER: builtins.int
     alias_name: builtins.str
     """The alias name to register."""
     @property
-    def dut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.DUTMetadata: ...
+    def uut_instance(self) -> ni.measurements.metadata.v1.metadata_store_pb2.UutInstance: ...
     @property
-    def product(self) -> ni.measurements.metadata.v1.metadata_store_pb2.ProductMetadata: ...
+    def uut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Uut: ...
     @property
-    def hardware(self) -> ni.measurements.metadata.v1.metadata_store_pb2.HardwareMetadata: ...
+    def hardware_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem: ...
     @property
-    def software(self) -> ni.measurements.metadata.v1.metadata_store_pb2.SoftwareMetadata: ...
+    def software_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem: ...
     @property
-    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.OperatorMetadata: ...
+    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Operator: ...
     @property
-    def test_plan(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestPlanMetadata: ...
+    def test_description(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestDescription: ...
     @property
-    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestMetadata: ...
+    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Test: ...
     @property
-    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStationMetadata: ...
+    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStation: ...
+    @property
+    def test_adapter(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter: ...
     def __init__(
         self,
         *,
         alias_name: builtins.str = ...,
-        dut: ni.measurements.metadata.v1.metadata_store_pb2.DUTMetadata | None = ...,
-        product: ni.measurements.metadata.v1.metadata_store_pb2.ProductMetadata | None = ...,
-        hardware: ni.measurements.metadata.v1.metadata_store_pb2.HardwareMetadata | None = ...,
-        software: ni.measurements.metadata.v1.metadata_store_pb2.SoftwareMetadata | None = ...,
-        operator: ni.measurements.metadata.v1.metadata_store_pb2.OperatorMetadata | None = ...,
-        test_plan: ni.measurements.metadata.v1.metadata_store_pb2.TestPlanMetadata | None = ...,
-        test: ni.measurements.metadata.v1.metadata_store_pb2.TestMetadata | None = ...,
-        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStationMetadata | None = ...,
+        uut_instance: ni.measurements.metadata.v1.metadata_store_pb2.UutInstance | None = ...,
+        uut: ni.measurements.metadata.v1.metadata_store_pb2.Uut | None = ...,
+        hardware_item: ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem | None = ...,
+        software_item: ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem | None = ...,
+        operator: ni.measurements.metadata.v1.metadata_store_pb2.Operator | None = ...,
+        test_description: ni.measurements.metadata.v1.metadata_store_pb2.TestDescription | None = ...,
+        test: ni.measurements.metadata.v1.metadata_store_pb2.Test | None = ...,
+        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStation | None = ...,
+        test_adapter: ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["alias_target", b"alias_target", "dut", b"dut", "hardware", b"hardware", "operator", b"operator", "product", b"product", "software", b"software", "test", b"test", "test_plan", b"test_plan", "test_station", b"test_station"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name", "alias_target", b"alias_target", "dut", b"dut", "hardware", b"hardware", "operator", b"operator", "product", b"product", "software", b"software", "test", b"test", "test_plan", b"test_plan", "test_station", b"test_station"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["alias_target", b"alias_target"]) -> typing.Literal["dut", "product", "hardware", "software", "operator", "test_plan", "test", "test_station"] | None: ...
+    def HasField(self, field_name: typing.Literal["alias_target", b"alias_target", "hardware_item", b"hardware_item", "operator", b"operator", "software_item", b"software_item", "test", b"test", "test_adapter", b"test_adapter", "test_description", b"test_description", "test_station", b"test_station", "uut", b"uut", "uut_instance", b"uut_instance"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name", "alias_target", b"alias_target", "hardware_item", b"hardware_item", "operator", b"operator", "software_item", b"software_item", "test", b"test", "test_adapter", b"test_adapter", "test_description", b"test_description", "test_station", b"test_station", "uut", b"uut", "uut_instance", b"uut_instance"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["alias_target", b"alias_target"]) -> typing.Literal["uut_instance", "uut", "hardware_item", "software_item", "operator", "test_description", "test", "test_station", "test_adapter"] | None: ...
 
-global___RegisterAliasRequest = RegisterAliasRequest
+global___CreateAliasRequest = CreateAliasRequest
 
 @typing.final
-class RegisterAliasResponse(google.protobuf.message.Message):
+class CreateAliasResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ALIAS_FIELD_NUMBER: builtins.int
@@ -1101,10 +1217,10 @@ class RegisterAliasResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["alias", b"alias"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["alias", b"alias"]) -> None: ...
 
-global___RegisterAliasResponse = RegisterAliasResponse
+global___CreateAliasResponse = CreateAliasResponse
 
 @typing.final
-class UnregisterAliasRequest(google.protobuf.message.Message):
+class DeleteAliasRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     ALIAS_NAME_FIELD_NUMBER: builtins.int
@@ -1117,10 +1233,10 @@ class UnregisterAliasRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name"]) -> None: ...
 
-global___UnregisterAliasRequest = UnregisterAliasRequest
+global___DeleteAliasRequest = DeleteAliasRequest
 
 @typing.final
-class UnregisterAliasResponse(google.protobuf.message.Message):
+class DeleteAliasResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     UNREGISTERED_FIELD_NUMBER: builtins.int
@@ -1133,4 +1249,4 @@ class UnregisterAliasResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["unregistered", b"unregistered"]) -> None: ...
 
-global___UnregisterAliasResponse = UnregisterAliasResponse
+global___DeleteAliasResponse = DeleteAliasResponse
