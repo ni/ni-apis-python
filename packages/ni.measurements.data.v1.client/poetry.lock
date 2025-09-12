@@ -920,18 +920,20 @@ files = [
 
 [[package]]
 name = "ni-datamonikers-v1-proto"
-version = "0.1.0.dev0"
+version = "0.1.0-dev1"
 description = "Protobuf data types and service stub for NI data moniker gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = ">=3.9,<4.0"
 groups = ["main", "dev"]
-files = [
-    {file = "ni_datamonikers_v1_proto-0.1.0.dev0-py3-none-any.whl", hash = "sha256:5ae96df50a010de68b40527e75696eeca2fc1522ab9d8a169a5993f031eb2185"},
-    {file = "ni_datamonikers_v1_proto-0.1.0.dev0.tar.gz", hash = "sha256:cdcf9b4d1fc463f4b2664949f6037bdcc0a6556679eddb3350b5630873da4147"},
-]
+files = []
+develop = true
 
 [package.dependencies]
 protobuf = ">=4.21"
+
+[package.source]
+type = "directory"
+url = "../ni.datamonikers.v1.proto"
 
 [[package]]
 name = "ni-grpc-extensions"
@@ -1006,18 +1008,20 @@ url = "../ni.measurements.data.v1.proto"
 
 [[package]]
 name = "ni-measurements-metadata-v1-proto"
-version = "0.1.0.dev0"
+version = "0.1.0-dev1"
 description = "Protobuf data types and service stub for NI metadata store gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = ">=3.9,<4.0"
 groups = ["main", "dev"]
-files = [
-    {file = "ni_measurements_metadata_v1_proto-0.1.0.dev0-py3-none-any.whl", hash = "sha256:cab8ae264cd33ea16758f37b72efa5d1dc4ee06d635be7c5225de54c420b5641"},
-    {file = "ni_measurements_metadata_v1_proto-0.1.0.dev0.tar.gz", hash = "sha256:37768f4187d76f508ebbbcd178b8754ea587e6eddff5bcc15f1685732c008854"},
-]
+files = []
+develop = true
 
 [package.dependencies]
 protobuf = ">=4.21"
+
+[package.source]
+type = "directory"
+url = "../ni.measurements.metadata.v1.proto"
 
 [[package]]
 name = "ni-protobuf-types"
@@ -2233,4 +2237,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.9,<4.0"
-content-hash = "952337d0780af430c079c7ad40e3c2d1b2cfdd8afa7e01aa3c2c1993eb19aa43"
+content-hash = "4e560312f07ba8c0b4090193815e0e017e2b48dc8af6c3441fbdcf451a5aac72"
