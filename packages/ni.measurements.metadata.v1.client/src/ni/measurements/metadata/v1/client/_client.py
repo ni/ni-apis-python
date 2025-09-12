@@ -43,41 +43,41 @@ class MetadataStoreClient(
             stub_class=metadata_store_service_pb2_grpc.MetadataStoreServiceStub,
         )
 
-    def get_dut(
-        self, request: metadata_store_service_pb2.GetDutRequest
-    ) -> metadata_store_service_pb2.GetDutResponse:
-        """Gets the device under test associated with the identifier given in the request."""
-        return self._get_stub().GetDut(request)
+    def get_uut_instance(
+        self, request: metadata_store_service_pb2.GetUutInstanceRequest
+    ) -> metadata_store_service_pb2.GetUutInstanceResponse:
+        """Gets the UUT instance associated with the identifier given in the request."""
+        return self._get_stub().GetUutInstance(request)
 
-    def query_duts(
-        self, request: metadata_store_service_pb2.QueryDutsRequest
-    ) -> metadata_store_service_pb2.QueryDutsResponse:
-        """Perform an OData query on DUTs."""
-        return self._get_stub().QueryDuts(request)
+    def query_uut_instances(
+        self, request: metadata_store_service_pb2.QueryUutInstancesRequest
+    ) -> metadata_store_service_pb2.QueryUutInstancesResponse:
+        """Perform an OData query on UUT instances."""
+        return self._get_stub().QueryUutInstances(request)
 
-    def create_dut(
-        self, request: metadata_store_service_pb2.CreateDutRequest
-    ) -> metadata_store_service_pb2.CreateDutResponse:
-        """Creates a new device under test in the metadata store."""
-        return self._get_stub().CreateDut(request)
+    def create_uut_instance(
+        self, request: metadata_store_service_pb2.CreateUutInstanceRequest
+    ) -> metadata_store_service_pb2.CreateUutInstanceResponse:
+        """Creates a new UUT instance in the metadata store."""
+        return self._get_stub().CreateUutInstance(request)
 
-    def get_product(
-        self, request: metadata_store_service_pb2.GetProductRequest
-    ) -> metadata_store_service_pb2.GetProductResponse:
-        """Gets the product associated with the identifier given in the request."""
-        return self._get_stub().GetProduct(request)
+    def get_uut(
+        self, request: metadata_store_service_pb2.GetUutRequest
+    ) -> metadata_store_service_pb2.GetUutResponse:
+        """Gets the UUT associated with the identifier given in the request."""
+        return self._get_stub().GetUut(request)
 
-    def query_products(
-        self, request: metadata_store_service_pb2.QueryProductsRequest
-    ) -> metadata_store_service_pb2.QueryProductsResponse:
-        """Perform an OData query on products."""
-        return self._get_stub().QueryProducts(request)
+    def query_uuts(
+        self, request: metadata_store_service_pb2.QueryUutsRequest
+    ) -> metadata_store_service_pb2.QueryUutsResponse:
+        """Perform an OData query on UUTs."""
+        return self._get_stub().QueryUuts(request)
 
-    def create_product(
-        self, request: metadata_store_service_pb2.CreateProductRequest
-    ) -> metadata_store_service_pb2.CreateProductResponse:
-        """Creates a new product in the metadata store."""
-        return self._get_stub().CreateProduct(request)
+    def create_uut(
+        self, request: metadata_store_service_pb2.CreateUutRequest
+    ) -> metadata_store_service_pb2.CreateUutResponse:
+        """Creates a new UUT in the metadata store."""
+        return self._get_stub().CreateUut(request)
 
     def get_operator(
         self, request: metadata_store_service_pb2.GetOperatorRequest
@@ -97,23 +97,23 @@ class MetadataStoreClient(
         """Creates a new operator in the metadata store."""
         return self._get_stub().CreateOperator(request)
 
-    def get_test_plan(
-        self, request: metadata_store_service_pb2.GetTestPlanRequest
-    ) -> metadata_store_service_pb2.GetTestPlanResponse:
-        """Gets the test plan associated with the identifier given in the request."""
-        return self._get_stub().GetTestPlan(request)
+    def get_test_description(
+        self, request: metadata_store_service_pb2.GetTestDescriptionRequest
+    ) -> metadata_store_service_pb2.GetTestDescriptionResponse:
+        """Gets the test description associated with the identifier given in the request."""
+        return self._get_stub().GetTestDescription(request)
 
-    def query_test_plans(
-        self, request: metadata_store_service_pb2.QueryTestPlansRequest
-    ) -> metadata_store_service_pb2.QueryTestPlansResponse:
-        """Perform an OData query on test plans."""
-        return self._get_stub().QueryTestPlans(request)
+    def query_test_descriptions(
+        self, request: metadata_store_service_pb2.QueryTestDescriptionsRequest
+    ) -> metadata_store_service_pb2.QueryTestDescriptionsResponse:
+        """Perform an OData query on test descriptions."""
+        return self._get_stub().QueryTestDescriptions(request)
 
-    def create_test_plan(
-        self, request: metadata_store_service_pb2.CreateTestPlanRequest
-    ) -> metadata_store_service_pb2.CreateTestPlanResponse:
-        """Creates a new test plan in the metadata store."""
-        return self._get_stub().CreateTestPlan(request)
+    def create_test_description(
+        self, request: metadata_store_service_pb2.CreateTestDescriptionRequest
+    ) -> metadata_store_service_pb2.CreateTestDescriptionResponse:
+        """Creates a new test description in the metadata store."""
+        return self._get_stub().CreateTestDescription(request)
 
     def get_test(
         self, request: metadata_store_service_pb2.GetTestRequest
@@ -151,77 +151,95 @@ class MetadataStoreClient(
         """Creates a new test station in the metadata store."""
         return self._get_stub().CreateTestStation(request)
 
-    def get_hardware(
-        self, request: metadata_store_service_pb2.GetHardwareRequest
-    ) -> metadata_store_service_pb2.GetHardwareResponse:
-        """Gets the hardware associated with the identifier given in the request."""
-        return self._get_stub().GetHardware(request)
+    def get_hardware_item(
+        self, request: metadata_store_service_pb2.GetHardwareItemRequest
+    ) -> metadata_store_service_pb2.GetHardwareItemResponse:
+        """Gets the hardware item associated with the identifier given in the request."""
+        return self._get_stub().GetHardwareItem(request)
 
-    def query_hardware(
-        self, request: metadata_store_service_pb2.QueryHardwareRequest
-    ) -> metadata_store_service_pb2.QueryHardwareResponse:
-        """Perform an OData query on hardware."""
-        return self._get_stub().QueryHardware(request)
+    def query_hardware_items(
+        self, request: metadata_store_service_pb2.QueryHardwareItemsRequest
+    ) -> metadata_store_service_pb2.QueryHardwareItemsResponse:
+        """Perform an OData query on hardware items."""
+        return self._get_stub().QueryHardwareItems(request)
 
-    def create_hardware(
-        self, request: metadata_store_service_pb2.CreateHardwareRequest
-    ) -> metadata_store_service_pb2.CreateHardwareResponse:
-        """Creates new hardware in the metadata store."""
-        return self._get_stub().CreateHardware(request)
+    def create_hardware_item(
+        self, request: metadata_store_service_pb2.CreateHardwareItemRequest
+    ) -> metadata_store_service_pb2.CreateHardwareItemResponse:
+        """Creates a new hardware item in the metadata store."""
+        return self._get_stub().CreateHardwareItem(request)
 
-    def get_software(
-        self, request: metadata_store_service_pb2.GetSoftwareRequest
-    ) -> metadata_store_service_pb2.GetSoftwareResponse:
-        """Gets the software associated with the identifier given in the request."""
-        return self._get_stub().GetSoftware(request)
+    def get_software_item(
+        self, request: metadata_store_service_pb2.GetSoftwareItemRequest
+    ) -> metadata_store_service_pb2.GetSoftwareItemResponse:
+        """Gets the software item associated with the identifier given in the request."""
+        return self._get_stub().GetSoftwareItem(request)
 
-    def query_software(
-        self, request: metadata_store_service_pb2.QuerySoftwareRequest
-    ) -> metadata_store_service_pb2.QuerySoftwareResponse:
-        """Perform an OData query on software."""
-        return self._get_stub().QuerySoftware(request)
+    def query_software_items(
+        self, request: metadata_store_service_pb2.QuerySoftwareItemsRequest
+    ) -> metadata_store_service_pb2.QuerySoftwareItemsResponse:
+        """Perform an OData query on software items."""
+        return self._get_stub().QuerySoftwareItems(request)
 
-    def create_software(
-        self, request: metadata_store_service_pb2.CreateSoftwareRequest
-    ) -> metadata_store_service_pb2.CreateSoftwareResponse:
-        """Creates new software in the metadata store."""
-        return self._get_stub().CreateSoftware(request)
+    def create_software_item(
+        self, request: metadata_store_service_pb2.CreateSoftwareItemRequest
+    ) -> metadata_store_service_pb2.CreateSoftwareItemResponse:
+        """Creates a new software item in the metadata store."""
+        return self._get_stub().CreateSoftwareItem(request)
 
-    def register_metadata_schema(
-        self, request: metadata_store_service_pb2.RegisterMetadataSchemaRequest
-    ) -> metadata_store_service_pb2.RegisterMetadataSchemaResponse:
-        """Registers a metadata schema."""
-        return self._get_stub().RegisterMetadataSchema(request)
+    def get_test_adapter(
+        self, request: metadata_store_service_pb2.GetTestAdapterRequest
+    ) -> metadata_store_service_pb2.GetTestAdapterResponse:
+        """Gets the test adapter associated with the identifier given in the request."""
+        return self._get_stub().GetTestAdapter(request)
 
-    def enumerate_metadata_schemas(
-        self, request: metadata_store_service_pb2.EnumerateMetadataSchemasRequest
-    ) -> metadata_store_service_pb2.EnumerateMetadataSchemasResponse:
-        """Enumerate the metadata schemas that have been previously registered."""
-        return self._get_stub().EnumerateMetadataSchemas(request)
+    def query_test_adapters(
+        self, request: metadata_store_service_pb2.QueryTestAdaptersRequest
+    ) -> metadata_store_service_pb2.QueryTestAdaptersResponse:
+        """Perform an OData query on test adapters."""
+        return self._get_stub().QueryTestAdapters(request)
 
-    def resolve_alias(
-        self, request: metadata_store_service_pb2.ResolveAliasRequest
-    ) -> metadata_store_service_pb2.ResolveAliasResponse:
-        """Resolves a given alias to its target."""
-        return self._get_stub().ResolveAlias(request)
+    def create_test_adapter(
+        self, request: metadata_store_service_pb2.CreateTestAdapterRequest
+    ) -> metadata_store_service_pb2.CreateTestAdapterResponse:
+        """Creates a new test adapter in the metadata store."""
+        return self._get_stub().CreateTestAdapter(request)
+
+    def register_schema(
+        self, request: metadata_store_service_pb2.RegisterSchemaRequest
+    ) -> metadata_store_service_pb2.RegisterSchemaResponse:
+        """Registers a schema."""
+        return self._get_stub().RegisterSchema(request)
+
+    def list_schemas(
+        self, request: metadata_store_service_pb2.ListSchemasRequest
+    ) -> metadata_store_service_pb2.ListSchemasResponse:
+        """List the schemas that have been previously registered."""
+        return self._get_stub().ListSchemas(request)
+
+    def get_alias(
+        self, request: metadata_store_service_pb2.GetAliasRequest
+    ) -> metadata_store_service_pb2.GetAliasResponse:
+        """Gets the target of a given alias."""
+        return self._get_stub().GetAlias(request)
 
     def query_aliases(
         self, request: metadata_store_service_pb2.QueryAliasesRequest
     ) -> metadata_store_service_pb2.QueryAliasesResponse:
-        """Perform an OData query on the registered aliases."""
+        """Perform an OData query on the created aliases."""
         return self._get_stub().QueryAliases(request)
 
-    def register_alias(
-        self, request: metadata_store_service_pb2.RegisterAliasRequest
-    ) -> metadata_store_service_pb2.RegisterAliasResponse:
-        """Registers an alias of the specified metadata.
+    def create_alias(
+        self, request: metadata_store_service_pb2.CreateAliasRequest
+    ) -> metadata_store_service_pb2.CreateAliasResponse:
+        """Creates an alias of the specified metadata.
 
         This alias can be used when creating other metadata or publishing.
         """
-        return self._get_stub().RegisterAlias(request)
+        return self._get_stub().CreateAlias(request)
 
-    def unregister_alias(
-        self, request: metadata_store_service_pb2.UnregisterAliasRequest
-    ) -> metadata_store_service_pb2.UnregisterAliasResponse:
-        """Removes a registered alias."""
-        return self._get_stub().UnregisterAlias(request)
+    def delete_alias(
+        self, request: metadata_store_service_pb2.DeleteAliasRequest
+    ) -> metadata_store_service_pb2.DeleteAliasResponse:
+        """Deletes a created alias."""
+        return self._get_stub().DeleteAlias(request)
