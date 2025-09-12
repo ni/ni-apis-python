@@ -487,7 +487,7 @@ version = "0.2.2"
 description = "Hightime Python API"
 optional = false
 python-versions = "*"
-groups = ["main"]
+groups = ["main", "dev"]
 files = [
     {file = "hightime-0.2.2-py3-none-any.whl", hash = "sha256:5109a449bb3a75dbf305147777de71634c91b943d47cfbee18ed2f34a8307e0b"},
 ]
@@ -813,49 +813,55 @@ files = [
 
 [[package]]
 name = "ni-datamonikers-v1-proto"
-version = "0.1.0.dev0"
+version = "0.1.0-dev1"
 description = "Protobuf data types and service stub for NI data moniker gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
-groups = ["main"]
-files = [
-    {file = "ni_datamonikers_v1_proto-0.1.0.dev0-py3-none-any.whl", hash = "sha256:5ae96df50a010de68b40527e75696eeca2fc1522ab9d8a169a5993f031eb2185"},
-    {file = "ni_datamonikers_v1_proto-0.1.0.dev0.tar.gz", hash = "sha256:cdcf9b4d1fc463f4b2664949f6037bdcc0a6556679eddb3350b5630873da4147"},
-]
+python-versions = ">=3.9,<4.0"
+groups = ["main", "dev"]
+files = []
+develop = true
 
 [package.dependencies]
 protobuf = ">=4.21"
+
+[package.source]
+type = "directory"
+url = "../ni.datamonikers.v1.proto"
 
 [[package]]
 name = "ni-measurements-metadata-v1-proto"
-version = "0.1.0.dev0"
+version = "0.1.0-dev1"
 description = "Protobuf data types and service stub for NI metadata store gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
-groups = ["main"]
-files = [
-    {file = "ni_measurements_metadata_v1_proto-0.1.0.dev0-py3-none-any.whl", hash = "sha256:cab8ae264cd33ea16758f37b72efa5d1dc4ee06d635be7c5225de54c420b5641"},
-    {file = "ni_measurements_metadata_v1_proto-0.1.0.dev0.tar.gz", hash = "sha256:37768f4187d76f508ebbbcd178b8754ea587e6eddff5bcc15f1685732c008854"},
-]
+python-versions = ">=3.9,<4.0"
+groups = ["main", "dev"]
+files = []
+develop = true
 
 [package.dependencies]
 protobuf = ">=4.21"
 
+[package.source]
+type = "directory"
+url = "../ni.measurements.metadata.v1.proto"
+
 [[package]]
 name = "ni-protobuf-types"
-version = "0.1.0.dev3"
+version = "0.1.0-dev5"
 description = "Protobuf data types for NI gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
-groups = ["main"]
-files = [
-    {file = "ni_protobuf_types-0.1.0.dev3-py3-none-any.whl", hash = "sha256:4b275f4d6f8575e607ce04482b7b1e98ace5467a7c6193ffd713e0dcd1f9eb08"},
-    {file = "ni_protobuf_types-0.1.0.dev3.tar.gz", hash = "sha256:d601902dea899e034ddb7be9db7ec1e2da2a7e671ab678596763571bc0c794e8"},
-]
+python-versions = ">=3.9,<4.0"
+groups = ["main", "dev"]
+files = []
+develop = true
 
 [package.dependencies]
 nitypes = ">=0.1.0dev8"
 protobuf = ">=4.21"
+
+[package.source]
+type = "directory"
+url = "../ni.protobuf.types"
 
 [[package]]
 name = "ni-python-styleguide"
@@ -894,7 +900,7 @@ version = "0.1.0.dev9"
 description = "Data types for NI Python APIs"
 optional = false
 python-versions = "<4.0,>=3.9"
-groups = ["main"]
+groups = ["main", "dev"]
 files = [
     {file = "nitypes-0.1.0.dev9-py3-none-any.whl", hash = "sha256:1e2928f9a2c57f289f5743433299e09d151ab4951bacffbf67238093a82c3f67"},
     {file = "nitypes-0.1.0.dev9.tar.gz", hash = "sha256:bc36861cc4a5ff0cfe74050afeed82bcdd652fc4de36860cd43492beee388b5d"},
@@ -943,7 +949,7 @@ version = "2.0.2"
 description = "Fundamental package for array computing in Python"
 optional = false
 python-versions = ">=3.9"
-groups = ["main"]
+groups = ["main", "dev"]
 markers = "python_version < \"3.11\""
 files = [
     {file = "numpy-2.0.2-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:51129a29dbe56f9ca83438b706e2e69a39892b5eda6cedcb6b0c9fdc9b0d3ece"},
@@ -999,7 +1005,7 @@ version = "2.3.2"
 description = "Fundamental package for array computing in Python"
 optional = false
 python-versions = ">=3.11"
-groups = ["main"]
+groups = ["main", "dev"]
 markers = "python_version >= \"3.11\""
 files = [
     {file = "numpy-2.3.2-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:852ae5bed3478b92f093e30f785c98e0cb62fa0a939ed057c31716e18a7a22b9"},
@@ -1156,7 +1162,7 @@ version = "6.32.0"
 description = ""
 optional = false
 python-versions = ">=3.9"
-groups = ["main"]
+groups = ["main", "dev"]
 files = [
     {file = "protobuf-6.32.0-cp310-abi3-win32.whl", hash = "sha256:84f9e3c1ff6fb0308dbacb0950d8aa90694b0d0ee68e75719cb044b7078fe741"},
     {file = "protobuf-6.32.0-cp310-abi3-win_amd64.whl", hash = "sha256:a8bdbb2f009cfc22a36d031f22a625a38b615b5e19e558a7b756b3279723e68e"},
@@ -1897,7 +1903,7 @@ version = "4.15.0"
 description = "Backported and Experimental Type Hints for Python 3.9+"
 optional = false
 python-versions = ">=3.9"
-groups = ["main", "docs", "lint", "test"]
+groups = ["main", "dev", "docs", "lint", "test"]
 files = [
     {file = "typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"},
     {file = "typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"},
@@ -1946,4 +1952,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.9,<4.0"
-content-hash = "8771260ce1e7787d516ba17784da7806ef5c40459f2604feb0795aa25d629c63"
+content-hash = "873d489e3f7b5acb647e114c72239703b569b3f4717858cc95b17e185a86acc1"

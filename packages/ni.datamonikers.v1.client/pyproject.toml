@@ -42,6 +42,8 @@ ni-datamonikers-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
 types-protobuf = ">=4.21"
+ni-grpc-extensions = { path = "../ni-grpc-extensions", develop = true }
+ni-datamonikers-v1-proto = { path = "../ni.datamonikers.v1.proto", develop = true }
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }

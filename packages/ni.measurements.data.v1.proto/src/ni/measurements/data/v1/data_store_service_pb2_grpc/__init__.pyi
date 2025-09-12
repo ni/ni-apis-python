@@ -18,357 +18,242 @@ class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type:
     ...
 
 class DataStoreServiceStub:
-    """This service provides endpoints for the publishing of measurement data.
-    This includes associating data with the conditions associated with the data
-    and querying for the published data with OData queries.
+    """This service provides endpoints for the publishing of measurements.
+    This includes associating measurements with the conditions associated with the measurement and
+    querying for the published measurements with OData queries.
     """
 
     def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
-    CreateSession: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.CreateSessionRequest,
-        ni.measurements.data.v1.data_store_service_pb2.CreateSessionResponse,
+    CreateTestResult: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultRequest,
+        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultResponse,
     ]
-    """Creates a session object for publishing measurement data.  Once a session is created,
-    you can publish an arbitrary number of data values to the session.  The data values
-    will be associated with each of the metadata types specified in the session.  For instance,
-    if you specify an operator when creating a session, all data values published to the session
-    will be associated with that operator.  The response will include the session id,
-    which can be used to reference the session in subsequent requests, and to get the session
-    metadata via the GetSession method.
+    """Creates a test result object for publishing measurements.  Once a test result is created,
+    you can publish an arbitrary number of measurements to the test result.  The measurements
+    will be associated with each of the metadata types specified in the test result.  For instance,
+    if you specify an operator when creating a test result, all measurements published to the test result
+    will be associated with that operator.  The response will include the test result id,
+    which can be used to reference the test result in subsequent requests, and to get the test result
+    metadata via the GetTestResult method.
     """
 
-    GetSession: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.GetSessionRequest,
-        ni.measurements.data.v1.data_store_service_pb2.GetSessionResponse,
+    GetTestResult: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetTestResultRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse,
     ]
-    """Gets the session associated with the identifier given in the request."""
+    """Gets the test result associated with the identifier given in the request."""
 
-    CreateMeasurement: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.CreateMeasurementRequest,
-        ni.measurements.data.v1.data_store_service_pb2.CreateMeasurementResponse,
+    CreateStep: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
+        ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse,
     ]
-    """Creates a new measurement in the data store.  A measurement is owned by a session,
-    and is a logical grouping of published data.  All published data must be associated
-    with a measurement.
+    """Creates a new step in the data store.  A step is owned by a test result,
+    and is a logical grouping of published measurements.  All published measurements must be associated
+    with a step.
     """
 
-    GetMeasurement: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
-        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse,
+    GetStep: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetStepRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetStepResponse,
     ]
-    """Gets the measurement associated with the identifier given in the request."""
+    """Gets the step associated with the identifier given in the request."""
 
-    QueryMeasurements: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
-        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse,
+    QuerySteps: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryStepsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryStepsResponse,
     ]
-    """Query for measurements matching the given OData query.  For information about the OData query syntax,
+    """Query for steps matching the given OData query.  For information about the OData query syntax,
     see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
-    """
-
-    PublishConditionSet: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetResponse,
-    ]
-    """Publishes a single condition set for a measurement.  A condition set is a set of conditions
-    that are present when publishing data.  For instance, if you are measuring the temperature
-    of a device, you might publish a condition set indicating the input voltage, the ambient
-    temperature, and the humidity at the time of the measurement.  This allows you to associate
-    the conditions with the data, and to query for data based on the conditions.  With this method,
-    you publish a single set of conditions for a single set of measurement data. If the total set
-    of conditions for all your measurements is a "frame" of data, this method allows you to publish
-    a single "row" of that frame. If you want to publish the entire frame of data, you can use the
-    PublishConditionSetBatch method instead.
     """
 
     PublishCondition: grpc.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionRequest,
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionResponse,
     ]
-    """Publishes a single condition value for a measurement.  A condition is a referential value that is
-    present when publishing data.  For instance, if you are measuring the temperature
-    of a device, you might publish a condition indicating the input voltage, the ambient
-    temperature, and the humidity at the time of the measurement. The condition will be associated with
-    the specified measurement.  The data associated with these conditions can be found on the measurement.
-    """
-
-    PublishConditionSetBatch: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetBatchRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetBatchResponse,
-    ]
-    """Publishes the complete set of conditions for a measurement. It is expected that all sets of condition
-    values will be the same length, creating a "frame" of condition data.  If you only want to publish a "row"
-    of conditions for a single set of measurement data, you can use the PublishConditionSet method instead.
+    """Publishes a single condition value for a test step. Conditions are contextual values
+    like input voltage, temperature, or humidity present during measurement.
     """
 
     PublishConditionBatch: grpc.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchRequest,
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchResponse,
     ]
-    """Publishes a batch of condition values for a measurement. The use case for this method is to publish all the
-    the results of a parametric sweep at once, rather than publishing each value individually using the PublishCondition
-    endpoint instead.
-    """
+    """Publishes multiple condition values at once for parametric sweeps."""
 
-    PublishData: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishDataRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishDataResponse,
+    PublishMeasurement: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementResponse,
     ]
-    """Publishes a single data value. The data value will be associated with the measurement specified. The conditions
-    associated with the data are owned by the parent measurement and can be found on the returned StoredDataValue.
-    """
+    """Publishes a single measurement value associated with a test step."""
 
-    PublishDataBatch: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishDataBatchRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishDataBatchResponse,
+    PublishMeasurementBatch: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
     ]
-    """Allows you to publish a batch of scalar data values.  The use case for this method is to publish all the
-    the results of a parametric sweep at once, rather than publishing each value individually using the PublishData
-    endpoint instead.
-    """
-
-    QueryConditionSets: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.QueryConditionSetsRequest,
-        ni.measurements.data.v1.data_store_service_pb2.QueryConditionSetsResponse,
-    ]
-    """Queries the condition sets in the data store, based on an OData query.
-    The OData query can be used to filter the condition sets based on their metadata.
-    For information about the OData query syntax,
-    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
-    """
+    """Publishes multiple scalar measurements at once for parametric sweeps."""
 
     QueryConditions: grpc.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
         ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse,
     ]
-    """Queries the conditions in the data store, based on an OData query.
-    The OData query can be used to filter the conditions based on their metadata.
-    For information about the OData query syntax,
-    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
+    """Queries conditions using OData query syntax.
+    See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
 
-    QueryData: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.QueryDataRequest,
-        ni.measurements.data.v1.data_store_service_pb2.QueryDataResponse,
-    ]
-    """Queries the data in the data store, based on an OData query.
-    The OData query can be used to filter the data based on its metadata.
-    For information about the OData query syntax,
-    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
-    """
-
-class DataStoreServiceAsyncStub:
-    """This service provides endpoints for the publishing of measurement data.
-    This includes associating data with the conditions associated with the data
-    and querying for the published data with OData queries.
-    """
-
-    CreateSession: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.CreateSessionRequest,
-        ni.measurements.data.v1.data_store_service_pb2.CreateSessionResponse,
-    ]
-    """Creates a session object for publishing measurement data.  Once a session is created,
-    you can publish an arbitrary number of data values to the session.  The data values
-    will be associated with each of the metadata types specified in the session.  For instance,
-    if you specify an operator when creating a session, all data values published to the session
-    will be associated with that operator.  The response will include the session id,
-    which can be used to reference the session in subsequent requests, and to get the session
-    metadata via the GetSession method.
-    """
-
-    GetSession: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.GetSessionRequest,
-        ni.measurements.data.v1.data_store_service_pb2.GetSessionResponse,
-    ]
-    """Gets the session associated with the identifier given in the request."""
-
-    CreateMeasurement: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.CreateMeasurementRequest,
-        ni.measurements.data.v1.data_store_service_pb2.CreateMeasurementResponse,
-    ]
-    """Creates a new measurement in the data store.  A measurement is owned by a session,
-    and is a logical grouping of published data.  All published data must be associated
-    with a measurement.
-    """
-
-    GetMeasurement: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
-        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse,
-    ]
-    """Gets the measurement associated with the identifier given in the request."""
-
-    QueryMeasurements: grpc.aio.UnaryUnaryMultiCallable[
+    QueryMeasurements: grpc.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
         ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse,
     ]
-    """Query for measurements matching the given OData query.  For information about the OData query syntax,
-    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
+    """Queries measurements using OData query syntax.
+    See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
 
-    PublishConditionSet: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetResponse,
+class DataStoreServiceAsyncStub:
+    """This service provides endpoints for the publishing of measurements.
+    This includes associating measurements with the conditions associated with the measurement and
+    querying for the published measurements with OData queries.
+    """
+
+    CreateTestResult: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultRequest,
+        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultResponse,
     ]
-    """Publishes a single condition set for a measurement.  A condition set is a set of conditions
-    that are present when publishing data.  For instance, if you are measuring the temperature
-    of a device, you might publish a condition set indicating the input voltage, the ambient
-    temperature, and the humidity at the time of the measurement.  This allows you to associate
-    the conditions with the data, and to query for data based on the conditions.  With this method,
-    you publish a single set of conditions for a single set of measurement data. If the total set
-    of conditions for all your measurements is a "frame" of data, this method allows you to publish
-    a single "row" of that frame. If you want to publish the entire frame of data, you can use the
-    PublishConditionSetBatch method instead.
+    """Creates a test result object for publishing measurements.  Once a test result is created,
+    you can publish an arbitrary number of measurements to the test result.  The measurements
+    will be associated with each of the metadata types specified in the test result.  For instance,
+    if you specify an operator when creating a test result, all measurements published to the test result
+    will be associated with that operator.  The response will include the test result id,
+    which can be used to reference the test result in subsequent requests, and to get the test result
+    metadata via the GetTestResult method.
+    """
+
+    GetTestResult: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetTestResultRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse,
+    ]
+    """Gets the test result associated with the identifier given in the request."""
+
+    CreateStep: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
+        ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse,
+    ]
+    """Creates a new step in the data store.  A step is owned by a test result,
+    and is a logical grouping of published measurements.  All published measurements must be associated
+    with a step.
+    """
+
+    GetStep: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetStepRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetStepResponse,
+    ]
+    """Gets the step associated with the identifier given in the request."""
+
+    QuerySteps: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryStepsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryStepsResponse,
+    ]
+    """Query for steps matching the given OData query.  For information about the OData query syntax,
+    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
 
     PublishCondition: grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionRequest,
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionResponse,
     ]
-    """Publishes a single condition value for a measurement.  A condition is a referential value that is
-    present when publishing data.  For instance, if you are measuring the temperature
-    of a device, you might publish a condition indicating the input voltage, the ambient
-    temperature, and the humidity at the time of the measurement. The condition will be associated with
-    the specified measurement.  The data associated with these conditions can be found on the measurement.
-    """
-
-    PublishConditionSetBatch: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetBatchRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetBatchResponse,
-    ]
-    """Publishes the complete set of conditions for a measurement. It is expected that all sets of condition
-    values will be the same length, creating a "frame" of condition data.  If you only want to publish a "row"
-    of conditions for a single set of measurement data, you can use the PublishConditionSet method instead.
+    """Publishes a single condition value for a test step. Conditions are contextual values
+    like input voltage, temperature, or humidity present during measurement.
     """
 
     PublishConditionBatch: grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchRequest,
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchResponse,
     ]
-    """Publishes a batch of condition values for a measurement. The use case for this method is to publish all the
-    the results of a parametric sweep at once, rather than publishing each value individually using the PublishCondition
-    endpoint instead.
-    """
+    """Publishes multiple condition values at once for parametric sweeps."""
 
-    PublishData: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishDataRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishDataResponse,
+    PublishMeasurement: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementResponse,
     ]
-    """Publishes a single data value. The data value will be associated with the measurement specified. The conditions
-    associated with the data are owned by the parent measurement and can be found on the returned StoredDataValue.
-    """
+    """Publishes a single measurement value associated with a test step."""
 
-    PublishDataBatch: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishDataBatchRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishDataBatchResponse,
+    PublishMeasurementBatch: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
     ]
-    """Allows you to publish a batch of scalar data values.  The use case for this method is to publish all the
-    the results of a parametric sweep at once, rather than publishing each value individually using the PublishData
-    endpoint instead.
-    """
-
-    QueryConditionSets: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.QueryConditionSetsRequest,
-        ni.measurements.data.v1.data_store_service_pb2.QueryConditionSetsResponse,
-    ]
-    """Queries the condition sets in the data store, based on an OData query.
-    The OData query can be used to filter the condition sets based on their metadata.
-    For information about the OData query syntax,
-    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
-    """
+    """Publishes multiple scalar measurements at once for parametric sweeps."""
 
     QueryConditions: grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
         ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse,
     ]
-    """Queries the conditions in the data store, based on an OData query.
-    The OData query can be used to filter the conditions based on their metadata.
-    For information about the OData query syntax,
-    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
+    """Queries conditions using OData query syntax.
+    See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
 
-    QueryData: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.QueryDataRequest,
-        ni.measurements.data.v1.data_store_service_pb2.QueryDataResponse,
+    QueryMeasurements: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse,
     ]
-    """Queries the data in the data store, based on an OData query.
-    The OData query can be used to filter the data based on its metadata.
-    For information about the OData query syntax,
-    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
+    """Queries measurements using OData query syntax.
+    See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
 
 class DataStoreServiceServicer(metaclass=abc.ABCMeta):
-    """This service provides endpoints for the publishing of measurement data.
-    This includes associating data with the conditions associated with the data
-    and querying for the published data with OData queries.
+    """This service provides endpoints for the publishing of measurements.
+    This includes associating measurements with the conditions associated with the measurement and
+    querying for the published measurements with OData queries.
     """
 
     @abc.abstractmethod
-    def CreateSession(
+    def CreateTestResult(
         self,
-        request: ni.measurements.data.v1.data_store_service_pb2.CreateSessionRequest,
+        request: ni.measurements.data.v1.data_store_service_pb2.CreateTestResultRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.CreateSessionResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.CreateSessionResponse]]:
-        """Creates a session object for publishing measurement data.  Once a session is created,
-        you can publish an arbitrary number of data values to the session.  The data values
-        will be associated with each of the metadata types specified in the session.  For instance,
-        if you specify an operator when creating a session, all data values published to the session
-        will be associated with that operator.  The response will include the session id,
-        which can be used to reference the session in subsequent requests, and to get the session
-        metadata via the GetSession method.
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.CreateTestResultResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.CreateTestResultResponse]]:
+        """Creates a test result object for publishing measurements.  Once a test result is created,
+        you can publish an arbitrary number of measurements to the test result.  The measurements
+        will be associated with each of the metadata types specified in the test result.  For instance,
+        if you specify an operator when creating a test result, all measurements published to the test result
+        will be associated with that operator.  The response will include the test result id,
+        which can be used to reference the test result in subsequent requests, and to get the test result
+        metadata via the GetTestResult method.
         """
 
     @abc.abstractmethod
-    def GetSession(
+    def GetTestResult(
         self,
-        request: ni.measurements.data.v1.data_store_service_pb2.GetSessionRequest,
+        request: ni.measurements.data.v1.data_store_service_pb2.GetTestResultRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.GetSessionResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.GetSessionResponse]]:
-        """Gets the session associated with the identifier given in the request."""
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse]]:
+        """Gets the test result associated with the identifier given in the request."""
 
     @abc.abstractmethod
-    def CreateMeasurement(
+    def CreateStep(
         self,
-        request: ni.measurements.data.v1.data_store_service_pb2.CreateMeasurementRequest,
+        request: ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.CreateMeasurementResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.CreateMeasurementResponse]]:
-        """Creates a new measurement in the data store.  A measurement is owned by a session,
-        and is a logical grouping of published data.  All published data must be associated
-        with a measurement.
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse]]:
+        """Creates a new step in the data store.  A step is owned by a test result,
+        and is a logical grouping of published measurements.  All published measurements must be associated
+        with a step.
         """
 
     @abc.abstractmethod
-    def GetMeasurement(
+    def GetStep(
         self,
-        request: ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
+        request: ni.measurements.data.v1.data_store_service_pb2.GetStepRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse]]:
-        """Gets the measurement associated with the identifier given in the request."""
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.GetStepResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.GetStepResponse]]:
+        """Gets the step associated with the identifier given in the request."""
 
     @abc.abstractmethod
-    def QueryMeasurements(
+    def QuerySteps(
         self,
-        request: ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
+        request: ni.measurements.data.v1.data_store_service_pb2.QueryStepsRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse]]:
-        """Query for measurements matching the given OData query.  For information about the OData query syntax,
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.QueryStepsResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.QueryStepsResponse]]:
+        """Query for steps matching the given OData query.  For information about the OData query syntax,
         see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
-        """
-
-    @abc.abstractmethod
-    def PublishConditionSet(
-        self,
-        request: ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetRequest,
-        context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetResponse]]:
-        """Publishes a single condition set for a measurement.  A condition set is a set of conditions
-        that are present when publishing data.  For instance, if you are measuring the temperature
-        of a device, you might publish a condition set indicating the input voltage, the ambient
-        temperature, and the humidity at the time of the measurement.  This allows you to associate
-        the conditions with the data, and to query for data based on the conditions.  With this method,
-        you publish a single set of conditions for a single set of measurement data. If the total set
-        of conditions for all your measurements is a "frame" of data, this method allows you to publish
-        a single "row" of that frame. If you want to publish the entire frame of data, you can use the
-        PublishConditionSetBatch method instead.
         """
 
     @abc.abstractmethod
@@ -377,22 +262,8 @@ class DataStoreServiceServicer(metaclass=abc.ABCMeta):
         request: ni.measurements.data.v1.data_store_service_pb2.PublishConditionRequest,
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.PublishConditionResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.PublishConditionResponse]]:
-        """Publishes a single condition value for a measurement.  A condition is a referential value that is
-        present when publishing data.  For instance, if you are measuring the temperature
-        of a device, you might publish a condition indicating the input voltage, the ambient
-        temperature, and the humidity at the time of the measurement. The condition will be associated with
-        the specified measurement.  The data associated with these conditions can be found on the measurement.
-        """
-
-    @abc.abstractmethod
-    def PublishConditionSetBatch(
-        self,
-        request: ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetBatchRequest,
-        context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetBatchResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.PublishConditionSetBatchResponse]]:
-        """Publishes the complete set of conditions for a measurement. It is expected that all sets of condition
-        values will be the same length, creating a "frame" of condition data.  If you only want to publish a "row"
-        of conditions for a single set of measurement data, you can use the PublishConditionSet method instead.
+        """Publishes a single condition value for a test step. Conditions are contextual values
+        like input voltage, temperature, or humidity present during measurement.
         """
 
     @abc.abstractmethod
@@ -401,43 +272,23 @@ class DataStoreServiceServicer(metaclass=abc.ABCMeta):
         request: ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchRequest,
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchResponse]]:
-        """Publishes a batch of condition values for a measurement. The use case for this method is to publish all the
-        the results of a parametric sweep at once, rather than publishing each value individually using the PublishCondition
-        endpoint instead.
-        """
+        """Publishes multiple condition values at once for parametric sweeps."""
 
     @abc.abstractmethod
-    def PublishData(
+    def PublishMeasurement(
         self,
-        request: ni.measurements.data.v1.data_store_service_pb2.PublishDataRequest,
+        request: ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.PublishDataResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.PublishDataResponse]]:
-        """Publishes a single data value. The data value will be associated with the measurement specified. The conditions
-        associated with the data are owned by the parent measurement and can be found on the returned StoredDataValue.
-        """
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementResponse]]:
+        """Publishes a single measurement value associated with a test step."""
 
     @abc.abstractmethod
-    def PublishDataBatch(
+    def PublishMeasurementBatch(
         self,
-        request: ni.measurements.data.v1.data_store_service_pb2.PublishDataBatchRequest,
+        request: ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.PublishDataBatchResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.PublishDataBatchResponse]]:
-        """Allows you to publish a batch of scalar data values.  The use case for this method is to publish all the
-        the results of a parametric sweep at once, rather than publishing each value individually using the PublishData
-        endpoint instead.
-        """
-
-    @abc.abstractmethod
-    def QueryConditionSets(
-        self,
-        request: ni.measurements.data.v1.data_store_service_pb2.QueryConditionSetsRequest,
-        context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.QueryConditionSetsResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.QueryConditionSetsResponse]]:
-        """Queries the condition sets in the data store, based on an OData query.
-        The OData query can be used to filter the condition sets based on their metadata.
-        For information about the OData query syntax,
-        see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
-        """
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse]]:
+        """Publishes multiple scalar measurements at once for parametric sweeps."""
 
     @abc.abstractmethod
     def QueryConditions(
@@ -445,22 +296,18 @@ class DataStoreServiceServicer(metaclass=abc.ABCMeta):
         request: ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse]]:
-        """Queries the conditions in the data store, based on an OData query.
-        The OData query can be used to filter the conditions based on their metadata.
-        For information about the OData query syntax,
-        see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
+        """Queries conditions using OData query syntax.
+        See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
         """
 
     @abc.abstractmethod
-    def QueryData(
+    def QueryMeasurements(
         self,
-        request: ni.measurements.data.v1.data_store_service_pb2.QueryDataRequest,
+        request: ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.QueryDataResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.QueryDataResponse]]:
-        """Queries the data in the data store, based on an OData query.
-        The OData query can be used to filter the data based on its metadata.
-        For information about the OData query syntax,
-        see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse]]:
+        """Queries measurements using OData query syntax.
+        See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
         """
 
 def add_DataStoreServiceServicer_to_server(servicer: DataStoreServiceServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...

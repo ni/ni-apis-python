@@ -6,7 +6,7 @@ from ni.measurements.metadata.v1 import metadata_store_service_pb2 as ni_dot_mea
 
 
 class MetadataStoreServiceStub(object):
-    """This service is responsible for storing and retrieving metadata associated with measurement data.
+    """This service is responsible for storing and retrieving metadata associated with test step measurements.
     """
 
     def __init__(self, channel):
@@ -15,35 +15,35 @@ class MetadataStoreServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.GetDut = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/GetDut',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetDutRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetDutResponse.FromString,
+        self.GetUutInstance = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/GetUutInstance',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutInstanceRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutInstanceResponse.FromString,
                 )
-        self.QueryDuts = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/QueryDuts',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryDutsRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryDutsResponse.FromString,
+        self.QueryUutInstances = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/QueryUutInstances',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutInstancesRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutInstancesResponse.FromString,
                 )
-        self.CreateDut = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/CreateDut',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateDutRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateDutResponse.FromString,
+        self.CreateUutInstance = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/CreateUutInstance',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutInstanceRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutInstanceResponse.FromString,
                 )
-        self.GetProduct = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/GetProduct',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetProductRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetProductResponse.FromString,
+        self.GetUut = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/GetUut',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutResponse.FromString,
                 )
-        self.QueryProducts = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/QueryProducts',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryProductsRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryProductsResponse.FromString,
+        self.QueryUuts = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/QueryUuts',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutsResponse.FromString,
                 )
-        self.CreateProduct = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/CreateProduct',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateProductRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateProductResponse.FromString,
+        self.CreateUut = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/CreateUut',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutResponse.FromString,
                 )
         self.GetOperator = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/GetOperator',
@@ -60,20 +60,20 @@ class MetadataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateOperatorRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateOperatorResponse.FromString,
                 )
-        self.GetTestPlan = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/GetTestPlan',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestPlanRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestPlanResponse.FromString,
+        self.GetTestDescription = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/GetTestDescription',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestDescriptionRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestDescriptionResponse.FromString,
                 )
-        self.QueryTestPlans = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/QueryTestPlans',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestPlansRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestPlansResponse.FromString,
+        self.QueryTestDescriptions = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/QueryTestDescriptions',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestDescriptionsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestDescriptionsResponse.FromString,
                 )
-        self.CreateTestPlan = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/CreateTestPlan',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestPlanRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestPlanResponse.FromString,
+        self.CreateTestDescription = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/CreateTestDescription',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionResponse.FromString,
                 )
         self.GetTest = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/GetTest',
@@ -105,109 +105,124 @@ class MetadataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestStationRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestStationResponse.FromString,
                 )
-        self.GetHardware = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/GetHardware',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareResponse.FromString,
+        self.GetHardwareItem = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/GetHardwareItem',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareItemRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareItemResponse.FromString,
                 )
-        self.QueryHardware = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/QueryHardware',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareResponse.FromString,
+        self.QueryHardwareItems = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/QueryHardwareItems',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareItemsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareItemsResponse.FromString,
                 )
-        self.CreateHardware = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/CreateHardware',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareResponse.FromString,
+        self.CreateHardwareItem = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/CreateHardwareItem',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareItemRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareItemResponse.FromString,
                 )
-        self.GetSoftware = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/GetSoftware',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareResponse.FromString,
+        self.GetSoftwareItem = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/GetSoftwareItem',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareItemRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareItemResponse.FromString,
                 )
-        self.QuerySoftware = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/QuerySoftware',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareResponse.FromString,
+        self.QuerySoftwareItems = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/QuerySoftwareItems',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareItemsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareItemsResponse.FromString,
                 )
-        self.CreateSoftware = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/CreateSoftware',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareResponse.FromString,
+        self.CreateSoftwareItem = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/CreateSoftwareItem',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemResponse.FromString,
                 )
-        self.RegisterMetadataSchema = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/RegisterMetadataSchema',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterMetadataSchemaRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterMetadataSchemaResponse.FromString,
+        self.GetTestAdapter = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/GetTestAdapter',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestAdapterRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestAdapterResponse.FromString,
                 )
-        self.EnumerateMetadataSchemas = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/EnumerateMetadataSchemas',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.EnumerateMetadataSchemasRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.EnumerateMetadataSchemasResponse.FromString,
+        self.QueryTestAdapters = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/QueryTestAdapters',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestAdaptersRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestAdaptersResponse.FromString,
                 )
-        self.ResolveAlias = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/ResolveAlias',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ResolveAliasRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ResolveAliasResponse.FromString,
+        self.CreateTestAdapter = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/CreateTestAdapter',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestAdapterRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestAdapterResponse.FromString,
+                )
+        self.RegisterSchema = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/RegisterSchema',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterSchemaRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterSchemaResponse.FromString,
+                )
+        self.ListSchemas = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/ListSchemas',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasResponse.FromString,
+                )
+        self.GetAlias = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/GetAlias',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetAliasRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetAliasResponse.FromString,
                 )
         self.QueryAliases = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/QueryAliases',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryAliasesRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryAliasesResponse.FromString,
                 )
-        self.RegisterAlias = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/RegisterAlias',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterAliasRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterAliasResponse.FromString,
+        self.CreateAlias = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/CreateAlias',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateAliasRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateAliasResponse.FromString,
                 )
-        self.UnregisterAlias = channel.unary_unary(
-                '/ni.measurements.metadata.v1.MetadataStoreService/UnregisterAlias',
-                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.UnregisterAliasRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.UnregisterAliasResponse.FromString,
+        self.DeleteAlias = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteAlias',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasResponse.FromString,
                 )
 
 
 class MetadataStoreServiceServicer(object):
-    """This service is responsible for storing and retrieving metadata associated with measurement data.
+    """This service is responsible for storing and retrieving metadata associated with test step measurements.
     """
 
-    def GetDut(self, request, context):
-        """Gets the device under test associated with the identifier given in the request.
+    def GetUutInstance(self, request, context):
+        """Gets the UUT instance associated with the identifier given in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def QueryDuts(self, request, context):
+    def QueryUutInstances(self, request, context):
         """Perform an OData query
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def CreateDut(self, request, context):
-        """Creates a new device under test in the metadata store.
+    def CreateUutInstance(self, request, context):
+        """Creates a new UUT instance in the metadata store.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetProduct(self, request, context):
-        """Gets the product associated with the identifier given in the request.
+    def GetUut(self, request, context):
+        """Gets the UUT associated with the identifier given in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def QueryProducts(self, request, context):
+    def QueryUuts(self, request, context):
         """Perform an OData query
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def CreateProduct(self, request, context):
-        """Creates a new product in the metadata store.
+    def CreateUut(self, request, context):
+        """Creates a new UUT in the metadata store.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -234,22 +249,22 @@ class MetadataStoreServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetTestPlan(self, request, context):
-        """Gets the test plan associated with the identifier given in the request.
+    def GetTestDescription(self, request, context):
+        """Gets the test description associated with the identifier given in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def QueryTestPlans(self, request, context):
+    def QueryTestDescriptions(self, request, context):
         """Perform an OData query
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def CreateTestPlan(self, request, context):
-        """Creates a new test plan in the metadata store.
+    def CreateTestDescription(self, request, context):
+        """Creates a new test description in the metadata store.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -297,64 +312,85 @@ class MetadataStoreServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetHardware(self, request, context):
-        """Gets the hardware associated with the identifier given in the request.
+    def GetHardwareItem(self, request, context):
+        """Gets the hardware item associated with the identifier given in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def QueryHardware(self, request, context):
+    def QueryHardwareItems(self, request, context):
         """Perform an OData query
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def CreateHardware(self, request, context):
-        """Creates a new hardware in the metadata store.
+    def CreateHardwareItem(self, request, context):
+        """Creates a new hardware item in the metadata store.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetSoftware(self, request, context):
-        """Gets the software associated with the identifier given in the request.
+    def GetSoftwareItem(self, request, context):
+        """Gets the software item associated with the identifier given in the request.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def QuerySoftware(self, request, context):
+    def QuerySoftwareItems(self, request, context):
         """Perform an OData query
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def CreateSoftware(self, request, context):
-        """Creates a new software in the metadata store.
+    def CreateSoftwareItem(self, request, context):
+        """Creates a new software item in the metadata store.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def RegisterMetadataSchema(self, request, context):
+    def GetTestAdapter(self, request, context):
+        """Gets the test adapter associated with the identifier given in the request.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def QueryTestAdapters(self, request, context):
+        """Perform an OData query
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def CreateTestAdapter(self, request, context):
+        """Creates a new test adapter in the metadata store.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RegisterSchema(self, request, context):
         """Registers a schema. Once a schema has been published, it cannot be modified or removed.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def EnumerateMetadataSchemas(self, request, context):
-        """Enumerate the metadata schemas that have been previously registered
+    def ListSchemas(self, request, context):
+        """Lists the schemas that have been previously registered
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ResolveAlias(self, request, context):
-        """Resolves a given alias to its target (i.e., the underlying metadata that it represents)
+    def GetAlias(self, request, context):
+        """Gets the alias and its target (i.e., the underlying metadata that it represents)
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -367,19 +403,17 @@ class MetadataStoreServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def RegisterAlias(self, request, context):
-        """Registers an alias of the specified metadata for use/reference when creating other metadata or publishing.
+    def CreateAlias(self, request, context):
+        """Creates (registers) an alias of the specified metadata for use/reference when creating other metadata or publishing.
         Notes:
-
         - The specified metadata must have already been created prior to the alias registration.
         - This method may be called with an already registered alias name in order to update the target mapped for that existing alias.
-
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def UnregisterAlias(self, request, context):
+    def DeleteAlias(self, request, context):
         """Removes a registered alias
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -389,35 +423,35 @@ class MetadataStoreServiceServicer(object):
 
 def add_MetadataStoreServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'GetDut': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetDut,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetDutRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetDutResponse.SerializeToString,
+            'GetUutInstance': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetUutInstance,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutInstanceRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutInstanceResponse.SerializeToString,
             ),
-            'QueryDuts': grpc.unary_unary_rpc_method_handler(
-                    servicer.QueryDuts,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryDutsRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryDutsResponse.SerializeToString,
+            'QueryUutInstances': grpc.unary_unary_rpc_method_handler(
+                    servicer.QueryUutInstances,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutInstancesRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutInstancesResponse.SerializeToString,
             ),
-            'CreateDut': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateDut,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateDutRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateDutResponse.SerializeToString,
+            'CreateUutInstance': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateUutInstance,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutInstanceRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutInstanceResponse.SerializeToString,
             ),
-            'GetProduct': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetProduct,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetProductRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetProductResponse.SerializeToString,
+            'GetUut': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetUut,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutResponse.SerializeToString,
             ),
-            'QueryProducts': grpc.unary_unary_rpc_method_handler(
-                    servicer.QueryProducts,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryProductsRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryProductsResponse.SerializeToString,
+            'QueryUuts': grpc.unary_unary_rpc_method_handler(
+                    servicer.QueryUuts,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutsResponse.SerializeToString,
             ),
-            'CreateProduct': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateProduct,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateProductRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateProductResponse.SerializeToString,
+            'CreateUut': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateUut,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutResponse.SerializeToString,
             ),
             'GetOperator': grpc.unary_unary_rpc_method_handler(
                     servicer.GetOperator,
@@ -434,20 +468,20 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateOperatorRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateOperatorResponse.SerializeToString,
             ),
-            'GetTestPlan': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetTestPlan,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestPlanRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestPlanResponse.SerializeToString,
+            'GetTestDescription': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTestDescription,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestDescriptionRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestDescriptionResponse.SerializeToString,
             ),
-            'QueryTestPlans': grpc.unary_unary_rpc_method_handler(
-                    servicer.QueryTestPlans,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestPlansRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestPlansResponse.SerializeToString,
+            'QueryTestDescriptions': grpc.unary_unary_rpc_method_handler(
+                    servicer.QueryTestDescriptions,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestDescriptionsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestDescriptionsResponse.SerializeToString,
             ),
-            'CreateTestPlan': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateTestPlan,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestPlanRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestPlanResponse.SerializeToString,
+            'CreateTestDescription': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateTestDescription,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionResponse.SerializeToString,
             ),
             'GetTest': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTest,
@@ -479,65 +513,80 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestStationRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestStationResponse.SerializeToString,
             ),
-            'GetHardware': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetHardware,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareResponse.SerializeToString,
+            'GetHardwareItem': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetHardwareItem,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareItemRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareItemResponse.SerializeToString,
             ),
-            'QueryHardware': grpc.unary_unary_rpc_method_handler(
-                    servicer.QueryHardware,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareResponse.SerializeToString,
+            'QueryHardwareItems': grpc.unary_unary_rpc_method_handler(
+                    servicer.QueryHardwareItems,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareItemsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareItemsResponse.SerializeToString,
             ),
-            'CreateHardware': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateHardware,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareResponse.SerializeToString,
+            'CreateHardwareItem': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateHardwareItem,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareItemRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareItemResponse.SerializeToString,
             ),
-            'GetSoftware': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetSoftware,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareResponse.SerializeToString,
+            'GetSoftwareItem': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSoftwareItem,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareItemRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareItemResponse.SerializeToString,
             ),
-            'QuerySoftware': grpc.unary_unary_rpc_method_handler(
-                    servicer.QuerySoftware,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareResponse.SerializeToString,
+            'QuerySoftwareItems': grpc.unary_unary_rpc_method_handler(
+                    servicer.QuerySoftwareItems,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareItemsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareItemsResponse.SerializeToString,
             ),
-            'CreateSoftware': grpc.unary_unary_rpc_method_handler(
-                    servicer.CreateSoftware,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareResponse.SerializeToString,
+            'CreateSoftwareItem': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateSoftwareItem,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemResponse.SerializeToString,
             ),
-            'RegisterMetadataSchema': grpc.unary_unary_rpc_method_handler(
-                    servicer.RegisterMetadataSchema,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterMetadataSchemaRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterMetadataSchemaResponse.SerializeToString,
+            'GetTestAdapter': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetTestAdapter,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestAdapterRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestAdapterResponse.SerializeToString,
             ),
-            'EnumerateMetadataSchemas': grpc.unary_unary_rpc_method_handler(
-                    servicer.EnumerateMetadataSchemas,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.EnumerateMetadataSchemasRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.EnumerateMetadataSchemasResponse.SerializeToString,
+            'QueryTestAdapters': grpc.unary_unary_rpc_method_handler(
+                    servicer.QueryTestAdapters,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestAdaptersRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestAdaptersResponse.SerializeToString,
             ),
-            'ResolveAlias': grpc.unary_unary_rpc_method_handler(
-                    servicer.ResolveAlias,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ResolveAliasRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ResolveAliasResponse.SerializeToString,
+            'CreateTestAdapter': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateTestAdapter,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestAdapterRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestAdapterResponse.SerializeToString,
+            ),
+            'RegisterSchema': grpc.unary_unary_rpc_method_handler(
+                    servicer.RegisterSchema,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterSchemaRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterSchemaResponse.SerializeToString,
+            ),
+            'ListSchemas': grpc.unary_unary_rpc_method_handler(
+                    servicer.ListSchemas,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasResponse.SerializeToString,
+            ),
+            'GetAlias': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetAlias,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetAliasRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetAliasResponse.SerializeToString,
             ),
             'QueryAliases': grpc.unary_unary_rpc_method_handler(
                     servicer.QueryAliases,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryAliasesRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryAliasesResponse.SerializeToString,
             ),
-            'RegisterAlias': grpc.unary_unary_rpc_method_handler(
-                    servicer.RegisterAlias,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterAliasRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterAliasResponse.SerializeToString,
+            'CreateAlias': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateAlias,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateAliasRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateAliasResponse.SerializeToString,
             ),
-            'UnregisterAlias': grpc.unary_unary_rpc_method_handler(
-                    servicer.UnregisterAlias,
-                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.UnregisterAliasRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.UnregisterAliasResponse.SerializeToString,
+            'DeleteAlias': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteAlias,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -547,11 +596,11 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class MetadataStoreService(object):
-    """This service is responsible for storing and retrieving metadata associated with measurement data.
+    """This service is responsible for storing and retrieving metadata associated with test step measurements.
     """
 
     @staticmethod
-    def GetDut(request,
+    def GetUutInstance(request,
             target,
             options=(),
             channel_credentials=None,
@@ -561,14 +610,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetDut',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetDutRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetDutResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetUutInstance',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutInstanceRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutInstanceResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def QueryDuts(request,
+    def QueryUutInstances(request,
             target,
             options=(),
             channel_credentials=None,
@@ -578,14 +627,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/QueryDuts',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryDutsRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryDutsResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/QueryUutInstances',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutInstancesRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutInstancesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateDut(request,
+    def CreateUutInstance(request,
             target,
             options=(),
             channel_credentials=None,
@@ -595,14 +644,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateDut',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateDutRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateDutResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateUutInstance',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutInstanceRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutInstanceResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetProduct(request,
+    def GetUut(request,
             target,
             options=(),
             channel_credentials=None,
@@ -612,14 +661,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetProduct',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetProductRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetProductResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetUut',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def QueryProducts(request,
+    def QueryUuts(request,
             target,
             options=(),
             channel_credentials=None,
@@ -629,14 +678,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/QueryProducts',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryProductsRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryProductsResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/QueryUuts',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryUutsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateProduct(request,
+    def CreateUut(request,
             target,
             options=(),
             channel_credentials=None,
@@ -646,9 +695,9 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateProduct',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateProductRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateProductResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateUut',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -704,7 +753,7 @@ class MetadataStoreService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetTestPlan(request,
+    def GetTestDescription(request,
             target,
             options=(),
             channel_credentials=None,
@@ -714,14 +763,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetTestPlan',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestPlanRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestPlanResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetTestDescription',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestDescriptionRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestDescriptionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def QueryTestPlans(request,
+    def QueryTestDescriptions(request,
             target,
             options=(),
             channel_credentials=None,
@@ -731,14 +780,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/QueryTestPlans',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestPlansRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestPlansResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/QueryTestDescriptions',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestDescriptionsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestDescriptionsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateTestPlan(request,
+    def CreateTestDescription(request,
             target,
             options=(),
             channel_credentials=None,
@@ -748,9 +797,9 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateTestPlan',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestPlanRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestPlanResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateTestDescription',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -857,7 +906,7 @@ class MetadataStoreService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetHardware(request,
+    def GetHardwareItem(request,
             target,
             options=(),
             channel_credentials=None,
@@ -867,14 +916,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetHardware',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetHardwareItem',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareItemRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetHardwareItemResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def QueryHardware(request,
+    def QueryHardwareItems(request,
             target,
             options=(),
             channel_credentials=None,
@@ -884,14 +933,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/QueryHardware',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/QueryHardwareItems',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareItemsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryHardwareItemsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateHardware(request,
+    def CreateHardwareItem(request,
             target,
             options=(),
             channel_credentials=None,
@@ -901,14 +950,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateHardware',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateHardwareItem',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareItemRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareItemResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetSoftware(request,
+    def GetSoftwareItem(request,
             target,
             options=(),
             channel_credentials=None,
@@ -918,14 +967,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetSoftware',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetSoftwareItem',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareItemRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareItemResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def QuerySoftware(request,
+    def QuerySoftwareItems(request,
             target,
             options=(),
             channel_credentials=None,
@@ -935,14 +984,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/QuerySoftware',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/QuerySoftwareItems',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareItemsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QuerySoftwareItemsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def CreateSoftware(request,
+    def CreateSoftwareItem(request,
             target,
             options=(),
             channel_credentials=None,
@@ -952,14 +1001,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateSoftware',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateSoftwareItem',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def RegisterMetadataSchema(request,
+    def GetTestAdapter(request,
             target,
             options=(),
             channel_credentials=None,
@@ -969,14 +1018,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/RegisterMetadataSchema',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterMetadataSchemaRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterMetadataSchemaResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetTestAdapter',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestAdapterRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestAdapterResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def EnumerateMetadataSchemas(request,
+    def QueryTestAdapters(request,
             target,
             options=(),
             channel_credentials=None,
@@ -986,14 +1035,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/EnumerateMetadataSchemas',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.EnumerateMetadataSchemasRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.EnumerateMetadataSchemasResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/QueryTestAdapters',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestAdaptersRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.QueryTestAdaptersResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ResolveAlias(request,
+    def CreateTestAdapter(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1003,9 +1052,60 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/ResolveAlias',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ResolveAliasRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ResolveAliasResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateTestAdapter',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestAdapterRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestAdapterResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RegisterSchema(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/RegisterSchema',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterSchemaRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterSchemaResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ListSchemas(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/ListSchemas',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetAlias(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/GetAlias',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetAliasRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetAliasResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1027,7 +1127,7 @@ class MetadataStoreService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def RegisterAlias(request,
+    def CreateAlias(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1037,14 +1137,14 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/RegisterAlias',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterAliasRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterAliasResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateAlias',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateAliasRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateAliasResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def UnregisterAlias(request,
+    def DeleteAlias(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1054,8 +1154,8 @@ class MetadataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/UnregisterAlias',
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.UnregisterAliasRequest.SerializeToString,
-            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.UnregisterAliasResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/DeleteAlias',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -11,11 +11,15 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
+from ni.protobuf.types import precision_timestamp_pb2 as ni_dot_protobuf_dot_types_dot_precision__timestamp__pb2
 from ni.measurements.data.v1 import data_store_pb2 as ni_dot_measurements_dot_data_dot_v1_dot_data__store__pb2
+from ni.protobuf.types import scalar_pb2 as ni_dot_protobuf_dot_types_dot_scalar__pb2
+from ni.protobuf.types import vector_pb2 as ni_dot_protobuf_dot_types_dot_vector__pb2
+from ni.protobuf.types import waveform_pb2 as ni_dot_protobuf_dot_types_dot_waveform__pb2
+from ni.protobuf.types import xydata_pb2 as ni_dot_protobuf_dot_types_dot_xydata__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n0ni/measurements/data/v1/data_store_service.proto\x12\x17ni.measurements.data.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a(ni/measurements/data/v1/data_store.proto\"Z\n\x14\x43reateSessionRequest\x12\x42\n\x10session_metadata\x18\x01 \x01(\x0b\x32(.ni.measurements.data.v1.SessionMetadata\"+\n\x15\x43reateSessionResponse\x12\x12\n\nsession_id\x18\x01 \x01(\t\"?\n\x11GetSessionRequest\x12\x12\n\nsession_id\x18\x01 \x01(\t\x12\x16\n\x0einclude_values\x18\x02 \x01(\x08\"X\n\x12GetSessionResponse\x12\x42\n\x10session_metadata\x18\x01 \x01(\x0b\x32(.ni.measurements.data.v1.SessionMetadata\"]\n\x18\x43reateMeasurementRequest\x12\x41\n\x0bmeasurement\x18\x01 \x01(\x0b\x32,.ni.measurements.data.v1.MeasurementMetadata\"\'\n\x19\x43reateMeasurementResponse\x12\n\n\x02id\x18\x01 \x01(\t\"#\n\x15GetMeasurementRequest\x12\n\n\x02id\x18\x01 \x01(\t\"[\n\x16GetMeasurementResponse\x12\x41\n\x0bmeasurement\x18\x01 \x01(\x0b\x32,.ni.measurements.data.v1.MeasurementMetadata\"/\n\x18QueryMeasurementsRequest\x12\x13\n\x0bodata_query\x18\x01 \x01(\t\"_\n\x19QueryMeasurementsResponse\x12\x42\n\x0cmeasurements\x18\x01 \x03(\x0b\x32,.ni.measurements.data.v1.MeasurementMetadata\"\xce\x01\n\x1aPublishConditionSetRequest\x12\x39\n\rcondition_set\x18\x01 \x03(\x0b\x32\".ni.measurements.data.v1.Condition\x12L\n\x14measurement_metadata\x18\x02 \x01(\x0b\x32,.ni.measurements.data.v1.MeasurementMetadataH\x00\x12\x18\n\x0emeasurement_id\x18\x03 \x01(\tH\x00\x42\r\n\x0bmeasurement\"s\n\x1bPublishConditionSetResponse\x12T\n\x1astored_condition_set_value\x18\x01 \x01(\x0b\x32\x30.ni.measurements.data.v1.StoredConditionSetValue\"\xc7\x01\n\x17PublishConditionRequest\x12\x35\n\tcondition\x18\x01 \x01(\x0b\x32\".ni.measurements.data.v1.Condition\x12L\n\x14measurement_metadata\x18\x02 \x01(\x0b\x32,.ni.measurements.data.v1.MeasurementMetadataH\x00\x12\x18\n\x0emeasurement_id\x18\x03 \x01(\tH\x00\x42\r\n\x0bmeasurement\"i\n\x18PublishConditionResponse\x12M\n\x16stored_condition_value\x18\x01 \x01(\x0b\x32-.ni.measurements.data.v1.StoredConditionValue\"\xd8\x01\n\x1fPublishConditionSetBatchRequest\x12>\n\rcondition_set\x18\x01 \x03(\x0b\x32\'.ni.measurements.data.v1.ConditionArray\x12L\n\x14measurement_metadata\x18\x02 \x01(\x0b\x32,.ni.measurements.data.v1.MeasurementMetadataH\x00\x12\x18\n\x0emeasurement_id\x18\x03 \x01(\tH\x00\x42\r\n\x0bmeasurement\"x\n PublishConditionSetBatchResponse\x12T\n\x1astored_condition_set_value\x18\x01 \x01(\x0b\x32\x30.ni.measurements.data.v1.StoredConditionSetValue\"\xd1\x01\n\x1cPublishConditionBatchRequest\x12:\n\tcondition\x18\x01 \x01(\x0b\x32\'.ni.measurements.data.v1.ConditionArray\x12L\n\x14measurement_metadata\x18\x02 \x01(\x0b\x32,.ni.measurements.data.v1.MeasurementMetadataH\x00\x12\x18\n\x0emeasurement_id\x18\x03 \x01(\tH\x00\x42\r\n\x0bmeasurement\"n\n\x1dPublishConditionBatchResponse\x12M\n\x16stored_condition_value\x18\x01 \x01(\x0b\x32-.ni.measurements.data.v1.StoredConditionValue\"\xfe\x05\n\x12PublishDataRequest\x12\x36\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32(.ni.measurements.data.v1.PublishableData\x12\r\n\x05notes\x18\x02 \x01(\t\x12-\n\ttimestamp\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x41\n\x10pass_fail_status\x18\x04 \x01(\x0e\x32\'.ni.measurements.data.v1.PassFailStatus\x12\x38\n\x0b\x65rror_state\x18\x05 \x01(\x0e\x32#.ni.measurements.data.v1.ErrorState\x12<\n\rerror_message\x18\x06 \x01(\x0b\x32%.ni.measurements.data.v1.ErrorMessage\x12L\n\x14measurement_metadata\x18\x07 \x01(\x0b\x32,.ni.measurements.data.v1.MeasurementMetadataH\x00\x12\x18\n\x0emeasurement_id\x18\x08 \x01(\tH\x00\x12\x46\n\rhardware_list\x18\t \x01(\x0b\x32-.ni.measurements.data.v1.HardwareMetadataListH\x01\x12K\n\x18hardware_identifier_list\x18\n \x01(\x0b\x32\'.ni.measurements.data.v1.IdentifierListH\x01\x12\x46\n\rsoftware_list\x18\x0b \x01(\x0b\x32-.ni.measurements.data.v1.SoftwareMetadataListH\x02\x12K\n\x18software_identifier_list\x18\x0c \x01(\x0b\x32\'.ni.measurements.data.v1.IdentifierListH\x02\x42\r\n\x0bmeasurementB\n\n\x08hardwareB\n\n\x08software\"Z\n\x13PublishDataResponse\x12\x43\n\x11stored_data_value\x18\x01 \x01(\x0b\x32(.ni.measurements.data.v1.StoredDataValue\"\xf9\x05\n\x17PublishDataBatchRequest\x12;\n\x04\x64\x61ta\x18\x01 \x01(\x0b\x32-.ni.measurements.data.v1.PublishableDataBatch\x12-\n\ttimestamp\x18\x02 \x03(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x41\n\x10pass_fail_status\x18\x03 \x03(\x0e\x32\'.ni.measurements.data.v1.PassFailStatus\x12\x38\n\x0b\x65rror_state\x18\x04 \x03(\x0e\x32#.ni.measurements.data.v1.ErrorState\x12<\n\rerror_message\x18\x05 \x03(\x0b\x32%.ni.measurements.data.v1.ErrorMessage\x12L\n\x14measurement_metadata\x18\x06 \x01(\x0b\x32,.ni.measurements.data.v1.MeasurementMetadataH\x00\x12\x18\n\x0emeasurement_id\x18\x07 \x01(\tH\x00\x12\x46\n\rhardware_list\x18\x08 \x01(\x0b\x32-.ni.measurements.data.v1.HardwareMetadataListH\x01\x12K\n\x18hardware_identifier_list\x18\t \x01(\x0b\x32\'.ni.measurements.data.v1.IdentifierListH\x01\x12\x46\n\rsoftware_list\x18\n \x01(\x0b\x32-.ni.measurements.data.v1.SoftwareMetadataListH\x02\x12K\n\x18software_identifier_list\x18\x0b \x01(\x0b\x32\'.ni.measurements.data.v1.IdentifierListH\x02\x42\r\n\x0bmeasurementB\n\n\x08hardwareB\n\n\x08software\"`\n\x18PublishDataBatchResponse\x12\x44\n\x12stored_data_values\x18\x01 \x03(\x0b\x32(.ni.measurements.data.v1.StoredDataValue\"0\n\x19QueryConditionSetsRequest\x12\x13\n\x0bodata_query\x18\x01 \x01(\t\"s\n\x1aQueryConditionSetsResponse\x12U\n\x1bstored_condition_set_values\x18\x01 \x03(\x0b\x32\x30.ni.measurements.data.v1.StoredConditionSetValue\"-\n\x16QueryConditionsRequest\x12\x13\n\x0bodata_query\x18\x01 \x01(\t\"i\n\x17QueryConditionsResponse\x12N\n\x17stored_condition_values\x18\x01 \x03(\x0b\x32-.ni.measurements.data.v1.StoredConditionValue\"\'\n\x10QueryDataRequest\x12\x13\n\x0bodata_query\x18\x01 \x01(\t\"Y\n\x11QueryDataResponse\x12\x44\n\x12stored_data_values\x18\x01 \x03(\x0b\x32(.ni.measurements.data.v1.StoredDataValue2\xa7\r\n\x10\x44\x61taStoreService\x12n\n\rCreateSession\x12-.ni.measurements.data.v1.CreateSessionRequest\x1a..ni.measurements.data.v1.CreateSessionResponse\x12\x65\n\nGetSession\x12*.ni.measurements.data.v1.GetSessionRequest\x1a+.ni.measurements.data.v1.GetSessionResponse\x12z\n\x11\x43reateMeasurement\x12\x31.ni.measurements.data.v1.CreateMeasurementRequest\x1a\x32.ni.measurements.data.v1.CreateMeasurementResponse\x12q\n\x0eGetMeasurement\x12..ni.measurements.data.v1.GetMeasurementRequest\x1a/.ni.measurements.data.v1.GetMeasurementResponse\x12z\n\x11QueryMeasurements\x12\x31.ni.measurements.data.v1.QueryMeasurementsRequest\x1a\x32.ni.measurements.data.v1.QueryMeasurementsResponse\x12\x80\x01\n\x13PublishConditionSet\x12\x33.ni.measurements.data.v1.PublishConditionSetRequest\x1a\x34.ni.measurements.data.v1.PublishConditionSetResponse\x12w\n\x10PublishCondition\x12\x30.ni.measurements.data.v1.PublishConditionRequest\x1a\x31.ni.measurements.data.v1.PublishConditionResponse\x12\x8f\x01\n\x18PublishConditionSetBatch\x12\x38.ni.measurements.data.v1.PublishConditionSetBatchRequest\x1a\x39.ni.measurements.data.v1.PublishConditionSetBatchResponse\x12\x86\x01\n\x15PublishConditionBatch\x12\x35.ni.measurements.data.v1.PublishConditionBatchRequest\x1a\x36.ni.measurements.data.v1.PublishConditionBatchResponse\x12h\n\x0bPublishData\x12+.ni.measurements.data.v1.PublishDataRequest\x1a,.ni.measurements.data.v1.PublishDataResponse\x12w\n\x10PublishDataBatch\x12\x30.ni.measurements.data.v1.PublishDataBatchRequest\x1a\x31.ni.measurements.data.v1.PublishDataBatchResponse\x12}\n\x12QueryConditionSets\x12\x32.ni.measurements.data.v1.QueryConditionSetsRequest\x1a\x33.ni.measurements.data.v1.QueryConditionSetsResponse\x12t\n\x0fQueryConditions\x12/.ni.measurements.data.v1.QueryConditionsRequest\x1a\x30.ni.measurements.data.v1.QueryConditionsResponse\x12\x62\n\tQueryData\x12).ni.measurements.data.v1.QueryDataRequest\x1a*.ni.measurements.data.v1.QueryDataResponseB\xa7\x01\n\x1b\x63om.ni.measurements.data.v1B\x15\x44\x61taStoreServiceProtoP\x01Z\x06\x64\x61tav1\xa2\x02\x04NIMD\xaa\x02(NationalInstruments.Measurements.Data.V1\xca\x02\x17NI\\Measurements\\Data\\V1\xea\x02\x1aNI::Measurements::Data::V1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n0ni/measurements/data/v1/data_store_service.proto\x12\x17ni.measurements.data.v1\x1a+ni/protobuf/types/precision_timestamp.proto\x1a(ni/measurements/data/v1/data_store.proto\x1a\x1eni/protobuf/types/scalar.proto\x1a\x1eni/protobuf/types/vector.proto\x1a ni/protobuf/types/waveform.proto\x1a\x1eni/protobuf/types/xydata.proto\"S\n\x17\x43reateTestResultRequest\x12\x38\n\x0btest_result\x18\x01 \x01(\x0b\x32#.ni.measurements.data.v1.TestResult\"2\n\x18\x43reateTestResultResponse\x12\x16\n\x0etest_result_id\x18\x01 \x01(\t\".\n\x14GetTestResultRequest\x12\x16\n\x0etest_result_id\x18\x01 \x01(\t\"Q\n\x15GetTestResultResponse\x12\x38\n\x0btest_result\x18\x01 \x01(\x0b\x32#.ni.measurements.data.v1.TestResult\"@\n\x11\x43reateStepRequest\x12+\n\x04step\x18\x01 \x01(\x0b\x32\x1d.ni.measurements.data.v1.Step\"%\n\x12\x43reateStepResponse\x12\x0f\n\x07step_id\x18\x01 \x01(\t\"!\n\x0eGetStepRequest\x12\x0f\n\x07step_id\x18\x01 \x01(\t\">\n\x0fGetStepResponse\x12+\n\x04step\x18\x01 \x01(\x0b\x32\x1d.ni.measurements.data.v1.Step\"(\n\x11QueryStepsRequest\x12\x13\n\x0bodata_query\x18\x01 \x01(\t\"B\n\x12QueryStepsResponse\x12,\n\x05steps\x18\x01 \x03(\x0b\x32\x1d.ni.measurements.data.v1.Step\"\x86\x01\n\x17PublishConditionRequest\x12\x16\n\x0e\x63ondition_name\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12+\n\x06scalar\x18\x03 \x01(\x0b\x32\x19.ni.protobuf.types.ScalarH\x00\x12\x0f\n\x07step_id\x18\x04 \x01(\tB\x07\n\x05value\"d\n\x18PublishConditionResponse\x12H\n\x13published_condition\x18\x01 \x01(\x0b\x32+.ni.measurements.data.v1.PublishedCondition\"\x93\x01\n\x1cPublishConditionBatchRequest\x12\x16\n\x0e\x63ondition_name\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\x32\n\rscalar_values\x18\x03 \x01(\x0b\x32\x19.ni.protobuf.types.VectorH\x00\x12\x0f\n\x07step_id\x18\x04 \x01(\tB\x08\n\x06values\"i\n\x1dPublishConditionBatchResponse\x12H\n\x13published_condition\x18\x01 \x01(\x0b\x32+.ni.measurements.data.v1.PublishedCondition\"\x92\x07\n\x19PublishMeasurementRequest\x12\x18\n\x10measurement_name\x18\x01 \x01(\t\x12+\n\x06scalar\x18\x02 \x01(\x0b\x32\x19.ni.protobuf.types.ScalarH\x00\x12+\n\x06vector\x18\x03 \x01(\x0b\x32\x19.ni.protobuf.types.VectorH\x00\x12I\n\x16\x64ouble_analog_waveform\x18\x04 \x01(\x0b\x32\'.ni.protobuf.types.DoubleAnalogWaveformH\x00\x12\x33\n\x08x_y_data\x18\x05 \x01(\x0b\x32\x1f.ni.protobuf.types.DoubleXYDataH\x00\x12\x43\n\x13i16_analog_waveform\x18\x06 \x01(\x0b\x32$.ni.protobuf.types.I16AnalogWaveformH\x00\x12K\n\x17\x64ouble_complex_waveform\x18\x07 \x01(\x0b\x32(.ni.protobuf.types.DoubleComplexWaveformH\x00\x12\x45\n\x14i16_complex_waveform\x18\x08 \x01(\x0b\x32%.ni.protobuf.types.I16ComplexWaveformH\x00\x12<\n\x0f\x64ouble_spectrum\x18\t \x01(\x0b\x32!.ni.protobuf.types.DoubleSpectrumH\x00\x12>\n\x10\x64igital_waveform\x18\n \x01(\x0b\x32\".ni.protobuf.types.DigitalWaveformH\x00\x12\r\n\x05notes\x18\x0b \x01(\t\x12\x38\n\ttimestamp\x18\x0c \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x31\n\x07outcome\x18\r \x01(\x0e\x32 .ni.measurements.data.v1.Outcome\x12\x44\n\x11\x65rror_information\x18\x0e \x01(\x0b\x32).ni.measurements.data.v1.ErrorInformation\x12\x0f\n\x07step_id\x18\x0f \x01(\t\x12\x19\n\x11hardware_item_ids\x18\x10 \x03(\t\x12\x18\n\x10test_adapter_ids\x18\x11 \x03(\t\x12\x19\n\x11software_item_ids\x18\x12 \x03(\tB\x07\n\x05value\"j\n\x1aPublishMeasurementResponse\x12L\n\x15published_measurement\x18\x01 \x01(\x0b\x32-.ni.measurements.data.v1.PublishedMeasurement\"\x8c\x03\n\x1ePublishMeasurementBatchRequest\x12\x18\n\x10measurement_name\x18\x01 \x01(\t\x12\x32\n\rscalar_values\x18\x02 \x01(\x0b\x32\x19.ni.protobuf.types.VectorH\x00\x12\x38\n\ttimestamp\x18\x03 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x31\n\x07outcome\x18\x04 \x03(\x0e\x32 .ni.measurements.data.v1.Outcome\x12\x44\n\x11\x65rror_information\x18\x05 \x03(\x0b\x32).ni.measurements.data.v1.ErrorInformation\x12\x0f\n\x07step_id\x18\x06 \x01(\t\x12\x19\n\x11hardware_item_ids\x18\x07 \x03(\t\x12\x18\n\x10test_adapter_ids\x18\x08 \x03(\t\x12\x19\n\x11software_item_ids\x18\t \x03(\tB\x08\n\x06values\"p\n\x1fPublishMeasurementBatchResponse\x12M\n\x16published_measurements\x18\x01 \x03(\x0b\x32-.ni.measurements.data.v1.PublishedMeasurement\"-\n\x16QueryConditionsRequest\x12\x13\n\x0bodata_query\x18\x01 \x01(\t\"d\n\x17QueryConditionsResponse\x12I\n\x14published_conditions\x18\x01 \x03(\x0b\x32+.ni.measurements.data.v1.PublishedCondition\"/\n\x18QueryMeasurementsRequest\x12\x13\n\x0bodata_query\x18\x01 \x01(\t\"j\n\x19QueryMeasurementsResponse\x12M\n\x16published_measurements\x18\x01 \x03(\x0b\x32-.ni.measurements.data.v1.PublishedMeasurement2\xa9\n\n\x10\x44\x61taStoreService\x12w\n\x10\x43reateTestResult\x12\x30.ni.measurements.data.v1.CreateTestResultRequest\x1a\x31.ni.measurements.data.v1.CreateTestResultResponse\x12n\n\rGetTestResult\x12-.ni.measurements.data.v1.GetTestResultRequest\x1a..ni.measurements.data.v1.GetTestResultResponse\x12\x65\n\nCreateStep\x12*.ni.measurements.data.v1.CreateStepRequest\x1a+.ni.measurements.data.v1.CreateStepResponse\x12\\\n\x07GetStep\x12\'.ni.measurements.data.v1.GetStepRequest\x1a(.ni.measurements.data.v1.GetStepResponse\x12\x65\n\nQuerySteps\x12*.ni.measurements.data.v1.QueryStepsRequest\x1a+.ni.measurements.data.v1.QueryStepsResponse\x12w\n\x10PublishCondition\x12\x30.ni.measurements.data.v1.PublishConditionRequest\x1a\x31.ni.measurements.data.v1.PublishConditionResponse\x12\x86\x01\n\x15PublishConditionBatch\x12\x35.ni.measurements.data.v1.PublishConditionBatchRequest\x1a\x36.ni.measurements.data.v1.PublishConditionBatchResponse\x12}\n\x12PublishMeasurement\x12\x32.ni.measurements.data.v1.PublishMeasurementRequest\x1a\x33.ni.measurements.data.v1.PublishMeasurementResponse\x12\x8c\x01\n\x17PublishMeasurementBatch\x12\x37.ni.measurements.data.v1.PublishMeasurementBatchRequest\x1a\x38.ni.measurements.data.v1.PublishMeasurementBatchResponse\x12t\n\x0fQueryConditions\x12/.ni.measurements.data.v1.QueryConditionsRequest\x1a\x30.ni.measurements.data.v1.QueryConditionsResponse\x12z\n\x11QueryMeasurements\x12\x31.ni.measurements.data.v1.QueryMeasurementsRequest\x1a\x32.ni.measurements.data.v1.QueryMeasurementsResponseB\xa7\x01\n\x1b\x63om.ni.measurements.data.v1B\x15\x44\x61taStoreServiceProtoP\x01Z\x06\x64\x61tav1\xa2\x02\x04NIMD\xaa\x02(NationalInstruments.Measurements.Data.V1\xca\x02\x17NI\\Measurements\\Data\\V1\xea\x02\x1aNI::Measurements::Data::V1b\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ni.measurements.data.v1.data_store_service_pb2', globals())
@@ -23,62 +27,50 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\033com.ni.measurements.data.v1B\025DataStoreServiceProtoP\001Z\006datav1\242\002\004NIMD\252\002(NationalInstruments.Measurements.Data.V1\312\002\027NI\\Measurements\\Data\\V1\352\002\032NI::Measurements::Data::V1'
-  _CREATESESSIONREQUEST._serialized_start=152
-  _CREATESESSIONREQUEST._serialized_end=242
-  _CREATESESSIONRESPONSE._serialized_start=244
-  _CREATESESSIONRESPONSE._serialized_end=287
-  _GETSESSIONREQUEST._serialized_start=289
-  _GETSESSIONREQUEST._serialized_end=352
-  _GETSESSIONRESPONSE._serialized_start=354
-  _GETSESSIONRESPONSE._serialized_end=442
-  _CREATEMEASUREMENTREQUEST._serialized_start=444
-  _CREATEMEASUREMENTREQUEST._serialized_end=537
-  _CREATEMEASUREMENTRESPONSE._serialized_start=539
-  _CREATEMEASUREMENTRESPONSE._serialized_end=578
-  _GETMEASUREMENTREQUEST._serialized_start=580
-  _GETMEASUREMENTREQUEST._serialized_end=615
-  _GETMEASUREMENTRESPONSE._serialized_start=617
-  _GETMEASUREMENTRESPONSE._serialized_end=708
-  _QUERYMEASUREMENTSREQUEST._serialized_start=710
-  _QUERYMEASUREMENTSREQUEST._serialized_end=757
-  _QUERYMEASUREMENTSRESPONSE._serialized_start=759
-  _QUERYMEASUREMENTSRESPONSE._serialized_end=854
-  _PUBLISHCONDITIONSETREQUEST._serialized_start=857
-  _PUBLISHCONDITIONSETREQUEST._serialized_end=1063
-  _PUBLISHCONDITIONSETRESPONSE._serialized_start=1065
-  _PUBLISHCONDITIONSETRESPONSE._serialized_end=1180
-  _PUBLISHCONDITIONREQUEST._serialized_start=1183
-  _PUBLISHCONDITIONREQUEST._serialized_end=1382
-  _PUBLISHCONDITIONRESPONSE._serialized_start=1384
-  _PUBLISHCONDITIONRESPONSE._serialized_end=1489
-  _PUBLISHCONDITIONSETBATCHREQUEST._serialized_start=1492
-  _PUBLISHCONDITIONSETBATCHREQUEST._serialized_end=1708
-  _PUBLISHCONDITIONSETBATCHRESPONSE._serialized_start=1710
-  _PUBLISHCONDITIONSETBATCHRESPONSE._serialized_end=1830
-  _PUBLISHCONDITIONBATCHREQUEST._serialized_start=1833
-  _PUBLISHCONDITIONBATCHREQUEST._serialized_end=2042
-  _PUBLISHCONDITIONBATCHRESPONSE._serialized_start=2044
-  _PUBLISHCONDITIONBATCHRESPONSE._serialized_end=2154
-  _PUBLISHDATAREQUEST._serialized_start=2157
-  _PUBLISHDATAREQUEST._serialized_end=2923
-  _PUBLISHDATARESPONSE._serialized_start=2925
-  _PUBLISHDATARESPONSE._serialized_end=3015
-  _PUBLISHDATABATCHREQUEST._serialized_start=3018
-  _PUBLISHDATABATCHREQUEST._serialized_end=3779
-  _PUBLISHDATABATCHRESPONSE._serialized_start=3781
-  _PUBLISHDATABATCHRESPONSE._serialized_end=3877
-  _QUERYCONDITIONSETSREQUEST._serialized_start=3879
-  _QUERYCONDITIONSETSREQUEST._serialized_end=3927
-  _QUERYCONDITIONSETSRESPONSE._serialized_start=3929
-  _QUERYCONDITIONSETSRESPONSE._serialized_end=4044
-  _QUERYCONDITIONSREQUEST._serialized_start=4046
-  _QUERYCONDITIONSREQUEST._serialized_end=4091
-  _QUERYCONDITIONSRESPONSE._serialized_start=4093
-  _QUERYCONDITIONSRESPONSE._serialized_end=4198
-  _QUERYDATAREQUEST._serialized_start=4200
-  _QUERYDATAREQUEST._serialized_end=4239
-  _QUERYDATARESPONSE._serialized_start=4241
-  _QUERYDATARESPONSE._serialized_end=4330
-  _DATASTORESERVICE._serialized_start=4333
-  _DATASTORESERVICE._serialized_end=6036
+  _CREATETESTRESULTREQUEST._serialized_start=294
+  _CREATETESTRESULTREQUEST._serialized_end=377
+  _CREATETESTRESULTRESPONSE._serialized_start=379
+  _CREATETESTRESULTRESPONSE._serialized_end=429
+  _GETTESTRESULTREQUEST._serialized_start=431
+  _GETTESTRESULTREQUEST._serialized_end=477
+  _GETTESTRESULTRESPONSE._serialized_start=479
+  _GETTESTRESULTRESPONSE._serialized_end=560
+  _CREATESTEPREQUEST._serialized_start=562
+  _CREATESTEPREQUEST._serialized_end=626
+  _CREATESTEPRESPONSE._serialized_start=628
+  _CREATESTEPRESPONSE._serialized_end=665
+  _GETSTEPREQUEST._serialized_start=667
+  _GETSTEPREQUEST._serialized_end=700
+  _GETSTEPRESPONSE._serialized_start=702
+  _GETSTEPRESPONSE._serialized_end=764
+  _QUERYSTEPSREQUEST._serialized_start=766
+  _QUERYSTEPSREQUEST._serialized_end=806
+  _QUERYSTEPSRESPONSE._serialized_start=808
+  _QUERYSTEPSRESPONSE._serialized_end=874
+  _PUBLISHCONDITIONREQUEST._serialized_start=877
+  _PUBLISHCONDITIONREQUEST._serialized_end=1011
+  _PUBLISHCONDITIONRESPONSE._serialized_start=1013
+  _PUBLISHCONDITIONRESPONSE._serialized_end=1113
+  _PUBLISHCONDITIONBATCHREQUEST._serialized_start=1116
+  _PUBLISHCONDITIONBATCHREQUEST._serialized_end=1263
+  _PUBLISHCONDITIONBATCHRESPONSE._serialized_start=1265
+  _PUBLISHCONDITIONBATCHRESPONSE._serialized_end=1370
+  _PUBLISHMEASUREMENTREQUEST._serialized_start=1373
+  _PUBLISHMEASUREMENTREQUEST._serialized_end=2287
+  _PUBLISHMEASUREMENTRESPONSE._serialized_start=2289
+  _PUBLISHMEASUREMENTRESPONSE._serialized_end=2395
+  _PUBLISHMEASUREMENTBATCHREQUEST._serialized_start=2398
+  _PUBLISHMEASUREMENTBATCHREQUEST._serialized_end=2794
+  _PUBLISHMEASUREMENTBATCHRESPONSE._serialized_start=2796
+  _PUBLISHMEASUREMENTBATCHRESPONSE._serialized_end=2908
+  _QUERYCONDITIONSREQUEST._serialized_start=2910
+  _QUERYCONDITIONSREQUEST._serialized_end=2955
+  _QUERYCONDITIONSRESPONSE._serialized_start=2957
+  _QUERYCONDITIONSRESPONSE._serialized_end=3057
+  _QUERYMEASUREMENTSREQUEST._serialized_start=3059
+  _QUERYMEASUREMENTSREQUEST._serialized_end=3106
+  _QUERYMEASUREMENTSRESPONSE._serialized_start=3108
+  _QUERYMEASUREMENTSRESPONSE._serialized_end=3214
+  _DATASTORESERVICE._serialized_start=3217
+  _DATASTORESERVICE._serialized_end=4538
 # @@protoc_insertion_point(module_scope)
