@@ -71,6 +71,8 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "__init__.py"]
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3", None),
     "grpc": ("https://grpc.github.io/grpc/python/", None),
+    "ni-grpc-extensions": ("https://ni-grpc-extensions.readthedocs.io/en/latest/", None),
+    "ni.measurementlink.discovery.v1.proto": ("https://nimeasurementlinkdiscoveryv1proto.readthedocs.io/en/latest/", None),
 }
 
 # -- Options for HTML output ----------------------------------------------
