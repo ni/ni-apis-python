@@ -45,6 +45,9 @@ ni-protobuf-types = { version = ">=0.1.0.dev3", allow-prereleases = true }
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
 types-protobuf = ">=4.21"
+ni-datamonikers-v1-proto = { path = "../ni.datamonikers.v1.proto", develop = true }
+ni-measurements-metadata-v1-proto = { path = "../ni.measurements.metadata.v1.proto", develop = true }
+ni-protobuf-types = { path = "../ni.protobuf.types", develop = true }
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }

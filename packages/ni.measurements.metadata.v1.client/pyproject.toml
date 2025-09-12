@@ -42,6 +42,8 @@ ni-measurements-metadata-v1-proto = { version = ">=0.1.0.dev0", allow-prerelease
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
 types-protobuf = ">=4.21"
+ni-measurementlink-discovery-v1-client = { path = "../ni.measurementlink.discovery.v1.client", develop = true }
+ni-measurements-metadata-v1-proto = { path = "../ni.measurements.metadata.v1.proto", develop = true }
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
