@@ -78,9 +78,7 @@ intersphinx_mapping = {
     "grpc": ("https://grpc.github.io/grpc/python/", None),
     "ni-grpc-extensions": ("https://ni-grpc-extensions.readthedocs.io/en/latest/", None),
     "ni.measurementlink.discovery.v1.client": ("https://nimeasurementlinkdiscoveryv1client.readthedocs.io/en/latest/", None),
-    "ni.measurementlink.measurement.v1.proto": ("https://nimeasurementlinkmeasurementv1proto.readthedocs.io/en/latest/", None),
-    "ni.measurementlink.measurement.v2.proto": ("https://nimeasurementlinkmeasurementv2proto.readthedocs.io/en/latest/", None),
-    "ni.measurementlink.sessionmanagement.client": ("https://nimeasurementlinksessionmanagementclient.readthedocs.io/en/latest/", None),
+("https://nimeasurementlinksessionmanagementclient.readthedocs.io/en/latest/", None),
     "ni.measurementlink.pinmap.v1.proto": ("https://nimeasurementlinkpinmapv1proto.readthedocs.io/en/latest/", None),
 }
 
