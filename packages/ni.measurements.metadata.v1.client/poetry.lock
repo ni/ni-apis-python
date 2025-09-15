@@ -960,7 +960,7 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurements-metadata-v1-proto"
-version = "0.1.0-dev1"
+version = "0.1.0-dev2"
 description = "Protobuf data types and service stub for NI metadata store gRPC APIs"
 optional = false
 python-versions = ">=3.9,<4.0"
@@ -1947,4 +1947,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.9,<4.0"
-content-hash = "3857db0d900f254f90643e0be1ec7d9c9d6b9afe0b1ab02e7842ab151d17569d"
+content-hash = "619006ffdde33c5cceb072cb06f3459a74179e3cabee64d9fd340f77558bc7ca"
