@@ -1,6 +1,6 @@
 [project]
 name = "ni.measurements.metadata.v1.client"
-version = "0.1.0-dev0"
+version = "0.1.0-dev1"
 license = "MIT"
 description = "gRPC Client for NI Metadata Store Service"
 authors = [{name = "NI", email = "opensource@ni.com"}]
