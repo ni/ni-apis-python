@@ -31,6 +31,7 @@ requires-python = '>=3.9,<4.0'
 
 [project.urls]
 repository = "https://github.com/ni/ni-apis-python"
+documentation = "https://nimeasurementlinkproto.readthedocs.io/en/latest/"
 
 [tool.poetry]
 packages = [{include = "ni", from = "src"}]
