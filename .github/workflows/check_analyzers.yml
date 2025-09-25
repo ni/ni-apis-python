@@ -22,7 +22,11 @@ on:
 jobs:
   check_analyzers:
     name: Check analyzers for ${{ inputs.package-name }}
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        python-version: [3.9, 3.13]
+    runs-on: ${{ matrix.os }}
     defaults:
       run:
         # Set the working-directory for all steps in this job.
@@ -35,41 +39,14 @@ jobs:
       - name: Set up Python
         uses: ni/python-actions/setup-python@8554e7ef74e95c9762962205f45a1e10c48de671 # v0.5.1
         id: setup-python
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: Set up Poetry
         uses: ni/python-actions/setup-poetry@8554e7ef74e95c9762962205f45a1e10c48de671 # v0.5.1
-      - name: Check for lock changes
-        run: poetry check --lock
-      - name: Cache virtualenv
-        uses: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809 # v4.2.4
+      - name: Analyze Python Project
+        uses: ni/python-actions/analyze-project@1b90235a5fcc5e52f0e39e8d2ae9e91d3e3903f2 # v0.6.0
         with:
-          path: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}/.venv
-          key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles(format('{0}/{1}/poetry.lock', inputs.package-basepath, inputs.package-name)) }}
-      - name: Install ${{ inputs.package-name }}
-        run: |
-          if [ -n "${{ inputs.install-extras }}" ]; then
-            poetry install -v --extras '${{ inputs.install-extras }}'
-          else
-            poetry install -v
-          fi
-      - name: Lint
-        run: poetry run ni-python-styleguide lint
-      - name: Mypy static analysis (Linux)
-        run:  poetry run mypy
-      - name: Mypy static analysis (Windows)
-        run:  poetry run mypy --platform win32
+          project-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
+          extras: ${{ inputs.install-extras }}
       - name: Bandit security checks
         run:  poetry run bandit -c pyproject.toml -r src/
-      - name: Add virtualenv to the path for pyright-action
-        run: echo "$(poetry env info --path)/bin" >> $GITHUB_PATH
-      - name: Pyright static analysis (Linux)
-        uses: jakebailey/pyright-action@6cabc0f01c4994be48fd45cd9dbacdd6e1ee6e5e # v2.3.3
-        with:
-          python-platform: Linux
-          version: PATH
-          working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
-      - name: Pyright static analysis (Windows)
-        uses: jakebailey/pyright-action@6cabc0f01c4994be48fd45cd9dbacdd6e1ee6e5e # v2.3.3
-        with:
-          python-platform: Windows
-          version: PATH
-          working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
