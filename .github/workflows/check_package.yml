@@ -28,7 +28,7 @@ jobs:
       output-basepath: ${{ needs.get_package_info.outputs.package-basepath }}/${{ inputs.package-name }}/src
       output-format: ${{ needs.get_package_info.outputs.output-format }}
   check_analyzers:
-    name: Analyze ${{ inputs.package-name }}
+    name: Analyze
     needs: get_package_info
     uses: ./.github/workflows/check_analyzers.yml
     with:
