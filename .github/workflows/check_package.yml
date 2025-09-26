@@ -17,7 +17,7 @@ jobs:
       package-name: ${{ inputs.package-name }}
   check_codegen:
     if: ${{ needs.get_package_info.outputs.should-check-codegen == 'true' }}
-    name: Check codegen for ${{ inputs.package-name }}
+    name: Codegen
     needs: get_package_info
     uses: ./.github/workflows/check_codegen.yml
     with:
@@ -37,7 +37,7 @@ jobs:
       install-extras: ${{ needs.get_package_info.outputs.install-extras }}
   check_docs:
     if: ${{ needs.get_package_info.outputs.should-check-docs == 'true' }}
-    name: Check docs for ${{ inputs.package-name }}
+    name: Docs
     needs: get_package_info
     uses: ./.github/workflows/check_docs.yml
     with:
