@@ -26,7 +26,7 @@ jobs:
     needs: [check_package]
     runs-on: ubuntu-latest
     steps:
-      - run: exit 0      
+      - run: exit 0
   test_package:
     name: Test ${{ matrix.package-name }}
     needs: [get_package_names]
