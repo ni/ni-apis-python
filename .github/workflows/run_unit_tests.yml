@@ -25,7 +25,7 @@ on:
 
 jobs:
   run_unit_tests:
-    name: Run unit tests for ${{ inputs.package-name }} with ${{ inputs.python-version }} on ${{ inputs.os }}
+    name: Unit tests
     runs-on: ${{ inputs.os }}
     defaults:
       run:

@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   run_ci:
-    name: Run CI
+    name: CI
     uses: ./.github/workflows/CI.yml
     permissions:
       contents: read
