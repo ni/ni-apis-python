@@ -4,6 +4,7 @@ import ctypes
 import sys
 import uuid
 from typing import TYPE_CHECKING
+
 if sys.platform == "win32":
     try:
         import traceloggingdynamic
