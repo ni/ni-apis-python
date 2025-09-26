@@ -25,14 +25,18 @@ jobs:
   run_unit_tests:
     if: ${{ needs.get_package_info.outputs.should-run-tests == 'true' }}
     strategy:
+      # Fail-fast skews the pass/fail ratio and seems to make pytest produce
+      # incomplete JUnit XML results.
+      fail-fast: false
       matrix:
         os: [windows-latest, ubuntu-latest]
         python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
     name: Unit tests
     needs: get_package_info
-    uses: ./.github/workflows/run_unit_tests.yml
-    with:
-      package-name: ${{ inputs.package-name }}
-      package-basepath: ${{ needs.get_package_info.outputs.package-basepath }}
-      python-version: ${{ matrix.python-version }}
-      os: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: ./.github/actions/run_unit_tests
+        with:
+          package-name: ${{ inputs.package-name }}
+          package-basepath: ${{ needs.get_package_info.outputs.package-basepath }}
+          python-version: ${{ matrix.python-version }}
