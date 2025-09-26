@@ -21,9 +21,15 @@ jobs:
     uses: ./.github/workflows/check_package.yml
     with:
       package-name: ${{ matrix.package-name }}
+  checks_succeeded:
+    name: Checks succeeded
+    needs: [check_package]
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 0      
   test_package:
     name: Test ${{ matrix.package-name }}
-    needs: get_package_names
+    needs: [get_package_names]
     strategy:
       matrix:
         package-name: ${{ fromJson(needs.get_package_names.outputs.package-names) }}
@@ -33,7 +39,7 @@ jobs:
   report_test_results:
     name: Report test results
     uses: ./.github/workflows/report_test_results.yml
-    needs: test_package
+    needs: [test_package, checks_succeeded]
     if: always()
     permissions:
       contents: read
