@@ -41,12 +41,12 @@ jobs:
         with:
           submodules: true
       - name: Set up Python
-        uses: ni/python-actions/setup-python@1b90235a5fcc5e52f0e39e8d2ae9e91d3e3903f2 # v0.6.0
+        uses: ni/python-actions/setup-python@f42e2f27a585f5d47efcab79b608ec0ec97191c9 # v0.6.1
         id: setup-python
         with:
           python-version: ${{ inputs.python-version }}
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@1b90235a5fcc5e52f0e39e8d2ae9e91d3e3903f2 # v0.6.0
+        uses: ni/python-actions/setup-poetry@f42e2f27a585f5d47efcab79b608ec0ec97191c9 # v0.6.1
       - name: Run and upload unit tests for ${{ inputs.package-name }}
         uses: ./.github/actions/run_and_upload_unit_tests
         with:
