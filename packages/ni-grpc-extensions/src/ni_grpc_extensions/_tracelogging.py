@@ -3,7 +3,6 @@ from __future__ import annotations
 import ctypes
 import sys
 import uuid
-from typing import TYPE_CHECKING
 
 if sys.platform == "win32":
     try:
@@ -15,9 +14,6 @@ if sys.platform == "win32":
     except ImportError:
         _event_provider = None
 else:
-    if TYPE_CHECKING:
-        import traceloggingdynamic
-
     _event_provider = None
 
 _LEVEL_LOG_ALWAYS = 0
