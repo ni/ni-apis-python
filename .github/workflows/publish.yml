@@ -100,12 +100,12 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Set up Python
-        uses: ni/python-actions/setup-python@8554e7ef74e95c9762962205f45a1e10c48de671 # v0.5.1
+        uses: ni/python-actions/setup-python@1b90235a5fcc5e52f0e39e8d2ae9e91d3e3903f2 # v0.6.0
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@8554e7ef74e95c9762962205f45a1e10c48de671 # v0.5.1
+        uses: ni/python-actions/setup-poetry@1b90235a5fcc5e52f0e39e8d2ae9e91d3e3903f2 # v0.6.0
       - name: Check project version
         if: github.event_name == 'release'
-        uses: ni/python-actions/check-project-version@8554e7ef74e95c9762962205f45a1e10c48de671 # v0.5.1
+        uses: ni/python-actions/check-project-version@1b90235a5fcc5e52f0e39e8d2ae9e91d3e3903f2 # v0.6.0
         with:
           project-directory: ./${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}
           expected-version: ${{ needs.get_publish_info.outputs.package-version }}
@@ -137,7 +137,7 @@ jobs:
     - run: ls -lR
       working-directory: ${{ github.workspace }}/${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}
     - name: Upload to ${{ env.environment }}
-      uses: pypa/gh-action-pypi-publish@76f52bc884231f62b9a034ebfe128415bbaabdfc # v1.12.4
+      uses: pypa/gh-action-pypi-publish@ed0c53931b1dc9bd32cbe73a98c7f6766f8a527e # v1.13.0
       with:
         repository-url: ${{ fromJson(env.environment-info)[env.environment].upload-url }}
         packages-dir: ./${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}/dist
@@ -152,11 +152,11 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Set up Python
-        uses: ni/python-actions/setup-python@8554e7ef74e95c9762962205f45a1e10c48de671 # v0.5.1
+        uses: ni/python-actions/setup-python@1b90235a5fcc5e52f0e39e8d2ae9e91d3e3903f2 # v0.6.0
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@8554e7ef74e95c9762962205f45a1e10c48de671 # v0.5.1
+        uses: ni/python-actions/setup-poetry@1b90235a5fcc5e52f0e39e8d2ae9e91d3e3903f2 # v0.6.0
       - name: Update project version
-        uses: ni/python-actions/update-project-version@8554e7ef74e95c9762962205f45a1e10c48de671 # v0.5.1
+        uses: ni/python-actions/update-project-version@1b90235a5fcc5e52f0e39e8d2ae9e91d3e3903f2 # v0.6.0
         with:
           project-directory: ./${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}
           branch-prefix: users/build/${{ needs.get_publish_info.outputs.package-name }}-
