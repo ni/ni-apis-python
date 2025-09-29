@@ -14,6 +14,7 @@ if sys.platform == "win32":
     except ImportError:
         _event_provider = None
 else:
+    traceloggingdynamic = None
     _event_provider = None
 
 _LEVEL_LOG_ALWAYS = 0
