@@ -17,7 +17,7 @@ else:
     _event_provider = None
 
     def _create_event_builder() -> Any:
-        raise RuntimeError(f"Unsupported platform: {sys.platform}")
+        raise RuntimeError(f"ETW logging is not supported on {sys.platform}")
 
 
 _LEVEL_LOG_ALWAYS = 0
