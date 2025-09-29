@@ -3,22 +3,22 @@ from __future__ import annotations
 import ctypes
 import sys
 import uuid
-from typing import TYPE_CHECKING
+from typing import Any
 
 if sys.platform == "win32":
-    try:
-        import traceloggingdynamic
+    import traceloggingdynamic
 
-        _event_provider: traceloggingdynamic.Provider | None = traceloggingdynamic.Provider(
-            b"NI-Grpc-Python"
-        )
-    except ImportError:
-        _event_provider = None
+    _event_provider = traceloggingdynamic.Provider(b"NI-Grpc-Python")
+
+    def _create_event_builder() -> traceloggingdynamic.EventBuilder:
+        return traceloggingdynamic.EventBuilder()
+
 else:
-    if TYPE_CHECKING:
-        import traceloggingdynamic
-
     _event_provider = None
+
+    def _create_event_builder() -> Any:
+        raise RuntimeError(f"ETW logging is not supported on {sys.platform}")
+
 
 _LEVEL_LOG_ALWAYS = 0
 _LEVEL_CRITICAL = 1
@@ -87,7 +87,7 @@ def is_enabled() -> bool:
 def log_grpc_client_call_start(method_name: str) -> uuid.UUID | None:
     """Log when starting a gRPC client call."""
     if _event_provider and _event_provider.is_enabled(level=_LEVEL_INFO, keyword=_KEYWORD_GRPC):
-        eb = traceloggingdynamic.EventBuilder()  # pyright: ignore[reportPossiblyUnboundVariable]
+        eb = _create_event_builder()
         eb.reset(
             b"GrpcClientCall",
             level=_LEVEL_INFO,
@@ -107,7 +107,7 @@ def log_grpc_client_call_start(method_name: str) -> uuid.UUID | None:
 def log_grpc_client_call_stop(method_name: str, activity_id: uuid.UUID | None = None) -> None:
     """Log when a gRPC client call has completed."""
     if _event_provider and _event_provider.is_enabled(level=_LEVEL_INFO, keyword=_KEYWORD_GRPC):
-        eb = traceloggingdynamic.EventBuilder()  # pyright: ignore[reportPossiblyUnboundVariable]
+        eb = _create_event_builder()
         eb.reset(
             b"GrpcClientCall",
             level=_LEVEL_INFO,
@@ -122,7 +122,7 @@ def log_grpc_client_call_stop(method_name: str, activity_id: uuid.UUID | None = 
 def log_grpc_client_call_streaming_request(method_name: str) -> None:
     """Log when a gRPC client call is sending a client-streaming request."""
     if _event_provider and _event_provider.is_enabled(level=_LEVEL_INFO, keyword=_KEYWORD_GRPC):
-        eb = traceloggingdynamic.EventBuilder()  # pyright: ignore[reportPossiblyUnboundVariable]
+        eb = _create_event_builder()
         eb.reset(
             b"GrpcClientCallStreamingRequest",
             level=_LEVEL_INFO,
@@ -136,7 +136,7 @@ def log_grpc_client_call_streaming_request(method_name: str) -> None:
 def log_grpc_client_call_streaming_response(method_name: str) -> None:
     """Log when a gRPC client call has received a server-streaming response."""
     if _event_provider and _event_provider.is_enabled(level=_LEVEL_INFO, keyword=_KEYWORD_GRPC):
-        eb = traceloggingdynamic.EventBuilder()  # pyright: ignore[reportPossiblyUnboundVariable]
+        eb = _create_event_builder()
         eb.reset(
             b"GrpcClientCallStreamingResponse",
             level=_LEVEL_INFO,
@@ -150,7 +150,7 @@ def log_grpc_client_call_streaming_response(method_name: str) -> None:
 def log_grpc_server_call_start(method_name: str) -> uuid.UUID | None:
     """Log when starting a gRPC server call."""
     if _event_provider and _event_provider.is_enabled(level=_LEVEL_INFO, keyword=_KEYWORD_GRPC):
-        eb = traceloggingdynamic.EventBuilder()  # pyright: ignore[reportPossiblyUnboundVariable]
+        eb = _create_event_builder()
         eb.reset(
             b"GrpcServerCall",
             level=_LEVEL_INFO,
@@ -170,7 +170,7 @@ def log_grpc_server_call_start(method_name: str) -> uuid.UUID | None:
 def log_grpc_server_call_stop(method_name: str, activity_id: uuid.UUID | None = None) -> None:
     """Log when a gRPC server call has completed."""
     if _event_provider and _event_provider.is_enabled(level=_LEVEL_INFO, keyword=_KEYWORD_GRPC):
-        eb = traceloggingdynamic.EventBuilder()  # pyright: ignore[reportPossiblyUnboundVariable]
+        eb = _create_event_builder()
         eb.reset(
             b"GrpcServerCall",
             level=_LEVEL_INFO,
@@ -185,7 +185,7 @@ def log_grpc_server_call_stop(method_name: str, activity_id: uuid.UUID | None = 
 def log_grpc_server_call_streaming_request(method_name: str) -> None:
     """Log when a gRPC server call is sending a server-streaming request."""
     if _event_provider and _event_provider.is_enabled(level=_LEVEL_INFO, keyword=_KEYWORD_GRPC):
-        eb = traceloggingdynamic.EventBuilder()  # pyright: ignore[reportPossiblyUnboundVariable]
+        eb = _create_event_builder()
         eb.reset(
             b"GrpcServerCallStreamingRequest",
             level=_LEVEL_INFO,
@@ -199,7 +199,7 @@ def log_grpc_server_call_streaming_request(method_name: str) -> None:
 def log_grpc_server_call_streaming_response(method_name: str) -> None:
     """Log when a gRPC server call has received a server-streaming response."""
     if _event_provider and _event_provider.is_enabled(level=_LEVEL_INFO, keyword=_KEYWORD_GRPC):
-        eb = traceloggingdynamic.EventBuilder()  # pyright: ignore[reportPossiblyUnboundVariable]
+        eb = _create_event_builder()
         eb.reset(
             b"GrpcServerCallStreamingResponse",
             level=_LEVEL_INFO,

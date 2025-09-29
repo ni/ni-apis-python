@@ -43,8 +43,6 @@ traceloggingdynamic = { version = ">=1.0", platform = "win32" }
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
-# Install traceloggingdynamic on Linux for type checking.
-traceloggingdynamic = { version = ">=1.0", platform = "linux" }
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
