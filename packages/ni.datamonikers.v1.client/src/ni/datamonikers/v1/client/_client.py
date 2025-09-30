@@ -3,13 +3,22 @@
 from __future__ import annotations
 
 import logging
+import sys
 import threading
-from typing import Iterator
+from types import TracebackType
+from typing import TYPE_CHECKING, Iterator
 
 import grpc
 import ni.datamonikers.v1.data_moniker_pb2 as data_moniker_pb2
 import ni.datamonikers.v1.data_moniker_pb2_grpc as data_moniker_pb2_grpc
 from ni_grpc_extensions.channelpool import GrpcChannelPool
+
+if TYPE_CHECKING:
+    if sys.version_info >= (3, 11):
+        from typing import Self
+    else:
+        from typing_extensions import Self
+
 
 _logger = logging.getLogger(__name__)
 
@@ -18,13 +27,15 @@ class MonikerClient:
     """Client for accessing the NI Data Moniker Service."""
 
     __slots__ = (
-        "_initialization_lock",
+        "_created_grpc_channel_pool",
+        "_lock",
         "_service_location",
         "_grpc_channel_pool",
         "_stub",
     )
 
-    _initialization_lock: threading.Lock
+    _created_grpc_channel_pool: bool
+    _lock: threading.Lock
     _service_location: str | None
     _grpc_channel_pool: GrpcChannelPool | None
     _stub: data_moniker_pb2_grpc.MonikerServiceStub | None
@@ -51,7 +62,8 @@ class MonikerClient:
         if service_location is None and grpc_channel is None:
             raise ValueError("Either 'service_location' or 'grpc_channel' must be provided.")
 
-        self._initialization_lock = threading.Lock()
+        self._created_grpc_channel_pool = False
+        self._lock = threading.Lock()
         self._service_location = service_location
         self._grpc_channel_pool = grpc_channel_pool
         self._stub = (
@@ -60,12 +72,35 @@ class MonikerClient:
             else None
         )
 
+    def __enter__(self) -> Self:
+        """Enter the runtime context of the MonikerClient."""
+        return self
+
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        traceback: TracebackType | None,
+    ) -> None:
+        """Exit the runtime context of the MonikerClient."""
+        self.close()
+
+    def close(self) -> None:
+        """Close the client and clean up resources that it owns."""
+        with self._lock:
+            if self._created_grpc_channel_pool:
+                self._grpc_channel_pool.close()
+            self._grpc_channel_pool = None
+            self._created_grpc_channel_pool = False
+            self._stub = None
+
     def _get_stub(self) -> data_moniker_pb2_grpc.MonikerServiceStub:
         if self._stub is None:
-            with self._initialization_lock:
+            with self._lock:
                 if self._grpc_channel_pool is None:
                     _logger.debug("Creating unshared GrpcChannelPool.")
                     self._grpc_channel_pool = GrpcChannelPool()
+                    self._created_grpc_channel_pool = True
 
                 if self._stub is None:
                     channel = self._grpc_channel_pool.get_channel(self._service_location)  # type: ignore
