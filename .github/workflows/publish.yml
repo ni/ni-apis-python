@@ -29,8 +29,8 @@ on:
             - ni.measurementlink.discovery.v1.proto
             - ni.measurementlink.measurement.v1.proto
             - ni.measurementlink.measurement.v2.proto
-            - ni.measuremelink.pinmap.v1.client
-            - ni.measuremelink.pinmap.v1.proto
+            - ni.measurementlink.pinmap.v1.client
+            - ni.measurementlink.pinmap.v1.proto
             - ni.measurementlink.proto
             - ni.measurementlink.sessionmanagement.v1.client
             - ni.measurementlink.sessionmanagement.v1.proto
