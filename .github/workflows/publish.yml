@@ -21,19 +21,25 @@ on:
           type: choice
           options:
             - none
+            - ni-grpc-extensions
+            - ni.datamonikers.v1.client
             - ni.datamonikers.v1.proto
             - ni.grpcdevice.v1.proto
+            - ni.measurementlink.discovery.v1.client
             - ni.measurementlink.discovery.v1.proto
             - ni.measurementlink.measurement.v1.proto
             - ni.measurementlink.measurement.v2.proto
+            - ni.measuremelink.pinmap.v1.client
             - ni.measuremelink.pinmap.v1.proto
             - ni.measurementlink.proto
+            - ni.measurementlink.sessionmanagement.v1.client
             - ni.measurementlink.sessionmanagement.v1.proto
+            - ni.measurements.data.v1.client
             - ni.measurements.data.v1.proto
+            - ni.measurements.metadata.v1.client
             - ni.measurements.metadata.v1.proto
             - ni.panels.v1.proto
             - ni.protobuf.types
-            - ni-grpc-extensions
 
 env:
   environment: ${{ github.event_name == 'release' && 'pypi' || inputs.environment }}
