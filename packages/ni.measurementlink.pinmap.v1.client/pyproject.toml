@@ -43,7 +43,7 @@ ni-grpc-extensions = { version = ">=0.1.0.dev0", allow-prereleases = true }
 ni-measurementlink-discovery-v1-client = { version = ">=0.1.0.dev0", allow-prereleases = true }
 ni-measurementlink-measurement-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
 ni-measurementlink-measurement-v2-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
-ni-measurementlink-sessionmanagement-v1-client = { version = ">=0.1.0.dev0", allow-prereleases = true }
+ni-measurementlink-sessionmanagement-v1-client = { version = ">=0.1.0.dev2", allow-prereleases = true }
 ni-measurementlink-pinmap-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
 
 [tool.poetry.group.dev.dependencies]
