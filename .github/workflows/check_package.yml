@@ -11,13 +11,13 @@ on:
 
 jobs:
   get_package_info:
-    name: Get package info
+    name: Get package info - {{ inputs.package-name }}
     uses: ./.github/workflows/get_package_info.yml
     with:
       package-name: ${{ inputs.package-name }}
   check_codegen:
     if: ${{ needs.get_package_info.outputs.should-check-codegen == 'true' }}
-    name: Codegen
+    name: Check codegen - ${{ inputs.package-name }}
     needs: get_package_info
     uses: ./.github/workflows/check_codegen.yml
     with:
@@ -28,7 +28,7 @@ jobs:
       output-basepath: ${{ needs.get_package_info.outputs.package-basepath }}/${{ inputs.package-name }}/src
       output-format: ${{ needs.get_package_info.outputs.output-format }}
   check_analyzers:
-    name: Analyze
+    name: Check analyzers - ${{ inputs.package-name }}
     needs: get_package_info
     uses: ./.github/workflows/check_analyzers.yml
     with:
@@ -37,7 +37,7 @@ jobs:
       install-extras: ${{ needs.get_package_info.outputs.install-extras }}
   check_docs:
     if: ${{ needs.get_package_info.outputs.should-check-docs == 'true' }}
-    name: Docs
+    name: Check docs - ${{ inputs.package-name }}
     needs: get_package_info
     uses: ./.github/workflows/check_docs.yml
     with:

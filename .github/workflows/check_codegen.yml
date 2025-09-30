@@ -34,7 +34,7 @@ on:
 
 jobs:
   check_codegen:
-    name: Check Codegen
+    name: Check codegen - ${{ inputs.package-name }}
     runs-on: ubuntu-latest
     defaults:
       run:

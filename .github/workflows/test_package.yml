@@ -18,7 +18,7 @@ on:
 
 jobs:
   get_package_info:
-    name: Get package info
+    name: Get package info - ${{ inputs.package-name }}
     uses: ./.github/workflows/get_package_info.yml
     with:
       package-name: ${{ inputs.package-name }}
@@ -31,7 +31,7 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest]
         python-version: [3.9, '3.10', 3.11, 3.12, 3.13]
-    name: Unit tests
+    name: Run unit tests - ${{ inputs.package-name }} (${{ matrix.python-version }} - ${{ matrix.os }})
     needs: get_package_info
     runs-on: ${{ matrix.os }}
     steps:

@@ -39,7 +39,7 @@ on:
 
 jobs:
   get_package_info:
-    name: Get package info
+    name: Get package info - ${{ inputs.package-name }}
     runs-on: ubuntu-latest
     outputs:
       package-basepath: ${{ steps.parse_json.outputs.package-basepath }}

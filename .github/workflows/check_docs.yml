@@ -16,7 +16,7 @@ on:
 
 jobs:
   check_docs:
-    name: Check Docs
+    name: Check docs - ${{ inputs.package-name }}
     runs-on: ubuntu-latest
     defaults:
       run:
