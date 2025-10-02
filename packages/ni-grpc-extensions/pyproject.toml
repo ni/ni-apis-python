@@ -1,6 +1,6 @@
 [project]
 name = "ni-grpc-extensions"
-version = "0.1.0-dev2"
+version = "1.0.0"
 license = "MIT"
 description = "gRPC Extensions"
 authors = [{name = "NI", email = "opensource@ni.com"}]
@@ -11,7 +11,7 @@ maintainers = [
 readme = "README.md"
 keywords = ["grpc", "extensions", "channel_pool"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
   "Intended Audience :: Manufacturing",
   "Intended Audience :: Science/Research",
