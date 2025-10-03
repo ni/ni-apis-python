@@ -21,7 +21,7 @@ on:
 
 jobs:
   check_analyzers:
-    name: Analyze ${{ inputs.package-name }} (${{ matrix.python-version }} - ${{ matrix.os }})
+    name: Check analyzers for ${{ inputs.package-name }}
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]

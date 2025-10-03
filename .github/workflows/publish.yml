@@ -72,7 +72,7 @@ jobs:
             echo "package-version=unused" >> $GITHUB_OUTPUT
           fi
   get_package_info:
-    name: Get package info
+    name: Get package info for ${{ needs.get_publish_info.outputs.package-name }}
     uses: ./.github/workflows/get_package_info.yml
     needs: get_publish_info
     with:
