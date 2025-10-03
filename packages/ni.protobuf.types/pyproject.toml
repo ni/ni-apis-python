@@ -1,6 +1,6 @@
 [project]
 name = "ni.protobuf.types"
-version = "0.1.0-dev5"
+version = "1.0.1.dev0"
 license = "MIT"
 description = "Protobuf data types for NI gRPC APIs"
 authors = [{name = "NI", email = "opensource@ni.com"}]
@@ -11,7 +11,7 @@ maintainers = [
 readme = "README.md"
 keywords = ["ni-apis", "protobuf"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
   "Intended Audience :: Manufacturing",
   "Intended Audience :: Science/Research",
