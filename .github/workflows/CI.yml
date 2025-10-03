@@ -21,6 +21,12 @@ jobs:
     uses: ./.github/workflows/check_package.yml
     with:
       package-name: ${{ matrix.package-name }}
+  checks_succeeded:
+    name: Checks succeeded
+    needs: check_package
+    runs-on: ubuntu-latest
+    steps:
+      - run: exit 0
   test_package:
     name: Test ${{ matrix.package-name }}
     needs: get_package_names
