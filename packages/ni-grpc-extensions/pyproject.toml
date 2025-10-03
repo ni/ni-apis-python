@@ -1,6 +1,6 @@
 [project]
 name = "ni-grpc-extensions"
-version = "1.0.0"
+version = "1.0.1.dev0"
 license = "MIT"
 description = "gRPC Extensions"
 authors = [{name = "NI", email = "opensource@ni.com"}]
