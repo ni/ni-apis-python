@@ -1,0 +1,75 @@
+name: Create Draft Releases
+
+on:
+  workflow_dispatch:
+    inputs:
+      packages:
+        description: 'Comma-separated list of packages (leave empty for all)'
+        required: false
+        type: string
+
+jobs:
+  get_packages:
+    name: Get package names
+    uses: ./.github/workflows/get_package_names.yml
+    
+  create_draft_releases:
+    name: Create draft releases
+    needs: get_packages
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package-name: ${{ fromJson(needs.get_packages.outputs.package-names) }}
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Need full history for git tag commands
+          
+      - name: Extract version from pyproject.toml
+        id: get-version
+        run: |
+          PYPROJECT_PATH="packages/${{ matrix.package-name }}/pyproject.toml"
+          if [[ -f "$PYPROJECT_PATH" ]]; then
+            VERSION=$(grep -E '^\s*version\s*=\s*".*"' "$PYPROJECT_PATH" | sed -E 's/.*version\s*=\s*"([^"]+)".*/\1/')
+            if [[ -n "$VERSION" ]]; then
+              echo "version=$VERSION" >> $GITHUB_OUTPUT
+              echo "tag=test-delete-${{ matrix.package-name }}-v$VERSION" >> $GITHUB_OUTPUT
+              echo "title=${{ matrix.package-name }} v$VERSION" >> $GITHUB_OUTPUT
+            else
+              echo "error=Version not found" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "error=pyproject.toml not found" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Check if tag exists
+        id: check-tag
+        if: steps.get-version.outputs.version
+        run: |
+          TAG="${{ steps.get-version.outputs.tag }}"
+          if git tag | grep -q "^$TAG$"; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Tag '$TAG' already exists"
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Create draft release
+        if: steps.get-version.outputs.version && steps.check-tag.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.get-version.outputs.tag }}" \
+            --title "${{ steps.get-version.outputs.title }}" \
+            --notes "Draft release for ${{ matrix.package-name }} version ${{ steps.get-version.outputs.version }}" \
+            --draft
+            
+      - name: Log skipped package
+        if: steps.get-version.outputs.error || steps.check-tag.outputs.exists == 'true'
+        run: |
+          if [[ "${{ steps.get-version.outputs.error }}" ]]; then
+            echo "Skipping ${{ matrix.package-name }}: ${{ steps.get-version.outputs.error }}"
+          else
+            echo "Skipping ${{ matrix.package-name }}: Tag already exists"
+          fi
