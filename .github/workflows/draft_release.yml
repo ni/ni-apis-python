@@ -100,15 +100,17 @@ jobs:
           echo "EOF" >> $GITHUB_OUTPUT
           
       - name: Create draft release
-        env:
-          GH_TOKEN: ${{ github.token }}
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.get-version.outputs.tag }}
+          name: ${{ steps.get-version.outputs.title }}
+          body: ${{ steps.release-notes.outputs.notes }}
+          draft: true
+          commit: ${{ github.sha }}
+          token: ${{ github.token }}
+          
+      - name: Log success
         run: |
-          gh release create "${{ steps.get-version.outputs.tag }}" \
-            --title "${{ steps.get-version.outputs.title }}" \
-            --notes "${{ steps.release-notes.outputs.notes }}" \
-            --draft \
-            --target "${{ github.ref_name }}"
-            
           echo "✅ Draft release created successfully!"
           echo "📝 Title: ${{ steps.get-version.outputs.title }}"
           echo "🏷️ Tag: ${{ steps.get-version.outputs.tag }}"
