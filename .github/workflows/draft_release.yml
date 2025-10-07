@@ -1,0 +1,112 @@
+name: Draft Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      package-name:
+        description: 'Package to create release for'
+        required: true
+        type: choice
+        options:
+          - ni.protobuf.types
+          - ni_grpc_extensions
+
+jobs:
+  draft_release:
+    name: Draft release for ${{ inputs.package-name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Need full history for git tag and release notes
+          
+      - name: Extract version from pyproject.toml
+        id: get-version
+        run: |
+          PYPROJECT_PATH="packages/${{ inputs.package-name }}/pyproject.toml"
+          if [[ -f "$PYPROJECT_PATH" ]]; then
+            VERSION=$(grep -E '^\s*version\s*=\s*".*"' "$PYPROJECT_PATH" | sed -E 's/.*version\s*=\s*"([^"]+)".*/\1/')
+            if [[ -n "$VERSION" ]]; then
+              echo "version=$VERSION" >> $GITHUB_OUTPUT
+              echo "tag=${{ inputs.package-name }}-v$VERSION" >> $GITHUB_OUTPUT
+              echo "title=${{ inputs.package-name }} v$VERSION" >> $GITHUB_OUTPUT
+              echo "Found version: $VERSION"
+            else
+              echo "error=Version not found in pyproject.toml" >> $GITHUB_OUTPUT
+              exit 1
+            fi
+          else
+            echo "error=pyproject.toml not found at $PYPROJECT_PATH" >> $GITHUB_OUTPUT
+            exit 1
+          fi
+          
+      - name: Check if tag exists
+        id: check-tag
+        run: |
+          TAG="${{ steps.get-version.outputs.tag }}"
+          if git tag | grep -q "^$TAG$"; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "Tag '$TAG' already exists"
+            exit 1
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "Tag '$TAG' does not exist - proceeding with release"
+          fi
+          
+      - name: Find previous tag
+        id: previous-tag
+        run: |
+          PACKAGE="${{ inputs.package-name }}"
+          # Find all tags for this package, sort by version, get the latest
+          PREVIOUS_TAG=$(git tag -l "${PACKAGE}-v*" | sort -V | tail -1)
+          if [[ -n "$PREVIOUS_TAG" ]]; then
+            echo "previous-tag=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
+            echo "Found previous tag: $PREVIOUS_TAG"
+          else
+            echo "previous-tag=" >> $GITHUB_OUTPUT
+            echo "No previous tag found for package $PACKAGE"
+          fi
+          
+      - name: Generate release notes
+        id: release-notes
+        run: |
+          PACKAGE="${{ inputs.package-name }}"
+          CURRENT_TAG="${{ steps.get-version.outputs.tag }}"
+          PREVIOUS_TAG="${{ steps.previous-tag.outputs.previous-tag }}"
+          
+          if [[ -n "$PREVIOUS_TAG" ]]; then
+            echo "Generating release notes between $PREVIOUS_TAG and HEAD"
+            NOTES=$(git log --pretty=format:"- %s" "$PREVIOUS_TAG..HEAD" --no-merges -- "packages/$PACKAGE/")
+            if [[ -z "$NOTES" ]]; then
+              NOTES="No changes found in packages/$PACKAGE/ since $PREVIOUS_TAG"
+            fi
+          else
+            echo "Generating release notes from beginning of history"
+            NOTES=$(git log --pretty=format:"- %s" --no-merges -- "packages/$PACKAGE/")
+            if [[ -z "$NOTES" ]]; then
+              NOTES="Initial release of $PACKAGE"
+            fi
+          fi
+          
+          # Create multiline output
+          echo "notes<<EOF" >> $GITHUB_OUTPUT
+          echo "# Changes" >> $GITHUB_OUTPUT
+          echo "" >> $GITHUB_OUTPUT
+          echo "$NOTES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+      - name: Create draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.get-version.outputs.tag }}" \
+            --title "${{ steps.get-version.outputs.title }}" \
+            --notes "${{ steps.release-notes.outputs.notes }}" \
+            --draft \
+            --target "${{ github.ref_name }}"
+            
+          echo "✅ Draft release created successfully!"
+          echo "📝 Title: ${{ steps.get-version.outputs.title }}"
+          echo "🏷️ Tag: ${{ steps.get-version.outputs.tag }}"
+          echo "🎯 Target branch: ${{ github.ref_name }}"
