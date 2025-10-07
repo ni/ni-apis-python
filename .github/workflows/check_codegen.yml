@@ -49,10 +49,10 @@ jobs:
         with:
           submodules: true
       - name: Set up Python
-        uses: ni/python-actions/setup-python@f42e2f27a585f5d47efcab79b608ec0ec97191c9 # v0.6.1
+        uses: ni/python-actions/setup-python@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
         id: setup-python
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@f42e2f27a585f5d47efcab79b608ec0ec97191c9 # v0.6.1
+        uses: ni/python-actions/setup-poetry@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
       - name: Check for lock changes
         run: poetry check --lock
       - name: Cache virtualenv

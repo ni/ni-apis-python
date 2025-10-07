@@ -21,19 +21,25 @@ on:
           type: choice
           options:
             - none
+            - ni-grpc-extensions
+            - ni.datamonikers.v1.client
             - ni.datamonikers.v1.proto
             - ni.grpcdevice.v1.proto
+            - ni.measurementlink.discovery.v1.client
             - ni.measurementlink.discovery.v1.proto
             - ni.measurementlink.measurement.v1.proto
             - ni.measurementlink.measurement.v2.proto
-            - ni.measuremelink.pinmap.v1.proto
+            - ni.measurementlink.pinmap.v1.client
+            - ni.measurementlink.pinmap.v1.proto
             - ni.measurementlink.proto
+            - ni.measurementlink.sessionmanagement.v1.client
             - ni.measurementlink.sessionmanagement.v1.proto
+            - ni.measurements.data.v1.client
             - ni.measurements.data.v1.proto
+            - ni.measurements.metadata.v1.client
             - ni.measurements.metadata.v1.proto
             - ni.panels.v1.proto
             - ni.protobuf.types
-            - ni-grpc-extensions
 
 env:
   environment: ${{ github.event_name == 'release' && 'pypi' || inputs.environment }}
@@ -100,12 +106,12 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Set up Python
-        uses: ni/python-actions/setup-python@f42e2f27a585f5d47efcab79b608ec0ec97191c9 # v0.6.1
+        uses: ni/python-actions/setup-python@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@f42e2f27a585f5d47efcab79b608ec0ec97191c9 # v0.6.1
+        uses: ni/python-actions/setup-poetry@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
       - name: Check project version
         if: github.event_name == 'release'
-        uses: ni/python-actions/check-project-version@f42e2f27a585f5d47efcab79b608ec0ec97191c9 # v0.6.1
+        uses: ni/python-actions/check-project-version@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
         with:
           project-directory: ./${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}
           expected-version: ${{ needs.get_publish_info.outputs.package-version }}
@@ -152,11 +158,11 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Set up Python
-        uses: ni/python-actions/setup-python@f42e2f27a585f5d47efcab79b608ec0ec97191c9 # v0.6.1
+        uses: ni/python-actions/setup-python@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@f42e2f27a585f5d47efcab79b608ec0ec97191c9 # v0.6.1
+        uses: ni/python-actions/setup-poetry@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
       - name: Update project version
-        uses: ni/python-actions/update-project-version@f42e2f27a585f5d47efcab79b608ec0ec97191c9 # v0.6.1
+        uses: ni/python-actions/update-project-version@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
         with:
           project-directory: ./${{ needs.get_package_info.outputs.package-basepath }}/${{ needs.get_publish_info.outputs.package-name }}
           branch-prefix: users/build/${{ needs.get_publish_info.outputs.package-name }}-

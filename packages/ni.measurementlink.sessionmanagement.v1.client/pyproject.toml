@@ -1,6 +1,6 @@
 [project]
 name = "ni.measurementlink.sessionmanagement.v1.client"
-version = "0.1.0-dev2"
+version = "1.0.1.dev0"
 license = "MIT"
 description = "Client gRPC APIs for the session management service"
 authors = [{name = "NI", email = "opensource@ni.com"}]
@@ -11,7 +11,7 @@ maintainers = [
 readme = "README.md"
 keywords = ["ni-apis", "sessionmanagement"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
   "Intended Audience :: Manufacturing",
   "Intended Audience :: Science/Research",
@@ -50,7 +50,7 @@ nidmm = { version = ">=1.4.4", extras = ["grpc"], optional = true }
 nifgen = { version = ">=1.4.4", extras = ["grpc"], optional = true }
 niscope = { version = ">=1.4.4", extras = ["grpc"], optional = true }
 niswitch = { version = ">=1.4.4", extras = ["grpc"], optional = true }
-ni-measurementlink-sessionmanagement-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
+ni-measurementlink-sessionmanagement-v1-proto = { version = ">=0.1.0.dev2", allow-prereleases = true }
 ni-measurementlink-pinmap-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
 ni-measurementlink-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
 ni-grpcdevice-v1-proto = { version = ">=0.1.0.dev0", allow-prereleases = true }
