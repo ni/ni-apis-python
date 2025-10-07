@@ -1,6 +1,6 @@
 [project]
 name = "ni.measurementlink.pinmap.v1.client"
-version = "1.0.0"
+version = "1.0.1.dev0"
 license = "MIT"
 description = "gRPC Client for NI Pin Map Service"
 authors = [{name = "NI", email = "opensource@ni.com"}]
