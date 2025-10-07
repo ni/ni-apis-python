@@ -11,8 +11,8 @@ on:
           - ni.protobuf.types
           - ni_grpc_extensions
   push:
-    branches-ignore:
-      - '**'  # Never actually run on push
+    branches:
+      - 'users/jdixon/*'
 
 jobs:
   draft_release:
