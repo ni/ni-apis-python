@@ -97,12 +97,12 @@ class GrpcServiceClientBase(Generic[TStub]):
     def close(self) -> None:
         """Close the client and clean up resources that it owns."""
         with self._lock:
+            self._stub = None
+            self._discovery_client = None
             if self._created_grpc_channel_pool and self._grpc_channel_pool:
                 self._grpc_channel_pool.close()
             self._grpc_channel_pool = None
             self._created_grpc_channel_pool = False
-            self._discovery_client = None
-            self._stub = None
 
     def _get_stub(self) -> TStub:
         if self._stub is None:

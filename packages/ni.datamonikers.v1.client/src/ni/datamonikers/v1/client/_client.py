@@ -88,11 +88,11 @@ class MonikerClient:
     def close(self) -> None:
         """Close the client and clean up resources that it owns."""
         with self._lock:
+            self._stub = None
             if self._created_grpc_channel_pool and self._grpc_channel_pool:
                 self._grpc_channel_pool.close()
             self._grpc_channel_pool = None
             self._created_grpc_channel_pool = False
-            self._stub = None
 
     def _get_stub(self) -> data_moniker_pb2_grpc.MonikerServiceStub:
         if self._stub is None:
