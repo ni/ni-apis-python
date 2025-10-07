@@ -9,7 +9,7 @@ on:
         type: choice
         options:
           - ni.protobuf.types
-          - ni_grpc_extensions
+          - ni-grpc-extensions
   push:
     branches:
       - 'users/jdixon/*'
