@@ -34,7 +34,7 @@ class GrpcServiceClientBase(Generic[TStub]):
 
     __slots__ = (
         "_lock",
-        "_created_grpc_channel_pool",
+        "_owns_grpc_channel_pool",
         "_discovery_client",
         "_grpc_channel_pool",
         "_stub",
@@ -44,7 +44,7 @@ class GrpcServiceClientBase(Generic[TStub]):
     )
 
     _lock: threading.Lock
-    _created_grpc_channel_pool: bool
+    _owns_grpc_channel_pool: bool
     _discovery_client: DiscoveryClient | None
     _grpc_channel_pool: GrpcChannelPool | None
     _stub: TStub | None
@@ -73,7 +73,7 @@ class GrpcServiceClientBase(Generic[TStub]):
             grpc_channel_pool: An optional gRPC channel pool (recommended).
         """
         self._lock = threading.Lock()
-        self._created_grpc_channel_pool = False
+        self._owns_grpc_channel_pool = False
         self._discovery_client = discovery_client
         self._grpc_channel_pool = grpc_channel_pool
         self._stub = stub_class(grpc_channel) if grpc_channel is not None else None
@@ -99,10 +99,10 @@ class GrpcServiceClientBase(Generic[TStub]):
         with self._lock:
             self._stub = None
             self._discovery_client = None
-            if self._created_grpc_channel_pool and self._grpc_channel_pool:
+            if self._owns_grpc_channel_pool and self._grpc_channel_pool:
                 self._grpc_channel_pool.close()
             self._grpc_channel_pool = None
-            self._created_grpc_channel_pool = False
+            self._owns_grpc_channel_pool = False
 
     def _get_stub(self) -> TStub:
         if self._stub is None:
@@ -110,7 +110,7 @@ class GrpcServiceClientBase(Generic[TStub]):
                 if self._grpc_channel_pool is None:
                     _logger.debug("Creating unshared GrpcChannelPool.")
                     self._grpc_channel_pool = GrpcChannelPool()
-                    self._created_grpc_channel_pool = True
+                    self._owns_grpc_channel_pool = True
 
                 if self._discovery_client is None:
                     _logger.debug("Creating unshared DiscoveryClient.")

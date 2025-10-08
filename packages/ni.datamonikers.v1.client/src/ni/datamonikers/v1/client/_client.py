@@ -28,14 +28,14 @@ class MonikerClient:
 
     __slots__ = (
         "_lock",
-        "_created_grpc_channel_pool",
+        "_owns_grpc_channel_pool",
         "_service_location",
         "_grpc_channel_pool",
         "_stub",
     )
 
     _lock: threading.Lock
-    _created_grpc_channel_pool: bool
+    _owns_grpc_channel_pool: bool
     _service_location: str | None
     _grpc_channel_pool: GrpcChannelPool | None
     _stub: data_moniker_pb2_grpc.MonikerServiceStub | None
@@ -63,7 +63,7 @@ class MonikerClient:
             raise ValueError("Either 'service_location' or 'grpc_channel' must be provided.")
 
         self._lock = threading.Lock()
-        self._created_grpc_channel_pool = False
+        self._owns_grpc_channel_pool = False
         self._service_location = service_location
         self._grpc_channel_pool = grpc_channel_pool
         self._stub = (
@@ -89,10 +89,10 @@ class MonikerClient:
         """Close the client and clean up resources that it owns."""
         with self._lock:
             self._stub = None
-            if self._created_grpc_channel_pool and self._grpc_channel_pool:
+            if self._owns_grpc_channel_pool and self._grpc_channel_pool:
                 self._grpc_channel_pool.close()
             self._grpc_channel_pool = None
-            self._created_grpc_channel_pool = False
+            self._owns_grpc_channel_pool = False
 
     def _get_stub(self) -> data_moniker_pb2_grpc.MonikerServiceStub:
         if self._stub is None:
@@ -100,7 +100,7 @@ class MonikerClient:
                 if self._grpc_channel_pool is None:
                     _logger.debug("Creating unshared GrpcChannelPool.")
                     self._grpc_channel_pool = GrpcChannelPool()
-                    self._created_grpc_channel_pool = True
+                    self._owns_grpc_channel_pool = True
 
                 if self._stub is None:
                     channel = self._grpc_channel_pool.get_channel(self._service_location)  # type: ignore
