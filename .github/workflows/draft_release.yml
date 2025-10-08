@@ -9,6 +9,23 @@ on:
         type: choice
         default: 'ni-grpc-extensions'
         options:
+          - ni.datamonikers.v1.client
+          - ni.datamonikers.v1.proto
+          - ni.grpcdevice.v1.proto
+          - ni.measurementlink.discovery.v1.client
+          - ni.measurementlink.discovery.v1.proto
+          - ni.measurementlink.measurement.v1.proto
+          - ni.measurementlink.measurement.v2.proto
+          - ni.measurementlink.pinmap.v1.client
+          - ni.measurementlink.pinmap.v1.proto
+          - ni.measurementlink.proto
+          - ni.measurementlink.sessionmanagement.v1.client
+          - ni.measurementlink.sessionmanagement.v1.proto
+          - ni.measurements.data.v1.client
+          - ni.measurements.data.v1.proto
+          - ni.measurements.metadata.v1.client
+          - ni.measurements.metadata.v1.proto
+          - ni.panels.v1.proto
           - ni.protobuf.types
           - ni-grpc-extensions
   push:
@@ -24,7 +41,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Need full history for git tag and release notes
-          
+      - name: Set up Python
+        uses: ni/python-actions/setup-python@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
+        id: setup-python
+      - name: Set up Poetry
+        uses: ni/python-actions/setup-poetry@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
       - name: Extract version from pyproject.toml
         id: get-version
         working-directory: packages/${{ inputs.package-name }}
@@ -35,7 +56,6 @@ jobs:
           echo "title=${{ inputs.package-name }} $project_version" >> $GITHUB_OUTPUT
           echo "Found version: $project_version"
         shell: bash
-
       - name: Find previous tag
         id: previous-tag
         run: |
@@ -49,7 +69,6 @@ jobs:
             echo "previous-tag=" >> $GITHUB_OUTPUT
             echo "No previous tag found for package $PACKAGE"
           fi
-          
       - name: Generate release notes
         id: release-notes
         run: |
@@ -77,7 +96,6 @@ jobs:
           echo "" >> $GITHUB_OUTPUT
           echo "$NOTES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          
       - name: Create draft release
         uses: ncipollo/release-action@v1
         with:
