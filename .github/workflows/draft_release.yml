@@ -41,6 +41,16 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Need full history for git tag and release notes
+      - name: Set package name
+        id: set-package
+        run: |
+          if [[ -n "${{ inputs.package-name }}" ]]; then
+            PACKAGE_NAME="${{ inputs.package-name }}"
+          else
+            PACKAGE_NAME="ni-grpc-extensions"
+          fi
+          echo "package-name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
+          echo "Using package: $PACKAGE_NAME"
       - name: Set up Python
         uses: ni/python-actions/setup-python@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
         id: setup-python
@@ -48,18 +58,18 @@ jobs:
         uses: ni/python-actions/setup-poetry@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
       - name: Extract version from pyproject.toml
         id: get-version
-        working-directory: packages/${{ inputs.package-name }}
+        working-directory: packages/${{ steps.set-package.outputs.package-name }}
         run: |
           project_version="$(poetry version --short)"
           echo "version=$project_version" >> $GITHUB_OUTPUT
-          echo "tag=${{ inputs.package-name }}/$project_version" >> $GITHUB_OUTPUT
-          echo "title=${{ inputs.package-name }} $project_version" >> $GITHUB_OUTPUT
+          echo "tag=${{ steps.set-package.outputs.package-name }}/$project_version" >> $GITHUB_OUTPUT
+          echo "title=${{ steps.set-package.outputs.package-name }} $project_version" >> $GITHUB_OUTPUT
           echo "Found version: $project_version"
         shell: bash
       - name: Find previous tag
         id: previous-tag
         run: |
-          PACKAGE="${{ inputs.package-name }}"
+          PACKAGE="${{ steps.set-package.outputs.package-name }}"
           # Find all tags for this package, sort by version, get the latest
           PREVIOUS_TAG=$(git tag -l "${PACKAGE}/*" | sort -V | tail -1)
           if [[ -n "$PREVIOUS_TAG" ]]; then
@@ -72,7 +82,7 @@ jobs:
       - name: Generate release notes
         id: release-notes
         run: |
-          PACKAGE="${{ inputs.package-name }}"
+          PACKAGE="${{ steps.set-package.outputs.package-name }}"
           CURRENT_TAG="${{ steps.get-version.outputs.tag }}"
           PREVIOUS_TAG="${{ steps.previous-tag.outputs.previous-tag }}"
           
