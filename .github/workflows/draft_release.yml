@@ -58,7 +58,7 @@ jobs:
         run: |
           PACKAGE="${{ inputs.package-name }}"
           # Find all tags for this package, sort by version, get the latest
-          PREVIOUS_TAG=$(git tag -l "${PACKAGE}/*" | sort -V | tail -1)
+          PREVIOUS_TAG=$(git tag -l "${PACKAGE}/*" --sort=-version:refname | head -1)
           if [[ -n "$PREVIOUS_TAG" ]]; then
             echo "previous-tag=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
             echo "Found previous tag: $PREVIOUS_TAG"
