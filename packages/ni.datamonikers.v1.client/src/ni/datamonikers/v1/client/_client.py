@@ -27,15 +27,15 @@ class MonikerClient:
     """Client for accessing the NI Data Moniker Service."""
 
     __slots__ = (
-        "_created_grpc_channel_pool",
         "_lock",
+        "_created_grpc_channel_pool",
         "_service_location",
         "_grpc_channel_pool",
         "_stub",
     )
 
-    _created_grpc_channel_pool: bool
     _lock: threading.Lock
+    _created_grpc_channel_pool: bool
     _service_location: str | None
     _grpc_channel_pool: GrpcChannelPool | None
     _stub: data_moniker_pb2_grpc.MonikerServiceStub | None
@@ -62,8 +62,8 @@ class MonikerClient:
         if service_location is None and grpc_channel is None:
             raise ValueError("Either 'service_location' or 'grpc_channel' must be provided.")
 
-        self._created_grpc_channel_pool = False
         self._lock = threading.Lock()
+        self._created_grpc_channel_pool = False
         self._service_location = service_location
         self._grpc_channel_pool = grpc_channel_pool
         self._stub = (

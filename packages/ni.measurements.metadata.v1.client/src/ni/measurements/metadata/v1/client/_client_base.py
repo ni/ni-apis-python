@@ -33,8 +33,8 @@ class GrpcServiceClientBase(Generic[TStub]):
     """Base class for NI gRPC service clients."""
 
     __slots__ = (
-        "_created_grpc_channel_pool",
         "_lock",
+        "_created_grpc_channel_pool",
         "_discovery_client",
         "_grpc_channel_pool",
         "_stub",
@@ -43,8 +43,8 @@ class GrpcServiceClientBase(Generic[TStub]):
         "_stub_class",
     )
 
-    _created_grpc_channel_pool: bool
     _lock: threading.Lock
+    _created_grpc_channel_pool: bool
     _discovery_client: DiscoveryClient | None
     _grpc_channel_pool: GrpcChannelPool | None
     _stub: TStub | None
@@ -72,8 +72,8 @@ class GrpcServiceClientBase(Generic[TStub]):
             grpc_channel: An optional pin map gRPC channel.
             grpc_channel_pool: An optional gRPC channel pool (recommended).
         """
-        self._created_grpc_channel_pool = False
         self._lock = threading.Lock()
+        self._created_grpc_channel_pool = False
         self._discovery_client = discovery_client
         self._grpc_channel_pool = grpc_channel_pool
         self._stub = stub_class(grpc_channel) if grpc_channel is not None else None
