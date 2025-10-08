@@ -7,12 +7,10 @@ on:
         description: 'Package to create release for'
         required: true
         type: choice
+        default: 'ni-grpc-extensions'
         options:
           - ni.protobuf.types
           - ni-grpc-extensions
-  push:
-    branches:
-      - 'users/jdixon/*'
 
 jobs:
   draft_release:
@@ -32,8 +30,8 @@ jobs:
             VERSION=$(grep -E '^\s*version\s*=\s*".*"' "$PYPROJECT_PATH" | sed -E 's/.*version\s*=\s*"([^"]+)".*/\1/')
             if [[ -n "$VERSION" ]]; then
               echo "version=$VERSION" >> $GITHUB_OUTPUT
-              echo "tag=${{ inputs.package-name }}-v$VERSION" >> $GITHUB_OUTPUT
-              echo "title=${{ inputs.package-name }} v$VERSION" >> $GITHUB_OUTPUT
+              echo "tag=${{ inputs.package-name }}/$VERSION" >> $GITHUB_OUTPUT
+              echo "title=${{ inputs.package-name }} $VERSION" >> $GITHUB_OUTPUT
               echo "Found version: $VERSION"
             else
               echo "error=Version not found in pyproject.toml" >> $GITHUB_OUTPUT
@@ -111,7 +109,7 @@ jobs:
           
       - name: Log success
         run: |
-          echo "✅ Draft release created successfully!"
-          echo "📝 Title: ${{ steps.get-version.outputs.title }}"
-          echo "🏷️ Tag: ${{ steps.get-version.outputs.tag }}"
-          echo "🎯 Target branch: ${{ github.ref_name }}"
+          echo "Draft release created successfully!"
+          echo "Title: ${{ steps.get-version.outputs.title }}"
+          echo "Tag: ${{ steps.get-version.outputs.tag }}"
+          echo "Target branch: ${{ github.ref_name }}"
