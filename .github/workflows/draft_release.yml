@@ -11,6 +11,9 @@ on:
         options:
           - ni.protobuf.types
           - ni-grpc-extensions
+  push:
+    branches:
+      - 'users/jdixon/*'
 
 jobs:
   draft_release:
@@ -24,43 +27,21 @@ jobs:
           
       - name: Extract version from pyproject.toml
         id: get-version
+        working-directory: packages/${{ inputs.package-name }}
         run: |
-          PYPROJECT_PATH="packages/${{ inputs.package-name }}/pyproject.toml"
-          if [[ -f "$PYPROJECT_PATH" ]]; then
-            VERSION=$(grep -E '^\s*version\s*=\s*".*"' "$PYPROJECT_PATH" | sed -E 's/.*version\s*=\s*"([^"]+)".*/\1/')
-            if [[ -n "$VERSION" ]]; then
-              echo "version=$VERSION" >> $GITHUB_OUTPUT
-              echo "tag=${{ inputs.package-name }}/$VERSION" >> $GITHUB_OUTPUT
-              echo "title=${{ inputs.package-name }} $VERSION" >> $GITHUB_OUTPUT
-              echo "Found version: $VERSION"
-            else
-              echo "error=Version not found in pyproject.toml" >> $GITHUB_OUTPUT
-              exit 1
-            fi
-          else
-            echo "error=pyproject.toml not found at $PYPROJECT_PATH" >> $GITHUB_OUTPUT
-            exit 1
-          fi
-          
-      - name: Check if tag exists
-        id: check-tag
-        run: |
-          TAG="${{ steps.get-version.outputs.tag }}"
-          if git tag | grep -q "^$TAG$"; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-            echo "Tag '$TAG' already exists"
-            exit 1
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-            echo "Tag '$TAG' does not exist - proceeding with release"
-          fi
-          
+          project_version="$(poetry version --short)"
+          echo "version=$project_version" >> $GITHUB_OUTPUT
+          echo "tag=${{ inputs.package-name }}/$project_version" >> $GITHUB_OUTPUT
+          echo "title=${{ inputs.package-name }} $project_version" >> $GITHUB_OUTPUT
+          echo "Found version: $project_version"
+        shell: bash
+
       - name: Find previous tag
         id: previous-tag
         run: |
           PACKAGE="${{ inputs.package-name }}"
           # Find all tags for this package, sort by version, get the latest
-          PREVIOUS_TAG=$(git tag -l "${PACKAGE}-v*" | sort -V | tail -1)
+          PREVIOUS_TAG=$(git tag -l "${PACKAGE}/*" | sort -V | tail -1)
           if [[ -n "$PREVIOUS_TAG" ]]; then
             echo "previous-tag=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
             echo "Found previous tag: $PREVIOUS_TAG"
@@ -106,10 +87,3 @@ jobs:
           draft: true
           commit: ${{ github.sha }}
           token: ${{ github.token }}
-          
-      - name: Log success
-        run: |
-          echo "Draft release created successfully!"
-          echo "Title: ${{ steps.get-version.outputs.title }}"
-          echo "Tag: ${{ steps.get-version.outputs.tag }}"
-          echo "Target branch: ${{ github.ref_name }}"
