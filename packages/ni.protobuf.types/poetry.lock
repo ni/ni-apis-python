@@ -874,14 +874,14 @@ toml = ">=0.10.1"
 
 [[package]]
 name = "nitypes"
-version = "0.1.0.dev10"
+version = "1.1.0.dev0"
 description = "Data types for NI Python APIs"
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["main"]
 files = [
-    {file = "nitypes-0.1.0.dev10-py3-none-any.whl", hash = "sha256:c4f097ffdeaf05697a7752a1e2b712760b28e84a4f6f446b4b7b76b349927490"},
-    {file = "nitypes-0.1.0.dev10.tar.gz", hash = "sha256:e319ebbdefca63db8e879b9f119cc4f76a086c550931dea2be0e33e9c10e9d9f"},
+    {file = "nitypes-1.1.0.dev0-py3-none-any.whl", hash = "sha256:1dd0d15bb741294672ea7d61d98e951c5802eec0130d0162f4f19008dd74c0f6"},
+    {file = "nitypes-1.1.0.dev0.tar.gz", hash = "sha256:a82d2f518f514a24bfb3b9c4e023db23097a786ca40155693610d09578d86f10"},
 ]
 
 [package.dependencies]
@@ -890,6 +890,7 @@ numpy = [
     {version = ">=1.22", markers = "python_version >= \"3.9\" and python_version < \"3.13\""},
     {version = ">=2.1", markers = "python_version >= \"3.13\" and python_version < \"4.0\""},
 ]
+typing-extensions = ">=4.13.2"
 
 [[package]]
 name = "nodeenv"
@@ -1900,7 +1901,7 @@ version = "4.14.1"
 description = "Backported and Experimental Type Hints for Python 3.9+"
 optional = false
 python-versions = ">=3.9"
-groups = ["docs", "lint", "test"]
+groups = ["main", "docs", "lint", "test"]
 files = [
     {file = "typing_extensions-4.14.1-py3-none-any.whl", hash = "sha256:d1e1e3b58374dc93031d6eda2420a48ea44a36c2b4766a4fdeb3710755731d76"},
     {file = "typing_extensions-4.14.1.tar.gz", hash = "sha256:38b39f4aeeab64884ce9f74c94263ef78f3c22467c8724005483154c26648d36"},
@@ -1949,4 +1950,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.9,<4.0"
-content-hash = "1a0a03f4bbbd5fa67a4b3072c61ef82ea14fd3121c2d7ddb75223501ca9eb736"
+content-hash = "4ccba63a1dd6d43cd3db273fd20137d63ea31eff38ccfa87ce0aaeabe4a67501"
