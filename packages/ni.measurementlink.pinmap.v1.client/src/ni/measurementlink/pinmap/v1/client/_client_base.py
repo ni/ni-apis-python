@@ -1,12 +1,20 @@
 from __future__ import annotations
 
 import logging
+import sys
 import threading
-from typing import Generic, Protocol, TypeVar
+from types import TracebackType
+from typing import TYPE_CHECKING, Generic, Protocol, TypeVar
 
 import grpc
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
 from ni_grpc_extensions.channelpool import GrpcChannelPool
+
+if TYPE_CHECKING:
+    if sys.version_info >= (3, 11):
+        from typing import Self
+    else:
+        from typing_extensions import Self
 
 _logger = logging.getLogger(__name__)
 
@@ -25,7 +33,8 @@ class GrpcServiceClientBase(Generic[TStub]):
     """Base class for NI gRPC service clients."""
 
     __slots__ = (
-        "_initialization_lock",
+        "_lock",
+        "_owns_grpc_channel_pool",
         "_discovery_client",
         "_grpc_channel_pool",
         "_stub",
@@ -34,7 +43,8 @@ class GrpcServiceClientBase(Generic[TStub]):
         "_stub_class",
     )
 
-    _initialization_lock: threading.Lock
+    _lock: threading.Lock
+    _owns_grpc_channel_pool: bool
     _discovery_client: DiscoveryClient | None
     _grpc_channel_pool: GrpcChannelPool | None
     _stub: TStub | None
@@ -62,7 +72,8 @@ class GrpcServiceClientBase(Generic[TStub]):
             grpc_channel: An optional pin map gRPC channel.
             grpc_channel_pool: An optional gRPC channel pool (recommended).
         """
-        self._initialization_lock = threading.Lock()
+        self._lock = threading.Lock()
+        self._owns_grpc_channel_pool = False
         self._discovery_client = discovery_client
         self._grpc_channel_pool = grpc_channel_pool
         self._stub = stub_class(grpc_channel) if grpc_channel is not None else None
@@ -70,12 +81,36 @@ class GrpcServiceClientBase(Generic[TStub]):
         self._service_class = service_class
         self._stub_class = stub_class
 
+    def __enter__(self) -> Self:
+        """Enter the runtime context of the GrpcServiceClientBase."""
+        return self
+
+    def __exit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_val: BaseException | None,
+        traceback: TracebackType | None,
+    ) -> None:
+        """Exit the runtime context of the GrpcServiceClientBase."""
+        self.close()
+
+    def close(self) -> None:
+        """Close the client and clean up resources that it owns."""
+        with self._lock:
+            self._stub = None
+            self._discovery_client = None
+            if self._owns_grpc_channel_pool and self._grpc_channel_pool:
+                self._grpc_channel_pool.close()
+            self._grpc_channel_pool = None
+            self._owns_grpc_channel_pool = False
+
     def _get_stub(self) -> TStub:
         if self._stub is None:
-            with self._initialization_lock:
+            with self._lock:
                 if self._grpc_channel_pool is None:
                     _logger.debug("Creating unshared GrpcChannelPool.")
                     self._grpc_channel_pool = GrpcChannelPool()
+                    self._owns_grpc_channel_pool = True
 
                 if self._discovery_client is None:
                     _logger.debug("Creating unshared DiscoveryClient.")
