@@ -70,35 +70,44 @@ jobs:
         id: release-notes
         run: |
           PACKAGE="${{ inputs.package-name }}"
-          CURRENT_TAG="${{ steps.get-version.outputs.tag }}"
+          TAG="${{ steps.get-version.outputs.tag }}"
           PREVIOUS_TAG="${{ steps.previous-tag.outputs.previous-tag }}"
           
           if [[ -n "$PREVIOUS_TAG" ]]; then
-            echo "Generating release notes between $PREVIOUS_TAG and HEAD"
-            NOTES=$(git log --pretty=format:"- %s" "$PREVIOUS_TAG..HEAD" --no-merges -- "packages/$PACKAGE/")
+            echo "Generating release notes between $PREVIOUS_TAG and HEAD for packages/$PACKAGE/"
+            # Get commits for this package only, filtering out bot authors
+            NOTES=$(git log --pretty=format:"- %s" "$PREVIOUS_TAG..HEAD" --no-merges \
+              --author="^((?!renovate\[bot\]).)*$" \
+              --author="^((?!dependabot\[bot\]).)*$" \
+              --author="^((?!github-actions\[bot\]).)*$" \
+              -- "packages/$PACKAGE/")
             if [[ -z "$NOTES" ]]; then
-              NOTES="No changes found in packages/$PACKAGE/ since $PREVIOUS_TAG"
+              NOTES="No significant changes found in packages/$PACKAGE/ since $PREVIOUS_TAG"
             fi
           else
-            echo "Generating release notes from beginning of history"
-            NOTES=$(git log --pretty=format:"- %s" --no-merges -- "packages/$PACKAGE/")
+            echo "Generating release notes from beginning of history for packages/$PACKAGE/"
+            # Same filtering for initial release
+            NOTES=$(git log --pretty=format:"- %s" --no-merges \
+              --author="^((?!renovate\[bot\]).)*$" \
+              --author="^((?!dependabot\[bot\]).)*$" \
+              --author="^((?!github-actions\[bot\]).)*$" \
+              -- "packages/$PACKAGE/")
             if [[ -z "$NOTES" ]]; then
               NOTES="Initial release of $PACKAGE"
             fi
           fi
           
-          # Create multiline output
-          echo "notes<<EOF" >> $GITHUB_OUTPUT
-          echo "# Changes" >> $GITHUB_OUTPUT
-          echo "" >> $GITHUB_OUTPUT
-          echo "$NOTES" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          # Store notes for use in next step
+          echo "notes=$NOTES" >> $GITHUB_OUTPUT
+          
       - name: Create draft release
         uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1.20.0
         with:
           tag: ${{ steps.get-version.outputs.tag }}
           name: ${{ steps.get-version.outputs.title }}
-          body: ${{ steps.release-notes.outputs.notes }}
+          body: |
+            # Changes
+            
+            ${{ steps.release-notes.outputs.notes }}
           draft: true
           commit: ${{ github.sha }}
-          token: ${{ github.token }}
