@@ -7,8 +7,9 @@ on:
         description: 'Package to create release for'
         required: true
         type: choice
-        default: 'ni-grpc-extensions'
+        default: 'none'
         options:
+          - none
           - ni.datamonikers.v1.client
           - ni.datamonikers.v1.proto
           - ni.grpcdevice.v1.proto
@@ -34,16 +35,27 @@ jobs:
     name: Draft release for ${{ inputs.package-name }}
     runs-on: ubuntu-latest
     steps:
+      - name: Check package selection
+        run: |
+          if [[ "${{ inputs.package-name }}" == "none" ]]; then
+            echo "No package selected. Please choose a package to create a release for."
+            exit 1
+          fi
+          
       - name: Check out repo
+        if: inputs.package-name != 'none'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Need full history for git tag and release notes
       - name: Set up Python
+        if: inputs.package-name != 'none'
         uses: ni/python-actions/setup-python@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
         id: setup-python
       - name: Set up Poetry
+        if: inputs.package-name != 'none'
         uses: ni/python-actions/setup-poetry@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
       - name: Extract version from pyproject.toml
+        if: inputs.package-name != 'none'
         id: get-version
         working-directory: packages/${{ inputs.package-name }}
         run: |
@@ -54,6 +66,7 @@ jobs:
           echo "Found version: $project_version"
         shell: bash
       - name: Find previous tag
+        if: inputs.package-name != 'none'
         id: previous-tag
         run: |
           PACKAGE="${{ inputs.package-name }}"
@@ -67,6 +80,7 @@ jobs:
             echo "No previous tag found for package $PACKAGE"
           fi
       - name: Generate release notes
+        if: inputs.package-name != 'none'
         id: release-notes
         run: |
           PACKAGE="${{ inputs.package-name }}"
@@ -101,6 +115,7 @@ jobs:
           echo "notes=$NOTES" >> $GITHUB_OUTPUT
           
       - name: Create draft release
+        if: inputs.package-name != 'none'
         uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1.20.0
         with:
           tag: ${{ steps.get-version.outputs.tag }}
