@@ -31,20 +31,17 @@ on:
           - ni-grpc-extensions
 
 jobs:
-  check_selection:
-    if: inputs.package-name == 'none'
-    name: No package selected
-    runs-on: ubuntu-latest
-    steps:
-      - name: Show help message
-        run: |
-          echo "::error::'none' package selected. Please choose an actual package from the list."
-          exit 1
-          
   draft_release:
     name: Draft release for ${{ inputs.package-name }}
     runs-on: ubuntu-latest
     steps:
+      - name: Check package selection
+        run: |
+          if [[ "${{ inputs.package-name }}" == "none" ]]; then
+            echo "::error::No package selected. Please choose a package to create a release for."
+            exit 1
+          fi
+          
       - name: Check out repo
         uses: actions/checkout@v4
         with:
@@ -87,9 +84,8 @@ jobs:
             echo "Generating release notes between $PREVIOUS_TAG and HEAD for packages/$PACKAGE/"
             # Get commits for this package only, filtering out bot authors
             NOTES=$(git log --pretty=format:"- %s" "$PREVIOUS_TAG..HEAD" --no-merges \
-              --author="^((?!renovate\[bot\]).)*$" \
-              --author="^((?!dependabot\[bot\]).)*$" \
-              --author="^((?!github-actions\[bot\]).)*$" \
+              --author="^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$" \
+              --perl-regexp \
               -- "packages/$PACKAGE/")
             if [[ -z "$NOTES" ]]; then
               NOTES="No significant changes found in packages/$PACKAGE/ since $PREVIOUS_TAG"
@@ -98,9 +94,8 @@ jobs:
             echo "Generating release notes from beginning of history for packages/$PACKAGE/"
             # Same filtering for initial release
             NOTES=$(git log --pretty=format:"- %s" --no-merges \
-              --author="^((?!renovate\[bot\]).)*$" \
-              --author="^((?!dependabot\[bot\]).)*$" \
-              --author="^((?!github-actions\[bot\]).)*$" \
+              --author="^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$" \
+              --perl-regexp \
               -- "packages/$PACKAGE/")
             if [[ -z "$NOTES" ]]; then
               NOTES="Initial release of $PACKAGE"
