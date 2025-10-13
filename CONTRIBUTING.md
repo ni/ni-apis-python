@@ -227,9 +227,10 @@ in the ni-apis-python repo. Here are the steps to follow to publish a package:
 1. From the main GitHub repo page, select "Create a new release".
 2. On the "New Release" page, create a new tag using the "Select Tag" drop down. The tag must be in the
 format `<package-name>/<package-version>` where `package-name` and `package-version` match the
-values found in pyproject.toml. Example: `ni.protobuf.types/0.1.0-dev0`.
+values found in pyproject.toml. Example: `ni.protobuf.types/0.1.0.dev0`.
+> **NOTE:** Use a '.' to separate the dev version. E.g. ✅`2.1.0.dev1` and not 🚫`2.1.0-dev1`. This is the [Python normalized form](https://packaging.python.org/en/latest/specifications/version-specifiers/#development-release-separators) and matches what [`update-project-version`](https://github.com/ni/python-actions/blob/main/update-project-version/README.md#version-rule-and-use-dev-suffix) does.
 3. Enter a title in the "Release title" field. The title should contain the package name and
-version in the format `<package-name> <package-version>`. For example: `ni.protobuf.types 0.1.0-dev0`.
+version in the format `<package-name> <package-version>`. For example: `ni.protobuf.types 0.1.0.dev0`.
 4. Click "Generate release notes" and edit the release notes.
    - Delete entries for PRs that do not affect users, such as "chore(deps):" and "fix(deps):" PRs.
    - Consider grouping related entries.
