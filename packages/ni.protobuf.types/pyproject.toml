@@ -1,6 +1,6 @@
 [project]
 name = "ni.protobuf.types"
-version = "1.0.1.dev0"
+version = "1.0.1.dev1"
 license = "MIT"
 description = "Protobuf data types for NI gRPC APIs"
 authors = [{name = "NI", email = "opensource@ni.com"}]
