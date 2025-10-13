@@ -1,0 +1,119 @@
+name: Create draft release
+
+on:
+  workflow_dispatch:
+    inputs:
+      package-name:
+        description: 'Package to create release for'
+        required: true
+        type: choice
+        default: 'none'
+        options:
+          - none
+          - ni.datamonikers.v1.client
+          - ni.datamonikers.v1.proto
+          - ni.grpcdevice.v1.proto
+          - ni.measurementlink.discovery.v1.client
+          - ni.measurementlink.discovery.v1.proto
+          - ni.measurementlink.measurement.v1.proto
+          - ni.measurementlink.measurement.v2.proto
+          - ni.measurementlink.pinmap.v1.client
+          - ni.measurementlink.pinmap.v1.proto
+          - ni.measurementlink.proto
+          - ni.measurementlink.sessionmanagement.v1.client
+          - ni.measurementlink.sessionmanagement.v1.proto
+          - ni.measurements.data.v1.client
+          - ni.measurements.data.v1.proto
+          - ni.measurements.metadata.v1.client
+          - ni.measurements.metadata.v1.proto
+          - ni.panels.v1.proto
+          - ni.protobuf.types
+          - ni-grpc-extensions
+
+jobs:
+  draft_release:
+    name: Draft release for ${{ inputs.package-name }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check package selection
+        run: |
+          if [[ "${{ inputs.package-name }}" == "none" ]]; then
+            echo "::error::No package selected. Please choose a package to create a release for."
+            exit 1
+          fi
+          
+      - name: Check out repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Need full history for git tag and release notes
+      - name: Set up Python
+        uses: ni/python-actions/setup-python@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
+        id: setup-python
+      - name: Set up Poetry
+        uses: ni/python-actions/setup-poetry@9768589f3e50672173dad75a6fc181e4a85d33fa # v0.7.0
+      - name: Get release details
+        id: get-release-details
+        working-directory: packages/${{ inputs.package-name }}
+        run: |
+          project_version="$(poetry version --short)"
+          echo "tag=${{ inputs.package-name }}/$project_version" >> $GITHUB_OUTPUT
+          echo "title=${{ inputs.package-name }} $project_version" >> $GITHUB_OUTPUT
+          echo "Found version: $project_version"
+        shell: bash
+      - name: Find previous tag
+        id: previous-tag
+        run: |
+          PACKAGE="${{ inputs.package-name }}"
+          # Find all tags for this package, sort by version, get the latest
+          PREVIOUS_TAG=$(git tag -l "${PACKAGE}/*" --sort=-version:refname | head -1)
+          if [[ -n "$PREVIOUS_TAG" ]]; then
+            echo "previous-tag=$PREVIOUS_TAG" >> $GITHUB_OUTPUT
+            echo "Found previous tag: $PREVIOUS_TAG"
+          else
+            echo "previous-tag=" >> $GITHUB_OUTPUT
+            echo "No previous tag found for package $PACKAGE"
+          fi
+      - name: Generate release notes
+        id: release-notes
+        run: |
+          PACKAGE="${{ inputs.package-name }}"
+          TAG="${{ steps.get-release-details.outputs.tag }}"
+          PREVIOUS_TAG="${{ steps.previous-tag.outputs.previous-tag }}"
+          
+          if [[ -n "$PREVIOUS_TAG" ]]; then
+            echo "Generating release notes between $PREVIOUS_TAG and HEAD for packages/$PACKAGE/"
+            # Get commits for this package only, filtering out bot authors
+            NOTES=$(git log --pretty=format:"- %s" "$PREVIOUS_TAG..HEAD" --no-merges \
+              --author="^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$" \
+              --perl-regexp \
+              -- "packages/$PACKAGE/")
+            if [[ -z "$NOTES" ]]; then
+              NOTES="No significant changes found in packages/$PACKAGE/ since $PREVIOUS_TAG"
+            fi
+          else
+            echo "Generating release notes from beginning of history for packages/$PACKAGE/"
+            # Same filtering for initial release
+            NOTES=$(git log --pretty=format:"- %s" --no-merges \
+              --author="^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$" \
+              --perl-regexp \
+              -- "packages/$PACKAGE/")
+            if [[ -z "$NOTES" ]]; then
+              NOTES="Initial release of $PACKAGE"
+            fi
+          fi
+          
+          # Store notes for use in next step
+          echo "notes=$NOTES" >> $GITHUB_OUTPUT
+          
+      - name: Create draft release
+        uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1.20.0
+        with:
+          tag: ${{ steps.get-release-details.outputs.tag }}
+          name: ${{ steps.get-release-details.outputs.title }}
+          body: |
+            # Changes
+            
+            ${{ steps.release-notes.outputs.notes }}
+          draft: true
+          prerelease: ${{ contains(steps.get-release-details.outputs.tag, 'dev') && 'true' || 'false' }}
+          commit: ${{ github.sha }}
