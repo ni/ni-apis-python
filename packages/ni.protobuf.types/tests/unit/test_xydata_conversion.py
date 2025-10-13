@@ -88,17 +88,19 @@ def test___float64_xydata___convert___valid_doublexydata_protobuf() -> None:
     assert list(protobuf_value.y_data) == expected_y_data
 
 
-def test___int16_xydata___convert___valid_doublexydata_protobuf() -> None:
+def test___int16_xydata___convert___causes_mypy_error() -> None:
     python_value = XYData.from_arrays_1d(
         x_array=[1, 2, 3],
         y_array=[4, 5, 6],
         dtype=np.int16,
     )
 
-    protobuf_value = float64_xydata_to_protobuf(python_value)
+    # The next line should generate a mypy error. If it doesn't, we'll get an 'unused
+    # ignore' mypy error.
+    protobuf_value = float64_xydata_to_protobuf(python_value)  # type: ignore[arg-type]
 
+    # This conversion still works, so we might as well check it. Int values are converted to float.
     assert isinstance(protobuf_value, xydata_pb2.DoubleXYData)
-    # Data values converted to float. Is this OK? Or should we raise an error here?
     assert list(protobuf_value.x_data) == [1.0, 2.0, 3.0]
     assert list(protobuf_value.y_data) == [4.0, 5.0, 6.0]
 

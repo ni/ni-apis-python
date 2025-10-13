@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Any
-
 import numpy as np
 from nitypes.xy_data import XYData
 
@@ -14,7 +12,7 @@ from ni.protobuf.types.extended_property_conversion import (
 )
 
 
-def float64_xydata_to_protobuf(value: XYData[Any], /) -> xydata_pb2.DoubleXYData:
+def float64_xydata_to_protobuf(value: XYData[np.float64], /) -> xydata_pb2.DoubleXYData:
     """Convert a XYData python object to a protobuf xydata_pb2.DoubleXYData."""
     attributes = extended_properties_to_protobuf(value.extended_properties)
     xydata_message = xydata_pb2.DoubleXYData(
