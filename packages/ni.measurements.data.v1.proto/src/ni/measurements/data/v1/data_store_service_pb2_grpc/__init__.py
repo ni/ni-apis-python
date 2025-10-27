@@ -27,6 +27,11 @@ class DataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetTestResultRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetTestResultResponse.FromString,
                 )
+        self.QueryTestResults = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/QueryTestResults',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryTestResultsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryTestResultsResponse.FromString,
+                )
         self.CreateStep = channel.unary_unary(
                 '/ni.measurements.data.v1.DataStoreService/CreateStep',
                 request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.CreateStepRequest.SerializeToString,
@@ -95,6 +100,14 @@ class DataStoreServiceServicer(object):
 
     def GetTestResult(self, request, context):
         """Gets the test result associated with the identifier given in the request.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def QueryTestResults(self, request, context):
+        """Query for test results matching the given OData query.  For information about the OData query syntax,
+        see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -181,6 +194,11 @@ def add_DataStoreServiceServicer_to_server(servicer, server):
                     servicer.GetTestResult,
                     request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetTestResultRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetTestResultResponse.SerializeToString,
+            ),
+            'QueryTestResults': grpc.unary_unary_rpc_method_handler(
+                    servicer.QueryTestResults,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryTestResultsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryTestResultsResponse.SerializeToString,
             ),
             'CreateStep': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateStep,
@@ -271,6 +289,23 @@ class DataStoreService(object):
         return grpc.experimental.unary_unary(request, target, '/ni.measurements.data.v1.DataStoreService/GetTestResult',
             ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetTestResultRequest.SerializeToString,
             ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.GetTestResultResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def QueryTestResults(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.data.v1.DataStoreService/QueryTestResults',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryTestResultsRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryTestResultsResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
