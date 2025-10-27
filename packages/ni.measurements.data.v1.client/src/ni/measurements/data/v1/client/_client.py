@@ -56,7 +56,7 @@ class DataStoreClient(GrpcServiceClientBase[data_store_service_pb2_grpc.DataStor
     def query_test_results(
         self, request: data_store_service_pb2.QueryTestResultsRequest
     ) -> data_store_service_pb2.QueryTestResultsResponse:
-        """Queries the current test results."""
+        """Query for test results matching the given OData query."""
         return self._get_stub().QueryTestResults(request)
 
     def create_step(
