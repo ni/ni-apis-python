@@ -967,7 +967,7 @@ traceloggingdynamic = {version = ">=1.0", markers = "sys_platform == \"win32\""}
 
 [[package]]
 name = "ni-measurementlink-discovery-v1-client"
-version = "0.1.0-dev1"
+version = "1.0.1.dev0"
 description = "gRPC Client for NI Discovery Service"
 optional = false
 python-versions = ">=3.9,<4.0"
@@ -1002,7 +1002,7 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurements-data-v1-proto"
-version = "0.1.0-dev2"
+version = "0.1.0.dev2"
 description = "Protobuf data types and service stubs for NI data store gRPC APIs"
 optional = false
 python-versions = ">=3.9,<4.0"
@@ -1012,7 +1012,7 @@ develop = true
 
 [package.dependencies]
 ni-datamonikers-v1-proto = ">=0.1.0.dev0"
-ni-measurements-metadata-v1-proto = ">=0.1.0.dev1"
+ni-measurements-metadata-v1-proto = ">=0.1.0.dev2"
 ni-protobuf-types = ">=0.1.0.dev3"
 protobuf = ">=4.21"
 
@@ -1022,7 +1022,7 @@ url = "../ni.measurements.data.v1.proto"
 
 [[package]]
 name = "ni-measurements-metadata-v1-proto"
-version = "0.1.0-dev2"
+version = "0.1.0.dev3"
 description = "Protobuf data types and service stub for NI metadata store gRPC APIs"
 optional = false
 python-versions = ">=3.9,<4.0"
@@ -2251,4 +2251,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.9,<4.0"
-content-hash = "59a5cfc75eef74021a720472fce6c9011b75e1ecf2f6b2d8bffcd7b17cae0e47"
+content-hash = "e383cb2f1d91a25531b01c1decb00e56349a693794ca0410d9ad3152051149d2"

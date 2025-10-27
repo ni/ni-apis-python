@@ -45,6 +45,23 @@ def test__get_test_result__request_and_response_pass_through(
     assert stub_response == client_response
 
 
+def test__query_test_results__request_and_response_pass_through(
+    data_store_client: DataStoreClient, data_store_stub: Mock
+) -> None:
+    client_request = data_store_service_types.QueryTestResultsRequest()
+    stub_response = data_store_service_types.QueryTestResultsResponse()
+    test_result1 = stub_response.test_results.add()
+    test_result1.test_result_name = "Test Result"
+    data_store_stub.QueryTestResults.return_value = stub_response
+
+    client_response = data_store_client.query_test_results(client_request)
+
+    data_store_stub.QueryTestResults.assert_called_once()
+    stub_request = data_store_stub.QueryTestResults.call_args[0][0]
+    assert stub_request == client_request
+    assert stub_response == client_response
+
+
 def test__create_step__request_and_response_pass_through(
     data_store_client: DataStoreClient, data_store_stub: Mock
 ) -> None:
@@ -222,6 +239,7 @@ def data_store_stub(mocker: MockerFixture) -> Mock:
     stub = mocker.create_autospec(DataStoreServiceStub)
     stub.CreateTestResult = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     stub.GetTestResult = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
+    stub.QueryTestResults = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     stub.CreateStep = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     stub.GetStep = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     stub.QuerySteps = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
