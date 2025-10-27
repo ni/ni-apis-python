@@ -103,7 +103,11 @@ jobs:
           fi
           
           # Store notes for use in next step
-          echo "notes=$NOTES" >> $GITHUB_OUTPUT
+          {
+            echo "notes<<EOF"
+            echo "$NOTES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"          
           
       - name: Create draft release
         uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1.20.0
