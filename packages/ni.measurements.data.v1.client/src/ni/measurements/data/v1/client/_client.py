@@ -53,6 +53,12 @@ class DataStoreClient(GrpcServiceClientBase[data_store_service_pb2_grpc.DataStor
         """Gets the test result associated with the identifier given in the request."""
         return self._get_stub().GetTestResult(request)
 
+    def query_test_results(
+        self, request: data_store_service_pb2.QueryTestResultsRequest
+    ) -> data_store_service_pb2.QueryTestResultsResponse:
+        """Queries the current test results."""
+        return self._get_stub().QueryTestResults(request)
+
     def create_step(
         self, request: data_store_service_pb2.CreateStepRequest
     ) -> data_store_service_pb2.CreateStepResponse:
