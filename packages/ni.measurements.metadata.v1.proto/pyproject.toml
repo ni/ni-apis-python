@@ -1,6 +1,6 @@
 [project]
 name = "ni.measurements.metadata.v1.proto"
-version = "0.1.0.dev2"
+version = "0.1.0.dev3"
 license = "MIT"
 description = "Protobuf data types and service stub for NI metadata store gRPC APIs"
 authors = [{name = "NI", email = "opensource@ni.com"}]
