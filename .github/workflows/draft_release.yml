@@ -84,7 +84,7 @@ jobs:
             echo "Generating release notes between $PREVIOUS_TAG and HEAD for packages/$PACKAGE/"
             # Get commits for this package only, filtering out bot authors
             NOTES=$(git log --pretty=format:"- %s" "$PREVIOUS_TAG..HEAD" --no-merges \
-              --author="^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$" \
+              --author='^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$' \
               --perl-regexp \
               -- "packages/$PACKAGE/")
             if [[ -z "$NOTES" ]]; then
@@ -94,7 +94,7 @@ jobs:
             echo "Generating release notes from beginning of history for packages/$PACKAGE/"
             # Same filtering for initial release
             NOTES=$(git log --pretty=format:"- %s" --no-merges \
-              --author="^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$" \
+              --author='^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$' \
               --perl-regexp \
               -- "packages/$PACKAGE/")
             if [[ -z "$NOTES" ]]; then
