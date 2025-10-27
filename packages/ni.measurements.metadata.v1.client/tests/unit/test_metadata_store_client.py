@@ -433,7 +433,7 @@ def test__get_test_adapter__request_and_response_pass_through(
     client_request = metadata_store_service_types.GetTestAdapterRequest()
     client_request.test_adapter_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     stub_response = metadata_store_service_types.GetTestAdapterResponse()
-    stub_response.test_adapter.test_adapter_name = "Test Adapter"
+    stub_response.test_adapter.name = "Test Adapter"
     metadata_store_stub.GetTestAdapter.return_value = stub_response
 
     client_response = metadata_store_client.get_test_adapter(client_request)
@@ -451,7 +451,7 @@ def test__query_test_adapters__request_and_response_pass_through(
     client_request.odata_query = "OData Query"
     stub_response = metadata_store_service_types.QueryTestAdaptersResponse()
     test_adapter1 = stub_response.test_adapters.add()
-    test_adapter1.test_adapter_name = "Test Adapter"
+    test_adapter1.name = "Test Adapter"
     metadata_store_stub.QueryTestAdapters.return_value = stub_response
 
     client_response = metadata_store_client.query_test_adapters(client_request)
@@ -466,7 +466,7 @@ def test__create_test_adapter__request_and_response_pass_through(
     metadata_store_client: MetadataStoreClient, metadata_store_stub: Mock
 ) -> None:
     client_request = metadata_store_service_types.CreateTestAdapterRequest()
-    client_request.test_adapter.test_adapter_name = "Test Adapter"
+    client_request.test_adapter.name = "Test Adapter"
     stub_response = metadata_store_service_types.CreateTestAdapterResponse()
     stub_response.test_adapter_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     metadata_store_stub.CreateTestAdapter.return_value = stub_response

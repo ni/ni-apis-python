@@ -43,6 +43,14 @@ class DataStoreServiceStub:
     ]
     """Gets the test result associated with the identifier given in the request."""
 
+    QueryTestResults: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsResponse,
+    ]
+    """Query for test results matching the given OData query.  For information about the OData query syntax,
+    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
+    """
+
     CreateStep: grpc.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
         ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse,
@@ -132,6 +140,14 @@ class DataStoreServiceAsyncStub:
         ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse,
     ]
     """Gets the test result associated with the identifier given in the request."""
+
+    QueryTestResults: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsResponse,
+    ]
+    """Query for test results matching the given OData query.  For information about the OData query syntax,
+    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
+    """
 
     CreateStep: grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
@@ -226,6 +242,16 @@ class DataStoreServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse]]:
         """Gets the test result associated with the identifier given in the request."""
+
+    @abc.abstractmethod
+    def QueryTestResults(
+        self,
+        request: ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsResponse]]:
+        """Query for test results matching the given OData query.  For information about the OData query syntax,
+        see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
+        """
 
     @abc.abstractmethod
     def CreateStep(

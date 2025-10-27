@@ -91,6 +91,44 @@ class GetTestResultResponse(google.protobuf.message.Message):
 global___GetTestResultResponse = GetTestResultResponse
 
 @typing.final
+class QueryTestResultsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    ODATA_QUERY_FIELD_NUMBER: builtins.int
+    odata_query: builtins.str
+    """an OData query string.  example "$filter=name eq 'Value'"
+    An empty string will return all test results.
+    $expand, $count, and $select are not supported. For more information,
+    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
+    """
+    def __init__(
+        self,
+        *,
+        odata_query: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+
+global___QueryTestResultsRequest = QueryTestResultsRequest
+
+@typing.final
+class QueryTestResultsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_RESULTS_FIELD_NUMBER: builtins.int
+    @property
+    def test_results(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.TestResult]:
+        """The list of test results that match the query."""
+
+    def __init__(
+        self,
+        *,
+        test_results: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.TestResult] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_results", b"test_results"]) -> None: ...
+
+global___QueryTestResultsResponse = QueryTestResultsResponse
+
+@typing.final
 class CreateStepRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
