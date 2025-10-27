@@ -37,7 +37,7 @@ requires-poetry = '>=2.1,<3.0'
 
 [tool.poetry.dependencies]
 ni-measurementlink-discovery-v1-client = { version = ">=0.1.0.dev0", allow-prereleases = true }
-ni-measurements-data-v1-proto = { version = ">=0.1.0.dev1", allow-prereleases = true }
+ni-measurements-data-v1-proto = { version = ">=0.1.0.dev2", allow-prereleases = true }
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
