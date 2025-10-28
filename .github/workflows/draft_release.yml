@@ -84,7 +84,7 @@ jobs:
             echo "Generating release notes between $PREVIOUS_TAG and HEAD for packages/$PACKAGE/"
             # Get commits for this package only, filtering out bot authors
             NOTES=$(git log --pretty=format:"- %s" "$PREVIOUS_TAG..HEAD" --no-merges \
-              --author="^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$" \
+              --author='^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$' \
               --perl-regexp \
               -- "packages/$PACKAGE/")
             if [[ -z "$NOTES" ]]; then
@@ -94,7 +94,7 @@ jobs:
             echo "Generating release notes from beginning of history for packages/$PACKAGE/"
             # Same filtering for initial release
             NOTES=$(git log --pretty=format:"- %s" --no-merges \
-              --author="^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$" \
+              --author='^((?!renovate\[bot\]|dependabot\[bot\]|github-actions\[bot\]).)*$' \
               --perl-regexp \
               -- "packages/$PACKAGE/")
             if [[ -z "$NOTES" ]]; then
@@ -103,7 +103,11 @@ jobs:
           fi
           
           # Store notes for use in next step
-          echo "notes=$NOTES" >> $GITHUB_OUTPUT
+          {
+            echo "notes<<EOF"
+            echo "$NOTES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"          
           
       - name: Create draft release
         uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1.20.0
