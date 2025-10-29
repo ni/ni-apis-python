@@ -17,4 +17,4 @@ NI created and supports this package.
 
 ## Python Version Support
 
-`ni.grpcdevice.v1.proto` supports CPython 3.9+.
+`ni.grpcdevice.v1.proto` supports CPython 3.10+.

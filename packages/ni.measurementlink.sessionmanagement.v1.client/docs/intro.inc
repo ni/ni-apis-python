@@ -16,7 +16,7 @@ Operating System Support
 Python Version Support
 ----------------------
 
-``ni.measurementlink.sessionmanagement.v1.client`` supports CPython 3.9+.
+``ni.measurementlink.sessionmanagement.v1.client`` supports CPython 3.10+.
 
 Installation
 ------------

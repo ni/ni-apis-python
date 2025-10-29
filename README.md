@@ -42,4 +42,4 @@ Discovery Service, version 1. The corresponding service is defined in the
 
 ## Python Version Support
 
-`ni-apis-python` supports CPython 3.9+.
+`ni-apis-python` supports CPython 3.10+.

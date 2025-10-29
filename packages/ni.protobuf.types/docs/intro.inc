@@ -17,7 +17,7 @@ Operating System Support
 Python Version Support
 ----------------------
 
-``ni.protobuf.types`` supports CPython 3.9+.
+``ni.protobuf.types`` supports CPython 3.10+.
 
 Installation
 ------------

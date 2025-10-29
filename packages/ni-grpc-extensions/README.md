@@ -17,4 +17,4 @@ NI created and supports this package.
 
 ## Python Version Support
 
-``ni-grpc-extensions` supports CPython 3.9+.
+``ni-grpc-extensions` supports CPython 3.10+.

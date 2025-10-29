@@ -16,7 +16,7 @@ Operating System Support
 Python Version Support
 ----------------------
 
-``ni.datamonikers.v1.proto`` supports CPython 3.9+.
+``ni.datamonikers.v1.proto`` supports CPython 3.10+.
 
 Installation
 ------------

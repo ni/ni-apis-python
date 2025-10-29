@@ -48,7 +48,7 @@ types-protobuf = ">=4.21"
 # in the same Git repository.
 ni-measurementlink-proto = {path = "../../packages/ni.measurementlink.proto", develop = true}
 numpy = [
-  { version = ">=1.22", python = ">=3.9,<3.12" },
+  { version = ">=1.22", python = ">=3.10,<3.12" },
   { version = ">=1.26", python = ">=3.12,<3.13" },
   { version = ">=2.1", python = "^3.13" },
 ]

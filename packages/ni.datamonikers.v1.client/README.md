@@ -4,6 +4,7 @@
 - [About](#about)
   - [Operating System Support](#operating-system-support)
   - [Python Version Support](#python-version-support)
+  - [Installation](#installation)
 
 # About
 
@@ -19,7 +20,7 @@ NI created and supports this package.
 
 ## Python Version Support
 
-`ni.datamonikers.v1.client` supports CPython 3.9+.
+`ni.datamonikers.v1.client` supports CPython 10+.
 
 ## Installation
 

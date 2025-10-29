@@ -19,7 +19,7 @@ NI created and supports this package.
 
 ## Python Version Support
 
-`ni.measurementlink.pinmap.v1.client` supports CPython 3.9+.
+`ni.measurementlink.pinmap.v1.client` supports CPython 3.10+.
 
 ## Installation
 
