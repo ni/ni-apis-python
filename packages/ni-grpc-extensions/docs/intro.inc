@@ -16,7 +16,7 @@ Operating System Support
 Python Version Support
 ----------------------
 
-``ni-grpc-extensions`` supports CPython 10+.
+``ni-grpc-extensions`` supports CPython 3.10+.
 
 Installation
 ------------

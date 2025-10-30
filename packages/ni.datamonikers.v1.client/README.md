@@ -20,7 +20,7 @@ NI created and supports this package.
 
 ## Python Version Support
 
-`ni.datamonikers.v1.client` supports CPython 10+.
+`ni.datamonikers.v1.client` supports CPython 3.10+.
 
 ## Installation
 
