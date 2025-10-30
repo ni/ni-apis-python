@@ -15,7 +15,7 @@ def test__create_test_result__request_and_response_pass_through(
     data_store_client: DataStoreClient, data_store_stub: Mock
 ) -> None:
     client_request = data_store_service_types.CreateTestResultRequest()
-    client_request.test_result.test_result_name = "Test Result"
+    client_request.test_result.name = "Test Result"
     stub_response = data_store_service_types.CreateTestResultResponse()
     stub_response.test_result_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     data_store_stub.CreateTestResult.return_value = stub_response
@@ -34,7 +34,7 @@ def test__get_test_result__request_and_response_pass_through(
     client_request = data_store_service_types.GetTestResultRequest()
     client_request.test_result_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     stub_response = data_store_service_types.GetTestResultResponse()
-    stub_response.test_result.test_result_name = "Test Result"
+    stub_response.test_result.name = "Test Result"
     data_store_stub.GetTestResult.return_value = stub_response
 
     client_response = data_store_client.get_test_result(client_request)
@@ -51,7 +51,7 @@ def test__query_test_results__request_and_response_pass_through(
     client_request = data_store_service_types.QueryTestResultsRequest()
     stub_response = data_store_service_types.QueryTestResultsResponse()
     test_result1 = stub_response.test_results.add()
-    test_result1.test_result_name = "Test Result"
+    test_result1.name = "Test Result"
     data_store_stub.QueryTestResults.return_value = stub_response
 
     client_response = data_store_client.query_test_results(client_request)
@@ -66,7 +66,7 @@ def test__create_step__request_and_response_pass_through(
     data_store_client: DataStoreClient, data_store_stub: Mock
 ) -> None:
     client_request = data_store_service_types.CreateStepRequest()
-    client_request.step.step_name = "Test Step"
+    client_request.step.name = "Test Step"
     stub_response = data_store_service_types.CreateStepResponse()
     stub_response.step_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     data_store_stub.CreateStep.return_value = stub_response
@@ -85,7 +85,7 @@ def test__get_step__request_and_response_pass_through(
     client_request = data_store_service_types.GetStepRequest()
     client_request.step_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     stub_response = data_store_service_types.GetStepResponse()
-    stub_response.step.step_name = "Test Step"
+    stub_response.step.name = "Test Step"
     data_store_stub.GetStep.return_value = stub_response
 
     client_response = data_store_client.get_step(client_request)
@@ -103,7 +103,7 @@ def test__query_steps__request_and_response_pass_through(
     client_request.odata_query = "OData Query"
     stub_response = data_store_service_types.QueryStepsResponse()
     step1 = stub_response.steps.add()
-    step1.step_name = "Test Step"
+    step1.name = "Test Step"
     data_store_stub.QuerySteps.return_value = stub_response
 
     client_response = data_store_client.query_steps(client_request)
