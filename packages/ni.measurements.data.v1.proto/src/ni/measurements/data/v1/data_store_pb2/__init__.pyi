@@ -56,17 +56,17 @@ class PublishedCondition(google.protobuf.message.Message):
 
     MONIKER_FIELD_NUMBER: builtins.int
     ID_FIELD_NUMBER: builtins.int
-    CONDITION_NAME_FIELD_NUMBER: builtins.int
-    CONDITION_TYPE_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
     STEP_ID_FIELD_NUMBER: builtins.int
     TEST_RESULT_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """The unique identifier of the condition. This can be used
     to reference and find the condition in the data store.
     """
-    condition_name: builtins.str
+    name: builtins.str
     """The name of the condition."""
-    condition_type: builtins.str
+    type: builtins.str
     """The type of the condition. For example, "Setup" or "Environment"."""
     step_id: builtins.str
     """The id of the step with which this condition is associated."""
@@ -75,7 +75,7 @@ class PublishedCondition(google.protobuf.message.Message):
     @property
     def moniker(self) -> ni.datamonikers.v1.data_moniker_pb2.Moniker:
         """The moniker of the condition that this value is associated with.
-        This moniker returns a ni.measurements.data.v1.ScalarArray
+        This moniker returns a ni.protobuf.types.Vector
         """
 
     def __init__(
@@ -83,13 +83,13 @@ class PublishedCondition(google.protobuf.message.Message):
         *,
         moniker: ni.datamonikers.v1.data_moniker_pb2.Moniker | None = ...,
         id: builtins.str = ...,
-        condition_name: builtins.str = ...,
-        condition_type: builtins.str = ...,
+        name: builtins.str = ...,
+        type: builtins.str = ...,
         step_id: builtins.str = ...,
         test_result_id: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["moniker", b"moniker"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["condition_name", b"condition_name", "condition_type", b"condition_type", "id", b"id", "moniker", b"moniker", "step_id", b"step_id", "test_result_id", b"test_result_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["id", b"id", "moniker", b"moniker", "name", b"name", "step_id", b"step_id", "test_result_id", b"test_result_id", "type", b"type"]) -> None: ...
 
 global___PublishedCondition = PublishedCondition
 
@@ -105,9 +105,9 @@ class PublishedMeasurement(google.protobuf.message.Message):
     SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
     HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
     TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
-    MEASUREMENT_NAME_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
     DATA_TYPE_FIELD_NUMBER: builtins.int
-    MEASUREMENT_NOTES_FIELD_NUMBER: builtins.int
+    NOTES_FIELD_NUMBER: builtins.int
     START_DATE_TIME_FIELD_NUMBER: builtins.int
     END_DATE_TIME_FIELD_NUMBER: builtins.int
     OUTCOME_FIELD_NUMBER: builtins.int
@@ -119,11 +119,11 @@ class PublishedMeasurement(google.protobuf.message.Message):
     """The id of the test result with which this measurement is associated."""
     step_id: builtins.str
     """The id of the step with which this measurement is associated."""
-    measurement_name: builtins.str
+    name: builtins.str
     """The name used to group measurements across multiple publishes."""
     data_type: builtins.str
     """The type of the measurement. This is used to filter measurements in queries."""
-    measurement_notes: builtins.str
+    notes: builtins.str
     """Any notes about the measurement."""
     outcome: global___Outcome.ValueType
     """The most 'significant' outcome that was observed when publishing to this measurement.
@@ -180,9 +180,9 @@ class PublishedMeasurement(google.protobuf.message.Message):
         software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
         hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
         test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
-        measurement_name: builtins.str = ...,
+        name: builtins.str = ...,
         data_type: builtins.str = ...,
-        measurement_notes: builtins.str = ...,
+        notes: builtins.str = ...,
         start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         outcome: global___Outcome.ValueType = ...,
@@ -190,7 +190,7 @@ class PublishedMeasurement(google.protobuf.message.Message):
         error_information: global___ErrorInformation | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "moniker", b"moniker", "start_date_time", b"start_date_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["data_type", b"data_type", "end_date_time", b"end_date_time", "error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "id", b"id", "measurement_name", b"measurement_name", "measurement_notes", b"measurement_notes", "moniker", b"moniker", "outcome", b"outcome", "parametric_index", b"parametric_index", "published_conditions", b"published_conditions", "software_item_ids", b"software_item_ids", "start_date_time", b"start_date_time", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "test_result_id", b"test_result_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["data_type", b"data_type", "end_date_time", b"end_date_time", "error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "id", b"id", "moniker", b"moniker", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parametric_index", b"parametric_index", "published_conditions", b"published_conditions", "software_item_ids", b"software_item_ids", "start_date_time", b"start_date_time", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "test_result_id", b"test_result_id"]) -> None: ...
 
 global___PublishedMeasurement = PublishedMeasurement
 
@@ -226,7 +226,7 @@ class TestResult(google.protobuf.message.Message):
     SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
     HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
     TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
-    TEST_RESULT_NAME_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
     START_DATE_TIME_FIELD_NUMBER: builtins.int
     END_DATE_TIME_FIELD_NUMBER: builtins.int
     OUTCOME_FIELD_NUMBER: builtins.int
@@ -263,7 +263,7 @@ class TestResult(google.protobuf.message.Message):
     be returned from the service as a GUID.
     See ni.measurements.metadata.MetadataStoreService for more information.
     """
-    test_result_name: builtins.str
+    name: builtins.str
     """Optional.
     The name of the test result.  This value should only contain letters,
     numbers, spaces, hyphens, underscores, parentheses, periods and
@@ -322,7 +322,7 @@ class TestResult(google.protobuf.message.Message):
         software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
         hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
         test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
-        test_result_name: builtins.str = ...,
+        name: builtins.str = ...,
         start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         outcome: global___Outcome.ValueType = ...,
@@ -331,7 +331,7 @@ class TestResult(google.protobuf.message.Message):
         schema_id: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "start_date_time", b"start_date_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "extensions", b"extensions", "hardware_item_ids", b"hardware_item_ids", "id", b"id", "link", b"link", "operator_id", b"operator_id", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "start_date_time", b"start_date_time", "test_adapter_ids", b"test_adapter_ids", "test_description_id", b"test_description_id", "test_result_name", b"test_result_name", "test_station_id", b"test_station_id", "uut_instance_id", b"uut_instance_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "extensions", b"extensions", "hardware_item_ids", b"hardware_item_ids", "id", b"id", "link", b"link", "name", b"name", "operator_id", b"operator_id", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "start_date_time", b"start_date_time", "test_adapter_ids", b"test_adapter_ids", "test_description_id", b"test_description_id", "test_station_id", b"test_station_id", "uut_instance_id", b"uut_instance_id"]) -> None: ...
 
 global___TestResult = TestResult
 
@@ -363,8 +363,8 @@ class Step(google.protobuf.message.Message):
     PARENT_STEP_ID_FIELD_NUMBER: builtins.int
     TEST_RESULT_ID_FIELD_NUMBER: builtins.int
     TEST_ID_FIELD_NUMBER: builtins.int
-    STEP_NAME_FIELD_NUMBER: builtins.int
-    STEP_TYPE_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    TYPE_FIELD_NUMBER: builtins.int
     NOTES_FIELD_NUMBER: builtins.int
     START_DATE_TIME_FIELD_NUMBER: builtins.int
     END_DATE_TIME_FIELD_NUMBER: builtins.int
@@ -389,9 +389,9 @@ class Step(google.protobuf.message.Message):
     be returned from the service as a GUID.
     See ni.measurements.metadata.MetadataStoreService for more information.
     """
-    step_name: builtins.str
+    name: builtins.str
     """Required. The name of the step."""
-    step_type: builtins.str
+    type: builtins.str
     """Step type (e.g., Setup, Action, Measurement, Cleanup)"""
     notes: builtins.str
     """Any notes about the step"""
@@ -424,8 +424,8 @@ class Step(google.protobuf.message.Message):
         parent_step_id: builtins.str = ...,
         test_result_id: builtins.str = ...,
         test_id: builtins.str = ...,
-        step_name: builtins.str = ...,
-        step_type: builtins.str = ...,
+        name: builtins.str = ...,
+        type: builtins.str = ...,
         notes: builtins.str = ...,
         start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
@@ -434,7 +434,7 @@ class Step(google.protobuf.message.Message):
         schema_id: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "start_date_time", b"start_date_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "extensions", b"extensions", "id", b"id", "link", b"link", "notes", b"notes", "parent_step_id", b"parent_step_id", "schema_id", b"schema_id", "start_date_time", b"start_date_time", "step_name", b"step_name", "step_type", b"step_type", "test_id", b"test_id", "test_result_id", b"test_result_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "extensions", b"extensions", "id", b"id", "link", b"link", "name", b"name", "notes", b"notes", "parent_step_id", b"parent_step_id", "schema_id", b"schema_id", "start_date_time", b"start_date_time", "test_id", b"test_id", "test_result_id", b"test_result_id", "type", b"type"]) -> None: ...
 
 global___Step = Step
 
