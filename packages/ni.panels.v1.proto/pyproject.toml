@@ -1,6 +1,6 @@
 [project]
 name = "ni.panels.v1.proto"
-version = "0.1.0-dev2"
+version = "0.2.0.dev0"
 license = "MIT"
 description = "Protobuf generated code for the ni.panels.v1 gRPC API"
 authors = [{name = "NI", email = "opensource@ni.com"}]
