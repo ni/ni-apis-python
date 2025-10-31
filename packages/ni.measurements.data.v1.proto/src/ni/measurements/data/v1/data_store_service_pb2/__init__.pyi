@@ -476,8 +476,9 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
 
     MEASUREMENT_NAME_FIELD_NUMBER: builtins.int
     SCALAR_VALUES_FIELD_NUMBER: builtins.int
-    TIMESTAMP_FIELD_NUMBER: builtins.int
-    OUTCOME_FIELD_NUMBER: builtins.int
+    NOTES_FIELD_NUMBER: builtins.int
+    TIMESTAMPS_FIELD_NUMBER: builtins.int
+    OUTCOMES_FIELD_NUMBER: builtins.int
     ERROR_INFORMATION_FIELD_NUMBER: builtins.int
     STEP_ID_FIELD_NUMBER: builtins.int
     HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
@@ -487,6 +488,8 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
     """Required for measurement. This name is used for associating/grouping conceptually alike measurements across multiple publish iterations.
     For example, a shared name of "Temperature" can be used for associating temperature readings across multiple iterations of publishing.
     """
+    notes: builtins.str
+    """Optional. Any notes to be associated with the captured measurement."""
     step_id: builtins.str
     """Required.
     The id of the step associated with this measurement.
@@ -495,7 +498,7 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
     @property
     def scalar_values(self) -> ni.protobuf.types.vector_pb2.Vector: ...
     @property
-    def timestamp(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp]:
+    def timestamps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp]:
         """Optional. The timestamps corresponding to the N iterations of batched measurement being published.
         This field must meet one of the following requirements:
 
@@ -506,7 +509,7 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
         """
 
     @property
-    def outcome(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[ni.measurements.data.v1.data_store_pb2.Outcome.ValueType]:
+    def outcomes(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[ni.measurements.data.v1.data_store_pb2.Outcome.ValueType]:
         """Optional. The outcomes corresponding to the N iterations of batched measurement being published.
         This field must meet one of the following requirements:
 
@@ -550,8 +553,9 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
         *,
         measurement_name: builtins.str = ...,
         scalar_values: ni.protobuf.types.vector_pb2.Vector | None = ...,
-        timestamp: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
-        outcome: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.Outcome.ValueType] | None = ...,
+        notes: builtins.str = ...,
+        timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
+        outcomes: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.Outcome.ValueType] | None = ...,
         error_information: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.ErrorInformation] | None = ...,
         step_id: builtins.str = ...,
         hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
@@ -559,7 +563,7 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
         software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["scalar_values", b"scalar_values", "values", b"values"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "measurement_name", b"measurement_name", "outcome", b"outcome", "scalar_values", b"scalar_values", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamp", b"timestamp", "values", b"values"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "measurement_name", b"measurement_name", "notes", b"notes", "outcomes", b"outcomes", "scalar_values", b"scalar_values", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamps", b"timestamps", "values", b"values"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["values", b"values"]) -> typing.Literal["scalar_values"] | None: ...
 
 global___PublishMeasurementBatchRequest = PublishMeasurementBatchRequest
