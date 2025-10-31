@@ -120,4 +120,4 @@ jobs:
             ${{ steps.release-notes.outputs.notes }}
           draft: true
           prerelease: ${{ contains(steps.get-release-details.outputs.tag, 'dev') && 'true' || 'false' }}
-          commit: ${{ github.sha }}
+          commit: ${{ github.ref_name }}
