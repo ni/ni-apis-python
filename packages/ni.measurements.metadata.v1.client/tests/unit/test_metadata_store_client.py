@@ -121,7 +121,7 @@ def test__get_operator__request_and_response_pass_through(
     client_request = metadata_store_service_types.GetOperatorRequest()
     client_request.operator_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     stub_response = metadata_store_service_types.GetOperatorResponse()
-    stub_response.operator.operator_name = "Test Operator"
+    stub_response.operator.name = "Test Operator"
     metadata_store_stub.GetOperator.return_value = stub_response
 
     client_response = metadata_store_client.get_operator(client_request)
@@ -139,7 +139,7 @@ def test__query_operators__request_and_response_pass_through(
     client_request.odata_query = "OData Query"
     stub_response = metadata_store_service_types.QueryOperatorsResponse()
     operator1 = stub_response.operators.add()
-    operator1.operator_name = "Test Operator"
+    operator1.name = "Test Operator"
     metadata_store_stub.QueryOperators.return_value = stub_response
 
     client_response = metadata_store_client.query_operators(client_request)
@@ -154,7 +154,7 @@ def test__create_operator__request_and_response_pass_through(
     metadata_store_client: MetadataStoreClient, metadata_store_stub: Mock
 ) -> None:
     client_request = metadata_store_service_types.CreateOperatorRequest()
-    client_request.operator.operator_name = "Test Operator"
+    client_request.operator.name = "Test Operator"
     stub_response = metadata_store_service_types.CreateOperatorResponse()
     stub_response.operator_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     metadata_store_stub.CreateOperator.return_value = stub_response
@@ -173,7 +173,7 @@ def test__get_test_description__request_and_response_pass_through(
     client_request = metadata_store_service_types.GetTestDescriptionRequest()
     client_request.test_description_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     stub_response = metadata_store_service_types.GetTestDescriptionResponse()
-    stub_response.test_description.test_description_name = "Test Description"
+    stub_response.test_description.name = "Test Description"
     metadata_store_stub.GetTestDescription.return_value = stub_response
 
     client_response = metadata_store_client.get_test_description(client_request)
@@ -191,7 +191,7 @@ def test__query_test_descriptions__request_and_response_pass_through(
     client_request.odata_query = "OData Query"
     stub_response = metadata_store_service_types.QueryTestDescriptionsResponse()
     test_description1 = stub_response.test_descriptions.add()
-    test_description1.test_description_name = "Test Description"
+    test_description1.name = "Test Description"
     metadata_store_stub.QueryTestDescriptions.return_value = stub_response
 
     client_response = metadata_store_client.query_test_descriptions(client_request)
@@ -206,7 +206,7 @@ def test__create_test_description__request_and_response_pass_through(
     metadata_store_client: MetadataStoreClient, metadata_store_stub: Mock
 ) -> None:
     client_request = metadata_store_service_types.CreateTestDescriptionRequest()
-    client_request.test_description.test_description_name = "Test Description"
+    client_request.test_description.name = "Test Description"
     stub_response = metadata_store_service_types.CreateTestDescriptionResponse()
     stub_response.test_description_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     metadata_store_stub.CreateTestDescription.return_value = stub_response
@@ -225,7 +225,7 @@ def test__get_test__request_and_response_pass_through(
     client_request = metadata_store_service_types.GetTestRequest()
     client_request.test_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     stub_response = metadata_store_service_types.GetTestResponse()
-    stub_response.test.test_name = "Test"
+    stub_response.test.name = "Test"
     metadata_store_stub.GetTest.return_value = stub_response
 
     client_response = metadata_store_client.get_test(client_request)
@@ -243,7 +243,7 @@ def test__query_tests__request_and_response_pass_through(
     client_request.odata_query = "OData Query"
     stub_response = metadata_store_service_types.QueryTestsResponse()
     test1 = stub_response.tests.add()
-    test1.test_name = "Test"
+    test1.name = "Test"
     metadata_store_stub.QueryTests.return_value = stub_response
 
     client_response = metadata_store_client.query_tests(client_request)
@@ -258,7 +258,7 @@ def test__create_test__request_and_response_pass_through(
     metadata_store_client: MetadataStoreClient, metadata_store_stub: Mock
 ) -> None:
     client_request = metadata_store_service_types.CreateTestRequest()
-    client_request.test.test_name = "Test"
+    client_request.test.name = "Test"
     stub_response = metadata_store_service_types.CreateTestResponse()
     stub_response.test_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     metadata_store_stub.CreateTest.return_value = stub_response
@@ -277,7 +277,7 @@ def test__get_test_station__request_and_response_pass_through(
     client_request = metadata_store_service_types.GetTestStationRequest()
     client_request.test_station_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     stub_response = metadata_store_service_types.GetTestStationResponse()
-    stub_response.test_station.test_station_name = "Test Station"
+    stub_response.test_station.name = "Test Station"
     metadata_store_stub.GetTestStation.return_value = stub_response
 
     client_response = metadata_store_client.get_test_station(client_request)
@@ -295,7 +295,7 @@ def test__query_test_stations__request_and_response_pass_through(
     client_request.odata_query = "OData Query"
     stub_response = metadata_store_service_types.QueryTestStationsResponse()
     test_station1 = stub_response.test_stations.add()
-    test_station1.test_station_name = "Test Station"
+    test_station1.name = "Test Station"
     metadata_store_stub.QueryTestStations.return_value = stub_response
 
     client_response = metadata_store_client.query_test_stations(client_request)
@@ -310,7 +310,7 @@ def test__create_test_station__request_and_response_pass_through(
     metadata_store_client: MetadataStoreClient, metadata_store_stub: Mock
 ) -> None:
     client_request = metadata_store_service_types.CreateTestStationRequest()
-    client_request.test_station.test_station_name = "Test Station"
+    client_request.test_station.name = "Test Station"
     stub_response = metadata_store_service_types.CreateTestStationResponse()
     stub_response.test_station_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     metadata_store_stub.CreateTestStation.return_value = stub_response
@@ -535,7 +535,7 @@ def test__query_aliases__request_and_response_pass_through(
     client_request.odata_query = "OData Query"
     stub_response = metadata_store_service_types.QueryAliasesResponse()
     alias1 = stub_response.aliases.add()
-    alias1.alias_name = "test-alias"
+    alias1.name = "test-alias"
     metadata_store_stub.QueryAliases.return_value = stub_response
 
     client_response = metadata_store_client.query_aliases(client_request)
