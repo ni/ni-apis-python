@@ -1715,14 +1715,14 @@ testing = ["process-tests", "pytest-xdist", "virtualenv"]
 
 [[package]]
 name = "pytest-doctestplus"
-version = "1.4.0"
+version = "1.5.0"
 description = "Pytest plugin with advanced doctest features."
 optional = false
 python-versions = ">=3.9"
 groups = ["test"]
 files = [
-    {file = "pytest_doctestplus-1.4.0-py3-none-any.whl", hash = "sha256:cfbae130ec90d4a2831819bbbfd097121b8e55f1e4d20a47ea992e4eaad2539a"},
-    {file = "pytest_doctestplus-1.4.0.tar.gz", hash = "sha256:df83832b1d11288572df2ee4c7cccdb421d812b8038a658bb514c9c62bdbd626"},
+    {file = "pytest_doctestplus-1.5.0-py3-none-any.whl", hash = "sha256:e13e014bab450285b3735de27a1429d4f95bca2efc7a2becd9a863247e91ae4e"},
+    {file = "pytest_doctestplus-1.5.0.tar.gz", hash = "sha256:1bfb9ecf0a5a61452abd4c2a5218450d0ddd125a2c241da9e4f7f8ccf6b779fe"},
 ]
 
 [package.dependencies]
