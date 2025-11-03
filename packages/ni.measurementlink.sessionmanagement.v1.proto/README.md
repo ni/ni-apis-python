@@ -18,7 +18,7 @@ NI created and supports this package.
 
 ## Python Version Support
 
-`ni.measurementlink.sessionmanagement.v1.proto` supports CPython 3.9+.
+`ni.measurementlink.sessionmanagement.v1.proto` supports CPython 3.10+.
 
 ## Installation
 

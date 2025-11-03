@@ -2,25 +2,11 @@
 
 [[package]]
 name = "alabaster"
-version = "0.7.16"
-description = "A light, configurable Sphinx theme"
-optional = false
-python-versions = ">=3.9"
-groups = ["docs"]
-markers = "python_version == \"3.9\""
-files = [
-    {file = "alabaster-0.7.16-py3-none-any.whl", hash = "sha256:b46733c07dce03ae4e150330b975c75737fa60f0a7c591b6c8bf4928a28e2c92"},
-    {file = "alabaster-0.7.16.tar.gz", hash = "sha256:75a8b99c28a5dad50dd7f8ccdd447a121ddb3892da9e53d1ca5cca3106d58d65"},
-]
-
-[[package]]
-name = "alabaster"
 version = "1.0.0"
 description = "A light, configurable Sphinx theme"
 optional = false
 python-versions = ">=3.10"
 groups = ["docs"]
-markers = "python_version >= \"3.10\""
 files = [
     {file = "alabaster-1.0.0-py3-none-any.whl", hash = "sha256:fc6786402dc3fcb2de3cabd5fe455a2db534b371124f1f21de8731783dec828b"},
     {file = "alabaster-1.0.0.tar.gz", hash = "sha256:c00dca57bca26fa62a6d7d0a9fcce65f3e026e9bfe33e9c538fd3fbb2144fd9e"},
@@ -33,7 +19,7 @@ description = "An abstract syntax tree for Python with inference support."
 optional = false
 python-versions = ">=3.9.0"
 groups = ["docs"]
-markers = "python_version <= \"3.11\""
+markers = "python_version < \"3.12\""
 files = [
     {file = "astroid-3.3.11-py3-none-any.whl", hash = "sha256:54c760ae8322ece1abd213057c4b5bba7c49818853fc901ef09719a60dbf9dec"},
     {file = "astroid-3.3.11.tar.gz", hash = "sha256:1e5a5011af2920c7c67a53f65d536d65bfa7116feeaf2354d8b94f29573bb0ce"},
@@ -573,7 +559,7 @@ description = "Backport of PEP 654 (exception groups)"
 optional = false
 python-versions = ">=3.7"
 groups = ["test"]
-markers = "python_version < \"3.11\""
+markers = "python_version == \"3.10\""
 files = [
     {file = "exceptiongroup-1.3.0-py3-none-any.whl", hash = "sha256:4d111e6e0c13d0644cad6ddaa7ed0261a0b36971f6d23e7ec9b4b9097da78a10"},
     {file = "exceptiongroup-1.3.0.tar.gz", hash = "sha256:b241f5885f560bc56a59ee63ca4c6a8bfa46ae4ad651af316d4e81817bb9fd88"},
@@ -592,7 +578,7 @@ description = "the modular source code checker: pep8 pyflakes and co"
 optional = false
 python-versions = ">=3.6.1"
 groups = ["lint"]
-markers = "python_version <= \"3.11\""
+markers = "python_version < \"3.12\""
 files = [
     {file = "flake8-5.0.4-py2.py3-none-any.whl", hash = "sha256:7a1cf6b73744f5806ab95e526f6f0d8c01c66d7bbe349562d22dfca20610b248"},
     {file = "flake8-5.0.4.tar.gz", hash = "sha256:6fbe320aad8d6b95cec8b8e47bc933004678dc63095be98528b7bdd2a9f510db"},
@@ -1273,7 +1259,7 @@ description = "Python style guide checker"
 optional = false
 python-versions = ">=3.6"
 groups = ["lint"]
-markers = "python_version <= \"3.11\""
+markers = "python_version < \"3.12\""
 files = [
     {file = "pycodestyle-2.9.1-py2.py3-none-any.whl", hash = "sha256:d1735fc58b418fd7c5f658d28d943854f8a849b01a5d0a1e6f3f3fdd0166804b"},
     {file = "pycodestyle-2.9.1.tar.gz", hash = "sha256:2c9607871d58c76354b697b42f5d57e1ada7d261c261efac224b664affdc5785"},
@@ -1317,7 +1303,7 @@ description = "passive checker of Python programs"
 optional = false
 python-versions = ">=3.6"
 groups = ["lint"]
-markers = "python_version <= \"3.11\""
+markers = "python_version < \"3.12\""
 files = [
     {file = "pyflakes-2.5.0-py2.py3-none-any.whl", hash = "sha256:4579f67d887f804e67edb544428f264b7b24f435b263c4614f384135cea553d2"},
     {file = "pyflakes-2.5.0.tar.gz", hash = "sha256:491feb020dca48ccc562a8c0cbe8df07ee13078df59813b83959cbdada312ea3"},
@@ -1645,44 +1631,6 @@ files = [
 
 [[package]]
 name = "sphinx"
-version = "7.4.7"
-description = "Python documentation generator"
-optional = false
-python-versions = ">=3.9"
-groups = ["docs"]
-markers = "python_version == \"3.9\""
-files = [
-    {file = "sphinx-7.4.7-py3-none-any.whl", hash = "sha256:c2419e2135d11f1951cd994d6eb18a1835bd8fdd8429f9ca375dc1f3281bd239"},
-    {file = "sphinx-7.4.7.tar.gz", hash = "sha256:242f92a7ea7e6c5b406fdc2615413890ba9f699114a9c09192d7dfead2ee9cfe"},
-]
-
-[package.dependencies]
-alabaster = ">=0.7.14,<0.8.0"
-babel = ">=2.13"
-colorama = {version = ">=0.4.6", markers = "sys_platform == \"win32\""}
-docutils = ">=0.20,<0.22"
-imagesize = ">=1.3"
-importlib-metadata = {version = ">=6.0", markers = "python_version < \"3.10\""}
-Jinja2 = ">=3.1"
-packaging = ">=23.0"
-Pygments = ">=2.17"
-requests = ">=2.30.0"
-snowballstemmer = ">=2.2"
-sphinxcontrib-applehelp = "*"
-sphinxcontrib-devhelp = "*"
-sphinxcontrib-htmlhelp = ">=2.0.0"
-sphinxcontrib-jsmath = "*"
-sphinxcontrib-qthelp = "*"
-sphinxcontrib-serializinghtml = ">=1.1.9"
-tomli = {version = ">=2", markers = "python_version < \"3.11\""}
-
-[package.extras]
-docs = ["sphinxcontrib-websupport"]
-lint = ["flake8 (>=6.0)", "importlib-metadata (>=6.0)", "mypy (==1.10.1)", "pytest (>=6.0)", "ruff (==0.5.2)", "sphinx-lint (>=0.9)", "tomli (>=2)", "types-docutils (==0.21.0.20240711)", "types-requests (>=2.30.0)"]
-test = ["cython (>=3.0)", "defusedxml (>=0.7.1)", "pytest (>=8.0)", "setuptools (>=70.0)", "typing_extensions (>=4.9)"]
-
-[[package]]
-name = "sphinx"
 version = "8.1.3"
 description = "Python documentation generator"
 optional = false
@@ -1775,7 +1723,6 @@ astroid = [
 Jinja2 = "*"
 PyYAML = "*"
 sphinx = ">=7.4.0"
-stdlib_list = {version = "*", markers = "python_version < \"3.10\""}
 
 [[package]]
 name = "sphinx-rtd-theme"
@@ -1963,7 +1910,7 @@ description = "A lil' TOML parser"
 optional = false
 python-versions = ">=3.8"
 groups = ["docs", "lint", "test"]
-markers = "python_version < \"3.11\""
+markers = "python_version == \"3.10\""
 files = [
     {file = "tomli-2.3.0-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:88bd15eb972f3664f5ed4b57c1634a97153b4bac4479dcb6a495f41921eb7f45"},
     {file = "tomli-2.3.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:883b1c0d6398a6a9d29b508c331fa56adbcdff647f6ace4dfca0f50e90dfd0ba"},
@@ -2044,7 +1991,7 @@ files = [
     {file = "typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"},
     {file = "typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"},
 ]
-markers = {docs = "python_version < \"3.11\"", test = "python_version < \"3.11\""}
+markers = {docs = "python_version == \"3.10\"", test = "python_version == \"3.10\""}
 
 [[package]]
 name = "urllib3"
@@ -2087,5 +2034,5 @@ type = ["pytest-mypy"]
 
 [metadata]
 lock-version = "2.1"
-python-versions = ">=3.9,<4.0"
-content-hash = "2283c8293732760be72beaab1f183a7b92267a049452a46a5632104767848415"
+python-versions = ">=3.10,<4.0"
+content-hash = "c115674de886d9f83f3a99cf73a733f3e6c8e12036d95d6dfabe35489d81d148"

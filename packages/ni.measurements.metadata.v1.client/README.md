@@ -19,7 +19,7 @@ NI created and supports this package.
 
 ## Python Version Support
 
-`ni.measurements.metadata.v1.client` supports CPython 3.9+.
+`ni.measurements.metadata.v1.client` supports CPython 3.10+.
 
 ## Installation
 

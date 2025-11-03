@@ -1,6 +1,6 @@
 [project]
 name = "ni.measurements.data.v1.client"
-version = "0.1.0.dev3"
+version = "0.2.0.dev0"
 license = "MIT"
 description = "gRPC Client for NI Data Store Service"
 authors = [{name = "NI", email = "opensource@ni.com"}]
@@ -18,15 +18,15 @@ classifiers = [
   "License :: OSI Approved :: MIT License",
   "Operating System :: Microsoft :: Windows",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Programming Language :: Python :: Implementation :: CPython",
 ]
 dynamic = ["dependencies"]
-requires-python = '>=3.9,<4.0'
+requires-python = '>=3.10,<4.0'
 
 [project.urls]
 repository = "https://github.com/ni/ni-apis-python"
@@ -65,7 +65,6 @@ optional = true
 [tool.poetry.group.docs.dependencies]
 # The latest Sphinx requires a recent Python version.
 Sphinx = [
-  { version = ">=7.4", python = ">=3.9,<3.10" },
   { version = ">=8.1", python = ">=3.10,<3.11" },
   { version = ">=8.2", python = "^3.11" },
 ]

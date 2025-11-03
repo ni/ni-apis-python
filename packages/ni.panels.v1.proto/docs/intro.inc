@@ -16,7 +16,7 @@ Operating System Support
 Python Version Support
 ----------------------
 
-``ni.panels.v1.proto`` supports CPython 3.9+.
+``ni.panels.v1.proto`` supports CPython 3.10+.
 
 Installation
 ------------
