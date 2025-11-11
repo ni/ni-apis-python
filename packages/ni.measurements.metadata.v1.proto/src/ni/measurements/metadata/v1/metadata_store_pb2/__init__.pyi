@@ -58,7 +58,7 @@ class UutInstance(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class ExtensionsEntry(google.protobuf.message.Message):
+    class ExtensionEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
@@ -82,7 +82,7 @@ class UutInstance(google.protobuf.message.Message):
     FIRMWARE_VERSION_FIELD_NUMBER: builtins.int
     HARDWARE_VERSION_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    EXTENSIONS_FIELD_NUMBER: builtins.int
+    EXTENSION_FIELD_NUMBER: builtins.int
     SCHEMA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """The unique identifier of the UUT instance
@@ -109,13 +109,14 @@ class UutInstance(google.protobuf.message.Message):
     """
     schema_id: builtins.str
     """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided, unless
-    the UUT instance is created within the context of a test result, in which case
-    the test result must have a schema_id.
+    If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
-        """Any extensions to be associated with the UUT instance"""
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Optional. Any attributes used to extend the definition of your UutInstance
+        can go here. To add extension attributes, you must first register a schema,
+        and specify the schema's id in the 'schema_id' field.
+        """
 
     def __init__(
         self,
@@ -127,10 +128,10 @@ class UutInstance(google.protobuf.message.Message):
         firmware_version: builtins.str = ...,
         hardware_version: builtins.str = ...,
         link: builtins.str = ...,
-        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["extensions", b"extensions", "firmware_version", b"firmware_version", "hardware_version", b"hardware_version", "id", b"id", "link", b"link", "manufacture_date", b"manufacture_date", "schema_id", b"schema_id", "serial_number", b"serial_number", "uut_id", b"uut_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["extension", b"extension", "firmware_version", b"firmware_version", "hardware_version", b"hardware_version", "id", b"id", "link", b"link", "manufacture_date", b"manufacture_date", "schema_id", b"schema_id", "serial_number", b"serial_number", "uut_id", b"uut_id"]) -> None: ...
 
 global___UutInstance = UutInstance
 
@@ -141,7 +142,7 @@ class Uut(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class ExtensionsEntry(google.protobuf.message.Message):
+    class ExtensionEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
@@ -164,7 +165,7 @@ class Uut(google.protobuf.message.Message):
     MANUFACTURERS_FIELD_NUMBER: builtins.int
     PART_NUMBER_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    EXTENSIONS_FIELD_NUMBER: builtins.int
+    EXTENSION_FIELD_NUMBER: builtins.int
     SCHEMA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """The unique identifier of the UUT
@@ -183,17 +184,18 @@ class Uut(google.protobuf.message.Message):
     """
     schema_id: builtins.str
     """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided, unless
-    the UUT is created within the context of a test result, in which case
-    the test result must have a schema_id.
+    If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
     def manufacturers(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
         """List of manufacturers of the UUT"""
 
     @property
-    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
-        """Any extensions to be associated with the UUT"""
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Optional. Any attributes used to extend the definition of your Uut
+        can go here. To add extension attributes, you must first register a schema,
+        and specify the schema's id in the 'schema_id' field.
+        """
 
     def __init__(
         self,
@@ -204,10 +206,10 @@ class Uut(google.protobuf.message.Message):
         manufacturers: collections.abc.Iterable[builtins.str] | None = ...,
         part_number: builtins.str = ...,
         link: builtins.str = ...,
-        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["extensions", b"extensions", "family", b"family", "id", b"id", "link", b"link", "manufacturers", b"manufacturers", "model_name", b"model_name", "part_number", b"part_number", "schema_id", b"schema_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["extension", b"extension", "family", b"family", "id", b"id", "link", b"link", "manufacturers", b"manufacturers", "model_name", b"model_name", "part_number", b"part_number", "schema_id", b"schema_id"]) -> None: ...
 
 global___Uut = Uut
 
@@ -218,7 +220,7 @@ class HardwareItem(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class ExtensionsEntry(google.protobuf.message.Message):
+    class ExtensionEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
@@ -243,7 +245,7 @@ class HardwareItem(google.protobuf.message.Message):
     ASSET_IDENTIFIER_FIELD_NUMBER: builtins.int
     CALIBRATION_DUE_DATE_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    EXTENSIONS_FIELD_NUMBER: builtins.int
+    EXTENSION_FIELD_NUMBER: builtins.int
     SCHEMA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """The unique identifier of the hardware item
@@ -268,13 +270,14 @@ class HardwareItem(google.protobuf.message.Message):
     """
     schema_id: builtins.str
     """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided, unless
-    the hardware item is created within the context of a test result, in which case
-    the test result must have a schema_id.
+    If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
-        """Any extensions to be associated with the hardware item"""
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Optional. Any attributes used to extend the definition of your HardwareItem
+        can go here. To add extension attributes, you must first register a schema,
+        and specify the schema's id in the 'schema_id' field.
+        """
 
     def __init__(
         self,
@@ -287,10 +290,10 @@ class HardwareItem(google.protobuf.message.Message):
         asset_identifier: builtins.str = ...,
         calibration_due_date: builtins.str = ...,
         link: builtins.str = ...,
-        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "calibration_due_date", b"calibration_due_date", "extensions", b"extensions", "id", b"id", "link", b"link", "manufacturer", b"manufacturer", "model", b"model", "part_number", b"part_number", "schema_id", b"schema_id", "serial_number", b"serial_number"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "calibration_due_date", b"calibration_due_date", "extension", b"extension", "id", b"id", "link", b"link", "manufacturer", b"manufacturer", "model", b"model", "part_number", b"part_number", "schema_id", b"schema_id", "serial_number", b"serial_number"]) -> None: ...
 
 global___HardwareItem = HardwareItem
 
@@ -305,7 +308,7 @@ class TestAdapter(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class ExtensionsEntry(google.protobuf.message.Message):
+    class ExtensionEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
@@ -331,7 +334,7 @@ class TestAdapter(google.protobuf.message.Message):
     ASSET_IDENTIFIER_FIELD_NUMBER: builtins.int
     CALIBRATION_DUE_DATE_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    EXTENSIONS_FIELD_NUMBER: builtins.int
+    EXTENSION_FIELD_NUMBER: builtins.int
     SCHEMA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """The unique identifier of the test adapter
@@ -358,13 +361,14 @@ class TestAdapter(google.protobuf.message.Message):
     """
     schema_id: builtins.str
     """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided, unless
-    the test adapter is created within the context of a test result, in which case
-    the test result must have a schema_id.
+    If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
-        """Any extensions to be associated with the test adapter"""
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Optional. Any attributes used to extend the definition of your TestAdapter
+        can go here. To add extension attributes, you must first register a schema,
+        and specify the schema's id in the 'schema_id' field.
+        """
 
     def __init__(
         self,
@@ -378,10 +382,10 @@ class TestAdapter(google.protobuf.message.Message):
         asset_identifier: builtins.str = ...,
         calibration_due_date: builtins.str = ...,
         link: builtins.str = ...,
-        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "calibration_due_date", b"calibration_due_date", "extensions", b"extensions", "id", b"id", "link", b"link", "manufacturer", b"manufacturer", "model", b"model", "name", b"name", "part_number", b"part_number", "schema_id", b"schema_id", "serial_number", b"serial_number"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "calibration_due_date", b"calibration_due_date", "extension", b"extension", "id", b"id", "link", b"link", "manufacturer", b"manufacturer", "model", b"model", "name", b"name", "part_number", b"part_number", "schema_id", b"schema_id", "serial_number", b"serial_number"]) -> None: ...
 
 global___TestAdapter = TestAdapter
 
@@ -392,7 +396,7 @@ class SoftwareItem(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class ExtensionsEntry(google.protobuf.message.Message):
+    class ExtensionEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
@@ -413,7 +417,7 @@ class SoftwareItem(google.protobuf.message.Message):
     PRODUCT_FIELD_NUMBER: builtins.int
     VERSION_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    EXTENSIONS_FIELD_NUMBER: builtins.int
+    EXTENSION_FIELD_NUMBER: builtins.int
     SCHEMA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """The unique identifier of the software item
@@ -435,13 +439,14 @@ class SoftwareItem(google.protobuf.message.Message):
     """
     schema_id: builtins.str
     """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided, unless
-    the software item is created within the context of a test result, in which case
-    the test result must have a schema_id.
+    If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
-        """Any extensions to be associated with the software item"""
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Optional. Any attributes used to extend the definition of your SoftwareItem
+        can go here. To add extension attributes, you must first register a schema,
+        and specify the schema's id in the 'schema_id' field.
+        """
 
     def __init__(
         self,
@@ -450,10 +455,10 @@ class SoftwareItem(google.protobuf.message.Message):
         product: builtins.str = ...,
         version: builtins.str = ...,
         link: builtins.str = ...,
-        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["extensions", b"extensions", "id", b"id", "link", b"link", "product", b"product", "schema_id", b"schema_id", "version", b"version"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["extension", b"extension", "id", b"id", "link", b"link", "product", b"product", "schema_id", b"schema_id", "version", b"version"]) -> None: ...
 
 global___SoftwareItem = SoftwareItem
 
@@ -464,7 +469,7 @@ class Operator(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class ExtensionsEntry(google.protobuf.message.Message):
+    class ExtensionEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
@@ -485,7 +490,7 @@ class Operator(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     ROLE_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    EXTENSIONS_FIELD_NUMBER: builtins.int
+    EXTENSION_FIELD_NUMBER: builtins.int
     SCHEMA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """The unique identifier of the operator
@@ -502,13 +507,14 @@ class Operator(google.protobuf.message.Message):
     """
     schema_id: builtins.str
     """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided, unless
-    the operator is created within the context of a test result, in which case
-    the test result must have a schema_id.
+    If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
-        """Any extensions to be associated with the operator"""
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Optional. Any attributes used to extend the definition of your Operator
+        can go here. To add extension attributes, you must first register a schema,
+        and specify the schema's id in the 'schema_id' field.
+        """
 
     def __init__(
         self,
@@ -517,10 +523,10 @@ class Operator(google.protobuf.message.Message):
         name: builtins.str = ...,
         role: builtins.str = ...,
         link: builtins.str = ...,
-        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["extensions", b"extensions", "id", b"id", "link", b"link", "name", b"name", "role", b"role", "schema_id", b"schema_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["extension", b"extension", "id", b"id", "link", b"link", "name", b"name", "role", b"role", "schema_id", b"schema_id"]) -> None: ...
 
 global___Operator = Operator
 
@@ -531,7 +537,7 @@ class TestDescription(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class ExtensionsEntry(google.protobuf.message.Message):
+    class ExtensionEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
@@ -552,7 +558,7 @@ class TestDescription(google.protobuf.message.Message):
     UUT_ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    EXTENSIONS_FIELD_NUMBER: builtins.int
+    EXTENSION_FIELD_NUMBER: builtins.int
     SCHEMA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """The unique identifier of the test description
@@ -569,13 +575,14 @@ class TestDescription(google.protobuf.message.Message):
     """
     schema_id: builtins.str
     """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided, unless
-    the test description is created within the context of a test result, in which case
-    the test result must have a schema_id.
+    If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
-        """Any extensions to be associated with the test description"""
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Optional. Any attributes used to extend the definition of your TestDescription
+        can go here. To add extension attributes, you must first register a schema,
+        and specify the schema's id in the 'schema_id' field.
+        """
 
     def __init__(
         self,
@@ -584,10 +591,10 @@ class TestDescription(google.protobuf.message.Message):
         uut_id: builtins.str = ...,
         name: builtins.str = ...,
         link: builtins.str = ...,
-        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["extensions", b"extensions", "id", b"id", "link", b"link", "name", b"name", "schema_id", b"schema_id", "uut_id", b"uut_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["extension", b"extension", "id", b"id", "link", b"link", "name", b"name", "schema_id", b"schema_id", "uut_id", b"uut_id"]) -> None: ...
 
 global___TestDescription = TestDescription
 
@@ -598,7 +605,7 @@ class Test(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class ExtensionsEntry(google.protobuf.message.Message):
+    class ExtensionEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
@@ -619,7 +626,7 @@ class Test(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     DESCRIPTION_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    EXTENSIONS_FIELD_NUMBER: builtins.int
+    EXTENSION_FIELD_NUMBER: builtins.int
     SCHEMA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """The unique identifier of the test
@@ -636,13 +643,14 @@ class Test(google.protobuf.message.Message):
     """
     schema_id: builtins.str
     """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided, unless
-    the test is created within the context of a test result, in which case
-    the test result must have a schema_id.
+    If any extension is associated with this instance, a schema_id must be provided
     """
     @property
-    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
-        """Any extensions to be associated with the test"""
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Optional. Any attributes used to extend the definition of your Test
+        can go here. To add extension attributes, you must first register a schema,
+        and specify the schema's id in the 'schema_id' field.
+        """
 
     def __init__(
         self,
@@ -651,10 +659,10 @@ class Test(google.protobuf.message.Message):
         name: builtins.str = ...,
         description: builtins.str = ...,
         link: builtins.str = ...,
-        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["description", b"description", "extensions", b"extensions", "id", b"id", "link", b"link", "name", b"name", "schema_id", b"schema_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["description", b"description", "extension", b"extension", "id", b"id", "link", b"link", "name", b"name", "schema_id", b"schema_id"]) -> None: ...
 
 global___Test = Test
 
@@ -665,7 +673,7 @@ class TestStation(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class ExtensionsEntry(google.protobuf.message.Message):
+    class ExtensionEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
@@ -686,7 +694,7 @@ class TestStation(google.protobuf.message.Message):
     NAME_FIELD_NUMBER: builtins.int
     ASSET_IDENTIFIER_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    EXTENSIONS_FIELD_NUMBER: builtins.int
+    EXTENSION_FIELD_NUMBER: builtins.int
     SCHEMA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """The unique identifier of the test station
@@ -703,13 +711,14 @@ class TestStation(google.protobuf.message.Message):
     """
     schema_id: builtins.str
     """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided, unless
-    the test station is created within the context of a test result, in which case
-    the test result must have a schema_id.
+    If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
-        """Any extensions to be associated with the test station"""
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+        """Optional. Any attributes used to extend the definition of your TestStation
+        can go here. To add extension attributes, you must first register a schema,
+        and specify the schema's id in the 'schema_id' field.
+        """
 
     def __init__(
         self,
@@ -718,10 +727,10 @@ class TestStation(google.protobuf.message.Message):
         name: builtins.str = ...,
         asset_identifier: builtins.str = ...,
         link: builtins.str = ...,
-        extensions: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "extensions", b"extensions", "id", b"id", "link", b"link", "name", b"name", "schema_id", b"schema_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "extension", b"extension", "id", b"id", "link", b"link", "name", b"name", "schema_id", b"schema_id"]) -> None: ...
 
 global___TestStation = TestStation
 

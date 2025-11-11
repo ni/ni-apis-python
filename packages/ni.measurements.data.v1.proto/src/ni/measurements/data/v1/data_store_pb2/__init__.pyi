@@ -57,7 +57,7 @@ class PublishedCondition(google.protobuf.message.Message):
     MONIKER_FIELD_NUMBER: builtins.int
     ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
-    TYPE_FIELD_NUMBER: builtins.int
+    CONDITION_TYPE_FIELD_NUMBER: builtins.int
     STEP_ID_FIELD_NUMBER: builtins.int
     TEST_RESULT_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
@@ -66,7 +66,7 @@ class PublishedCondition(google.protobuf.message.Message):
     """
     name: builtins.str
     """The name of the condition."""
-    type: builtins.str
+    condition_type: builtins.str
     """The type of the condition. For example, "Setup" or "Environment"."""
     step_id: builtins.str
     """The id of the step with which this condition is associated."""
@@ -84,12 +84,12 @@ class PublishedCondition(google.protobuf.message.Message):
         moniker: ni.datamonikers.v1.data_moniker_pb2.Moniker | None = ...,
         id: builtins.str = ...,
         name: builtins.str = ...,
-        type: builtins.str = ...,
+        condition_type: builtins.str = ...,
         step_id: builtins.str = ...,
         test_result_id: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["moniker", b"moniker"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["id", b"id", "moniker", b"moniker", "name", b"name", "step_id", b"step_id", "test_result_id", b"test_result_id", "type", b"type"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["condition_type", b"condition_type", "id", b"id", "moniker", b"moniker", "name", b"name", "step_id", b"step_id", "test_result_id", b"test_result_id"]) -> None: ...
 
 global___PublishedCondition = PublishedCondition
 
@@ -106,7 +106,7 @@ class PublishedMeasurement(google.protobuf.message.Message):
     HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
     TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
-    DATA_TYPE_FIELD_NUMBER: builtins.int
+    VALUE_TYPE_FIELD_NUMBER: builtins.int
     NOTES_FIELD_NUMBER: builtins.int
     START_DATE_TIME_FIELD_NUMBER: builtins.int
     END_DATE_TIME_FIELD_NUMBER: builtins.int
@@ -121,8 +121,8 @@ class PublishedMeasurement(google.protobuf.message.Message):
     """The id of the step with which this measurement is associated."""
     name: builtins.str
     """The name used to group measurements across multiple publishes."""
-    data_type: builtins.str
-    """The type of the measurement. This is used to filter measurements in queries."""
+    value_type: builtins.str
+    """The type of the value of the measurement. This is used to filter measurements in queries."""
     notes: builtins.str
     """Any notes about the measurement."""
     outcome: global___Outcome.ValueType
@@ -183,7 +183,7 @@ class PublishedMeasurement(google.protobuf.message.Message):
         hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
         test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
         name: builtins.str = ...,
-        data_type: builtins.str = ...,
+        value_type: builtins.str = ...,
         notes: builtins.str = ...,
         start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
@@ -192,7 +192,7 @@ class PublishedMeasurement(google.protobuf.message.Message):
         error_information: global___ErrorInformation | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "moniker", b"moniker", "start_date_time", b"start_date_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["data_type", b"data_type", "end_date_time", b"end_date_time", "error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "id", b"id", "moniker", b"moniker", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parametric_index", b"parametric_index", "published_conditions", b"published_conditions", "software_item_ids", b"software_item_ids", "start_date_time", b"start_date_time", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "test_result_id", b"test_result_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "id", b"id", "moniker", b"moniker", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parametric_index", b"parametric_index", "published_conditions", b"published_conditions", "software_item_ids", b"software_item_ids", "start_date_time", b"start_date_time", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "test_result_id", b"test_result_id", "value_type", b"value_type"]) -> None: ...
 
 global___PublishedMeasurement = PublishedMeasurement
 
@@ -203,7 +203,7 @@ class TestResult(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class ExtensionsEntry(google.protobuf.message.Message):
+    class ExtensionEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
@@ -234,7 +234,7 @@ class TestResult(google.protobuf.message.Message):
     OUTCOME_FIELD_NUMBER: builtins.int
     ERROR_INFORMATION_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    EXTENSIONS_FIELD_NUMBER: builtins.int
+    EXTENSION_FIELD_NUMBER: builtins.int
     SCHEMA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """Optional.
@@ -325,8 +325,11 @@ class TestResult(google.protobuf.message.Message):
         """
 
     @property
-    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, ni.measurements.metadata.v1.metadata_store_pb2.ExtensionValue]:
-        """Optional. Any extensions to be associated with the test result."""
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, ni.measurements.metadata.v1.metadata_store_pb2.ExtensionValue]:
+        """Optional. Any attributes used to extend the definition of your test result
+        can go here. To add extension attributes, you must first register a schema,
+        and specify the schema's id in the 'schema_id' field.
+        """
 
     def __init__(
         self,
@@ -345,11 +348,11 @@ class TestResult(google.protobuf.message.Message):
         outcome: global___Outcome.ValueType = ...,
         error_information: global___ErrorInformation | None = ...,
         link: builtins.str = ...,
-        extensions: collections.abc.Mapping[builtins.str, ni.measurements.metadata.v1.metadata_store_pb2.ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, ni.measurements.metadata.v1.metadata_store_pb2.ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "start_date_time", b"start_date_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "extensions", b"extensions", "hardware_item_ids", b"hardware_item_ids", "id", b"id", "link", b"link", "name", b"name", "operator_id", b"operator_id", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "start_date_time", b"start_date_time", "test_adapter_ids", b"test_adapter_ids", "test_description_id", b"test_description_id", "test_station_id", b"test_station_id", "uut_instance_id", b"uut_instance_id"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "hardware_item_ids", b"hardware_item_ids", "id", b"id", "link", b"link", "name", b"name", "operator_id", b"operator_id", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "start_date_time", b"start_date_time", "test_adapter_ids", b"test_adapter_ids", "test_description_id", b"test_description_id", "test_station_id", b"test_station_id", "uut_instance_id", b"uut_instance_id"]) -> None: ...
 
 global___TestResult = TestResult
 
@@ -360,7 +363,7 @@ class Step(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     @typing.final
-    class ExtensionsEntry(google.protobuf.message.Message):
+    class ExtensionEntry(google.protobuf.message.Message):
         DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
         KEY_FIELD_NUMBER: builtins.int
@@ -382,14 +385,14 @@ class Step(google.protobuf.message.Message):
     TEST_RESULT_ID_FIELD_NUMBER: builtins.int
     TEST_ID_FIELD_NUMBER: builtins.int
     NAME_FIELD_NUMBER: builtins.int
-    TYPE_FIELD_NUMBER: builtins.int
+    STEP_TYPE_FIELD_NUMBER: builtins.int
     NOTES_FIELD_NUMBER: builtins.int
     START_DATE_TIME_FIELD_NUMBER: builtins.int
     END_DATE_TIME_FIELD_NUMBER: builtins.int
     OUTCOME_FIELD_NUMBER: builtins.int
     ERROR_INFORMATION_FIELD_NUMBER: builtins.int
     LINK_FIELD_NUMBER: builtins.int
-    EXTENSIONS_FIELD_NUMBER: builtins.int
+    EXTENSION_FIELD_NUMBER: builtins.int
     SCHEMA_ID_FIELD_NUMBER: builtins.int
     id: builtins.str
     """The unique identifier of the step
@@ -411,7 +414,7 @@ class Step(google.protobuf.message.Message):
     """
     name: builtins.str
     """Required. The name of the step."""
-    type: builtins.str
+    step_type: builtins.str
     """Step type (e.g., Setup, Action, Measurement, Cleanup)"""
     notes: builtins.str
     """Any notes about the step"""
@@ -429,9 +432,7 @@ class Step(google.protobuf.message.Message):
     """
     schema_id: builtins.str
     """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided, unless
-    the test step is created within the context of a test result, in which case
-    the test result must have a schema_id.
+    If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
     def start_date_time(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
@@ -450,8 +451,11 @@ class Step(google.protobuf.message.Message):
         """
 
     @property
-    def extensions(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, ni.measurements.metadata.v1.metadata_store_pb2.ExtensionValue]:
-        """Any extensions to be associated with the test step"""
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, ni.measurements.metadata.v1.metadata_store_pb2.ExtensionValue]:
+        """Optional. Any attributes used to extend the definition of your test step
+        can go here. To add extension attributes, you must first register a schema,
+        and specify the schema's id in the 'schema_id' field.
+        """
 
     def __init__(
         self,
@@ -461,18 +465,18 @@ class Step(google.protobuf.message.Message):
         test_result_id: builtins.str = ...,
         test_id: builtins.str = ...,
         name: builtins.str = ...,
-        type: builtins.str = ...,
+        step_type: builtins.str = ...,
         notes: builtins.str = ...,
         start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         outcome: global___Outcome.ValueType = ...,
         error_information: global___ErrorInformation | None = ...,
         link: builtins.str = ...,
-        extensions: collections.abc.Mapping[builtins.str, ni.measurements.metadata.v1.metadata_store_pb2.ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, ni.measurements.metadata.v1.metadata_store_pb2.ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "start_date_time", b"start_date_time"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "extensions", b"extensions", "id", b"id", "link", b"link", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parent_step_id", b"parent_step_id", "schema_id", b"schema_id", "start_date_time", b"start_date_time", "test_id", b"test_id", "test_result_id", b"test_result_id", "type", b"type"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "id", b"id", "link", b"link", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parent_step_id", b"parent_step_id", "schema_id", b"schema_id", "start_date_time", b"start_date_time", "step_type", b"step_type", "test_id", b"test_id", "test_result_id", b"test_result_id"]) -> None: ...
 
 global___Step = Step
 
