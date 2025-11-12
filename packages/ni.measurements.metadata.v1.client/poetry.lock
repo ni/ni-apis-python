@@ -526,7 +526,7 @@ version = "1.76.0"
 description = "HTTP/2-based RPC framework"
 optional = false
 python-versions = ">=3.9"
-groups = ["main", "dev"]
+groups = ["main"]
 files = [
     {file = "grpcio-1.76.0-cp310-cp310-linux_armv7l.whl", hash = "sha256:65a20de41e85648e00305c1bb09a3598f840422e522277641145a32d42dcefcc"},
     {file = "grpcio-1.76.0-cp310-cp310-macosx_11_0_universal2.whl", hash = "sha256:40ad3afe81676fd9ec6d9d406eda00933f218038433980aa19d401490e46ecde"},
@@ -924,7 +924,7 @@ version = "1.0.0"
 description = "gRPC Extensions"
 optional = false
 python-versions = "<4.0,>=3.9"
-groups = ["main", "dev"]
+groups = ["main"]
 files = [
     {file = "ni_grpc_extensions-1.0.0-py3-none-any.whl", hash = "sha256:6b8181284370a53546ffd371d334f15e293cae5e9ff06fa2e467d1714bf7a03f"},
     {file = "ni_grpc_extensions-1.0.0.tar.gz", hash = "sha256:6e066246ce9a4b4420f5e503769b23c31a49c430be6ebd72324c5b5a15c34ebb"},
@@ -936,13 +936,15 @@ traceloggingdynamic = {version = ">=1.0", markers = "sys_platform == \"win32\""}
 
 [[package]]
 name = "ni-measurementlink-discovery-v1-client"
-version = "1.1.0.dev0"
+version = "1.0.0"
 description = "gRPC Client for NI Discovery Service"
 optional = false
-python-versions = ">=3.10,<4.0"
-groups = ["main", "dev"]
-files = []
-develop = true
+python-versions = "<4.0,>=3.9"
+groups = ["main"]
+files = [
+    {file = "ni_measurementlink_discovery_v1_client-1.0.0-py3-none-any.whl", hash = "sha256:6a4c45d2517a7c6017a3b7dd817a6d7ebc8ebec318243c4f17778115a1a192a6"},
+    {file = "ni_measurementlink_discovery_v1_client-1.0.0.tar.gz", hash = "sha256:2aa2a0c55f6599ffa3ff05e67e6ff89360f22bf0082e512348a41997ddfde3f8"},
+]
 
 [package.dependencies]
 grpcio = ">=1.49.0,<2.0"
@@ -950,17 +952,13 @@ ni-grpc-extensions = ">=0.1.0.dev1"
 ni-measurementlink-discovery-v1-proto = ">=0.1.0.dev1"
 pywin32 = {version = ">=303", markers = "sys_platform == \"win32\""}
 
-[package.source]
-type = "directory"
-url = "../ni.measurementlink.discovery.v1.client"
-
 [[package]]
 name = "ni-measurementlink-discovery-v1-proto"
 version = "1.0.0"
 description = "Protobuf data types for NI discovery gRPC APIs"
 optional = false
 python-versions = "<4.0,>=3.9"
-groups = ["main", "dev"]
+groups = ["main"]
 files = [
     {file = "ni_measurementlink_discovery_v1_proto-1.0.0-py3-none-any.whl", hash = "sha256:093eb4ffd27338fbea4909aea30afbd3090f482f3a1dcc98e63bbaf1a6b4da8b"},
     {file = "ni_measurementlink_discovery_v1_proto-1.0.0.tar.gz", hash = "sha256:11353eefdecc49244783d76a332bc855589eb0bb8c882f53c8f9b0a47ca91115"},
@@ -971,20 +969,18 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurements-metadata-v1-proto"
-version = "0.1.0.dev5"
+version = "0.1.0.dev4"
 description = "Protobuf data types and service stub for NI metadata store gRPC APIs"
 optional = false
-python-versions = ">=3.10,<4.0"
-groups = ["main", "dev"]
-files = []
-develop = true
+python-versions = "<4.0,>=3.10"
+groups = ["main"]
+files = [
+    {file = "ni_measurements_metadata_v1_proto-0.1.0.dev4-py3-none-any.whl", hash = "sha256:1bfd54aeb46c37c2e27806c016f1ae3e6a7f735c37dbd01762199410c8f60aec"},
+    {file = "ni_measurements_metadata_v1_proto-0.1.0.dev4.tar.gz", hash = "sha256:04f33c022820dfeee228faf55a57442b365d0f6e4546647645b165f1c8ea181a"},
+]
 
 [package.dependencies]
 protobuf = ">=4.21"
-
-[package.source]
-type = "directory"
-url = "../ni.measurements.metadata.v1.proto"
 
 [[package]]
 name = "ni-python-styleguide"
@@ -1126,7 +1122,7 @@ version = "6.33.0"
 description = ""
 optional = false
 python-versions = ">=3.9"
-groups = ["main", "dev"]
+groups = ["main"]
 files = [
     {file = "protobuf-6.33.0-cp310-abi3-win32.whl", hash = "sha256:d6101ded078042a8f17959eccd9236fb7a9ca20d3b0098bbcb91533a5680d035"},
     {file = "protobuf-6.33.0-cp310-abi3-win_amd64.whl", hash = "sha256:9a031d10f703f03768f2743a1c403af050b6ae1f3480e9c140f39c45f81b13ee"},
@@ -1349,7 +1345,7 @@ version = "311"
 description = "Python for Window Extensions"
 optional = false
 python-versions = "*"
-groups = ["main", "dev"]
+groups = ["main"]
 markers = "sys_platform == \"win32\""
 files = [
     {file = "pywin32-311-cp310-cp310-win32.whl", hash = "sha256:d03ff496d2a0cd4a5893504789d4a15399133fe82517455e78bad62efbb7f0a3"},
@@ -1854,7 +1850,7 @@ version = "1.0.1"
 description = "Generates Event Tracing for Windows events using TraceLogging"
 optional = false
 python-versions = ">=3.6"
-groups = ["main", "dev"]
+groups = ["main"]
 markers = "sys_platform == \"win32\""
 files = [
     {file = "traceloggingdynamic-1.0.1-py3-none-any.whl", hash = "sha256:0e19da491a8960725b3622366487ae35f49d8f595bb2e4e5ce1795eb5928db7c"},
@@ -1891,7 +1887,7 @@ version = "4.15.0"
 description = "Backported and Experimental Type Hints for Python 3.9+"
 optional = false
 python-versions = ">=3.9"
-groups = ["main", "dev", "docs", "lint", "test"]
+groups = ["main", "docs", "lint", "test"]
 files = [
     {file = "typing_extensions-4.15.0-py3-none-any.whl", hash = "sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"},
     {file = "typing_extensions-4.15.0.tar.gz", hash = "sha256:0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"},
@@ -1919,4 +1915,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "41e995e2daf41d910c17a91a27e9fecfc79413764e83fb027eb5e3a787368c38"
+content-hash = "e36f1c13ce0532b87ace516b5fa67ac52f2ca7cc6fafe207e0b2edc6c7f4c222"
