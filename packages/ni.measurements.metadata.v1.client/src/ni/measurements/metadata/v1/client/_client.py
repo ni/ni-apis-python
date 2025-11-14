@@ -243,3 +243,9 @@ class MetadataStoreClient(
     ) -> metadata_store_service_pb2.DeleteAliasResponse:
         """Deletes a created alias."""
         return self._get_stub().DeleteAlias(request)
+
+    def create_from_json_document(
+        self, request: metadata_store_service_pb2.CreateFromJsonDocumentRequest
+    ) -> metadata_store_service_pb2.CreateFromJsonDocumentResponse:
+        """Creates metadata from a JSON document."""
+        return self._get_stub().CreateFromJsonDocument(request)
