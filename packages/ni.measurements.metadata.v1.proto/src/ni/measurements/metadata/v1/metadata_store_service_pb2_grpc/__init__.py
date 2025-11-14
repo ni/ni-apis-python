@@ -180,6 +180,11 @@ class MetadataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasResponse.FromString,
                 )
+        self.CreateFromJsonDocument = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/CreateFromJsonDocument',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentResponse.FromString,
+                )
 
 
 class MetadataStoreServiceServicer(object):
@@ -420,6 +425,17 @@ class MetadataStoreServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def CreateFromJsonDocument(self, request, context):
+        """Creates all of the metadata entries contained in the provided JSON document.
+        The JSON document should conform to the schema defined by
+        https://raw.githubusercontent.com/ni/ni-apis/main/ni/measurements/metadata/v1/registration.schema.json
+        The response will contain all of the associated objects from the metadata store.  If the object
+        already exists, the existing object will be returned; otherwise, a new object will be created
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MetadataStoreServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -587,6 +603,11 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     servicer.DeleteAlias,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasResponse.SerializeToString,
+            ),
+            'CreateFromJsonDocument': grpc.unary_unary_rpc_method_handler(
+                    servicer.CreateFromJsonDocument,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1157,5 +1178,22 @@ class MetadataStoreService(object):
         return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/DeleteAlias',
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasRequest.SerializeToString,
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def CreateFromJsonDocument(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.metadata.v1.MetadataStoreService/CreateFromJsonDocument',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

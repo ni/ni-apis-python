@@ -267,11 +267,8 @@ class TestResult(google.protobuf.message.Message):
     See ni.measurements.metadata.MetadataStoreService for more information.
     """
     name: builtins.str
-    """Optional.
-    The name of the test result.  This value should only contain letters,
-    numbers, spaces, hyphens, underscores, parentheses, periods and
-    spaces. It must begin and end with a letter or number.
-    Expected format: ^[\\w\\(\\)-]([\\w.\\(\\) -]*[\\w\\(\\)-])?$
+    """Required.
+    The name of the test result.
     """
     outcome: global___Outcome.ValueType
     """Optional. Overall test result outcome (e.g., Passed, Failed, Indeterminate)
