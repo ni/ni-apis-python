@@ -872,7 +872,7 @@ url = "../ni.datamonikers.v1.proto"
 
 [[package]]
 name = "ni-measurements-metadata-v1-proto"
-version = "0.1.0.dev4"
+version = "0.1.0.dev6"
 description = "Protobuf data types and service stub for NI metadata store gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -1965,4 +1965,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "2482800c70596e7eebfd9ad2dcefcac962c2771deaea23392a50b4940d201f42"
+content-hash = "2802888cdc3c0ef72c1d49cd7c74f33febaf105b9dd3bd2fea3b005c778e372a"
