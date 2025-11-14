@@ -223,6 +223,17 @@ class MetadataStoreServiceStub:
     ]
     """Removes a registered alias"""
 
+    CreateFromJsonDocument: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse,
+    ]
+    """Creates all of the metadata entries contained in the provided JSON document.
+    The JSON document should conform to the schema defined by
+    https://raw.githubusercontent.com/ni/ni-apis/main/ni/measurements/metadata/v1/registration.schema.json
+    The response will contain all of the associated objects from the metadata store.  If the object
+    already exists, the existing object will be returned; otherwise, a new object will be created
+    """
+
 class MetadataStoreServiceAsyncStub:
     """This service is responsible for storing and retrieving metadata associated with test step measurements."""
 
@@ -427,6 +438,17 @@ class MetadataStoreServiceAsyncStub:
         ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
     ]
     """Removes a registered alias"""
+
+    CreateFromJsonDocument: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse,
+    ]
+    """Creates all of the metadata entries contained in the provided JSON document.
+    The JSON document should conform to the schema defined by
+    https://raw.githubusercontent.com/ni/ni-apis/main/ni/measurements/metadata/v1/registration.schema.json
+    The response will contain all of the associated objects from the metadata store.  If the object
+    already exists, the existing object will be returned; otherwise, a new object will be created
+    """
 
 class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
     """This service is responsible for storing and retrieving metadata associated with test step measurements."""
@@ -698,5 +720,18 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse]]:
         """Removes a registered alias"""
+
+    @abc.abstractmethod
+    def CreateFromJsonDocument(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse]]:
+        """Creates all of the metadata entries contained in the provided JSON document.
+        The JSON document should conform to the schema defined by
+        https://raw.githubusercontent.com/ni/ni-apis/main/ni/measurements/metadata/v1/registration.schema.json
+        The response will contain all of the associated objects from the metadata store.  If the object
+        already exists, the existing object will be returned; otherwise, a new object will be created
+        """
 
 def add_MetadataStoreServiceServicer_to_server(servicer: MetadataStoreServiceServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...

@@ -1250,3 +1250,106 @@ class DeleteAliasResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["unregistered", b"unregistered"]) -> None: ...
 
 global___DeleteAliasResponse = DeleteAliasResponse
+
+@typing.final
+class CreateFromJsonDocumentRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    JSON_DOCUMENT_FIELD_NUMBER: builtins.int
+    json_document: builtins.str
+    """The JSON document containing the metadata entries to create.
+    The JSON document should conform to the schema defined by
+    https://raw.githubusercontent.com/ni/ni-apis/main/ni/measurements/metadata/v1/registration.schema.json
+    """
+    def __init__(
+        self,
+        *,
+        json_document: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["json_document", b"json_document"]) -> None: ...
+
+global___CreateFromJsonDocumentRequest = CreateFromJsonDocumentRequest
+
+@typing.final
+class CreateFromJsonDocumentResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    UUT_INSTANCES_FIELD_NUMBER: builtins.int
+    UUTS_FIELD_NUMBER: builtins.int
+    OPERATORS_FIELD_NUMBER: builtins.int
+    TEST_DESCRIPTIONS_FIELD_NUMBER: builtins.int
+    TESTS_FIELD_NUMBER: builtins.int
+    TEST_STATIONS_FIELD_NUMBER: builtins.int
+    HARDWARE_ITEMS_FIELD_NUMBER: builtins.int
+    SOFTWARE_ITEMS_FIELD_NUMBER: builtins.int
+    TEST_ADAPTERS_FIELD_NUMBER: builtins.int
+    @property
+    def uut_instances(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance]:
+        """The collection of UUTInstances associated with the JSON document.
+        If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
+        """
+
+    @property
+    def uuts(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Uut]:
+        """The collection of UUTs associated with the JSON document.
+        If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
+        """
+
+    @property
+    def operators(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Operator]:
+        """The collection of Operators associated with the JSON document.
+        If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
+        """
+
+    @property
+    def test_descriptions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription]:
+        """The collection of TestDescriptions associated with the JSON document.
+        If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
+        """
+
+    @property
+    def tests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Test]:
+        """The collection of Tests associated with the JSON document.
+        If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
+        """
+
+    @property
+    def test_stations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestStation]:
+        """The collection of TestStations associated with the JSON document.
+        If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
+        """
+
+    @property
+    def hardware_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem]:
+        """The collection of HardwareItems associated with the JSON document.
+        If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
+        """
+
+    @property
+    def software_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem]:
+        """The collection of SoftwareItems associated with the JSON document.
+        If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
+        """
+
+    @property
+    def test_adapters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter]:
+        """The collection of TestAdapters associated with the JSON document.
+        If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
+        """
+
+    def __init__(
+        self,
+        *,
+        uut_instances: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance] | None = ...,
+        uuts: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Uut] | None = ...,
+        operators: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Operator] | None = ...,
+        test_descriptions: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription] | None = ...,
+        tests: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Test] | None = ...,
+        test_stations: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestStation] | None = ...,
+        hardware_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem] | None = ...,
+        software_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem] | None = ...,
+        test_adapters: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["hardware_items", b"hardware_items", "operators", b"operators", "software_items", b"software_items", "test_adapters", b"test_adapters", "test_descriptions", b"test_descriptions", "test_stations", b"test_stations", "tests", b"tests", "uut_instances", b"uut_instances", "uuts", b"uuts"]) -> None: ...
+
+global___CreateFromJsonDocumentResponse = CreateFromJsonDocumentResponse

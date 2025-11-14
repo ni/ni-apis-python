@@ -425,12 +425,7 @@ class SoftwareItem(google.protobuf.message.Message):
     and cannot be set/specified by clients.
     """
     product: builtins.str
-    """This value should only contain letters, numbers, spaces, hyphens,
-    underscores, parentheses, periods and spaces. It must begin and
-    end with a letter or number.
-    Expected format: ^[\\w\\(\\)-]([\\w.\\(\\) -]*[\\w\\(\\)-])?$
-    An empty value is also permitted.
-    """
+    """The product name of the software item"""
     version: builtins.str
     """The version of the software item"""
     link: builtins.str

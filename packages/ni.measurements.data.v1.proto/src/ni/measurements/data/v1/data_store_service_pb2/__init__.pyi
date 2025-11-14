@@ -244,13 +244,13 @@ global___QueryStepsResponse = QueryStepsResponse
 class PublishConditionRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    CONDITION_NAME_FIELD_NUMBER: builtins.int
-    TYPE_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    CONDITION_TYPE_FIELD_NUMBER: builtins.int
     SCALAR_FIELD_NUMBER: builtins.int
     STEP_ID_FIELD_NUMBER: builtins.int
-    condition_name: builtins.str
+    name: builtins.str
     """Required. Identifier describing the condition value. For example, "Voltage"."""
-    type: builtins.str
+    condition_type: builtins.str
     """Required. The type of this condition. For example, "Upper Limit" or "Environment"."""
     step_id: builtins.str
     """Required.
@@ -262,13 +262,13 @@ class PublishConditionRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        condition_name: builtins.str = ...,
-        type: builtins.str = ...,
+        name: builtins.str = ...,
+        condition_type: builtins.str = ...,
         scalar: ni.protobuf.types.scalar_pb2.Scalar | None = ...,
         step_id: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["scalar", b"scalar", "value", b"value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["condition_name", b"condition_name", "scalar", b"scalar", "step_id", b"step_id", "type", b"type", "value", b"value"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["condition_type", b"condition_type", "name", b"name", "scalar", b"scalar", "step_id", b"step_id", "value", b"value"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["scalar"] | None: ...
 
 global___PublishConditionRequest = PublishConditionRequest
@@ -296,13 +296,13 @@ global___PublishConditionResponse = PublishConditionResponse
 class PublishConditionBatchRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    CONDITION_NAME_FIELD_NUMBER: builtins.int
-    TYPE_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
+    CONDITION_TYPE_FIELD_NUMBER: builtins.int
     SCALAR_VALUES_FIELD_NUMBER: builtins.int
     STEP_ID_FIELD_NUMBER: builtins.int
-    condition_name: builtins.str
+    name: builtins.str
     """Required. Identifier describing the condition values. For example, "Voltage"."""
-    type: builtins.str
+    condition_type: builtins.str
     """Required. The type of this condition. For example, "Upper Limit" or "Environment"."""
     step_id: builtins.str
     """Required.
@@ -314,13 +314,13 @@ class PublishConditionBatchRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        condition_name: builtins.str = ...,
-        type: builtins.str = ...,
+        name: builtins.str = ...,
+        condition_type: builtins.str = ...,
         scalar_values: ni.protobuf.types.vector_pb2.Vector | None = ...,
         step_id: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["scalar_values", b"scalar_values", "values", b"values"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["condition_name", b"condition_name", "scalar_values", b"scalar_values", "step_id", b"step_id", "type", b"type", "values", b"values"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["condition_type", b"condition_type", "name", b"name", "scalar_values", b"scalar_values", "step_id", b"step_id", "values", b"values"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["values", b"values"]) -> typing.Literal["scalar_values"] | None: ...
 
 global___PublishConditionBatchRequest = PublishConditionBatchRequest
@@ -348,7 +348,7 @@ global___PublishConditionBatchResponse = PublishConditionBatchResponse
 class PublishMeasurementRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_NAME_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
     SCALAR_FIELD_NUMBER: builtins.int
     VECTOR_FIELD_NUMBER: builtins.int
     DOUBLE_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
@@ -366,7 +366,7 @@ class PublishMeasurementRequest(google.protobuf.message.Message):
     HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
     TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
     SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
-    measurement_name: builtins.str
+    name: builtins.str
     """Required for measurement. This name is used for associating/grouping conceptually alike measurements across multiple publish iterations.
     For example, a shared name of "Temperature" can be used for associating temperature readings across multiple iterations of publishing.
     """
@@ -426,7 +426,7 @@ class PublishMeasurementRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        measurement_name: builtins.str = ...,
+        name: builtins.str = ...,
         scalar: ni.protobuf.types.scalar_pb2.Scalar | None = ...,
         vector: ni.protobuf.types.vector_pb2.Vector | None = ...,
         double_analog_waveform: ni.protobuf.types.waveform_pb2.DoubleAnalogWaveform | None = ...,
@@ -446,7 +446,7 @@ class PublishMeasurementRequest(google.protobuf.message.Message):
         software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "error_information", b"error_information", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "scalar", b"scalar", "timestamp", b"timestamp", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "measurement_name", b"measurement_name", "notes", b"notes", "outcome", b"outcome", "scalar", b"scalar", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamp", b"timestamp", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "name", b"name", "notes", b"notes", "outcome", b"outcome", "scalar", b"scalar", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamp", b"timestamp", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["scalar", "vector", "double_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "i16_complex_waveform", "double_spectrum", "digital_waveform"] | None: ...
 
 global___PublishMeasurementRequest = PublishMeasurementRequest
@@ -474,7 +474,7 @@ global___PublishMeasurementResponse = PublishMeasurementResponse
 class PublishMeasurementBatchRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_NAME_FIELD_NUMBER: builtins.int
+    NAME_FIELD_NUMBER: builtins.int
     SCALAR_VALUES_FIELD_NUMBER: builtins.int
     NOTES_FIELD_NUMBER: builtins.int
     TIMESTAMPS_FIELD_NUMBER: builtins.int
@@ -484,7 +484,7 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
     HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
     TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
     SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
-    measurement_name: builtins.str
+    name: builtins.str
     """Required for measurement. This name is used for associating/grouping conceptually alike measurements across multiple publish iterations.
     For example, a shared name of "Temperature" can be used for associating temperature readings across multiple iterations of publishing.
     """
@@ -551,7 +551,7 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        measurement_name: builtins.str = ...,
+        name: builtins.str = ...,
         scalar_values: ni.protobuf.types.vector_pb2.Vector | None = ...,
         notes: builtins.str = ...,
         timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
@@ -563,7 +563,7 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
         software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["scalar_values", b"scalar_values", "values", b"values"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "measurement_name", b"measurement_name", "notes", b"notes", "outcomes", b"outcomes", "scalar_values", b"scalar_values", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamps", b"timestamps", "values", b"values"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "name", b"name", "notes", b"notes", "outcomes", b"outcomes", "scalar_values", b"scalar_values", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamps", b"timestamps", "values", b"values"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["values", b"values"]) -> typing.Literal["scalar_values"] | None: ...
 
 global___PublishMeasurementBatchRequest = PublishMeasurementBatchRequest
