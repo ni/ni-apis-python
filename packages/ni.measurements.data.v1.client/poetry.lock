@@ -1000,7 +1000,7 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurements-data-v1-proto"
-version = "0.1.0.dev5"
+version = "0.1.0.dev7"
 description = "Protobuf data types and service stubs for NI data store gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -1010,7 +1010,7 @@ develop = true
 
 [package.dependencies]
 ni-datamonikers-v1-proto = ">=0.1.0.dev0"
-ni-measurements-metadata-v1-proto = ">=0.1.0.dev4"
+ni-measurements-metadata-v1-proto = ">=0.1.0.dev5"
 ni-protobuf-types = ">=0.1.0.dev3"
 protobuf = ">=4.21"
 
@@ -1020,7 +1020,7 @@ url = "../ni.measurements.data.v1.proto"
 
 [[package]]
 name = "ni-measurements-metadata-v1-proto"
-version = "0.1.0.dev5"
+version = "0.1.0.dev6"
 description = "Protobuf data types and service stub for NI metadata store gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -2155,4 +2155,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "0a887e6c102168befe2becaa394f97a00889e5be7d534b8fc14791945fbc49e3"
+content-hash = "512f8282001b4d08b48b29b0e74fac893ad15a63b19e319f7d1a9ec507543fda"
