@@ -100,6 +100,18 @@ class DataStoreServiceStub:
     ]
     """Publishes multiple scalar measurements at once for parametric sweeps."""
 
+    GetMeasurement: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse,
+    ]
+    """Gets the measurement associated with the given id."""
+
+    GetCondition: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetConditionRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetConditionResponse,
+    ]
+    """Gets the condition associated with the given id."""
+
     QueryConditions: grpc.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
         ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse,
@@ -197,6 +209,18 @@ class DataStoreServiceAsyncStub:
         ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
     ]
     """Publishes multiple scalar measurements at once for parametric sweeps."""
+
+    GetMeasurement: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse,
+    ]
+    """Gets the measurement associated with the given id."""
+
+    GetCondition: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetConditionRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetConditionResponse,
+    ]
+    """Gets the condition associated with the given id."""
 
     QueryConditions: grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
@@ -315,6 +339,22 @@ class DataStoreServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse]]:
         """Publishes multiple scalar measurements at once for parametric sweeps."""
+
+    @abc.abstractmethod
+    def GetMeasurement(
+        self,
+        request: ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse]]:
+        """Gets the measurement associated with the given id."""
+
+    @abc.abstractmethod
+    def GetCondition(
+        self,
+        request: ni.measurements.data.v1.data_store_service_pb2.GetConditionRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.GetConditionResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.GetConditionResponse]]:
+        """Gets the condition associated with the given id."""
 
     @abc.abstractmethod
     def QueryConditions(
