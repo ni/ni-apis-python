@@ -1000,7 +1000,7 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurements-data-v1-proto"
-version = "0.1.0.dev7"
+version = "0.1.0.dev8"
 description = "Protobuf data types and service stubs for NI data store gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -2155,4 +2155,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "512f8282001b4d08b48b29b0e74fac893ad15a63b19e319f7d1a9ec507543fda"
+content-hash = "6e36175282dcd64b6559ec6ec60558ba5e33f64d82abf70c7f55d7a981ddf513"
