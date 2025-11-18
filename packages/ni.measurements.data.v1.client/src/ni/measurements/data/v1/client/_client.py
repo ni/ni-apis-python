@@ -112,7 +112,7 @@ class DataStoreClient(GrpcServiceClientBase[data_store_service_pb2_grpc.DataStor
     ) -> data_store_service_pb2.GetConditionResponse:
         """Gets the condition associated with the identifier given in the request."""
         return self._get_stub().GetCondition(request)
-    
+
     def query_conditions(
         self, request: data_store_service_pb2.QueryConditionsRequest
     ) -> data_store_service_pb2.QueryConditionsResponse:
