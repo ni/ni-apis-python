@@ -214,6 +214,40 @@ def test__query_measurements__request_and_response_pass_through(
     assert stub_response == client_response
 
 
+def test__get_condition__request_and_response_pass_through(
+    data_store_client: DataStoreClient, data_store_stub: Mock
+) -> None:
+    client_request = data_store_service_types.GetConditionRequest()
+    client_request.condition_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
+    stub_response = data_store_service_types.GetConditionResponse()
+    stub_response.published_condition.moniker.service_location = "location"
+    data_store_stub.GetCondition.return_value = stub_response
+
+    client_response = data_store_client.get_condition(client_request)
+
+    data_store_stub.GetCondition.assert_called_once()
+    stub_request = data_store_stub.GetCondition.call_args[0][0]
+    assert stub_request == client_request
+    assert stub_response == client_response
+
+
+def test__get_measurement__request_and_response_pass_through(
+    data_store_client: DataStoreClient, data_store_stub: Mock
+) -> None:
+    client_request = data_store_service_types.GetMeasurementRequest()
+    client_request.measurement_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
+    stub_response = data_store_service_types.GetMeasurementResponse()
+    stub_response.published_measurement.moniker.service_location = "location"
+    data_store_stub.GetMeasurement.return_value = stub_response
+
+    client_response = data_store_client.get_measurement(client_request)
+
+    data_store_stub.GetMeasurement.assert_called_once()
+    stub_request = data_store_stub.GetMeasurement.call_args[0][0]
+    assert stub_request == client_request
+    assert stub_response == client_response
+
+
 @pytest.fixture
 def data_store_client(
     mocker: MockerFixture,
@@ -244,4 +278,6 @@ def data_store_stub(mocker: MockerFixture) -> Mock:
     stub.PublishMeasurementBatch = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     stub.QueryConditions = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     stub.QueryMeasurements = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
+    stub.GetCondition = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
+    stub.GetMeasurement = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     return stub

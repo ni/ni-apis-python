@@ -44,13 +44,13 @@ class DataStoreClient(GrpcServiceClientBase[data_store_service_pb2_grpc.DataStor
     def create_test_result(
         self, request: data_store_service_pb2.CreateTestResultRequest
     ) -> data_store_service_pb2.CreateTestResultResponse:
-        """Creates a test result object for publishing measurements."""
+        """Create a test result object for publishing measurements."""
         return self._get_stub().CreateTestResult(request)
 
     def get_test_result(
         self, request: data_store_service_pb2.GetTestResultRequest
     ) -> data_store_service_pb2.GetTestResultResponse:
-        """Gets the test result associated with the identifier given in the request."""
+        """Get the test result associated with the identifier given in the request."""
         return self._get_stub().GetTestResult(request)
 
     def query_test_results(
@@ -62,13 +62,13 @@ class DataStoreClient(GrpcServiceClientBase[data_store_service_pb2_grpc.DataStor
     def create_step(
         self, request: data_store_service_pb2.CreateStepRequest
     ) -> data_store_service_pb2.CreateStepResponse:
-        """Creates a new step in the data store."""
+        """Create a new step in the data store."""
         return self._get_stub().CreateStep(request)
 
     def get_step(
         self, request: data_store_service_pb2.GetStepRequest
     ) -> data_store_service_pb2.GetStepResponse:
-        """Gets the step associated with the identifier given in the request."""
+        """Get the step associated with the identifier given in the request."""
         return self._get_stub().GetStep(request)
 
     def query_steps(
@@ -80,35 +80,47 @@ class DataStoreClient(GrpcServiceClientBase[data_store_service_pb2_grpc.DataStor
     def publish_condition(
         self, request: data_store_service_pb2.PublishConditionRequest
     ) -> data_store_service_pb2.PublishConditionResponse:
-        """Publishes a single condition value for a step."""
+        """Publish a single condition value for a step."""
         return self._get_stub().PublishCondition(request)
 
     def publish_condition_batch(
         self, request: data_store_service_pb2.PublishConditionBatchRequest
     ) -> data_store_service_pb2.PublishConditionBatchResponse:
-        """Publishes multiple condition values at once for parametric sweeps."""
+        """Publish multiple condition values at once for parametric sweeps."""
         return self._get_stub().PublishConditionBatch(request)
 
     def publish_measurement(
         self, request: data_store_service_pb2.PublishMeasurementRequest
     ) -> data_store_service_pb2.PublishMeasurementResponse:
-        """Publishes a single measurement value associated with a step."""
+        """Publish a single measurement value associated with a step."""
         return self._get_stub().PublishMeasurement(request)
 
     def publish_measurement_batch(
         self, request: data_store_service_pb2.PublishMeasurementBatchRequest
     ) -> data_store_service_pb2.PublishMeasurementBatchResponse:
-        """Publishes multiple scalar measurements at once for parametric sweeps."""
+        """Publish multiple scalar measurements at once for parametric sweeps."""
         return self._get_stub().PublishMeasurementBatch(request)
+
+    def get_measurement(
+        self, request: data_store_service_pb2.GetMeasurementRequest
+    ) -> data_store_service_pb2.GetMeasurementResponse:
+        """Get the measurement associated with the identifier given in the request."""
+        return self._get_stub().GetMeasurement(request)
+
+    def get_condition(
+        self, request: data_store_service_pb2.GetConditionRequest
+    ) -> data_store_service_pb2.GetConditionResponse:
+        """Get the condition associated with the identifier given in the request."""
+        return self._get_stub().GetCondition(request)
 
     def query_conditions(
         self, request: data_store_service_pb2.QueryConditionsRequest
     ) -> data_store_service_pb2.QueryConditionsResponse:
-        """Queries conditions using OData query syntax."""
+        """Query conditions using OData query syntax."""
         return self._get_stub().QueryConditions(request)
 
     def query_measurements(
         self, request: data_store_service_pb2.QueryMeasurementsRequest
     ) -> data_store_service_pb2.QueryMeasurementsResponse:
-        """Queries measurements using OData query syntax."""
+        """Query measurements using OData query syntax."""
         return self._get_stub().QueryMeasurements(request)
