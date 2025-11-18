@@ -120,7 +120,6 @@ def test__publish_condition__request_and_response_pass_through(
     client_request = data_store_service_types.PublishConditionRequest()
     client_request.step_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     stub_response = data_store_service_types.PublishConditionResponse()
-    stub_response.published_condition.moniker.service_location = "location"
     data_store_stub.PublishCondition.return_value = stub_response
 
     client_response = data_store_client.publish_condition(client_request)
@@ -138,7 +137,6 @@ def test__publish_condition_batch__request_and_response_pass_through(
     client_request.step_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     stub_response = data_store_service_types.PublishConditionBatchResponse()
     data_store_stub.PublishConditionBatch.return_value = stub_response
-    stub_response.published_condition.moniker.service_location = "location"
 
     client_response = data_store_client.publish_condition_batch(client_request)
 
@@ -155,7 +153,6 @@ def test__publish_measurement__request_and_response_pass_through(
     client_request.step_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     stub_response = data_store_service_types.PublishMeasurementResponse()
     data_store_stub.PublishMeasurement.return_value = stub_response
-    stub_response.published_measurement.moniker.service_location = "location"
 
     client_response = data_store_client.publish_measurement(client_request)
 
@@ -172,8 +169,6 @@ def test__publish_measurement_batch__request_and_response_pass_through(
     client_request.step_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
     stub_response = data_store_service_types.PublishMeasurementBatchResponse()
     data_store_stub.PublishMeasurementBatch.return_value = stub_response
-    measurement = stub_response.published_measurements.add()
-    measurement.moniker.service_location = "location"
 
     client_response = data_store_client.publish_measurement_batch(client_request)
 

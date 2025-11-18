@@ -277,18 +277,15 @@ global___PublishConditionRequest = PublishConditionRequest
 class PublishConditionResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    PUBLISHED_CONDITION_FIELD_NUMBER: builtins.int
-    @property
-    def published_condition(self) -> ni.measurements.data.v1.data_store_pb2.PublishedCondition:
-        """A single condition present for the specified step."""
-
+    CONDITION_ID_FIELD_NUMBER: builtins.int
+    condition_id: builtins.str
+    """The id of the published condition."""
     def __init__(
         self,
         *,
-        published_condition: ni.measurements.data.v1.data_store_pb2.PublishedCondition | None = ...,
+        condition_id: builtins.str = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["condition_id", b"condition_id"]) -> None: ...
 
 global___PublishConditionResponse = PublishConditionResponse
 
@@ -329,18 +326,15 @@ global___PublishConditionBatchRequest = PublishConditionBatchRequest
 class PublishConditionBatchResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    PUBLISHED_CONDITION_FIELD_NUMBER: builtins.int
-    @property
-    def published_condition(self) -> ni.measurements.data.v1.data_store_pb2.PublishedCondition:
-        """A shared value for *all* condition measurements present for the specified step."""
-
+    CONDITION_ID_FIELD_NUMBER: builtins.int
+    condition_id: builtins.str
+    """The id of the published condition."""
     def __init__(
         self,
         *,
-        published_condition: ni.measurements.data.v1.data_store_pb2.PublishedCondition | None = ...,
+        condition_id: builtins.str = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["condition_id", b"condition_id"]) -> None: ...
 
 global___PublishConditionBatchResponse = PublishConditionBatchResponse
 
@@ -455,18 +449,15 @@ global___PublishMeasurementRequest = PublishMeasurementRequest
 class PublishMeasurementResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    PUBLISHED_MEASUREMENT_FIELD_NUMBER: builtins.int
-    @property
-    def published_measurement(self) -> ni.measurements.data.v1.data_store_pb2.PublishedMeasurement:
-        """The moniker of the published measurement and its metadata."""
-
+    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
+    measurement_id: builtins.str
+    """The id of the published measurement."""
     def __init__(
         self,
         *,
-        published_measurement: ni.measurements.data.v1.data_store_pb2.PublishedMeasurement | None = ...,
+        measurement_id: builtins.str = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["published_measurement", b"published_measurement"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["published_measurement", b"published_measurement"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id"]) -> None: ...
 
 global___PublishMeasurementResponse = PublishMeasurementResponse
 
@@ -572,19 +563,93 @@ global___PublishMeasurementBatchRequest = PublishMeasurementBatchRequest
 class PublishMeasurementBatchResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    PUBLISHED_MEASUREMENTS_FIELD_NUMBER: builtins.int
+    MEASUREMENT_IDS_FIELD_NUMBER: builtins.int
     @property
-    def published_measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v1.data_store_pb2.PublishedMeasurement]:
-        """The monikers of the published measurements and their corresponding metadata."""
+    def measurement_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """The ids of the published measurements. If your batch contained scalar data, this will be a single value."""
 
     def __init__(
         self,
         *,
-        published_measurements: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.PublishedMeasurement] | None = ...,
+        measurement_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["published_measurements", b"published_measurements"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["measurement_ids", b"measurement_ids"]) -> None: ...
 
 global___PublishMeasurementBatchResponse = PublishMeasurementBatchResponse
+
+@typing.final
+class GetMeasurementRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
+    measurement_id: builtins.str
+    """The id of the desired measurement.
+    This value is expected to be a parsable GUID.
+    """
+    def __init__(
+        self,
+        *,
+        measurement_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id"]) -> None: ...
+
+global___GetMeasurementRequest = GetMeasurementRequest
+
+@typing.final
+class GetMeasurementResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    PUBLISHED_MEASUREMENT_FIELD_NUMBER: builtins.int
+    @property
+    def published_measurement(self) -> ni.measurements.data.v1.data_store_pb2.PublishedMeasurement:
+        """The measurement associated with the given id."""
+
+    def __init__(
+        self,
+        *,
+        published_measurement: ni.measurements.data.v1.data_store_pb2.PublishedMeasurement | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["published_measurement", b"published_measurement"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["published_measurement", b"published_measurement"]) -> None: ...
+
+global___GetMeasurementResponse = GetMeasurementResponse
+
+@typing.final
+class GetConditionRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    CONDITION_ID_FIELD_NUMBER: builtins.int
+    condition_id: builtins.str
+    """The id of the desired condition.
+    This value is expected to be a parsable GUID.
+    """
+    def __init__(
+        self,
+        *,
+        condition_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["condition_id", b"condition_id"]) -> None: ...
+
+global___GetConditionRequest = GetConditionRequest
+
+@typing.final
+class GetConditionResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    PUBLISHED_CONDITION_FIELD_NUMBER: builtins.int
+    @property
+    def published_condition(self) -> ni.measurements.data.v1.data_store_pb2.PublishedCondition:
+        """The condition associated with the given id."""
+
+    def __init__(
+        self,
+        *,
+        published_condition: ni.measurements.data.v1.data_store_pb2.PublishedCondition | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> None: ...
+
+global___GetConditionResponse = GetConditionResponse
 
 @typing.final
 class QueryConditionsRequest(google.protobuf.message.Message):
