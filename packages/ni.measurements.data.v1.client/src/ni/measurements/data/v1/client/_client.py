@@ -101,6 +101,18 @@ class DataStoreClient(GrpcServiceClientBase[data_store_service_pb2_grpc.DataStor
         """Publishes multiple scalar measurements at once for parametric sweeps."""
         return self._get_stub().PublishMeasurementBatch(request)
 
+    def get_measurement(
+        self, request: data_store_service_pb2.GetMeasurementRequest
+    ) -> data_store_service_pb2.GetMeasurementResponse:
+        """Gets the measurement associated with the identifier given in the request."""
+        return self._get_stub().GetMeasurement(request)
+
+    def get_condition(
+        self, request: data_store_service_pb2.GetConditionRequest
+    ) -> data_store_service_pb2.GetConditionResponse:
+        """Gets the condition associated with the identifier given in the request."""
+        return self._get_stub().GetCondition(request)
+    
     def query_conditions(
         self, request: data_store_service_pb2.QueryConditionsRequest
     ) -> data_store_service_pb2.QueryConditionsResponse:
