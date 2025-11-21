@@ -31,7 +31,8 @@ _START_SERVICE_POLLING_INTERVAL = 100e-3
 
 
 def _get_discovery_service_address() -> str:
-    key_file_path = _get_key_file_path()
+    cluster_id = os.environ.get("NIDISCOVERY_CLUSTERID")
+    key_file_path = _get_key_file_path(cluster_id)
     _ensure_discovery_service_started(key_file_path)
     _logger.debug("Discovery service key file path: %s", key_file_path)
     with _open_key_file(str(key_file_path)) as key_file:
