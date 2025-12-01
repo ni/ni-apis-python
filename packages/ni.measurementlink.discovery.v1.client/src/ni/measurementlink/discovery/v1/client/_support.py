@@ -34,6 +34,8 @@ _DISCOVERY_SERVICE_CLUSTER_ID_ENV_VAR = "CLUSTERID"
 
 
 def _get_discovery_service_address() -> str:
+    # To support operating systems other than Windows, we would likely need to make this check
+    # case-insensitive.
     cluster_id = os.environ.get(
         _DISCOVERY_SERVICE_ENV_VAR_PREFIX + _DISCOVERY_SERVICE_CLUSTER_ID_ENV_VAR
     )
