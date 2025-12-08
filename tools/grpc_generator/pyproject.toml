@@ -28,7 +28,8 @@ grpcio-tools = [
   { version = "1.67.0", python = ">=3.13,<3.14" },
   { version = "1.75.1", python = "^3.14" },
 ]
-mypy-protobuf = ">=3.6"
+# mypy-protobuf 3.6 is the last version that supports protobuf v4.
+mypy-protobuf = ">=3.6,<3.7"
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
