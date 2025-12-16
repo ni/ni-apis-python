@@ -1,75 +1,49 @@
-# Hello
-
 ```mermaid
-graph TD
-    %% Proto packages (base level)
-    A[ni.datamonikers.v1.proto] 
-    B[ni.grpcdevice.v1.proto]
-    C[ni.measurementlink.discovery.v1.proto]
-    D[ni.measurementlink.measurement.v1.proto]
-    E[ni.measurementlink.measurement.v2.proto]
-    F[ni.measurementlink.pinmap.v1.proto]
-    G[ni.measurementlink.proto]
-    H[ni.measurementlink.sessionmanagement.v1.proto]
-    I[ni.measurements.data.v1.proto]
-    J[ni.measurements.metadata.v1.proto]
-    K[ni.panels.v1.proto]
-    L[ni.protobuf.types]
+graph TB
+    subgraph "Base Types"
+        PT[ni.protobuf.types]
+    end
     
-    %% Extension packages
-    M[ni-grpc-extensions]
+    subgraph "gRPC Extensions"
+        GE[ni-grpc-extensions]
+    end
     
-    %% Client packages (depend on proto packages)
-    N[ni.datamonikers.v1.client]
-    O[ni.measurementlink.discovery.v1.client]
-    P[ni.measurementlink.pinmap.v1.client]
-    Q[ni.measurementlink.sessionmanagement.v1.client]
-    R[ni.measurements.data.v1.client]
-    S[ni.measurements.metadata.v1.client]
+    subgraph "Proto Packages"
+        DP[ni.datamonikers.v1.proto]
+        GDP[ni.grpcdevice.v1.proto]
+        DISC[ni.measurementlink.discovery.v1.proto]
+        MEAS1[ni.measurementlink.measurement.v1.proto]
+        MEAS2[ni.measurementlink.measurement.v2.proto]
+        PIN[ni.measurementlink.pinmap.v1.proto]
+        ML[ni.measurementlink.proto]
+        SESS[ni.measurementlink.sessionmanagement.v1.proto]
+        DATA[ni.measurements.data.v1.proto]
+        META[ni.measurements.metadata.v1.proto]
+        PAN[ni.panels.v1.proto]
+    end
     
-    %% Dependencies
-    N --> A
-    N --> M
+    subgraph "Client Packages"
+        DC[ni.datamonikers.v1.client]
+        DISCC[ni.measurementlink.discovery.v1.client]
+        PINC[ni.measurementlink.pinmap.v1.client]
+        SESSC[ni.measurementlink.sessionmanagement.v1.client]
+        DATAC[ni.measurements.data.v1.client]
+        METAC[ni.measurements.metadata.v1.client]
+    end
     
-    O --> C
-    O --> M
+    %% Simple vertical dependencies
+    DC --> DP
+    DC --> GE
+    DISCC --> DISC
+    DISCC --> GE
+    PINC --> PIN
+    PINC --> GE
+    SESSC --> SESS
+    SESSC --> GE
+    DATAC --> DATA
+    DATAC --> GE
+    METAC --> META
+    METAC --> GE
     
-    P --> F
-    P --> G
-    P --> M
-    
-    Q --> H
-    Q --> M
-    
-    R --> I
-    R --> M
-    
-    S --> J
-    S --> M
-    
-    %% Proto package dependencies (common patterns)
-    C --> L
-    D --> L
-    E --> L
-    F --> L
-    G --> L
-    H --> L
-    I --> L
-    J --> L
-    K --> L
-    
-    %% Measurement v2 depends on v1
-    E --> D
-    
-    %% MeasurementLink proto depends on base proto types
-    G --> L
-    
-    %% Style classes
-    classDef protoPackage fill:#e1f5fe
-    classDef clientPackage fill:#f3e5f5
-    classDef extensionPackage fill:#e8f5e8
-    
-    class A,B,C,D,E,F,G,H,I,J,K,L protoPackage
-    class N,O,P,Q,R,S clientPackage
-    class M extensionPackage
+    MEAS2 --> MEAS1
 ```
