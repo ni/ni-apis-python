@@ -29,8 +29,8 @@ _discovery_service_subprocess: subprocess.Popen[Any] | None = None
 _START_SERVICE_TIMEOUT = 30.0
 _START_SERVICE_POLLING_INTERVAL = 100e-3
 
-_DISCOVERY_SERVICE_ENV_VAR_PREFIX = "NIDISCOVERY_"
-_DISCOVERY_SERVICE_CLUSTER_ID_ENV_VAR = "CLUSTERID"
+_DISCOVERY_SERVICE_ENV_VAR_PREFIX = "NIDiscovery_"
+_DISCOVERY_SERVICE_CLUSTER_ID_ENV_VAR = "ClusterId"
 
 
 def _get_discovery_service_address() -> str:
