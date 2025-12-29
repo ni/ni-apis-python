@@ -15,7 +15,7 @@ runs:
       run: echo "osVersion=$ImageOS" >> "$GITHUB_ENV"
       shell: bash
     - name: Cache ${{ inputs.package-name }} virtualenv
-      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+      uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
       with:
         path: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}/.venv
         key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ env.pythonVersion }}-${{ hashFiles(format('{0}/{1}/poetry.lock', inputs.package-basepath, inputs.package-name)) }}
@@ -28,7 +28,7 @@ runs:
       working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
       shell: bash
     - name: Upload ${{ inputs.package-name }} test results
-      uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+      uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
       with:
         name: test_results_unit_${{ inputs.package-name }}_${{ env.osVersion }}_py${{ env.pythonVersion }}
         path: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}/test_results/*.xml
