@@ -45,7 +45,7 @@ jobs:
         if: ${{ !endsWith(inputs.package-name, '.proto') && inputs.package-name != 'ni.protobuf.types' }}
         run: echo "::error title=Package Name Error::Invalid package name ${{ inputs.package-name }}. The package name must end in '.proto'."
       - name: Check out repo
-        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5.0.1
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           submodules: true
       - name: Set up Python
@@ -56,7 +56,7 @@ jobs:
       - name: Check for lock changes
         run: poetry check --lock
       - name: Cache virtualenv
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
         with:
           path: ${{ github.workspace }}/tools/grpc_generator/.venv
           key: grpc_generator-only-main-${{ runner.os }}-py${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('tools/grpc_generator/poetry.lock') }}
