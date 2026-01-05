@@ -1052,14 +1052,14 @@ files = [
 
 [[package]]
 name = "ni-grpc-extensions"
-version = "1.0.0"
+version = "1.1.0"
 description = "gRPC Extensions"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "ni_grpc_extensions-1.0.0-py3-none-any.whl", hash = "sha256:6b8181284370a53546ffd371d334f15e293cae5e9ff06fa2e467d1714bf7a03f"},
-    {file = "ni_grpc_extensions-1.0.0.tar.gz", hash = "sha256:6e066246ce9a4b4420f5e503769b23c31a49c430be6ebd72324c5b5a15c34ebb"},
+    {file = "ni_grpc_extensions-1.1.0-py3-none-any.whl", hash = "sha256:db0357acd244854f4acccf202c89fe6462b4283d264ed639f4e248e6cc86bc9b"},
+    {file = "ni_grpc_extensions-1.1.0.tar.gz", hash = "sha256:028ea33e5c5234bc050bf5dc99f5b61611531de8f012293e9d4c6985b7b37afb"},
 ]
 
 [package.dependencies]
@@ -1068,14 +1068,14 @@ traceloggingdynamic = {version = ">=1.0", markers = "sys_platform == \"win32\""}
 
 [[package]]
 name = "ni-grpcdevice-v1-proto"
-version = "1.0.0"
+version = "1.1.0"
 description = "Protobuf generated code for the nidevice_grpc gRPC API"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "ni_grpcdevice_v1_proto-1.0.0-py3-none-any.whl", hash = "sha256:36dfe9484cc40e8e1c97fb9720555f06563b0180e4837177d1cbf000c3d8988e"},
-    {file = "ni_grpcdevice_v1_proto-1.0.0.tar.gz", hash = "sha256:62f087f85d390c2932e45ad03d365c750bd55e147b81b66ef853e13ff8538b19"},
+    {file = "ni_grpcdevice_v1_proto-1.1.0-py3-none-any.whl", hash = "sha256:2784c4b3e64a9c1e6b743d26847b7a44bf781ab46a9e19b02b379c1e0bc6dcfb"},
+    {file = "ni_grpcdevice_v1_proto-1.1.0.tar.gz", hash = "sha256:ad14ab44e456a67d50a8fc38329e01dccae1732eab22a529c96eb3d5cb46370c"},
 ]
 
 [package.dependencies]
@@ -1084,32 +1084,32 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurementlink-discovery-v1-client"
-version = "1.0.0"
+version = "1.1.0"
 description = "gRPC Client for NI Discovery Service"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "ni_measurementlink_discovery_v1_client-1.0.0-py3-none-any.whl", hash = "sha256:6a4c45d2517a7c6017a3b7dd817a6d7ebc8ebec318243c4f17778115a1a192a6"},
-    {file = "ni_measurementlink_discovery_v1_client-1.0.0.tar.gz", hash = "sha256:2aa2a0c55f6599ffa3ff05e67e6ff89360f22bf0082e512348a41997ddfde3f8"},
+    {file = "ni_measurementlink_discovery_v1_client-1.1.0-py3-none-any.whl", hash = "sha256:366dcc3b93627ed1ede488955637e0768b29cb7a375e59ac1020f4c53892d00c"},
+    {file = "ni_measurementlink_discovery_v1_client-1.1.0.tar.gz", hash = "sha256:831b6145cf8def0021cb00579b08a2ad1da5a19fdeedea4522a3cb4a30978c48"},
 ]
 
 [package.dependencies]
 grpcio = ">=1.49.0,<2.0"
-ni-grpc-extensions = ">=0.1.0.dev1"
-ni-measurementlink-discovery-v1-proto = ">=0.1.0.dev1"
+ni-grpc-extensions = ">=1.1.0"
+ni-measurementlink-discovery-v1-proto = ">=1.1.0"
 pywin32 = {version = ">=303", markers = "sys_platform == \"win32\""}
 
 [[package]]
 name = "ni-measurementlink-discovery-v1-proto"
-version = "1.0.0"
+version = "1.1.0"
 description = "Protobuf data types for NI discovery gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "ni_measurementlink_discovery_v1_proto-1.0.0-py3-none-any.whl", hash = "sha256:093eb4ffd27338fbea4909aea30afbd3090f482f3a1dcc98e63bbaf1a6b4da8b"},
-    {file = "ni_measurementlink_discovery_v1_proto-1.0.0.tar.gz", hash = "sha256:11353eefdecc49244783d76a332bc855589eb0bb8c882f53c8f9b0a47ca91115"},
+    {file = "ni_measurementlink_discovery_v1_proto-1.1.0-py3-none-any.whl", hash = "sha256:6a3061ca858d3ee887987dc5130074fc439ce6c2b26fe6b3f9401da023461d43"},
+    {file = "ni_measurementlink_discovery_v1_proto-1.1.0.tar.gz", hash = "sha256:f9a9b4572ac5d169fad21ab56e2639abdb77979cf0dc3a88cdb71b2c783d009c"},
 ]
 
 [package.dependencies]
@@ -1117,14 +1117,14 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurementlink-pinmap-v1-proto"
-version = "1.0.0"
+version = "1.1.0"
 description = "Protobuf data types for NI pinmap gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "ni_measurementlink_pinmap_v1_proto-1.0.0-py3-none-any.whl", hash = "sha256:0dd3aaa2ab0985a07ac829aeb16cdb07a5568560e58724363e8164b7bc06783c"},
-    {file = "ni_measurementlink_pinmap_v1_proto-1.0.0.tar.gz", hash = "sha256:7feecc9ac4116e15b0ca5927d091618b86d0a30975c6d33c94b4b587b9268cad"},
+    {file = "ni_measurementlink_pinmap_v1_proto-1.1.0-py3-none-any.whl", hash = "sha256:c2334d2ffe4e11f776b0087ad25184b504faa63fa57ec3c7eb87e1a3234dd686"},
+    {file = "ni_measurementlink_pinmap_v1_proto-1.1.0.tar.gz", hash = "sha256:db6cef7969c6423349e6560850983008a269a3de0ca7dd623795d7153ede64c1"},
 ]
 
 [package.dependencies]
@@ -1132,14 +1132,14 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurementlink-proto"
-version = "1.0.0"
+version = "1.1.0"
 description = "Protobuf data types for NI gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "ni_measurementlink_proto-1.0.0-py3-none-any.whl", hash = "sha256:afc9c0e86c4d7ee3385f36a78d69a980a05c587092a0087912a4df8c32e73761"},
-    {file = "ni_measurementlink_proto-1.0.0.tar.gz", hash = "sha256:2749ebc02c3063cb7e853097c9c87329ea9a9a61d2d14262caee51c9551a05ac"},
+    {file = "ni_measurementlink_proto-1.1.0-py3-none-any.whl", hash = "sha256:b7fb6c7b6c36a80d0a1e67fd47d2fa6cccfed993dd5047aa720b04f07c5a546e"},
+    {file = "ni_measurementlink_proto-1.1.0.tar.gz", hash = "sha256:4fca44af39715f8501d711944f4d6bae11f1b9ffa059a6995eb69770872c3fa5"},
 ]
 
 [package.dependencies]
@@ -1147,18 +1147,17 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurementlink-sessionmanagement-v1-proto"
-version = "1.0.0"
+version = "1.1.0"
 description = "Protobuf data types for NI session management gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "ni_measurementlink_sessionmanagement_v1_proto-1.0.0-py3-none-any.whl", hash = "sha256:d345f9939d9c324477615ec0603c84286f5cd75f50ec2876287c71bb5e9d4f35"},
-    {file = "ni_measurementlink_sessionmanagement_v1_proto-1.0.0.tar.gz", hash = "sha256:3929e4616298998910846d1ddba2c80a3deaeacb54eae996389ff5b01e4f7d5c"},
+    {file = "ni_measurementlink_sessionmanagement_v1_proto-1.1.0-py3-none-any.whl", hash = "sha256:e88d8beaf141e85f83daba1858a8b372df9d2c2671b3c4b0bb3b50e745e14585"},
+    {file = "ni_measurementlink_sessionmanagement_v1_proto-1.1.0.tar.gz", hash = "sha256:cedc461b7990bc496ac87a932ca32f7b9f6f1c73c8eb5bda71f5e60709ef76e1"},
 ]
 
 [package.dependencies]
-nitypes = ">=0.1.0dev3"
 protobuf = ">=4.21"
 
 [[package]]
@@ -1375,9 +1374,10 @@ hightime = ">=0.2.0"
 name = "nitypes"
 version = "1.0.0"
 description = "Data types for NI Python APIs"
-optional = false
+optional = true
 python-versions = "<4.0,>=3.9"
 groups = ["main"]
+markers = "extra == \"drivers\" or extra == \"nidaqmx\""
 files = [
     {file = "nitypes-1.0.0-py3-none-any.whl", hash = "sha256:545dff978040fd92a68876023b8b6ff666c1d861ead1b3e7771108754bd57345"},
     {file = "nitypes-1.0.0.tar.gz", hash = "sha256:dc5ecb8b5f52570c2311daaa60ce6dca9712d7151236ef1f5314ad6ac02e0bdc"},
@@ -1426,10 +1426,10 @@ files = [
 name = "numpy"
 version = "2.2.6"
 description = "Fundamental package for array computing in Python"
-optional = false
+optional = true
 python-versions = ">=3.10"
 groups = ["main"]
-markers = "python_version == \"3.10\""
+markers = "python_version == \"3.10\" and (extra == \"drivers\" or extra == \"nidaqmx\")"
 files = [
     {file = "numpy-2.2.6-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:b412caa66f72040e6d268491a59f2c43bf03eb6c96dd8f0307829feb7fa2b6fb"},
     {file = "numpy-2.2.6-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:8e41fd67c52b86603a91c1a505ebaef50b3314de0213461c7a6e99c9a3beff90"},
@@ -1492,10 +1492,10 @@ files = [
 name = "numpy"
 version = "2.3.4"
 description = "Fundamental package for array computing in Python"
-optional = false
+optional = true
 python-versions = ">=3.11"
 groups = ["main"]
-markers = "python_version >= \"3.11\""
+markers = "(extra == \"drivers\" or extra == \"nidaqmx\") and python_version >= \"3.11\""
 files = [
     {file = "numpy-2.3.4-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:e78aecd2800b32e8347ce49316d3eaf04aed849cd5b38e0af39f829a4e59f5eb"},
     {file = "numpy-2.3.4-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:7fd09cc5d65bda1e79432859c40978010622112e9194e581e3415a3eccc7f43f"},
@@ -2519,4 +2519,4 @@ niswitch = ["niswitch"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "ac4f0bbeccba54e2b13bab633d42a4eabd1519668b6cbd0a2992c8ffb3547186"
+content-hash = "8d335b40b5142670e234ef5865c1515961d3570df376f5fa05c7c1b8a157123c"
