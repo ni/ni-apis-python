@@ -1008,7 +1008,7 @@ files = [
 
 [[package]]
 name = "ni-datamonikers-v1-proto"
-version = "0.1.0-dev1"
+version = "1.0.1.dev0"
 description = "Protobuf data types and service stub for NI data moniker gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -1025,7 +1025,7 @@ url = "../ni.datamonikers.v1.proto"
 
 [[package]]
 name = "ni-grpc-extensions"
-version = "1.0.1.dev0"
+version = "1.1.1.dev0"
 description = "gRPC Extensions"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -1950,4 +1950,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "c44c2e80dfaad35c5a1da69e30a188cdd12d99f0a7fa60258d1f0990072b2969"
+content-hash = "85257c97afdf77aa1dd9ac62e68fe9ebfe687d64fcbc024cc27f0aa257fa9822"
