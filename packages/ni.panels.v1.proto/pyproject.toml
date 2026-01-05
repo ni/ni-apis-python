@@ -1,6 +1,6 @@
 [project]
 name = "ni.panels.v1.proto"
-version = "0.2.0.dev0"
+version = "1.0.0"
 license = "MIT"
 description = "Protobuf generated code for the ni.panels.v1 gRPC API"
 authors = [{name = "NI", email = "opensource@ni.com"}]
@@ -11,7 +11,7 @@ maintainers = [
 readme = "README.md"
 keywords = ["ni-apis", "protobuf", "panels"]
 classifiers = [
-  "Development Status :: 3 - Alpha",
+  "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
   "Intended Audience :: Manufacturing",
   "Intended Audience :: Science/Research",
