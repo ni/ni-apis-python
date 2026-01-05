@@ -1,6 +1,6 @@
 [project]
 name = "ni.measurementlink.measurement.v2.proto"
-version = "1.1.1.dev0"
+version = "1.1.1"
 license = "MIT"
 description = "Protobuf data types for NI measurement gRPC APIs"
 authors = [{name = "NI", email = "opensource@ni.com"}]
@@ -39,7 +39,7 @@ requires-poetry = '>=2.1,<3.0'
 
 [tool.poetry.dependencies]
 protobuf = {version=">=4.21"}
-ni-measurementlink-proto = ">=0.1.0dev0"
+ni-measurementlink-proto = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
@@ -65,7 +65,7 @@ pytest-cov = ">=4.0"
 pytest-doctestplus = ">=1.4"
 pytest-mock = ">=3.0"
 # Use a prerelease version of hightime for testing.
-hightime = { version = ">=0.3.0.dev0", allow-prereleases = true }
+hightime = { version = "^1.0.0" }
 
 [tool.poetry.group.docs]
 optional = true
