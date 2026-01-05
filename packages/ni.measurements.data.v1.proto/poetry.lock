@@ -943,7 +943,7 @@ files = [
 
 [[package]]
 name = "ni-datamonikers-v1-proto"
-version = "0.2.0.dev0"
+version = "1.0.1.dev0"
 description = "Protobuf data types and service stub for NI data moniker gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -960,7 +960,7 @@ url = "../ni.datamonikers.v1.proto"
 
 [[package]]
 name = "ni-measurements-metadata-v1-proto"
-version = "0.1.0.dev6"
+version = "1.0.1.dev0"
 description = "Protobuf data types and service stub for NI metadata store gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -977,7 +977,7 @@ url = "../ni.measurements.metadata.v1.proto"
 
 [[package]]
 name = "ni-protobuf-types"
-version = "1.1.0.dev0"
+version = "1.1.1.dev0"
 description = "Protobuf data types for NI gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -986,7 +986,7 @@ files = []
 develop = true
 
 [package.dependencies]
-nitypes = ">=1.1.0dev0"
+nitypes = ">=1.1.0dev1"
 protobuf = ">=4.21"
 
 [package.source]
@@ -1026,14 +1026,14 @@ toml = ">=0.10.1"
 
 [[package]]
 name = "nitypes"
-version = "1.1.0.dev0"
+version = "1.1.0.dev1"
 description = "Data types for NI Python APIs"
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["main", "dev"]
 files = [
-    {file = "nitypes-1.1.0.dev0-py3-none-any.whl", hash = "sha256:1dd0d15bb741294672ea7d61d98e951c5802eec0130d0162f4f19008dd74c0f6"},
-    {file = "nitypes-1.1.0.dev0.tar.gz", hash = "sha256:a82d2f518f514a24bfb3b9c4e023db23097a786ca40155693610d09578d86f10"},
+    {file = "nitypes-1.1.0.dev1-py3-none-any.whl", hash = "sha256:d98ad6e3f8b92db76b5c1c584431fa27d3e74cce6e20464e43ee0117b02fe089"},
+    {file = "nitypes-1.1.0.dev1.tar.gz", hash = "sha256:50b23e00cc6960996656c4c9ef0ca71dd267fc5c9ca481077b682c29190aa2d3"},
 ]
 
 [package.dependencies]
@@ -1529,13 +1529,6 @@ optional = false
 python-versions = ">=3.8"
 groups = ["docs", "lint"]
 files = [
-    {file = "PyYAML-6.0.3-cp38-cp38-macosx_10_13_x86_64.whl", hash = "sha256:c2514fceb77bc5e7a2f7adfaa1feb2fb311607c9cb518dbc378688ec73d8292f"},
-    {file = "PyYAML-6.0.3-cp38-cp38-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:9c57bb8c96f6d1808c030b1687b9b5fb476abaa47f0db9c0101f5e9f394e97f4"},
-    {file = "PyYAML-6.0.3-cp38-cp38-manylinux2014_s390x.manylinux_2_17_s390x.manylinux_2_28_s390x.whl", hash = "sha256:efd7b85f94a6f21e4932043973a7ba2613b059c4a000551892ac9f1d11f5baf3"},
-    {file = "PyYAML-6.0.3-cp38-cp38-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:22ba7cfcad58ef3ecddc7ed1db3409af68d023b7f940da23c6c2a1890976eda6"},
-    {file = "PyYAML-6.0.3-cp38-cp38-musllinux_1_2_x86_64.whl", hash = "sha256:6344df0d5755a2c9a276d4473ae6b90647e216ab4757f8426893b5dd2ac3f369"},
-    {file = "PyYAML-6.0.3-cp38-cp38-win32.whl", hash = "sha256:3ff07ec89bae51176c0549bc4c63aa6202991da2d9a6129d7aef7f1407d3f295"},
-    {file = "PyYAML-6.0.3-cp38-cp38-win_amd64.whl", hash = "sha256:5cf4e27da7e3fbed4d6c3d8e797387aaad68102272f8f9752883bc32d61cb87b"},
     {file = "pyyaml-6.0.3-cp310-cp310-macosx_10_13_x86_64.whl", hash = "sha256:214ed4befebe12df36bcc8bc2b64b396ca31be9304b8f59e25c11cf94a4c033b"},
     {file = "pyyaml-6.0.3-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:02ea2dfa234451bbb8772601d7b8e426c2bfa197136796224e50e35a78777956"},
     {file = "pyyaml-6.0.3-cp310-cp310-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl", hash = "sha256:b30236e45cf30d2b8e7b3e85881719e98507abed1011bf463a8fa23e9c3e98a8"},
@@ -2060,4 +2053,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "2802888cdc3c0ef72c1d49cd7c74f33febaf105b9dd3bd2fea3b005c778e372a"
+content-hash = "6e9705b9ce9e5664e83fa55f4b370f2d03f1a71dcfa0e74476019407713e09be"
