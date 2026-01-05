@@ -29,9 +29,18 @@ _discovery_service_subprocess: subprocess.Popen[Any] | None = None
 _START_SERVICE_TIMEOUT = 30.0
 _START_SERVICE_POLLING_INTERVAL = 100e-3
 
+_DISCOVERY_SERVICE_ENV_VAR_PREFIX = "NIDiscovery_"
+_DISCOVERY_SERVICE_CLUSTER_ID_ENV_VAR = "ClusterId"
+
 
 def _get_discovery_service_address() -> str:
-    cluster_id = os.environ.get("NIDISCOVERY_CLUSTERID")
+    # To support operating systems other than Windows (and match Discovery Service behavior),
+    # we would likely want to make this check case-insensitive.
+    cluster_id = os.environ.get(
+        _DISCOVERY_SERVICE_ENV_VAR_PREFIX + _DISCOVERY_SERVICE_CLUSTER_ID_ENV_VAR
+    )
+    if not cluster_id:
+        cluster_id = os.environ.get(_DISCOVERY_SERVICE_CLUSTER_ID_ENV_VAR)
     key_file_path = _get_key_file_path(cluster_id)
     _ensure_discovery_service_started(key_file_path)
     _logger.debug("Discovery service key file path: %s", key_file_path)
