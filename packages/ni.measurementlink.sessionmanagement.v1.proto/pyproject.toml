@@ -1,6 +1,6 @@
 [project]
 name = "ni.measurementlink.sessionmanagement.v1.proto"
-version = "1.1.0"
+version = "1.1.1.dev0"
 license = "MIT"
 description = "Protobuf data types for NI session management gRPC APIs"
 authors = [{name = "NI", email = "opensource@ni.com"}]
