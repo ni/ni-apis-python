@@ -12,7 +12,8 @@
             ],
             "extends": [
                 "schedule:weekly"
-            ]
+            ],
+            "minimumReleaseAge": "1 day"
         }
     ]
 }
