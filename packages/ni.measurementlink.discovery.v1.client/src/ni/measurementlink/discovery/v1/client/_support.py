@@ -14,7 +14,6 @@ from typing import Any
 
 import ni.measurementlink.discovery.v1.discovery_service_pb2 as discovery_service_pb2
 
-
 if sys.platform == "win32":
     import msvcrt
     import winreg
