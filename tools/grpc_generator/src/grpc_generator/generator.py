@@ -10,7 +10,6 @@ import click
 import grpc_tools.protoc  # type: ignore[import-untyped]
 from google.protobuf import descriptor_pb2
 
-
 USAGE_EXAMPLE = """Example:
 
 \b
