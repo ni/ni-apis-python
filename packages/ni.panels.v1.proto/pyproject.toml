@@ -64,7 +64,7 @@ optional = true
 # The latest Sphinx requires a recent Python version.
 Sphinx = [
   { version = ">=8.1", python = ">=3.10,<3.11" },
-  { version = ">=8.2", python = "^3.11" },
+  { version = ">=8.2,<9.0", python = "^3.11" },
 ]
 sphinx-rtd-theme = ">=1.0.0"
 sphinx-autoapi = ">=1.8.4"
@@ -104,5 +104,3 @@ exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
 testpaths = ["tests"]
-
-

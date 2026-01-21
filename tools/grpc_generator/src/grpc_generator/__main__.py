@@ -6,7 +6,6 @@ import click
 
 from . import generator
 
-
 REPO_ROOT = next(
     (p for p in pathlib.Path(__file__).parents if (p / "third_party").exists()), pathlib.Path(".")
 )
