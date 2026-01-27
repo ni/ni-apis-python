@@ -7,8 +7,8 @@ from ni.measurements.data.v1 import data_store_service_pb2 as ni_dot_measurement
 
 class DataStoreServiceStub(object):
     """This service provides endpoints for the publishing of measurements.
-    This includes associating measurements with the conditions associated with the measurement and
-    querying for the published measurements with OData queries.
+    This includes associating measurements with the conditions associated with the measurement,
+    querying for the published measurements with OData queries, and reading back these published values.
     """
 
     def __init__(self, channel):
@@ -87,12 +87,22 @@ class DataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsResponse.FromString,
                 )
+        self.ReadConditionValue = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/ReadConditionValue',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadConditionValueRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadConditionValueResponse.FromString,
+                )
+        self.ReadMeasurementValue = channel.unary_unary(
+                '/ni.measurements.data.v1.DataStoreService/ReadMeasurementValue',
+                request_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadMeasurementValueRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadMeasurementValueResponse.FromString,
+                )
 
 
 class DataStoreServiceServicer(object):
     """This service provides endpoints for the publishing of measurements.
-    This includes associating measurements with the conditions associated with the measurement and
-    querying for the published measurements with OData queries.
+    This includes associating measurements with the conditions associated with the measurement,
+    querying for the published measurements with OData queries, and reading back these published values.
     """
 
     def CreateTestResult(self, request, context):
@@ -206,6 +216,20 @@ class DataStoreServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def ReadConditionValue(self, request, context):
+        """Reads the value corresponding to the specified condition.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ReadMeasurementValue(self, request, context):
+        """Reads the value corresponding to the specified measurement.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DataStoreServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -279,6 +303,16 @@ def add_DataStoreServiceServicer_to_server(servicer, server):
                     request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsResponse.SerializeToString,
             ),
+            'ReadConditionValue': grpc.unary_unary_rpc_method_handler(
+                    servicer.ReadConditionValue,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadConditionValueRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadConditionValueResponse.SerializeToString,
+            ),
+            'ReadMeasurementValue': grpc.unary_unary_rpc_method_handler(
+                    servicer.ReadMeasurementValue,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadMeasurementValueRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadMeasurementValueResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'ni.measurements.data.v1.DataStoreService', rpc_method_handlers)
@@ -288,8 +322,8 @@ def add_DataStoreServiceServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class DataStoreService(object):
     """This service provides endpoints for the publishing of measurements.
-    This includes associating measurements with the conditions associated with the measurement and
-    querying for the published measurements with OData queries.
+    This includes associating measurements with the conditions associated with the measurement,
+    querying for the published measurements with OData queries, and reading back these published values.
     """
 
     @staticmethod
@@ -527,5 +561,39 @@ class DataStoreService(object):
         return grpc.experimental.unary_unary(request, target, '/ni.measurements.data.v1.DataStoreService/QueryMeasurements',
             ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsRequest.SerializeToString,
             ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.QueryMeasurementsResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ReadConditionValue(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.data.v1.DataStoreService/ReadConditionValue',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadConditionValueRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadConditionValueResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def ReadMeasurementValue(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.data.v1.DataStoreService/ReadMeasurementValue',
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadMeasurementValueRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v1_dot_data__store__service__pb2.ReadMeasurementValueResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

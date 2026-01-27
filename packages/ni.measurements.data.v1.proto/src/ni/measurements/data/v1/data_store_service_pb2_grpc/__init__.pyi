@@ -19,8 +19,8 @@ class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type:
 
 class DataStoreServiceStub:
     """This service provides endpoints for the publishing of measurements.
-    This includes associating measurements with the conditions associated with the measurement and
-    querying for the published measurements with OData queries.
+    This includes associating measurements with the conditions associated with the measurement,
+    querying for the published measurements with OData queries, and reading back these published values.
     """
 
     def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
@@ -128,10 +128,22 @@ class DataStoreServiceStub:
     See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
 
+    ReadConditionValue: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueRequest,
+        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueResponse,
+    ]
+    """Reads the value corresponding to the specified condition."""
+
+    ReadMeasurementValue: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueRequest,
+        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueResponse,
+    ]
+    """Reads the value corresponding to the specified measurement."""
+
 class DataStoreServiceAsyncStub:
     """This service provides endpoints for the publishing of measurements.
-    This includes associating measurements with the conditions associated with the measurement and
-    querying for the published measurements with OData queries.
+    This includes associating measurements with the conditions associated with the measurement,
+    querying for the published measurements with OData queries, and reading back these published values.
     """
 
     CreateTestResult: grpc.aio.UnaryUnaryMultiCallable[
@@ -238,10 +250,22 @@ class DataStoreServiceAsyncStub:
     See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
 
+    ReadConditionValue: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueRequest,
+        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueResponse,
+    ]
+    """Reads the value corresponding to the specified condition."""
+
+    ReadMeasurementValue: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueRequest,
+        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueResponse,
+    ]
+    """Reads the value corresponding to the specified measurement."""
+
 class DataStoreServiceServicer(metaclass=abc.ABCMeta):
     """This service provides endpoints for the publishing of measurements.
-    This includes associating measurements with the conditions associated with the measurement and
-    querying for the published measurements with OData queries.
+    This includes associating measurements with the conditions associated with the measurement,
+    querying for the published measurements with OData queries, and reading back these published values.
     """
 
     @abc.abstractmethod
@@ -375,5 +399,21 @@ class DataStoreServiceServicer(metaclass=abc.ABCMeta):
         """Queries measurements using OData query syntax.
         See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
         """
+
+    @abc.abstractmethod
+    def ReadConditionValue(
+        self,
+        request: ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueResponse]]:
+        """Reads the value corresponding to the specified condition."""
+
+    @abc.abstractmethod
+    def ReadMeasurementValue(
+        self,
+        request: ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueResponse]]:
+        """Reads the value corresponding to the specified measurement."""
 
 def add_DataStoreServiceServicer_to_server(servicer: DataStoreServiceServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...
