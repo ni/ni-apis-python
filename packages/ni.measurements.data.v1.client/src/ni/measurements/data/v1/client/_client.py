@@ -124,3 +124,15 @@ class DataStoreClient(GrpcServiceClientBase[data_store_service_pb2_grpc.DataStor
     ) -> data_store_service_pb2.QueryMeasurementsResponse:
         """Query measurements using OData query syntax."""
         return self._get_stub().QueryMeasurements(request)
+
+    def read_condition_value(
+        self, request: data_store_service_pb2.ReadConditionValueRequest
+    ) -> data_store_service_pb2.ReadConditionValueResponse:
+        """Read the value of a condition."""
+        return self._get_stub().ReadConditionValue(request)
+
+    def read_measurement_value(
+        self, request: data_store_service_pb2.ReadMeasurementValueRequest
+    ) -> data_store_service_pb2.ReadMeasurementValueResponse:
+        """Read the value of a measurement."""
+        return self._get_stub().ReadMeasurementValue(request)
