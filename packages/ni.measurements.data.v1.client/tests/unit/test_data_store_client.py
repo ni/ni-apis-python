@@ -6,6 +6,7 @@ import pytest
 from ni.measurements.data.v1.data_store_service_pb2_grpc import (
     DataStoreServiceStub,
 )
+from ni.protobuf.types import array_pb2, vector_pb2
 from pytest_mock import MockerFixture
 
 from ni.measurements.data.v1.client import DataStoreClient
@@ -248,6 +249,44 @@ def test__get_measurement__request_and_response_pass_through(
     assert stub_response == client_response
 
 
+def test__read_condition_value__request_and_response_pass_through(
+    data_store_client: DataStoreClient, data_store_stub: Mock
+) -> None:
+    client_request = data_store_service_types.ReadConditionValueRequest()
+    client_request.condition_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
+    stub_response = data_store_service_types.ReadConditionValueResponse()
+    stub_response.vector.MergeFrom(
+        vector_pb2.Vector(double_array=array_pb2.DoubleArray(values=[1.0, 2.0, 3.0]))
+    )
+    data_store_stub.ReadConditionValue.return_value = stub_response
+
+    client_response = data_store_client.read_condition_value(client_request)
+
+    data_store_stub.ReadConditionValue.assert_called_once()
+    stub_request = data_store_stub.ReadConditionValue.call_args[0][0]
+    assert stub_request == client_request
+    assert stub_response == client_response
+
+
+def test__read_measurement_value__request_and_response_pass_through(
+    data_store_client: DataStoreClient, data_store_stub: Mock
+) -> None:
+    client_request = data_store_service_types.ReadMeasurementValueRequest()
+    client_request.measurement_id = "6118CBCE-74A1-4DE8-9B3A-98DE34A3B837"
+    stub_response = data_store_service_types.ReadMeasurementValueResponse()
+    stub_response.vector.MergeFrom(
+        vector_pb2.Vector(double_array=array_pb2.DoubleArray(values=[1.0, 2.0, 3.0]))
+    )
+    data_store_stub.ReadMeasurementValue.return_value = stub_response
+
+    client_response = data_store_client.read_measurement_value(client_request)
+
+    data_store_stub.ReadMeasurementValue.assert_called_once()
+    stub_request = data_store_stub.ReadMeasurementValue.call_args[0][0]
+    assert stub_request == client_request
+    assert stub_response == client_response
+
+
 @pytest.fixture
 def data_store_client(
     mocker: MockerFixture,
@@ -280,4 +319,6 @@ def data_store_stub(mocker: MockerFixture) -> Mock:
     stub.QueryMeasurements = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     stub.GetCondition = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     stub.GetMeasurement = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
+    stub.ReadConditionValue = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
+    stub.ReadMeasurementValue = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     return stub
