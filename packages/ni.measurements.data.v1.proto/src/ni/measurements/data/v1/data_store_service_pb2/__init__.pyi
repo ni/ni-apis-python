@@ -731,3 +731,99 @@ class QueryMeasurementsResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["published_measurements", b"published_measurements"]) -> None: ...
 
 global___QueryMeasurementsResponse = QueryMeasurementsResponse
+
+@typing.final
+class ReadConditionValueRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    CONDITION_ID_FIELD_NUMBER: builtins.int
+    condition_id: builtins.str
+    """The id of the condition to read."""
+    def __init__(
+        self,
+        *,
+        condition_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["condition_id", b"condition_id"]) -> None: ...
+
+global___ReadConditionValueRequest = ReadConditionValueRequest
+
+@typing.final
+class ReadConditionValueResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    VECTOR_FIELD_NUMBER: builtins.int
+    @property
+    def vector(self) -> ni.protobuf.types.vector_pb2.Vector: ...
+    def __init__(
+        self,
+        *,
+        vector: ni.protobuf.types.vector_pb2.Vector | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["value", b"value", "vector", b"vector"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["value", b"value", "vector", b"vector"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["vector"] | None: ...
+
+global___ReadConditionValueResponse = ReadConditionValueResponse
+
+@typing.final
+class ReadMeasurementValueRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
+    measurement_id: builtins.str
+    """The id of the measurement to read."""
+    def __init__(
+        self,
+        *,
+        measurement_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id"]) -> None: ...
+
+global___ReadMeasurementValueRequest = ReadMeasurementValueRequest
+
+@typing.final
+class ReadMeasurementValueResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    VECTOR_FIELD_NUMBER: builtins.int
+    DOUBLE_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
+    X_Y_DATA_FIELD_NUMBER: builtins.int
+    I16_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
+    DOUBLE_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
+    I16_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
+    DOUBLE_SPECTRUM_FIELD_NUMBER: builtins.int
+    DIGITAL_WAVEFORM_FIELD_NUMBER: builtins.int
+    @property
+    def vector(self) -> ni.protobuf.types.vector_pb2.Vector: ...
+    @property
+    def double_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.DoubleAnalogWaveform: ...
+    @property
+    def x_y_data(self) -> ni.protobuf.types.xydata_pb2.DoubleXYData: ...
+    @property
+    def i16_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.I16AnalogWaveform: ...
+    @property
+    def double_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.DoubleComplexWaveform: ...
+    @property
+    def i16_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.I16ComplexWaveform: ...
+    @property
+    def double_spectrum(self) -> ni.protobuf.types.waveform_pb2.DoubleSpectrum: ...
+    @property
+    def digital_waveform(self) -> ni.protobuf.types.waveform_pb2.DigitalWaveform: ...
+    def __init__(
+        self,
+        *,
+        vector: ni.protobuf.types.vector_pb2.Vector | None = ...,
+        double_analog_waveform: ni.protobuf.types.waveform_pb2.DoubleAnalogWaveform | None = ...,
+        x_y_data: ni.protobuf.types.xydata_pb2.DoubleXYData | None = ...,
+        i16_analog_waveform: ni.protobuf.types.waveform_pb2.I16AnalogWaveform | None = ...,
+        double_complex_waveform: ni.protobuf.types.waveform_pb2.DoubleComplexWaveform | None = ...,
+        i16_complex_waveform: ni.protobuf.types.waveform_pb2.I16ComplexWaveform | None = ...,
+        double_spectrum: ni.protobuf.types.waveform_pb2.DoubleSpectrum | None = ...,
+        digital_waveform: ni.protobuf.types.waveform_pb2.DigitalWaveform | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["vector", "double_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "i16_complex_waveform", "double_spectrum", "digital_waveform"] | None: ...
+
+global___ReadMeasurementValueResponse = ReadMeasurementValueResponse
