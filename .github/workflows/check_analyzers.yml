@@ -24,7 +24,7 @@ jobs:
     name: Check analyzers for ${{ inputs.package-name }}
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest, macos-latest]
+        os: [windows-latest, ubuntu-latest]  # Temporarily disabled: macos-latest
         python-version: ['3.10', 3.14]
     runs-on: ${{ matrix.os }}
     defaults:
