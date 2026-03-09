@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import TYPE_CHECKING, Any, cast
 
 from nitypes.vector import Vector
 
@@ -13,7 +13,9 @@ from ni.protobuf.types.extended_property_conversion import (
     extended_properties_from_protobuf,
     extended_properties_to_protobuf,
 )
-from ni.protobuf.types.scalar_conversion import AnyScalarType
+
+if TYPE_CHECKING:
+    from ni.protobuf.types.scalar_conversion import AnyScalarType
 
 _VECTOR_TYPE_TO_PB_ATTR_MAP = {
     bool: "bool_array",
