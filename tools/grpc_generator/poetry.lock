@@ -951,14 +951,14 @@ types-protobuf = ">=4.24"
 
 [[package]]
 name = "ni-python-styleguide"
-version = "0.4.8"
+version = "0.4.9"
 description = "NI's internal and external Python linter rules and plugins"
 optional = false
 python-versions = "<4.0,>=3.7"
 groups = ["lint"]
 files = [
-    {file = "ni_python_styleguide-0.4.8-py3-none-any.whl", hash = "sha256:dbbf0fc3692f7d71008ae9cd0d01c93dbf21085e0de2f0068dcd16addb573546"},
-    {file = "ni_python_styleguide-0.4.8.tar.gz", hash = "sha256:f3434d14cc9838613171fe26faccc396a4a8b2f960e139fc92de9bf636f8ba51"},
+    {file = "ni_python_styleguide-0.4.9-py3-none-any.whl", hash = "sha256:3a33735fbb52231bda00ec970d7c7aebe2b15aed2ccbd07da5c52b8e04730918"},
+    {file = "ni_python_styleguide-0.4.9.tar.gz", hash = "sha256:64a65da646fc8c2f0e68970e0a3190534add9380ee78782fa809fee5321f9e45"},
 ]
 
 [package.dependencies]
@@ -978,6 +978,7 @@ pycodestyle = [
     {version = ">=2.9,<3.0", markers = "python_version >= \"3.7\" and python_version < \"3.12\""},
     {version = ">=2.11,<3.0", markers = "python_version >= \"3.12\" and python_version < \"4.0\""},
 ]
+setuptools = "<82"
 toml = ">=0.10.1"
 
 [[package]]
