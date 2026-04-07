@@ -47,10 +47,10 @@ jobs:
         with:
           fetch-depth: 0  # Need full history for git tag and release notes
       - name: Set up Python
-        uses: ni/python-actions/setup-python@aa64e60612cb078b0c2ada666becbd70d4817d55 # v0.7.1
+        uses: ni/python-actions/setup-python@a2894c635a2cba635a1086c1f89796fec2c52f74 # v0.7.2
         id: setup-python
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@aa64e60612cb078b0c2ada666becbd70d4817d55 # v0.7.1
+        uses: ni/python-actions/setup-poetry@a2894c635a2cba635a1086c1f89796fec2c52f74 # v0.7.2
       - name: Get release details
         id: get-release-details
         working-directory: packages/${{ inputs.package-name }}
@@ -110,7 +110,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"          
           
       - name: Create draft release
-        uses: ncipollo/release-action@b7eabc95ff50cbeeedec83973935c8f306dfcd0b # v1.20.0
+        uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1.21.0
         with:
           tag: ${{ steps.get-release-details.outputs.tag }}
           name: ${{ steps.get-release-details.outputs.title }}
