@@ -390,6 +390,88 @@ class ComputeNodeDescriptor(google.protobuf.message.Message):
 global___ComputeNodeDescriptor = ComputeNodeDescriptor
 
 @typing.final
+class EnumerateActiveServicesRequest(google.protobuf.message.Message):
+    """Message sent to enumerate the active (currently running) service instances."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    PROVIDED_INTERFACE_FIELD_NUMBER: builtins.int
+    SERVICE_CLASS_FIELD_NUMBER: builtins.int
+    provided_interface: builtins.str
+    """Optional. The gRPC full name of the service interface that is needed. If empty,
+    information for all active services registered with the discovery service will be,
+    returned, unless the 'service_class' field has been specified.
+    """
+    service_class: builtins.str
+    """Optional. The "class" of the service that should be matched. If used in conjunction with
+    the 'provided_interface' field, the 'service_class' field will be used to filter the results
+    to only those services that match the provided interface and service class.
+    """
+    def __init__(
+        self,
+        *,
+        provided_interface: builtins.str = ...,
+        service_class: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["provided_interface", b"provided_interface", "service_class", b"service_class"]) -> None: ...
+
+global___EnumerateActiveServicesRequest = EnumerateActiveServicesRequest
+
+@typing.final
+class ActiveServiceInformation(google.protobuf.message.Message):
+    """Combines a service descriptor with its location to describe an active service.
+    Used in EnumerateActiveServicesResponse to represent a single active service instance.
+    """
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    SERVICE_DESCRIPTOR_FIELD_NUMBER: builtins.int
+    SERVICE_LOCATION_FIELD_NUMBER: builtins.int
+    @property
+    def service_descriptor(self) -> global___ServiceDescriptor:
+        """The description of the service."""
+
+    @property
+    def service_location(self) -> global___ServiceLocation:
+        """The location of the service."""
+
+    def __init__(
+        self,
+        *,
+        service_descriptor: global___ServiceDescriptor | None = ...,
+        service_location: global___ServiceLocation | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["service_descriptor", b"service_descriptor", "service_location", b"service_location"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["service_descriptor", b"service_descriptor", "service_location", b"service_location"]) -> None: ...
+
+global___ActiveServiceInformation = ActiveServiceInformation
+
+@typing.final
+class EnumerateActiveServicesResponse(google.protobuf.message.Message):
+    """Message returned from the EnumerateActiveServices method."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    ACTIVE_SERVICES_FIELD_NUMBER: builtins.int
+    @property
+    def active_services(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ActiveServiceInformation]:
+        """The list of currently active service instances which implement the specified service interface.
+        This information is intended for diagnostic and informational purposes only.
+        To communicate with a service, use ResolveService or ResolveServiceWithInformation instead.
+        Unlike EnumerateServices, multiple entries may share the same service_class when multiple
+        versions of the same service are running side by side.
+        """
+
+    def __init__(
+        self,
+        *,
+        active_services: collections.abc.Iterable[global___ActiveServiceInformation] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["active_services", b"active_services"]) -> None: ...
+
+global___EnumerateActiveServicesResponse = EnumerateActiveServicesResponse
+
+@typing.final
 class EnumerateComputeNodesRequest(google.protobuf.message.Message):
     """Message sent to enumerate the compute nodes that have registered themselves in the current session."""
 

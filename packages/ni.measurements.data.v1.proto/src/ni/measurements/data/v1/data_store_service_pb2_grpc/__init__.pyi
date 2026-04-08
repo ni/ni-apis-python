@@ -98,7 +98,7 @@ class DataStoreServiceStub:
         ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
         ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
     ]
-    """Publishes multiple scalar measurements at once for parametric sweeps."""
+    """Publishes multiple measurements at once for parametric sweeps."""
 
     GetMeasurement: grpc.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
@@ -220,7 +220,7 @@ class DataStoreServiceAsyncStub:
         ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
         ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
     ]
-    """Publishes multiple scalar measurements at once for parametric sweeps."""
+    """Publishes multiple measurements at once for parametric sweeps."""
 
     GetMeasurement: grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
@@ -362,7 +362,7 @@ class DataStoreServiceServicer(metaclass=abc.ABCMeta):
         request: ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse, collections.abc.Awaitable[ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse]]:
-        """Publishes multiple scalar measurements at once for parametric sweeps."""
+        """Publishes multiple measurements at once for parametric sweeps."""
 
     @abc.abstractmethod
     def GetMeasurement(

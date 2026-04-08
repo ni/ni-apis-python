@@ -180,7 +180,7 @@ class DataStoreServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def PublishMeasurementBatch(self, request, context):
-        """Publishes multiple scalar measurements at once for parametric sweeps.
+        """Publishes multiple measurements at once for parametric sweeps.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')

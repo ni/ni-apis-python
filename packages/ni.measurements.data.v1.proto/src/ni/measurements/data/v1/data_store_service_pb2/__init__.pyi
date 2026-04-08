@@ -12,8 +12,11 @@ import ni.measurements.data.v1.data_store_pb2
 import ni.protobuf.types.precision_timestamp_pb2
 import ni.protobuf.types.scalar_pb2
 import ni.protobuf.types.vector_pb2
+import ni.protobuf.types.vector_wrappers_pb2
 import ni.protobuf.types.waveform_pb2
+import ni.protobuf.types.waveform_wrappers_pb2
 import ni.protobuf.types.xydata_pb2
+import ni.protobuf.types.xydata_wrappers_pb2
 import typing
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
@@ -467,6 +470,14 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
 
     NAME_FIELD_NUMBER: builtins.int
     SCALAR_VALUES_FIELD_NUMBER: builtins.int
+    VECTOR_VALUES_FIELD_NUMBER: builtins.int
+    DOUBLE_ANALOG_WAVEFORM_VALUES_FIELD_NUMBER: builtins.int
+    X_Y_DATA_VALUES_FIELD_NUMBER: builtins.int
+    I16_ANALOG_WAVEFORM_VALUES_FIELD_NUMBER: builtins.int
+    DOUBLE_COMPLEX_WAVEFORM_VALUES_FIELD_NUMBER: builtins.int
+    I16_COMPLEX_WAVEFORM_VALUES_FIELD_NUMBER: builtins.int
+    DOUBLE_SPECTRUM_VALUES_FIELD_NUMBER: builtins.int
+    DIGITAL_WAVEFORM_VALUES_FIELD_NUMBER: builtins.int
     NOTES_FIELD_NUMBER: builtins.int
     TIMESTAMPS_FIELD_NUMBER: builtins.int
     OUTCOMES_FIELD_NUMBER: builtins.int
@@ -487,7 +498,41 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
     This value is expected to be a parsable GUID.
     """
     @property
-    def scalar_values(self) -> ni.protobuf.types.vector_pb2.Vector: ...
+    def scalar_values(self) -> ni.protobuf.types.vector_pb2.Vector:
+        """Scalar values packed into a vector (e.g., N doubles in a DoubleArray)."""
+
+    @property
+    def vector_values(self) -> ni.protobuf.types.vector_wrappers_pb2.VectorArrayValue:
+        """N vector values, one per iteration."""
+
+    @property
+    def double_analog_waveform_values(self) -> ni.protobuf.types.waveform_wrappers_pb2.DoubleAnalogWaveformArrayValue:
+        """N double-precision analog waveforms, one per iteration."""
+
+    @property
+    def x_y_data_values(self) -> ni.protobuf.types.xydata_wrappers_pb2.DoubleXYDataArrayValue:
+        """N XY data sets, one per iteration."""
+
+    @property
+    def i16_analog_waveform_values(self) -> ni.protobuf.types.waveform_wrappers_pb2.I16AnalogWaveformArrayValue:
+        """N 16-bit integer analog waveforms, one per iteration."""
+
+    @property
+    def double_complex_waveform_values(self) -> ni.protobuf.types.waveform_wrappers_pb2.DoubleComplexWaveformArrayValue:
+        """N double-precision complex waveforms, one per iteration."""
+
+    @property
+    def i16_complex_waveform_values(self) -> ni.protobuf.types.waveform_wrappers_pb2.I16ComplexWaveformArrayValue:
+        """N 16-bit integer complex waveforms, one per iteration."""
+
+    @property
+    def double_spectrum_values(self) -> ni.protobuf.types.waveform_wrappers_pb2.DoubleSpectrumArrayValue:
+        """N double-precision spectrums, one per iteration."""
+
+    @property
+    def digital_waveform_values(self) -> ni.protobuf.types.waveform_wrappers_pb2.DigitalWaveformArrayValue:
+        """N digital waveforms, one per iteration."""
+
     @property
     def timestamps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp]:
         """Optional. The timestamps corresponding to the N iterations of batched measurement being published.
@@ -544,6 +589,14 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
         *,
         name: builtins.str = ...,
         scalar_values: ni.protobuf.types.vector_pb2.Vector | None = ...,
+        vector_values: ni.protobuf.types.vector_wrappers_pb2.VectorArrayValue | None = ...,
+        double_analog_waveform_values: ni.protobuf.types.waveform_wrappers_pb2.DoubleAnalogWaveformArrayValue | None = ...,
+        x_y_data_values: ni.protobuf.types.xydata_wrappers_pb2.DoubleXYDataArrayValue | None = ...,
+        i16_analog_waveform_values: ni.protobuf.types.waveform_wrappers_pb2.I16AnalogWaveformArrayValue | None = ...,
+        double_complex_waveform_values: ni.protobuf.types.waveform_wrappers_pb2.DoubleComplexWaveformArrayValue | None = ...,
+        i16_complex_waveform_values: ni.protobuf.types.waveform_wrappers_pb2.I16ComplexWaveformArrayValue | None = ...,
+        double_spectrum_values: ni.protobuf.types.waveform_wrappers_pb2.DoubleSpectrumArrayValue | None = ...,
+        digital_waveform_values: ni.protobuf.types.waveform_wrappers_pb2.DigitalWaveformArrayValue | None = ...,
         notes: builtins.str = ...,
         timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
         outcomes: collections.abc.Iterable[ni.measurements.data.v1.data_store_pb2.Outcome.ValueType] | None = ...,
@@ -553,9 +606,9 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
         test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
         software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["scalar_values", b"scalar_values", "values", b"values"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "name", b"name", "notes", b"notes", "outcomes", b"outcomes", "scalar_values", b"scalar_values", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamps", b"timestamps", "values", b"values"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["values", b"values"]) -> typing.Literal["scalar_values"] | None: ...
+    def HasField(self, field_name: typing.Literal["digital_waveform_values", b"digital_waveform_values", "double_analog_waveform_values", b"double_analog_waveform_values", "double_complex_waveform_values", b"double_complex_waveform_values", "double_spectrum_values", b"double_spectrum_values", "i16_analog_waveform_values", b"i16_analog_waveform_values", "i16_complex_waveform_values", b"i16_complex_waveform_values", "scalar_values", b"scalar_values", "values", b"values", "vector_values", b"vector_values", "x_y_data_values", b"x_y_data_values"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["digital_waveform_values", b"digital_waveform_values", "double_analog_waveform_values", b"double_analog_waveform_values", "double_complex_waveform_values", b"double_complex_waveform_values", "double_spectrum_values", b"double_spectrum_values", "error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "i16_analog_waveform_values", b"i16_analog_waveform_values", "i16_complex_waveform_values", b"i16_complex_waveform_values", "name", b"name", "notes", b"notes", "outcomes", b"outcomes", "scalar_values", b"scalar_values", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamps", b"timestamps", "values", b"values", "vector_values", b"vector_values", "x_y_data_values", b"x_y_data_values"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["values", b"values"]) -> typing.Literal["scalar_values", "vector_values", "double_analog_waveform_values", "x_y_data_values", "i16_analog_waveform_values", "double_complex_waveform_values", "i16_complex_waveform_values", "double_spectrum_values", "digital_waveform_values"] | None: ...
 
 global___PublishMeasurementBatchRequest = PublishMeasurementBatchRequest
 
