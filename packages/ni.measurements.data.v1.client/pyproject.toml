@@ -47,6 +47,7 @@ ni-measurementlink-discovery-v1-client = { path = "../ni.measurementlink.discove
 ni-datamonikers-v1-proto = { path = "../ni.datamonikers.v1.proto", develop = true }
 ni-measurements-metadata-v1-proto = { path = "../ni.measurements.metadata.v1.proto", develop = true }
 ni-measurements-data-v1-proto = { path = "../ni.measurements.data.v1.proto", develop = true }
+ni-protobuf-types = { path = "../ni.protobuf.types", develop = true }
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
