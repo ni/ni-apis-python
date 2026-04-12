@@ -46,6 +46,11 @@ class DiscoveryServiceStub(object):
                 request_serializer=ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateComputeNodesRequest.SerializeToString,
                 response_deserializer=ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateComputeNodesResponse.FromString,
                 )
+        self.EnumerateActiveServices = channel.unary_unary(
+                '/ni.measurementlink.discovery.v1.DiscoveryService/EnumerateActiveServices',
+                request_serializer=ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateActiveServicesRequest.SerializeToString,
+                response_deserializer=ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateActiveServicesResponse.FromString,
+                )
 
 
 class DiscoveryServiceServicer(object):
@@ -123,6 +128,21 @@ class DiscoveryServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def EnumerateActiveServices(self, request, context):
+        """Enumerate all service instances that are currently active (running).
+        This RPC is intended for diagnostic and informational purposes, such as displaying the
+        status of registered services to a user. It should not be used to obtain a service location
+        for the purpose of communicating with that service; use ResolveService or
+        ResolveServiceWithInformation for that purpose.
+
+        Unlike EnumerateServices, this RPC returns individual active service instances rather than
+        collapsing multiple registered versions into a single ServiceDescriptor entry, allowing
+        callers to see each running instance independently when multiple versions are active side by side.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DiscoveryServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -155,6 +175,11 @@ def add_DiscoveryServiceServicer_to_server(servicer, server):
                     servicer.EnumerateComputeNodes,
                     request_deserializer=ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateComputeNodesRequest.FromString,
                     response_serializer=ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateComputeNodesResponse.SerializeToString,
+            ),
+            'EnumerateActiveServices': grpc.unary_unary_rpc_method_handler(
+                    servicer.EnumerateActiveServices,
+                    request_deserializer=ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateActiveServicesRequest.FromString,
+                    response_serializer=ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateActiveServicesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -267,5 +292,22 @@ class DiscoveryService(object):
         return grpc.experimental.unary_unary(request, target, '/ni.measurementlink.discovery.v1.DiscoveryService/EnumerateComputeNodes',
             ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateComputeNodesRequest.SerializeToString,
             ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateComputeNodesResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def EnumerateActiveServices(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ni.measurementlink.discovery.v1.DiscoveryService/EnumerateActiveServices',
+            ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateActiveServicesRequest.SerializeToString,
+            ni_dot_measurementlink_dot_discovery_dot_v1_dot_discovery__service__pb2.EnumerateActiveServicesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

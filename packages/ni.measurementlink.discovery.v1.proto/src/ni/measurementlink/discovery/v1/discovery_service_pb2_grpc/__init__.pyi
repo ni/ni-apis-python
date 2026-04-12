@@ -94,6 +94,21 @@ class DiscoveryServiceStub:
     get the service location for a service running on that compute node.
     """
 
+    EnumerateActiveServices: grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesResponse,
+    ]
+    """Enumerate all service instances that are currently active (running).
+    This RPC is intended for diagnostic and informational purposes, such as displaying the
+    status of registered services to a user. It should not be used to obtain a service location
+    for the purpose of communicating with that service; use ResolveService or
+    ResolveServiceWithInformation for that purpose.
+
+    Unlike EnumerateServices, this RPC returns individual active service instances rather than
+    collapsing multiple registered versions into a single ServiceDescriptor entry, allowing
+    callers to see each running instance independently when multiple versions are active side by side.
+    """
+
 class DiscoveryServiceAsyncStub:
     """The service used as a registry for other services. This service can be used to discover
     and activate other services present in the system.
@@ -166,6 +181,21 @@ class DiscoveryServiceAsyncStub:
     These compute nodes are targets available for execution of services.
     A compute node can be used as an argument to the ResolveService method to
     get the service location for a service running on that compute node.
+    """
+
+    EnumerateActiveServices: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesResponse,
+    ]
+    """Enumerate all service instances that are currently active (running).
+    This RPC is intended for diagnostic and informational purposes, such as displaying the
+    status of registered services to a user. It should not be used to obtain a service location
+    for the purpose of communicating with that service; use ResolveService or
+    ResolveServiceWithInformation for that purpose.
+
+    Unlike EnumerateServices, this RPC returns individual active service instances rather than
+    collapsing multiple registered versions into a single ServiceDescriptor entry, allowing
+    callers to see each running instance independently when multiple versions are active side by side.
     """
 
 class DiscoveryServiceServicer(metaclass=abc.ABCMeta):
@@ -252,6 +282,23 @@ class DiscoveryServiceServicer(metaclass=abc.ABCMeta):
         These compute nodes are targets available for execution of services.
         A compute node can be used as an argument to the ResolveService method to
         get the service location for a service running on that compute node.
+        """
+
+    @abc.abstractmethod
+    def EnumerateActiveServices(
+        self,
+        request: ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesResponse, collections.abc.Awaitable[ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesResponse]]:
+        """Enumerate all service instances that are currently active (running).
+        This RPC is intended for diagnostic and informational purposes, such as displaying the
+        status of registered services to a user. It should not be used to obtain a service location
+        for the purpose of communicating with that service; use ResolveService or
+        ResolveServiceWithInformation for that purpose.
+
+        Unlike EnumerateServices, this RPC returns individual active service instances rather than
+        collapsing multiple registered versions into a single ServiceDescriptor entry, allowing
+        callers to see each running instance independently when multiple versions are active side by side.
         """
 
 def add_DiscoveryServiceServicer_to_server(servicer: DiscoveryServiceServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...

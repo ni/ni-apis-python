@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 from ni.protobuf.types import waveform_pb2 as ni_dot_protobuf_dot_types_dot_waveform__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)ni/protobuf/types/waveform_wrappers.proto\x12\x11ni.protobuf.types\x1a ni/protobuf/types/waveform.proto\"\\\n\x1e\x44oubleAnalogWaveformArrayValue\x12:\n\twaveforms\x18\x01 \x03(\x0b\x32\'.ni.protobuf.types.DoubleAnalogWaveform\"V\n\x1bI16AnalogWaveformArrayValue\x12\x37\n\twaveforms\x18\x01 \x03(\x0b\x32$.ni.protobuf.types.I16AnalogWaveform\"^\n\x1f\x44oubleComplexWaveformArrayValue\x12;\n\twaveforms\x18\x01 \x03(\x0b\x32(.ni.protobuf.types.DoubleComplexWaveform\"X\n\x1cI16ComplexWaveformArrayValue\x12\x38\n\twaveforms\x18\x01 \x03(\x0b\x32%.ni.protobuf.types.I16ComplexWaveform\"P\n\x18\x44oubleSpectrumArrayValue\x12\x34\n\twaveforms\x18\x01 \x03(\x0b\x32!.ni.protobuf.types.DoubleSpectrumB\x8d\x01\n\x15\x63om.ni.protobuf.typesB\x15WaveformWrappersProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)ni/protobuf/types/waveform_wrappers.proto\x12\x11ni.protobuf.types\x1a ni/protobuf/types/waveform.proto\"\\\n\x1e\x44oubleAnalogWaveformArrayValue\x12:\n\twaveforms\x18\x01 \x03(\x0b\x32\'.ni.protobuf.types.DoubleAnalogWaveform\"V\n\x1bI16AnalogWaveformArrayValue\x12\x37\n\twaveforms\x18\x01 \x03(\x0b\x32$.ni.protobuf.types.I16AnalogWaveform\"^\n\x1f\x44oubleComplexWaveformArrayValue\x12;\n\twaveforms\x18\x01 \x03(\x0b\x32(.ni.protobuf.types.DoubleComplexWaveform\"X\n\x1cI16ComplexWaveformArrayValue\x12\x38\n\twaveforms\x18\x01 \x03(\x0b\x32%.ni.protobuf.types.I16ComplexWaveform\"P\n\x18\x44oubleSpectrumArrayValue\x12\x34\n\twaveforms\x18\x01 \x03(\x0b\x32!.ni.protobuf.types.DoubleSpectrum\"R\n\x19\x44igitalWaveformArrayValue\x12\x35\n\twaveforms\x18\x01 \x03(\x0b\x32\".ni.protobuf.types.DigitalWaveformB\x8d\x01\n\x15\x63om.ni.protobuf.typesB\x15WaveformWrappersProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ni.protobuf.types.waveform_wrappers_pb2', globals())
@@ -32,4 +32,6 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _I16COMPLEXWAVEFORMARRAYVALUE._serialized_end=464
   _DOUBLESPECTRUMARRAYVALUE._serialized_start=466
   _DOUBLESPECTRUMARRAYVALUE._serialized_end=546
+  _DIGITALWAVEFORMARRAYVALUE._serialized_start=548
+  _DIGITALWAVEFORMARRAYVALUE._serialized_end=630
 # @@protoc_insertion_point(module_scope)

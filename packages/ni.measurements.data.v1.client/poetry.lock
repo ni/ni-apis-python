@@ -1144,19 +1144,21 @@ url = "../ni.measurements.metadata.v1.proto"
 
 [[package]]
 name = "ni-protobuf-types"
-version = "1.1.0"
+version = "1.1.1.dev0"
 description = "Protobuf data types for NI gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.10"
+python-versions = ">=3.10,<4.0"
 groups = ["main", "dev"]
-files = [
-    {file = "ni_protobuf_types-1.1.0-py3-none-any.whl", hash = "sha256:0c21c096cf8577483dade081c571305fe8d4cc759ce2c780e7437129a375942c"},
-    {file = "ni_protobuf_types-1.1.0.tar.gz", hash = "sha256:98f0583405e219f6e128133c2f6c033f03cd83ebd3ce8098ad74ab99b8a253c1"},
-]
+files = []
+develop = true
 
 [package.dependencies]
 nitypes = ">=1.1.0dev1"
 protobuf = ">=4.21"
+
+[package.source]
+type = "directory"
+url = "../ni.protobuf.types"
 
 [[package]]
 name = "ni-python-styleguide"
@@ -2342,4 +2344,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "bdd65601f2df846a78d85cf9750cc72e6fdbd6d5de52f9b4b6224526d30a3703"
+content-hash = "19fcd10ccacf58742b946b7cc60dd52bed7029f12d5902bf689da972f7a28f2c"
