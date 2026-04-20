@@ -254,7 +254,7 @@ class PublishConditionRequest(google.protobuf.message.Message):
     name: builtins.str
     """Required. Identifier describing the condition value. For example, "Voltage"."""
     condition_type: builtins.str
-    """Required. The type of this condition. For example, "Upper Limit" or "Environment"."""
+    """Optional. The type of this condition. For example, "Upper Limit" or "Environment"."""
     step_id: builtins.str
     """Required.
     The id of the step associated with this condition.
@@ -303,7 +303,7 @@ class PublishConditionBatchRequest(google.protobuf.message.Message):
     name: builtins.str
     """Required. Identifier describing the condition values. For example, "Voltage"."""
     condition_type: builtins.str
-    """Required. The type of this condition. For example, "Upper Limit" or "Environment"."""
+    """Optional. The type of this condition. For example, "Upper Limit" or "Environment"."""
     step_id: builtins.str
     """Required.
     The id of the step associated with this batch of condition values.
@@ -396,7 +396,7 @@ class PublishMeasurementRequest(google.protobuf.message.Message):
     def digital_waveform(self) -> ni.protobuf.types.waveform_pb2.DigitalWaveform: ...
     @property
     def timestamp(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
-        """Required. The timestamp of the measurement."""
+        """Optional. The timestamp of the measurement."""
 
     @property
     def error_information(self) -> ni.measurements.data.v1.data_store_pb2.ErrorInformation:
