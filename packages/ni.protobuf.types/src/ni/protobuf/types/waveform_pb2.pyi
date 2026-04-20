@@ -43,11 +43,24 @@ class DoubleAnalogWaveform(google.protobuf.message.Message):
     DT_FIELD_NUMBER: builtins.int
     Y_DATA_FIELD_NUMBER: builtins.int
     ATTRIBUTES_FIELD_NUMBER: builtins.int
+    TIMESTAMP_FIELD_NUMBER: builtins.int
+    TIME_OFFSET_FIELD_NUMBER: builtins.int
+    TIMESTAMPS_FIELD_NUMBER: builtins.int
     dt: builtins.float
     """The time interval in seconds between data points in the waveform."""
+    time_offset: builtins.float
+    """The offset, in seconds, relative to timestamp when the first sample occurs.
+
+    When setting time_offset, either both t0 and timestamp should remain unset
+    or both should be set such that t0 = timestamp + time_offset.
+    """
     @property
     def t0(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
-        """The time of the first sample in y_data."""
+        """The time of the first sample in y_data.
+
+        Leave t0 unset only when the start time is unknown or when the waveform
+        has irregular timing and the timestamps field is used instead.
+        """
 
     @property
     def y_data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
@@ -57,6 +70,24 @@ class DoubleAnalogWaveform(google.protobuf.message.Message):
     def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
 
+    @property
+    def timestamp(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+        """A timestamp denoting some external stimulus like a trigger.
+
+        When setting timestamp, you should also always set t0 and time_offset such
+        that t0 = timestamp + time_offset. If timestamp is unset, it is inferred
+        that timestamp is the same as t0.
+        """
+
+    @property
+    def timestamps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp]:
+        """The timestamps for each sample in y_data.
+
+        The length of this field and y_data should match. This is for use in cases where
+        the waveform has irregular timing. This timestamps field is mutually exclusive
+        with t0/timestamp/time_offset/dt.
+        """
+
     def __init__(
         self,
         *,
@@ -64,9 +95,12 @@ class DoubleAnalogWaveform(google.protobuf.message.Message):
         dt: builtins.float = ...,
         y_data: collections.abc.Iterable[builtins.float] | None = ...,
         attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
+        timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        time_offset: builtins.float = ...,
+        timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["t0", b"t0"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "t0", b"t0", "y_data", b"y_data"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
 global___DoubleAnalogWaveform = DoubleAnalogWaveform
 
@@ -99,11 +133,24 @@ class I16AnalogWaveform(google.protobuf.message.Message):
     Y_DATA_FIELD_NUMBER: builtins.int
     ATTRIBUTES_FIELD_NUMBER: builtins.int
     SCALE_FIELD_NUMBER: builtins.int
+    TIMESTAMP_FIELD_NUMBER: builtins.int
+    TIME_OFFSET_FIELD_NUMBER: builtins.int
+    TIMESTAMPS_FIELD_NUMBER: builtins.int
     dt: builtins.float
     """The time interval in seconds between data points in the waveform."""
+    time_offset: builtins.float
+    """The offset, in seconds, relative to timestamp when the first sample occurs.
+
+    When setting time_offset, either both t0 and timestamp should remain unset
+    or both should be set such that t0 = timestamp + time_offset.
+    """
     @property
     def t0(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
-        """The time of the first sample in y_data."""
+        """The time of the first sample in y_data.
+
+        Leave t0 unset only when the start time is unknown or when the waveform
+        has irregular timing and the timestamps field is used instead.
+        """
 
     @property
     def y_data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
@@ -117,6 +164,24 @@ class I16AnalogWaveform(google.protobuf.message.Message):
     def scale(self) -> global___Scale:
         """Optional scaling information used to convert raw data to scaled data."""
 
+    @property
+    def timestamp(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+        """A timestamp denoting some external stimulus like a trigger.
+
+        When setting timestamp, you should also always set t0 and time_offset such
+        that t0 = timestamp + time_offset. If timestamp is unset, it is inferred
+        that timestamp is the same as t0.
+        """
+
+    @property
+    def timestamps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp]:
+        """The timestamps for each sample in y_data.
+
+        The length of this field and y_data should match. This is for use in cases where
+        the waveform has irregular timing. This timestamps field is mutually exclusive
+        with t0/timestamp/time_offset/dt.
+        """
+
     def __init__(
         self,
         *,
@@ -125,9 +190,12 @@ class I16AnalogWaveform(google.protobuf.message.Message):
         y_data: collections.abc.Iterable[builtins.int] | None = ...,
         attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
         scale: global___Scale | None = ...,
+        timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        time_offset: builtins.float = ...,
+        timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["scale", b"scale", "t0", b"t0"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "scale", b"scale", "t0", b"t0", "y_data", b"y_data"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["scale", b"scale", "t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "scale", b"scale", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
 global___I16AnalogWaveform = I16AnalogWaveform
 
@@ -159,11 +227,24 @@ class DoubleComplexWaveform(google.protobuf.message.Message):
     DT_FIELD_NUMBER: builtins.int
     Y_DATA_FIELD_NUMBER: builtins.int
     ATTRIBUTES_FIELD_NUMBER: builtins.int
+    TIMESTAMP_FIELD_NUMBER: builtins.int
+    TIME_OFFSET_FIELD_NUMBER: builtins.int
+    TIMESTAMPS_FIELD_NUMBER: builtins.int
     dt: builtins.float
     """The time interval in seconds between data points in the waveform."""
+    time_offset: builtins.float
+    """The offset, in seconds, relative to timestamp when the first sample occurs.
+
+    When setting time_offset, either both t0 and timestamp should remain unset
+    or both should be set such that t0 = timestamp + time_offset.
+    """
     @property
     def t0(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
-        """The time of the first sample in y_data."""
+        """The time of the first sample in y_data.
+
+        Leave t0 unset only when the start time is unknown or when the waveform
+        has irregular timing and the timestamps field is used instead.
+        """
 
     @property
     def y_data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.float]:
@@ -177,6 +258,24 @@ class DoubleComplexWaveform(google.protobuf.message.Message):
     def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
 
+    @property
+    def timestamp(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+        """A timestamp denoting some external stimulus like a trigger.
+
+        When setting timestamp, you should also always set t0 and time_offset such
+        that t0 = timestamp + time_offset. If timestamp is unset, it is inferred
+        that timestamp is the same as t0.
+        """
+
+    @property
+    def timestamps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp]:
+        """The timestamps for each sample in y_data.
+
+        The length of this field and y_data should match. This is for use in cases where
+        the waveform has irregular timing. This timestamps field is mutually exclusive
+        with t0/timestamp/time_offset/dt.
+        """
+
     def __init__(
         self,
         *,
@@ -184,9 +283,12 @@ class DoubleComplexWaveform(google.protobuf.message.Message):
         dt: builtins.float = ...,
         y_data: collections.abc.Iterable[builtins.float] | None = ...,
         attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
+        timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        time_offset: builtins.float = ...,
+        timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["t0", b"t0"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "t0", b"t0", "y_data", b"y_data"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
 global___DoubleComplexWaveform = DoubleComplexWaveform
 
@@ -219,11 +321,24 @@ class I16ComplexWaveform(google.protobuf.message.Message):
     Y_DATA_FIELD_NUMBER: builtins.int
     ATTRIBUTES_FIELD_NUMBER: builtins.int
     SCALE_FIELD_NUMBER: builtins.int
+    TIMESTAMP_FIELD_NUMBER: builtins.int
+    TIME_OFFSET_FIELD_NUMBER: builtins.int
+    TIMESTAMPS_FIELD_NUMBER: builtins.int
     dt: builtins.float
     """The time interval in seconds between data points in the waveform."""
+    time_offset: builtins.float
+    """The offset, in seconds, relative to timestamp when the first sample occurs.
+
+    When setting time_offset, either both t0 and timestamp should remain unset
+    or both should be set such that t0 = timestamp + time_offset.
+    """
     @property
     def t0(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
-        """The time of the first sample in y_data."""
+        """The time of the first sample in y_data.
+
+        Leave t0 unset only when the start time is unknown or when the waveform
+        has irregular timing and the timestamps field is used instead.
+        """
 
     @property
     def y_data(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.int]:
@@ -241,6 +356,24 @@ class I16ComplexWaveform(google.protobuf.message.Message):
     def scale(self) -> global___Scale:
         """Optional scaling information used to convert raw data to scaled data."""
 
+    @property
+    def timestamp(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+        """A timestamp denoting some external stimulus like a trigger.
+
+        When setting timestamp, you should also always set t0 and time_offset such
+        that t0 = timestamp + time_offset. If timestamp is unset, it is inferred
+        that timestamp is the same as t0.
+        """
+
+    @property
+    def timestamps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp]:
+        """The timestamps for each sample in y_data.
+
+        The length of this field and y_data should match. This is for use in cases where
+        the waveform has irregular timing. This timestamps field is mutually exclusive
+        with t0/timestamp/time_offset/dt.
+        """
+
     def __init__(
         self,
         *,
@@ -249,9 +382,12 @@ class I16ComplexWaveform(google.protobuf.message.Message):
         y_data: collections.abc.Iterable[builtins.int] | None = ...,
         attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
         scale: global___Scale | None = ...,
+        timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        time_offset: builtins.float = ...,
+        timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["scale", b"scale", "t0", b"t0"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "scale", b"scale", "t0", b"t0", "y_data", b"y_data"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["scale", b"scale", "t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "scale", b"scale", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
 global___I16ComplexWaveform = I16ComplexWaveform
 
@@ -379,6 +515,9 @@ class DigitalWaveform(google.protobuf.message.Message):
     SIGNAL_COUNT_FIELD_NUMBER: builtins.int
     Y_DATA_FIELD_NUMBER: builtins.int
     ATTRIBUTES_FIELD_NUMBER: builtins.int
+    TIMESTAMP_FIELD_NUMBER: builtins.int
+    TIME_OFFSET_FIELD_NUMBER: builtins.int
+    TIMESTAMPS_FIELD_NUMBER: builtins.int
     dt: builtins.float
     """The time interval in seconds between data points in the waveform."""
     signal_count: builtins.int
@@ -389,13 +528,41 @@ class DigitalWaveform(google.protobuf.message.Message):
     This data is a flattened array of bytes that are ordered such that each
     signal_count bytes represents a sample.
     """
+    time_offset: builtins.float
+    """The offset, in seconds, relative to timestamp when the first sample occurs.
+
+    When setting time_offset, either both t0 and timestamp should remain unset
+    or both should be set such that t0 = timestamp + time_offset.
+    """
     @property
     def t0(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
-        """The time of the first sample in y_data."""
+        """The time of the first sample in y_data.
+
+        Leave t0 unset only when the start time is unknown or when the waveform
+        has irregular timing and the timestamps field is used instead.
+        """
 
     @property
     def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
+
+    @property
+    def timestamp(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+        """A timestamp denoting some external stimulus like a trigger.
+
+        When setting timestamp, you should also always set t0 and time_offset such
+        that t0 = timestamp + time_offset. If timestamp is unset, it is inferred
+        that timestamp is the same as t0.
+        """
+
+    @property
+    def timestamps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp]:
+        """The timestamps for each sample in y_data.
+
+        The length of this field and y_data should match. This is for use in cases where
+        the waveform has irregular timing. This timestamps field is mutually exclusive
+        with t0/timestamp/time_offset/dt.
+        """
 
     def __init__(
         self,
@@ -405,9 +572,12 @@ class DigitalWaveform(google.protobuf.message.Message):
         signal_count: builtins.int = ...,
         y_data: builtins.bytes = ...,
         attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
+        timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        time_offset: builtins.float = ...,
+        timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["t0", b"t0"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "signal_count", b"signal_count", "t0", b"t0", "y_data", b"y_data"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "signal_count", b"signal_count", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
 global___DigitalWaveform = DigitalWaveform
 
