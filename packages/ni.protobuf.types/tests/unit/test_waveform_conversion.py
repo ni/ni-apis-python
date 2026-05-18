@@ -102,17 +102,16 @@ def test___analog_waveform_with_standard_timing___convert___valid_protobuf() -> 
     assert dbl_analog_waveform.t0 == converted_t0
 
 
-def test___analog_waveform_with_irregular_timing___convert___raises_value_error() -> None:
+def test___analog_waveform_with_irregular_timing___convert___valid_protobuf() -> None:
     analog_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]))
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
-    analog_waveform.timing = Timing.create_with_irregular_interval(
-        [t0_dt, t0_dt + dt.timedelta(milliseconds=1000), t0_dt + dt.timedelta(milliseconds=3000)]
-    )
+    timestamps = [t0_dt, t0_dt + dt.timedelta(milliseconds=1000), t0_dt + dt.timedelta(milliseconds=3000)]
+    analog_waveform.timing = Timing.create_with_irregular_interval(timestamps)
+    expected_proto_timestamps = [bintime_datetime_to_protobuf(bt.DateTime(ts)) for ts in timestamps]
 
-    with pytest.raises(ValueError) as exc:
-        _ = float64_analog_waveform_to_protobuf(analog_waveform)
+    dbl_analog_waveform = float64_analog_waveform_to_protobuf(analog_waveform)
 
-    assert exc.value.args[0].startswith("Cannot convert irregular sample interval to protobuf.")
+    assert list(dbl_analog_waveform.timestamps) == expected_proto_timestamps
 
 
 # ========================================================
@@ -167,7 +166,8 @@ def test___dbl_analog_wfm_with_timing_no_t0___convert___valid_python_object() ->
 
     analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
-    assert analog_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    # assert analog_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    assert not analog_waveform.timing.has_start_time
     assert analog_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
     assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
@@ -242,17 +242,16 @@ def test___float64_complex_waveform_with_standard_timing___convert___valid_proto
     assert dbl_complex_waveform.t0 == converted_t0
 
 
-def test___float64_complex_waveform_with_irregular_timing___convert___raises_value_error() -> None:
+def test___float64_complex_waveform_with_irregular_timing___convert___valid_protobuf() -> None:
     complex_waveform = ComplexWaveform.from_array_1d([1.5 + 2.5j, 3.5 + 4.5j], np.complex128)
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
-    complex_waveform.timing = Timing.create_with_irregular_interval(
-        [t0_dt, t0_dt + dt.timedelta(milliseconds=1000)]
-    )
+    timestamps = [t0_dt, t0_dt + dt.timedelta(milliseconds=1000)]
+    complex_waveform.timing = Timing.create_with_irregular_interval(timestamps)
+    expected_proto_timestamps = [bintime_datetime_to_protobuf(bt.DateTime(ts)) for ts in timestamps]
 
-    with pytest.raises(ValueError) as exc:
-        _ = float64_complex_waveform_to_protobuf(complex_waveform)
+    dbl_complex_waveform = float64_complex_waveform_to_protobuf(complex_waveform)
 
-    assert exc.value.args[0].startswith("Cannot convert irregular sample interval to protobuf.")
+    assert list(dbl_complex_waveform.timestamps) == expected_proto_timestamps
 
 
 # ========================================================
@@ -307,7 +306,8 @@ def test___dbl_complex_wfm_with_timing_no_t0___convert___valid_python_object() -
 
     complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
 
-    assert complex_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    # assert complex_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    assert not complex_waveform.timing.has_start_time
     assert complex_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
     assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
@@ -383,17 +383,16 @@ def test___int16_complex_waveform_with_standard_timing___convert___valid_protobu
     assert i16_complex_waveform.t0 == converted_t0
 
 
-def test___int16_complex_waveform_with_irregular_timing___convert___raises_value_error() -> None:
+def test___int16_complex_waveform_with_irregular_timing___convert___valid_protobuf() -> None:
     complex_waveform = ComplexWaveform.from_array_1d([(1, 2), (3, 4)], ComplexInt32DType)
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
-    complex_waveform.timing = Timing.create_with_irregular_interval(
-        [t0_dt, t0_dt + dt.timedelta(milliseconds=1000)]
-    )
+    timestamps = [t0_dt, t0_dt + dt.timedelta(milliseconds=1000)]
+    complex_waveform.timing = Timing.create_with_irregular_interval(timestamps)
+    expected_proto_timestamps = [bintime_datetime_to_protobuf(bt.DateTime(ts)) for ts in timestamps]
 
-    with pytest.raises(ValueError) as exc:
-        _ = int16_complex_waveform_to_protobuf(complex_waveform)
+    i16_complex_waveform = int16_complex_waveform_to_protobuf(complex_waveform)
 
-    assert exc.value.args[0].startswith("Cannot convert irregular sample interval to protobuf.")
+    assert list(i16_complex_waveform.timestamps) == expected_proto_timestamps
 
 
 def test___int16_complex_waveform_with_scaling___convert___valid_protobuf() -> None:
@@ -464,7 +463,8 @@ def test___int16_complex_wfm_with_timing_no_t0___convert___valid_python_object()
 
     complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
 
-    assert complex_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    # assert complex_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    assert not complex_waveform.timing.has_start_time
     assert complex_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
     assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
@@ -551,17 +551,16 @@ def test___int16_analog_waveform_with_standard_timing___convert___valid_protobuf
     assert i16_analog_waveform.t0 == converted_t0
 
 
-def test___int16_analog_waveform_with_irregular_timing___convert___raises_value_error() -> None:
+def test___int16_analog_waveform_with_irregular_timing___convert___valid_protobuf() -> None:
     analog_waveform = AnalogWaveform.from_array_1d(np.array([1, 2, 3], dtype=np.int16))
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
-    analog_waveform.timing = Timing.create_with_irregular_interval(
-        [t0_dt, t0_dt + dt.timedelta(milliseconds=1000), t0_dt + dt.timedelta(milliseconds=3000)]
-    )
+    timestamps = [t0_dt, t0_dt + dt.timedelta(milliseconds=1000), t0_dt + dt.timedelta(milliseconds=3000)]
+    analog_waveform.timing = Timing.create_with_irregular_interval(timestamps)
+    expected_proto_timestamps = [bintime_datetime_to_protobuf(bt.DateTime(ts)) for ts in timestamps]
 
-    with pytest.raises(ValueError) as exc:
-        _ = int16_analog_waveform_to_protobuf(analog_waveform)
+    i16_analog_waveform = int16_analog_waveform_to_protobuf(analog_waveform)
 
-    assert exc.value.args[0].startswith("Cannot convert irregular sample interval to protobuf.")
+    assert list(i16_analog_waveform.timestamps) == expected_proto_timestamps
 
 
 def test___int16_analog_waveform_with_scaling___convert___valid_protobuf() -> None:
@@ -630,7 +629,8 @@ def test___i16_analog_wfm_with_timing_no_t0___convert___valid_python_object() ->
 
     analog_waveform = int16_analog_waveform_from_protobuf(i16_analog_wfm)
 
-    assert analog_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    # assert analog_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    assert not analog_waveform.timing.has_start_time
     assert analog_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
     assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
@@ -792,14 +792,13 @@ def test___digital_waveform_with_irregular_timing___convert___raises_value_error
     data = np.array([[7, 1, 4], [1, 0, 1]], dtype=np.uint8)
     digital_waveform = DigitalWaveform.from_lines(data, signal_count=3)
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
-    digital_waveform.timing = Timing.create_with_irregular_interval(
-        [t0_dt, t0_dt + dt.timedelta(milliseconds=1000)]
-    )
+    timestamps = [t0_dt, t0_dt + dt.timedelta(milliseconds=1000)]
+    digital_waveform.timing = Timing.create_with_irregular_interval(timestamps)
+    expected_proto_timestamps = [bintime_datetime_to_protobuf(bt.DateTime(ts)) for ts in timestamps]
 
-    with pytest.raises(ValueError) as exc:
-        _ = digital_waveform_to_protobuf(digital_waveform)
+    digital_waveform_proto = digital_waveform_to_protobuf(digital_waveform)
 
-    assert exc.value.args[0].startswith("Cannot convert irregular sample interval to protobuf.")
+    assert list(digital_waveform_proto.timestamps) == expected_proto_timestamps
 
 
 def test___digital_waveform_round_trip___convert___valid_protobuf() -> None:
@@ -868,7 +867,8 @@ def test___digital_waveform_proto_with_timing_no_t0___convert___valid_python_obj
 
     digital_waveform = digital_waveform_from_protobuf(digital_waveform_proto)
 
-    assert digital_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    # assert digital_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
+    assert not digital_waveform.timing.has_start_time
     assert digital_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
     assert digital_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 

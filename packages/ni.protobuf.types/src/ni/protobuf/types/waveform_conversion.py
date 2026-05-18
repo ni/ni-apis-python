@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import datetime as dt
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from typing import Any
 
 import hightime as ht
@@ -46,6 +46,9 @@ def float64_analog_waveform_to_protobuf(
     _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
+    timestamp = _timestamp_from_waveform(value)
+    time_offset = _time_offset_from_waveform(value)
+    timestamps = _timestamps_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
 
     return DoubleAnalogWaveform(
@@ -53,6 +56,9 @@ def float64_analog_waveform_to_protobuf(
         dt=time_interval,
         y_data=value.scaled_data,
         attributes=attributes,
+        timestamp=timestamp,
+        time_offset=time_offset,
+        timestamps=timestamps,
     )
 
 
@@ -79,6 +85,9 @@ def float64_complex_waveform_to_protobuf(
     _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
+    timestamp = _timestamp_from_waveform(value)
+    time_offset = _time_offset_from_waveform(value)
+    timestamps = _timestamps_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
 
     interleaved_array = value.scaled_data.view(np.float64)
@@ -88,6 +97,9 @@ def float64_complex_waveform_to_protobuf(
         dt=time_interval,
         y_data=interleaved_array,
         attributes=attributes,
+        timestamp=timestamp,
+        time_offset=time_offset,
+        timestamps=timestamps,
     )
 
 
@@ -117,6 +129,9 @@ def int16_complex_waveform_to_protobuf(
     _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
+    timestamp = _timestamp_from_waveform(value)
+    time_offset = _time_offset_from_waveform(value)
+    timestamps = _timestamps_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
     scale = _scale_from_waveform(value)
 
@@ -128,6 +143,9 @@ def int16_complex_waveform_to_protobuf(
         y_data=interleaved_array,
         attributes=attributes,
         scale=scale,
+        timestamp=timestamp,
+        time_offset=time_offset,
+        timestamps=timestamps,
     )
 
 
@@ -179,6 +197,9 @@ def int16_analog_waveform_to_protobuf(value: AnalogWaveform[np.int16], /) -> I16
     _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
+    timestamp = _timestamp_from_waveform(value)
+    time_offset = _time_offset_from_waveform(value)
+    timestamps = _timestamps_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
     scale = _scale_from_waveform(value)
 
@@ -188,6 +209,9 @@ def int16_analog_waveform_to_protobuf(value: AnalogWaveform[np.int16], /) -> I16
         y_data=value.raw_data,
         attributes=attributes,
         scale=scale,
+        timestamp=timestamp,
+        time_offset=time_offset,
+        timestamps=timestamps,
     )
 
 
@@ -211,6 +235,9 @@ def digital_waveform_to_protobuf(value: DigitalWaveform[Any], /) -> DigitalWavef
     _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
+    timestamp = _timestamp_from_waveform(value)
+    time_offset = _time_offset_from_waveform(value)
+    timestamps = _timestamps_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
 
     return DigitalWaveformProto(
@@ -219,6 +246,9 @@ def digital_waveform_to_protobuf(value: DigitalWaveform[Any], /) -> DigitalWavef
         signal_count=value.signal_count,
         y_data=value.data.tobytes(),
         attributes=attributes,
+        timestamp=timestamp,
+        time_offset=time_offset,
+        timestamps=timestamps,
     )
 
 
@@ -283,8 +313,7 @@ def _value_to_attribute(value: ExtendedPropertyValue) -> WaveformAttributeValue:
 def _validate_timing(
     waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
 ) -> None:
-    if waveform.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
-        raise ValueError("Cannot convert irregular sample interval to protobuf.")
+    pass
 
 
 def _t0_from_waveform(
@@ -293,6 +322,35 @@ def _t0_from_waveform(
     if waveform.timing.has_start_time:
         bin_datetime = convert_datetime(bt.DateTime, waveform.timing.start_time)
         return ptc.bintime_datetime_to_protobuf(bin_datetime)
+    else:
+        return None
+
+def _timestamp_from_waveform(
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
+) -> PrecisionTimestamp | None:
+    if waveform.timing.has_timestamp:
+        bin_datetime = convert_datetime(bt.DateTime, waveform.timing.timestamp)
+        return ptc.bintime_datetime_to_protobuf(bin_datetime)
+    else:
+        return None
+
+def _time_offset_from_waveform(
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
+) -> float | None:
+    if waveform.timing.has_time_offset:
+        return waveform.timing.time_offset
+    else:
+        return 0
+
+def _timestamps_from_waveform(
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
+) -> Iterable[PrecisionTimestamp] | None:
+    if waveform.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
+        timestamps = waveform.timing.get_timestamps(0, waveform.sample_count)
+        return [
+            ptc.bintime_datetime_to_protobuf(convert_datetime(bt.DateTime, ts))
+            for ts in timestamps
+        ]
     else:
         return None
 
@@ -317,24 +375,58 @@ def _timing_from_waveform_message(
 ) -> Timing[bt.DateTime | dt.datetime]:
     # Declare timing to accept both bintime and dt.datetime to satisfy mypy.
     timing: Timing[bt.DateTime | dt.datetime]
-    if not message.dt and not message.HasField("t0"):
+    if message.timestamps and message.timestamps.count > 0:
+        timing = Timing.create_with_irregular_interval(message.timestamps)
+    elif not message.dt and not message.HasField("t0"):
         # If both dt and t0 are unset, use Timing.empty.
         timing = Timing.empty
     else:
-        # Timestamp
-        bin_datetime = ptc.bintime_datetime_from_protobuf(message.t0)
+        # Timestamp/T0
+        raw_timestamp = _calculate_raw_timestamp(message)
+        if raw_timestamp:
+            bin_datetime = ptc.bintime_datetime_from_protobuf(raw_timestamp)
+        else:
+            bin_datetime = None
+        if message.time_offset:
+            bin_offset = bt.TimeDelta(message.time_offset)
+        else:
+            bin_offset = None
 
         # Sample Interval
         if not message.dt:
-            timing = Timing.create_with_no_interval(timestamp=bin_datetime)
+            timing = Timing.create_with_no_interval(
+                timestamp=bin_datetime, time_offset=bin_offset)
         else:
             sample_interval = ht.timedelta(seconds=message.dt)
             timing = Timing.create_with_regular_interval(
                 sample_interval=sample_interval,
                 timestamp=bin_datetime,
+                time_offset=bin_offset,
             )
 
     return timing
+
+
+def _calculate_raw_timestamp(
+    message: (
+        DoubleAnalogWaveform
+        | DoubleComplexWaveform
+        | I16AnalogWaveform
+        | I16ComplexWaveform
+        | DigitalWaveformProto
+    ),
+) -> PrecisionTimestamp | None:
+    raw_timestamp = None
+
+    # Agreed precedence to timestamp over t0
+    if message.HasField("timestamp"):
+        raw_timestamp = message.timestamp
+    elif message.HasField("t0"):
+        raw_timestamp = message.t0
+        if message.time_offset:
+            raise AttributeError("Timestamp must be set when supplying a TimeOffset and T0.")
+
+    return raw_timestamp
 
 
 def _scale_from_waveform(waveform: AnalogWaveform[Any] | ComplexWaveform[Any]) -> Scale | None:
