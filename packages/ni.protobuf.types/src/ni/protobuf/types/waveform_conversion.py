@@ -338,7 +338,7 @@ def _time_offset_from_waveform(
     waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
 ) -> float | None:
     if waveform.timing.has_time_offset:
-        return waveform.timing.time_offset
+        return float(waveform.timing.time_offset.seconds)
     else:
         return 0
 
