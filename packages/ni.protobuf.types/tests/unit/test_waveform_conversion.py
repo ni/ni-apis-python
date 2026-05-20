@@ -230,7 +230,6 @@ def test___dbl_analog_wfm_with_timing_no_t0___convert___valid_python_object() ->
 
     analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
-    # assert analog_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
     assert not analog_waveform.timing.has_start_time
     assert analog_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
     assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
@@ -475,7 +474,6 @@ def test___dbl_complex_wfm_with_timing_no_t0___convert___valid_python_object() -
 
     complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
 
-    # assert complex_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
     assert not complex_waveform.timing.has_start_time
     assert complex_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
     assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
@@ -740,7 +738,6 @@ def test___int16_complex_wfm_with_timing_no_t0___convert___valid_python_object()
 
     complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
 
-    # assert complex_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
     assert not complex_waveform.timing.has_start_time
     assert complex_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
     assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
@@ -1006,7 +1003,6 @@ def test___i16_analog_wfm_with_timing_no_t0___convert___valid_python_object() ->
 
     analog_waveform = int16_analog_waveform_from_protobuf(i16_analog_wfm)
 
-    # assert analog_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
     assert not analog_waveform.timing.has_start_time
     assert analog_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
     assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
@@ -1047,7 +1043,7 @@ def test___i16_analog_wfm_with_dt_and_offset___convert___valid_python_object() -
     assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
 
-def test___i16_analog_wfm_with_t0_and_offet_no_timestamp___convert___valid_python_object() -> None:
+def test___i16_analog_wfm_with_t0_and_offset_no_timestamp___convert___valid_python_object() -> None:
     t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     i16_analog_wfm = I16AnalogWaveform(t0=t0_pt, dt=0.1, y_data=[1, 2, 3], time_offset=1.0)
@@ -1318,7 +1314,6 @@ def test___digital_waveform_proto_with_timing_no_t0___convert___valid_python_obj
 
     digital_waveform = digital_waveform_from_protobuf(digital_waveform_proto)
 
-    # assert digital_waveform.timing.start_time == dt.datetime(1904, 1, 1, tzinfo=dt.timezone.utc)
     assert not digital_waveform.timing.has_start_time
     assert digital_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
     assert digital_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
