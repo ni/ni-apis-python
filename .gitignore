@@ -18,3 +18,6 @@ dist/
 
 # mypy
 .mypy_cache/
+
+# vscode settings
+.vscode/
