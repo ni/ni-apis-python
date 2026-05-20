@@ -43,7 +43,6 @@ def float64_analog_waveform_to_protobuf(
     value: AnalogWaveform[np.float64], /
 ) -> DoubleAnalogWaveform:
     """Convert the Python AnalogWaveform to a protobuf DoubleAnalogWaveform."""
-    _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
     timestamp = _timestamp_from_waveform(value)
@@ -82,7 +81,6 @@ def float64_complex_waveform_to_protobuf(
     value: ComplexWaveform[np.complex128], /
 ) -> DoubleComplexWaveform:
     """Convert the Python ComplexWaveform to a protobuf DoubleComplexWaveform."""
-    _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
     timestamp = _timestamp_from_waveform(value)
@@ -126,7 +124,6 @@ def int16_complex_waveform_to_protobuf(
     value: ComplexWaveform[ComplexInt32Base], /
 ) -> I16ComplexWaveform:
     """Convert the Python ComplexWaveform to a protobuf DoubleComplexWaveform."""
-    _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
     timestamp = _timestamp_from_waveform(value)
@@ -194,7 +191,6 @@ def float64_spectrum_from_protobuf(message: DoubleSpectrum, /) -> Spectrum[np.fl
 
 def int16_analog_waveform_to_protobuf(value: AnalogWaveform[np.int16], /) -> I16AnalogWaveform:
     """Convert the Python AnalogWaveform to a protobuf I16AnalogWaveform."""
-    _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
     timestamp = _timestamp_from_waveform(value)
@@ -232,7 +228,6 @@ def int16_analog_waveform_from_protobuf(message: I16AnalogWaveform, /) -> Analog
 
 def digital_waveform_to_protobuf(value: DigitalWaveform[Any], /) -> DigitalWaveformProto:
     """Convert the Python DigitalWaveform to a protobuf DigitalWaveform."""
-    _validate_timing(value)
     t0 = _t0_from_waveform(value)
     time_interval = _time_interval_from_waveform(value)
     timestamp = _timestamp_from_waveform(value)
@@ -308,12 +303,6 @@ def _value_to_attribute(value: ExtendedPropertyValue) -> WaveformAttributeValue:
         raise TypeError(f"Unexpected type for extended property value {type(value)}")
 
     return attr_value
-
-
-def _validate_timing(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
-) -> None:
-    pass
 
 
 def _t0_from_waveform(
