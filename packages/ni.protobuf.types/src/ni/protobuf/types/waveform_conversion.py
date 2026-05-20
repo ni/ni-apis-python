@@ -60,7 +60,7 @@ def float64_analog_waveform_to_protobuf(
             timestamps=_timestamps_from_waveform(value),
         )
     else:
-        raise AttributeError(f"Invalid sample interval mode{value.timing.sample_interval_mode}")
+        raise ValueError(f"Invalid sample interval mode: {value.timing.sample_interval_mode}")
 
 
 def float64_analog_waveform_from_protobuf(
@@ -101,7 +101,7 @@ def float64_complex_waveform_to_protobuf(
             timestamps=_timestamps_from_waveform(value),
         )
     else:
-        raise AttributeError(f"Invalid sample interval mode{value.timing.sample_interval_mode}")
+        raise ValueError(f"Invalid sample interval mode: {value.timing.sample_interval_mode}")
 
 
 def float64_complex_waveform_from_protobuf(
@@ -148,7 +148,7 @@ def int16_complex_waveform_to_protobuf(
             timestamps=_timestamps_from_waveform(value),
         )
     else:
-        raise AttributeError(f"Invalid sample interval mode{value.timing.sample_interval_mode}")
+        raise ValueError(f"Invalid sample interval mode: {value.timing.sample_interval_mode}")
 
 
 def int16_complex_waveform_from_protobuf(
@@ -216,7 +216,7 @@ def int16_analog_waveform_to_protobuf(value: AnalogWaveform[np.int16], /) -> I16
             timestamps=_timestamps_from_waveform(value),
         )
     else:
-        raise AttributeError(f"Invalid sample interval mode{value.timing.sample_interval_mode}")
+        raise ValueError(f"Invalid sample interval mode: {value.timing.sample_interval_mode}")
 
 
 def int16_analog_waveform_from_protobuf(message: I16AnalogWaveform, /) -> AnalogWaveform[np.int16]:
@@ -340,7 +340,7 @@ def _time_offset_from_waveform(
     waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
 ) -> float:
     if waveform.timing.has_time_offset:
-        return float(waveform.timing.time_offset.seconds)
+        return waveform.timing.time_offset.total_seconds()
     else:
         return 0
 
@@ -377,7 +377,20 @@ def _timing_from_waveform_message(
 ) -> Timing[bt.DateTime | dt.datetime]:
     # Declare timing to accept both bintime and dt.datetime to satisfy mypy.
     timing: Timing[bt.DateTime | dt.datetime]
-    if message.timestamps and len(message.timestamps) > 0:
+    has_timestamps = bool(message.timestamps) and len(message.timestamps) > 0
+    has_regular_timing_fields = (
+        bool(message.dt)
+        or bool(message.time_offset)
+        or message.HasField("t0")
+        or message.HasField("timestamp")
+    )
+    if has_timestamps and has_regular_timing_fields:
+        raise ValueError(
+            "Waveform message has mutually exclusive timing fields set: "
+            "`timestamps` cannot be used together with `t0`, `timestamp`, "
+            "`time_offset`, or `dt`."
+        )
+    if has_timestamps:
         timestamps_list = [ptc.bintime_datetime_from_protobuf(ts) for ts in message.timestamps]
         timing = Timing.create_with_irregular_interval(timestamps_list)
     elif not message.dt and not message.HasField("t0"):
