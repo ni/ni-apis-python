@@ -43,22 +43,24 @@ def float64_analog_waveform_to_protobuf(
     value: AnalogWaveform[np.float64], /
 ) -> DoubleAnalogWaveform:
     """Convert the Python AnalogWaveform to a protobuf DoubleAnalogWaveform."""
-    t0 = _t0_from_waveform(value)
-    time_interval = _time_interval_from_waveform(value)
-    timestamp = _timestamp_from_waveform(value)
-    time_offset = _time_offset_from_waveform(value)
-    timestamps = _timestamps_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
-
-    return DoubleAnalogWaveform(
-        t0=t0,
-        dt=time_interval,
-        y_data=value.scaled_data,
-        attributes=attributes,
-        timestamp=timestamp,
-        time_offset=time_offset,
-        timestamps=timestamps,
-    )
+    if value.timing.sample_interval_mode in [SampleIntervalMode.REGULAR, SampleIntervalMode.NONE]:
+        return DoubleAnalogWaveform(
+            t0=_t0_from_waveform(value),
+            dt=_time_interval_from_waveform(value),
+            y_data=value.scaled_data,
+            attributes=attributes,
+            timestamp=_timestamp_from_waveform(value),
+            time_offset=_time_offset_from_waveform(value),
+        )
+    elif value.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
+        return DoubleAnalogWaveform(
+            y_data=value.scaled_data,
+            attributes=attributes,
+            timestamps=_timestamps_from_waveform(value),
+        )
+    else:
+        raise AttributeError(f"Invalid sample interval mode{value.timing.sample_interval_mode}")
 
 
 def float64_analog_waveform_from_protobuf(
@@ -81,24 +83,25 @@ def float64_complex_waveform_to_protobuf(
     value: ComplexWaveform[np.complex128], /
 ) -> DoubleComplexWaveform:
     """Convert the Python ComplexWaveform to a protobuf DoubleComplexWaveform."""
-    t0 = _t0_from_waveform(value)
-    time_interval = _time_interval_from_waveform(value)
-    timestamp = _timestamp_from_waveform(value)
-    time_offset = _time_offset_from_waveform(value)
-    timestamps = _timestamps_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
-
     interleaved_array = value.scaled_data.view(np.float64)
-
-    return DoubleComplexWaveform(
-        t0=t0,
-        dt=time_interval,
-        y_data=interleaved_array,
-        attributes=attributes,
-        timestamp=timestamp,
-        time_offset=time_offset,
-        timestamps=timestamps,
-    )
+    if value.timing.sample_interval_mode in [SampleIntervalMode.REGULAR, SampleIntervalMode.NONE]:
+        return DoubleComplexWaveform(
+            t0=_t0_from_waveform(value),
+            dt=_time_interval_from_waveform(value),
+            y_data=interleaved_array,
+            attributes=attributes,
+            timestamp=_timestamp_from_waveform(value),
+            time_offset=_time_offset_from_waveform(value),
+        )
+    elif value.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
+        return DoubleComplexWaveform(
+            y_data=interleaved_array,
+            attributes=attributes,
+            timestamps=_timestamps_from_waveform(value),
+        )
+    else:
+        raise AttributeError(f"Invalid sample interval mode{value.timing.sample_interval_mode}")
 
 
 def float64_complex_waveform_from_protobuf(
@@ -124,26 +127,28 @@ def int16_complex_waveform_to_protobuf(
     value: ComplexWaveform[ComplexInt32Base], /
 ) -> I16ComplexWaveform:
     """Convert the Python ComplexWaveform to a protobuf DoubleComplexWaveform."""
-    t0 = _t0_from_waveform(value)
-    time_interval = _time_interval_from_waveform(value)
-    timestamp = _timestamp_from_waveform(value)
-    time_offset = _time_offset_from_waveform(value)
-    timestamps = _timestamps_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
     scale = _scale_from_waveform(value)
-
     interleaved_array = value.raw_data.view(np.int16)
-
-    return I16ComplexWaveform(
-        t0=t0,
-        dt=time_interval,
-        y_data=interleaved_array,
-        attributes=attributes,
-        scale=scale,
-        timestamp=timestamp,
-        time_offset=time_offset,
-        timestamps=timestamps,
-    )
+    if value.timing.sample_interval_mode in [SampleIntervalMode.REGULAR, SampleIntervalMode.NONE]:
+        return I16ComplexWaveform(
+            t0=_t0_from_waveform(value),
+            dt=_time_interval_from_waveform(value),
+            y_data=interleaved_array,
+            attributes=attributes,
+            scale=scale,
+            timestamp=_timestamp_from_waveform(value),
+            time_offset=_time_offset_from_waveform(value),
+        )
+    elif value.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
+        return I16ComplexWaveform(
+            y_data=interleaved_array,
+            attributes=attributes,
+            scale=scale,
+            timestamps=_timestamps_from_waveform(value),
+        )
+    else:
+        raise AttributeError(f"Invalid sample interval mode{value.timing.sample_interval_mode}")
 
 
 def int16_complex_waveform_from_protobuf(
@@ -191,24 +196,27 @@ def float64_spectrum_from_protobuf(message: DoubleSpectrum, /) -> Spectrum[np.fl
 
 def int16_analog_waveform_to_protobuf(value: AnalogWaveform[np.int16], /) -> I16AnalogWaveform:
     """Convert the Python AnalogWaveform to a protobuf I16AnalogWaveform."""
-    t0 = _t0_from_waveform(value)
-    time_interval = _time_interval_from_waveform(value)
-    timestamp = _timestamp_from_waveform(value)
-    time_offset = _time_offset_from_waveform(value)
-    timestamps = _timestamps_from_waveform(value)
-    attributes = _extended_properties_to_attributes(value.extended_properties)
     scale = _scale_from_waveform(value)
-
-    return I16AnalogWaveform(
-        t0=t0,
-        dt=time_interval,
-        y_data=value.raw_data,
-        attributes=attributes,
-        scale=scale,
-        timestamp=timestamp,
-        time_offset=time_offset,
-        timestamps=timestamps,
-    )
+    attributes = _extended_properties_to_attributes(value.extended_properties)
+    if value.timing.sample_interval_mode in [SampleIntervalMode.REGULAR, SampleIntervalMode.NONE]:
+        return I16AnalogWaveform(
+            t0=_t0_from_waveform(value),
+            dt=_time_interval_from_waveform(value),
+            y_data=value.raw_data,
+            attributes=attributes,
+            scale=scale,
+            timestamp=_timestamp_from_waveform(value),
+            time_offset=_time_offset_from_waveform(value),
+        )
+    elif value.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
+        return I16AnalogWaveform(
+            y_data=value.raw_data,
+            attributes=attributes,
+            scale=scale,
+            timestamps=_timestamps_from_waveform(value),
+        )
+    else:
+        raise AttributeError(f"Invalid sample interval mode{value.timing.sample_interval_mode}")
 
 
 def int16_analog_waveform_from_protobuf(message: I16AnalogWaveform, /) -> AnalogWaveform[np.int16]:
@@ -228,23 +236,26 @@ def int16_analog_waveform_from_protobuf(message: I16AnalogWaveform, /) -> Analog
 
 def digital_waveform_to_protobuf(value: DigitalWaveform[Any], /) -> DigitalWaveformProto:
     """Convert the Python DigitalWaveform to a protobuf DigitalWaveform."""
-    t0 = _t0_from_waveform(value)
-    time_interval = _time_interval_from_waveform(value)
-    timestamp = _timestamp_from_waveform(value)
-    time_offset = _time_offset_from_waveform(value)
-    timestamps = _timestamps_from_waveform(value)
     attributes = _extended_properties_to_attributes(value.extended_properties)
-
-    return DigitalWaveformProto(
-        t0=t0,
-        dt=time_interval,
-        signal_count=value.signal_count,
-        y_data=value.data.tobytes(),
-        attributes=attributes,
-        timestamp=timestamp,
-        time_offset=time_offset,
-        timestamps=timestamps,
-    )
+    if value.timing.sample_interval_mode in [SampleIntervalMode.REGULAR, SampleIntervalMode.NONE]:
+        return DigitalWaveformProto(
+            t0=_t0_from_waveform(value),
+            dt=_time_interval_from_waveform(value),
+            signal_count=value.signal_count,
+            y_data=value.data.tobytes(),
+            attributes=attributes,
+            timestamp=_timestamp_from_waveform(value),
+            time_offset=_time_offset_from_waveform(value),
+        )
+    elif value.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
+        return DigitalWaveformProto(
+            signal_count=value.signal_count,
+            y_data=value.data.tobytes(),
+            attributes=attributes,
+            timestamps=_timestamps_from_waveform(value),
+        )
+    else:
+        raise AttributeError(f"Invalid sample interval mode{value.timing.sample_interval_mode}")
 
 
 def digital_waveform_from_protobuf(message: DigitalWaveformProto, /) -> DigitalWaveform[np.uint8]:
