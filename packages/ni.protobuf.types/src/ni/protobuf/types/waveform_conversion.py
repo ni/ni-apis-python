@@ -325,6 +325,7 @@ def _t0_from_waveform(
     else:
         return None
 
+
 def _timestamp_from_waveform(
     waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
 ) -> PrecisionTimestamp | None:
@@ -334,6 +335,7 @@ def _timestamp_from_waveform(
     else:
         return None
 
+
 def _time_offset_from_waveform(
     waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
 ) -> float | None:
@@ -342,14 +344,14 @@ def _time_offset_from_waveform(
     else:
         return 0
 
+
 def _timestamps_from_waveform(
     waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
 ) -> Iterable[PrecisionTimestamp] | None:
     if waveform.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
         timestamps = waveform.timing.get_timestamps(0, waveform.sample_count)
         return [
-            ptc.bintime_datetime_to_protobuf(convert_datetime(bt.DateTime, ts))
-            for ts in timestamps
+            ptc.bintime_datetime_to_protobuf(convert_datetime(bt.DateTime, ts)) for ts in timestamps
         ]
     else:
         return None
@@ -394,8 +396,7 @@ def _timing_from_waveform_message(
 
         # Sample Interval
         if not message.dt:
-            timing = Timing.create_with_no_interval(
-                timestamp=bin_datetime, time_offset=bin_offset)
+            timing = Timing.create_with_no_interval(timestamp=bin_datetime, time_offset=bin_offset)
         else:
             sample_interval = ht.timedelta(seconds=message.dt)
             timing = Timing.create_with_regular_interval(

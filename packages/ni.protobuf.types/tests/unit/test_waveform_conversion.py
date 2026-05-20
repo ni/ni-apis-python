@@ -1,4 +1,5 @@
 import datetime as dt
+from typing import Any
 
 import nitypes.bintime as bt
 import numpy as np
@@ -15,9 +16,9 @@ from nitypes.waveform import (
     Timing,
 )
 
-from typing import Any
-
-from ni.protobuf.types.precision_timestamp_conversion import bintime_datetime_to_protobuf
+from ni.protobuf.types.precision_timestamp_conversion import (
+    bintime_datetime_to_protobuf,
+)
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
 from ni.protobuf.types.waveform_conversion import (
     digital_waveform_from_protobuf,
@@ -116,7 +117,7 @@ def test___analog_waveform_with_standard_timing_and_offset___convert___valid_pro
     _assert_proto_standard_timing_with_offset(dbl_analog_waveform, t0_dt, time_offset)
 
 
-def test___analog_waveform_with_standard_timing_and_offset___round_trip___waveforms_match() -> None:
+def test___analog_waveform_with_standard_timing___round_trip___waveforms_match() -> None:
     analog_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]))
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
     sample_interval = dt.timedelta(milliseconds=1000)
@@ -151,7 +152,11 @@ def test___analog_waveform_with_none_timing___round_trip___waveforms_match() -> 
 def test___analog_waveform_with_irregular_timing___convert___valid_protobuf() -> None:
     analog_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]))
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
-    timestamps = [t0_dt, t0_dt + dt.timedelta(milliseconds=1000), t0_dt + dt.timedelta(milliseconds=3000)]
+    timestamps = [
+        t0_dt,
+        t0_dt + dt.timedelta(milliseconds=1000),
+        t0_dt + dt.timedelta(milliseconds=3000),
+    ]
     analog_waveform.timing = Timing.create_with_irregular_interval(timestamps)
 
     dbl_analog_waveform = float64_analog_waveform_to_protobuf(analog_waveform)
@@ -241,6 +246,7 @@ def test___dbl_analog_wfm_with_timing_no_dt___convert___valid_python_object() ->
     assert not analog_waveform.timing.has_sample_interval
     assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
 
+
 def test___dbl_analog_wfm_with_dt_and_offset___convert___valid_python_object() -> None:
     dbl_analog_wfm = DoubleAnalogWaveform(dt=0.1, y_data=[1.0, 2.0, 3.0], time_offset=1.0)
 
@@ -252,7 +258,9 @@ def test___dbl_analog_wfm_with_dt_and_offset___convert___valid_python_object() -
     assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
 
-def test___dbl_analog_wfm_with_t0_and_timestamp_and_offset___convert___valid_python_object() -> None:
+def test___dbl_analog_wfm_with_t0_and_timestamp_and_offset___convert___valid_python_object() -> (
+    None
+):
     sample_interval = 0.1
     t0_seconds = 1000001
     t0_pt = PrecisionTimestamp(seconds=t0_seconds, fractional_seconds=0)
@@ -338,7 +346,9 @@ def test___float64_complex_waveform_with_standard_timing___convert___valid_proto
     _assert_proto_standard_timing(dbl_complex_waveform, t0_dt)
 
 
-def test___float64_complex_waveform_with_standard_timing_and_offset___convert___valid_protobuf() -> None:
+def test___float64_complex_waveform_with_standard_timing_and_offset___convert___valid_protobuf() -> (
+    None
+):
     complex_waveform = ComplexWaveform.from_array_1d([1.5 + 2.5j, 3.5 + 4.5j], np.complex128)
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
     sample_interval = dt.timedelta(milliseconds=1000)
@@ -354,7 +364,9 @@ def test___float64_complex_waveform_with_standard_timing_and_offset___convert___
     _assert_proto_standard_timing_with_offset(dbl_complex_waveform, t0_dt, time_offset)
 
 
-def test___float64_complex_waveform_with_standard_timing_and_offset___round_trip___waveforms_match() -> None:
+def test___float64_complex_waveform_with_standard_timing_and_offset___round_trip___waveforms_match() -> (
+    None
+):
     complex_waveform = ComplexWaveform.from_array_1d([1.5 + 2.5j, 3.5 + 4.5j], np.complex128)
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
     sample_interval = dt.timedelta(milliseconds=1000)
@@ -481,7 +493,9 @@ def test___dbl_complex_wfm_with_timing_no_dt___convert___valid_python_object() -
 
 
 def test___dbl_complex_wfm_with_dt_and_offset___convert___valid_python_object() -> None:
-    dbl_complex_waveform = DoubleComplexWaveform(dt=0.1, y_data=[1.0, 2.0, 3.0, 4.0], time_offset=1.0)
+    dbl_complex_waveform = DoubleComplexWaveform(
+        dt=0.1, y_data=[1.0, 2.0, 3.0, 4.0], time_offset=1.0
+    )
 
     complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
 
@@ -491,7 +505,9 @@ def test___dbl_complex_wfm_with_dt_and_offset___convert___valid_python_object() 
     assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
 
-def test___dbl_complex_wfm_with_t0_and_timestamp_and_offset___convert___valid_python_object() -> None:
+def test___dbl_complex_wfm_with_t0_and_timestamp_and_offset___convert___valid_python_object() -> (
+    None
+):
     sample_interval = 0.1
     t0_seconds = 1000001
     t0_pt = PrecisionTimestamp(seconds=t0_seconds, fractional_seconds=0)
@@ -503,7 +519,8 @@ def test___dbl_complex_wfm_with_t0_and_timestamp_and_offset___convert___valid_py
         dt=0.1,
         y_data=[1.0, 2.0, 3.0, 4.0],
         timestamp=timestamp_pt,
-        time_offset=time_offset)
+        time_offset=time_offset,
+    )
 
     complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
 
@@ -515,7 +532,9 @@ def test___dbl_complex_wfm_with_t0_and_timestamp_and_offset___convert___valid_py
 def test___dbl_complex_wfm_with_t0_and_offset_no_timestamp___convert___raises_exception() -> None:
     t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
-    dbl_complex_waveform = DoubleComplexWaveform(t0=t0_pt, dt=0.1, y_data=[1.0, 2.0, 3.0, 4.0], time_offset=1.0)
+    dbl_complex_waveform = DoubleComplexWaveform(
+        t0=t0_pt, dt=0.1, y_data=[1.0, 2.0, 3.0, 4.0], time_offset=1.0
+    )
 
     with pytest.raises(AttributeError):
         _ = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
@@ -577,7 +596,9 @@ def test___int16_complex_waveform_with_standard_timing___convert___valid_protobu
     _assert_proto_standard_timing(i16_complex_waveform, t0_dt)
 
 
-def test___int16_complex_waveform_with_standard_timing_and_offset___convert___valid_protobuf() -> None:
+def test___int16_complex_waveform_with_standard_timing_and_offset___convert___valid_protobuf() -> (
+    None
+):
     complex_waveform = ComplexWaveform.from_array_1d([(1, 2), (3, 4)], ComplexInt32DType)
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
     sample_interval = dt.timedelta(milliseconds=1000)
@@ -593,7 +614,9 @@ def test___int16_complex_waveform_with_standard_timing_and_offset___convert___va
     _assert_proto_standard_timing_with_offset(i16_complex_waveform, t0_dt, time_offset)
 
 
-def test___int16_complex_waveform_with_standard_timing_and_offset___round_trip___waveforms_match() -> None:
+def test___int16_complex_waveform_with_standard_timing_and_offset___round_trip___waveforms_match() -> (
+    None
+):
     complex_waveform = ComplexWaveform.from_array_1d([(1, 2), (3, 4)], ComplexInt32DType)
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
     sample_interval = dt.timedelta(milliseconds=1000)
@@ -746,7 +769,9 @@ def test___int16_complex_wfm_with_scaling___convert___valid_python_object() -> N
     assert complex_waveform.scale_mode.offset == 3.0
 
 
-def test___int16_complex_wfm_with_t0_and_timestamp_and_offset___convert___valid_python_object() -> None:
+def test___int16_complex_wfm_with_t0_and_timestamp_and_offset___convert___valid_python_object() -> (
+    None
+):
     sample_interval = 0.1
     t0_seconds = 1000001
     t0_pt = PrecisionTimestamp(seconds=t0_seconds, fractional_seconds=0)
@@ -771,7 +796,9 @@ def test___int16_complex_wfm_with_t0_and_timestamp_and_offset___convert___valid_
 def test___int16_complex_wfm_with_t0_and_offset_no_timestamp___convert___raises_exception() -> None:
     t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
-    i16_complex_waveform = I16ComplexWaveform(t0=t0_pt, dt=0.1, y_data=[1, 2, 3, 4], time_offset=1.0)
+    i16_complex_waveform = I16ComplexWaveform(
+        t0=t0_pt, dt=0.1, y_data=[1, 2, 3, 4], time_offset=1.0
+    )
 
     with pytest.raises(AttributeError):
         _ = int16_complex_waveform_from_protobuf(i16_complex_waveform)
@@ -832,7 +859,9 @@ def test___int16_analog_waveform_with_standard_timing___convert___valid_protobuf
     _assert_proto_standard_timing(i16_analog_waveform, t0_dt)
 
 
-def test___int16_analog_waveform_with_standard_timing_and_offset___convert___valid_protobuf() -> None:
+def test___int16_analog_waveform_with_standard_timing_and_offset___convert___valid_protobuf() -> (
+    None
+):
     analog_waveform = AnalogWaveform.from_array_1d(np.array([1, 2, 3], dtype=np.int16))
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
     sample_interval = dt.timedelta(milliseconds=1000)
@@ -848,7 +877,9 @@ def test___int16_analog_waveform_with_standard_timing_and_offset___convert___val
     _assert_proto_standard_timing_with_offset(i16_analog_waveform, t0_dt, time_offset)
 
 
-def test___int16_analog_waveform_with_standard_timing_and_offset___round_trip___waveforms_match() -> None:
+def test___int16_analog_waveform_with_standard_timing_and_offset___round_trip___waveforms_match() -> (
+    None
+):
     analog_waveform = AnalogWaveform.from_array_1d(np.array([1, 2, 3], dtype=np.int16))
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
     sample_interval = dt.timedelta(milliseconds=1000)
@@ -883,7 +914,11 @@ def test___int16_analog_waveform_with_none_timing___round_trip___waveforms_match
 def test___int16_analog_waveform_with_irregular_timing___convert___valid_protobuf() -> None:
     analog_waveform = AnalogWaveform.from_array_1d(np.array([1, 2, 3], dtype=np.int16))
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
-    timestamps = [t0_dt, t0_dt + dt.timedelta(milliseconds=1000), t0_dt + dt.timedelta(milliseconds=3000)]
+    timestamps = [
+        t0_dt,
+        t0_dt + dt.timedelta(milliseconds=1000),
+        t0_dt + dt.timedelta(milliseconds=3000),
+    ]
     analog_waveform.timing = Timing.create_with_irregular_interval(timestamps)
 
     i16_analog_waveform = int16_analog_waveform_to_protobuf(analog_waveform)
@@ -1261,6 +1296,7 @@ def test___digital_waveform_proto_with_timing___convert___valid_python_object() 
     assert digital_waveform.timing.sample_interval == dt.timedelta(seconds=0.1)
     assert digital_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
+
 def test___digital_waveform_proto_with_timing___round_trip___waveforms_match() -> None:
     data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
     t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
@@ -1314,7 +1350,9 @@ def test___digital_waveform_proto_with_dt_and_offset___convert___valid_python_ob
     assert digital_waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
 
-def test___digital_waveform_proto_with_t0_and_timestamp_and_offset___convert___valid_python_object() -> None:
+def test___digital_waveform_proto_with_t0_and_timestamp_and_offset___convert___valid_python_object() -> (
+    None
+):
     data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
     sample_interval = 0.1
     t0_seconds = 1000001
@@ -1338,7 +1376,9 @@ def test___digital_waveform_proto_with_t0_and_timestamp_and_offset___convert___v
     )
 
 
-def test___digital_waveform_proto_with_t0_and_offset_no_timestamp___convert___raises_exception() -> None:
+def test___digital_waveform_proto_with_t0_and_offset_no_timestamp___convert___raises_exception() -> (
+    None
+):
     data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
     t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
@@ -1363,20 +1403,37 @@ def _to_proto_timestamps(timestamps: list[dt.datetime]) -> list[PrecisionTimesta
     return [bintime_datetime_to_protobuf(bt.DateTime(ts)) for ts in timestamps]
 
 
-def _assert_proto_standard_timing(proto: Any, t0_dt: dt.datetime) -> None:
-    assert proto.dt == 1.0
-    assert proto.t0 == bintime_datetime_to_protobuf(bt.DateTime(t0_dt))
+def _assert_proto_standard_timing(
+    waveform_proto: (
+        DoubleAnalogWaveform
+        | DoubleComplexWaveform
+        | I16AnalogWaveform
+        | I16ComplexWaveform
+        | DigitalWaveformProto
+    ),
+    t0_dt: dt.datetime,
+) -> None:
+    assert waveform_proto.dt == 1.0
+    assert waveform_proto.t0 == bintime_datetime_to_protobuf(bt.DateTime(t0_dt))
 
 
 def _assert_proto_standard_timing_with_offset(
-    proto: Any, t0_dt: dt.datetime, time_offset: dt.timedelta
+    waveform_proto: (
+        DoubleAnalogWaveform
+        | DoubleComplexWaveform
+        | I16AnalogWaveform
+        | I16ComplexWaveform
+        | DigitalWaveformProto
+    ),
+    t0_dt: dt.datetime,
+    time_offset: dt.timedelta,
 ) -> None:
-    assert proto.dt == 1.0
-    assert proto.t0 == bintime_datetime_to_protobuf(bt.DateTime(t0_dt + time_offset))
+    assert waveform_proto.dt == 1.0
+    assert waveform_proto.t0 == bintime_datetime_to_protobuf(bt.DateTime(t0_dt + time_offset))
 
 
 def _assert_waveform_timestamp_and_t0_timing(
-    waveform: Any,
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
     t0_seconds: int,
     timestamp_seconds: int,
     sample_interval: float,
