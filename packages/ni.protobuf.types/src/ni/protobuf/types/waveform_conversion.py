@@ -338,7 +338,7 @@ def _timestamp_from_waveform(
 
 def _time_offset_from_waveform(
     waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
-) -> float | None:
+) -> float:
     if waveform.timing.has_time_offset:
         return float(waveform.timing.time_offset.seconds)
     else:
@@ -377,32 +377,34 @@ def _timing_from_waveform_message(
 ) -> Timing[bt.DateTime | dt.datetime]:
     # Declare timing to accept both bintime and dt.datetime to satisfy mypy.
     timing: Timing[bt.DateTime | dt.datetime]
-    if message.timestamps and message.timestamps.count > 0:
-        timing = Timing.create_with_irregular_interval(message.timestamps)
+    if message.timestamps and len(message.timestamps) > 0:
+        timestamps_list = [ptc.bintime_datetime_from_protobuf(ts) for ts in message.timestamps]
+        timing = Timing.create_with_irregular_interval(timestamps_list)
     elif not message.dt and not message.HasField("t0"):
         # If both dt and t0 are unset, use Timing.empty.
         timing = Timing.empty
     else:
         # Timestamp/T0
         raw_timestamp = _calculate_raw_timestamp(message)
+        bin_datetime: bt.DateTime | None
         if raw_timestamp:
             bin_datetime = ptc.bintime_datetime_from_protobuf(raw_timestamp)
         else:
             bin_datetime = None
         if message.time_offset:
-            bin_offset = bt.TimeDelta(message.time_offset)
+            time_offset = ht.timedelta(seconds=message.time_offset)
         else:
-            bin_offset = None
+            time_offset = None
 
         # Sample Interval
         if not message.dt:
-            timing = Timing.create_with_no_interval(timestamp=bin_datetime, time_offset=bin_offset)
+            timing = Timing.create_with_no_interval(timestamp=bin_datetime, time_offset=time_offset)
         else:
             sample_interval = ht.timedelta(seconds=message.dt)
             timing = Timing.create_with_regular_interval(
                 sample_interval=sample_interval,
                 timestamp=bin_datetime,
-                time_offset=bin_offset,
+                time_offset=time_offset,
             )
 
     return timing
