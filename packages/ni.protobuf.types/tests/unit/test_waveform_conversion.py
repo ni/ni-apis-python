@@ -1440,10 +1440,12 @@ def _assert_waveform_timestamp_and_t0_timing(
     sample_interval: float,
     time_offset: float,
 ) -> None:
-    assert timestamp_seconds == bintime_datetime_to_protobuf(convert_datetime(bt.DateTime, waveform.timing.timestamp)).seconds
-    assert not bintime_datetime_to_protobuf(convert_datetime(bt.DateTime, waveform.timing.timestamp)).fractional_seconds
-    assert t0_seconds == bintime_datetime_to_protobuf(convert_datetime(bt.DateTime, waveform.timing.start_time)).seconds
-    assert not bintime_datetime_to_protobuf(convert_datetime(bt.DateTime, waveform.timing.start_time)).fractional_seconds
+    bt_timestamp = convert_datetime(bt.DateTime, waveform.timing.timestamp)
+    bt_start_time = convert_datetime(bt.DateTime, waveform.timing.start_time)
+    assert timestamp_seconds == bintime_datetime_to_protobuf(bt_timestamp).seconds
+    assert not bintime_datetime_to_protobuf(bt_timestamp).fractional_seconds
+    assert t0_seconds == bintime_datetime_to_protobuf(bt_start_time).seconds
+    assert not bintime_datetime_to_protobuf(bt_start_time).fractional_seconds
     assert waveform.timing.sample_interval == dt.timedelta(seconds=sample_interval)
     assert waveform.timing.time_offset == bt.TimeDelta(time_offset)
     assert waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
