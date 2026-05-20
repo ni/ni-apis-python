@@ -98,7 +98,7 @@ class DataStoreClient(GrpcServiceClientBase[data_store_service_pb2_grpc.DataStor
     def publish_measurement_batch(
         self, request: data_store_service_pb2.PublishMeasurementBatchRequest
     ) -> data_store_service_pb2.PublishMeasurementBatchResponse:
-        """Publish multiple scalar measurements at once for parametric sweeps."""
+        """Publish multiple measurement values at once for parametric sweeps."""
         return self._get_stub().PublishMeasurementBatch(request)
 
     def get_measurement(
