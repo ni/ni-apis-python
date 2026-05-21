@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections.abc import Iterable, Mapping
 from typing import Any
 
+import hightime as ht
 import nitypes.bintime as bt
 import numpy as np
 from nitypes.complex import ComplexInt32Base, ComplexInt32DType
@@ -374,22 +375,9 @@ def _timing_from_waveform_message(
         | DigitalWaveformProto
     ),
 ) -> Timing[AnyDateTime, AnyTimeDelta, AnyTimeDelta]:
-    # Declare timing to accept both bintime and dt.datetime to satisfy mypy.
     timing: Timing[AnyDateTime, AnyTimeDelta, AnyTimeDelta]
-    has_timestamps = bool(message.timestamps) and len(message.timestamps) > 0
-    has_regular_timing_fields = (
-        bool(message.dt)
-        or bool(message.time_offset)
-        or message.HasField("t0")
-        or message.HasField("timestamp")
-    )
-    if has_timestamps and has_regular_timing_fields:
-        raise ValueError(
-            "Waveform message has mutually exclusive timing fields set: "
-            "`timestamps` cannot be used together with `t0`, `timestamp`, "
-            "`time_offset`, or `dt`."
-        )
-    if has_timestamps:
+    _check_regular_vs_irregular_fields(message)
+    if message.timestamps:
         timestamps_list = [ptc.bintime_datetime_from_protobuf(ts) for ts in message.timestamps]
         timing = Timing.create_with_irregular_interval(timestamps_list)
     elif not message.dt and not message.HasField("t0"):
@@ -404,7 +392,7 @@ def _timing_from_waveform_message(
         else:
             bin_datetime = None
         if message.time_offset:
-            time_offset = bt.TimeDelta(seconds=message.time_offset)
+            time_offset = ht.timedelta(seconds=message.time_offset)
         else:
             time_offset = None
 
@@ -412,7 +400,7 @@ def _timing_from_waveform_message(
         if not message.dt:
             timing = Timing.create_with_no_interval(timestamp=bin_datetime, time_offset=time_offset)
         else:
-            sample_interval = bt.TimeDelta(seconds=message.dt)
+            sample_interval = ht.timedelta(seconds=message.dt)
             timing = Timing.create_with_regular_interval(
                 sample_interval=sample_interval,
                 timestamp=bin_datetime,
@@ -420,6 +408,26 @@ def _timing_from_waveform_message(
             )
 
     return timing
+
+
+def _check_regular_vs_irregular_fields(
+    message: (
+        DoubleAnalogWaveform
+        | DoubleComplexWaveform
+        | I16AnalogWaveform
+        | I16ComplexWaveform
+        | DigitalWaveformProto
+    ),
+) -> None:
+    has_any_regular_timing_fields = (
+        message.dt or message.time_offset or message.HasField("t0") or message.HasField("timestamp")
+    )
+    if message.timestamps and has_any_regular_timing_fields:
+        raise ValueError(
+            "Waveform message has mutually exclusive timing fields set: "
+            "`timestamps` cannot be used together with `t0`, `timestamp`, "
+            "`time_offset`, or `dt`."
+        )
 
 
 def _calculate_raw_timestamp(
