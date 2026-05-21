@@ -432,17 +432,36 @@ def _calculate_raw_timestamp(
         | DigitalWaveformProto
     ),
 ) -> PrecisionTimestamp | None:
+    _verify_t0_timestamp_offset_relationship(message)
     raw_timestamp = None
 
-    # Agreed precedence to timestamp over t0
+    # Agreed precedence of timestamp over t0
     if message.HasField("timestamp"):
         raw_timestamp = message.timestamp
     elif message.HasField("t0"):
         raw_timestamp = message.t0
         if message.time_offset:
-            raise AttributeError("Timestamp must be set when supplying a TimeOffset and T0.")
+            raise ValueError("Timestamp must be set when supplying a TimeOffset and T0.")
 
     return raw_timestamp
+
+
+def _verify_t0_timestamp_offset_relationship(
+    message: (
+        DoubleAnalogWaveform
+        | DoubleComplexWaveform
+        | I16AnalogWaveform
+        | I16ComplexWaveform
+        | DigitalWaveformProto
+    ),
+) -> None:
+    # TODO: Is the conversion to bintime necessary? Seems expensive.
+    if message.HasField("timestamp") and message.HasField("t0"):
+        bt_timestamp = ptc.bintime_datetime_from_protobuf(message.timestamp)
+        bt_t0 = ptc.bintime_datetime_from_protobuf(message.t0)
+        bt_time_offset = bt.TimeDelta(message.time_offset)
+        if bt_t0 != bt_timestamp + bt_time_offset:
+            raise ValueError("t0 must equal timestamp + time_offset.")
 
 
 def _scale_from_waveform(waveform: AnalogWaveform[Any] | ComplexWaveform[Any]) -> Scale | None:

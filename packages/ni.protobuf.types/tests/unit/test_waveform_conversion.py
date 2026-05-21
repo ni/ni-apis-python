@@ -282,12 +282,47 @@ def test___dbl_analog_wfm_with_t0_and_timestamp_and_offset___convert___valid_pyt
     )
 
 
+def test___dbl_analog_wfm_with_timestamps___convert___valid_python_object() -> None:
+    expected_timestamps = [
+        PrecisionTimestamp(seconds=1000, fractional_seconds=0),
+        PrecisionTimestamp(seconds=1001, fractional_seconds=0),
+    ]
+    dbl_analog_wfm = DoubleAnalogWaveform(
+        y_data=[1.0, 2.0],
+        timestamps=expected_timestamps,
+    )
+
+    analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
+
+    _assert_waveform_irregular_timing_with_timestamps(analog_waveform, expected_timestamps)
+
+
+def test___dbl_analog_wfm_with_incorrect_t0_and_timestamp_and_offset___convert___raises_exception() -> (
+    None
+):
+    t0_seconds = 1000001
+    t0_pt = PrecisionTimestamp(seconds=t0_seconds, fractional_seconds=0)
+    timestamp_seconds = 1000000
+    timestamp_pt = PrecisionTimestamp(seconds=timestamp_seconds, fractional_seconds=0)
+    time_offset = 25.0
+    dbl_analog_wfm = DoubleAnalogWaveform(
+        t0=t0_pt,
+        dt=0.1,
+        y_data=[1.0, 2.0, 3.0],
+        timestamp=timestamp_pt,
+        time_offset=time_offset,
+    )
+
+    with pytest.raises(ValueError):
+        _ = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
+
+
 def test___dbl_analog_wfm_with_t0_and_offset_no_timestamp___convert___raises_exception() -> None:
     t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     dbl_analog_wfm = DoubleAnalogWaveform(t0=t0_pt, dt=0.1, y_data=[1.0, 2.0, 3.0], time_offset=1.0)
 
-    with pytest.raises(AttributeError):
+    with pytest.raises(ValueError):
         _ = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
 
@@ -528,6 +563,41 @@ def test___dbl_complex_wfm_with_t0_and_timestamp_and_offset___convert___valid_py
     )
 
 
+def test___dbl_complex_wfm_with_timestamps___convert___valid_python_object() -> None:
+    expected_timestamps = [
+        PrecisionTimestamp(seconds=1000, fractional_seconds=0),
+        PrecisionTimestamp(seconds=1001, fractional_seconds=0),
+    ]
+    dbl_complex_waveform = DoubleComplexWaveform(
+        y_data=[1.0, 2.0, 3.0, 4.0],
+        timestamps=expected_timestamps,
+    )
+
+    complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
+
+    _assert_waveform_irregular_timing_with_timestamps(complex_waveform, expected_timestamps)
+
+
+def test___dbl_complex_wfm_with_incorrect_t0_and_timestamp_and_offset___convert___raises_exception() -> (
+    None
+):
+    t0_seconds = 1000001
+    t0_pt = PrecisionTimestamp(seconds=t0_seconds, fractional_seconds=0)
+    timestamp_seconds = 1000000
+    timestamp_pt = PrecisionTimestamp(seconds=timestamp_seconds, fractional_seconds=0)
+    time_offset = 25.0
+    dbl_complex_waveform = DoubleComplexWaveform(
+        t0=t0_pt,
+        dt=0.1,
+        y_data=[1.0, 2.0, 3.0, 4.0],
+        timestamp=timestamp_pt,
+        time_offset=time_offset,
+    )
+
+    with pytest.raises(ValueError):
+        _ = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
+
+
 def test___dbl_complex_wfm_with_t0_and_offset_no_timestamp___convert___raises_exception() -> None:
     t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
@@ -535,7 +605,7 @@ def test___dbl_complex_wfm_with_t0_and_offset_no_timestamp___convert___raises_ex
         t0=t0_pt, dt=0.1, y_data=[1.0, 2.0, 3.0, 4.0], time_offset=1.0
     )
 
-    with pytest.raises(AttributeError):
+    with pytest.raises(ValueError):
         _ = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
 
 
@@ -791,6 +861,42 @@ def test___int16_complex_wfm_with_t0_and_timestamp_and_offset___convert___valid_
     )
 
 
+def test___int16_complex_wfm_with_timestamps___convert___valid_python_object() -> None:
+    expected_timestamps = [
+        PrecisionTimestamp(seconds=1000, fractional_seconds=0),
+        PrecisionTimestamp(seconds=1001, fractional_seconds=0),
+    ]
+    i16_complex_waveform = I16ComplexWaveform(
+        y_data=[1, 2, 3, 4],
+        timestamps=expected_timestamps,
+    )
+
+    complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
+
+    _assert_waveform_irregular_timing_with_timestamps(complex_waveform, expected_timestamps)
+
+
+def test___int16_complex_wfm_with_incorrect_t0_and_timestamp_and_offset___convert___raises_exception() -> (
+    None
+):
+    sample_interval = 0.1
+    t0_seconds = 1000001
+    t0_pt = PrecisionTimestamp(seconds=t0_seconds, fractional_seconds=0)
+    timestamp_seconds = 1000000
+    timestamp_pt = PrecisionTimestamp(seconds=timestamp_seconds, fractional_seconds=0)
+    time_offset = 25.0
+    i16_complex_waveform = I16ComplexWaveform(
+        t0=t0_pt,
+        dt=sample_interval,
+        y_data=[1, 2, 3, 4],
+        timestamp=timestamp_pt,
+        time_offset=time_offset,
+    )
+
+    with pytest.raises(ValueError):
+        _ = int16_complex_waveform_from_protobuf(i16_complex_waveform)
+
+
 def test___int16_complex_wfm_with_t0_and_offset_no_timestamp___convert___raises_exception() -> None:
     t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
@@ -798,7 +904,7 @@ def test___int16_complex_wfm_with_t0_and_offset_no_timestamp___convert___raises_
         t0=t0_pt, dt=0.1, y_data=[1, 2, 3, 4], time_offset=1.0
     )
 
-    with pytest.raises(AttributeError):
+    with pytest.raises(ValueError):
         _ = int16_complex_waveform_from_protobuf(i16_complex_waveform)
 
 
@@ -1048,7 +1154,7 @@ def test___i16_analog_wfm_with_t0_and_offset_no_timestamp___convert___valid_pyth
     t0_pt = bintime_datetime_to_protobuf(t0_dt)
     i16_analog_wfm = I16AnalogWaveform(t0=t0_pt, dt=0.1, y_data=[1, 2, 3], time_offset=1.0)
 
-    with pytest.raises(AttributeError):
+    with pytest.raises(ValueError):
         _ = int16_analog_waveform_from_protobuf(i16_analog_wfm)
 
 
@@ -1372,6 +1478,46 @@ def test___digital_waveform_proto_with_t0_and_timestamp_and_offset___convert___v
     )
 
 
+def test___digital_waveform_proto_with_timestamps___convert___valid_python_object() -> None:
+    data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
+    expected_timestamps = [
+        PrecisionTimestamp(seconds=1000, fractional_seconds=0),
+        PrecisionTimestamp(seconds=1001, fractional_seconds=0),
+    ]
+    digital_waveform_proto = DigitalWaveformProto(
+        y_data=data.tobytes(),
+        signal_count=3,
+        timestamps=expected_timestamps,
+    )
+
+    digital_waveform = digital_waveform_from_protobuf(digital_waveform_proto)
+
+    _assert_waveform_irregular_timing_with_timestamps(digital_waveform, expected_timestamps)
+
+
+def test___digital_waveform_proto_with_incorrect_t0_and_timestamp_and_offset___convert___raises_exception() -> (
+    None
+):
+    data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
+    sample_interval = 0.1
+    t0_seconds = 1000001
+    t0_pt = PrecisionTimestamp(seconds=t0_seconds, fractional_seconds=0)
+    timestamp_seconds = 1000000
+    timestamp_pt = PrecisionTimestamp(seconds=timestamp_seconds, fractional_seconds=0)
+    time_offset = 25.0  # Invalidates t0 = timestamp + offset
+    digital_waveform_proto = DigitalWaveformProto(
+        t0=t0_pt,
+        dt=sample_interval,
+        signal_count=3,
+        y_data=data.tobytes(),
+        timestamp=timestamp_pt,
+        time_offset=time_offset,
+    )
+
+    with pytest.raises(ValueError):
+        _ = digital_waveform_from_protobuf(digital_waveform_proto)
+
+
 def test___digital_waveform_proto_with_t0_and_offset_no_timestamp___convert___raises_exception() -> (
     None
 ):
@@ -1382,7 +1528,7 @@ def test___digital_waveform_proto_with_t0_and_offset_no_timestamp___convert___ra
         t0=t0_pt, dt=0.1, y_data=data.tobytes(), time_offset=1.0, signal_count=3
     )
 
-    with pytest.raises(AttributeError):
+    with pytest.raises(ValueError):
         _ = digital_waveform_from_protobuf(digital_waveform_proto)
 
 
@@ -1428,6 +1574,19 @@ def _assert_proto_standard_timing_with_offset(
 ) -> None:
     assert waveform_proto.dt == sample_interval
     assert waveform_proto.t0 == bintime_datetime_to_protobuf(bt.DateTime(t0_dt + time_offset))
+    assert waveform_proto.HasField("timestamp")
+    assert waveform_proto.timestamp == bintime_datetime_to_protobuf(bt.DateTime(t0_dt))
+    assert waveform_proto.time_offset == pytest.approx(time_offset.total_seconds())
+
+
+def _assert_waveform_irregular_timing_with_timestamps(
+    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
+    expected_timestamps: list[PrecisionTimestamp],
+) -> None:
+    assert waveform.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR
+    actual_timestamps = waveform.timing.get_timestamps(0, waveform.sample_count)
+    bintime_datetimes = [convert_datetime(bt.DateTime, ts) for ts in actual_timestamps]
+    assert [bintime_datetime_to_protobuf(btdt) for btdt in bintime_datetimes] == expected_timestamps
 
 
 def _assert_waveform_timestamp_and_t0_timing(
