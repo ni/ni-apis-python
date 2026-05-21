@@ -2,15 +2,14 @@
 
 from __future__ import annotations
 
-import datetime as dt
 from collections.abc import Iterable, Mapping
 from typing import Any
 
-import hightime as ht
 import nitypes.bintime as bt
 import numpy as np
 from nitypes.complex import ComplexInt32Base, ComplexInt32DType
 from nitypes.time import convert_datetime
+from nitypes.time.typing import AnyDateTime, AnyTimeDelta
 from nitypes.waveform import (
     AnalogWaveform,
     ComplexWaveform,
@@ -374,9 +373,9 @@ def _timing_from_waveform_message(
         | I16ComplexWaveform
         | DigitalWaveformProto
     ),
-) -> Timing[bt.DateTime | dt.datetime]:
+) -> Timing[AnyDateTime, AnyTimeDelta, AnyTimeDelta]:
     # Declare timing to accept both bintime and dt.datetime to satisfy mypy.
-    timing: Timing[bt.DateTime | dt.datetime]
+    timing: Timing[AnyDateTime, AnyTimeDelta, AnyTimeDelta]
     has_timestamps = bool(message.timestamps) and len(message.timestamps) > 0
     has_regular_timing_fields = (
         bool(message.dt)
@@ -405,7 +404,7 @@ def _timing_from_waveform_message(
         else:
             bin_datetime = None
         if message.time_offset:
-            time_offset = ht.timedelta(seconds=message.time_offset)
+            time_offset = bt.TimeDelta(seconds=message.time_offset)
         else:
             time_offset = None
 
@@ -413,7 +412,7 @@ def _timing_from_waveform_message(
         if not message.dt:
             timing = Timing.create_with_no_interval(timestamp=bin_datetime, time_offset=time_offset)
         else:
-            sample_interval = ht.timedelta(seconds=message.dt)
+            sample_interval = bt.TimeDelta(seconds=message.dt)
             timing = Timing.create_with_regular_interval(
                 sample_interval=sample_interval,
                 timestamp=bin_datetime,
@@ -440,8 +439,6 @@ def _calculate_raw_timestamp(
         raw_timestamp = message.timestamp
     elif message.HasField("t0"):
         raw_timestamp = message.t0
-        if message.time_offset:
-            raise ValueError("Timestamp must be set when supplying a TimeOffset and T0.")
 
     return raw_timestamp
 
@@ -462,6 +459,9 @@ def _verify_t0_timestamp_offset_relationship(
         bt_time_offset = bt.TimeDelta(message.time_offset)
         if bt_t0 != bt_timestamp + bt_time_offset:
             raise ValueError("t0 must equal timestamp + time_offset.")
+
+    if not message.HasField("timestamp") and message.HasField("t0") and message.time_offset:
+        raise ValueError("Timestamp must be set when supplying a TimeOffset and T0.")
 
 
 def _scale_from_waveform(waveform: AnalogWaveform[Any] | ComplexWaveform[Any]) -> Scale | None:
