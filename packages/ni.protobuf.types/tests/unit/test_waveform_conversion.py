@@ -136,21 +136,6 @@ def test___analog_waveform_with_standard_timing___round_trip___waveforms_match()
     assert analog_waveform == converted_analog_waveform
 
 
-def test___analog_waveform_with_none_timing___round_trip___waveforms_match() -> None:
-    analog_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]))
-    t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
-    time_offset = dt.timedelta(milliseconds=1000)
-    analog_waveform.timing = Timing.create_with_no_interval(
-        timestamp=t0_dt,
-        time_offset=time_offset,
-    )
-
-    dbl_analog_waveform = float64_analog_waveform_to_protobuf(analog_waveform)
-    converted_analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_waveform)
-
-    assert analog_waveform == converted_analog_waveform
-
-
 def test___analog_waveform_with_irregular_timing___convert___valid_protobuf() -> None:
     analog_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]))
     t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
@@ -166,6 +151,71 @@ def test___analog_waveform_with_irregular_timing___convert___valid_protobuf() ->
     assert list(dbl_analog_waveform.timestamps) == _to_proto_timestamps(timestamps)
 
 
+@pytest.mark.parametrize(
+    "timestamp_seconds, time_offset",
+    [
+        (0, 0),
+        (0, 10),
+        (100, 10),
+        (100, 0),
+    ],
+)
+def test___analog_waveform_with_regular_timing___round_trip___waveforms_match(
+    timestamp_seconds: int, time_offset: float
+) -> None:
+    sample_interval = 1  # Regular interval of 1s
+    if timestamp_seconds:
+        timestamp = convert_datetime(
+            bt.DateTime, dt.datetime.fromtimestamp(timestamp_seconds, tz=dt.timezone.utc)
+        )
+    else:
+        timestamp = None
+    original_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]))
+    original_waveform.timing = Timing.create_with_regular_interval(
+        sample_interval=ht.timedelta(seconds=sample_interval),
+        timestamp=timestamp,
+        time_offset=ht.timedelta(seconds=time_offset),
+    )
+    original_waveform.scale_mode = NoneScaleMode()
+
+    dbl_analog_waveform = float64_analog_waveform_to_protobuf(original_waveform)
+    converted_analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_waveform)
+
+    assert original_waveform == converted_analog_waveform
+
+
+@pytest.mark.parametrize(
+    "timestamp_seconds, time_offset",
+    [
+        (0, 0),
+        (0, 10),
+        (100, 10),
+        (100, 0),
+    ],
+)
+def test___analog_waveform_with_none_timing___round_trip___waveforms_match(
+    timestamp_seconds: int, time_offset: float
+) -> None:
+    if timestamp_seconds:
+        timestamp = convert_datetime(
+            bt.DateTime, dt.datetime.fromtimestamp(timestamp_seconds, tz=dt.timezone.utc)
+        )
+    else:
+        timestamp = None
+    original_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]))
+    original_waveform.timing = Timing.create_with_no_interval(
+        timestamp=timestamp,
+        time_offset=ht.timedelta(seconds=time_offset),
+    )
+    original_waveform.scale_mode = NoneScaleMode()
+
+    dbl_analog_waveform = float64_analog_waveform_to_protobuf(original_waveform)
+    print(dbl_analog_waveform.time_offset)
+    converted_analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_waveform)
+
+    assert original_waveform == converted_analog_waveform
+
+
 # ========================================================
 # DoubleAnalogWaveform to AnalogWaveform
 # ========================================================
@@ -174,8 +224,10 @@ def test___default_dbl_analog_wfm___convert___valid_python_object() -> None:
 
     analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
+    print(analog_waveform.timing)
     assert not analog_waveform.extended_properties
-    assert analog_waveform.timing == Timing.empty
+    assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+    assert analog_waveform.timing.time_offset == ht.timedelta()
     assert analog_waveform.scaled_data.size == 0
     assert analog_waveform.scale_mode == NoneScaleMode()
 
@@ -480,7 +532,8 @@ def test___default_dbl_complex_wfm___convert___valid_python_object() -> None:
     complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
 
     assert not complex_waveform.extended_properties
-    assert complex_waveform.timing == Timing.empty
+    assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+    assert complex_waveform.timing.time_offset == ht.timedelta()
     assert complex_waveform.scaled_data.size == 0
     assert complex_waveform.scale_mode == NoneScaleMode()
 
@@ -758,7 +811,8 @@ def test___default_int16_complex_wfm___convert___valid_python_object() -> None:
     complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
 
     assert not complex_waveform.extended_properties
-    assert complex_waveform.timing == Timing.empty
+    assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+    assert complex_waveform.timing.time_offset == ht.timedelta()
     assert complex_waveform.scaled_data.size == 0
     assert complex_waveform.scale_mode == NoneScaleMode()
 
@@ -1038,7 +1092,8 @@ def test___default_i16_analog_wfm___convert___valid_python_object() -> None:
     analog_waveform = int16_analog_waveform_from_protobuf(i16_analog_wfm)
 
     assert not analog_waveform.extended_properties
-    assert analog_waveform.timing == Timing.empty
+    assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+    assert analog_waveform.timing.time_offset == ht.timedelta()
     assert analog_waveform.scaled_data.size == 0
     assert analog_waveform.scale_mode == NoneScaleMode()
 
@@ -1345,7 +1400,8 @@ def test___default_digital_waveform_proto___convert___valid_python_object() -> N
     digital_waveform = digital_waveform_from_protobuf(digital_waveform_proto)
 
     assert not digital_waveform.extended_properties
-    assert digital_waveform.timing == Timing.empty
+    assert digital_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+    assert digital_waveform.timing.time_offset == ht.timedelta()
     assert digital_waveform.data.size == 0
     assert digital_waveform.signal_count == 1
 

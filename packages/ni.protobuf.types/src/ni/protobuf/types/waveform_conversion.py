@@ -376,21 +376,17 @@ def _timing_from_waveform_message(
     if message.timestamps:
         timestamps_list = [ptc.bintime_datetime_from_protobuf(ts) for ts in message.timestamps]
         timing = Timing.create_with_irregular_interval(timestamps_list)
-    elif not message.dt and not message.HasField("t0"):
-        # If both dt and t0 are unset, use Timing.empty.
-        timing = Timing.empty
     else:
-        # Timestamp/T0
+        # Timestamp/T0 - Precedence is given to timestamp over t0
         raw_timestamp = _calculate_raw_timestamp(message)
         bin_datetime: bt.DateTime | None
         if raw_timestamp:
             bin_datetime = ptc.bintime_datetime_from_protobuf(raw_timestamp)
         else:
             bin_datetime = None
-        if message.time_offset:
-            time_offset = ht.timedelta(seconds=message.time_offset)
-        else:
-            time_offset = None
+
+        # Time Offset - Use hightime to avoid bruising of the float proto value.
+        time_offset = ht.timedelta(seconds=message.time_offset)
 
         # Sample Interval
         if not message.dt:
