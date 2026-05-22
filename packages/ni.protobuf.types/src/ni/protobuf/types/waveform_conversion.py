@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Mapping
-from typing import Any
+from typing import Any, TypeAlias
 
 import hightime as ht
 import nitypes.bintime as bt
@@ -36,6 +36,18 @@ from ni.protobuf.types.waveform_pb2 import (
     LinearScale,
     Scale,
     WaveformAttributeValue,
+)
+
+DEFAULT_PRECISION_TIMESTAMP = PrecisionTimestamp()
+
+AnyNiWaveform: TypeAlias = AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any]
+
+AnyWaveformProto: TypeAlias = (
+    DoubleAnalogWaveform
+    | DoubleComplexWaveform
+    | I16AnalogWaveform
+    | I16ComplexWaveform
+    | DigitalWaveformProto
 )
 
 
@@ -316,9 +328,7 @@ def _value_to_attribute(value: ExtendedPropertyValue) -> WaveformAttributeValue:
     return attr_value
 
 
-def _t0_from_waveform(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
-) -> PrecisionTimestamp | None:
+def _t0_from_waveform(waveform: AnyNiWaveform) -> PrecisionTimestamp | None:
     if waveform.timing.has_start_time:
         bin_datetime = convert_datetime(bt.DateTime, waveform.timing.start_time)
         return ptc.bintime_datetime_to_protobuf(bin_datetime)
@@ -326,9 +336,7 @@ def _t0_from_waveform(
         return None
 
 
-def _timestamp_from_waveform(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
-) -> PrecisionTimestamp | None:
+def _timestamp_from_waveform(waveform: AnyNiWaveform) -> PrecisionTimestamp | None:
     if waveform.timing.has_timestamp:
         bin_datetime = convert_datetime(bt.DateTime, waveform.timing.timestamp)
         return ptc.bintime_datetime_to_protobuf(bin_datetime)
@@ -336,18 +344,14 @@ def _timestamp_from_waveform(
         return None
 
 
-def _time_offset_from_waveform(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
-) -> float:
+def _time_offset_from_waveform(waveform: AnyNiWaveform) -> float:
     if waveform.timing.has_time_offset:
         return waveform.timing.time_offset.total_seconds()
     else:
         return 0
 
 
-def _timestamps_from_waveform(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
-) -> Iterable[PrecisionTimestamp] | None:
+def _timestamps_from_waveform(waveform: AnyNiWaveform) -> Iterable[PrecisionTimestamp] | None:
     if waveform.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
         timestamps = waveform.timing.get_timestamps(0, waveform.sample_count)
         return [
@@ -357,9 +361,7 @@ def _timestamps_from_waveform(
         return None
 
 
-def _time_interval_from_waveform(
-    waveform: AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any],
-) -> float:
+def _time_interval_from_waveform(waveform: AnyNiWaveform) -> float:
     if waveform.timing.has_sample_interval:
         return waveform.timing.sample_interval.total_seconds()
     else:
@@ -367,13 +369,7 @@ def _time_interval_from_waveform(
 
 
 def _timing_from_waveform_message(
-    message: (
-        DoubleAnalogWaveform
-        | DoubleComplexWaveform
-        | I16AnalogWaveform
-        | I16ComplexWaveform
-        | DigitalWaveformProto
-    ),
+    message: AnyWaveformProto,
 ) -> Timing[AnyDateTime, AnyTimeDelta, AnyTimeDelta]:
     timing: Timing[AnyDateTime, AnyTimeDelta, AnyTimeDelta]
     _check_regular_vs_irregular_fields(message)
@@ -410,15 +406,7 @@ def _timing_from_waveform_message(
     return timing
 
 
-def _check_regular_vs_irregular_fields(
-    message: (
-        DoubleAnalogWaveform
-        | DoubleComplexWaveform
-        | I16AnalogWaveform
-        | I16ComplexWaveform
-        | DigitalWaveformProto
-    ),
-) -> None:
+def _check_regular_vs_irregular_fields(message: AnyWaveformProto) -> None:
     has_any_regular_timing_fields = (
         message.dt or message.time_offset or message.HasField("t0") or message.HasField("timestamp")
     )
@@ -430,46 +418,30 @@ def _check_regular_vs_irregular_fields(
         )
 
 
-def _calculate_raw_timestamp(
-    message: (
-        DoubleAnalogWaveform
-        | DoubleComplexWaveform
-        | I16AnalogWaveform
-        | I16ComplexWaveform
-        | DigitalWaveformProto
-    ),
-) -> PrecisionTimestamp | None:
+def _calculate_raw_timestamp(message: AnyWaveformProto) -> PrecisionTimestamp | None:
     _verify_t0_timestamp_offset_relationship(message)
     raw_timestamp = None
 
     # Agreed precedence of timestamp over t0
-    if message.HasField("timestamp"):
+    if _has_timestamp(message):
         raw_timestamp = message.timestamp
-    elif message.HasField("t0"):
+    elif _has_t0(message):
         raw_timestamp = message.t0
 
     return raw_timestamp
 
 
-def _verify_t0_timestamp_offset_relationship(
-    message: (
-        DoubleAnalogWaveform
-        | DoubleComplexWaveform
-        | I16AnalogWaveform
-        | I16ComplexWaveform
-        | DigitalWaveformProto
-    ),
-) -> None:
-    # TODO: Is the conversion to bintime necessary? Seems expensive.
-    if message.HasField("timestamp") and message.HasField("t0"):
-        bt_timestamp = ptc.bintime_datetime_from_protobuf(message.timestamp)
-        bt_t0 = ptc.bintime_datetime_from_protobuf(message.t0)
-        bt_time_offset = bt.TimeDelta(message.time_offset)
-        if bt_t0 != bt_timestamp + bt_time_offset:
-            raise ValueError("t0 must equal timestamp + time_offset.")
-
-    if not message.HasField("timestamp") and message.HasField("t0") and message.time_offset:
+def _verify_t0_timestamp_offset_relationship(message: AnyWaveformProto) -> None:
+    if not _has_timestamp(message) and _has_t0(message) and message.time_offset:
         raise ValueError("Timestamp must be set when supplying a TimeOffset and T0.")
+
+
+def _has_timestamp(message: AnyWaveformProto) -> bool:
+    return message.HasField("timestamp") and not message.timestamp == DEFAULT_PRECISION_TIMESTAMP
+
+
+def _has_t0(message: AnyWaveformProto) -> bool:
+    return message.HasField("t0") and not message.t0 == DEFAULT_PRECISION_TIMESTAMP
 
 
 def _scale_from_waveform(waveform: AnalogWaveform[Any] | ComplexWaveform[Any]) -> Scale | None:
