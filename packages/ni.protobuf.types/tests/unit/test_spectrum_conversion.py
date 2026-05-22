@@ -15,6 +15,8 @@ from nitypes.waveform import (
     LinearScaleMode,
     NoneScaleMode,
     SampleIntervalMode,
+    Spectrum,
+    Timing,
 )
 
 from ni.protobuf.types.precision_timestamp_conversion import (
@@ -30,6 +32,8 @@ from ni.protobuf.types.waveform_conversion import (
     float64_analog_waveform_to_protobuf,
     float64_complex_waveform_from_protobuf,
     float64_complex_waveform_to_protobuf,
+    float64_spectrum_from_protobuf,
+    float64_spectrum_to_protobuf,
     int16_analog_waveform_from_protobuf,
     int16_analog_waveform_to_protobuf,
     int16_complex_waveform_from_protobuf,
@@ -39,13 +43,14 @@ from ni.protobuf.types.waveform_pb2 import (
     DigitalWaveform as DigitalWaveformProto,
     DoubleAnalogWaveform,
     DoubleComplexWaveform,
+    DoubleSpectrum,
     I16AnalogWaveform,
     I16ComplexWaveform,
     LinearScale,
     Scale,
     WaveformAttributeValue,
 )
-from tests.unit.timed_waveform_conversion_tests import TimedWaveformConversionTests
+from tests.unit.waveform_conversion.timed_waveform_conversion_tests import TimedWaveformConversionTests
 
 
 class DoubleAnalogConversionTests(TimedWaveformConversionTests):
@@ -127,10 +132,13 @@ class DoubleAnalogConversionTests(TimedWaveformConversionTests):
         assert analog_waveform.units == "Volts"
 
 
+    
+
+
+# ========================================================
+# ComplexWaveform to DoubleComplexWaveform
+# ========================================================
 class DoubleComplexWaveformConversionTests(TimedWaveformConversionTests):
-    # ========================================================
-    # To Protobuf
-    # ========================================================
     def test___default_float64_complex_waveform___convert___valid_protobuf(self) -> None:
         complex_waveform = ComplexWaveform(0, np.complex128)
 
@@ -171,7 +179,7 @@ class DoubleComplexWaveformConversionTests(TimedWaveformConversionTests):
 
 
     # ========================================================
-    # From Protobuf
+    # DoubleComplexWaveform to ComplexWaveform
     # ========================================================
     def test___default_dbl_complex_wfm___convert___valid_python_object(self) -> None:
         dbl_complex_waveform = DoubleComplexWaveform()
@@ -404,6 +412,83 @@ class I16AnalogWaveformConversionTests(TimedWaveformConversionTests):
 
         assert analog_waveform.channel_name == "Dev1/ai0"
         assert analog_waveform.units == "Volts"
+
+
+# ========================================================
+# Spectrum to DoubleSpectrum
+# ========================================================
+def test___default_spectrum___convert___valid_protobuf() -> None:
+    spectrum = Spectrum()
+
+    dbl_spectrum = float64_spectrum_to_protobuf(spectrum)
+
+    assert not dbl_spectrum.attributes
+    assert spectrum.start_frequency == 0.0
+    assert spectrum.frequency_increment == 0.0
+    assert list(dbl_spectrum.data) == []
+
+
+def test___spectrum_with_data___convert___valid_protobuf() -> None:
+    spectrum = Spectrum.from_array_1d(np.array([1.0, 2.0, 3.0]))
+    spectrum.start_frequency = 100.0
+    spectrum.frequency_increment = 10.0
+
+    dbl_spectrum = float64_spectrum_to_protobuf(spectrum)
+
+    assert list(dbl_spectrum.data) == [1.0, 2.0, 3.0]
+    assert dbl_spectrum.start_frequency == 100.0
+    assert dbl_spectrum.frequency_increment == 10.0
+
+
+def test___spectrum_with_extended_properties___convert___valid_protobuf() -> None:
+    spectrum = Spectrum()
+    spectrum.channel_name = "Dev1/ai0"
+    spectrum.units = "Volts"
+
+    dbl_spectrum = float64_spectrum_to_protobuf(spectrum)
+
+    assert dbl_spectrum.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
+    assert dbl_spectrum.attributes["NI_UnitDescription"].string_value == "Volts"
+
+
+# ========================================================
+# DoubleSpectrum to Spectrum
+# ========================================================
+def test___default_dbl_spectrum___convert___valid_python_object() -> None:
+    dbl_spectrum = DoubleSpectrum()
+
+    spectrum = float64_spectrum_from_protobuf(dbl_spectrum)
+
+    assert not spectrum.extended_properties
+    assert spectrum.start_frequency == 0.0
+    assert spectrum.frequency_increment == 0.0
+    assert spectrum.sample_count == 0
+    assert spectrum.data.size == 0
+
+
+def test___dbl_spectrum_with_data___convert___valid_python_object() -> None:
+    dbl_spectrum = DoubleSpectrum(
+        data=[1.0, 2.0, 3.0], start_frequency=100.0, frequency_increment=10.0
+    )
+
+    spectrum = float64_spectrum_from_protobuf(dbl_spectrum)
+
+    assert list(spectrum.data) == [1.0, 2.0, 3.0]
+    assert spectrum.start_frequency == 100.0
+    assert spectrum.frequency_increment == 10.0
+
+
+def test___dbl_spectrum_with_attributes___convert___valid_python_object() -> None:
+    attributes = {
+        "NI_ChannelName": WaveformAttributeValue(string_value="Dev1/ai0"),
+        "NI_UnitDescription": WaveformAttributeValue(string_value="Volts"),
+    }
+    dbl_spectrum = DoubleSpectrum(attributes=attributes)
+
+    spectrum = float64_spectrum_from_protobuf(dbl_spectrum)
+
+    assert spectrum.channel_name == "Dev1/ai0"
+    assert spectrum.units == "Volts"
 
 
 class DigitalWaveformConversionTests(TimedWaveformConversionTests):
