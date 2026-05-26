@@ -404,7 +404,7 @@ def _timing_from_waveform_message(
 
 def _check_regular_vs_irregular_fields(message: AnyWaveformProto) -> None:
     has_any_regular_timing_fields = (
-        message.dt or message.time_offset or message.HasField("t0") or message.HasField("timestamp")
+        message.dt or message.time_offset or _has_t0(message) or _has_timestamp(message)
     )
     if message.timestamps and has_any_regular_timing_fields:
         raise ValueError(
