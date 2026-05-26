@@ -1,13 +1,6 @@
-import datetime as dt
-from abc import abstractmethod
-from typing import Any
-
 import hightime as ht
-import nitypes.bintime as bt
 import numpy as np
-import pytest
 from nitypes.complex import ComplexInt32DType
-from nitypes.time import convert_datetime
 from nitypes.waveform import (
     AnalogWaveform,
     ComplexWaveform,
@@ -17,10 +10,6 @@ from nitypes.waveform import (
     SampleIntervalMode,
 )
 
-from ni.protobuf.types.precision_timestamp_conversion import (
-    bintime_datetime_to_protobuf,
-)
-from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
 from ni.protobuf.types.waveform_conversion import (
     AnyNiWaveform,
     AnyWaveformProto,
@@ -48,7 +37,26 @@ from ni.protobuf.types.waveform_pb2 import (
 from tests.unit.timed_waveform_conversion_tests import TimedWaveformConversionTests
 
 
-class DoubleAnalogConversionTests(TimedWaveformConversionTests):
+class TestDoubleAnalogConversion(TimedWaveformConversionTests):
+    """Test for converting double analog waveforms to/from protobuf messages."""
+
+    def make_waveform(self) -> AnyNiWaveform:
+        """Create a waveform with small non-zero sample data."""
+        return AnalogWaveform.from_array_1d(np.array([1.0, 2.0]))
+
+    def make_waveform_proto(self) -> AnyWaveformProto:
+        """Create a waveform protobuf object with small non-zero sample data."""
+        return DoubleAnalogWaveform(y_data=[1.0, 2.0])
+
+    def to_protobuf(self, waveform: AnyNiWaveform) -> AnyWaveformProto:
+        """Convert a Python waveform to its corresponding proto message."""
+        assert isinstance(waveform, AnalogWaveform)
+        return float64_analog_waveform_to_protobuf(waveform)
+
+    def from_protobuf(self, waveform_proto: AnyWaveformProto) -> AnyNiWaveform:
+        """Convert a proto message to the corresponding Python waveform."""
+        assert isinstance(waveform_proto, DoubleAnalogWaveform)
+        return float64_analog_waveform_from_protobuf(waveform_proto)
 
     # ========================================================
     # To Protobuf
@@ -63,7 +71,6 @@ class DoubleAnalogConversionTests(TimedWaveformConversionTests):
         assert not dbl_analog_waveform.HasField("t0")
         assert list(dbl_analog_waveform.y_data) == []
 
-
     def test___analog_waveform_samples_only___convert___valid_protobuf(self) -> None:
         analog_waveform = AnalogWaveform(5)
 
@@ -71,14 +78,12 @@ class DoubleAnalogConversionTests(TimedWaveformConversionTests):
 
         assert list(dbl_analog_waveform.y_data) == [0.0, 0.0, 0.0, 0.0, 0.0]
 
-
     def test___analog_waveform_non_zero_samples___convert___valid_protobuf(self) -> None:
         analog_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]))
 
         dbl_analog_waveform = float64_analog_waveform_to_protobuf(analog_waveform)
 
         assert list(dbl_analog_waveform.y_data) == [1.0, 2.0, 3.0]
-
 
     def test___analog_waveform_with_extended_properties___convert___valid_protobuf(self) -> None:
         analog_waveform = AnalogWaveform()
@@ -105,14 +110,12 @@ class DoubleAnalogConversionTests(TimedWaveformConversionTests):
         assert analog_waveform.scaled_data.size == 0
         assert analog_waveform.scale_mode == NoneScaleMode()
 
-
     def test___dbl_analog_wfm_with_y_data___convert___valid_python_object(self) -> None:
         dbl_analog_wfm = DoubleAnalogWaveform(y_data=[1.0, 2.0, 3.0])
 
         analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
         assert list(analog_waveform.scaled_data) == [1.0, 2.0, 3.0]
-
 
     def test___dbl_analog_wfm_with_attributes___convert___valid_python_object(self) -> None:
         attributes = {
@@ -127,7 +130,27 @@ class DoubleAnalogConversionTests(TimedWaveformConversionTests):
         assert analog_waveform.units == "Volts"
 
 
-class DoubleComplexWaveformConversionTests(TimedWaveformConversionTests):
+class TestDoubleComplexWaveformConversion(TimedWaveformConversionTests):
+    """Test for converting double complex waveforms to/from protobuf messages."""
+
+    def make_waveform(self) -> AnyNiWaveform:
+        """Create a waveform with small non-zero sample data."""
+        return ComplexWaveform.from_array_1d([1.5 + 2.5j, 3.5 + 4.5j], np.complex128)
+
+    def make_waveform_proto(self) -> AnyWaveformProto:
+        """Create a waveform protobuf object with small non-zero sample data."""
+        return DoubleComplexWaveform(y_data=[1.0, 2.0, 3.0, 4.0])
+
+    def to_protobuf(self, waveform: AnyNiWaveform) -> AnyWaveformProto:
+        """Convert a Python waveform to its corresponding proto message."""
+        assert isinstance(waveform, ComplexWaveform)
+        return float64_complex_waveform_to_protobuf(waveform)
+
+    def from_protobuf(self, waveform_proto: AnyWaveformProto) -> AnyNiWaveform:
+        """Convert a proto message to the corresponding Python waveform."""
+        assert isinstance(waveform_proto, DoubleComplexWaveform)
+        return float64_complex_waveform_from_protobuf(waveform_proto)
+
     # ========================================================
     # To Protobuf
     # ========================================================
@@ -141,7 +164,6 @@ class DoubleComplexWaveformConversionTests(TimedWaveformConversionTests):
         assert not dbl_complex_waveform.HasField("t0")
         assert list(dbl_complex_waveform.y_data) == []
 
-
     def test___float64_complex_waveform_samples_only___convert___valid_protobuf(self) -> None:
         complex_waveform = ComplexWaveform(2, np.complex128)
 
@@ -150,7 +172,6 @@ class DoubleComplexWaveformConversionTests(TimedWaveformConversionTests):
         # Interleaved real/imaginary data.
         assert list(dbl_complex_waveform.y_data) == [0.0, 0.0, 0.0, 0.0]
 
-
     def test___float64_complex_waveform_non_zero_samples___convert___valid_protobuf(self) -> None:
         complex_waveform = ComplexWaveform.from_array_1d([1.5 + 2.5j, 3.5 + 4.5j], np.complex128)
 
@@ -158,8 +179,9 @@ class DoubleComplexWaveformConversionTests(TimedWaveformConversionTests):
 
         assert list(dbl_complex_waveform.y_data) == [1.5, 2.5, 3.5, 4.5]
 
-
-    def test___float64_complex_waveform_with_extended_properties___convert___valid_protobuf(self) -> None:
+    def test___float64_complex_waveform_with_extended_properties___convert___valid_protobuf(
+        self,
+    ) -> None:
         complex_waveform = ComplexWaveform(0, np.complex128)
         complex_waveform.channel_name = "Dev1/ai0"
         complex_waveform.units = "Volts"
@@ -168,7 +190,6 @@ class DoubleComplexWaveformConversionTests(TimedWaveformConversionTests):
 
         assert dbl_complex_waveform.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
         assert dbl_complex_waveform.attributes["NI_UnitDescription"].string_value == "Volts"
-
 
     # ========================================================
     # From Protobuf
@@ -184,14 +205,12 @@ class DoubleComplexWaveformConversionTests(TimedWaveformConversionTests):
         assert complex_waveform.scaled_data.size == 0
         assert complex_waveform.scale_mode == NoneScaleMode()
 
-
     def test___dbl_complex_wfm_with_y_data___convert___valid_python_object(self) -> None:
         dbl_complex_waveform = DoubleComplexWaveform(y_data=[1.0, 2.0, 3.0, 4.0])
 
         complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
 
         assert list(complex_waveform.scaled_data) == [1.0 + 2.0j, 3.0 + 4.0j]
-
 
     def test___dbl_complex_wfm_with_attributes___convert___valid_python_object(self) -> None:
         attributes = {
@@ -206,7 +225,26 @@ class DoubleComplexWaveformConversionTests(TimedWaveformConversionTests):
         assert complex_waveform.units == "Volts"
 
 
-class I16ComplexWaveformConversionTests(TimedWaveformConversionTests):
+class TestI16ComplexWaveformConversion(TimedWaveformConversionTests):
+    """Test for converting int complex waveforms to/from protobuf messages."""
+
+    def make_waveform(self) -> AnyNiWaveform:
+        """Create a waveform with small non-zero sample data."""
+        return ComplexWaveform.from_array_1d([(1, 2), (3, 4)], ComplexInt32DType)
+
+    def make_waveform_proto(self) -> AnyWaveformProto:
+        """Create a waveform protobuf object with small non-zero sample data."""
+        return I16ComplexWaveform(y_data=[1, 2, 3, 4])
+
+    def to_protobuf(self, waveform: AnyNiWaveform) -> AnyWaveformProto:
+        """Convert a Python waveform to its corresponding proto message."""
+        assert isinstance(waveform, ComplexWaveform)
+        return int16_complex_waveform_to_protobuf(waveform)
+
+    def from_protobuf(self, waveform_proto: AnyWaveformProto) -> AnyNiWaveform:
+        """Convert a proto message to the corresponding Python waveform."""
+        assert isinstance(waveform_proto, I16ComplexWaveform)
+        return int16_complex_waveform_from_protobuf(waveform_proto)
 
     # ========================================================
     # From Protobuf
@@ -222,7 +260,6 @@ class I16ComplexWaveformConversionTests(TimedWaveformConversionTests):
         assert not i16_complex_waveform.HasField("scale")
         assert list(i16_complex_waveform.y_data) == []
 
-
     def test___int16_complex_waveform_samples_only___convert___valid_protobuf(self) -> None:
         complex_waveform = ComplexWaveform(2, ComplexInt32DType)
 
@@ -231,7 +268,6 @@ class I16ComplexWaveformConversionTests(TimedWaveformConversionTests):
         # Interleaved real/imaginary data.
         assert list(i16_complex_waveform.y_data) == [0, 0, 0, 0]
 
-
     def test___int16_complex_waveform_non_zero_samples___convert___valid_protobuf(self) -> None:
         complex_waveform = ComplexWaveform.from_array_1d([(1, 2), (3, 4)], ComplexInt32DType)
 
@@ -239,8 +275,9 @@ class I16ComplexWaveformConversionTests(TimedWaveformConversionTests):
 
         assert list(i16_complex_waveform.y_data) == [1, 2, 3, 4]
 
-
-    def test___int16_complex_waveform_with_extended_properties___convert___valid_protobuf(self) -> None:
+    def test___int16_complex_waveform_with_extended_properties___convert___valid_protobuf(
+        self,
+    ) -> None:
         complex_waveform = ComplexWaveform(0, ComplexInt32DType)
         complex_waveform.channel_name = "Dev1/ai0"
         complex_waveform.units = "Volts"
@@ -263,11 +300,10 @@ class I16ComplexWaveformConversionTests(TimedWaveformConversionTests):
         assert i16_complex_waveform.scale.linear_scale.gain == 2.0
         assert i16_complex_waveform.scale.linear_scale.offset == 3.0
 
-
     # ========================================================
     # From Protobuf
     # ========================================================
-    def test___default_int16_complex_wfm___convert___valid_python_object() -> None:
+    def test___default_int16_complex_wfm___convert___valid_python_object(self) -> None:
         i16_complex_waveform = I16ComplexWaveform()
 
         complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
@@ -278,8 +314,7 @@ class I16ComplexWaveformConversionTests(TimedWaveformConversionTests):
         assert complex_waveform.scaled_data.size == 0
         assert complex_waveform.scale_mode == NoneScaleMode()
 
-
-    def test___int16_complex_wfm_with_y_data___convert___valid_python_object() -> None:
+    def test___int16_complex_wfm_with_y_data___convert___valid_python_object(self) -> None:
         i16_complex_waveform = I16ComplexWaveform(y_data=[1, 2, 3, 4])
 
         complex_waveform = int16_complex_waveform_from_protobuf(i16_complex_waveform)
@@ -287,8 +322,7 @@ class I16ComplexWaveformConversionTests(TimedWaveformConversionTests):
         expected_raw_data = np.array([(1, 2), (3, 4)], ComplexInt32DType)
         assert np.array_equal(complex_waveform.raw_data, expected_raw_data)
 
-
-    def test___int16_complex_wfm_with_attributes___convert___valid_python_object() -> None:
+    def test___int16_complex_wfm_with_attributes___convert___valid_python_object(self) -> None:
         attributes = {
             "NI_ChannelName": WaveformAttributeValue(string_value="Dev1/ai0"),
             "NI_UnitDescription": WaveformAttributeValue(string_value="Volts"),
@@ -299,7 +333,6 @@ class I16ComplexWaveformConversionTests(TimedWaveformConversionTests):
 
         assert complex_waveform.channel_name == "Dev1/ai0"
         assert complex_waveform.units == "Volts"
-
 
     def test___int16_complex_wfm_with_scaling___convert___valid_python_object(self) -> None:
         linear_scale = LinearScale(gain=2.0, offset=3.0)
@@ -313,10 +346,30 @@ class I16ComplexWaveformConversionTests(TimedWaveformConversionTests):
         assert complex_waveform.scale_mode.offset == 3.0
 
 
-# ========================================================
-# AnalogWaveform to I16AnalogWaveform
-# ========================================================
-class I16AnalogWaveformConversionTests(TimedWaveformConversionTests):
+class TestI16AnalogWaveformConversion(TimedWaveformConversionTests):
+    """Test for converting int analog waveforms to/from protobuf messages."""
+
+    def make_waveform(self) -> AnyNiWaveform:
+        """Create a waveform with small non-zero sample data."""
+        return AnalogWaveform.from_array_1d(np.array([1, 2], dtype=np.int16))
+
+    def make_waveform_proto(self) -> AnyWaveformProto:
+        """Create a waveform protobuf object with small non-zero sample data."""
+        return I16AnalogWaveform(y_data=[1, 2])
+
+    def to_protobuf(self, waveform: AnyNiWaveform) -> AnyWaveformProto:
+        """Convert a Python waveform to its corresponding proto message."""
+        assert isinstance(waveform, AnalogWaveform)
+        return int16_analog_waveform_to_protobuf(waveform)
+
+    def from_protobuf(self, waveform_proto: AnyWaveformProto) -> AnyNiWaveform:
+        """Convert a proto message to the corresponding Python waveform."""
+        assert isinstance(waveform_proto, I16AnalogWaveform)
+        return int16_analog_waveform_from_protobuf(waveform_proto)
+
+    # ========================================================
+    # To Protobuf
+    # ========================================================
     def test___default_int16_analog_waveform___convert___valid_protobuf(self) -> None:
         analog_waveform = AnalogWaveform(0, np.int16)
 
@@ -328,14 +381,12 @@ class I16AnalogWaveformConversionTests(TimedWaveformConversionTests):
         assert not i16_analog_waveform.HasField("scale")
         assert list(i16_analog_waveform.y_data) == []
 
-
     def test___int16_analog_waveform_samples_only___convert___valid_protobuf(self) -> None:
         analog_waveform = AnalogWaveform(5, np.int16)
 
         i16_analog_waveform = int16_analog_waveform_to_protobuf(analog_waveform)
 
         assert list(i16_analog_waveform.y_data) == [0, 0, 0, 0, 0]
-
 
     def test___int16_analog_waveform_non_zero_samples___convert___valid_protobuf(self) -> None:
         analog_waveform = AnalogWaveform.from_array_1d(np.array([1, 2, 3], dtype=np.int16))
@@ -344,8 +395,9 @@ class I16AnalogWaveformConversionTests(TimedWaveformConversionTests):
 
         assert list(i16_analog_waveform.y_data) == [1, 2, 3]
 
-
-    def test___int16_analog_waveform_with_extended_properties___convert___valid_protobuf(self) -> None:
+    def test___int16_analog_waveform_with_extended_properties___convert___valid_protobuf(
+        self,
+    ) -> None:
         analog_waveform = AnalogWaveform(0, np.int16)
         analog_waveform.channel_name = "Dev1/ai0"
         analog_waveform.units = "Volts"
@@ -354,7 +406,6 @@ class I16AnalogWaveformConversionTests(TimedWaveformConversionTests):
 
         assert i16_analog_waveform.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
         assert i16_analog_waveform.attributes["NI_UnitDescription"].string_value == "Volts"
-
 
     def test___int16_analog_waveform_with_scaling___convert___valid_protobuf(self) -> None:
         scale_mode = LinearScaleMode(2.0, 3.0)
@@ -368,9 +419,8 @@ class I16AnalogWaveformConversionTests(TimedWaveformConversionTests):
         assert i16_analog_waveform.scale.linear_scale.gain == 2.0
         assert i16_analog_waveform.scale.linear_scale.offset == 3.0
 
-
     # ========================================================
-    # I16AnalogWaveform to AnalogWaveform
+    # From Protobuf
     # ========================================================
     def test___default_i16_analog_wfm___convert___valid_python_object(self) -> None:
         i16_analog_wfm = I16AnalogWaveform()
@@ -383,7 +433,6 @@ class I16AnalogWaveformConversionTests(TimedWaveformConversionTests):
         assert analog_waveform.scaled_data.size == 0
         assert analog_waveform.scale_mode == NoneScaleMode()
 
-
     def test___i16_analog_wfm_with_y_data___convert___valid_python_object(self) -> None:
         i16_analog_wfm = I16AnalogWaveform(y_data=[1, 2, 3])
 
@@ -391,7 +440,6 @@ class I16AnalogWaveformConversionTests(TimedWaveformConversionTests):
 
         expected_raw_data = np.array([1, 2, 3], dtype=np.int16)
         assert np.array_equal(analog_waveform.raw_data, expected_raw_data)
-
 
     def test___i16_analog_wfm_with_attributes___convert___valid_python_object(self) -> None:
         attributes = {
@@ -406,7 +454,28 @@ class I16AnalogWaveformConversionTests(TimedWaveformConversionTests):
         assert analog_waveform.units == "Volts"
 
 
-class DigitalWaveformConversionTests(TimedWaveformConversionTests):
+class TestDigitalWaveformConversion(TimedWaveformConversionTests):
+    """Test for converting digital waveforms to/from protobuf messages."""
+
+    def make_waveform(self) -> AnyNiWaveform:
+        """Create a waveform with small non-zero sample data."""
+        data = np.array([[0, 1, 3], [7, 5, 1]], dtype=np.uint8)
+        return DigitalWaveform.from_lines(data, signal_count=3)
+
+    def make_waveform_proto(self) -> AnyWaveformProto:
+        """Create a waveform protobuf object with small non-zero sample data."""
+        data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
+        return DigitalWaveformProto(y_data=data.tobytes(), signal_count=3)
+
+    def to_protobuf(self, waveform: AnyNiWaveform) -> AnyWaveformProto:
+        """Convert a Python waveform to its corresponding proto message."""
+        assert isinstance(waveform, DigitalWaveform)
+        return digital_waveform_to_protobuf(waveform)
+
+    def from_protobuf(self, waveform_proto: AnyWaveformProto) -> AnyNiWaveform:
+        """Convert a proto message to the corresponding Python waveform."""
+        assert isinstance(waveform_proto, DigitalWaveformProto)
+        return digital_waveform_from_protobuf(waveform_proto)
 
     # ========================================================
     # To Protobuf
@@ -422,7 +491,6 @@ class DigitalWaveformConversionTests(TimedWaveformConversionTests):
         assert digital_waveform_proto.y_data == b""
         assert digital_waveform_proto.signal_count == 1
 
-
     def test___digital_waveform_with_data___convert___valid_protobuf(self) -> None:
         data = np.array([[0, 1, 3], [7, 5, 1]], dtype=np.uint8)
         digital_waveform = DigitalWaveform.from_lines(data, signal_count=3)
@@ -432,7 +500,6 @@ class DigitalWaveformConversionTests(TimedWaveformConversionTests):
         assert digital_waveform_proto.y_data == b"\x00\x01\x03\x07\x05\x01"
         assert digital_waveform_proto.signal_count == 3
 
-
     def test___digital_waveform_with_extended_properties___convert___valid_protobuf(self) -> None:
         digital_waveform = DigitalWaveform()
         digital_waveform.channel_name = "Dev1/port0"
@@ -440,7 +507,6 @@ class DigitalWaveformConversionTests(TimedWaveformConversionTests):
         digital_waveform_proto = digital_waveform_to_protobuf(digital_waveform)
 
         assert digital_waveform_proto.attributes["NI_ChannelName"].string_value == "Dev1/port0"
-
 
     # ========================================================
     # From Protobuf
@@ -456,7 +522,6 @@ class DigitalWaveformConversionTests(TimedWaveformConversionTests):
         assert digital_waveform.data.size == 0
         assert digital_waveform.signal_count == 1
 
-
     def test___digital_waveform_proto_with_data___convert___valid_python_object(self) -> None:
         data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
         digital_waveform_proto = DigitalWaveformProto(y_data=data.tobytes(), signal_count=3)
@@ -465,7 +530,6 @@ class DigitalWaveformConversionTests(TimedWaveformConversionTests):
 
         assert np.array_equal(digital_waveform.data, data)
         assert digital_waveform.signal_count == 3
-
 
     def test___digital_waveform_proto_with_attributes___convert___valid_python_object(self) -> None:
         attributes = {
