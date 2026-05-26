@@ -59,21 +59,23 @@ class TimedWaveformConversionTests:
         """Test conversion of a waveform with standard timing."""
         waveform = self.make_waveform()
         t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
+        sample_interval_seconds = 1.5
         waveform.timing = Timing.create_with_regular_interval(
-            sample_interval=dt.timedelta(milliseconds=1500),
+            sample_interval=dt.timedelta(seconds=sample_interval_seconds),
             timestamp=t0_dt,
         )
 
         waveform_proto = self.to_protobuf(waveform)
 
-        self._assert_proto_standard_timing(waveform_proto, t0_dt, 1.5)
+        self._assert_proto_standard_timing(waveform_proto, t0_dt, sample_interval_seconds)
 
     def test___waveform_with_standard_timing_and_offset___convert___valid_protobuf(self) -> None:
         """Test conversion of a waveform with standard timing and offset."""
         waveform = self.make_waveform()
         t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
-        sample_interval = dt.timedelta(milliseconds=1000)
-        time_offset = dt.timedelta(milliseconds=1000)
+        sample_interval_seconds = 2.5
+        sample_interval = dt.timedelta(seconds=sample_interval_seconds)
+        time_offset = dt.timedelta(milliseconds=500)
         waveform.timing = Timing.create_with_regular_interval(
             sample_interval=sample_interval,
             timestamp=t0_dt,
@@ -82,14 +84,16 @@ class TimedWaveformConversionTests:
 
         waveform_proto = self.to_protobuf(waveform)
 
-        self._assert_proto_standard_timing_with_offset(waveform_proto, t0_dt, time_offset, 1.0)
+        self._assert_proto_standard_timing_with_offset(
+            waveform_proto, t0_dt, time_offset, sample_interval_seconds
+        )
 
     def test___waveform_with_standard_timing___round_trip___waveforms_match(self) -> None:
         """Test a round-trip conversion of a waveform with standard timing."""
         waveform = self.make_waveform()
         t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
-        sample_interval = dt.timedelta(milliseconds=1000)
-        time_offset = dt.timedelta(milliseconds=1000)
+        sample_interval = dt.timedelta(milliseconds=1500)
+        time_offset = dt.timedelta(milliseconds=2000)
         waveform.timing = Timing.create_with_regular_interval(
             sample_interval=sample_interval,
             timestamp=t0_dt,
@@ -107,7 +111,7 @@ class TimedWaveformConversionTests:
         t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
         timestamps = [
             t0_dt,
-            t0_dt + dt.timedelta(milliseconds=1000),
+            t0_dt + dt.timedelta(milliseconds=1500),
         ]
         waveform.timing = Timing.create_with_irregular_interval(timestamps)
 
@@ -194,12 +198,13 @@ class TimedWaveformConversionTests:
         t0_pt = bintime_datetime_to_protobuf(t0_dt)
         waveform_proto = self.make_waveform_proto()
         waveform_proto.t0.CopyFrom(t0_pt)
-        waveform_proto.dt = 0.1
+        sample_interval_seconds = 0.1
+        waveform_proto.dt = sample_interval_seconds
 
         waveform = self.from_protobuf(waveform_proto)
 
         assert waveform.timing.start_time == t0_dt._to_datetime_datetime()
-        assert waveform.timing.sample_interval == ht.timedelta(seconds=0.1)
+        assert waveform.timing.sample_interval == ht.timedelta(seconds=sample_interval_seconds)
         assert waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
     def test___waveform_proto_with_timing___round_trip___waveforms_match(self) -> None:
