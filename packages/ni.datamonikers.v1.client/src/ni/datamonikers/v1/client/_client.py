@@ -6,11 +6,11 @@ import logging
 import sys
 import threading
 from types import TracebackType
-from typing import TYPE_CHECKING, Iterator
+from typing import Iterator, TYPE_CHECKING
 
 import grpc
-import ni.datamonikers.v1.data_moniker_pb2 as data_moniker_pb2
-import ni.datamonikers.v1.data_moniker_pb2_grpc as data_moniker_pb2_grpc
+from ni.datamonikers.v1 import data_moniker_pb2
+from ni.datamonikers.v1 import data_moniker_pb2_grpc
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 if TYPE_CHECKING:
