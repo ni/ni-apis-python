@@ -5,9 +5,8 @@ from __future__ import annotations
 import pathlib
 
 import grpc
-import ni.measurementlink.pinmap.v1.pin_map_service_pb2 as pin_map_service_pb2
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
-from ni.measurementlink.pinmap.v1 import pin_map_service_pb2_grpc
+from ni.measurementlink.pinmap.v1 import pin_map_service_pb2, pin_map_service_pb2_grpc
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 from ni.measurementlink.pinmap.v1.client._client_base import GrpcServiceClientBase
