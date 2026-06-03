@@ -1,6 +1,8 @@
+from typing import Any
+
 import hightime as ht
 import numpy as np
-from nitypes.complex import ComplexInt32DType
+from nitypes.complex import ComplexInt32Base, ComplexInt32DType
 from nitypes.waveform import (
     AnalogWaveform,
     ComplexWaveform,
@@ -11,8 +13,6 @@ from nitypes.waveform import (
 )
 
 from ni.protobuf.types.waveform_conversion import (
-    AnyNiWaveform,
-    AnyWaveformProto,
     digital_waveform_from_protobuf,
     digital_waveform_to_protobuf,
     float64_analog_waveform_from_protobuf,
@@ -37,25 +37,25 @@ from ni.protobuf.types.waveform_pb2 import (
 from tests.unit.timed_waveform_conversion_tests import TimedWaveformConversionTests
 
 
-class TestDoubleAnalogConversion(TimedWaveformConversionTests):
+class TestDoubleAnalogConversion(
+    TimedWaveformConversionTests[AnalogWaveform[np.float64], DoubleAnalogWaveform]
+):
     """Test for converting double analog waveforms to/from protobuf messages."""
 
-    def make_waveform(self) -> AnyNiWaveform:
+    def make_waveform(self) -> AnalogWaveform[np.float64]:
         """Create a waveform with small non-zero sample data."""
         return AnalogWaveform.from_array_1d(np.array([1.0, 2.0]))
 
-    def make_waveform_proto(self) -> AnyWaveformProto:
+    def make_waveform_proto(self) -> DoubleAnalogWaveform:
         """Create a waveform protobuf object with small non-zero sample data."""
         return DoubleAnalogWaveform(y_data=[1.0, 2.0])
 
-    def to_protobuf(self, waveform: AnyNiWaveform) -> AnyWaveformProto:
+    def to_protobuf(self, waveform: AnalogWaveform[np.float64]) -> DoubleAnalogWaveform:
         """Convert a Python waveform to its corresponding proto message."""
-        assert isinstance(waveform, AnalogWaveform)
         return float64_analog_waveform_to_protobuf(waveform)
 
-    def from_protobuf(self, waveform_proto: AnyWaveformProto) -> AnyNiWaveform:
+    def from_protobuf(self, waveform_proto: DoubleAnalogWaveform) -> AnalogWaveform[np.float64]:
         """Convert a proto message to the corresponding Python waveform."""
-        assert isinstance(waveform_proto, DoubleAnalogWaveform)
         return float64_analog_waveform_from_protobuf(waveform_proto)
 
     # ========================================================
@@ -130,25 +130,27 @@ class TestDoubleAnalogConversion(TimedWaveformConversionTests):
         assert analog_waveform.units == "Volts"
 
 
-class TestDoubleComplexWaveformConversion(TimedWaveformConversionTests):
+class TestDoubleComplexWaveformConversion(
+    TimedWaveformConversionTests[ComplexWaveform[np.complex128], DoubleComplexWaveform]
+):
     """Test for converting double complex waveforms to/from protobuf messages."""
 
-    def make_waveform(self) -> AnyNiWaveform:
+    def make_waveform(self) -> ComplexWaveform[np.complex128]:
         """Create a waveform with small non-zero sample data."""
         return ComplexWaveform.from_array_1d([1.5 + 2.5j, 3.5 + 4.5j], np.complex128)
 
-    def make_waveform_proto(self) -> AnyWaveformProto:
+    def make_waveform_proto(self) -> DoubleComplexWaveform:
         """Create a waveform protobuf object with small non-zero sample data."""
         return DoubleComplexWaveform(y_data=[1.0, 2.0, 3.0, 4.0])
 
-    def to_protobuf(self, waveform: AnyNiWaveform) -> AnyWaveformProto:
+    def to_protobuf(self, waveform: ComplexWaveform[np.complex128]) -> DoubleComplexWaveform:
         """Convert a Python waveform to its corresponding proto message."""
-        assert isinstance(waveform, ComplexWaveform)
         return float64_complex_waveform_to_protobuf(waveform)
 
-    def from_protobuf(self, waveform_proto: AnyWaveformProto) -> AnyNiWaveform:
+    def from_protobuf(
+        self, waveform_proto: DoubleComplexWaveform
+    ) -> ComplexWaveform[np.complex128]:
         """Convert a proto message to the corresponding Python waveform."""
-        assert isinstance(waveform_proto, DoubleComplexWaveform)
         return float64_complex_waveform_from_protobuf(waveform_proto)
 
     # ========================================================
@@ -225,25 +227,27 @@ class TestDoubleComplexWaveformConversion(TimedWaveformConversionTests):
         assert complex_waveform.units == "Volts"
 
 
-class TestI16ComplexWaveformConversion(TimedWaveformConversionTests):
+class TestI16ComplexWaveformConversion(
+    TimedWaveformConversionTests[ComplexWaveform[ComplexInt32Base], I16ComplexWaveform]
+):
     """Test for converting int complex waveforms to/from protobuf messages."""
 
-    def make_waveform(self) -> AnyNiWaveform:
+    def make_waveform(self) -> ComplexWaveform[ComplexInt32Base]:
         """Create a waveform with small non-zero sample data."""
         return ComplexWaveform.from_array_1d([(1, 2), (3, 4)], ComplexInt32DType)
 
-    def make_waveform_proto(self) -> AnyWaveformProto:
+    def make_waveform_proto(self) -> I16ComplexWaveform:
         """Create a waveform protobuf object with small non-zero sample data."""
         return I16ComplexWaveform(y_data=[1, 2, 3, 4])
 
-    def to_protobuf(self, waveform: AnyNiWaveform) -> AnyWaveformProto:
+    def to_protobuf(self, waveform: ComplexWaveform[ComplexInt32Base]) -> I16ComplexWaveform:
         """Convert a Python waveform to its corresponding proto message."""
-        assert isinstance(waveform, ComplexWaveform)
         return int16_complex_waveform_to_protobuf(waveform)
 
-    def from_protobuf(self, waveform_proto: AnyWaveformProto) -> AnyNiWaveform:
+    def from_protobuf(
+        self, waveform_proto: I16ComplexWaveform
+    ) -> ComplexWaveform[ComplexInt32Base]:
         """Convert a proto message to the corresponding Python waveform."""
-        assert isinstance(waveform_proto, I16ComplexWaveform)
         return int16_complex_waveform_from_protobuf(waveform_proto)
 
     # ========================================================
@@ -346,25 +350,25 @@ class TestI16ComplexWaveformConversion(TimedWaveformConversionTests):
         assert complex_waveform.scale_mode.offset == 3.0
 
 
-class TestI16AnalogWaveformConversion(TimedWaveformConversionTests):
+class TestI16AnalogWaveformConversion(
+    TimedWaveformConversionTests[AnalogWaveform[np.int16], I16AnalogWaveform]
+):
     """Test for converting int analog waveforms to/from protobuf messages."""
 
-    def make_waveform(self) -> AnyNiWaveform:
+    def make_waveform(self) -> AnalogWaveform[np.int16]:
         """Create a waveform with small non-zero sample data."""
         return AnalogWaveform.from_array_1d(np.array([1, 2], dtype=np.int16))
 
-    def make_waveform_proto(self) -> AnyWaveformProto:
+    def make_waveform_proto(self) -> I16AnalogWaveform:
         """Create a waveform protobuf object with small non-zero sample data."""
         return I16AnalogWaveform(y_data=[1, 2])
 
-    def to_protobuf(self, waveform: AnyNiWaveform) -> AnyWaveformProto:
+    def to_protobuf(self, waveform: AnalogWaveform[np.int16]) -> I16AnalogWaveform:
         """Convert a Python waveform to its corresponding proto message."""
-        assert isinstance(waveform, AnalogWaveform)
         return int16_analog_waveform_to_protobuf(waveform)
 
-    def from_protobuf(self, waveform_proto: AnyWaveformProto) -> AnyNiWaveform:
+    def from_protobuf(self, waveform_proto: I16AnalogWaveform) -> AnalogWaveform[np.int16]:
         """Convert a proto message to the corresponding Python waveform."""
-        assert isinstance(waveform_proto, I16AnalogWaveform)
         return int16_analog_waveform_from_protobuf(waveform_proto)
 
     # ========================================================
@@ -454,27 +458,27 @@ class TestI16AnalogWaveformConversion(TimedWaveformConversionTests):
         assert analog_waveform.units == "Volts"
 
 
-class TestDigitalWaveformConversion(TimedWaveformConversionTests):
+class TestDigitalWaveformConversion(
+    TimedWaveformConversionTests[DigitalWaveform[Any], DigitalWaveformProto]
+):
     """Test for converting digital waveforms to/from protobuf messages."""
 
-    def make_waveform(self) -> AnyNiWaveform:
+    def make_waveform(self) -> DigitalWaveform[Any]:
         """Create a waveform with small non-zero sample data."""
         data = np.array([[0, 1, 3], [7, 5, 1]], dtype=np.uint8)
         return DigitalWaveform.from_lines(data, signal_count=3)
 
-    def make_waveform_proto(self) -> AnyWaveformProto:
+    def make_waveform_proto(self) -> DigitalWaveformProto:
         """Create a waveform protobuf object with small non-zero sample data."""
         data = np.array([[0, 1, 0], [1, 0, 1]], dtype=np.uint8)
         return DigitalWaveformProto(y_data=data.tobytes(), signal_count=3)
 
-    def to_protobuf(self, waveform: AnyNiWaveform) -> AnyWaveformProto:
+    def to_protobuf(self, waveform: DigitalWaveform[Any]) -> DigitalWaveformProto:
         """Convert a Python waveform to its corresponding proto message."""
-        assert isinstance(waveform, DigitalWaveform)
         return digital_waveform_to_protobuf(waveform)
 
-    def from_protobuf(self, waveform_proto: AnyWaveformProto) -> AnyNiWaveform:
+    def from_protobuf(self, waveform_proto: DigitalWaveformProto) -> DigitalWaveform[Any]:
         """Convert a proto message to the corresponding Python waveform."""
-        assert isinstance(waveform_proto, DigitalWaveformProto)
         return digital_waveform_from_protobuf(waveform_proto)
 
     # ========================================================
