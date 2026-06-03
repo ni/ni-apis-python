@@ -33,11 +33,11 @@ from ni.protobuf.types.waveform_pb2 import (
     Scale,
     WaveformAttributeValue,
 )
-from tests.unit.timed_waveform_conversion_tests import TimedWaveformConversionTests
+from tests.unit.base_waveform_conversion_tests import BaseWaveformConversionTests
 
 
 class TestDoubleAnalogConversion(
-    TimedWaveformConversionTests[AnalogWaveform[np.float64], DoubleAnalogWaveform]
+    BaseWaveformConversionTests[AnalogWaveform[np.float64], DoubleAnalogWaveform]
 ):
     """Test for converting double analog waveforms to/from protobuf messages."""
 
@@ -112,7 +112,7 @@ class TestDoubleAnalogConversion(
 
 
 class TestDoubleComplexWaveformConversion(
-    TimedWaveformConversionTests[ComplexWaveform[np.complex128], DoubleComplexWaveform]
+    BaseWaveformConversionTests[ComplexWaveform[np.complex128], DoubleComplexWaveform]
 ):
     """Test for converting double complex waveforms to/from protobuf messages."""
 
@@ -189,7 +189,7 @@ class TestDoubleComplexWaveformConversion(
 
 
 class TestI16ComplexWaveformConversion(
-    TimedWaveformConversionTests[ComplexWaveform[ComplexInt32Base], I16ComplexWaveform]
+    BaseWaveformConversionTests[ComplexWaveform[ComplexInt32Base], I16ComplexWaveform]
 ):
     """Test for converting int complex waveforms to/from protobuf messages."""
 
@@ -268,7 +268,7 @@ class TestI16ComplexWaveformConversion(
 
 
 class TestI16AnalogWaveformConversion(
-    TimedWaveformConversionTests[AnalogWaveform[np.int16], I16AnalogWaveform]
+    BaseWaveformConversionTests[AnalogWaveform[np.int16], I16AnalogWaveform]
 ):
     """Test for converting int analog waveforms to/from protobuf messages."""
 
@@ -344,7 +344,7 @@ class TestI16AnalogWaveformConversion(
 
 
 class TestDigitalWaveformConversion(
-    TimedWaveformConversionTests[DigitalWaveform[Any], DigitalWaveformProto]
+    BaseWaveformConversionTests[DigitalWaveform[Any], DigitalWaveformProto]
 ):
     """Test for converting digital waveforms to/from protobuf messages."""
 

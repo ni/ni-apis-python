@@ -51,7 +51,7 @@ TWaveformProto = TypeVar(
 # ========================================================
 # Base class
 # ========================================================
-class TimedWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
+class BaseWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
     """Base class for testing waveform conversion.
 
     Subclasses implement more specific or typed waveform conversion tests.
