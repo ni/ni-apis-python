@@ -2,7 +2,8 @@
 
 import datetime as dt
 from abc import ABC, abstractmethod
-from typing import Any, Generic, TypeVar
+from collections.abc import Mapping
+from typing import runtime_checkable, Any, Generic, Protocol, TypeVar
 
 import hightime as ht
 import nitypes.bintime as bt
@@ -12,8 +13,10 @@ from nitypes.waveform import (
     AnalogWaveform,
     ComplexWaveform,
     DigitalWaveform,
+    LinearScaleMode,
     NoneScaleMode,
     SampleIntervalMode,
+    ScaleMode,
     Timing,
 )
 
@@ -27,6 +30,9 @@ from ni.protobuf.types.waveform_pb2 import (
     DoubleComplexWaveform,
     I16AnalogWaveform,
     I16ComplexWaveform,
+    LinearScale,
+    Scale,
+    WaveformAttributeValue,
 )
 
 TWaveform = TypeVar(
@@ -57,7 +63,11 @@ class TimedWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
         ...
 
     @abstractmethod
-    def make_waveform_proto(self) -> TWaveformProto:
+    def make_waveform_proto(
+        self,
+        attributes: Mapping[str, WaveformAttributeValue] | None = None,
+        scale: Scale | None = None,
+    ) -> TWaveformProto:
         """Create a waveform protobuf object with small non-zero sample data."""
         ...
 
@@ -152,7 +162,7 @@ class TimedWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
         ],
     )
     def test___waveform_with_regular_timing___round_trip___waveforms_match(  # noqa D102: Missing docstring in public method
-        self, timestamp_seconds: int, time_offset: float
+        self, timestamp_seconds: float, time_offset: float
     ) -> None:
         sample_interval = 1  # Regular interval of 1s
         if timestamp_seconds:
@@ -167,10 +177,8 @@ class TimedWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
             timestamp=timestamp,
             time_offset=ht.timedelta(seconds=time_offset),
         )
-        try:
-            waveform.scale_mode = NoneScaleMode()  # type: ignore
-        except AttributeError:
-            pass  # Some waveforms don't support scaling
+        if isinstance(waveform, SupportsScaleMode):
+            waveform.scale_mode = NoneScaleMode()
 
         waveform_proto = self.to_protobuf(waveform)
         converted_waveform = self.from_protobuf(waveform_proto)
@@ -200,15 +208,42 @@ class TimedWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
             timestamp=timestamp,
             time_offset=ht.timedelta(seconds=time_offset),
         )
-        try:
-            waveform.scale_mode = NoneScaleMode()  # type: ignore
-        except AttributeError:
-            pass  # Some waveforms don't support scaling.
+        if isinstance(waveform, SupportsScaleMode):
+            waveform.scale_mode = NoneScaleMode()
 
         waveform_proto = self.to_protobuf(waveform)
         converted_waveform = self.from_protobuf(waveform_proto)
 
         assert waveform == converted_waveform
+
+    def test___waveform_with_extended_properties___convert___valid_protobuf(self) -> None:  # noqa D102: Missing docstring in public method
+        waveform = self.make_waveform()
+        waveform.extended_properties["NI_ChannelName"] = "Dev1/ai0"
+        waveform.extended_properties["NI_UnitDescription"] = "Volts"
+
+        dbl_analog_waveform = self.to_protobuf(waveform)
+
+        assert dbl_analog_waveform.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
+        assert dbl_analog_waveform.attributes["NI_UnitDescription"].string_value == "Volts"
+
+    def test____waveform_with_scaling___convert___valid_protobuf(self) -> None:  # noqa D102: Missing docstring in public method
+        scale_mode = LinearScaleMode(2.0, 3.0)
+        waveform = self.make_waveform()
+        waveform_with_scale_mode = waveform  # Use a second variable to get around mypy issue.
+        if not isinstance(waveform_with_scale_mode, SupportsScaleMode):
+            pytest.skip("Waveform type does not support scaling")
+        waveform_with_scale_mode.scale_mode = scale_mode
+
+        waveform_proto = self.to_protobuf(waveform)
+
+        # The SupportsScaleMode check above is not sufficient since some waveform converters
+        # don't set the scale even though the original waveform has a scale_mode. An example
+        # of this is AnalogWaveform[np.float64] -> DoubleAnalogWaveform. So I added a second
+        # check before accessing waveform_proto.scale.
+        if not isinstance(waveform_proto, SupportsScale):
+            pytest.skip("Waveform type does not support scaling")
+        assert waveform_proto.scale.linear_scale.gain == 2.0
+        assert waveform_proto.scale.linear_scale.offset == 3.0
 
     # ========================================================
     # From Protobuf
@@ -373,6 +408,31 @@ class TimedWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
         with pytest.raises(ValueError):
             _ = self.from_protobuf(waveform_proto)
 
+    def test___waveform_proto_with_attributes___convert___valid_python_object(self) -> None:  # noqa D102: Missing docstring in public method
+        attributes = {
+            "NI_ChannelName": WaveformAttributeValue(string_value="Dev1/ai0"),
+            "NI_UnitDescription": WaveformAttributeValue(string_value="Volts"),
+        }
+        waveform_proto = self.make_waveform_proto(attributes=attributes)
+
+        waveform = self.from_protobuf(waveform_proto)
+
+        assert waveform.extended_properties["NI_ChannelName"] == "Dev1/ai0"
+        assert waveform.extended_properties["NI_UnitDescription"] == "Volts"
+
+    def test___waveform_proto_with_scaling___convert___valid_python_object(self) -> None:  # noqa D102: Missing docstring in public method
+        linear_scale = LinearScale(gain=2.0, offset=3.0)
+        scale = Scale(linear_scale=linear_scale)
+        waveform_proto = self.make_waveform_proto(scale=scale)
+        if not isinstance(waveform_proto, SupportsScale):
+            pytest.skip("Waveform type does not support scaling")
+
+        waveform = self.from_protobuf(waveform_proto)
+
+        assert isinstance(waveform.scale_mode, LinearScaleMode)
+        assert waveform.scale_mode.gain == 2.0
+        assert waveform.scale_mode.offset == 3.0
+
     def _to_proto_timestamps(self, timestamps: list[dt.datetime]) -> list[PrecisionTimestamp]:
         return [bintime_datetime_to_protobuf(bt.DateTime(ts)) for ts in timestamps]
 
@@ -430,3 +490,31 @@ class TimedWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
 
     def _normalize_precision_timestamp(self, timestamp: PrecisionTimestamp) -> PrecisionTimestamp:
         return PrecisionTimestamp() if timestamp is None else timestamp
+
+
+@runtime_checkable
+class SupportsScaleMode(Protocol):
+    """A protocol to test if something has the scale_mode property."""
+    @property
+    def scale_mode(self) -> ScaleMode:
+        """The scale mode."""
+        ...
+
+    @scale_mode.setter
+    def scale_mode(self, value: ScaleMode) -> None:
+         """The scale mode setter."""
+         ...
+
+
+@runtime_checkable
+class SupportsScale(Protocol):
+    """A protocol to test if something has the scale property."""
+    @property
+    def scale(self) -> Scale:
+        """The scale."""
+        ...
+
+    @scale.setter
+    def scale(self, value: Scale) -> None:
+         """The scale setter."""
+         ...
