@@ -3,7 +3,7 @@
 import datetime as dt
 from abc import ABC, abstractmethod
 from collections.abc import Mapping
-from typing import runtime_checkable, Any, Generic, Protocol, TypeVar
+from typing import runtime_checkable, Generic, Protocol, TypeVar
 
 import hightime as ht
 import nitypes.bintime as bt
@@ -12,7 +12,6 @@ from nitypes.time import convert_datetime
 from nitypes.waveform import (
     AnalogWaveform,
     ComplexWaveform,
-    DigitalWaveform,
     LinearScaleMode,
     NoneScaleMode,
     SampleIntervalMode,
@@ -24,28 +23,15 @@ from ni.protobuf.types.precision_timestamp_conversion import (
     bintime_datetime_to_protobuf,
 )
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
+from ni.protobuf.types.waveform_conversion import AnyNiWaveform, AnyWaveformProto
 from ni.protobuf.types.waveform_pb2 import (
-    DigitalWaveform as DigitalWaveformProto,
-    DoubleAnalogWaveform,
-    DoubleComplexWaveform,
-    I16AnalogWaveform,
-    I16ComplexWaveform,
     LinearScale,
     Scale,
     WaveformAttributeValue,
 )
 
-TWaveform = TypeVar(
-    "TWaveform", bound=AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalWaveform[Any]
-)
-TWaveformProto = TypeVar(
-    "TWaveformProto",
-    DoubleAnalogWaveform,
-    DoubleComplexWaveform,
-    I16AnalogWaveform,
-    I16ComplexWaveform,
-    DigitalWaveformProto,
-)
+TWaveform = TypeVar("TWaveform", bound=AnyNiWaveform)
+TWaveformProto = TypeVar("TWaveformProto", bound=AnyWaveformProto)
 
 
 # ========================================================
@@ -240,11 +226,11 @@ class BaseWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
         # don't set the scale even though the original waveform has a scale_mode. An example
         # of this is AnalogWaveform[np.float64] -> DoubleAnalogWaveform. So I added a second
         # check before accessing waveform_proto.scale.
-        waveform_proto_with_scale = waveform_proto
-        if not isinstance(waveform_proto_with_scale, SupportsScale):
+        waveform_proto_with_scaling = waveform_proto  # Use a second variable to get around mypy issue.
+        if not isinstance(waveform_proto_with_scaling, SupportsScale):
             pytest.skip("Waveform type does not support scaling")
-        assert waveform_proto.scale.linear_scale.gain == 2.0
-        assert waveform_proto.scale.linear_scale.offset == 3.0
+        assert waveform_proto_with_scaling.scale.linear_scale.gain == 2.0
+        assert waveform_proto_with_scaling.scale.linear_scale.offset == 3.0
 
     # ========================================================
     # From Protobuf
@@ -425,12 +411,13 @@ class BaseWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
         linear_scale = LinearScale(gain=2.0, offset=3.0)
         scale = Scale(linear_scale=linear_scale)
         waveform_proto = self.make_waveform_proto(scale=scale)
-        waveform_proto_with_scale = waveform_proto
-        if not isinstance(waveform_proto_with_scale, SupportsScale):
+        waveform_proto_with_scaling = waveform_proto  # Use a second variable to get around mypy issue.
+        if not isinstance(waveform_proto_with_scaling, SupportsScale):
             pytest.skip("Waveform type does not support scaling")
 
         waveform = self.from_protobuf(waveform_proto)
 
+        assert isinstance(waveform, AnalogWaveform | ComplexWaveform)  # To work around pyright error.
         assert isinstance(waveform.scale_mode, LinearScaleMode)
         assert waveform.scale_mode.gain == 2.0
         assert waveform.scale_mode.offset == 3.0
