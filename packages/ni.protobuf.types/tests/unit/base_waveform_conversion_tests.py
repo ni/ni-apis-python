@@ -240,7 +240,8 @@ class BaseWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
         # don't set the scale even though the original waveform has a scale_mode. An example
         # of this is AnalogWaveform[np.float64] -> DoubleAnalogWaveform. So I added a second
         # check before accessing waveform_proto.scale.
-        if not isinstance(waveform_proto, SupportsScale):
+        waveform_proto_with_scale = waveform_proto
+        if not isinstance(waveform_proto_with_scale, SupportsScale):
             pytest.skip("Waveform type does not support scaling")
         assert waveform_proto.scale.linear_scale.gain == 2.0
         assert waveform_proto.scale.linear_scale.offset == 3.0
@@ -424,7 +425,8 @@ class BaseWaveformConversionTests(ABC, Generic[TWaveform, TWaveformProto]):
         linear_scale = LinearScale(gain=2.0, offset=3.0)
         scale = Scale(linear_scale=linear_scale)
         waveform_proto = self.make_waveform_proto(scale=scale)
-        if not isinstance(waveform_proto, SupportsScale):
+        waveform_proto_with_scale = waveform_proto
+        if not isinstance(waveform_proto_with_scale, SupportsScale):
             pytest.skip("Waveform type does not support scaling")
 
         waveform = self.from_protobuf(waveform_proto)
