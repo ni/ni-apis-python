@@ -55,8 +55,7 @@ class TimedWaveformConversionTests:
     # ========================================================
     # To Protobuf
     # ========================================================
-    def test___waveform_with_standard_timing___convert___valid_protobuf(self) -> None:
-        """Test conversion of a waveform with standard timing."""
+    def test___waveform_with_standard_timing___convert___valid_protobuf(self) -> None:  # noqa D102: Missing docstring in public method
         waveform = self.make_waveform()
         t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
         sample_interval_seconds = 1.5
@@ -69,8 +68,7 @@ class TimedWaveformConversionTests:
 
         self._assert_proto_standard_timing(waveform_proto, t0_dt, sample_interval_seconds)
 
-    def test___waveform_with_standard_timing_and_offset___convert___valid_protobuf(self) -> None:
-        """Test conversion of a waveform with standard timing and offset."""
+    def test___waveform_with_standard_timing_and_offset___convert___valid_protobuf(self) -> None:  # noqa D102: Missing docstring in public method
         waveform = self.make_waveform()
         t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
         sample_interval_seconds = 2.5
@@ -88,8 +86,7 @@ class TimedWaveformConversionTests:
             waveform_proto, t0_dt, time_offset, sample_interval_seconds
         )
 
-    def test___waveform_with_standard_timing___round_trip___waveforms_match(self) -> None:
-        """Test a round-trip conversion of a waveform with standard timing."""
+    def test___waveform_with_standard_timing___round_trip___waveforms_match(self) -> None:  # noqa D102: Missing docstring in public method
         waveform = self.make_waveform()
         t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
         sample_interval = dt.timedelta(seconds=1.5)
@@ -105,8 +102,7 @@ class TimedWaveformConversionTests:
 
         assert waveform == converted_waveform
 
-    def test___waveform_with_irregular_timing___convert___valid_protobuf(self) -> None:
-        """Test a conversion of a waveform with irregular timing."""
+    def test___waveform_with_irregular_timing___convert___valid_protobuf(self) -> None:  # noqa D102: Missing docstring in public method
         waveform = self.make_waveform()
         t0_dt = dt.datetime(2000, 12, 1, tzinfo=dt.timezone.utc)
         timestamps = [
@@ -128,10 +124,9 @@ class TimedWaveformConversionTests:
             (100.5, 0),
         ],
     )
-    def test___waveform_with_regular_timing___round_trip___waveforms_match(
+    def test___waveform_with_regular_timing___round_trip___waveforms_match(  # noqa D102: Missing docstring in public method
         self, timestamp_seconds: int, time_offset: float
     ) -> None:
-        """Test a round trip conversion of a waveform with regular timing."""
         sample_interval = 1  # Regular interval of 1s
         if timestamp_seconds:
             timestamp = convert_datetime(
@@ -164,10 +159,9 @@ class TimedWaveformConversionTests:
             (100.5, 0),
         ],
     )
-    def test___waveform_with_none_timing___round_trip___waveforms_match(
+    def test___waveform_with_none_timing___round_trip___waveforms_match(  # noqa D102: Missing docstring in public method
         self, timestamp_seconds: int, time_offset: float
     ) -> None:
-        """Test a round trip conversion of a waveform with None timing."""
         if timestamp_seconds:
             timestamp = convert_datetime(
                 bt.DateTime, dt.datetime.fromtimestamp(timestamp_seconds, tz=dt.timezone.utc)
@@ -192,8 +186,7 @@ class TimedWaveformConversionTests:
     # ========================================================
     # From Protobuf
     # ========================================================
-    def test___waveform_proto_with_timing___convert___valid_python_object(self) -> None:
-        """Test conversion of a waveform proto with timing information."""
+    def test___waveform_proto_with_timing___convert___valid_python_object(self) -> None:  # noqa D102: Missing docstring in public method
         t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
         t0_pt = bintime_datetime_to_protobuf(t0_dt)
         waveform_proto = self.make_waveform_proto()
@@ -207,8 +200,7 @@ class TimedWaveformConversionTests:
         assert waveform.timing.sample_interval == ht.timedelta(seconds=sample_interval_seconds)
         assert waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
-    def test___waveform_proto_with_timing___round_trip___waveforms_match(self) -> None:
-        """Test a round-trip conversion of a waveform proto with timing information."""
+    def test___waveform_proto_with_timing___round_trip___waveforms_match(self) -> None:  # noqa D102: Missing docstring in public method
         t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
         t0_pt = bintime_datetime_to_protobuf(t0_dt)
         waveform_proto = self.make_waveform_proto()
@@ -234,7 +226,7 @@ class TimedWaveformConversionTests:
             (100, 10, 1, 100, 101),
         ],
     )
-    def test___waveform_proto_regular_timing___round_trip___timing_equivalent(
+    def test___waveform_proto_regular_timing___round_trip___timing_equivalent(  # noqa D102: Missing docstring in public method
         self,
         timestamp_seconds: int,
         start_time_seconds: int,
@@ -242,7 +234,6 @@ class TimedWaveformConversionTests:
         normalized_timestamp_seconds: int,
         normalized_start_time_seconds: int,
     ) -> None:
-        """Test various round-trip conversions of a waveform proto with regular timing."""
         t0_pt = PrecisionTimestamp(seconds=start_time_seconds, fractional_seconds=0)
         timestamp_pt = PrecisionTimestamp(seconds=timestamp_seconds, fractional_seconds=0)
         waveform_proto = self.make_waveform_proto()
@@ -263,8 +254,7 @@ class TimedWaveformConversionTests:
             == self._normalize_precision_timestamp(converted_waveform_proto.t0).seconds
         )
 
-    def test___waveform_proto_with_timing_no_t0___convert___valid_python_object(self) -> None:
-        """Test conversion of a waveform proto without t0."""
+    def test___waveform_proto_with_timing_no_t0___convert___valid_python_object(self) -> None:  # noqa D102: Missing docstring in public method
         waveform_proto = self.make_waveform_proto()
         waveform_proto.dt = 0.1
 
@@ -274,8 +264,7 @@ class TimedWaveformConversionTests:
         assert waveform.timing.sample_interval == ht.timedelta(seconds=0.1)
         assert waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
-    def test___waveform_proto_with_timing_no_dt___convert___valid_python_object(self) -> None:
-        "Test conversion of a waveform proto without a dt."
+    def test___waveform_proto_with_timing_no_dt___convert___valid_python_object(self) -> None:  # noqa D102: Missing docstring in public method
         t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
         t0_pt = bintime_datetime_to_protobuf(t0_dt)
         waveform_proto = self.make_waveform_proto()
@@ -287,8 +276,7 @@ class TimedWaveformConversionTests:
         assert not waveform.timing.has_sample_interval
         assert waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
 
-    def test___waveform_proto_with_dt_and_offset___convert___valid_python_object(self) -> None:
-        """Test conversion of a waveform proto with dt and offset."""
+    def test___waveform_proto_with_dt_and_offset___convert___valid_python_object(self) -> None:  # noqa D102: Missing docstring in public method
         waveform_proto = self.make_waveform_proto()
         waveform_proto.dt = 0.1
         waveform_proto.time_offset = 1.5
@@ -300,10 +288,9 @@ class TimedWaveformConversionTests:
         assert waveform.timing.time_offset == ht.timedelta(seconds=1.5)
         assert waveform.timing.sample_interval_mode == SampleIntervalMode.REGULAR
 
-    def test___waveform_proto_with_t0_and_timestamp_and_offset___convert___valid_python_object(
+    def test___waveform_proto_with_t0_and_timestamp_and_offset___convert___valid_python_object(  # noqa D102: Missing docstring in public method
         self,
     ) -> None:
-        """Test conversion of a waveform proto with t0, timestamp, and offset."""
         sample_interval = 0.1
         t0_seconds = 1000001
         t0_pt = PrecisionTimestamp(seconds=t0_seconds, fractional_seconds=0)
@@ -322,8 +309,7 @@ class TimedWaveformConversionTests:
             waveform, t0_seconds, timestamp_seconds, sample_interval, time_offset
         )
 
-    def test___waveform_proto_with_timestamps___convert___valid_python_object(self) -> None:
-        """Test conversion of a waveform proto with timestamps (irregular timing)."""
+    def test___waveform_proto_with_timestamps___convert___valid_python_object(self) -> None:  # noqa D102: Missing docstring in public method
         expected_timestamps = [
             PrecisionTimestamp(seconds=1000, fractional_seconds=300),
             PrecisionTimestamp(seconds=1001, fractional_seconds=400),
@@ -335,10 +321,9 @@ class TimedWaveformConversionTests:
 
         self._assert_waveform_irregular_timing_with_timestamps(waveform, expected_timestamps)
 
-    def test___waveform_proto_with_t0_and_offset_no_timestamp___convert___raises_exception(
+    def test___waveform_proto_with_t0_and_offset_no_timestamp___convert___raises_exception(  # noqa D102: Missing docstring in public method
         self,
     ) -> None:
-        """Test conversion of a waveform proto with t0 and offset, but no timestamp."""
         t0_dt = bt.DateTime(2020, 5, 5, tzinfo=dt.timezone.utc)
         t0_pt = bintime_datetime_to_protobuf(t0_dt)
         waveform_proto = self.make_waveform_proto()
