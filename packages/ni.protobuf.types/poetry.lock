@@ -990,14 +990,14 @@ toml = ">=0.10.1"
 
 [[package]]
 name = "nitypes"
-version = "1.1.0.dev2"
+version = "1.1.0.dev3"
 description = "Data types for NI Python APIs"
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["main"]
 files = [
-    {file = "nitypes-1.1.0.dev2-py3-none-any.whl", hash = "sha256:0753519c1dbee5a2ab12bf76dc3fa3024e356d2bf29e7538387dcca702113e9c"},
-    {file = "nitypes-1.1.0.dev2.tar.gz", hash = "sha256:5958538bdff3f38a4d0a576792419ce6eb9f9ffa4b16292d3938afbd3361b43b"},
+    {file = "nitypes-1.1.0.dev3-py3-none-any.whl", hash = "sha256:b916b60bccb4baf62a18044a58e52117f5d4b4e02ef07385f94e96b5c78f747a"},
+    {file = "nitypes-1.1.0.dev3.tar.gz", hash = "sha256:554a4c35dc7295469911b058dff1da8b563c5f8ed093f2e26d18ced251f74dca"},
 ]
 
 [package.dependencies]
@@ -2080,4 +2080,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "f5a76ff976c7bcaaf2cd9de91ea32dc031c44131988e952fc4f9e5472ce9b724"
+content-hash = "659d798ee54a955337ae47771eef51e7d43b1d811305f1672feb971e1f3f2cbb"
