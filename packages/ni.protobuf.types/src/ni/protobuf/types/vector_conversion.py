@@ -6,8 +6,8 @@ from typing import TYPE_CHECKING, Any, cast
 
 from nitypes.vector import Vector
 
-import ni.protobuf.types.array_pb2 as array_pb2
-import ni.protobuf.types.vector_pb2 as vector_pb2
+from ni.protobuf.types import array_pb2
+from ni.protobuf.types import vector_pb2
 from ni.protobuf.types.attribute_value_pb2 import AttributeValue
 from ni.protobuf.types.extended_property_conversion import (
     extended_properties_from_protobuf,

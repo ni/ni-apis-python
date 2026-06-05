@@ -1,7 +1,7 @@
 import pytest
 from nitypes.scalar import Scalar
 
-import ni.protobuf.types.scalar_pb2 as scalar_pb2
+from ni.protobuf.types import scalar_pb2
 from ni.protobuf.types.attribute_value_pb2 import AttributeValue
 from ni.protobuf.types.scalar_conversion import scalar_from_protobuf, scalar_to_protobuf
 
