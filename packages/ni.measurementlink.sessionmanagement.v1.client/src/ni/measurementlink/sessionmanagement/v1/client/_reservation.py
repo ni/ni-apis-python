@@ -11,19 +11,19 @@ from contextlib import ExitStack
 from functools import cached_property
 from types import TracebackType
 from typing import (
-    TYPE_CHECKING,
     AbstractSet,
     Any,
     Callable,
+    cast,
     ContextManager,
     Literal,
     NamedTuple,
+    TYPE_CHECKING,
     TypeVar,
-    cast,
 )
 
-import ni.measurementlink.sessionmanagement.v1.session_management_service_pb2 as session_management_service_pb2
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
+from ni.measurementlink.sessionmanagement.v1 import session_management_service_pb2
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 from ni.measurementlink.sessionmanagement.v1.client._constants import (
