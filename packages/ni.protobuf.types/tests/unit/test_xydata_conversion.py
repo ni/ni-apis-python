@@ -1,7 +1,7 @@
 import numpy as np
 from nitypes.xy_data import XYData
 
-import ni.protobuf.types.xydata_pb2 as xydata_pb2
+from ni.protobuf.types import xydata_pb2
 from ni.protobuf.types.attribute_value_pb2 import AttributeValue
 from ni.protobuf.types.xydata_conversion import (
     float64_xydata_from_protobuf,

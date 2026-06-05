@@ -12,7 +12,7 @@ import time
 import typing
 from typing import Any
 
-import ni.measurementlink.discovery.v1.discovery_service_pb2 as discovery_service_pb2
+from ni.measurementlink.discovery.v1 import discovery_service_pb2
 
 if sys.platform == "win32":
     import msvcrt

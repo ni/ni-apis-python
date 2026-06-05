@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy as np
 from nitypes.xy_data import XYData
 
-import ni.protobuf.types.xydata_pb2 as xydata_pb2
+from ni.protobuf.types import xydata_pb2
 from ni.protobuf.types.extended_property_conversion import (
     extended_properties_from_protobuf,
     extended_properties_to_protobuf,

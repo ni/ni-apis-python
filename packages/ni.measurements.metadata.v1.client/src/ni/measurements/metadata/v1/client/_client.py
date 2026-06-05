@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import grpc
-import ni.measurements.metadata.v1.metadata_store_service_pb2 as metadata_store_service_pb2
-import ni.measurements.metadata.v1.metadata_store_service_pb2_grpc as metadata_store_service_pb2_grpc
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
+from ni.measurements.metadata.v1 import (
+    metadata_store_service_pb2,
+    metadata_store_service_pb2_grpc,
+)
 from ni_grpc_extensions.channelpool import GrpcChannelPool
 
 from ni.measurements.metadata.v1.client._client_base import GrpcServiceClientBase

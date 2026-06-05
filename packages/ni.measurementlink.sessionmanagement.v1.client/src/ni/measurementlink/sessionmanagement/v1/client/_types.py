@@ -6,11 +6,11 @@ from collections.abc import Iterable
 from enum import IntEnum
 from typing import Generic, NamedTuple, Protocol, TypeVar
 
-import ni.measurementlink.sessionmanagement.v1.session_management_service_pb2 as session_management_service_pb2
 import session_pb2
 from ni.measurementlink import (
     pin_map_context_pb2,
 )
+from ni.measurementlink.sessionmanagement.v1 import session_management_service_pb2
 
 TSession = TypeVar("TSession")
 TSession_co = TypeVar("TSession_co", covariant=True)
@@ -26,7 +26,7 @@ class PinMapContext(NamedTuple):
 
     sites: list[int] | None
     """List of site numbers being used for the call.
-    
+
     If None or empty, use all sites in the pin map.
     """
 
@@ -52,7 +52,7 @@ class ChannelMapping(NamedTuple):
 
     site: int
     """The site on which the pin or relay is mapped to a channel.
-            
+
     For system pins/relays, the site number is :any:`SITE_SYSTEM_PINS` (-1) as they
     do not belong to a specific site.
     """
@@ -104,7 +104,7 @@ class SessionInformation(NamedTuple):
 
     instrument_type_id: str
     """Indicates the instrument type for this session.
-    
+
     Pin maps have built in instrument definitions using the instrument
     type id constants such as `INSTRUMENT_TYPE_NI_DCPOWER`. For custom instruments, the
     user defined instrument type id is defined in the pin map file.
@@ -112,14 +112,14 @@ class SessionInformation(NamedTuple):
 
     session_exists: bool
     """Indicates whether the session is registered with the session management service.
-    
+
     When calling measurements from TestStand, the test sequence's ``ProcessSetup`` callback
     creates instrument sessions and registers them with the session management service so that
     they can be shared between multiple measurement steps. In this case, the `session_exists`
     attribute is ``True``, indicating that the instrument sessions were already created and any
     one-time setup (such as creating NI-DAQmx channels or loading NI-Digital files) has been
     performed.
-    
+
     When calling measurements outside of TestStand, the `session_exists` attribute is ``False``,
     indicating that the measurement is responsible for creating the instrument sessions and
     performing any one-time setup.
@@ -127,7 +127,7 @@ class SessionInformation(NamedTuple):
 
     channel_mappings: Iterable[ChannelMapping]
     """List of mappings from channels to pins and sites.
-     
+
     Each item contains a mapping for a channel in this instrument resource, in the order of the
     channel_list. This field is empty for any SessionInformation returned from
     Client.reserve_all_registered_sessions.
@@ -135,7 +135,7 @@ class SessionInformation(NamedTuple):
 
     session: object = None
     """The driver session object.
-    
+
     This field is None until the appropriate initialize_session(s) method is called.
     """
 
@@ -244,13 +244,13 @@ class MultiplexerSessionInformation(NamedTuple):
 
     session_exists: bool
     """Indicates whether the session is registered with the session management service.
-    
+
     When calling measurements from TestStand, the test sequence's ``ProcessSetup`` callback
     creates instrument sessions and registers them with the session management service so that
     they can be shared between multiple measurement steps. In this case, the `session_exists`
     attribute is ``True``, indicating that the instrument sessions were already created and any
     one-time setup has been performed.
-    
+
     When calling measurements outside of TestStand, the `session_exists` attribute is ``False``,
     indicating that the measurement is responsible for creating the instrument sessions and
     performing any one-time setup.
@@ -258,7 +258,7 @@ class MultiplexerSessionInformation(NamedTuple):
 
     session: object = None
     """The driver session object.
-    
+
     This field is None until the appropriate initialize_multiplexer_session(s) method is called.
     """
 
@@ -347,7 +347,7 @@ class Connection(NamedTuple):
 
     site: int
     """The site number.
-    
+
     For system pins/relays, the site number is :any:`SITE_SYSTEM_PINS` (-1) as they
     do not belong to a specific site.
     """
@@ -506,8 +506,8 @@ class SessionInitializationBehavior(IntEnum):
 
     INITIALIZE_SESSION_THEN_DETACH = 3
     """
-    Initialize a new session. 
-    
+    Initialize a new session.
+
     When exiting the context manager, detach instead of closing.
 
     Note: This initialization behavior is intended for TestStand code modules used in
@@ -516,8 +516,8 @@ class SessionInitializationBehavior(IntEnum):
 
     ATTACH_TO_SESSION_THEN_CLOSE = 4
     """
-    Attach to an existing session. 
-    
+    Attach to an existing session.
+
     When exiting the context manager, automatically close the server session.
 
     Note: This initialization behavior is intended for TestStand code modules used in

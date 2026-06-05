@@ -1,8 +1,8 @@
 import pytest
 from nitypes.vector import Vector
 
-import ni.protobuf.types.array_pb2 as array_pb2
-import ni.protobuf.types.vector_pb2 as vector_pb2
+from ni.protobuf.types import array_pb2
+from ni.protobuf.types import vector_pb2
 from ni.protobuf.types.attribute_value_pb2 import AttributeValue
 from ni.protobuf.types.vector_conversion import vector_from_protobuf, vector_to_protobuf
 

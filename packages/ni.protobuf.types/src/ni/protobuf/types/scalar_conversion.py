@@ -7,7 +7,7 @@ from typing import Union
 from nitypes.scalar import Scalar
 from typing_extensions import TypeAlias
 
-import ni.protobuf.types.scalar_pb2 as scalar_pb2
+from ni.protobuf.types import scalar_pb2
 from ni.protobuf.types.extended_property_conversion import (
     extended_properties_from_protobuf,
     extended_properties_to_protobuf,
