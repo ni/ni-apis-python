@@ -47,7 +47,6 @@ types-protobuf = ">=4.21"
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
 ni-python-styleguide = ">=0.4.1"
-mypy = ">=1.0"
 pyright = { version = ">=1.1.400", extras = ["nodejs"] }
 
 [tool.poetry.group.test.dependencies]
@@ -87,18 +86,6 @@ application-import-names = "ni.measurementlink.proto"
 [tool.black]
 extend-exclude = 'docs/|_pb2(_grpc)?\.(py|pyi)$'
 line-length = 100
-
-[tool.mypy]
-mypy_path = "src"
-files = "."
-namespace_packages = true
-strict = true
-explicit_package_bases = true
-exclude = [
-    "docs",
-    ".*\\.pyi$",
-]
-disable_error_code = ["no-untyped-call", "name-defined"]
 
 [tool.pyright]
 include = ["src/", "tests/"]
