@@ -74,7 +74,7 @@ pytest-cov = ">=4.0"
 pytest-doctestplus = ">=1.4"
 pytest-mock = ">=3.0"
 # Use a prerelease version of hightime for testing.
-hightime = { version = ">=0.3.0.dev0", allow-prereleases = true }
+hightime = {version = ">=1.0.0", allow-prereleases=true}
 
 [tool.poetry.extras]
 drivers = [
