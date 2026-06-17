@@ -1187,7 +1187,7 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurements-data-v1-proto"
-version = "1.1.0.dev1"
+version = "1.1.0"
 description = "Protobuf data types and service stubs for NI data store gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -1198,7 +1198,7 @@ develop = true
 [package.dependencies]
 ni-datamonikers-v1-proto = ">=1.0.0"
 ni-measurements-metadata-v1-proto = ">=1.0.0"
-ni-protobuf-types = ">=1.2.0.dev0"
+ni-protobuf-types = ">=1.2.0"
 protobuf = ">=4.21"
 
 [package.source]
@@ -1224,7 +1224,7 @@ url = "../ni.measurements.metadata.v1.proto"
 
 [[package]]
 name = "ni-protobuf-types"
-version = "1.2.0.dev0"
+version = "1.2.1.dev0"
 description = "Protobuf data types for NI gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -1233,7 +1233,7 @@ files = []
 develop = true
 
 [package.dependencies]
-nitypes = ">=1.1.0dev1"
+nitypes = ">=1.1.0"
 protobuf = ">=4.21"
 
 [package.source]
@@ -1276,14 +1276,14 @@ toml = ">=0.10.1"
 
 [[package]]
 name = "nitypes"
-version = "1.1.0.dev1"
+version = "1.1.0"
 description = "Data types for NI Python APIs"
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["main", "dev"]
 files = [
-    {file = "nitypes-1.1.0.dev1-py3-none-any.whl", hash = "sha256:d98ad6e3f8b92db76b5c1c584431fa27d3e74cce6e20464e43ee0117b02fe089"},
-    {file = "nitypes-1.1.0.dev1.tar.gz", hash = "sha256:50b23e00cc6960996656c4c9ef0ca71dd267fc5c9ca481077b682c29190aa2d3"},
+    {file = "nitypes-1.1.0-py3-none-any.whl", hash = "sha256:b43ac7027e1cceeca7ceffa58f31ffadd03feeb1788ca5cb8f9d105e73893b14"},
+    {file = "nitypes-1.1.0.tar.gz", hash = "sha256:f273b5131ef0d5b848c37a0a63452626caf5c2938f7744c324f7991b76fa0b60"},
 ]
 
 [package.dependencies]
@@ -2423,4 +2423,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "cc941cf8f340854be33b163c62fc8510fb94ee0adc8b7df6f183bc28284743e0"
+content-hash = "52bf19548e93fded416376bd705348dc7b4cde57764d7c49e7288963daa8c754"
