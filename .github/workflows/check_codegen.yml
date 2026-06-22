@@ -45,7 +45,7 @@ jobs:
         if: ${{ !endsWith(inputs.package-name, '.proto') && inputs.package-name != 'ni.protobuf.types' }}
         run: echo "::error title=Package Name Error::Invalid package name ${{ inputs.package-name }}. The package name must end in '.proto'."
       - name: Check out repo
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           submodules: true
       - name: Set up Python
