@@ -20,115 +20,334 @@ class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type:
     ...
 
 class MonikerServiceStub:
-    """Service for reading and writing data using monikers"""
+    """Service for reading and writing data values using data monikers.
+
+    Not all implementations implement all RPCs and clients should
+    handle this gracefully.
+    """
 
     def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
     BeginSidebandStream: grpc.UnaryUnaryMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.BeginMonikerSidebandStreamRequest,
         ni.datamonikers.v1.data_moniker_pb2.BeginMonikerSidebandStreamResponse,
     ]
+    """Negotiates a sideband transport for the specified monikers.
+
+    Use this RPC when higher throughput or lower latency are required
+    beyond what is traditionally possible with the standard gRPC transport.
+    The client supplies the preferred strategy and the list of monikers.
+    The server responds with the selected strategy plus the connection
+    metadata needed to establish the sideband channel. After this call,
+    the actual data exchange is expected to happen over the selected
+    sideband transport, not over this unary RPC.
+    """
 
     StreamRead: grpc.UnaryStreamMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.MonikerList,
         ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult,
     ]
+    """Subscribes to updates from the requested monikers.
+
+    A response message is returned once a data value is available from
+    each read moniker. The order of data values returned matches the order
+    of the read monikers. The semantics for when data is published and how
+    updates are triggered is implementation dependent.
+
+    Status codes for errors:
+
+    - NOT_FOUND: Specified moniker does not exist
+    """
 
     StreamWrite: grpc.StreamStreamMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.MonikerWriteRequest,
         ni.datamonikers.v1.data_moniker_pb2.StreamWriteResponse,
     ]
+    """Streams values to one or more monikers.
+
+    The first request message specifies the write monikers that will be updated.
+    Subsequent request messages supply new data values to be written to the
+    monikers. The number of data values in each request message must match the
+    number of monikers supplied in the original request. The data values are
+    applied in order and are paired positionally with the monikers declared in
+    the first message. Implementations may choose to return a response message
+    after each request has been processed for flow control purposes or no
+    response message at all.
+
+    Status codes for errors:
+
+    - NOT_FOUND: Specified moniker does not exist
+    """
 
     StreamReadWrite: grpc.StreamStreamMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.MonikerWriteRequest,
         ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult,
     ]
+    """Streams data to and from the specified read and write monikers.
+
+    The first request message is used to setup the stream and specifies the
+    monikers that are to be read and written. No response message is sent for
+    the first request message.
+
+    The second and subsequent request messages carry new data values to be written
+    to the write monikers similar to the StreamWrite RPC. For each of these request
+    message, a response message is returned containing data values from the read
+    monikers similar to the StreamRead RPC. Write monikers are always updated before
+    data is read from the read monikers.Communication continues in this ping-pong
+    fashion until the stream is closed.
+
+    Status codes for errors:
+
+    - NOT_FOUND: Specified moniker does not exist
+    """
 
     ReadFromMoniker: grpc.UnaryUnaryMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.Moniker,
         ni.datamonikers.v1.data_moniker_pb2.ReadFromMonikerResult,
     ]
+    """Reads the current value for a single moniker.
+
+    If no data value is available, implementations may choose to return an empty
+    response or return an error.
+
+    Status codes for errors:
+
+    - NOT_FOUND: Specified moniker does not exist
+    """
 
     WriteToMoniker: grpc.UnaryUnaryMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.WriteToMonikerRequest,
         ni.datamonikers.v1.data_moniker_pb2.WriteToMonikerResponse,
     ]
+    """Writes a single value to a single moniker.
+
+    Status codes for errors:
+
+    - NOT_FOUND: Specified moniker does not exist
+    - INVALID_ARGUMENT: Data type of the data value is not compatible with the moniker
+    """
 
 class MonikerServiceAsyncStub:
-    """Service for reading and writing data using monikers"""
+    """Service for reading and writing data values using data monikers.
+
+    Not all implementations implement all RPCs and clients should
+    handle this gracefully.
+    """
 
     BeginSidebandStream: grpc.aio.UnaryUnaryMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.BeginMonikerSidebandStreamRequest,
         ni.datamonikers.v1.data_moniker_pb2.BeginMonikerSidebandStreamResponse,
     ]
+    """Negotiates a sideband transport for the specified monikers.
+
+    Use this RPC when higher throughput or lower latency are required
+    beyond what is traditionally possible with the standard gRPC transport.
+    The client supplies the preferred strategy and the list of monikers.
+    The server responds with the selected strategy plus the connection
+    metadata needed to establish the sideband channel. After this call,
+    the actual data exchange is expected to happen over the selected
+    sideband transport, not over this unary RPC.
+    """
 
     StreamRead: grpc.aio.UnaryStreamMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.MonikerList,
         ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult,
     ]
+    """Subscribes to updates from the requested monikers.
+
+    A response message is returned once a data value is available from
+    each read moniker. The order of data values returned matches the order
+    of the read monikers. The semantics for when data is published and how
+    updates are triggered is implementation dependent.
+
+    Status codes for errors:
+
+    - NOT_FOUND: Specified moniker does not exist
+    """
 
     StreamWrite: grpc.aio.StreamStreamMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.MonikerWriteRequest,
         ni.datamonikers.v1.data_moniker_pb2.StreamWriteResponse,
     ]
+    """Streams values to one or more monikers.
+
+    The first request message specifies the write monikers that will be updated.
+    Subsequent request messages supply new data values to be written to the
+    monikers. The number of data values in each request message must match the
+    number of monikers supplied in the original request. The data values are
+    applied in order and are paired positionally with the monikers declared in
+    the first message. Implementations may choose to return a response message
+    after each request has been processed for flow control purposes or no
+    response message at all.
+
+    Status codes for errors:
+
+    - NOT_FOUND: Specified moniker does not exist
+    """
 
     StreamReadWrite: grpc.aio.StreamStreamMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.MonikerWriteRequest,
         ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult,
     ]
+    """Streams data to and from the specified read and write monikers.
+
+    The first request message is used to setup the stream and specifies the
+    monikers that are to be read and written. No response message is sent for
+    the first request message.
+
+    The second and subsequent request messages carry new data values to be written
+    to the write monikers similar to the StreamWrite RPC. For each of these request
+    message, a response message is returned containing data values from the read
+    monikers similar to the StreamRead RPC. Write monikers are always updated before
+    data is read from the read monikers.Communication continues in this ping-pong
+    fashion until the stream is closed.
+
+    Status codes for errors:
+
+    - NOT_FOUND: Specified moniker does not exist
+    """
 
     ReadFromMoniker: grpc.aio.UnaryUnaryMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.Moniker,
         ni.datamonikers.v1.data_moniker_pb2.ReadFromMonikerResult,
     ]
+    """Reads the current value for a single moniker.
+
+    If no data value is available, implementations may choose to return an empty
+    response or return an error.
+
+    Status codes for errors:
+
+    - NOT_FOUND: Specified moniker does not exist
+    """
 
     WriteToMoniker: grpc.aio.UnaryUnaryMultiCallable[
         ni.datamonikers.v1.data_moniker_pb2.WriteToMonikerRequest,
         ni.datamonikers.v1.data_moniker_pb2.WriteToMonikerResponse,
     ]
+    """Writes a single value to a single moniker.
+
+    Status codes for errors:
+
+    - NOT_FOUND: Specified moniker does not exist
+    - INVALID_ARGUMENT: Data type of the data value is not compatible with the moniker
+    """
 
 class MonikerServiceServicer(metaclass=abc.ABCMeta):
-    """Service for reading and writing data using monikers"""
+    """Service for reading and writing data values using data monikers.
+
+    Not all implementations implement all RPCs and clients should
+    handle this gracefully.
+    """
 
     @abc.abstractmethod
     def BeginSidebandStream(
         self,
         request: ni.datamonikers.v1.data_moniker_pb2.BeginMonikerSidebandStreamRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.datamonikers.v1.data_moniker_pb2.BeginMonikerSidebandStreamResponse, collections.abc.Awaitable[ni.datamonikers.v1.data_moniker_pb2.BeginMonikerSidebandStreamResponse]]: ...
+    ) -> typing.Union[ni.datamonikers.v1.data_moniker_pb2.BeginMonikerSidebandStreamResponse, collections.abc.Awaitable[ni.datamonikers.v1.data_moniker_pb2.BeginMonikerSidebandStreamResponse]]:
+        """Negotiates a sideband transport for the specified monikers.
+
+        Use this RPC when higher throughput or lower latency are required
+        beyond what is traditionally possible with the standard gRPC transport.
+        The client supplies the preferred strategy and the list of monikers.
+        The server responds with the selected strategy plus the connection
+        metadata needed to establish the sideband channel. After this call,
+        the actual data exchange is expected to happen over the selected
+        sideband transport, not over this unary RPC.
+        """
 
     @abc.abstractmethod
     def StreamRead(
         self,
         request: ni.datamonikers.v1.data_moniker_pb2.MonikerList,
         context: _ServicerContext,
-    ) -> typing.Union[collections.abc.Iterator[ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult], collections.abc.AsyncIterator[ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult]]: ...
+    ) -> typing.Union[collections.abc.Iterator[ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult], collections.abc.AsyncIterator[ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult]]:
+        """Subscribes to updates from the requested monikers.
+
+        A response message is returned once a data value is available from
+        each read moniker. The order of data values returned matches the order
+        of the read monikers. The semantics for when data is published and how
+        updates are triggered is implementation dependent.
+
+        Status codes for errors:
+
+        - NOT_FOUND: Specified moniker does not exist
+        """
 
     @abc.abstractmethod
     def StreamWrite(
         self,
         request_iterator: _MaybeAsyncIterator[ni.datamonikers.v1.data_moniker_pb2.MonikerWriteRequest],
         context: _ServicerContext,
-    ) -> typing.Union[collections.abc.Iterator[ni.datamonikers.v1.data_moniker_pb2.StreamWriteResponse], collections.abc.AsyncIterator[ni.datamonikers.v1.data_moniker_pb2.StreamWriteResponse]]: ...
+    ) -> typing.Union[collections.abc.Iterator[ni.datamonikers.v1.data_moniker_pb2.StreamWriteResponse], collections.abc.AsyncIterator[ni.datamonikers.v1.data_moniker_pb2.StreamWriteResponse]]:
+        """Streams values to one or more monikers.
+
+        The first request message specifies the write monikers that will be updated.
+        Subsequent request messages supply new data values to be written to the
+        monikers. The number of data values in each request message must match the
+        number of monikers supplied in the original request. The data values are
+        applied in order and are paired positionally with the monikers declared in
+        the first message. Implementations may choose to return a response message
+        after each request has been processed for flow control purposes or no
+        response message at all.
+
+        Status codes for errors:
+
+        - NOT_FOUND: Specified moniker does not exist
+        """
 
     @abc.abstractmethod
     def StreamReadWrite(
         self,
         request_iterator: _MaybeAsyncIterator[ni.datamonikers.v1.data_moniker_pb2.MonikerWriteRequest],
         context: _ServicerContext,
-    ) -> typing.Union[collections.abc.Iterator[ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult], collections.abc.AsyncIterator[ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult]]: ...
+    ) -> typing.Union[collections.abc.Iterator[ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult], collections.abc.AsyncIterator[ni.datamonikers.v1.data_moniker_pb2.MonikerReadResult]]:
+        """Streams data to and from the specified read and write monikers.
+
+        The first request message is used to setup the stream and specifies the
+        monikers that are to be read and written. No response message is sent for
+        the first request message.
+
+        The second and subsequent request messages carry new data values to be written
+        to the write monikers similar to the StreamWrite RPC. For each of these request
+        message, a response message is returned containing data values from the read
+        monikers similar to the StreamRead RPC. Write monikers are always updated before
+        data is read from the read monikers.Communication continues in this ping-pong
+        fashion until the stream is closed.
+
+        Status codes for errors:
+
+        - NOT_FOUND: Specified moniker does not exist
+        """
 
     @abc.abstractmethod
     def ReadFromMoniker(
         self,
         request: ni.datamonikers.v1.data_moniker_pb2.Moniker,
         context: _ServicerContext,
-    ) -> typing.Union[ni.datamonikers.v1.data_moniker_pb2.ReadFromMonikerResult, collections.abc.Awaitable[ni.datamonikers.v1.data_moniker_pb2.ReadFromMonikerResult]]: ...
+    ) -> typing.Union[ni.datamonikers.v1.data_moniker_pb2.ReadFromMonikerResult, collections.abc.Awaitable[ni.datamonikers.v1.data_moniker_pb2.ReadFromMonikerResult]]:
+        """Reads the current value for a single moniker.
+
+        If no data value is available, implementations may choose to return an empty
+        response or return an error.
+
+        Status codes for errors:
+
+        - NOT_FOUND: Specified moniker does not exist
+        """
 
     @abc.abstractmethod
     def WriteToMoniker(
         self,
         request: ni.datamonikers.v1.data_moniker_pb2.WriteToMonikerRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.datamonikers.v1.data_moniker_pb2.WriteToMonikerResponse, collections.abc.Awaitable[ni.datamonikers.v1.data_moniker_pb2.WriteToMonikerResponse]]: ...
+    ) -> typing.Union[ni.datamonikers.v1.data_moniker_pb2.WriteToMonikerResponse, collections.abc.Awaitable[ni.datamonikers.v1.data_moniker_pb2.WriteToMonikerResponse]]:
+        """Writes a single value to a single moniker.
+
+        Status codes for errors:
+
+        - NOT_FOUND: Specified moniker does not exist
+        - INVALID_ARGUMENT: Data type of the data value is not compatible with the moniker
+        """
 
 def add_MonikerServiceServicer_to_server(servicer: MonikerServiceServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...

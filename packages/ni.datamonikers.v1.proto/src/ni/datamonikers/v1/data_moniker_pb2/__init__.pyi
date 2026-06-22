@@ -29,31 +29,69 @@ class _SidebandStrategy:
 class _SidebandStrategyEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_SidebandStrategy.ValueType], builtins.type):
     DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
     UNKNOWN: _SidebandStrategy.ValueType  # 0
+    """No strategy selected."""
     GRPC: _SidebandStrategy.ValueType  # 1
+    """Standard gRPC transport."""
     SHARED_MEMORY: _SidebandStrategy.ValueType  # 2
+    """Shared memory transport. Client and server must be on the same machine."""
     DOUBLE_BUFFERED_SHARED_MEMORY: _SidebandStrategy.ValueType  # 3
+    """Same as SHARED_MEMORY except double buffered. This uses more memory but
+    allows the client and server to read and write at the same time without
+    blocking each other.
+    """
     SOCKETS: _SidebandStrategy.ValueType  # 4
+    """TCP Socket-based transport."""
     SOCKETS_LOW_LATENCY: _SidebandStrategy.ValueType  # 5
+    """TCP Socket-based transport optimized for lower latency at the expense
+    of higher CPU usage.
+    """
     HYPERVISOR_SOCKETS: _SidebandStrategy.ValueType  # 6
+    """Hypervisor-assisted socket transport. Not currently implemented."""
     RDMA: _SidebandStrategy.ValueType  # 7
+    """RDMA-based transport. Requires that the network card on both the client
+    and the server support RDMA.
+    """
     RDMA_LOW_LATENCY: _SidebandStrategy.ValueType  # 8
+    """RDMA transport optimized for lower latency at the expense of higher
+    CPU usage.
+    """
 
 class SidebandStrategy(_SidebandStrategy, metaclass=_SidebandStrategyEnumTypeWrapper): ...
 
 UNKNOWN: SidebandStrategy.ValueType  # 0
+"""No strategy selected."""
 GRPC: SidebandStrategy.ValueType  # 1
+"""Standard gRPC transport."""
 SHARED_MEMORY: SidebandStrategy.ValueType  # 2
+"""Shared memory transport. Client and server must be on the same machine."""
 DOUBLE_BUFFERED_SHARED_MEMORY: SidebandStrategy.ValueType  # 3
+"""Same as SHARED_MEMORY except double buffered. This uses more memory but
+allows the client and server to read and write at the same time without
+blocking each other.
+"""
 SOCKETS: SidebandStrategy.ValueType  # 4
+"""TCP Socket-based transport."""
 SOCKETS_LOW_LATENCY: SidebandStrategy.ValueType  # 5
+"""TCP Socket-based transport optimized for lower latency at the expense
+of higher CPU usage.
+"""
 HYPERVISOR_SOCKETS: SidebandStrategy.ValueType  # 6
+"""Hypervisor-assisted socket transport. Not currently implemented."""
 RDMA: SidebandStrategy.ValueType  # 7
+"""RDMA-based transport. Requires that the network card on both the client
+and the server support RDMA.
+"""
 RDMA_LOW_LATENCY: SidebandStrategy.ValueType  # 8
+"""RDMA transport optimized for lower latency at the expense of higher
+CPU usage.
+"""
 global___SidebandStrategy = SidebandStrategy
 
 @typing.final
 class Moniker(google.protobuf.message.Message):
-    """Moniker is a unique identifier for a data source."""
+    """Identifier used to represent a data source from which data values can
+    be read or written.
+    """
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -61,8 +99,11 @@ class Moniker(google.protobuf.message.Message):
     DATA_SOURCE_FIELD_NUMBER: builtins.int
     DATA_INSTANCE_FIELD_NUMBER: builtins.int
     service_location: builtins.str
+    """Service location or endpoint identifier."""
     data_source: builtins.str
+    """Logical data source name."""
     data_instance: builtins.int
+    """Specific instance identifier within the data source."""
     def __init__(
         self,
         *,
@@ -76,11 +117,20 @@ global___Moniker = Moniker
 
 @typing.final
 class MonikerValues(google.protobuf.message.Message):
+    """Message which contains a batch of data values.
+
+    For reads, values contains the returned data values for one or more
+    data monikers. For writes, values contains the data values to be
+    applied to one or more data monikers.
+    """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     VALUES_FIELD_NUMBER: builtins.int
     @property
-    def values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.any_pb2.Any]: ...
+    def values(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[google.protobuf.any_pb2.Any]:
+        """Data values carried as protobuf Any messages."""
+
     def __init__(
         self,
         *,
@@ -92,16 +142,25 @@ global___MonikerValues = MonikerValues
 
 @typing.final
 class MonikerList(google.protobuf.message.Message):
+    """Message which identifies the set of read and write monikers for a
+    particular operation.
+    """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     IS_INITIAL_WRITE_FIELD_NUMBER: builtins.int
     READ_MONIKERS_FIELD_NUMBER: builtins.int
     WRITE_MONIKERS_FIELD_NUMBER: builtins.int
     is_initial_write: builtins.bool
+    """Deprecated. Preserved for backward compatibility."""
     @property
-    def read_monikers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Moniker]: ...
+    def read_monikers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Moniker]:
+        """Monikers from which to read."""
+
     @property
-    def write_monikers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Moniker]: ...
+    def write_monikers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Moniker]:
+        """Monikers to update with new data values."""
+
     def __init__(
         self,
         *,
@@ -120,8 +179,11 @@ class BeginMonikerSidebandStreamRequest(google.protobuf.message.Message):
     STRATEGY_FIELD_NUMBER: builtins.int
     MONIKERS_FIELD_NUMBER: builtins.int
     strategy: global___SidebandStrategy.ValueType
+    """The transport to use for the sideband communication channel."""
     @property
-    def monikers(self) -> global___MonikerList: ...
+    def monikers(self) -> global___MonikerList:
+        """Monikers participating in the sideband communication channel."""
+
     def __init__(
         self,
         *,
@@ -142,9 +204,13 @@ class BeginMonikerSidebandStreamResponse(google.protobuf.message.Message):
     SIDEBAND_IDENTIFIER_FIELD_NUMBER: builtins.int
     BUFFER_SIZE_FIELD_NUMBER: builtins.int
     strategy: global___SidebandStrategy.ValueType
+    """Selected transport used for the the sideband communication channel."""
     connection_url: builtins.str
+    """Transport-specific URL or endpoint used to establish the sideband connection."""
     sideband_identifier: builtins.str
+    """Identifier used to identify communication session within the transport."""
     buffer_size: builtins.int
+    """The buffer size in bytes used for the sideband transport."""
     def __init__(
         self,
         *,
@@ -159,14 +225,24 @@ global___BeginMonikerSidebandStreamResponse = BeginMonikerSidebandStreamResponse
 
 @typing.final
 class MonikerWriteRequest(google.protobuf.message.Message):
+    """Request message used to perform streaming writes."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     MONIKERS_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
     @property
-    def monikers(self) -> global___MonikerList: ...
+    def monikers(self) -> global___MonikerList:
+        """Initial handshake message that declares the target monikers."""
+
     @property
-    def data(self) -> global___MonikerValues: ...
+    def data(self) -> global___MonikerValues:
+        """Value payload for the established write session.
+
+        This field should be set on all subsequent messages after the initial
+        handshake message.
+        """
+
     def __init__(
         self,
         *,
@@ -181,11 +257,15 @@ global___MonikerWriteRequest = MonikerWriteRequest
 
 @typing.final
 class MonikerReadResult(google.protobuf.message.Message):
+    """Response message used to perform streaming reads."""
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     DATA_FIELD_NUMBER: builtins.int
     @property
-    def data(self) -> global___MonikerValues: ...
+    def data(self) -> global___MonikerValues:
+        """Data values returned from the read monikers."""
+
     def __init__(
         self,
         *,
@@ -195,46 +275,6 @@ class MonikerReadResult(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["data", b"data"]) -> None: ...
 
 global___MonikerReadResult = MonikerReadResult
-
-@typing.final
-class SidebandWriteRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    CANCEL_FIELD_NUMBER: builtins.int
-    VALUES_FIELD_NUMBER: builtins.int
-    cancel: builtins.bool
-    @property
-    def values(self) -> global___MonikerValues: ...
-    def __init__(
-        self,
-        *,
-        cancel: builtins.bool = ...,
-        values: global___MonikerValues | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["values", b"values"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["cancel", b"cancel", "values", b"values"]) -> None: ...
-
-global___SidebandWriteRequest = SidebandWriteRequest
-
-@typing.final
-class SidebandReadResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    CANCEL_FIELD_NUMBER: builtins.int
-    VALUES_FIELD_NUMBER: builtins.int
-    cancel: builtins.bool
-    @property
-    def values(self) -> global___MonikerValues: ...
-    def __init__(
-        self,
-        *,
-        cancel: builtins.bool = ...,
-        values: global___MonikerValues | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["values", b"values"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["cancel", b"cancel", "values", b"values"]) -> None: ...
-
-global___SidebandReadResponse = SidebandReadResponse
 
 @typing.final
 class StreamWriteResponse(google.protobuf.message.Message):
@@ -252,7 +292,9 @@ class ReadFromMonikerResult(google.protobuf.message.Message):
 
     VALUE_FIELD_NUMBER: builtins.int
     @property
-    def value(self) -> google.protobuf.any_pb2.Any: ...
+    def value(self) -> google.protobuf.any_pb2.Any:
+        """Data value read from the moniker or empty if no value was available."""
+
     def __init__(
         self,
         *,
@@ -270,9 +312,13 @@ class WriteToMonikerRequest(google.protobuf.message.Message):
     MONIKER_FIELD_NUMBER: builtins.int
     VALUE_FIELD_NUMBER: builtins.int
     @property
-    def moniker(self) -> global___Moniker: ...
+    def moniker(self) -> global___Moniker:
+        """The data moniker to update."""
+
     @property
-    def value(self) -> google.protobuf.any_pb2.Any: ...
+    def value(self) -> google.protobuf.any_pb2.Any:
+        """The data value to write to the moniker."""
+
     def __init__(
         self,
         *,
