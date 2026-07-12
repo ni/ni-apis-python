@@ -15,7 +15,7 @@ runs:
       run: echo "osVersion=$ImageOS" >> "$GITHUB_ENV"
       shell: bash
     - name: Cache ${{ inputs.package-name }} virtualenv
-      uses: actions/cache@2c8a9bd7457de244a408f35966fab2fb45fda9c8 # v6.0.0
+      uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
       with:
         path: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}/.venv
         key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ env.pythonVersion }}-${{ hashFiles(format('{0}/{1}/poetry.lock', inputs.package-basepath, inputs.package-name)) }}
