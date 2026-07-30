@@ -185,19 +185,19 @@ def float32_complex_waveform_to_protobuf(
 ) -> FloatComplexWaveform:
     """Convert the Python ComplexWaveform to a protobuf FloatComplexWaveform."""
     attributes = _extended_properties_to_attributes(value.extended_properties)
-    interleaved_array = value.scaled_data.view(np.float64)
+    interleaved_array = value.get_scaled_data(np.complex64).view(np.float32)
     if value.timing.sample_interval_mode in [SampleIntervalMode.REGULAR, SampleIntervalMode.NONE]:
         return FloatComplexWaveform(
             t0=_t0_from_waveform(value),
             dt=_time_interval_from_waveform(value),
-            y_data=interleaved_array,  # TODO: This is an array of 64bit values. Do we need to use raw_data or range check?
+            y_data=interleaved_array,
             attributes=attributes,
             timestamp=_timestamp_from_waveform(value),
             time_offset=_time_offset_from_waveform(value),
         )
     elif value.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
         return FloatComplexWaveform(
-            y_data=interleaved_array,  # TODO: This is an array of 64bit values. Do we need to use raw_data or range check?
+            y_data=interleaved_array,
             attributes=attributes,
             timestamps=_timestamps_from_waveform(value),
         )
