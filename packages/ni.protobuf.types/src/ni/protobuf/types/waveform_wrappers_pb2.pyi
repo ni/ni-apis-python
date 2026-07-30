@@ -34,6 +34,24 @@ class DoubleAnalogWaveformArrayValue(google.protobuf.message.Message):
 global___DoubleAnalogWaveformArrayValue = DoubleAnalogWaveformArrayValue
 
 @typing.final
+class FloatAnalogWaveformArrayValue(google.protobuf.message.Message):
+    """An array of single-precision analog waveforms."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    WAVEFORMS_FIELD_NUMBER: builtins.int
+    @property
+    def waveforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.waveform_pb2.FloatAnalogWaveform]: ...
+    def __init__(
+        self,
+        *,
+        waveforms: collections.abc.Iterable[ni.protobuf.types.waveform_pb2.FloatAnalogWaveform] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
+
+global___FloatAnalogWaveformArrayValue = FloatAnalogWaveformArrayValue
+
+@typing.final
 class I16AnalogWaveformArrayValue(google.protobuf.message.Message):
     """An array of 16-bit integer waveforms."""
 
@@ -70,6 +88,24 @@ class DoubleComplexWaveformArrayValue(google.protobuf.message.Message):
 global___DoubleComplexWaveformArrayValue = DoubleComplexWaveformArrayValue
 
 @typing.final
+class FloatComplexWaveformArrayValue(google.protobuf.message.Message):
+    """An array of single-precision complex waveforms."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    WAVEFORMS_FIELD_NUMBER: builtins.int
+    @property
+    def waveforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.waveform_pb2.FloatComplexWaveform]: ...
+    def __init__(
+        self,
+        *,
+        waveforms: collections.abc.Iterable[ni.protobuf.types.waveform_pb2.FloatComplexWaveform] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
+
+global___FloatComplexWaveformArrayValue = FloatComplexWaveformArrayValue
+
+@typing.final
 class I16ComplexWaveformArrayValue(google.protobuf.message.Message):
     """An array of 16-bit integer complex waveforms."""
 
@@ -104,6 +140,24 @@ class DoubleSpectrumArrayValue(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
 
 global___DoubleSpectrumArrayValue = DoubleSpectrumArrayValue
+
+@typing.final
+class FloatSpectrumArrayValue(google.protobuf.message.Message):
+    """An array of single-precision spectrums."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    WAVEFORMS_FIELD_NUMBER: builtins.int
+    @property
+    def waveforms(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.protobuf.types.waveform_pb2.FloatSpectrum]: ...
+    def __init__(
+        self,
+        *,
+        waveforms: collections.abc.Iterable[ni.protobuf.types.waveform_pb2.FloatSpectrum] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
+
+global___FloatSpectrumArrayValue = FloatSpectrumArrayValue
 
 @typing.final
 class DigitalWaveformArrayValue(google.protobuf.message.Message):

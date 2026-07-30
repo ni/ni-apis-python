@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 from ni.protobuf.types import waveform_pb2 as ni_dot_protobuf_dot_types_dot_waveform__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)ni/protobuf/types/waveform_wrappers.proto\x12\x11ni.protobuf.types\x1a ni/protobuf/types/waveform.proto\"\\\n\x1e\x44oubleAnalogWaveformArrayValue\x12:\n\twaveforms\x18\x01 \x03(\x0b\x32\'.ni.protobuf.types.DoubleAnalogWaveform\"V\n\x1bI16AnalogWaveformArrayValue\x12\x37\n\twaveforms\x18\x01 \x03(\x0b\x32$.ni.protobuf.types.I16AnalogWaveform\"^\n\x1f\x44oubleComplexWaveformArrayValue\x12;\n\twaveforms\x18\x01 \x03(\x0b\x32(.ni.protobuf.types.DoubleComplexWaveform\"X\n\x1cI16ComplexWaveformArrayValue\x12\x38\n\twaveforms\x18\x01 \x03(\x0b\x32%.ni.protobuf.types.I16ComplexWaveform\"P\n\x18\x44oubleSpectrumArrayValue\x12\x34\n\twaveforms\x18\x01 \x03(\x0b\x32!.ni.protobuf.types.DoubleSpectrum\"R\n\x19\x44igitalWaveformArrayValue\x12\x35\n\twaveforms\x18\x01 \x03(\x0b\x32\".ni.protobuf.types.DigitalWaveformB\x8d\x01\n\x15\x63om.ni.protobuf.typesB\x15WaveformWrappersProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n)ni/protobuf/types/waveform_wrappers.proto\x12\x11ni.protobuf.types\x1a ni/protobuf/types/waveform.proto\"\\\n\x1e\x44oubleAnalogWaveformArrayValue\x12:\n\twaveforms\x18\x01 \x03(\x0b\x32\'.ni.protobuf.types.DoubleAnalogWaveform\"Z\n\x1d\x46loatAnalogWaveformArrayValue\x12\x39\n\twaveforms\x18\x01 \x03(\x0b\x32&.ni.protobuf.types.FloatAnalogWaveform\"V\n\x1bI16AnalogWaveformArrayValue\x12\x37\n\twaveforms\x18\x01 \x03(\x0b\x32$.ni.protobuf.types.I16AnalogWaveform\"^\n\x1f\x44oubleComplexWaveformArrayValue\x12;\n\twaveforms\x18\x01 \x03(\x0b\x32(.ni.protobuf.types.DoubleComplexWaveform\"\\\n\x1e\x46loatComplexWaveformArrayValue\x12:\n\twaveforms\x18\x01 \x03(\x0b\x32\'.ni.protobuf.types.FloatComplexWaveform\"X\n\x1cI16ComplexWaveformArrayValue\x12\x38\n\twaveforms\x18\x01 \x03(\x0b\x32%.ni.protobuf.types.I16ComplexWaveform\"P\n\x18\x44oubleSpectrumArrayValue\x12\x34\n\twaveforms\x18\x01 \x03(\x0b\x32!.ni.protobuf.types.DoubleSpectrum\"N\n\x17\x46loatSpectrumArrayValue\x12\x33\n\twaveforms\x18\x01 \x03(\x0b\x32 .ni.protobuf.types.FloatSpectrum\"R\n\x19\x44igitalWaveformArrayValue\x12\x35\n\twaveforms\x18\x01 \x03(\x0b\x32\".ni.protobuf.types.DigitalWaveformB\x8d\x01\n\x15\x63om.ni.protobuf.typesB\x15WaveformWrappersProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ni.protobuf.types.waveform_wrappers_pb2', globals())
@@ -24,14 +24,20 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._serialized_options = b'\n\025com.ni.protobuf.typesB\025WaveformWrappersProtoP\001Z\005types\242\002\004NIPT\252\002\"NationalInstruments.Protobuf.Types\312\002\021NI\\PROTOBUF\\TYPES\352\002\023NI::Protobuf::Types'
   _DOUBLEANALOGWAVEFORMARRAYVALUE._serialized_start=98
   _DOUBLEANALOGWAVEFORMARRAYVALUE._serialized_end=190
-  _I16ANALOGWAVEFORMARRAYVALUE._serialized_start=192
-  _I16ANALOGWAVEFORMARRAYVALUE._serialized_end=278
-  _DOUBLECOMPLEXWAVEFORMARRAYVALUE._serialized_start=280
-  _DOUBLECOMPLEXWAVEFORMARRAYVALUE._serialized_end=374
-  _I16COMPLEXWAVEFORMARRAYVALUE._serialized_start=376
-  _I16COMPLEXWAVEFORMARRAYVALUE._serialized_end=464
-  _DOUBLESPECTRUMARRAYVALUE._serialized_start=466
-  _DOUBLESPECTRUMARRAYVALUE._serialized_end=546
-  _DIGITALWAVEFORMARRAYVALUE._serialized_start=548
-  _DIGITALWAVEFORMARRAYVALUE._serialized_end=630
+  _FLOATANALOGWAVEFORMARRAYVALUE._serialized_start=192
+  _FLOATANALOGWAVEFORMARRAYVALUE._serialized_end=282
+  _I16ANALOGWAVEFORMARRAYVALUE._serialized_start=284
+  _I16ANALOGWAVEFORMARRAYVALUE._serialized_end=370
+  _DOUBLECOMPLEXWAVEFORMARRAYVALUE._serialized_start=372
+  _DOUBLECOMPLEXWAVEFORMARRAYVALUE._serialized_end=466
+  _FLOATCOMPLEXWAVEFORMARRAYVALUE._serialized_start=468
+  _FLOATCOMPLEXWAVEFORMARRAYVALUE._serialized_end=560
+  _I16COMPLEXWAVEFORMARRAYVALUE._serialized_start=562
+  _I16COMPLEXWAVEFORMARRAYVALUE._serialized_end=650
+  _DOUBLESPECTRUMARRAYVALUE._serialized_start=652
+  _DOUBLESPECTRUMARRAYVALUE._serialized_end=732
+  _FLOATSPECTRUMARRAYVALUE._serialized_start=734
+  _FLOATSPECTRUMARRAYVALUE._serialized_end=812
+  _DIGITALWAVEFORMARRAYVALUE._serialized_start=814
+  _DIGITALWAVEFORMARRAYVALUE._serialized_end=896
 # @@protoc_insertion_point(module_scope)
