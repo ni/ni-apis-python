@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 from ni.protobuf.types import precision_timestamp_pb2 as ni_dot_protobuf_dot_types_dot_precision__timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n ni/protobuf/types/waveform.proto\x12\x11ni.protobuf.types\x1a+ni/protobuf/types/precision_timestamp.proto\"\x9a\x03\n\x14\x44oubleAnalogWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x0e\n\x06y_data\x18\x03 \x03(\x01\x12K\n\nattributes\x18\x04 \x03(\x0b\x32\x37.ni.protobuf.types.DoubleAnalogWaveform.AttributesEntry\x12\x38\n\ttimestamp\x18\x05 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x06 \x01(\x01\x12\x39\n\ntimestamps\x18\x07 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\xbd\x03\n\x11I16AnalogWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x0e\n\x06y_data\x18\x03 \x03(\x11\x12H\n\nattributes\x18\x04 \x03(\x0b\x32\x34.ni.protobuf.types.I16AnalogWaveform.AttributesEntry\x12\'\n\x05scale\x18\x05 \x01(\x0b\x32\x18.ni.protobuf.types.Scale\x12\x38\n\ttimestamp\x18\x06 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x07 \x01(\x01\x12\x39\n\ntimestamps\x18\x08 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\x9c\x03\n\x15\x44oubleComplexWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x0e\n\x06y_data\x18\x03 \x03(\x01\x12L\n\nattributes\x18\x04 \x03(\x0b\x32\x38.ni.protobuf.types.DoubleComplexWaveform.AttributesEntry\x12\x38\n\ttimestamp\x18\x05 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x06 \x01(\x01\x12\x39\n\ntimestamps\x18\x07 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\xbf\x03\n\x12I16ComplexWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x0e\n\x06y_data\x18\x03 \x03(\x11\x12I\n\nattributes\x18\x04 \x03(\x0b\x32\x35.ni.protobuf.types.I16ComplexWaveform.AttributesEntry\x12\'\n\x05scale\x18\x05 \x01(\x0b\x32\x18.ni.protobuf.types.Scale\x12\x38\n\ttimestamp\x18\x06 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x07 \x01(\x01\x12\x39\n\ntimestamps\x18\x08 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\xf9\x01\n\x0e\x44oubleSpectrum\x12\x17\n\x0fstart_frequency\x18\x01 \x01(\x01\x12\x1b\n\x13\x66requency_increment\x18\x02 \x01(\x01\x12\x0c\n\x04\x64\x61ta\x18\x03 \x03(\x01\x12\x45\n\nattributes\x18\x04 \x03(\x0b\x32\x31.ni.protobuf.types.DoubleSpectrum.AttributesEntry\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\x84\x01\n\x16WaveformAttributeValue\x12\x14\n\nbool_value\x18\x01 \x01(\x08H\x00\x12\x17\n\rinteger_value\x18\x02 \x01(\x05H\x00\x12\x16\n\x0c\x64ouble_value\x18\x03 \x01(\x01H\x00\x12\x16\n\x0cstring_value\x18\x04 \x01(\tH\x00\x42\x0b\n\tattribute\"\xa6\x03\n\x0f\x44igitalWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x14\n\x0csignal_count\x18\x03 \x01(\x05\x12\x0e\n\x06y_data\x18\x04 \x01(\x0c\x12\x46\n\nattributes\x18\x05 \x03(\x0b\x32\x32.ni.protobuf.types.DigitalWaveform.AttributesEntry\x12\x38\n\ttimestamp\x18\x06 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x07 \x01(\x01\x12\x39\n\ntimestamps\x18\x08 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"G\n\x05Scale\x12\x36\n\x0clinear_scale\x18\x01 \x01(\x0b\x32\x1e.ni.protobuf.types.LinearScaleH\x00\x42\x06\n\x04mode\"+\n\x0bLinearScale\x12\x0c\n\x04gain\x18\x01 \x01(\x01\x12\x0e\n\x06offset\x18\x02 \x01(\x01\x42\x85\x01\n\x15\x63om.ni.protobuf.typesB\rWaveformProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n ni/protobuf/types/waveform.proto\x12\x11ni.protobuf.types\x1a+ni/protobuf/types/precision_timestamp.proto\"\x9a\x03\n\x14\x44oubleAnalogWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x0e\n\x06y_data\x18\x03 \x03(\x01\x12K\n\nattributes\x18\x04 \x03(\x0b\x32\x37.ni.protobuf.types.DoubleAnalogWaveform.AttributesEntry\x12\x38\n\ttimestamp\x18\x05 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x06 \x01(\x01\x12\x39\n\ntimestamps\x18\x07 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\x98\x03\n\x13\x46loatAnalogWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x0e\n\x06y_data\x18\x03 \x03(\x02\x12J\n\nattributes\x18\x04 \x03(\x0b\x32\x36.ni.protobuf.types.FloatAnalogWaveform.AttributesEntry\x12\x38\n\ttimestamp\x18\x05 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x06 \x01(\x01\x12\x39\n\ntimestamps\x18\x07 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\xbd\x03\n\x11I16AnalogWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x0e\n\x06y_data\x18\x03 \x03(\x11\x12H\n\nattributes\x18\x04 \x03(\x0b\x32\x34.ni.protobuf.types.I16AnalogWaveform.AttributesEntry\x12\'\n\x05scale\x18\x05 \x01(\x0b\x32\x18.ni.protobuf.types.Scale\x12\x38\n\ttimestamp\x18\x06 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x07 \x01(\x01\x12\x39\n\ntimestamps\x18\x08 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\x9c\x03\n\x15\x44oubleComplexWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x0e\n\x06y_data\x18\x03 \x03(\x01\x12L\n\nattributes\x18\x04 \x03(\x0b\x32\x38.ni.protobuf.types.DoubleComplexWaveform.AttributesEntry\x12\x38\n\ttimestamp\x18\x05 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x06 \x01(\x01\x12\x39\n\ntimestamps\x18\x07 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\x9a\x03\n\x14\x46loatComplexWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x0e\n\x06y_data\x18\x03 \x03(\x02\x12K\n\nattributes\x18\x04 \x03(\x0b\x32\x37.ni.protobuf.types.FloatComplexWaveform.AttributesEntry\x12\x38\n\ttimestamp\x18\x05 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x06 \x01(\x01\x12\x39\n\ntimestamps\x18\x07 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\xbf\x03\n\x12I16ComplexWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x0e\n\x06y_data\x18\x03 \x03(\x11\x12I\n\nattributes\x18\x04 \x03(\x0b\x32\x35.ni.protobuf.types.I16ComplexWaveform.AttributesEntry\x12\'\n\x05scale\x18\x05 \x01(\x0b\x32\x18.ni.protobuf.types.Scale\x12\x38\n\ttimestamp\x18\x06 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x07 \x01(\x01\x12\x39\n\ntimestamps\x18\x08 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\xf9\x01\n\x0e\x44oubleSpectrum\x12\x17\n\x0fstart_frequency\x18\x01 \x01(\x01\x12\x1b\n\x13\x66requency_increment\x18\x02 \x01(\x01\x12\x0c\n\x04\x64\x61ta\x18\x03 \x03(\x01\x12\x45\n\nattributes\x18\x04 \x03(\x0b\x32\x31.ni.protobuf.types.DoubleSpectrum.AttributesEntry\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\xf7\x01\n\rFloatSpectrum\x12\x17\n\x0fstart_frequency\x18\x01 \x01(\x01\x12\x1b\n\x13\x66requency_increment\x18\x02 \x01(\x01\x12\x0c\n\x04\x64\x61ta\x18\x03 \x03(\x02\x12\x44\n\nattributes\x18\x04 \x03(\x0b\x32\x30.ni.protobuf.types.FloatSpectrum.AttributesEntry\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"\x84\x01\n\x16WaveformAttributeValue\x12\x14\n\nbool_value\x18\x01 \x01(\x08H\x00\x12\x17\n\rinteger_value\x18\x02 \x01(\x05H\x00\x12\x16\n\x0c\x64ouble_value\x18\x03 \x01(\x01H\x00\x12\x16\n\x0cstring_value\x18\x04 \x01(\tH\x00\x42\x0b\n\tattribute\"\xa6\x03\n\x0f\x44igitalWaveform\x12\x31\n\x02t0\x18\x01 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\n\n\x02\x64t\x18\x02 \x01(\x01\x12\x14\n\x0csignal_count\x18\x03 \x01(\x05\x12\x0e\n\x06y_data\x18\x04 \x01(\x0c\x12\x46\n\nattributes\x18\x05 \x03(\x0b\x32\x32.ni.protobuf.types.DigitalWaveform.AttributesEntry\x12\x38\n\ttimestamp\x18\x06 \x01(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x12\x13\n\x0btime_offset\x18\x07 \x01(\x01\x12\x39\n\ntimestamps\x18\x08 \x03(\x0b\x32%.ni.protobuf.types.PrecisionTimestamp\x1a\\\n\x0f\x41ttributesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x38\n\x05value\x18\x02 \x01(\x0b\x32).ni.protobuf.types.WaveformAttributeValue:\x02\x38\x01\"G\n\x05Scale\x12\x36\n\x0clinear_scale\x18\x01 \x01(\x0b\x32\x1e.ni.protobuf.types.LinearScaleH\x00\x42\x06\n\x04mode\"+\n\x0bLinearScale\x12\x0c\n\x04gain\x18\x01 \x01(\x01\x12\x0e\n\x06offset\x18\x02 \x01(\x01\x42\x85\x01\n\x15\x63om.ni.protobuf.typesB\rWaveformProtoP\x01Z\x05types\xa2\x02\x04NIPT\xaa\x02\"NationalInstruments.Protobuf.Types\xca\x02\x11NI\\PROTOBUF\\TYPES\xea\x02\x13NI::Protobuf::Typesb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ni.protobuf.types.waveform_pb2', globals())
@@ -24,44 +24,62 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._serialized_options = b'\n\025com.ni.protobuf.typesB\rWaveformProtoP\001Z\005types\242\002\004NIPT\252\002\"NationalInstruments.Protobuf.Types\312\002\021NI\\PROTOBUF\\TYPES\352\002\023NI::Protobuf::Types'
   _DOUBLEANALOGWAVEFORM_ATTRIBUTESENTRY._options = None
   _DOUBLEANALOGWAVEFORM_ATTRIBUTESENTRY._serialized_options = b'8\001'
+  _FLOATANALOGWAVEFORM_ATTRIBUTESENTRY._options = None
+  _FLOATANALOGWAVEFORM_ATTRIBUTESENTRY._serialized_options = b'8\001'
   _I16ANALOGWAVEFORM_ATTRIBUTESENTRY._options = None
   _I16ANALOGWAVEFORM_ATTRIBUTESENTRY._serialized_options = b'8\001'
   _DOUBLECOMPLEXWAVEFORM_ATTRIBUTESENTRY._options = None
   _DOUBLECOMPLEXWAVEFORM_ATTRIBUTESENTRY._serialized_options = b'8\001'
+  _FLOATCOMPLEXWAVEFORM_ATTRIBUTESENTRY._options = None
+  _FLOATCOMPLEXWAVEFORM_ATTRIBUTESENTRY._serialized_options = b'8\001'
   _I16COMPLEXWAVEFORM_ATTRIBUTESENTRY._options = None
   _I16COMPLEXWAVEFORM_ATTRIBUTESENTRY._serialized_options = b'8\001'
   _DOUBLESPECTRUM_ATTRIBUTESENTRY._options = None
   _DOUBLESPECTRUM_ATTRIBUTESENTRY._serialized_options = b'8\001'
+  _FLOATSPECTRUM_ATTRIBUTESENTRY._options = None
+  _FLOATSPECTRUM_ATTRIBUTESENTRY._serialized_options = b'8\001'
   _DIGITALWAVEFORM_ATTRIBUTESENTRY._options = None
   _DIGITALWAVEFORM_ATTRIBUTESENTRY._serialized_options = b'8\001'
   _DOUBLEANALOGWAVEFORM._serialized_start=101
   _DOUBLEANALOGWAVEFORM._serialized_end=511
   _DOUBLEANALOGWAVEFORM_ATTRIBUTESENTRY._serialized_start=419
   _DOUBLEANALOGWAVEFORM_ATTRIBUTESENTRY._serialized_end=511
-  _I16ANALOGWAVEFORM._serialized_start=514
-  _I16ANALOGWAVEFORM._serialized_end=959
+  _FLOATANALOGWAVEFORM._serialized_start=514
+  _FLOATANALOGWAVEFORM._serialized_end=922
+  _FLOATANALOGWAVEFORM_ATTRIBUTESENTRY._serialized_start=419
+  _FLOATANALOGWAVEFORM_ATTRIBUTESENTRY._serialized_end=511
+  _I16ANALOGWAVEFORM._serialized_start=925
+  _I16ANALOGWAVEFORM._serialized_end=1370
   _I16ANALOGWAVEFORM_ATTRIBUTESENTRY._serialized_start=419
   _I16ANALOGWAVEFORM_ATTRIBUTESENTRY._serialized_end=511
-  _DOUBLECOMPLEXWAVEFORM._serialized_start=962
-  _DOUBLECOMPLEXWAVEFORM._serialized_end=1374
+  _DOUBLECOMPLEXWAVEFORM._serialized_start=1373
+  _DOUBLECOMPLEXWAVEFORM._serialized_end=1785
   _DOUBLECOMPLEXWAVEFORM_ATTRIBUTESENTRY._serialized_start=419
   _DOUBLECOMPLEXWAVEFORM_ATTRIBUTESENTRY._serialized_end=511
-  _I16COMPLEXWAVEFORM._serialized_start=1377
-  _I16COMPLEXWAVEFORM._serialized_end=1824
+  _FLOATCOMPLEXWAVEFORM._serialized_start=1788
+  _FLOATCOMPLEXWAVEFORM._serialized_end=2198
+  _FLOATCOMPLEXWAVEFORM_ATTRIBUTESENTRY._serialized_start=419
+  _FLOATCOMPLEXWAVEFORM_ATTRIBUTESENTRY._serialized_end=511
+  _I16COMPLEXWAVEFORM._serialized_start=2201
+  _I16COMPLEXWAVEFORM._serialized_end=2648
   _I16COMPLEXWAVEFORM_ATTRIBUTESENTRY._serialized_start=419
   _I16COMPLEXWAVEFORM_ATTRIBUTESENTRY._serialized_end=511
-  _DOUBLESPECTRUM._serialized_start=1827
-  _DOUBLESPECTRUM._serialized_end=2076
+  _DOUBLESPECTRUM._serialized_start=2651
+  _DOUBLESPECTRUM._serialized_end=2900
   _DOUBLESPECTRUM_ATTRIBUTESENTRY._serialized_start=419
   _DOUBLESPECTRUM_ATTRIBUTESENTRY._serialized_end=511
-  _WAVEFORMATTRIBUTEVALUE._serialized_start=2079
-  _WAVEFORMATTRIBUTEVALUE._serialized_end=2211
-  _DIGITALWAVEFORM._serialized_start=2214
-  _DIGITALWAVEFORM._serialized_end=2636
+  _FLOATSPECTRUM._serialized_start=2903
+  _FLOATSPECTRUM._serialized_end=3150
+  _FLOATSPECTRUM_ATTRIBUTESENTRY._serialized_start=419
+  _FLOATSPECTRUM_ATTRIBUTESENTRY._serialized_end=511
+  _WAVEFORMATTRIBUTEVALUE._serialized_start=3153
+  _WAVEFORMATTRIBUTEVALUE._serialized_end=3285
+  _DIGITALWAVEFORM._serialized_start=3288
+  _DIGITALWAVEFORM._serialized_end=3710
   _DIGITALWAVEFORM_ATTRIBUTESENTRY._serialized_start=419
   _DIGITALWAVEFORM_ATTRIBUTESENTRY._serialized_end=511
-  _SCALE._serialized_start=2638
-  _SCALE._serialized_end=2709
-  _LINEARSCALE._serialized_start=2711
-  _LINEARSCALE._serialized_end=2754
+  _SCALE._serialized_start=3712
+  _SCALE._serialized_end=3783
+  _LINEARSCALE._serialized_start=3785
+  _LINEARSCALE._serialized_end=3828
 # @@protoc_insertion_point(module_scope)
