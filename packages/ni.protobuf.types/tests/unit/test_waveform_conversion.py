@@ -15,14 +15,14 @@ from nitypes.waveform import (
 from ni.protobuf.types.waveform_conversion import (
     digital_waveform_from_protobuf,
     digital_waveform_to_protobuf,
-    float64_analog_waveform_from_protobuf,
-    float64_analog_waveform_to_protobuf,
-    float64_complex_waveform_from_protobuf,
-    float64_complex_waveform_to_protobuf,
     float32_analog_waveform_from_protobuf,
     float32_analog_waveform_to_protobuf,
     float32_complex_waveform_from_protobuf,
     float32_complex_waveform_to_protobuf,
+    float64_analog_waveform_from_protobuf,
+    float64_analog_waveform_to_protobuf,
+    float64_complex_waveform_from_protobuf,
+    float64_complex_waveform_to_protobuf,
     int16_analog_waveform_from_protobuf,
     int16_analog_waveform_to_protobuf,
     int16_complex_waveform_from_protobuf,
@@ -124,7 +124,7 @@ class TestFloatAnalogConversion(
 
     def make_waveform(self) -> AnalogWaveform[np.float32]:
         """Create a waveform with small non-zero sample data."""
-        return AnalogWaveform.from_array_1d(np.array([1.0, 2.0]))
+        return AnalogWaveform.from_array_1d(np.array([1.0, 2.0]), dtype=np.float32)
 
     def make_waveform_proto(
         self,
@@ -165,7 +165,7 @@ class TestFloatAnalogConversion(
     def test___analog_waveform_non_zero_samples___convert___valid_protobuf(self) -> None:
         analog_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]), dtype=np.float32)
 
-        float_analog_waveform = float64_analog_waveform_to_protobuf(analog_waveform)
+        float_analog_waveform = float32_analog_waveform_to_protobuf(analog_waveform)
 
         assert list(float_analog_waveform.y_data) == [1.0, 2.0, 3.0]
 
@@ -292,9 +292,7 @@ class TestFloatComplexWaveformConversion(
         """Convert a Python waveform to its corresponding proto message."""
         return float32_complex_waveform_to_protobuf(waveform)
 
-    def from_protobuf(
-        self, waveform_proto: FloatComplexWaveform
-    ) -> ComplexWaveform[np.complex64]:
+    def from_protobuf(self, waveform_proto: FloatComplexWaveform) -> ComplexWaveform[np.complex64]:
         """Convert a proto message to the corresponding Python waveform."""
         return float32_complex_waveform_from_protobuf(waveform_proto)
 

@@ -2,19 +2,22 @@ import numpy as np
 from nitypes.waveform import Spectrum
 
 from ni.protobuf.types.waveform_conversion import (
+    float32_spectrum_from_protobuf,
+    float32_spectrum_to_protobuf,
     float64_spectrum_from_protobuf,
     float64_spectrum_to_protobuf,
 )
 from ni.protobuf.types.waveform_pb2 import (
     DoubleSpectrum,
+    FloatSpectrum,
     WaveformAttributeValue,
 )
 
 
 # ========================================================
-# Spectrum to DoubleSpectrum
+# Spectrum64 to DoubleSpectrum
 # ========================================================
-def test___default_spectrum___convert___valid_protobuf() -> None:
+def test___default_spectrum64___convert___valid_protobuf() -> None:
     spectrum = Spectrum()
 
     dbl_spectrum = float64_spectrum_to_protobuf(spectrum)
@@ -25,7 +28,7 @@ def test___default_spectrum___convert___valid_protobuf() -> None:
     assert list(dbl_spectrum.data) == []
 
 
-def test___spectrum_with_data___convert___valid_protobuf() -> None:
+def test___spectrum64_with_data___convert___valid_protobuf() -> None:
     spectrum = Spectrum.from_array_1d(np.array([1.0, 2.0, 3.0]))
     spectrum.start_frequency = 100.0
     spectrum.frequency_increment = 10.0
@@ -37,7 +40,7 @@ def test___spectrum_with_data___convert___valid_protobuf() -> None:
     assert dbl_spectrum.frequency_increment == 10.0
 
 
-def test___spectrum_with_extended_properties___convert___valid_protobuf() -> None:
+def test___spectrum64_with_extended_properties___convert___valid_protobuf() -> None:
     spectrum = Spectrum()
     spectrum.channel_name = "Dev1/ai0"
     spectrum.units = "Volts"
@@ -86,3 +89,83 @@ def test___dbl_spectrum_with_attributes___convert___valid_python_object() -> Non
 
     assert spectrum.channel_name == "Dev1/ai0"
     assert spectrum.units == "Volts"
+
+
+# ========================================================
+# Spectrum32 to FloatSpectrum
+# ========================================================
+def test___default_spectrum32___convert___valid_protobuf() -> None:
+    spectrum = Spectrum(dtype=np.float32)
+
+    float_spectrum = float32_spectrum_to_protobuf(spectrum)
+
+    assert not float_spectrum.attributes
+    assert spectrum.start_frequency == 0.0
+    assert spectrum.frequency_increment == 0.0
+    assert list(float_spectrum.data) == []
+
+
+def test___spectrum32_with_data___convert___valid_protobuf() -> None:
+    spectrum = Spectrum.from_array_1d(np.array([1.0, 2.0, 3.0]), dtype=np.float32)
+    spectrum.start_frequency = 100.0
+    spectrum.frequency_increment = 10.0
+
+    float_spectrum = float32_spectrum_to_protobuf(spectrum)
+
+    assert list(float_spectrum.data) == [1.0, 2.0, 3.0]
+    assert float_spectrum.start_frequency == 100.0
+    assert float_spectrum.frequency_increment == 10.0
+
+
+def test___spectrum32_with_extended_properties___convert___valid_protobuf() -> None:
+    spectrum = Spectrum(dtype=np.float32)
+    spectrum.channel_name = "Dev1/ai0"
+    spectrum.units = "Volts"
+
+    dbl_spectrum = float32_spectrum_to_protobuf(spectrum)
+
+    assert dbl_spectrum.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
+    assert dbl_spectrum.attributes["NI_UnitDescription"].string_value == "Volts"
+
+
+# ========================================================
+# FloatSpectrum to Spectrum32
+# ========================================================
+def test___default_float_spectrum___convert___valid_python_object() -> None:
+    float_spectrum = FloatSpectrum()
+
+    spectrum = float32_spectrum_from_protobuf(float_spectrum)
+
+    assert not spectrum.extended_properties
+    assert spectrum.start_frequency == 0.0
+    assert spectrum.frequency_increment == 0.0
+    assert spectrum.sample_count == 0
+    assert spectrum.data.size == 0
+    assert spectrum.dtype == np.float32
+
+
+def test___float_spectrum_with_data___convert___valid_python_object() -> None:
+    float_spectrum = FloatSpectrum(
+        data=[1.0, 2.0, 3.0], start_frequency=100.0, frequency_increment=10.0
+    )
+
+    spectrum = float32_spectrum_from_protobuf(float_spectrum)
+
+    assert list(spectrum.data) == [1.0, 2.0, 3.0]
+    assert spectrum.start_frequency == 100.0
+    assert spectrum.frequency_increment == 10.0
+    assert spectrum.dtype == np.float32
+
+
+def test___float_spectrum_with_attributes___convert___valid_python_object() -> None:
+    attributes = {
+        "NI_ChannelName": WaveformAttributeValue(string_value="Dev1/ai0"),
+        "NI_UnitDescription": WaveformAttributeValue(string_value="Volts"),
+    }
+    float_spectrum = FloatSpectrum(attributes=attributes)
+
+    spectrum = float32_spectrum_from_protobuf(float_spectrum)
+
+    assert spectrum.channel_name == "Dev1/ai0"
+    assert spectrum.units == "Volts"
+    assert spectrum.dtype == np.float32
