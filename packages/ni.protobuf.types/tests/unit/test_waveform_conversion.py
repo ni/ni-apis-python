@@ -19,6 +19,10 @@ from ni.protobuf.types.waveform_conversion import (
     float64_analog_waveform_to_protobuf,
     float64_complex_waveform_from_protobuf,
     float64_complex_waveform_to_protobuf,
+    float32_analog_waveform_from_protobuf,
+    float32_analog_waveform_to_protobuf,
+    float32_complex_waveform_from_protobuf,
+    float32_complex_waveform_to_protobuf,
     int16_analog_waveform_from_protobuf,
     int16_analog_waveform_to_protobuf,
     int16_complex_waveform_from_protobuf,
@@ -28,6 +32,8 @@ from ni.protobuf.types.waveform_pb2 import (
     DigitalWaveform as DigitalWaveformProto,
     DoubleAnalogWaveform,
     DoubleComplexWaveform,
+    FloatAnalogWaveform,
+    FloatComplexWaveform,
     I16AnalogWaveform,
     I16ComplexWaveform,
     Scale,
@@ -111,6 +117,83 @@ class TestDoubleAnalogConversion(
         assert list(analog_waveform.scaled_data) == [1.0, 2.0, 3.0]
 
 
+class TestFloatAnalogConversion(
+    BaseWaveformConversionTests[AnalogWaveform[np.float32], FloatAnalogWaveform]
+):
+    """Test for converting float (single) analog waveforms to/from protobuf messages."""
+
+    def make_waveform(self) -> AnalogWaveform[np.float32]:
+        """Create a waveform with small non-zero sample data."""
+        return AnalogWaveform.from_array_1d(np.array([1.0, 2.0]))
+
+    def make_waveform_proto(
+        self,
+        attributes: Mapping[str, WaveformAttributeValue] | None = None,
+        scale: Scale | None = None,
+    ) -> FloatAnalogWaveform:
+        """Create a waveform protobuf object with small non-zero sample data."""
+        return FloatAnalogWaveform(y_data=[1.0, 2.0], attributes=attributes)
+
+    def to_protobuf(self, waveform: AnalogWaveform[np.float32]) -> FloatAnalogWaveform:
+        """Convert a Python waveform to its corresponding proto message."""
+        return float32_analog_waveform_to_protobuf(waveform)
+
+    def from_protobuf(self, waveform_proto: FloatAnalogWaveform) -> AnalogWaveform[np.float32]:
+        """Convert a proto message to the corresponding Python waveform."""
+        return float32_analog_waveform_from_protobuf(waveform_proto)
+
+    # ========================================================
+    # To Protobuf
+    # ========================================================
+    def test___default_analog_waveform___convert___valid_protobuf(self) -> None:
+        analog_waveform = AnalogWaveform(dtype=np.float32)
+
+        float_analog_waveform = float32_analog_waveform_to_protobuf(analog_waveform)
+
+        assert not float_analog_waveform.attributes
+        assert float_analog_waveform.dt == 0
+        assert not float_analog_waveform.HasField("t0")
+        assert list(float_analog_waveform.y_data) == []
+
+    def test___analog_waveform_samples_only___convert___valid_protobuf(self) -> None:
+        analog_waveform = AnalogWaveform(5, dtype=np.float32)
+
+        float_analog_waveform = float32_analog_waveform_to_protobuf(analog_waveform)
+
+        assert list(float_analog_waveform.y_data) == [0.0, 0.0, 0.0, 0.0, 0.0]
+
+    def test___analog_waveform_non_zero_samples___convert___valid_protobuf(self) -> None:
+        analog_waveform = AnalogWaveform.from_array_1d(np.array([1.0, 2.0, 3.0]), dtype=np.float32)
+
+        float_analog_waveform = float64_analog_waveform_to_protobuf(analog_waveform)
+
+        assert list(float_analog_waveform.y_data) == [1.0, 2.0, 3.0]
+
+    # ========================================================
+    # From Protobuf
+    # ========================================================
+    def test___default_float_analog_wfm___convert___valid_python_object(self) -> None:
+        float_analog_wfm = FloatAnalogWaveform()
+
+        analog_waveform = float32_analog_waveform_from_protobuf(float_analog_wfm)
+
+        print(analog_waveform.timing)
+        assert not analog_waveform.extended_properties
+        assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+        assert analog_waveform.timing.time_offset == ht.timedelta()
+        assert analog_waveform.scaled_data.size == 0
+        assert analog_waveform.scale_mode == NoneScaleMode()
+        assert analog_waveform.dtype == np.float32
+
+    def test___float_analog_wfm_with_y_data___convert___valid_python_object(self) -> None:
+        float_analog_wfm = FloatAnalogWaveform(y_data=[1.0, 2.0, 3.0])
+
+        analog_waveform = float32_analog_waveform_from_protobuf(float_analog_wfm)
+
+        assert list(analog_waveform.scaled_data) == [1.0, 2.0, 3.0]
+        assert analog_waveform.dtype == np.float32
+
+
 class TestDoubleComplexWaveformConversion(
     BaseWaveformConversionTests[ComplexWaveform[np.complex128], DoubleComplexWaveform]
 ):
@@ -186,6 +269,85 @@ class TestDoubleComplexWaveformConversion(
         complex_waveform = float64_complex_waveform_from_protobuf(dbl_complex_waveform)
 
         assert list(complex_waveform.scaled_data) == [1.0 + 2.0j, 3.0 + 4.0j]
+
+
+class TestFloatComplexWaveformConversion(
+    BaseWaveformConversionTests[ComplexWaveform[np.complex64], FloatComplexWaveform]
+):
+    """Test for converting float (single) complex waveforms to/from protobuf messages."""
+
+    def make_waveform(self) -> ComplexWaveform[np.complex64]:
+        """Create a waveform with small non-zero sample data."""
+        return ComplexWaveform.from_array_1d([1.5 + 2.5j, 3.5 + 4.5j], np.complex64)
+
+    def make_waveform_proto(
+        self,
+        attributes: Mapping[str, WaveformAttributeValue] | None = None,
+        scale: Scale | None = None,
+    ) -> FloatComplexWaveform:
+        """Create a waveform protobuf object with small non-zero sample data."""
+        return FloatComplexWaveform(y_data=[1.0, 2.0, 3.0, 4.0], attributes=attributes)
+
+    def to_protobuf(self, waveform: ComplexWaveform[np.complex64]) -> FloatComplexWaveform:
+        """Convert a Python waveform to its corresponding proto message."""
+        return float32_complex_waveform_to_protobuf(waveform)
+
+    def from_protobuf(
+        self, waveform_proto: FloatComplexWaveform
+    ) -> ComplexWaveform[np.complex64]:
+        """Convert a proto message to the corresponding Python waveform."""
+        return float32_complex_waveform_from_protobuf(waveform_proto)
+
+    # ========================================================
+    # To Protobuf
+    # ========================================================
+    def test___default_float32_complex_waveform___convert___valid_protobuf(self) -> None:
+        complex_waveform = ComplexWaveform(0, np.complex64)
+
+        float_complex_waveform = float32_complex_waveform_to_protobuf(complex_waveform)
+
+        assert not float_complex_waveform.attributes
+        assert float_complex_waveform.dt == 0
+        assert not float_complex_waveform.HasField("t0")
+        assert list(float_complex_waveform.y_data) == []
+
+    def test___float32_complex_waveform_samples_only___convert___valid_protobuf(self) -> None:
+        complex_waveform = ComplexWaveform(2, np.complex64)
+
+        float_complex_waveform = float32_complex_waveform_to_protobuf(complex_waveform)
+
+        # Interleaved real/imaginary data.
+        assert list(float_complex_waveform.y_data) == [0.0, 0.0, 0.0, 0.0]
+
+    def test___float32_complex_waveform_non_zero_samples___convert___valid_protobuf(self) -> None:
+        complex_waveform = ComplexWaveform.from_array_1d([1.5 + 2.5j, 3.5 + 4.5j], np.complex64)
+
+        float_complex_waveform = float32_complex_waveform_to_protobuf(complex_waveform)
+
+        assert list(float_complex_waveform.y_data) == [1.5, 2.5, 3.5, 4.5]
+
+    # ========================================================
+    # From Protobuf
+    # ========================================================
+    def test___default_float_complex_wfm___convert___valid_python_object(self) -> None:
+        float_complex_waveform = FloatComplexWaveform()
+
+        complex_waveform = float32_complex_waveform_from_protobuf(float_complex_waveform)
+
+        assert not complex_waveform.extended_properties
+        assert complex_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
+        assert complex_waveform.timing.time_offset == ht.timedelta()
+        assert complex_waveform.scaled_data.size == 0
+        assert complex_waveform.scale_mode == NoneScaleMode()
+        assert complex_waveform.dtype == np.complex64
+
+    def test___float_complex_wfm_with_y_data___convert___valid_python_object(self) -> None:
+        float_complex_waveform = FloatComplexWaveform(y_data=[1.0, 2.0, 3.0, 4.0])
+
+        complex_waveform = float32_complex_waveform_from_protobuf(float_complex_waveform)
+
+        assert list(complex_waveform.scaled_data) == [1.0 + 2.0j, 3.0 + 4.0j]
+        assert complex_waveform.dtype == np.complex64
 
 
 class TestI16ComplexWaveformConversion(
