@@ -105,14 +105,14 @@ def float32_analog_waveform_to_protobuf(
         return FloatAnalogWaveform(
             t0=_t0_from_waveform(value),
             dt=_time_interval_from_waveform(value),
-            y_data=value.scaled_data,  # TODO: scaled_data is 64bits. Do we need to use raw_data or range check?
+            y_data=value.get_scaled_data(np.float32),
             attributes=attributes,
             timestamp=_timestamp_from_waveform(value),
             time_offset=_time_offset_from_waveform(value),
         )
     elif value.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
         return FloatAnalogWaveform(
-            y_data=value.scaled_data,  # TODO: scaled_data is 64bits. Do we need to use raw_data or range check?
+            y_data=value.get_scaled_data(np.float32),
             attributes=attributes,
             timestamps=_timestamps_from_waveform(value),
         )

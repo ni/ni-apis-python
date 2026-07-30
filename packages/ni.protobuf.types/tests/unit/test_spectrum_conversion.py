@@ -23,8 +23,8 @@ def test___default_spectrum64___convert___valid_protobuf() -> None:
     dbl_spectrum = float64_spectrum_to_protobuf(spectrum)
 
     assert not dbl_spectrum.attributes
-    assert spectrum.start_frequency == 0.0
-    assert spectrum.frequency_increment == 0.0
+    assert dbl_spectrum.start_frequency == 0.0
+    assert dbl_spectrum.frequency_increment == 0.0
     assert list(dbl_spectrum.data) == []
 
 
@@ -122,10 +122,10 @@ def test___spectrum32_with_extended_properties___convert___valid_protobuf() -> N
     spectrum.channel_name = "Dev1/ai0"
     spectrum.units = "Volts"
 
-    dbl_spectrum = float32_spectrum_to_protobuf(spectrum)
+    float_spectrum = float32_spectrum_to_protobuf(spectrum)
 
-    assert dbl_spectrum.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
-    assert dbl_spectrum.attributes["NI_UnitDescription"].string_value == "Volts"
+    assert float_spectrum.attributes["NI_ChannelName"].string_value == "Dev1/ai0"
+    assert float_spectrum.attributes["NI_UnitDescription"].string_value == "Volts"
 
 
 # ========================================================

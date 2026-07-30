@@ -102,7 +102,6 @@ class TestDoubleAnalogConversion(
 
         analog_waveform = float64_analog_waveform_from_protobuf(dbl_analog_wfm)
 
-        print(analog_waveform.timing)
         assert not analog_waveform.extended_properties
         assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
         assert analog_waveform.timing.time_offset == ht.timedelta()
@@ -177,7 +176,6 @@ class TestFloatAnalogConversion(
 
         analog_waveform = float32_analog_waveform_from_protobuf(float_analog_wfm)
 
-        print(analog_waveform.timing)
         assert not analog_waveform.extended_properties
         assert analog_waveform.timing.sample_interval_mode == SampleIntervalMode.NONE
         assert analog_waveform.timing.time_offset == ht.timedelta()
