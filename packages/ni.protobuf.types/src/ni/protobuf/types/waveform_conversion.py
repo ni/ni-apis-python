@@ -31,6 +31,9 @@ from ni.protobuf.types.waveform_pb2 import (
     DoubleAnalogWaveform,
     DoubleComplexWaveform,
     DoubleSpectrum,
+    FloatAnalogWaveform,
+    FloatComplexWaveform,
+    FloatSpectrum,
     I16AnalogWaveform,
     I16ComplexWaveform,
     LinearScale,
@@ -45,6 +48,8 @@ AnyNiWaveform: TypeAlias = AnalogWaveform[Any] | ComplexWaveform[Any] | DigitalW
 AnyWaveformProto: TypeAlias = (
     DoubleAnalogWaveform
     | DoubleComplexWaveform
+    | FloatAnalogWaveform
+    | FloatComplexWaveform
     | I16AnalogWaveform
     | I16ComplexWaveform
     | DigitalWaveformProto
@@ -91,6 +96,46 @@ def float64_analog_waveform_from_protobuf(
     )
 
 
+def float32_analog_waveform_to_protobuf(
+    value: AnalogWaveform[np.float32], /
+) -> FloatAnalogWaveform:
+    """Convert the Python AnalogWaveform to a protobuf FloatAnalogWaveform."""
+    attributes = _extended_properties_to_attributes(value.extended_properties)
+    if value.timing.sample_interval_mode in [SampleIntervalMode.REGULAR, SampleIntervalMode.NONE]:
+        return FloatAnalogWaveform(
+            t0=_t0_from_waveform(value),
+            dt=_time_interval_from_waveform(value),
+            y_data=value.get_scaled_data(np.float32),
+            attributes=attributes,
+            timestamp=_timestamp_from_waveform(value),
+            time_offset=_time_offset_from_waveform(value),
+        )
+    elif value.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
+        return FloatAnalogWaveform(
+            y_data=value.get_scaled_data(np.float32),
+            attributes=attributes,
+            timestamps=_timestamps_from_waveform(value),
+        )
+    else:
+        raise ValueError(f"Invalid sample interval mode: {value.timing.sample_interval_mode}")
+
+
+def float32_analog_waveform_from_protobuf(
+    message: FloatAnalogWaveform, /
+) -> AnalogWaveform[np.float32]:
+    """Convert the protobuf FloatAnalogWaveform to a Python AnalogWaveform."""
+    timing = _timing_from_waveform_message(message)
+    extended_properties = _attributes_to_extended_properties(message.attributes)
+
+    return AnalogWaveform.from_array_1d(
+        message.y_data,
+        dtype=np.float32,
+        extended_properties=extended_properties,
+        timing=timing,
+        scale_mode=NoneScaleMode(),
+    )
+
+
 def float64_complex_waveform_to_protobuf(
     value: ComplexWaveform[np.complex128], /
 ) -> DoubleComplexWaveform:
@@ -125,6 +170,50 @@ def float64_complex_waveform_from_protobuf(
 
     y_array = np.array(message.y_data, np.float64)
     data_array = y_array.view(np.complex128)
+
+    return ComplexWaveform.from_array_1d(
+        data_array,
+        copy=False,
+        extended_properties=extended_properties,
+        timing=timing,
+        scale_mode=NoneScaleMode(),
+    )
+
+
+def float32_complex_waveform_to_protobuf(
+    value: ComplexWaveform[np.complex64], /
+) -> FloatComplexWaveform:
+    """Convert the Python ComplexWaveform to a protobuf FloatComplexWaveform."""
+    attributes = _extended_properties_to_attributes(value.extended_properties)
+    interleaved_array = value.get_scaled_data(np.complex64).view(np.float32)
+    if value.timing.sample_interval_mode in [SampleIntervalMode.REGULAR, SampleIntervalMode.NONE]:
+        return FloatComplexWaveform(
+            t0=_t0_from_waveform(value),
+            dt=_time_interval_from_waveform(value),
+            y_data=interleaved_array,
+            attributes=attributes,
+            timestamp=_timestamp_from_waveform(value),
+            time_offset=_time_offset_from_waveform(value),
+        )
+    elif value.timing.sample_interval_mode == SampleIntervalMode.IRREGULAR:
+        return FloatComplexWaveform(
+            y_data=interleaved_array,
+            attributes=attributes,
+            timestamps=_timestamps_from_waveform(value),
+        )
+    else:
+        raise ValueError(f"Invalid sample interval mode: {value.timing.sample_interval_mode}")
+
+
+def float32_complex_waveform_from_protobuf(
+    message: FloatComplexWaveform, /
+) -> ComplexWaveform[np.complex64]:
+    """Convert the protobuf FloatComplexWaveform to a Python ComplexWaveform."""
+    timing = _timing_from_waveform_message(message)
+    extended_properties = _attributes_to_extended_properties(message.attributes)
+
+    y_array = np.array(message.y_data, np.float32)
+    data_array = y_array.view(np.complex64)
 
     return ComplexWaveform.from_array_1d(
         data_array,
@@ -200,6 +289,29 @@ def float64_spectrum_from_protobuf(message: DoubleSpectrum, /) -> Spectrum[np.fl
     return Spectrum.from_array_1d(
         message.data,
         dtype=np.float64,
+        start_frequency=message.start_frequency,
+        frequency_increment=message.frequency_increment,
+        extended_properties=extended_properties,
+    )
+
+
+def float32_spectrum_to_protobuf(value: Spectrum[np.float32], /) -> FloatSpectrum:
+    """Convert the Python Spectrum to a protobuf FloatSpectrum."""
+    attributes = _extended_properties_to_attributes(value.extended_properties)
+    return FloatSpectrum(
+        start_frequency=value.start_frequency,
+        frequency_increment=value.frequency_increment,
+        data=value.data,
+        attributes=attributes,
+    )
+
+
+def float32_spectrum_from_protobuf(message: FloatSpectrum, /) -> Spectrum[np.float32]:
+    """Convert the protobuf FloatSpectrum to a Python Spectrum."""
+    extended_properties = _attributes_to_extended_properties(message.attributes)
+    return Spectrum.from_array_1d(
+        message.data,
+        dtype=np.float32,
         start_frequency=message.start_frequency,
         frequency_increment=message.frequency_increment,
         extended_properties=extended_properties,
