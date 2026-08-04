@@ -349,11 +349,14 @@ class PublishMeasurementRequest(google.protobuf.message.Message):
     SCALAR_FIELD_NUMBER: builtins.int
     VECTOR_FIELD_NUMBER: builtins.int
     DOUBLE_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
+    FLOAT_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
     X_Y_DATA_FIELD_NUMBER: builtins.int
     I16_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
     DOUBLE_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
+    FLOAT_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
     I16_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
     DOUBLE_SPECTRUM_FIELD_NUMBER: builtins.int
+    FLOAT_SPECTRUM_FIELD_NUMBER: builtins.int
     DIGITAL_WAVEFORM_FIELD_NUMBER: builtins.int
     NOTES_FIELD_NUMBER: builtins.int
     TIMESTAMP_FIELD_NUMBER: builtins.int
@@ -383,15 +386,21 @@ class PublishMeasurementRequest(google.protobuf.message.Message):
     @property
     def double_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.DoubleAnalogWaveform: ...
     @property
+    def float_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.FloatAnalogWaveform: ...
+    @property
     def x_y_data(self) -> ni.protobuf.types.xydata_pb2.DoubleXYData: ...
     @property
     def i16_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.I16AnalogWaveform: ...
     @property
     def double_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.DoubleComplexWaveform: ...
     @property
+    def float_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.FloatComplexWaveform: ...
+    @property
     def i16_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.I16ComplexWaveform: ...
     @property
     def double_spectrum(self) -> ni.protobuf.types.waveform_pb2.DoubleSpectrum: ...
+    @property
+    def float_spectrum(self) -> ni.protobuf.types.waveform_pb2.FloatSpectrum: ...
     @property
     def digital_waveform(self) -> ni.protobuf.types.waveform_pb2.DigitalWaveform: ...
     @property
@@ -427,11 +436,14 @@ class PublishMeasurementRequest(google.protobuf.message.Message):
         scalar: ni.protobuf.types.scalar_pb2.Scalar | None = ...,
         vector: ni.protobuf.types.vector_pb2.Vector | None = ...,
         double_analog_waveform: ni.protobuf.types.waveform_pb2.DoubleAnalogWaveform | None = ...,
+        float_analog_waveform: ni.protobuf.types.waveform_pb2.FloatAnalogWaveform | None = ...,
         x_y_data: ni.protobuf.types.xydata_pb2.DoubleXYData | None = ...,
         i16_analog_waveform: ni.protobuf.types.waveform_pb2.I16AnalogWaveform | None = ...,
         double_complex_waveform: ni.protobuf.types.waveform_pb2.DoubleComplexWaveform | None = ...,
+        float_complex_waveform: ni.protobuf.types.waveform_pb2.FloatComplexWaveform | None = ...,
         i16_complex_waveform: ni.protobuf.types.waveform_pb2.I16ComplexWaveform | None = ...,
         double_spectrum: ni.protobuf.types.waveform_pb2.DoubleSpectrum | None = ...,
+        float_spectrum: ni.protobuf.types.waveform_pb2.FloatSpectrum | None = ...,
         digital_waveform: ni.protobuf.types.waveform_pb2.DigitalWaveform | None = ...,
         notes: builtins.str = ...,
         timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
@@ -442,9 +454,9 @@ class PublishMeasurementRequest(google.protobuf.message.Message):
         test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
         software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "error_information", b"error_information", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "scalar", b"scalar", "timestamp", b"timestamp", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "name", b"name", "notes", b"notes", "outcome", b"outcome", "scalar", b"scalar", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamp", b"timestamp", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["scalar", "vector", "double_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "i16_complex_waveform", "double_spectrum", "digital_waveform"] | None: ...
+    def HasField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "error_information", b"error_information", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "scalar", b"scalar", "timestamp", b"timestamp", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "error_information", b"error_information", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "hardware_item_ids", b"hardware_item_ids", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "name", b"name", "notes", b"notes", "outcome", b"outcome", "scalar", b"scalar", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamp", b"timestamp", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["scalar", "vector", "double_analog_waveform", "float_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "float_complex_waveform", "i16_complex_waveform", "double_spectrum", "float_spectrum", "digital_waveform"] | None: ...
 
 global___PublishMeasurementRequest = PublishMeasurementRequest
 
@@ -841,16 +853,21 @@ class ReadMeasurementValueResponse(google.protobuf.message.Message):
 
     VECTOR_FIELD_NUMBER: builtins.int
     DOUBLE_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
+    FLOAT_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
     X_Y_DATA_FIELD_NUMBER: builtins.int
     I16_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
     DOUBLE_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
+    FLOAT_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
     I16_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
     DOUBLE_SPECTRUM_FIELD_NUMBER: builtins.int
+    FLOAT_SPECTRUM_FIELD_NUMBER: builtins.int
     DIGITAL_WAVEFORM_FIELD_NUMBER: builtins.int
     @property
     def vector(self) -> ni.protobuf.types.vector_pb2.Vector: ...
     @property
     def double_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.DoubleAnalogWaveform: ...
+    @property
+    def float_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.FloatAnalogWaveform: ...
     @property
     def x_y_data(self) -> ni.protobuf.types.xydata_pb2.DoubleXYData: ...
     @property
@@ -858,9 +875,13 @@ class ReadMeasurementValueResponse(google.protobuf.message.Message):
     @property
     def double_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.DoubleComplexWaveform: ...
     @property
+    def float_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.FloatComplexWaveform: ...
+    @property
     def i16_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.I16ComplexWaveform: ...
     @property
     def double_spectrum(self) -> ni.protobuf.types.waveform_pb2.DoubleSpectrum: ...
+    @property
+    def float_spectrum(self) -> ni.protobuf.types.waveform_pb2.FloatSpectrum: ...
     @property
     def digital_waveform(self) -> ni.protobuf.types.waveform_pb2.DigitalWaveform: ...
     def __init__(
@@ -868,15 +889,18 @@ class ReadMeasurementValueResponse(google.protobuf.message.Message):
         *,
         vector: ni.protobuf.types.vector_pb2.Vector | None = ...,
         double_analog_waveform: ni.protobuf.types.waveform_pb2.DoubleAnalogWaveform | None = ...,
+        float_analog_waveform: ni.protobuf.types.waveform_pb2.FloatAnalogWaveform | None = ...,
         x_y_data: ni.protobuf.types.xydata_pb2.DoubleXYData | None = ...,
         i16_analog_waveform: ni.protobuf.types.waveform_pb2.I16AnalogWaveform | None = ...,
         double_complex_waveform: ni.protobuf.types.waveform_pb2.DoubleComplexWaveform | None = ...,
+        float_complex_waveform: ni.protobuf.types.waveform_pb2.FloatComplexWaveform | None = ...,
         i16_complex_waveform: ni.protobuf.types.waveform_pb2.I16ComplexWaveform | None = ...,
         double_spectrum: ni.protobuf.types.waveform_pb2.DoubleSpectrum | None = ...,
+        float_spectrum: ni.protobuf.types.waveform_pb2.FloatSpectrum | None = ...,
         digital_waveform: ni.protobuf.types.waveform_pb2.DigitalWaveform | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["vector", "double_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "i16_complex_waveform", "double_spectrum", "digital_waveform"] | None: ...
+    def HasField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
+    def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["vector", "double_analog_waveform", "float_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "float_complex_waveform", "i16_complex_waveform", "double_spectrum", "float_spectrum", "digital_waveform"] | None: ...
 
 global___ReadMeasurementValueResponse = ReadMeasurementValueResponse
