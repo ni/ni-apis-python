@@ -628,14 +628,14 @@ pydocstyle = ">=2.1"
 
 [[package]]
 name = "flake8-import-order"
-version = "0.18.2"
+version = "0.19.2"
 description = "Flake8 and pylama plugin that checks the ordering of import statements."
 optional = false
 python-versions = "*"
 groups = ["lint"]
 files = [
-    {file = "flake8-import-order-0.18.2.tar.gz", hash = "sha256:e23941f892da3e0c09d711babbb0c73bc735242e9b216b726616758a920d900e"},
-    {file = "flake8_import_order-0.18.2-py2.py3-none-any.whl", hash = "sha256:82ed59f1083b629b030ee9d3928d9e06b6213eb196fe745b3a7d4af2168130df"},
+    {file = "flake8_import_order-0.19.2-py3-none-any.whl", hash = "sha256:2dfe60175e7195cf36d4c573861fd2e3258cd6650cbd7616da3c6b8193b29b7c"},
+    {file = "flake8_import_order-0.19.2.tar.gz", hash = "sha256:133b3c55497631e4235074fc98a95078bba817832379f22a31f0ad2455bcb0b2"},
 ]
 
 [package.dependencies]
@@ -1316,14 +1316,14 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-python-styleguide"
-version = "0.5.0"
+version = "0.5.1"
 description = "NI's internal and external Python linter rules and plugins"
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["lint"]
 files = [
-    {file = "ni_python_styleguide-0.5.0-py3-none-any.whl", hash = "sha256:66784d97bc2898552386ca8e0667a11fa5f712820130585df7709d08836f6bc0"},
-    {file = "ni_python_styleguide-0.5.0.tar.gz", hash = "sha256:66bd05f7d9fc98a87e5e85319faa752efd54549c979938ed1bb64e2d1f412630"},
+    {file = "ni_python_styleguide-0.5.1-py3-none-any.whl", hash = "sha256:3127122d3610502cf1407d820b1512d887da52c9c0d17f6ccdb1da3e13a06243"},
+    {file = "ni_python_styleguide-0.5.1.tar.gz", hash = "sha256:9b362135c816ba6e5907e5630bc492102f282c0971b4db371514bc01ee54a2a9"},
 ]
 
 [package.dependencies]
@@ -1336,7 +1336,7 @@ flake8 = [
 ]
 flake8-black = ">=0.2.1"
 flake8-docstrings = ">=1.5.0"
-flake8-import-order = ">=0.18.1,<0.19.0"
+flake8-import-order = ">=0.19.2,<0.20.0"
 flake8-tidy-imports = ">=4.11.0"
 isort = ">=5.10"
 pathspec = ">=0.11.1"
@@ -1345,7 +1345,6 @@ pycodestyle = [
     {version = ">=2.11,<3.0", markers = "python_version >= \"3.12\" and python_version < \"4.0\""},
     {version = ">=2.9,<3.0", markers = "python_version >= \"3.8\" and python_version < \"3.12\""},
 ]
-setuptools = "<82"
 toml = ">=0.10.1"
 
 [[package]]
@@ -2628,14 +2627,14 @@ files = [
 
 [[package]]
 name = "types-grpcio"
-version = "1.82.1.20260711"
+version = "1.82.1.20260724"
 description = "Typing stubs for grpcio"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "types_grpcio-1.82.1.20260711-py3-none-any.whl", hash = "sha256:fce686cb818e9ab8b731632fd3d0efb234b79faadd6a3f7cca37afb3565ae57f"},
-    {file = "types_grpcio-1.82.1.20260711.tar.gz", hash = "sha256:c7ac13accf615cad897a91dbd09d6e77d28a4dc8c9ea3efd425fe84b27f84780"},
+    {file = "types_grpcio-1.82.1.20260724-py3-none-any.whl", hash = "sha256:c980135304e8775f9afb92bbb9fa81cbe20bf76431d791657f97f776041943d6"},
+    {file = "types_grpcio-1.82.1.20260724.tar.gz", hash = "sha256:54bd54bf0f393c923c4aa937fa79c5720e00539381b258582d1ca69be444c8ce"},
 ]
 
 [[package]]
@@ -2652,14 +2651,14 @@ files = [
 
 [[package]]
 name = "types-pywin32"
-version = "312.0.0.20260609"
+version = "312.0.0.20260724"
 description = "Typing stubs for pywin32"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "types_pywin32-312.0.0.20260609-py3-none-any.whl", hash = "sha256:713096e5de8202e6a46392e7731653aa99e458f76cebfea0b15d80901f3bb5e1"},
-    {file = "types_pywin32-312.0.0.20260609.tar.gz", hash = "sha256:3b6ec4ebf8607ef97563e907e381d8dc40260c3c54ff8819dcea696bd67ca13f"},
+    {file = "types_pywin32-312.0.0.20260724-py3-none-any.whl", hash = "sha256:00a66a2a8a5ccd18d2ac52798f2d1549e74125f0e3d0665e02a33d03fe6fcfcd"},
+    {file = "types_pywin32-312.0.0.20260724.tar.gz", hash = "sha256:0ab44f2eaf24879929a934d4e989c6fbb4aa1df9e44e38eca6d47c680d7c1397"},
 ]
 
 [[package]]
