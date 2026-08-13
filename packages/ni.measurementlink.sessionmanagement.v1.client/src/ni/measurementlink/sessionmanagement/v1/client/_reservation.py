@@ -56,7 +56,7 @@ from ni.measurementlink.sessionmanagement.v1.client._types import (
 if TYPE_CHECKING:
     # Driver API packages are optional dependencies, so only import them lazily
     # at run time or when type-checking.
-    import nidaqmx
+    import nidaqmx  # noqa: I300 - TYPE_CHECKING block should have one newline above. (auto-generated noqa)
     import nidcpower
     import nidigital
     import nidmm
