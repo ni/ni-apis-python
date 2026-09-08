@@ -1044,14 +1044,14 @@ types-protobuf = ">=4.24"
 
 [[package]]
 name = "ni-python-styleguide"
-version = "0.5.1"
+version = "0.5.2"
 description = "NI's internal and external Python linter rules and plugins"
 optional = false
 python-versions = "<4.0,>=3.9"
 groups = ["lint"]
 files = [
-    {file = "ni_python_styleguide-0.5.1-py3-none-any.whl", hash = "sha256:3127122d3610502cf1407d820b1512d887da52c9c0d17f6ccdb1da3e13a06243"},
-    {file = "ni_python_styleguide-0.5.1.tar.gz", hash = "sha256:9b362135c816ba6e5907e5630bc492102f282c0971b4db371514bc01ee54a2a9"},
+    {file = "ni_python_styleguide-0.5.2-py3-none-any.whl", hash = "sha256:1d657dee729d8fd019b853bcd78478473fbffd20f9c23589146f2f9f148e1a2b"},
+    {file = "ni_python_styleguide-0.5.2.tar.gz", hash = "sha256:d6bc6a190ebff283ef9a184bcef96a6849611d1556890d1423512c8c2d296a52"},
 ]
 
 [package.dependencies]
