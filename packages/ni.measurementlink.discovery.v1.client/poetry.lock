@@ -1167,14 +1167,14 @@ traceloggingdynamic = {version = ">=1.0", markers = "sys_platform == \"win32\""}
 
 [[package]]
 name = "ni-measurementlink-discovery-v1-proto"
-version = "1.1.0"
+version = "1.2.0"
 description = "Protobuf data types for NI discovery gRPC APIs"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "ni_measurementlink_discovery_v1_proto-1.1.0-py3-none-any.whl", hash = "sha256:6a3061ca858d3ee887987dc5130074fc439ce6c2b26fe6b3f9401da023461d43"},
-    {file = "ni_measurementlink_discovery_v1_proto-1.1.0.tar.gz", hash = "sha256:f9a9b4572ac5d169fad21ab56e2639abdb77979cf0dc3a88cdb71b2c783d009c"},
+    {file = "ni_measurementlink_discovery_v1_proto-1.2.0-py3-none-any.whl", hash = "sha256:06ceb4c94687b18469780739e0600f46695c73de816fef5fe1b4a3588fbe1e8f"},
+    {file = "ni_measurementlink_discovery_v1_proto-1.2.0.tar.gz", hash = "sha256:5b767048c60d5dea6d66b6c1e8c1bad7b2d7a8207e88d2d81444e96dfbaa8f36"},
 ]
 
 [package.dependencies]
@@ -2186,4 +2186,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "b523a5ffd175e33a537c1d94ce67c1172868b4156dc80f880a5962608b13e621"
+content-hash = "351ba05ef5dcf22d152048b0c4f2c442512e355775eb6fcbfa4c590fe83ce713"

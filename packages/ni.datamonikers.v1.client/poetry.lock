@@ -1151,7 +1151,7 @@ files = [
 
 [[package]]
 name = "ni-datamonikers-v1-proto"
-version = "1.0.1.dev0"
+version = "2.0.0"
 description = "Protobuf data types and service stub for NI data moniker gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -2158,4 +2158,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "85257c97afdf77aa1dd9ac62e68fe9ebfe687d64fcbc024cc27f0aa257fa9822"
+content-hash = "0a2f4d7a2f7df60dbac7b4407a4059a8d43565304d1ccb3617cdcc49bace10b7"
