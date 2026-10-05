@@ -68,7 +68,7 @@ Sphinx = [
 ]
 sphinx-rtd-theme = ">=1.0.0"
 sphinx-autoapi = ">=1.8.4"
-m2r2 = ">=0.3.2"
+m2r2 = ">=2.1.0"
 toml = ">=0.10.2"
 
 [build-system]
