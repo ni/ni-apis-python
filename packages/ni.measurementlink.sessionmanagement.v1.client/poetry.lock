@@ -2721,14 +2721,14 @@ devenv = ["check-manifest", "pytest (>=4.3)", "pytest-cov", "pytest-mock (>=3.3)
 
 [[package]]
 name = "urllib3"
-version = "2.7.0"
+version = "2.8.0"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 optional = false
 python-versions = ">=3.10"
 groups = ["main", "docs"]
 files = [
-    {file = "urllib3-2.7.0-py3-none-any.whl", hash = "sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897"},
-    {file = "urllib3-2.7.0.tar.gz", hash = "sha256:231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c"},
+    {file = "urllib3-2.8.0-py3-none-any.whl", hash = "sha256:0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3"},
+    {file = "urllib3-2.8.0.tar.gz", hash = "sha256:63bf2ead4c879426ebf22ef2a781eeb4aa3b4ae798a0435506f8687fd5bb9b63"},
 ]
 markers = {main = "extra == \"drivers\" or extra == \"nidaqmx\""}
 
@@ -2751,4 +2751,4 @@ niswitch = ["niswitch"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "b1a0faeb0f9671bc9b3b4172cda721fcc2b92c945fad9e6387932451a81e3d85"
+content-hash = "3d734515bb17d5198bc0b4c4f5d783748cb3fcca57773042d24ef158d8e69ed9"

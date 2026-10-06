@@ -1167,7 +1167,7 @@ traceloggingdynamic = {version = ">=1.0", markers = "sys_platform == \"win32\""}
 
 [[package]]
 name = "ni-measurementlink-discovery-v1-client"
-version = "1.1.1.dev0"
+version = "1.2.1.dev0"
 description = "gRPC Client for NI Discovery Service"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -1178,7 +1178,7 @@ develop = true
 [package.dependencies]
 grpcio = ">=1.49.0,<2.0"
 ni-grpc-extensions = ">=1.1.0"
-ni-measurementlink-discovery-v1-proto = ">=1.1.0"
+ni-measurementlink-discovery-v1-proto = ">=1.2.0"
 pywin32 = {version = ">=303", markers = "sys_platform == \"win32\""}
 
 [package.source]
@@ -1187,14 +1187,14 @@ url = "../ni.measurementlink.discovery.v1.client"
 
 [[package]]
 name = "ni-measurementlink-discovery-v1-proto"
-version = "1.1.0"
+version = "1.2.0"
 description = "Protobuf data types for NI discovery gRPC APIs"
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main", "dev"]
 files = [
-    {file = "ni_measurementlink_discovery_v1_proto-1.1.0-py3-none-any.whl", hash = "sha256:6a3061ca858d3ee887987dc5130074fc439ce6c2b26fe6b3f9401da023461d43"},
-    {file = "ni_measurementlink_discovery_v1_proto-1.1.0.tar.gz", hash = "sha256:f9a9b4572ac5d169fad21ab56e2639abdb77979cf0dc3a88cdb71b2c783d009c"},
+    {file = "ni_measurementlink_discovery_v1_proto-1.2.0-py3-none-any.whl", hash = "sha256:06ceb4c94687b18469780739e0600f46695c73de816fef5fe1b4a3588fbe1e8f"},
+    {file = "ni_measurementlink_discovery_v1_proto-1.2.0.tar.gz", hash = "sha256:5b767048c60d5dea6d66b6c1e8c1bad7b2d7a8207e88d2d81444e96dfbaa8f36"},
 ]
 
 [package.dependencies]
@@ -2204,14 +2204,14 @@ markers = {docs = "python_version == \"3.10\"", test = "python_version == \"3.10
 
 [[package]]
 name = "urllib3"
-version = "2.7.0"
+version = "2.8.0"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 optional = false
 python-versions = ">=3.10"
 groups = ["docs"]
 files = [
-    {file = "urllib3-2.7.0-py3-none-any.whl", hash = "sha256:9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897"},
-    {file = "urllib3-2.7.0.tar.gz", hash = "sha256:231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c"},
+    {file = "urllib3-2.8.0-py3-none-any.whl", hash = "sha256:0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3"},
+    {file = "urllib3-2.8.0.tar.gz", hash = "sha256:63bf2ead4c879426ebf22ef2a781eeb4aa3b4ae798a0435506f8687fd5bb9b63"},
 ]
 
 [package.extras]
@@ -2223,4 +2223,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "38c3710e9dfebe58e392e2d744d170d99a7bdaf67f515aa2a23d46c6237efe9e"
+content-hash = "7a0904e64c06b03837306decec67db057e71dfa7b9cd642b4c49e9f2f50eb8f0"
