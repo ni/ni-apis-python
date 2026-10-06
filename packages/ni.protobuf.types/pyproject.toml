@@ -68,6 +68,7 @@ hightime = {version = ">=1.0.0", allow-prereleases=true}
 optional = true
 
 [tool.poetry.group.docs.dependencies]
+urllib3 = ">=2.8.0,<3.0"
 # The latest Sphinx requires a recent Python version.
 Sphinx = [
   { version = ">=8.1", python = ">=3.10,<3.11" },
