@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import datetime as dt
+
 import hightime as ht
 import nitypes.bintime as bt
 from nitypes.time import convert_datetime
@@ -25,7 +27,8 @@ def bintime_datetime_from_protobuf(message: PrecisionTimestamp, /) -> bt.DateTim
 
 def hightime_datetime_to_protobuf(value: ht.datetime, /) -> PrecisionTimestamp:
     """Convert a hightime.datetime to a protobuf PrecisionTimestamp."""
-    bt_datetime = convert_datetime(bt.DateTime, value)
+    value_utc = value.astimezone(dt.timezone.utc)
+    bt_datetime = convert_datetime(bt.DateTime, value_utc)
     return bintime_datetime_to_protobuf(bt_datetime)
 
 

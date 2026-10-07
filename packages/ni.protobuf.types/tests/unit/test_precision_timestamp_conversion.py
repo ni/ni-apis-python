@@ -56,11 +56,12 @@ def test___precision_timestamp___convert___valid_hightime_datetime() -> None:
 
 
 def test___hightime_datetime___convert___valid_precision_timestamp() -> None:
-    ht_datetime = ht.datetime(year=2020, month=1, day=1, hour=5, minute=26, tzinfo=dt.timezone.utc)
+    ht_datetime = ht.datetime(year=2020, month=1, day=1, hour=5, minute=26)
 
     pts = hightime_datetime_to_protobuf(ht_datetime)
 
-    bt_datetime = convert_datetime(bt.DateTime, ht_datetime)
+    ht_datetime_utc = ht_datetime.astimezone(dt.timezone.utc)
+    bt_datetime = convert_datetime(bt.DateTime, ht_datetime_utc)
     time_value = bt_datetime.to_tuple()
     assert pts.seconds == time_value.whole_seconds
     assert pts.fractional_seconds == time_value.fractional_seconds
