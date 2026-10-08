@@ -896,19 +896,22 @@ files = [
 
 [[package]]
 name = "m2r2"
-version = "0.3.4"
-description = "Markdown and reStructuredText in a single file."
+version = "2.1.0"
+description = "Markdown to RST converter."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.9"
 groups = ["docs"]
 files = [
-    {file = "m2r2-0.3.4-py3-none-any.whl", hash = "sha256:1a445514af8a229496bfb1380c52da8dd38313e48600359ee92b2c9d2e4df34a"},
-    {file = "m2r2-0.3.4.tar.gz", hash = "sha256:e278f5f337e9aa7b2080fcc3e94b051bda9615b02e36c6fb3f23ff019872f043"},
+    {file = "m2r2-2.1.0-py3-none-any.whl", hash = "sha256:d8c7019d6e4ca1d72b4e253b5a0a60a036df4d2312875908eadab7414fcae282"},
+    {file = "m2r2-2.1.0.tar.gz", hash = "sha256:f6756b22b4ba4ec0b5e9d8b643503ef896e1c5688b577f77f471dca6cd87e10d"},
 ]
 
 [package.dependencies]
 docutils = ">=0.19"
-mistune = "0.8.4"
+mistune = ">=3.3,<3.4"
+
+[package.extras]
+sphinx = ["sphinx (>=1.7.0)"]
 
 [[package]]
 name = "markdown-it-py"
@@ -1059,15 +1062,18 @@ files = [
 
 [[package]]
 name = "mistune"
-version = "0.8.4"
-description = "The fastest markdown parser in pure Python"
+version = "3.3.4"
+description = "A sane and fast Markdown parser with useful plugins and renderers"
 optional = false
-python-versions = "*"
+python-versions = ">=3.8"
 groups = ["docs"]
 files = [
-    {file = "mistune-0.8.4-py2.py3-none-any.whl", hash = "sha256:88a1051873018da288eee8538d476dffe1262495144b33ecb586c4ab266bb8d4"},
-    {file = "mistune-0.8.4.tar.gz", hash = "sha256:59a3429db53c50b5c6bcc8a07f8848cb00d7dc8bdb431a4ab41920d201d4756e"},
+    {file = "mistune-3.3.4-py3-none-any.whl", hash = "sha256:ee015381e955e370962968befe1d729ab60fafb6a715ac6751763fbce38c8d4a"},
+    {file = "mistune-3.3.4.tar.gz", hash = "sha256:58b5c96d6fcb61190dfe5fae498d2b2065f99cf61e9649418fd54cf1ada86dfe"},
 ]
+
+[package.dependencies]
+typing-extensions = {version = "*", markers = "python_version < \"3.11\""}
 
 [[package]]
 name = "mypy"
@@ -1163,7 +1169,7 @@ files = [
 
 [[package]]
 name = "ni-datamonikers-v1-proto"
-version = "2.0.0"
+version = "2.0.1.dev0"
 description = "Protobuf data types and service stub for NI data moniker gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -1196,7 +1202,7 @@ traceloggingdynamic = {version = ">=1.0", markers = "sys_platform == \"win32\""}
 
 [[package]]
 name = "ni-measurementlink-discovery-v1-client"
-version = "1.2.0"
+version = "1.2.1.dev0"
 description = "gRPC Client for NI Discovery Service"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -1231,7 +1237,7 @@ protobuf = ">=4.21"
 
 [[package]]
 name = "ni-measurements-data-v1-proto"
-version = "1.3.0"
+version = "1.3.1.dev0"
 description = "Protobuf data types and service stubs for NI data store gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -1268,7 +1274,7 @@ url = "../ni.measurements.metadata.v1.proto"
 
 [[package]]
 name = "ni-protobuf-types"
-version = "1.3.0"
+version = "1.3.1.dev0"
 description = "Protobuf data types for NI gRPC APIs"
 optional = false
 python-versions = ">=3.10,<4.0"
@@ -2459,4 +2465,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "8f6d08625019e657062b9147cb5c2004a568f356da9618922125555de0b39c52"
+content-hash = "a0fd52abe79bf93c71884eb894daa9fa446491b87e90027acba5cdd07d086138"
