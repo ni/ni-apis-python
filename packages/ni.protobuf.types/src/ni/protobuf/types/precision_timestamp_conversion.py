@@ -45,7 +45,7 @@ def hightime_datetime_from_protobuf(message: PrecisionTimestamp, /) -> ht.dateti
 
 def _hightime_datetime_to_utc(value: ht.datetime, /) -> ht.datetime:
     """Convert a hightime.datetime to UTC while preserving date-specific offsets."""
-    if value.tzinfo is None:
+    offset = value.utcoffset()
+    if value.tzinfo is None or offset is None:
         raise ValueError("value must be timezone-aware")
-    offset = value.utcoffset() or dt.timedelta()
     return (value - offset).replace(tzinfo=dt.timezone.utc)

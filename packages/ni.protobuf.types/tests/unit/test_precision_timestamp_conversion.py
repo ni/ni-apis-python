@@ -185,3 +185,20 @@ def test___hightime_datetime_zoneinfo_timezone_with_dst___to_utc___correct_utc_d
 def test___hightime_datetime_timezone_naive___to_utc___raises() -> None:
     with pytest.raises(ValueError, match="value must be timezone-aware"):
         _hightime_datetime_to_utc(ht.datetime(year=2020, month=1, day=1))
+
+
+def test___hightime_datetime_timezone_without_offset___to_utc___raises() -> None:
+    class NaiveTimezone(dt.tzinfo):
+        def utcoffset(self, value: dt.datetime | None) -> dt.timedelta | None:
+            return None
+
+        def dst(self, value: dt.datetime | None) -> dt.timedelta | None:
+            return None
+
+        def tzname(self, value: dt.datetime | None) -> str | None:
+            return "NaiveTimezone"
+
+    value = ht.datetime(year=2020, month=1, day=1, tzinfo=NaiveTimezone())
+
+    with pytest.raises(ValueError, match="value must be timezone-aware"):
+        _hightime_datetime_to_utc(value)
