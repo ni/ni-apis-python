@@ -13,14 +13,6 @@ from ni.protobuf.types.precision_timestamp_pb2 import (
 )
 
 
-def _hightime_datetime_to_utc(value: ht.datetime, /) -> ht.datetime:
-    """Convert a hightime.datetime to UTC while preserving date-specific offsets."""
-    if value.tzinfo is None:
-        raise ValueError("value must be timezone-aware")
-    offset = value.utcoffset() or dt.timedelta()
-    return (value - offset).replace(tzinfo=dt.timezone.utc)
-
-
 def bintime_datetime_to_protobuf(value: bt.DateTime, /) -> PrecisionTimestamp:
     """Convert a NI-BTF DateTime to a protobuf PrecisionTimestamp."""
     seconds, fractional_seconds = value.to_tuple()
@@ -49,3 +41,11 @@ def hightime_datetime_from_protobuf(message: PrecisionTimestamp, /) -> ht.dateti
     bt_datetime = bintime_datetime_from_protobuf(message)
     ht_datetime = convert_datetime(ht.datetime, bt_datetime)
     return ht_datetime
+
+
+def _hightime_datetime_to_utc(value: ht.datetime, /) -> ht.datetime:
+    """Convert a hightime.datetime to UTC while preserving date-specific offsets."""
+    if value.tzinfo is None:
+        raise ValueError("value must be timezone-aware")
+    offset = value.utcoffset() or dt.timedelta()
+    return (value - offset).replace(tzinfo=dt.timezone.utc)
