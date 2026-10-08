@@ -2179,6 +2179,38 @@ files = [
 markers = {docs = "python_version == \"3.10\"", test = "python_version == \"3.10\""}
 
 [[package]]
+name = "tzdata"
+version = "2026.4"
+description = "Provider of IANA time zone data"
+optional = false
+python-versions = ">=2"
+groups = ["test"]
+markers = "platform_system == \"Windows\" or sys_platform == \"win32\""
+files = [
+    {file = "tzdata-2026.4-py2.py3-none-any.whl", hash = "sha256:c2169a8b0a7a5e9674da5a135ccdfb2b3e671b333ed9fed17b41f73c34476e81"},
+    {file = "tzdata-2026.4.tar.gz", hash = "sha256:f1b8bd365d8d210c55353f4d7f8d6d8561c0ba50d704b700d195a9424bba0d79"},
+]
+
+[[package]]
+name = "tzlocal"
+version = "5.4.4"
+description = "tzinfo object for the local timezone"
+optional = false
+python-versions = ">=3.10"
+groups = ["test"]
+files = [
+    {file = "tzlocal-5.4.4-py3-none-any.whl", hash = "sha256:aae09f0126a8a86fa736be266eb4a471380d26a0de3bc14844e7821fee3e2a15"},
+    {file = "tzlocal-5.4.4.tar.gz", hash = "sha256:8dbb8660838688a7b6ba4fed31d18dedf842afb4d47ca050d6d891c2c15f3be4"},
+]
+
+[package.dependencies]
+tzdata = {version = "*", markers = "platform_system == \"Windows\""}
+
+[package.extras]
+devenv = ["zest.releaser"]
+testing = ["check_manifest", "pyroma", "pytest (>=4.3)", "pytest-cov", "pytest-mock (>=3.3)", "ruff"]
+
+[[package]]
 name = "urllib3"
 version = "2.7.0"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -2199,4 +2231,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "4a3a4fa62ad2b9c94096641d93dec9679f138bbaae1bf79feed276dfab20280d"
+content-hash = "6abdefcbf1f8282211fb2e7071ecb68bd89093831baa76c6f9386e2ac94aa89f"

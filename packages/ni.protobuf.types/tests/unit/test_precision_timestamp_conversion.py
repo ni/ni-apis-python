@@ -1,14 +1,18 @@
 import datetime as dt
+from zoneinfo import ZoneInfo
 
 import hightime as ht
 import nitypes.bintime as bt
+import pytest
 from nitypes.time import convert_datetime
+from tzlocal import get_localzone
 
 from ni.protobuf.types.precision_timestamp_conversion import (
-    bintime_datetime_to_protobuf,
+    _hightime_datetime_to_utc,
     bintime_datetime_from_protobuf,
-    hightime_datetime_to_protobuf,
+    bintime_datetime_to_protobuf,
     hightime_datetime_from_protobuf,
+    hightime_datetime_to_protobuf,
 )
 from ni.protobuf.types.precision_timestamp_pb2 import PrecisionTimestamp
 
@@ -56,7 +60,14 @@ def test___precision_timestamp___convert___valid_hightime_datetime() -> None:
 
 
 def test___hightime_datetime___convert___valid_precision_timestamp() -> None:
-    ht_datetime = ht.datetime(year=2020, month=1, day=1, hour=5, minute=26)
+    ht_datetime = ht.datetime(
+        year=2020,
+        month=1,
+        day=1,
+        hour=5,
+        minute=26,
+        tzinfo=dt.timezone(dt.timedelta(hours=-7)),
+    )
 
     pts = hightime_datetime_to_protobuf(ht_datetime)
 
@@ -65,3 +76,112 @@ def test___hightime_datetime___convert___valid_precision_timestamp() -> None:
     time_value = bt_datetime.to_tuple()
     assert pts.seconds == time_value.whole_seconds
     assert pts.fractional_seconds == time_value.fractional_seconds
+
+
+# ========================================================
+# _hightime_datetime_to_utc
+# ========================================================
+@pytest.mark.parametrize(
+    ("value", "expected"),
+    [
+        (
+            # Pre 1904
+            ht.datetime(
+                year=1900,
+                month=1,
+                day=1,
+                hour=5,
+                minute=26,
+                tzinfo=dt.timezone(dt.timedelta(hours=5)),
+            ),
+            ht.datetime(year=1900, month=1, day=1, hour=0, minute=26, tzinfo=dt.timezone.utc),
+        ),
+        (
+            # NI-BTF Epoch
+            ht.datetime(year=1904, month=1, day=1, tzinfo=dt.timezone.utc),
+            ht.datetime(year=1904, month=1, day=1, tzinfo=dt.timezone.utc),
+        ),
+        (
+            # Between 1904 and 1970
+            ht.datetime(
+                year=1960,
+                month=1,
+                day=1,
+                hour=5,
+                minute=26,
+                tzinfo=dt.timezone(dt.timedelta(hours=5)),
+            ),
+            ht.datetime(year=1960, month=1, day=1, hour=0, minute=26, tzinfo=dt.timezone.utc),
+        ),
+        (
+            # After 1970
+            ht.datetime(
+                year=2020,
+                month=6,
+                day=1,
+                hour=12,
+                minute=30,
+                tzinfo=dt.timezone(dt.timedelta(hours=-5, minutes=-30)),
+            ),
+            ht.datetime(
+                year=2020,
+                month=6,
+                day=1,
+                hour=18,
+                tzinfo=dt.timezone.utc,
+            ),
+        ),
+        (
+            # Timezone already UTC
+            ht.datetime(year=2020, month=1, day=1, hour=5, minute=26, tzinfo=dt.timezone.utc),
+            ht.datetime(year=2020, month=1, day=1, hour=5, minute=26, tzinfo=dt.timezone.utc),
+        ),
+    ],
+)
+def test___hightime_datetime___to_utc___correct_utc_datetime(
+    value: ht.datetime, expected: ht.datetime
+) -> None:
+    assert _hightime_datetime_to_utc(value) == expected
+
+
+def test___hightime_datetime_local_timezone___to_utc___correct_utc_datetime() -> None:
+    local_timezone = get_localzone()
+    value = ht.datetime(year=2020, month=1, day=1, hour=12, tzinfo=local_timezone)
+    expected = dt.datetime(2020, 1, 1, 12, tzinfo=local_timezone).astimezone(dt.timezone.utc)
+
+    assert _hightime_datetime_to_utc(value) == ht.datetime(
+        year=expected.year,
+        month=expected.month,
+        day=expected.day,
+        hour=expected.hour,
+        minute=expected.minute,
+        second=expected.second,
+        microsecond=expected.microsecond,
+        tzinfo=expected.tzinfo,
+    )
+
+
+def test___hightime_datetime_zoneinfo_timezone_with_dst___to_utc___correct_utc_datetime() -> None:
+    daylight_saving_time = ZoneInfo("America/Chicago")
+    summer_datetime = ht.datetime(year=2020, month=7, day=1, hour=12, tzinfo=daylight_saving_time)
+    winter_datetime = ht.datetime(year=2020, month=1, day=1, hour=12, tzinfo=daylight_saving_time)
+
+    assert _hightime_datetime_to_utc(summer_datetime) == ht.datetime(
+        year=2020,
+        month=7,
+        day=1,
+        hour=17,
+        tzinfo=dt.timezone.utc,
+    )
+    assert _hightime_datetime_to_utc(winter_datetime) == ht.datetime(
+        year=2020,
+        month=1,
+        day=1,
+        hour=18,
+        tzinfo=dt.timezone.utc,
+    )
+
+
+def test___hightime_datetime_timezone_naive___to_utc___raises() -> None:
+    with pytest.raises(ValueError, match="value must be timezone-aware"):
+        _hightime_datetime_to_utc(ht.datetime(year=2020, month=1, day=1))
