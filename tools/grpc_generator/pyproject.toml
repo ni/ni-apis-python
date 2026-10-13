@@ -38,6 +38,9 @@ mypy-protobuf = [
   # requires protobuf v6 or later
   {version = ">=3.6", python = "^3.14"}
 ]
+# Older versions of grpcio-tools import pkg_resources, which was removed
+# from recent versions of setuptools.
+setuptools = { version = "<82", python = ">=3.10,<3.13" }
 
 [tool.poetry.group.lint.dependencies]
 bandit = { version = ">=1.7", extras = ["toml"] }
