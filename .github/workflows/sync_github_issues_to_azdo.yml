@@ -1,5 +1,8 @@
 name: Sync issue to Azure DevOps work item
 
+# This workflow uses secrets.GH_REPO_TOKEN, which is not affected by the
+# permissions block. Since this workflow doesn't use the built-in
+# GITHUB_TOKEN, we can leave the permissions blank.
 permissions: {}
 
 on:
