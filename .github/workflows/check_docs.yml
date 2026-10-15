@@ -1,5 +1,8 @@
 name: Check docs
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:

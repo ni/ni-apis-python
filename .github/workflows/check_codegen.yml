@@ -1,5 +1,8 @@
 name: Check codegen up to date
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:

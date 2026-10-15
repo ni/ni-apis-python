@@ -1,5 +1,7 @@
 name: Sync issue to Azure DevOps work item
 
+permissions: {}
+
 on:
   issues:
     # Omit "labeled" and "unlabeled" to work around https://github.com/danhellem/github-actions-issue-to-work-item/issues/70

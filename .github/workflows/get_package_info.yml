@@ -1,5 +1,8 @@
 name: Get package info
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
