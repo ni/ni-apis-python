@@ -44,7 +44,3 @@ jobs:
     uses: ./.github/workflows/report_test_results.yml
     needs: test_package
     if: always()
-    permissions:
-      contents: read
-      checks: write
-      pull-requests: write
