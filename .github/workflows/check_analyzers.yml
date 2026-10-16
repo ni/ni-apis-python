@@ -1,5 +1,8 @@
 name: Check analyzers
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
