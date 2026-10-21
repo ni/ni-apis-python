@@ -42,7 +42,10 @@ ni-datamonikers-v1-proto = { version = ">=2.0.0" }
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
-types-protobuf = ">=4.21"
+types-protobuf = [
+  {version=">=5.27.2,<6.0", python=">=3.10,<3.14"},
+  {version=">=6.0", python="^3.14"},
+]
 ni-grpc-extensions = { path = "../ni-grpc-extensions", develop = true }
 ni-datamonikers-v1-proto = { path = "../ni.datamonikers.v1.proto", develop = true }
 

@@ -8,7 +8,13 @@ import collections.abc
 import grpc
 import grpc.aio
 import ni.measurements.metadata.v1.metadata_store_service_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 13):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 _T = typing.TypeVar("_T")
 
@@ -17,216 +23,939 @@ class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Ite
 class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
-class MetadataStoreServiceStub:
-    """This service is responsible for storing and retrieving metadata associated with test step measurements."""
-
-    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
-    GetUutInstance: grpc.UnaryUnaryMultiCallable[
+GRPC_GENERATED_VERSION: str
+GRPC_VERSION: str
+_MetadataStoreServiceGetUutInstanceType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceGetUutInstanceType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceResponse,
-    ]
-    """Gets the UUT instance associated with the identifier given in the request."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceResponse,
+    ],
+)
 
-    QueryUutInstances: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceQueryUutInstancesType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceQueryUutInstancesType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesResponse,
-    ]
-    """Perform an OData query"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesResponse,
+    ],
+)
 
-    CreateUutInstance: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceCreateUutInstanceType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceCreateUutInstanceType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse,
-    ]
-    """Creates a new UUT instance in the metadata store."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse,
+    ],
+)
 
-    GetUut: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceGetUutType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceGetUutType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse,
-    ]
-    """Gets the UUT associated with the identifier given in the request."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse,
+    ],
+)
 
-    QueryUuts: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceQueryUutsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceQueryUutsType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsResponse,
-    ]
-    """Perform an OData query"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsResponse,
+    ],
+)
 
-    CreateUut: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceCreateUutType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceCreateUutType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
-    ]
-    """Creates a new UUT in the metadata store."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
+    ],
+)
 
-    GetOperator: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceGetOperatorType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceGetOperatorType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorResponse,
-    ]
-    """Gets the operator associated with the identifier given in the request."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorResponse,
+    ],
+)
 
-    QueryOperators: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceQueryOperatorsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceQueryOperatorsType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsResponse,
-    ]
-    """Perform an OData query"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsResponse,
+    ],
+)
 
-    CreateOperator: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceCreateOperatorType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceCreateOperatorType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorResponse,
-    ]
-    """Creates a new operator in the metadata store."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorResponse,
+    ],
+)
 
-    GetTestDescription: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceGetTestDescriptionType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceGetTestDescriptionType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse,
-    ]
-    """Gets the test description associated with the identifier given in the request."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse,
+    ],
+)
 
-    QueryTestDescriptions: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceQueryTestDescriptionsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceQueryTestDescriptionsType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsResponse,
-    ]
-    """Perform an OData query"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsResponse,
+    ],
+)
 
-    CreateTestDescription: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceCreateTestDescriptionType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceCreateTestDescriptionType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
-    ]
-    """Creates a new test description in the metadata store."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
+    ],
+)
 
-    GetTest: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceGetTestType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceGetTestType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestResponse,
-    ]
-    """Gets the test associated with the identifier given in the request."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestResponse,
+    ],
+)
 
-    QueryTests: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceQueryTestsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceQueryTestsType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsResponse,
-    ]
-    """Perform an OData query"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsResponse,
+    ],
+)
 
-    CreateTest: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceCreateTestType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceCreateTestType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestResponse,
-    ]
-    """Creates a new test in the metadata store."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestResponse,
+    ],
+)
 
-    GetTestStation: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceGetTestStationType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceGetTestStationType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationResponse,
-    ]
-    """Gets the test station associated with the identifier given in the request."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationResponse,
+    ],
+)
 
-    QueryTestStations: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceQueryTestStationsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceQueryTestStationsType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsResponse,
-    ]
-    """Perform an OData query"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsResponse,
+    ],
+)
 
-    CreateTestStation: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceCreateTestStationType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceCreateTestStationType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse,
-    ]
-    """Creates a new test station in the metadata store."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse,
+    ],
+)
 
-    GetHardwareItem: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceGetHardwareItemType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceGetHardwareItemType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemResponse,
-    ]
-    """Gets the hardware item associated with the identifier given in the request."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemResponse,
+    ],
+)
 
-    QueryHardwareItems: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceQueryHardwareItemsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceQueryHardwareItemsType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsResponse,
-    ]
-    """Perform an OData query"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsResponse,
+    ],
+)
 
-    CreateHardwareItem: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceCreateHardwareItemType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceCreateHardwareItemType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse,
-    ]
-    """Creates a new hardware item in the metadata store."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse,
+    ],
+)
 
-    GetSoftwareItem: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceGetSoftwareItemType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceGetSoftwareItemType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse,
-    ]
-    """Gets the software item associated with the identifier given in the request."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse,
+    ],
+)
 
-    QuerySoftwareItems: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceQuerySoftwareItemsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceQuerySoftwareItemsType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsResponse,
-    ]
-    """Perform an OData query"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsResponse,
+    ],
+)
 
-    CreateSoftwareItem: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceCreateSoftwareItemType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceCreateSoftwareItemType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
-    ]
-    """Creates a new software item in the metadata store."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
+    ],
+)
 
-    GetTestAdapter: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceGetTestAdapterType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceGetTestAdapterType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterResponse,
-    ]
-    """Gets the test adapter associated with the identifier given in the request."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterResponse,
+    ],
+)
 
-    QueryTestAdapters: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceQueryTestAdaptersType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceQueryTestAdaptersType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersResponse,
-    ]
-    """Perform an OData query"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersResponse,
+    ],
+)
 
-    CreateTestAdapter: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceCreateTestAdapterType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceCreateTestAdapterType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse,
-    ]
-    """Creates a new test adapter in the metadata store."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse,
+    ],
+)
 
-    RegisterSchema: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceRegisterSchemaType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceRegisterSchemaType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse,
-    ]
-    """Registers a schema. Once a schema has been published, it cannot be modified or removed."""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse,
+    ],
+)
 
-    ListSchemas: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceListSchemasType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceListSchemasType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
-    ]
-    """Lists the schemas that have been previously registered"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
+    ],
+)
 
-    GetAlias: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceGetAliasType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceGetAliasType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasResponse,
-    ]
-    """Gets the alias and its target (i.e., the underlying metadata that it represents)"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasResponse,
+    ],
+)
 
-    QueryAliases: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceQueryAliasesType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceQueryAliasesType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesResponse,
-    ]
-    """Perform an OData query on the registered aliases"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesResponse,
+    ],
+)
 
-    CreateAlias: grpc.UnaryUnaryMultiCallable[
+_MetadataStoreServiceCreateAliasType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceCreateAliasType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasResponse,
-    ]
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasResponse,
+    ],
+)
+
+_MetadataStoreServiceDeleteAliasType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceDeleteAliasType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
+    ],
+)
+
+_MetadataStoreServiceCreateFromJsonDocumentType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceCreateFromJsonDocumentType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse,
+    ],
+)
+
+class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanceType, _MetadataStoreServiceQueryUutInstancesType, _MetadataStoreServiceCreateUutInstanceType, _MetadataStoreServiceGetUutType, _MetadataStoreServiceQueryUutsType, _MetadataStoreServiceCreateUutType, _MetadataStoreServiceGetOperatorType, _MetadataStoreServiceQueryOperatorsType, _MetadataStoreServiceCreateOperatorType, _MetadataStoreServiceGetTestDescriptionType, _MetadataStoreServiceQueryTestDescriptionsType, _MetadataStoreServiceCreateTestDescriptionType, _MetadataStoreServiceGetTestType, _MetadataStoreServiceQueryTestsType, _MetadataStoreServiceCreateTestType, _MetadataStoreServiceGetTestStationType, _MetadataStoreServiceQueryTestStationsType, _MetadataStoreServiceCreateTestStationType, _MetadataStoreServiceGetHardwareItemType, _MetadataStoreServiceQueryHardwareItemsType, _MetadataStoreServiceCreateHardwareItemType, _MetadataStoreServiceGetSoftwareItemType, _MetadataStoreServiceQuerySoftwareItemsType, _MetadataStoreServiceCreateSoftwareItemType, _MetadataStoreServiceGetTestAdapterType, _MetadataStoreServiceQueryTestAdaptersType, _MetadataStoreServiceCreateTestAdapterType, _MetadataStoreServiceRegisterSchemaType, _MetadataStoreServiceListSchemasType, _MetadataStoreServiceGetAliasType, _MetadataStoreServiceQueryAliasesType, _MetadataStoreServiceCreateAliasType, _MetadataStoreServiceDeleteAliasType, _MetadataStoreServiceCreateFromJsonDocumentType]):
+    """This service is responsible for storing and retrieving metadata associated with test step measurements."""
+
+    @typing.overload
+    def __init__(self: MetadataStoreServiceStub[
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse,
+        ],
+    ], channel: grpc.Channel) -> None: ...
+
+    @typing.overload
+    def __init__(self: MetadataStoreServiceStub[
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse,
+        ],
+    ], channel: grpc.aio.Channel) -> None: ...
+
+    GetUutInstance: _MetadataStoreServiceGetUutInstanceType
+    """Gets the UUT instance associated with the identifier given in the request."""
+
+    QueryUutInstances: _MetadataStoreServiceQueryUutInstancesType
+    """Perform an OData query"""
+
+    CreateUutInstance: _MetadataStoreServiceCreateUutInstanceType
+    """Creates a new UUT instance in the metadata store."""
+
+    GetUut: _MetadataStoreServiceGetUutType
+    """Gets the UUT associated with the identifier given in the request."""
+
+    QueryUuts: _MetadataStoreServiceQueryUutsType
+    """Perform an OData query"""
+
+    CreateUut: _MetadataStoreServiceCreateUutType
+    """Creates a new UUT in the metadata store."""
+
+    GetOperator: _MetadataStoreServiceGetOperatorType
+    """Gets the operator associated with the identifier given in the request."""
+
+    QueryOperators: _MetadataStoreServiceQueryOperatorsType
+    """Perform an OData query"""
+
+    CreateOperator: _MetadataStoreServiceCreateOperatorType
+    """Creates a new operator in the metadata store."""
+
+    GetTestDescription: _MetadataStoreServiceGetTestDescriptionType
+    """Gets the test description associated with the identifier given in the request."""
+
+    QueryTestDescriptions: _MetadataStoreServiceQueryTestDescriptionsType
+    """Perform an OData query"""
+
+    CreateTestDescription: _MetadataStoreServiceCreateTestDescriptionType
+    """Creates a new test description in the metadata store."""
+
+    GetTest: _MetadataStoreServiceGetTestType
+    """Gets the test associated with the identifier given in the request."""
+
+    QueryTests: _MetadataStoreServiceQueryTestsType
+    """Perform an OData query"""
+
+    CreateTest: _MetadataStoreServiceCreateTestType
+    """Creates a new test in the metadata store."""
+
+    GetTestStation: _MetadataStoreServiceGetTestStationType
+    """Gets the test station associated with the identifier given in the request."""
+
+    QueryTestStations: _MetadataStoreServiceQueryTestStationsType
+    """Perform an OData query"""
+
+    CreateTestStation: _MetadataStoreServiceCreateTestStationType
+    """Creates a new test station in the metadata store."""
+
+    GetHardwareItem: _MetadataStoreServiceGetHardwareItemType
+    """Gets the hardware item associated with the identifier given in the request."""
+
+    QueryHardwareItems: _MetadataStoreServiceQueryHardwareItemsType
+    """Perform an OData query"""
+
+    CreateHardwareItem: _MetadataStoreServiceCreateHardwareItemType
+    """Creates a new hardware item in the metadata store."""
+
+    GetSoftwareItem: _MetadataStoreServiceGetSoftwareItemType
+    """Gets the software item associated with the identifier given in the request."""
+
+    QuerySoftwareItems: _MetadataStoreServiceQuerySoftwareItemsType
+    """Perform an OData query"""
+
+    CreateSoftwareItem: _MetadataStoreServiceCreateSoftwareItemType
+    """Creates a new software item in the metadata store."""
+
+    GetTestAdapter: _MetadataStoreServiceGetTestAdapterType
+    """Gets the test adapter associated with the identifier given in the request."""
+
+    QueryTestAdapters: _MetadataStoreServiceQueryTestAdaptersType
+    """Perform an OData query"""
+
+    CreateTestAdapter: _MetadataStoreServiceCreateTestAdapterType
+    """Creates a new test adapter in the metadata store."""
+
+    RegisterSchema: _MetadataStoreServiceRegisterSchemaType
+    """Registers a schema. Once a schema has been published, it cannot be modified or removed."""
+
+    ListSchemas: _MetadataStoreServiceListSchemasType
+    """Lists the schemas that have been previously registered"""
+
+    GetAlias: _MetadataStoreServiceGetAliasType
+    """Gets the alias and its target (i.e., the underlying metadata that it represents)"""
+
+    QueryAliases: _MetadataStoreServiceQueryAliasesType
+    """Perform an OData query on the registered aliases"""
+
+    CreateAlias: _MetadataStoreServiceCreateAliasType
     """Creates (registers) an alias of the specified metadata for use/reference when creating other metadata or publishing.
     Notes:
     - The specified metadata must have already been created prior to the alias registration.
     - This method may be called with an already registered alias name in order to update the target mapped for that existing alias.
     """
 
-    DeleteAlias: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
-    ]
+    DeleteAlias: _MetadataStoreServiceDeleteAliasType
     """Removes a registered alias"""
 
-    CreateFromJsonDocument: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
-        ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse,
-    ]
+    CreateFromJsonDocument: _MetadataStoreServiceCreateFromJsonDocumentType
     """Creates all of the metadata entries contained in the provided JSON document.
     The JSON document should conform to the schema defined by
     https://raw.githubusercontent.com/ni/ni-apis/main/ni/measurements/metadata/v1/registration.schema.json
@@ -234,221 +963,144 @@ class MetadataStoreServiceStub:
     already exists, the existing object will be returned; otherwise, a new object will be created
     """
 
-class MetadataStoreServiceAsyncStub:
-    """This service is responsible for storing and retrieving metadata associated with test step measurements."""
-
-    GetUutInstance: grpc.aio.UnaryUnaryMultiCallable[
+MetadataStoreServiceAsyncStub: typing_extensions.TypeAlias = MetadataStoreServiceStub[
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutInstanceResponse,
-    ]
-    """Gets the UUT instance associated with the identifier given in the request."""
-
-    QueryUutInstances: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutInstancesResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateUutInstance: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse,
-    ]
-    """Creates a new UUT instance in the metadata store."""
-
-    GetUut: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse,
-    ]
-    """Gets the UUT associated with the identifier given in the request."""
-
-    QueryUuts: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryUutsResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateUut: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
-    ]
-    """Creates a new UUT in the metadata store."""
-
-    GetOperator: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorResponse,
-    ]
-    """Gets the operator associated with the identifier given in the request."""
-
-    QueryOperators: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryOperatorsResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateOperator: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorResponse,
-    ]
-    """Creates a new operator in the metadata store."""
-
-    GetTestDescription: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse,
-    ]
-    """Gets the test description associated with the identifier given in the request."""
-
-    QueryTestDescriptions: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestDescriptionsResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateTestDescription: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
-    ]
-    """Creates a new test description in the metadata store."""
-
-    GetTest: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestResponse,
-    ]
-    """Gets the test associated with the identifier given in the request."""
-
-    QueryTests: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestsResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateTest: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestResponse,
-    ]
-    """Creates a new test in the metadata store."""
-
-    GetTestStation: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationResponse,
-    ]
-    """Gets the test station associated with the identifier given in the request."""
-
-    QueryTestStations: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestStationsResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateTestStation: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse,
-    ]
-    """Creates a new test station in the metadata store."""
-
-    GetHardwareItem: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemResponse,
-    ]
-    """Gets the hardware item associated with the identifier given in the request."""
-
-    QueryHardwareItems: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryHardwareItemsResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateHardwareItem: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse,
-    ]
-    """Creates a new hardware item in the metadata store."""
-
-    GetSoftwareItem: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse,
-    ]
-    """Gets the software item associated with the identifier given in the request."""
-
-    QuerySoftwareItems: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QuerySoftwareItemsResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateSoftwareItem: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
-    ]
-    """Creates a new software item in the metadata store."""
-
-    GetTestAdapter: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterResponse,
-    ]
-    """Gets the test adapter associated with the identifier given in the request."""
-
-    QueryTestAdapters: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryTestAdaptersResponse,
-    ]
-    """Perform an OData query"""
-
-    CreateTestAdapter: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse,
-    ]
-    """Creates a new test adapter in the metadata store."""
-
-    RegisterSchema: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse,
-    ]
-    """Registers a schema. Once a schema has been published, it cannot be modified or removed."""
-
-    ListSchemas: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
-    ]
-    """Lists the schemas that have been previously registered"""
-
-    GetAlias: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasResponse,
-    ]
-    """Gets the alias and its target (i.e., the underlying metadata that it represents)"""
-
-    QueryAliases: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.QueryAliasesResponse,
-    ]
-    """Perform an OData query on the registered aliases"""
-
-    CreateAlias: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateAliasResponse,
-    ]
-    """Creates (registers) an alias of the specified metadata for use/reference when creating other metadata or publishing.
-    Notes:
-    - The specified metadata must have already been created prior to the alias registration.
-    - This method may be called with an already registered alias name in order to update the target mapped for that existing alias.
-    """
-
-    DeleteAlias: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
-    ]
-    """Removes a registered alias"""
-
-    CreateFromJsonDocument: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse,
-    ]
-    """Creates all of the metadata entries contained in the provided JSON document.
-    The JSON document should conform to the schema defined by
-    https://raw.githubusercontent.com/ni/ni-apis/main/ni/measurements/metadata/v1/registration.schema.json
-    The response will contain all of the associated objects from the metadata store.  If the object
-    already exists, the existing object will be returned; otherwise, a new object will be created
-    """
+    ],
+]
 
 class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
     """This service is responsible for storing and retrieving metadata associated with test step measurements."""

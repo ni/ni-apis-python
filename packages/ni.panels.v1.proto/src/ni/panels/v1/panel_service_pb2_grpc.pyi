@@ -8,7 +8,13 @@ import collections.abc
 import grpc
 import grpc.aio
 import ni.panels.v1.panel_service_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 13):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 _T = typing.TypeVar("_T")
 
@@ -17,14 +23,164 @@ class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Ite
 class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
-class PanelServiceStub:
-    """Service interface for interacting with NI panels"""
-
-    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
-    StartPanel: grpc.UnaryUnaryMultiCallable[
+GRPC_GENERATED_VERSION: str
+GRPC_VERSION: str
+_PanelServiceStartPanelType = typing_extensions.TypeVar(
+    '_PanelServiceStartPanelType',
+    grpc.UnaryUnaryMultiCallable[
         ni.panels.v1.panel_service_pb2.StartPanelRequest,
         ni.panels.v1.panel_service_pb2.StartPanelResponse,
-    ]
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.StartPanelRequest,
+        ni.panels.v1.panel_service_pb2.StartPanelResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.StartPanelRequest,
+        ni.panels.v1.panel_service_pb2.StartPanelResponse,
+    ],
+)
+
+_PanelServiceStopPanelType = typing_extensions.TypeVar(
+    '_PanelServiceStopPanelType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.StopPanelRequest,
+        ni.panels.v1.panel_service_pb2.StopPanelResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.StopPanelRequest,
+        ni.panels.v1.panel_service_pb2.StopPanelResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.StopPanelRequest,
+        ni.panels.v1.panel_service_pb2.StopPanelResponse,
+    ],
+)
+
+_PanelServiceEnumeratePanelsType = typing_extensions.TypeVar(
+    '_PanelServiceEnumeratePanelsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.EnumeratePanelsRequest,
+        ni.panels.v1.panel_service_pb2.EnumeratePanelsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.EnumeratePanelsRequest,
+        ni.panels.v1.panel_service_pb2.EnumeratePanelsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.EnumeratePanelsRequest,
+        ni.panels.v1.panel_service_pb2.EnumeratePanelsResponse,
+    ],
+)
+
+_PanelServiceGetValueType = typing_extensions.TypeVar(
+    '_PanelServiceGetValueType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.GetValueRequest,
+        ni.panels.v1.panel_service_pb2.GetValueResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.GetValueRequest,
+        ni.panels.v1.panel_service_pb2.GetValueResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.GetValueRequest,
+        ni.panels.v1.panel_service_pb2.GetValueResponse,
+    ],
+)
+
+_PanelServiceTryGetValueType = typing_extensions.TypeVar(
+    '_PanelServiceTryGetValueType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.TryGetValueRequest,
+        ni.panels.v1.panel_service_pb2.TryGetValueResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.TryGetValueRequest,
+        ni.panels.v1.panel_service_pb2.TryGetValueResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.TryGetValueRequest,
+        ni.panels.v1.panel_service_pb2.TryGetValueResponse,
+    ],
+)
+
+_PanelServiceSetValueType = typing_extensions.TypeVar(
+    '_PanelServiceSetValueType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.SetValueRequest,
+        ni.panels.v1.panel_service_pb2.SetValueResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.SetValueRequest,
+        ni.panels.v1.panel_service_pb2.SetValueResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.panels.v1.panel_service_pb2.SetValueRequest,
+        ni.panels.v1.panel_service_pb2.SetValueResponse,
+    ],
+)
+
+class PanelServiceStub(typing.Generic[_PanelServiceStartPanelType, _PanelServiceStopPanelType, _PanelServiceEnumeratePanelsType, _PanelServiceGetValueType, _PanelServiceTryGetValueType, _PanelServiceSetValueType]):
+    """Service interface for interacting with NI panels"""
+
+    @typing.overload
+    def __init__(self: PanelServiceStub[
+        grpc.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.StartPanelRequest,
+            ni.panels.v1.panel_service_pb2.StartPanelResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.StopPanelRequest,
+            ni.panels.v1.panel_service_pb2.StopPanelResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.EnumeratePanelsRequest,
+            ni.panels.v1.panel_service_pb2.EnumeratePanelsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.GetValueRequest,
+            ni.panels.v1.panel_service_pb2.GetValueResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.TryGetValueRequest,
+            ni.panels.v1.panel_service_pb2.TryGetValueResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.SetValueRequest,
+            ni.panels.v1.panel_service_pb2.SetValueResponse,
+        ],
+    ], channel: grpc.Channel) -> None: ...
+
+    @typing.overload
+    def __init__(self: PanelServiceStub[
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.StartPanelRequest,
+            ni.panels.v1.panel_service_pb2.StartPanelResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.StopPanelRequest,
+            ni.panels.v1.panel_service_pb2.StopPanelResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.EnumeratePanelsRequest,
+            ni.panels.v1.panel_service_pb2.EnumeratePanelsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.GetValueRequest,
+            ni.panels.v1.panel_service_pb2.GetValueResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.TryGetValueRequest,
+            ni.panels.v1.panel_service_pb2.TryGetValueResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.panels.v1.panel_service_pb2.SetValueRequest,
+            ni.panels.v1.panel_service_pb2.SetValueResponse,
+        ],
+    ], channel: grpc.aio.Channel) -> None: ...
+
+    StartPanel: _PanelServiceStartPanelType
     """Start a panel using the provided configuration (or connect to if it has already been started)
     Status Codes for errors:
     - INVALID_ARGUMENT:
@@ -34,28 +190,19 @@ class PanelServiceStub:
       - The panel configuration includes a file that was not found.
     """
 
-    StopPanel: grpc.UnaryUnaryMultiCallable[
-        ni.panels.v1.panel_service_pb2.StopPanelRequest,
-        ni.panels.v1.panel_service_pb2.StopPanelResponse,
-    ]
+    StopPanel: _PanelServiceStopPanelType
     """Stop a panel
     Status Codes for errors:
     - INVALID_ARGUMENT:
       - The panel identifier contains invalid characters.
     """
 
-    EnumeratePanels: grpc.UnaryUnaryMultiCallable[
-        ni.panels.v1.panel_service_pb2.EnumeratePanelsRequest,
-        ni.panels.v1.panel_service_pb2.EnumeratePanelsResponse,
-    ]
+    EnumeratePanels: _PanelServiceEnumeratePanelsType
     """Enumerate the panels available in the system, including information about the state of the panels and what values they have.
     Status Codes for errors:
     """
 
-    GetValue: grpc.UnaryUnaryMultiCallable[
-        ni.panels.v1.panel_service_pb2.GetValueRequest,
-        ni.panels.v1.panel_service_pb2.GetValueResponse,
-    ]
+    GetValue: _PanelServiceGetValueType
     """Get a value for a control on the panel
     Status Codes for errors:
     - INVALID_ARGUMENT:
@@ -65,10 +212,7 @@ class PanelServiceStub:
       - The value with the specified identifier was not found.
     """
 
-    TryGetValue: grpc.UnaryUnaryMultiCallable[
-        ni.panels.v1.panel_service_pb2.TryGetValueRequest,
-        ni.panels.v1.panel_service_pb2.TryGetValueResponse,
-    ]
+    TryGetValue: _PanelServiceTryGetValueType
     """Try to get a value for a control on the panel
     Status Codes for errors:
     - INVALID_ARGUMENT:
@@ -76,10 +220,7 @@ class PanelServiceStub:
       - The value identifier contains invalid characters.
     """
 
-    SetValue: grpc.UnaryUnaryMultiCallable[
-        ni.panels.v1.panel_service_pb2.SetValueRequest,
-        ni.panels.v1.panel_service_pb2.SetValueResponse,
-    ]
+    SetValue: _PanelServiceSetValueType
     """Set a value for a control on the panel
     Status Codes for errors:
     - INVALID_ARGUMENT:
@@ -87,74 +228,32 @@ class PanelServiceStub:
       - The value identifier contains invalid characters.
     """
 
-class PanelServiceAsyncStub:
-    """Service interface for interacting with NI panels"""
-
-    StartPanel: grpc.aio.UnaryUnaryMultiCallable[
+PanelServiceAsyncStub: typing_extensions.TypeAlias = PanelServiceStub[
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.panels.v1.panel_service_pb2.StartPanelRequest,
         ni.panels.v1.panel_service_pb2.StartPanelResponse,
-    ]
-    """Start a panel using the provided configuration (or connect to if it has already been started)
-    Status Codes for errors:
-    - INVALID_ARGUMENT:
-      - The panel identifier contains invalid characters.
-      - The panel configuration has an invalid argument.
-    - NOT_FOUND:
-      - The panel configuration includes a file that was not found.
-    """
-
-    StopPanel: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.panels.v1.panel_service_pb2.StopPanelRequest,
         ni.panels.v1.panel_service_pb2.StopPanelResponse,
-    ]
-    """Stop a panel
-    Status Codes for errors:
-    - INVALID_ARGUMENT:
-      - The panel identifier contains invalid characters.
-    """
-
-    EnumeratePanels: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.panels.v1.panel_service_pb2.EnumeratePanelsRequest,
         ni.panels.v1.panel_service_pb2.EnumeratePanelsResponse,
-    ]
-    """Enumerate the panels available in the system, including information about the state of the panels and what values they have.
-    Status Codes for errors:
-    """
-
-    GetValue: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.panels.v1.panel_service_pb2.GetValueRequest,
         ni.panels.v1.panel_service_pb2.GetValueResponse,
-    ]
-    """Get a value for a control on the panel
-    Status Codes for errors:
-    - INVALID_ARGUMENT:
-      - The panel identifier contains invalid characters.
-      - The value identifier contains invalid characters.
-    - NOT_FOUND:
-      - The value with the specified identifier was not found.
-    """
-
-    TryGetValue: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.panels.v1.panel_service_pb2.TryGetValueRequest,
         ni.panels.v1.panel_service_pb2.TryGetValueResponse,
-    ]
-    """Try to get a value for a control on the panel
-    Status Codes for errors:
-    - INVALID_ARGUMENT:
-      - The panel identifier contains invalid characters.
-      - The value identifier contains invalid characters.
-    """
-
-    SetValue: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.panels.v1.panel_service_pb2.SetValueRequest,
         ni.panels.v1.panel_service_pb2.SetValueResponse,
-    ]
-    """Set a value for a control on the panel
-    Status Codes for errors:
-    - INVALID_ARGUMENT:
-      - The panel identifier contains invalid characters.
-      - The value identifier contains invalid characters.
-    """
+    ],
+]
 
 class PanelServiceServicer(metaclass=abc.ABCMeta):
     """Service interface for interacting with NI panels"""
