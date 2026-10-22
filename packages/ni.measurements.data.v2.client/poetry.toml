@@ -1,0 +1,11 @@
+[virtualenvs]
+in-project = true
+
+[solver]
+min-release-age = 14
+min-release-age-exclude = [
+    "ni-grpc-extensions",
+    "ni-measurementlink-discovery-v1-client",
+    "ni-measurements-data-v2-proto",
+    "ni-python-styleguide"
+]
