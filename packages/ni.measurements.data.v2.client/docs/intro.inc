@@ -20,7 +20,11 @@ Use the generated V2 proto package to create requests:
 
 The client discovers the service when no gRPC channel is supplied. A caller
 may supply a channel or channel pool; resources supplied by the caller remain
-caller-owned. The service must be enabled and reachable to use the RPCs.
+caller-owned. After ``close()`` returns, the client can be used again and will
+create new connection resources as needed. If a channel or pool was supplied,
+it remains open but is no longer used by the client after closing; a later call
+discovers the service and creates new resources. Do not call ``close()`` while
+RPCs are in progress. The service must be enabled and reachable to use the RPCs.
 
 This package does not provide high-level value conversion or datastore
 workflows; those belong to the separate ``ni.datastore`` package.

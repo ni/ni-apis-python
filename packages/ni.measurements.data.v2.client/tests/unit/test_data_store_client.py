@@ -326,6 +326,59 @@ def test_context_manager_closes_client_owned_pool(mocker: MockerFixture) -> None
     pool_class.return_value.close.assert_called_once_with()
 
 
+def test_client_reuse_after_close_creates_new_resources(mocker: MockerFixture) -> None:
+    pool_class = mocker.patch("ni.measurements.data.v2.client._client_base.GrpcChannelPool")
+    discovery_class = mocker.patch("ni.measurements.data.v2.client._client_base.DiscoveryClient")
+    discovery_class.return_value.enumerate_compute_nodes.return_value = []
+    discovery_class.return_value.resolve_service.return_value.insecure_address = "localhost:50051"
+    stub_class = mocker.patch("ni.measurements.data.v2.client._client.DataStoreServiceStub")
+    first_stub, second_stub = Mock(), Mock()
+    stub_class.side_effect = [first_stub, second_stub]
+    client = DataStoreClient()
+
+    actual_first_stub = client._get_stub()
+    client.close()
+    actual_second_stub = client._get_stub()
+
+    assert actual_first_stub is first_stub
+    assert actual_second_stub is second_stub
+    assert pool_class.call_count == 2
+    assert discovery_class.call_count == 2
+    pool_class.return_value.close.assert_called_once_with()
+    client.close()
+
+
+def test_close_during_stub_initialization_does_not_return_none(mocker: MockerFixture) -> None:
+    class CloseAfterLockRelease:
+        def __init__(self) -> None:
+            self.client: DataStoreClient | None = None
+            self.close_on_release = False
+
+        def __enter__(self) -> "CloseAfterLockRelease":
+            return self
+
+        def __exit__(self, exc_type: object, exc_value: object, traceback: object) -> None:
+            if self.close_on_release:
+                self.close_on_release = False
+                assert self.client is not None
+                self.client.close()
+
+    discovery = Mock()
+    discovery.enumerate_compute_nodes.return_value = []
+    discovery.resolve_service.return_value.insecure_address = "localhost:50051"
+    pool = Mock()
+    stub_class = mocker.patch("ni.measurements.data.v2.client._client.DataStoreServiceStub")
+    client = DataStoreClient(discovery_client=discovery, grpc_channel_pool=pool)
+    lock = CloseAfterLockRelease()
+    lock.client = client
+    lock.close_on_release = True
+    client._lock = lock  # type: ignore[assignment]
+
+    stub = client._get_stub()
+
+    assert stub is stub_class.return_value
+
+
 def test_client_calls_v2_service_over_injected_channel() -> None:
     server = grpc.server(ThreadPoolExecutor(max_workers=1))
     handler = grpc.unary_unary_rpc_method_handler(

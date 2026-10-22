@@ -86,7 +86,11 @@ class GrpcServiceClientBase(Generic[TStub]):
         self.close()
 
     def close(self) -> None:
-        """Close resources created by this client."""
+        """Close resources created by this client.
+
+        The client can be used again after this method returns. Do not call this
+        method while RPCs are in progress.
+        """
         with self._lock:
             self._stub = None
             self._discovery_client = None
@@ -96,7 +100,8 @@ class GrpcServiceClientBase(Generic[TStub]):
             self._owns_grpc_channel_pool = False
 
     def _get_stub(self) -> TStub:
-        if self._stub is None:
+        stub = self._stub
+        if stub is None:
             with self._lock:
                 if self._grpc_channel_pool is None:
                     _logger.debug("Creating unshared GrpcChannelPool.")
@@ -121,5 +126,7 @@ class GrpcServiceClientBase(Generic[TStub]):
                     )
                     channel = self._grpc_channel_pool.get_channel(service_location.insecure_address)
                     self._stub = self._stub_class(channel)
+                stub = self._stub
 
-        return self._stub
+        assert stub is not None
+        return stub
