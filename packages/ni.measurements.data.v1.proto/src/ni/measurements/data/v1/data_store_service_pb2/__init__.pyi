@@ -17,7 +17,13 @@ import ni.protobuf.types.waveform_pb2
 import ni.protobuf.types.waveform_wrappers_pb2
 import ni.protobuf.types.xydata_pb2
 import ni.protobuf.types.xydata_wrappers_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -38,7 +44,7 @@ class CreateTestResultRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_result", b"test_result"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_result", b"test_result"]) -> None: ...
 
-global___CreateTestResultRequest = CreateTestResultRequest
+Global___CreateTestResultRequest: typing_extensions.TypeAlias = CreateTestResultRequest
 
 @typing.final
 class CreateTestResultResponse(google.protobuf.message.Message):
@@ -54,7 +60,7 @@ class CreateTestResultResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_result_id", b"test_result_id"]) -> None: ...
 
-global___CreateTestResultResponse = CreateTestResultResponse
+Global___CreateTestResultResponse: typing_extensions.TypeAlias = CreateTestResultResponse
 
 @typing.final
 class GetTestResultRequest(google.protobuf.message.Message):
@@ -72,7 +78,7 @@ class GetTestResultRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_result_id", b"test_result_id"]) -> None: ...
 
-global___GetTestResultRequest = GetTestResultRequest
+Global___GetTestResultRequest: typing_extensions.TypeAlias = GetTestResultRequest
 
 @typing.final
 class GetTestResultResponse(google.protobuf.message.Message):
@@ -91,7 +97,7 @@ class GetTestResultResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_result", b"test_result"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_result", b"test_result"]) -> None: ...
 
-global___GetTestResultResponse = GetTestResultResponse
+Global___GetTestResultResponse: typing_extensions.TypeAlias = GetTestResultResponse
 
 @typing.final
 class QueryTestResultsRequest(google.protobuf.message.Message):
@@ -111,7 +117,7 @@ class QueryTestResultsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryTestResultsRequest = QueryTestResultsRequest
+Global___QueryTestResultsRequest: typing_extensions.TypeAlias = QueryTestResultsRequest
 
 @typing.final
 class QueryTestResultsResponse(google.protobuf.message.Message):
@@ -129,7 +135,7 @@ class QueryTestResultsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_results", b"test_results"]) -> None: ...
 
-global___QueryTestResultsResponse = QueryTestResultsResponse
+Global___QueryTestResultsResponse: typing_extensions.TypeAlias = QueryTestResultsResponse
 
 @typing.final
 class CreateStepRequest(google.protobuf.message.Message):
@@ -148,7 +154,7 @@ class CreateStepRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["step", b"step"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["step", b"step"]) -> None: ...
 
-global___CreateStepRequest = CreateStepRequest
+Global___CreateStepRequest: typing_extensions.TypeAlias = CreateStepRequest
 
 @typing.final
 class CreateStepResponse(google.protobuf.message.Message):
@@ -164,7 +170,7 @@ class CreateStepResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["step_id", b"step_id"]) -> None: ...
 
-global___CreateStepResponse = CreateStepResponse
+Global___CreateStepResponse: typing_extensions.TypeAlias = CreateStepResponse
 
 @typing.final
 class GetStepRequest(google.protobuf.message.Message):
@@ -182,7 +188,7 @@ class GetStepRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["step_id", b"step_id"]) -> None: ...
 
-global___GetStepRequest = GetStepRequest
+Global___GetStepRequest: typing_extensions.TypeAlias = GetStepRequest
 
 @typing.final
 class GetStepResponse(google.protobuf.message.Message):
@@ -203,7 +209,7 @@ class GetStepResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["step", b"step"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["step", b"step"]) -> None: ...
 
-global___GetStepResponse = GetStepResponse
+Global___GetStepResponse: typing_extensions.TypeAlias = GetStepResponse
 
 @typing.final
 class QueryStepsRequest(google.protobuf.message.Message):
@@ -223,7 +229,7 @@ class QueryStepsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryStepsRequest = QueryStepsRequest
+Global___QueryStepsRequest: typing_extensions.TypeAlias = QueryStepsRequest
 
 @typing.final
 class QueryStepsResponse(google.protobuf.message.Message):
@@ -241,7 +247,7 @@ class QueryStepsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["steps", b"steps"]) -> None: ...
 
-global___QueryStepsResponse = QueryStepsResponse
+Global___QueryStepsResponse: typing_extensions.TypeAlias = QueryStepsResponse
 
 @typing.final
 class PublishConditionRequest(google.protobuf.message.Message):
@@ -274,7 +280,7 @@ class PublishConditionRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["condition_type", b"condition_type", "name", b"name", "scalar", b"scalar", "step_id", b"step_id", "value", b"value"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["scalar"] | None: ...
 
-global___PublishConditionRequest = PublishConditionRequest
+Global___PublishConditionRequest: typing_extensions.TypeAlias = PublishConditionRequest
 
 @typing.final
 class PublishConditionResponse(google.protobuf.message.Message):
@@ -290,7 +296,7 @@ class PublishConditionResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["condition_id", b"condition_id"]) -> None: ...
 
-global___PublishConditionResponse = PublishConditionResponse
+Global___PublishConditionResponse: typing_extensions.TypeAlias = PublishConditionResponse
 
 @typing.final
 class PublishConditionBatchRequest(google.protobuf.message.Message):
@@ -323,7 +329,7 @@ class PublishConditionBatchRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["condition_type", b"condition_type", "name", b"name", "scalar_values", b"scalar_values", "step_id", b"step_id", "values", b"values"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["values", b"values"]) -> typing.Literal["scalar_values"] | None: ...
 
-global___PublishConditionBatchRequest = PublishConditionBatchRequest
+Global___PublishConditionBatchRequest: typing_extensions.TypeAlias = PublishConditionBatchRequest
 
 @typing.final
 class PublishConditionBatchResponse(google.protobuf.message.Message):
@@ -339,7 +345,7 @@ class PublishConditionBatchResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["condition_id", b"condition_id"]) -> None: ...
 
-global___PublishConditionBatchResponse = PublishConditionBatchResponse
+Global___PublishConditionBatchResponse: typing_extensions.TypeAlias = PublishConditionBatchResponse
 
 @typing.final
 class PublishMeasurementRequest(google.protobuf.message.Message):
@@ -458,7 +464,7 @@ class PublishMeasurementRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "error_information", b"error_information", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "hardware_item_ids", b"hardware_item_ids", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "name", b"name", "notes", b"notes", "outcome", b"outcome", "scalar", b"scalar", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamp", b"timestamp", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["scalar", "vector", "double_analog_waveform", "float_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "float_complex_waveform", "i16_complex_waveform", "double_spectrum", "float_spectrum", "digital_waveform"] | None: ...
 
-global___PublishMeasurementRequest = PublishMeasurementRequest
+Global___PublishMeasurementRequest: typing_extensions.TypeAlias = PublishMeasurementRequest
 
 @typing.final
 class PublishMeasurementResponse(google.protobuf.message.Message):
@@ -474,7 +480,7 @@ class PublishMeasurementResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id"]) -> None: ...
 
-global___PublishMeasurementResponse = PublishMeasurementResponse
+Global___PublishMeasurementResponse: typing_extensions.TypeAlias = PublishMeasurementResponse
 
 @typing.final
 class PublishMeasurementBatchRequest(google.protobuf.message.Message):
@@ -622,7 +628,7 @@ class PublishMeasurementBatchRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["digital_waveform_values", b"digital_waveform_values", "double_analog_waveform_values", b"double_analog_waveform_values", "double_complex_waveform_values", b"double_complex_waveform_values", "double_spectrum_values", b"double_spectrum_values", "error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "i16_analog_waveform_values", b"i16_analog_waveform_values", "i16_complex_waveform_values", b"i16_complex_waveform_values", "name", b"name", "notes", b"notes", "outcomes", b"outcomes", "scalar_values", b"scalar_values", "software_item_ids", b"software_item_ids", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "timestamps", b"timestamps", "values", b"values", "vector_values", b"vector_values", "x_y_data_values", b"x_y_data_values"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["values", b"values"]) -> typing.Literal["scalar_values", "vector_values", "double_analog_waveform_values", "x_y_data_values", "i16_analog_waveform_values", "double_complex_waveform_values", "i16_complex_waveform_values", "double_spectrum_values", "digital_waveform_values"] | None: ...
 
-global___PublishMeasurementBatchRequest = PublishMeasurementBatchRequest
+Global___PublishMeasurementBatchRequest: typing_extensions.TypeAlias = PublishMeasurementBatchRequest
 
 @typing.final
 class PublishMeasurementBatchResponse(google.protobuf.message.Message):
@@ -640,7 +646,7 @@ class PublishMeasurementBatchResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["measurement_ids", b"measurement_ids"]) -> None: ...
 
-global___PublishMeasurementBatchResponse = PublishMeasurementBatchResponse
+Global___PublishMeasurementBatchResponse: typing_extensions.TypeAlias = PublishMeasurementBatchResponse
 
 @typing.final
 class GetMeasurementRequest(google.protobuf.message.Message):
@@ -658,7 +664,7 @@ class GetMeasurementRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id"]) -> None: ...
 
-global___GetMeasurementRequest = GetMeasurementRequest
+Global___GetMeasurementRequest: typing_extensions.TypeAlias = GetMeasurementRequest
 
 @typing.final
 class GetMeasurementResponse(google.protobuf.message.Message):
@@ -677,7 +683,7 @@ class GetMeasurementResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["published_measurement", b"published_measurement"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["published_measurement", b"published_measurement"]) -> None: ...
 
-global___GetMeasurementResponse = GetMeasurementResponse
+Global___GetMeasurementResponse: typing_extensions.TypeAlias = GetMeasurementResponse
 
 @typing.final
 class GetConditionRequest(google.protobuf.message.Message):
@@ -695,7 +701,7 @@ class GetConditionRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["condition_id", b"condition_id"]) -> None: ...
 
-global___GetConditionRequest = GetConditionRequest
+Global___GetConditionRequest: typing_extensions.TypeAlias = GetConditionRequest
 
 @typing.final
 class GetConditionResponse(google.protobuf.message.Message):
@@ -714,7 +720,7 @@ class GetConditionResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["published_condition", b"published_condition"]) -> None: ...
 
-global___GetConditionResponse = GetConditionResponse
+Global___GetConditionResponse: typing_extensions.TypeAlias = GetConditionResponse
 
 @typing.final
 class QueryConditionsRequest(google.protobuf.message.Message):
@@ -734,7 +740,7 @@ class QueryConditionsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryConditionsRequest = QueryConditionsRequest
+Global___QueryConditionsRequest: typing_extensions.TypeAlias = QueryConditionsRequest
 
 @typing.final
 class QueryConditionsResponse(google.protobuf.message.Message):
@@ -755,7 +761,7 @@ class QueryConditionsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["published_conditions", b"published_conditions"]) -> None: ...
 
-global___QueryConditionsResponse = QueryConditionsResponse
+Global___QueryConditionsResponse: typing_extensions.TypeAlias = QueryConditionsResponse
 
 @typing.final
 class QueryMeasurementsRequest(google.protobuf.message.Message):
@@ -775,7 +781,7 @@ class QueryMeasurementsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryMeasurementsRequest = QueryMeasurementsRequest
+Global___QueryMeasurementsRequest: typing_extensions.TypeAlias = QueryMeasurementsRequest
 
 @typing.final
 class QueryMeasurementsResponse(google.protobuf.message.Message):
@@ -795,7 +801,7 @@ class QueryMeasurementsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["published_measurements", b"published_measurements"]) -> None: ...
 
-global___QueryMeasurementsResponse = QueryMeasurementsResponse
+Global___QueryMeasurementsResponse: typing_extensions.TypeAlias = QueryMeasurementsResponse
 
 @typing.final
 class ReadConditionValueRequest(google.protobuf.message.Message):
@@ -811,7 +817,7 @@ class ReadConditionValueRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["condition_id", b"condition_id"]) -> None: ...
 
-global___ReadConditionValueRequest = ReadConditionValueRequest
+Global___ReadConditionValueRequest: typing_extensions.TypeAlias = ReadConditionValueRequest
 
 @typing.final
 class ReadConditionValueResponse(google.protobuf.message.Message):
@@ -829,7 +835,7 @@ class ReadConditionValueResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["value", b"value", "vector", b"vector"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["vector"] | None: ...
 
-global___ReadConditionValueResponse = ReadConditionValueResponse
+Global___ReadConditionValueResponse: typing_extensions.TypeAlias = ReadConditionValueResponse
 
 @typing.final
 class ReadMeasurementValueRequest(google.protobuf.message.Message):
@@ -845,7 +851,7 @@ class ReadMeasurementValueRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id"]) -> None: ...
 
-global___ReadMeasurementValueRequest = ReadMeasurementValueRequest
+Global___ReadMeasurementValueRequest: typing_extensions.TypeAlias = ReadMeasurementValueRequest
 
 @typing.final
 class ReadMeasurementValueResponse(google.protobuf.message.Message):
@@ -903,4 +909,4 @@ class ReadMeasurementValueResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["vector", "double_analog_waveform", "float_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "float_complex_waveform", "i16_complex_waveform", "double_spectrum", "float_spectrum", "digital_waveform"] | None: ...
 
-global___ReadMeasurementValueResponse = ReadMeasurementValueResponse
+Global___ReadMeasurementValueResponse: typing_extensions.TypeAlias = ReadMeasurementValueResponse

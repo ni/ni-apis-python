@@ -1914,7 +1914,7 @@ description = "Fundamental package for array computing in Python"
 optional = true
 python-versions = ">=3.12"
 groups = ["main"]
-markers = "python_version >= \"3.12\" and (extra == \"drivers\" or extra == \"nidaqmx\")"
+markers = "(extra == \"drivers\" or extra == \"nidaqmx\") and python_version >= \"3.12\""
 files = [
     {file = "numpy-2.5.3-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:cb189f09db39283b26bfd061ec16189e14f71c6755207f72a0f7540867afe5b9"},
     {file = "numpy-2.5.3-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:f59a878c33d6b88122d80d239bb3b845d58708750b0cb06a09aebb9b18ec696c"},
@@ -3009,4 +3009,4 @@ niswitch = ["niswitch"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "b1a0faeb0f9671bc9b3b4172cda721fcc2b92c945fad9e6387932451a81e3d85"
+content-hash = "694022dfd8907143a12230a80e333f2017795a5d3e04b1aacfd2949df9797ce0"

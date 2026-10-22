@@ -9,7 +9,13 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import ni.protobuf.types.attribute_value_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -68,4 +74,4 @@ class Scalar(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "bool_value", b"bool_value", "double_value", b"double_value", "sint32_value", b"sint32_value", "string_value", b"string_value", "value", b"value"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["double_value", "sint32_value", "bool_value", "string_value"] | None: ...
 
-global___Scalar = Scalar
+Global___Scalar: typing_extensions.TypeAlias = Scalar

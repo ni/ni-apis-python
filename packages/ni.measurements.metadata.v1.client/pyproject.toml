@@ -42,7 +42,7 @@ ni-measurements-metadata-v1-proto = { version = ">=1.0.0" }
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
-types-protobuf = ">=4.21"
+types-protobuf = ">=5.27.2"
 ni-measurementlink-discovery-v1-client = { path = "../ni.measurementlink.discovery.v1.client", develop = true }
 ni-measurements-metadata-v1-proto = { path = "../ni.measurements.metadata.v1.proto", develop = true }
 
