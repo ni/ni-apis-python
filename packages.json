@@ -128,6 +128,22 @@
     "output-format": "subpackage",
     "install-extras": null
   },
+  "ni.measurements.data.v2.client": {
+    "package-basepath": "packages",
+    "proto-basepath": null,
+    "proto-subpath": null,
+    "proto-include-path": null,
+    "output-format": null,
+    "install-extras": null
+  },
+  "ni.measurements.data.v2.proto": {
+    "package-basepath": "packages",
+    "proto-basepath": null,
+    "proto-subpath": null,
+    "proto-include-path": null,
+    "output-format": null,
+    "install-extras": null
+  },
   "ni.measurements.metadata.v1.client": {
     "package-basepath": "packages",
     "proto-basepath": null,
