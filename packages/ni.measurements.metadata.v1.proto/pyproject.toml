@@ -101,7 +101,7 @@ files = "."
 namespace_packages = true
 strict = true
 explicit_package_bases = true
-# mypy 2.4.0 returns in internal error when analyzing the metadata_store_service_pb2_grpc folder.
+# mypy 2.4.0 returns an internal error when analyzing the metadata_store_service_pb2_grpc folder.
 # https://github.com/python/mypy/issues/22257
 exclude = ["docs", "src/ni/measurements/metadata/v1/metadata_store_service_pb2_grpc/*"]
 
