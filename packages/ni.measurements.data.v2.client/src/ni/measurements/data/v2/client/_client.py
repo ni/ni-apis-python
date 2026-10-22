@@ -212,8 +212,8 @@ class DataStoreClient(GrpcServiceClientBase[DataStoreServiceStub]):
         """Delete multiple measurements."""
         return self._get_stub().BatchDeleteMeasurements(request)
 
-    def read_measurement_value(
-        self, request: data_store_service_pb2.ReadMeasurementValueRequest
-    ) -> data_store_service_pb2.ReadMeasurementValueResponse:
-        """Read a measurement value."""
-        return self._get_stub().ReadMeasurementValue(request)
+    def read_measurement_values(
+        self, request: data_store_service_pb2.ReadMeasurementValuesRequest
+    ) -> data_store_service_pb2.ReadMeasurementValuesResponse:
+        """Read the measurement value and limits selected by the request's read mask."""
+        return self._get_stub().ReadMeasurementValues(request)

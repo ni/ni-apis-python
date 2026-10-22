@@ -1060,36 +1060,60 @@ class BatchDeleteMeasurementsResponse(google.protobuf.message.Message):
 global___BatchDeleteMeasurementsResponse = BatchDeleteMeasurementsResponse
 
 @typing.final
-class ReadMeasurementValueRequest(google.protobuf.message.Message):
+class ReadMeasurementValuesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     MEASUREMENT_ID_FIELD_NUMBER: builtins.int
+    READ_MASK_FIELD_NUMBER: builtins.int
     measurement_id: builtins.str
-    """Required. The measurement identifier."""
+    """Required. The Measurement identifier."""
+    @property
+    def read_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
+        """Optional. Selects fields to read. Omitted or empty selects all three."""
+
     def __init__(
         self,
         *,
         measurement_id: builtins.str = ...,
+        read_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id", "read_mask", b"read_mask"]) -> None: ...
 
-global___ReadMeasurementValueRequest = ReadMeasurementValueRequest
+global___ReadMeasurementValuesRequest = ReadMeasurementValuesRequest
 
 @typing.final
-class ReadMeasurementValueResponse(google.protobuf.message.Message):
+class ReadMeasurementValuesResponse(google.protobuf.message.Message):
+    """Each selected field contains a complete value and never a data_moniker.
+    A field not selected by read_mask is unset; clients use the request mask
+    to distinguish this from an absent optional limit.
+    """
+
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     VALUE_FIELD_NUMBER: builtins.int
+    UPPER_LIMIT_FIELD_NUMBER: builtins.int
+    LOWER_LIMIT_FIELD_NUMBER: builtins.int
     @property
     def value(self) -> ni.measurements.data.v2.data_store_pb2.MeasurementValue:
-        """The concrete stored value. This response never contains data_moniker."""
+        """The primary Measurement value, when selected."""
+
+    @property
+    def upper_limit(self) -> ni.measurements.data.v2.data_store_pb2.MeasurementValue:
+        """Unset when not selected or when the Measurement has no upper limit."""
+
+    @property
+    def lower_limit(self) -> ni.measurements.data.v2.data_store_pb2.MeasurementValue:
+        """Unset when not selected or when the Measurement has no lower limit."""
 
     def __init__(
         self,
         *,
         value: ni.measurements.data.v2.data_store_pb2.MeasurementValue | None = ...,
+        upper_limit: ni.measurements.data.v2.data_store_pb2.MeasurementValue | None = ...,
+        lower_limit: ni.measurements.data.v2.data_store_pb2.MeasurementValue | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["value", b"value"]) -> None: ...
+    def HasField(self, field_name: typing.Literal["lower_limit", b"lower_limit", "upper_limit", b"upper_limit", "value", b"value"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["lower_limit", b"lower_limit", "upper_limit", b"upper_limit", "value", b"value"]) -> None: ...
 
-global___ReadMeasurementValueResponse = ReadMeasurementValueResponse
+global___ReadMeasurementValuesResponse = ReadMeasurementValuesResponse

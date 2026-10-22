@@ -175,10 +175,10 @@ RPC_CASES: list[tuple[str, str, type[Message], type[Message]]] = [
         service_types.BatchDeleteMeasurementsResponse,
     ),
     (
-        "ReadMeasurementValue",
-        "read_measurement_value",
-        service_types.ReadMeasurementValueRequest,
-        service_types.ReadMeasurementValueResponse,
+        "ReadMeasurementValues",
+        "read_measurement_values",
+        service_types.ReadMeasurementValuesRequest,
+        service_types.ReadMeasurementValuesResponse,
     ),
 ]
 
@@ -350,3 +350,49 @@ def test_client_calls_v2_service_over_injected_channel() -> None:
         client.close()
         channel.close()
         server.stop(0).wait()
+
+
+def test_read_measurement_values_transports_mask_and_optional_limits() -> None:
+    request = service_types.ReadMeasurementValuesRequest(measurement_id="measurement-id")
+    request.read_mask.paths.extend(["value", "upper_limit"])
+    response = service_types.ReadMeasurementValuesResponse()
+    response.value.json_value.value.update({"samples": [1, 2]})
+    response.upper_limit.json_value.value.update({"maximum": 3})
+    received_requests: list[service_types.ReadMeasurementValuesRequest] = []
+
+    def read_values(
+        received: service_types.ReadMeasurementValuesRequest, context: grpc.ServicerContext
+    ) -> service_types.ReadMeasurementValuesResponse:
+        received_requests.append(received)
+        return response
+
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        server = grpc.server(executor)
+        handler = grpc.unary_unary_rpc_method_handler(
+            read_values,
+            request_deserializer=service_types.ReadMeasurementValuesRequest.FromString,
+            response_serializer=service_types.ReadMeasurementValuesResponse.SerializeToString,
+        )
+        server.add_generic_rpc_handlers(
+            (
+                grpc.method_handlers_generic_handler(
+                    "ni.measurements.data.v2.DataStoreService", {"ReadMeasurementValues": handler}
+                ),
+            )
+        )
+        port = server.add_insecure_port("127.0.0.1:0")
+        assert port != 0
+        server.start()
+        try:
+            with grpc.insecure_channel(f"127.0.0.1:{port}") as channel:
+                grpc.channel_ready_future(channel).result(timeout=5)
+                with DataStoreClient(grpc_channel=channel) as client:
+                    result = client.read_measurement_values(request)
+
+                assert received_requests == [request]
+                assert result == response
+                assert result.HasField("value")
+                assert result.HasField("upper_limit")
+                assert not result.HasField("lower_limit")
+        finally:
+            server.stop(0).wait()

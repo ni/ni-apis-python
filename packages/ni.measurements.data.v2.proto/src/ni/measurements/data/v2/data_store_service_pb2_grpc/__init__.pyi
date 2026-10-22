@@ -184,9 +184,9 @@ class DataStoreServiceStub:
         ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsResponse,
     ]
 
-    ReadMeasurementValue: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValueRequest,
-        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValueResponse,
+    ReadMeasurementValues: grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesRequest,
+        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesResponse,
     ]
 
 class DataStoreServiceAsyncStub:
@@ -353,9 +353,9 @@ class DataStoreServiceAsyncStub:
         ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsResponse,
     ]
 
-    ReadMeasurementValue: grpc.aio.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValueRequest,
-        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValueResponse,
+    ReadMeasurementValues: grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesRequest,
+        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesResponse,
     ]
 
 class DataStoreServiceServicer(metaclass=abc.ABCMeta):
@@ -583,10 +583,10 @@ class DataStoreServiceServicer(metaclass=abc.ABCMeta):
     ) -> typing.Union[ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsResponse, collections.abc.Awaitable[ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsResponse]]: ...
 
     @abc.abstractmethod
-    def ReadMeasurementValue(
+    def ReadMeasurementValues(
         self,
-        request: ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValueRequest,
+        request: ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesRequest,
         context: _ServicerContext,
-    ) -> typing.Union[ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValueResponse, collections.abc.Awaitable[ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValueResponse]]: ...
+    ) -> typing.Union[ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesResponse, collections.abc.Awaitable[ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesResponse]]: ...
 
 def add_DataStoreServiceServicer_to_server(servicer: DataStoreServiceServicer, server: typing.Union[grpc.Server, grpc.aio.Server]) -> None: ...

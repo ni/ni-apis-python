@@ -12,16 +12,20 @@ For this phase, generation uses these files from the datastore-service checkout:
 
 | Input | SHA-256 |
 | --- | --- |
-| `src/datastore/proto/data_store.proto` | `49cdb98fca6b4dae02bc2e1117960ab9292b5161028c7ed219b680a3525841b2` |
-| `src/datastore/proto/data_store_service.proto` | `6e84fcf45c6b9949ce8e26bb857e6b72d0b0036fcd601f959048b1088e2ffa32` |
+| `src/datastore/proto/data_store.proto` | `6e54841c93bb862e10f778e8df69b2f6b186dfef7588bd69cd77f5e6b72eb026` |
+| `src/datastore/proto/data_store_service.proto` | `18b8d70da25e1cacb2daa48b0ee3eedaea841bc1f8557cc91f7bb420f2c23dd7` |
 
-The datastore-service checkout was at
-`f8a07b98257eb4acf80f67bad26f810e3d5a0114` when the inputs were captured;
-the hashes identify the actual working files.
+The input hashes were refreshed on 2026-10-22 and identify the actual working
+files, independently of the datastore-service checkout's commit.
 Shared imports come from `ni/ni-apis` revision
 `dcf7881bc86d0cadf8c4f23734b716040790c11b`.
 Do not include the adjacent notification or streaming definitions: they still
 declare V1.
+
+The current contract uses `ReadMeasurementValues`, with a `read_mask` selecting
+`value`, `upper_limit`, and `lower_limit`. An omitted or empty mask selects all
+three. The previous singular `ReadMeasurementValue` RPC and message names are
+not part of this contract.
 
 ## Generate locally
 

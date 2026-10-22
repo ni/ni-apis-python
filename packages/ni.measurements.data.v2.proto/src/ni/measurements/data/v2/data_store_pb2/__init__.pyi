@@ -351,7 +351,7 @@ class Measurement(google.protobuf.message.Message):
     outcome: global___Outcome.ValueType
     """Optional."""
     schema_id: builtins.str
-    """Reserved for a future schema associated with the extension."""
+    """Reserved for a future schema associated with the extension. Must be empty."""
     created_by: builtins.str
     """Output only."""
     updated_by: builtins.str
@@ -407,7 +407,9 @@ class Measurement(google.protobuf.message.Message):
 
     @property
     def extension(self) -> google.protobuf.struct_pb2.Struct:
-        """Optional. Open custom metadata when schema_id is omitted."""
+        """Optional. Open custom data; values may be any JSON kind. An update that
+        selects this field replaces the whole value.
+        """
 
     @property
     def duration(self) -> ni.protobuf.types.precision_duration_pb2.PrecisionDuration:
@@ -551,7 +553,7 @@ class TestResult(google.protobuf.message.Message):
     link: builtins.str
     """Optional. A URI associated with the test result."""
     schema_id: builtins.str
-    """Reserved for a future schema associated with the extension."""
+    """Reserved for a future schema associated with the extension. Must be empty."""
     uut_id: builtins.str
     """Optional. Direct reference to the UUT product definition."""
     created_by: builtins.str
@@ -590,7 +592,9 @@ class TestResult(google.protobuf.message.Message):
 
     @property
     def extension(self) -> google.protobuf.struct_pb2.Struct:
-        """Optional. Open custom metadata when schema_id is omitted."""
+        """Optional. Open custom data; values may be any JSON kind. An update that
+        selects this field replaces the whole value.
+        """
 
     @property
     def keywords(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
@@ -781,7 +785,7 @@ class Step(google.protobuf.message.Message):
     link: builtins.str
     """Optional. A URI associated with the step."""
     schema_id: builtins.str
-    """Reserved for a future schema associated with the extension."""
+    """Reserved for a future schema associated with the extension. Must be empty."""
     created_by: builtins.str
     """Output only."""
     updated_by: builtins.str
@@ -800,9 +804,10 @@ class Step(google.protobuf.message.Message):
 
     @property
     def extension(self) -> google.protobuf.struct_pb2.Struct:
-        """Optional. Open custom metadata when schema_id is omitted. TestStand
+        """Optional. Open custom data; values may be any JSON kind. TestStand
         integrations may store code-module inputs, outputs, and additional results
-        here when they are not represented as Conditions or Measurements.
+        here when they are not represented as Conditions or Measurements. An update
+        that selects this field replaces the whole value.
         """
 
     @property

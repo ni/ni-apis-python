@@ -12,6 +12,32 @@ from ni.measurements.data.v2 import data_store_service_pb2_grpc as service_grpc
 from ni.protobuf.types import precision_duration_pb2
 
 
+def test___read_measurement_values___request___preserves_projection_mask() -> None:
+    request = service.ReadMeasurementValuesRequest(
+        measurement_id="measurement-id",
+        read_mask=field_mask_pb2.FieldMask(paths=["value", "upper_limit"]),
+    )
+
+    restored = service.ReadMeasurementValuesRequest.FromString(request.SerializeToString())
+
+    assert restored == request
+    assert list(restored.read_mask.paths) == ["value", "upper_limit"]
+
+
+def test___read_measurement_values___response___preserves_limit_presence() -> None:
+    response = service.ReadMeasurementValuesResponse()
+    response.value.json_value.value.update({"samples": [1, 2]})
+    response.upper_limit.SetInParent()
+
+    restored = service.ReadMeasurementValuesResponse.FromString(response.SerializeToString())
+
+    assert restored == response
+    assert restored.HasField("value")
+    assert restored.HasField("upper_limit")
+    assert not restored.HasField("lower_limit")
+    assert restored.value.WhichOneof("value") == "json_value"
+
+
 def test___nested_create_request___serialized___preserves_v2_values() -> None:
     measurement = v2.Measurement(
         name="voltage",

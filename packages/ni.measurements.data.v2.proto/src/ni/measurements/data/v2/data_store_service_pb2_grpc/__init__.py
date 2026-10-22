@@ -174,10 +174,10 @@ class DataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.BatchDeleteMeasurementsRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.BatchDeleteMeasurementsResponse.FromString,
                 )
-        self.ReadMeasurementValue = channel.unary_unary(
-                '/ni.measurements.data.v2.DataStoreService/ReadMeasurementValue',
-                request_serializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValueRequest.SerializeToString,
-                response_deserializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValueResponse.FromString,
+        self.ReadMeasurementValues = channel.unary_unary(
+                '/ni.measurements.data.v2.DataStoreService/ReadMeasurementValues',
+                request_serializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValuesRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValuesResponse.FromString,
                 )
 
 
@@ -375,7 +375,7 @@ class DataStoreServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def ReadMeasurementValue(self, request, context):
+    def ReadMeasurementValues(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -534,10 +534,10 @@ def add_DataStoreServiceServicer_to_server(servicer, server):
                     request_deserializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.BatchDeleteMeasurementsRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.BatchDeleteMeasurementsResponse.SerializeToString,
             ),
-            'ReadMeasurementValue': grpc.unary_unary_rpc_method_handler(
-                    servicer.ReadMeasurementValue,
-                    request_deserializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValueRequest.FromString,
-                    response_serializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValueResponse.SerializeToString,
+            'ReadMeasurementValues': grpc.unary_unary_rpc_method_handler(
+                    servicer.ReadMeasurementValues,
+                    request_deserializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValuesRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValuesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1068,7 +1068,7 @@ class DataStoreService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def ReadMeasurementValue(request,
+    def ReadMeasurementValues(request,
             target,
             options=(),
             channel_credentials=None,
@@ -1078,8 +1078,8 @@ class DataStoreService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/ni.measurements.data.v2.DataStoreService/ReadMeasurementValue',
-            ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValueRequest.SerializeToString,
-            ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValueResponse.FromString,
+        return grpc.experimental.unary_unary(request, target, '/ni.measurements.data.v2.DataStoreService/ReadMeasurementValues',
+            ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValuesRequest.SerializeToString,
+            ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2.ReadMeasurementValuesResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
