@@ -247,7 +247,7 @@ progress of this workflow in the "Actions" page of the GitHub repo.
 
 - We use the newest version of `grpcio-tools` with binary wheels for each supported version of Python
 - We generate stubs using Python 3.11 and test on all supported Python versions
-- We support protobuf 5 on Python 3.10 through 3.13, and protobuf 6 on Python 3.14
+- We support protobuf 5 and higher on all supported Python versions
 
 # Developer Certificate of Origin (DCO)
 

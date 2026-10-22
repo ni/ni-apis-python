@@ -2249,25 +2249,11 @@ files = [
 
 [[package]]
 name = "types-protobuf"
-version = "5.29.1.20250403"
-description = "Typing stubs for protobuf"
-optional = false
-python-versions = ">=3.9"
-groups = ["dev"]
-markers = "python_version < \"3.14\""
-files = [
-    {file = "types_protobuf-5.29.1.20250403-py3-none-any.whl", hash = "sha256:c71de04106a2d54e5b2173d0a422058fae0ef2d058d70cf369fb797bf61ffa59"},
-    {file = "types_protobuf-5.29.1.20250403.tar.gz", hash = "sha256:7ff44f15022119c9d7558ce16e78b2d485bf7040b4fadced4dd069bb5faf77a2"},
-]
-
-[[package]]
-name = "types-protobuf"
 version = "7.35.1.20260906"
 description = "Typing stubs for protobuf"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
-markers = "python_version >= \"3.14\""
 files = [
     {file = "types_protobuf-7.35.1.20260906-py3-none-any.whl", hash = "sha256:5155e48569e0dabff303fdf578db96cd31ea9a4a63b18018a4ceac6b0ae17462"},
     {file = "types_protobuf-7.35.1.20260906.tar.gz", hash = "sha256:efd1a3862d4c967dad5512ef8d56b1530ac84f182c41735b94004756518c4998"},
@@ -2307,4 +2293,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "81d6d78c3e3f367e97cd513948d94ababee365ac7de383463ec8bff2fa1c8226"
+content-hash = "5eb5b84d191c133aa4d5655be1a5b11f0b262e53b0b38c413a3b7abe2ad36e97"
