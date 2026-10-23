@@ -1,0 +1,13 @@
+[virtualenvs]
+in-project = true
+
+[solver]
+min-release-age = 14
+min-release-age-exclude = [
+    "hightime",
+    "ni-datamonikers-v1-proto",
+    "ni-measurements-metadata-v1-proto",
+    "ni-protobuf-types",
+    "ni-python-styleguide",
+    "nitypes"
+]
