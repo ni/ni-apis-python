@@ -1,5 +1,8 @@
 name: Check package
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
