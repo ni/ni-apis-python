@@ -1335,7 +1335,6 @@ files = []
 develop = true
 
 [package.dependencies]
-grpcio = ">=1.67.0,<2.0"
 protobuf = ">=5.27.2"
 
 [package.source]
@@ -2602,4 +2601,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "9bf6ef40d8846d593296c4483df80766ee0ef5a846ad15d01ce88b0454ee2c01"
+content-hash = "95e6392910f5f1aa5082d840722dff979594e3596509f1f0a39cb06d58b23a0a"
