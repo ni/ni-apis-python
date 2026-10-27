@@ -1,16 +1,27 @@
 Introduction
 ============
 
-``ni.measurements.data.v2.proto`` provides generated protobuf messages and raw
-gRPC service stubs for the NI Data Store V2 API. It supports CPython 3.10+ on
-Windows and Linux and can be installed alongside the V1 proto package.
+About
+-----
 
-This is an unpublished development package. Build and install a local wheel;
-no public PyPI release is available as part of this change.
+The ``ni.measurements.data.v2.proto`` Python package contains generated
+interfaces for the NI Data Store V2 API.
 
-Generation currently uses local datastore-service definitions. See the package
-README for input fingerprints, generation instructions, and the required
-upstream and CI integration before release.
+NI created and supports this package.
 
-The package does not implement server-side validation, a handwritten client,
-or V2 service enablement. Calls require a compatible V2 server.
+Operating System Support
+------------------------
+
+``ni.measurements.data.v2.proto`` supports Windows and Linux operating systems.
+
+Python Version Support
+----------------------
+
+``ni.measurements.data.v2.proto`` supports CPython 3.10+.
+
+Installation
+------------
+
+You can directly install the ``ni.measurements.data.v2.proto`` package using
+``pip`` or by listing it as a dependency in your project's ``pyproject.toml``
+file.

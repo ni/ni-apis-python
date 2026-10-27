@@ -96,7 +96,7 @@ explicit_package_bases = true
 exclude = ["docs"]
 
 [tool.pyright]
-include = ["src/"]
+include = ["src/", "tests/"]
 exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi", "src/ni/measurements/data/v2/**/__init__.py*"]
 
 [tool.pytest.ini_options]
