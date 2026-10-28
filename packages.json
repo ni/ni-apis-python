@@ -138,10 +138,10 @@
   },
   "ni.measurements.data.v2.proto": {
     "package-basepath": "packages",
-    "proto-basepath": null,
-    "proto-subpath": null,
-    "proto-include-path": null,
-    "output-format": null,
+    "proto-basepath": "third_party/ni-apis",
+    "proto-subpath": "ni/measurements/data/v2",
+    "proto-include-path": "third_party/ni-apis",
+    "output-format": "subpackage",
     "install-extras": null
   },
   "ni.measurements.metadata.v1.client": {
