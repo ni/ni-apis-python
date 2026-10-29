@@ -49,7 +49,7 @@ ALIAS_TARGET_TYPE_TEST_DESCRIPTION: AliasTargetType.ValueType  # 6
 ALIAS_TARGET_TYPE_TEST: AliasTargetType.ValueType  # 7
 ALIAS_TARGET_TYPE_TEST_STATION: AliasTargetType.ValueType  # 8
 ALIAS_TARGET_TYPE_TEST_ADAPTER: AliasTargetType.ValueType  # 9
-global___AliasTargetType = AliasTargetType
+Global___AliasTargetType: typing_extensions.TypeAlias = AliasTargetType
 
 @typing.final
 class UutInstance(google.protobuf.message.Message):
@@ -65,12 +65,12 @@ class UutInstance(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___ExtensionValue: ...
+        def value(self) -> Global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___ExtensionValue | None = ...,
+            value: Global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -112,7 +112,7 @@ class UutInstance(google.protobuf.message.Message):
     If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
         """Optional. Any attributes used to extend the definition of your UutInstance
         can go here. To add extension attributes, you must first register a schema,
         and specify the schema's id in the 'schema_id' field.
@@ -128,12 +128,12 @@ class UutInstance(google.protobuf.message.Message):
         firmware_version: builtins.str = ...,
         hardware_version: builtins.str = ...,
         link: builtins.str = ...,
-        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, Global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["extension", b"extension", "firmware_version", b"firmware_version", "hardware_version", b"hardware_version", "id", b"id", "link", b"link", "manufacture_date", b"manufacture_date", "schema_id", b"schema_id", "serial_number", b"serial_number", "uut_id", b"uut_id"]) -> None: ...
 
-global___UutInstance = UutInstance
+Global___UutInstance: typing_extensions.TypeAlias = UutInstance
 
 @typing.final
 class Uut(google.protobuf.message.Message):
@@ -149,12 +149,12 @@ class Uut(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___ExtensionValue: ...
+        def value(self) -> Global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___ExtensionValue | None = ...,
+            value: Global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -191,7 +191,7 @@ class Uut(google.protobuf.message.Message):
         """List of manufacturers of the UUT"""
 
     @property
-    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
         """Optional. Any attributes used to extend the definition of your Uut
         can go here. To add extension attributes, you must first register a schema,
         and specify the schema's id in the 'schema_id' field.
@@ -206,12 +206,12 @@ class Uut(google.protobuf.message.Message):
         manufacturers: collections.abc.Iterable[builtins.str] | None = ...,
         part_number: builtins.str = ...,
         link: builtins.str = ...,
-        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, Global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["extension", b"extension", "family", b"family", "id", b"id", "link", b"link", "manufacturers", b"manufacturers", "model_name", b"model_name", "part_number", b"part_number", "schema_id", b"schema_id"]) -> None: ...
 
-global___Uut = Uut
+Global___Uut: typing_extensions.TypeAlias = Uut
 
 @typing.final
 class HardwareItem(google.protobuf.message.Message):
@@ -227,12 +227,12 @@ class HardwareItem(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___ExtensionValue: ...
+        def value(self) -> Global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___ExtensionValue | None = ...,
+            value: Global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -273,7 +273,7 @@ class HardwareItem(google.protobuf.message.Message):
     If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
         """Optional. Any attributes used to extend the definition of your HardwareItem
         can go here. To add extension attributes, you must first register a schema,
         and specify the schema's id in the 'schema_id' field.
@@ -290,12 +290,12 @@ class HardwareItem(google.protobuf.message.Message):
         asset_identifier: builtins.str = ...,
         calibration_due_date: builtins.str = ...,
         link: builtins.str = ...,
-        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, Global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "calibration_due_date", b"calibration_due_date", "extension", b"extension", "id", b"id", "link", b"link", "manufacturer", b"manufacturer", "model", b"model", "part_number", b"part_number", "schema_id", b"schema_id", "serial_number", b"serial_number"]) -> None: ...
 
-global___HardwareItem = HardwareItem
+Global___HardwareItem: typing_extensions.TypeAlias = HardwareItem
 
 @typing.final
 class TestAdapter(google.protobuf.message.Message):
@@ -315,12 +315,12 @@ class TestAdapter(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___ExtensionValue: ...
+        def value(self) -> Global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___ExtensionValue | None = ...,
+            value: Global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -364,7 +364,7 @@ class TestAdapter(google.protobuf.message.Message):
     If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
         """Optional. Any attributes used to extend the definition of your TestAdapter
         can go here. To add extension attributes, you must first register a schema,
         and specify the schema's id in the 'schema_id' field.
@@ -382,12 +382,12 @@ class TestAdapter(google.protobuf.message.Message):
         asset_identifier: builtins.str = ...,
         calibration_due_date: builtins.str = ...,
         link: builtins.str = ...,
-        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, Global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "calibration_due_date", b"calibration_due_date", "extension", b"extension", "id", b"id", "link", b"link", "manufacturer", b"manufacturer", "model", b"model", "name", b"name", "part_number", b"part_number", "schema_id", b"schema_id", "serial_number", b"serial_number"]) -> None: ...
 
-global___TestAdapter = TestAdapter
+Global___TestAdapter: typing_extensions.TypeAlias = TestAdapter
 
 @typing.final
 class SoftwareItem(google.protobuf.message.Message):
@@ -403,12 +403,12 @@ class SoftwareItem(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___ExtensionValue: ...
+        def value(self) -> Global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___ExtensionValue | None = ...,
+            value: Global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -437,7 +437,7 @@ class SoftwareItem(google.protobuf.message.Message):
     If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
         """Optional. Any attributes used to extend the definition of your SoftwareItem
         can go here. To add extension attributes, you must first register a schema,
         and specify the schema's id in the 'schema_id' field.
@@ -450,12 +450,12 @@ class SoftwareItem(google.protobuf.message.Message):
         product: builtins.str = ...,
         version: builtins.str = ...,
         link: builtins.str = ...,
-        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, Global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["extension", b"extension", "id", b"id", "link", b"link", "product", b"product", "schema_id", b"schema_id", "version", b"version"]) -> None: ...
 
-global___SoftwareItem = SoftwareItem
+Global___SoftwareItem: typing_extensions.TypeAlias = SoftwareItem
 
 @typing.final
 class Operator(google.protobuf.message.Message):
@@ -471,12 +471,12 @@ class Operator(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___ExtensionValue: ...
+        def value(self) -> Global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___ExtensionValue | None = ...,
+            value: Global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -505,7 +505,7 @@ class Operator(google.protobuf.message.Message):
     If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
         """Optional. Any attributes used to extend the definition of your Operator
         can go here. To add extension attributes, you must first register a schema,
         and specify the schema's id in the 'schema_id' field.
@@ -518,12 +518,12 @@ class Operator(google.protobuf.message.Message):
         name: builtins.str = ...,
         role: builtins.str = ...,
         link: builtins.str = ...,
-        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, Global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["extension", b"extension", "id", b"id", "link", b"link", "name", b"name", "role", b"role", "schema_id", b"schema_id"]) -> None: ...
 
-global___Operator = Operator
+Global___Operator: typing_extensions.TypeAlias = Operator
 
 @typing.final
 class TestDescription(google.protobuf.message.Message):
@@ -539,12 +539,12 @@ class TestDescription(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___ExtensionValue: ...
+        def value(self) -> Global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___ExtensionValue | None = ...,
+            value: Global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -573,7 +573,7 @@ class TestDescription(google.protobuf.message.Message):
     If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
         """Optional. Any attributes used to extend the definition of your TestDescription
         can go here. To add extension attributes, you must first register a schema,
         and specify the schema's id in the 'schema_id' field.
@@ -586,12 +586,12 @@ class TestDescription(google.protobuf.message.Message):
         uut_id: builtins.str = ...,
         name: builtins.str = ...,
         link: builtins.str = ...,
-        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, Global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["extension", b"extension", "id", b"id", "link", b"link", "name", b"name", "schema_id", b"schema_id", "uut_id", b"uut_id"]) -> None: ...
 
-global___TestDescription = TestDescription
+Global___TestDescription: typing_extensions.TypeAlias = TestDescription
 
 @typing.final
 class Test(google.protobuf.message.Message):
@@ -607,12 +607,12 @@ class Test(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___ExtensionValue: ...
+        def value(self) -> Global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___ExtensionValue | None = ...,
+            value: Global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -641,7 +641,7 @@ class Test(google.protobuf.message.Message):
     If any extension is associated with this instance, a schema_id must be provided
     """
     @property
-    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
         """Optional. Any attributes used to extend the definition of your Test
         can go here. To add extension attributes, you must first register a schema,
         and specify the schema's id in the 'schema_id' field.
@@ -654,12 +654,12 @@ class Test(google.protobuf.message.Message):
         name: builtins.str = ...,
         description: builtins.str = ...,
         link: builtins.str = ...,
-        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, Global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["description", b"description", "extension", b"extension", "id", b"id", "link", b"link", "name", b"name", "schema_id", b"schema_id"]) -> None: ...
 
-global___Test = Test
+Global___Test: typing_extensions.TypeAlias = Test
 
 @typing.final
 class TestStation(google.protobuf.message.Message):
@@ -675,12 +675,12 @@ class TestStation(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___ExtensionValue: ...
+        def value(self) -> Global___ExtensionValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___ExtensionValue | None = ...,
+            value: Global___ExtensionValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -709,7 +709,7 @@ class TestStation(google.protobuf.message.Message):
     If any extension is associated with this instance, a schema_id must be provided.
     """
     @property
-    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ExtensionValue]:
+    def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
         """Optional. Any attributes used to extend the definition of your TestStation
         can go here. To add extension attributes, you must first register a schema,
         and specify the schema's id in the 'schema_id' field.
@@ -722,12 +722,12 @@ class TestStation(google.protobuf.message.Message):
         name: builtins.str = ...,
         asset_identifier: builtins.str = ...,
         link: builtins.str = ...,
-        extension: collections.abc.Mapping[builtins.str, global___ExtensionValue] | None = ...,
+        extension: collections.abc.Mapping[builtins.str, Global___ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["asset_identifier", b"asset_identifier", "extension", b"extension", "id", b"id", "link", b"link", "name", b"name", "schema_id", b"schema_id"]) -> None: ...
 
-global___TestStation = TestStation
+Global___TestStation: typing_extensions.TypeAlias = TestStation
 
 @typing.final
 class ExtensionValue(google.protobuf.message.Message):
@@ -749,7 +749,7 @@ class ExtensionValue(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["metadata", b"metadata", "string_value", b"string_value"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["metadata", b"metadata"]) -> typing.Literal["string_value"] | None: ...
 
-global___ExtensionValue = ExtensionValue
+Global___ExtensionValue: typing_extensions.TypeAlias = ExtensionValue
 
 @typing.final
 class ExtensionSchema(google.protobuf.message.Message):
@@ -771,7 +771,7 @@ class ExtensionSchema(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["id", b"id", "schema", b"schema"]) -> None: ...
 
-global___ExtensionSchema = ExtensionSchema
+Global___ExtensionSchema: typing_extensions.TypeAlias = ExtensionSchema
 
 @typing.final
 class Alias(google.protobuf.message.Message):
@@ -782,7 +782,7 @@ class Alias(google.protobuf.message.Message):
     TARGET_ID_FIELD_NUMBER: builtins.int
     name: builtins.str
     """The registered alias name for the aliased metadata instance."""
-    target_type: global___AliasTargetType.ValueType
+    target_type: Global___AliasTargetType.ValueType
     """The type of the aliased metadata instance."""
     target_id: builtins.str
     """The unique identifier for the aliased metadata instance."""
@@ -790,9 +790,9 @@ class Alias(google.protobuf.message.Message):
         self,
         *,
         name: builtins.str = ...,
-        target_type: global___AliasTargetType.ValueType = ...,
+        target_type: Global___AliasTargetType.ValueType = ...,
         target_id: builtins.str = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["name", b"name", "target_id", b"target_id", "target_type", b"target_type"]) -> None: ...
 
-global___Alias = Alias
+Global___Alias: typing_extensions.TypeAlias = Alias

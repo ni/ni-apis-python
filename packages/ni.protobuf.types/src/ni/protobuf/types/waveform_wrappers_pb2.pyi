@@ -11,7 +11,13 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import ni.protobuf.types.waveform_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -31,7 +37,7 @@ class DoubleAnalogWaveformArrayValue(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
 
-global___DoubleAnalogWaveformArrayValue = DoubleAnalogWaveformArrayValue
+Global___DoubleAnalogWaveformArrayValue: typing_extensions.TypeAlias = DoubleAnalogWaveformArrayValue
 
 @typing.final
 class FloatAnalogWaveformArrayValue(google.protobuf.message.Message):
@@ -49,7 +55,7 @@ class FloatAnalogWaveformArrayValue(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
 
-global___FloatAnalogWaveformArrayValue = FloatAnalogWaveformArrayValue
+Global___FloatAnalogWaveformArrayValue: typing_extensions.TypeAlias = FloatAnalogWaveformArrayValue
 
 @typing.final
 class I16AnalogWaveformArrayValue(google.protobuf.message.Message):
@@ -67,7 +73,7 @@ class I16AnalogWaveformArrayValue(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
 
-global___I16AnalogWaveformArrayValue = I16AnalogWaveformArrayValue
+Global___I16AnalogWaveformArrayValue: typing_extensions.TypeAlias = I16AnalogWaveformArrayValue
 
 @typing.final
 class DoubleComplexWaveformArrayValue(google.protobuf.message.Message):
@@ -85,7 +91,7 @@ class DoubleComplexWaveformArrayValue(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
 
-global___DoubleComplexWaveformArrayValue = DoubleComplexWaveformArrayValue
+Global___DoubleComplexWaveformArrayValue: typing_extensions.TypeAlias = DoubleComplexWaveformArrayValue
 
 @typing.final
 class FloatComplexWaveformArrayValue(google.protobuf.message.Message):
@@ -103,7 +109,7 @@ class FloatComplexWaveformArrayValue(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
 
-global___FloatComplexWaveformArrayValue = FloatComplexWaveformArrayValue
+Global___FloatComplexWaveformArrayValue: typing_extensions.TypeAlias = FloatComplexWaveformArrayValue
 
 @typing.final
 class I16ComplexWaveformArrayValue(google.protobuf.message.Message):
@@ -121,7 +127,7 @@ class I16ComplexWaveformArrayValue(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
 
-global___I16ComplexWaveformArrayValue = I16ComplexWaveformArrayValue
+Global___I16ComplexWaveformArrayValue: typing_extensions.TypeAlias = I16ComplexWaveformArrayValue
 
 @typing.final
 class DoubleSpectrumArrayValue(google.protobuf.message.Message):
@@ -139,7 +145,7 @@ class DoubleSpectrumArrayValue(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
 
-global___DoubleSpectrumArrayValue = DoubleSpectrumArrayValue
+Global___DoubleSpectrumArrayValue: typing_extensions.TypeAlias = DoubleSpectrumArrayValue
 
 @typing.final
 class FloatSpectrumArrayValue(google.protobuf.message.Message):
@@ -157,7 +163,7 @@ class FloatSpectrumArrayValue(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
 
-global___FloatSpectrumArrayValue = FloatSpectrumArrayValue
+Global___FloatSpectrumArrayValue: typing_extensions.TypeAlias = FloatSpectrumArrayValue
 
 @typing.final
 class DigitalWaveformArrayValue(google.protobuf.message.Message):
@@ -175,4 +181,4 @@ class DigitalWaveformArrayValue(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["waveforms", b"waveforms"]) -> None: ...
 
-global___DigitalWaveformArrayValue = DigitalWaveformArrayValue
+Global___DigitalWaveformArrayValue: typing_extensions.TypeAlias = DigitalWaveformArrayValue

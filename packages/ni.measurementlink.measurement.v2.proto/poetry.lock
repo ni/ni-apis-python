@@ -1258,7 +1258,7 @@ files = []
 develop = true
 
 [package.dependencies]
-protobuf = ">=4.21"
+protobuf = ">=5.27.2"
 
 [package.source]
 type = "directory"
@@ -2468,4 +2468,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "915e16cecc34eccdb9e470f8590231d275440ac13a78c12c109a527942b248ed"
+content-hash = "057299e93d704c9c0e9af2f9f663d2cdc50fd7b4053777befc4a4a7daf6eb290"

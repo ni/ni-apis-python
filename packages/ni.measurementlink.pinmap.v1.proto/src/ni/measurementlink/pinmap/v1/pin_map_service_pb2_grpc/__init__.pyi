@@ -8,7 +8,13 @@ import collections.abc
 import grpc
 import grpc.aio
 import ni.measurementlink.pinmap.v1.pin_map_service_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 13):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 _T = typing.TypeVar("_T")
 
@@ -17,14 +23,164 @@ class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Ite
 class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
-class PinMapServiceStub:
-    """Service to keep track of pin map resources."""
-
-    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
-    CreatePinMapFromXml: grpc.UnaryUnaryMultiCallable[
+GRPC_GENERATED_VERSION: str
+GRPC_VERSION: str
+_PinMapServiceCreatePinMapFromXmlType = typing_extensions.TypeVar(
+    '_PinMapServiceCreatePinMapFromXmlType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.CreatePinMapFromXmlRequest,
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
-    ]
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.CreatePinMapFromXmlRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.CreatePinMapFromXmlRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+    ],
+)
+
+_PinMapServiceUpdatePinMapFromXmlType = typing_extensions.TypeVar(
+    '_PinMapServiceUpdatePinMapFromXmlType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.UpdatePinMapFromXmlRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.UpdatePinMapFromXmlRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.UpdatePinMapFromXmlRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+    ],
+)
+
+_PinMapServiceGetPinMapType = typing_extensions.TypeVar(
+    '_PinMapServiceGetPinMapType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.GetPinMapRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.GetPinMapRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.GetPinMapRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+    ],
+)
+
+_PinMapServiceQueryPinsType = typing_extensions.TypeVar(
+    '_PinMapServiceQueryPinsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsResponse,
+    ],
+)
+
+_PinMapServiceQueryRelaysType = typing_extensions.TypeVar(
+    '_PinMapServiceQueryRelaysType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysResponse,
+    ],
+)
+
+_PinMapServiceQueryResourceAccessInformationType = typing_extensions.TypeVar(
+    '_PinMapServiceQueryResourceAccessInformationType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationRequest,
+        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationResponse,
+    ],
+)
+
+class PinMapServiceStub(typing.Generic[_PinMapServiceCreatePinMapFromXmlType, _PinMapServiceUpdatePinMapFromXmlType, _PinMapServiceGetPinMapType, _PinMapServiceQueryPinsType, _PinMapServiceQueryRelaysType, _PinMapServiceQueryResourceAccessInformationType]):
+    """Service to keep track of pin map resources."""
+
+    @typing.overload
+    def __init__(self: PinMapServiceStub[
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.CreatePinMapFromXmlRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.UpdatePinMapFromXmlRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.GetPinMapRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationResponse,
+        ],
+    ], channel: grpc.Channel) -> None: ...
+
+    @typing.overload
+    def __init__(self: PinMapServiceStub[
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.CreatePinMapFromXmlRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.UpdatePinMapFromXmlRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.GetPinMapRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationRequest,
+            ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationResponse,
+        ],
+    ], channel: grpc.aio.Channel) -> None: ...
+
+    CreatePinMapFromXml: _PinMapServiceCreatePinMapFromXmlType
     """Registers pin map with the PinMapService and returns a pin map resource.
 
     Status codes for errors:
@@ -33,10 +189,7 @@ class PinMapServiceStub:
     - ALREADY_EXISTS: Pin map resource with the specified pin map id already exists
     """
 
-    UpdatePinMapFromXml: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.pinmap.v1.pin_map_service_pb2.UpdatePinMapFromXmlRequest,
-        ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
-    ]
+    UpdatePinMapFromXml: _PinMapServiceUpdatePinMapFromXmlType
     """Updates registered pin map contents and returns it.
     Creates and registers a pin map if a pin map resource for the specified pin map id is not found.
 
@@ -45,10 +198,7 @@ class PinMapServiceStub:
     - INVALID_ARGUMENT: Pin map xml string is not valid
     """
 
-    GetPinMap: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.pinmap.v1.pin_map_service_pb2.GetPinMapRequest,
-        ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
-    ]
+    GetPinMap: _PinMapServiceGetPinMapType
     """Get registered pin map resource.
 
     Status codes for errors:
@@ -56,10 +206,7 @@ class PinMapServiceStub:
     - NOT_FOUND: Pin map resource for the specified pin map id is not found
     """
 
-    QueryPins: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsRequest,
-        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsResponse,
-    ]
+    QueryPins: _PinMapServiceQueryPinsType
     """Returns list of pins from the registered pin map resource.
 
     Status codes for errors:
@@ -67,10 +214,7 @@ class PinMapServiceStub:
     - NOT_FOUND: Pin map resource for the specified pin map id is not found
     """
 
-    QueryRelays: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysRequest,
-        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysResponse,
-    ]
+    QueryRelays: _PinMapServiceQueryRelaysType
     """Returns list of relays from the registered pin map resource.
 
     Status codes for errors:
@@ -78,10 +222,7 @@ class PinMapServiceStub:
     - NOT_FOUND: Pin map resource for the specified pin map id is not found
     """
 
-    QueryResourceAccessInformation: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationRequest,
-        ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationResponse,
-    ]
+    QueryResourceAccessInformation: _PinMapServiceQueryResourceAccessInformationType
     """Get instrument resource names, channels, and instrument type for the specified sites, pins or pin groups, relays or relay groups, instrument type in the registered pin map resource.
     Status codes for errors:
 
@@ -96,83 +237,32 @@ class PinMapServiceStub:
       - Empty string specified for a pin or relay name.
     """
 
-class PinMapServiceAsyncStub:
-    """Service to keep track of pin map resources."""
-
-    CreatePinMapFromXml: grpc.aio.UnaryUnaryMultiCallable[
+PinMapServiceAsyncStub: typing_extensions.TypeAlias = PinMapServiceStub[
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.CreatePinMapFromXmlRequest,
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
-    ]
-    """Registers pin map with the PinMapService and returns a pin map resource.
-
-    Status codes for errors:
-
-    - INVALID_ARGUMENT: Pin map id is empty or has whitespace, or pin map xml string is not valid
-    - ALREADY_EXISTS: Pin map resource with the specified pin map id already exists
-    """
-
-    UpdatePinMapFromXml: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.UpdatePinMapFromXmlRequest,
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
-    ]
-    """Updates registered pin map contents and returns it.
-    Creates and registers a pin map if a pin map resource for the specified pin map id is not found.
-
-    Status codes for errors:
-
-    - INVALID_ARGUMENT: Pin map xml string is not valid
-    """
-
-    GetPinMap: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.GetPinMapRequest,
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.PinMap,
-    ]
-    """Get registered pin map resource.
-
-    Status codes for errors:
-
-    - NOT_FOUND: Pin map resource for the specified pin map id is not found
-    """
-
-    QueryPins: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsRequest,
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryPinsResponse,
-    ]
-    """Returns list of pins from the registered pin map resource.
-
-    Status codes for errors:
-
-    - NOT_FOUND: Pin map resource for the specified pin map id is not found
-    """
-
-    QueryRelays: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysRequest,
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryRelaysResponse,
-    ]
-    """Returns list of relays from the registered pin map resource.
-
-    Status codes for errors:
-
-    - NOT_FOUND: Pin map resource for the specified pin map id is not found
-    """
-
-    QueryResourceAccessInformation: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationRequest,
         ni.measurementlink.pinmap.v1.pin_map_service_pb2.QueryResourceAccessInformationResponse,
-    ]
-    """Get instrument resource names, channels, and instrument type for the specified sites, pins or pin groups, relays or relay groups, instrument type in the registered pin map resource.
-    Status codes for errors:
-
-    - NOT_FOUND:
-
-      - Pin map resource for the specified pin map id is not found.
-      - Specified site number is not in the valid range for the registered pin map.
-
-    - INVALID_ARGUMENT:
-
-      - Specified pin or relay is not present in the registered pin map resource.
-      - Empty string specified for a pin or relay name.
-    """
+    ],
+]
 
 class PinMapServiceServicer(metaclass=abc.ABCMeta):
     """Service to keep track of pin map resources."""

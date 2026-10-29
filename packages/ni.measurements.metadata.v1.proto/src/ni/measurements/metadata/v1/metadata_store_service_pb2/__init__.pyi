@@ -9,7 +9,13 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import ni.measurements.metadata.v1.metadata_store_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -29,7 +35,7 @@ class GetUutInstanceRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["uut_instance_id", b"uut_instance_id"]) -> None: ...
 
-global___GetUutInstanceRequest = GetUutInstanceRequest
+Global___GetUutInstanceRequest: typing_extensions.TypeAlias = GetUutInstanceRequest
 
 @typing.final
 class GetUutInstanceResponse(google.protobuf.message.Message):
@@ -50,7 +56,7 @@ class GetUutInstanceResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> None: ...
 
-global___GetUutInstanceResponse = GetUutInstanceResponse
+Global___GetUutInstanceResponse: typing_extensions.TypeAlias = GetUutInstanceResponse
 
 @typing.final
 class QueryUutInstancesRequest(google.protobuf.message.Message):
@@ -68,7 +74,7 @@ class QueryUutInstancesRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryUutInstancesRequest = QueryUutInstancesRequest
+Global___QueryUutInstancesRequest: typing_extensions.TypeAlias = QueryUutInstancesRequest
 
 @typing.final
 class QueryUutInstancesResponse(google.protobuf.message.Message):
@@ -84,7 +90,7 @@ class QueryUutInstancesResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["uut_instances", b"uut_instances"]) -> None: ...
 
-global___QueryUutInstancesResponse = QueryUutInstancesResponse
+Global___QueryUutInstancesResponse: typing_extensions.TypeAlias = QueryUutInstancesResponse
 
 @typing.final
 class CreateUutInstanceRequest(google.protobuf.message.Message):
@@ -105,7 +111,7 @@ class CreateUutInstanceRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> None: ...
 
-global___CreateUutInstanceRequest = CreateUutInstanceRequest
+Global___CreateUutInstanceRequest: typing_extensions.TypeAlias = CreateUutInstanceRequest
 
 @typing.final
 class CreateUutInstanceResponse(google.protobuf.message.Message):
@@ -123,7 +129,7 @@ class CreateUutInstanceResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["uut_instance_id", b"uut_instance_id"]) -> None: ...
 
-global___CreateUutInstanceResponse = CreateUutInstanceResponse
+Global___CreateUutInstanceResponse: typing_extensions.TypeAlias = CreateUutInstanceResponse
 
 @typing.final
 class GetUutRequest(google.protobuf.message.Message):
@@ -141,7 +147,7 @@ class GetUutRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["uut_id", b"uut_id"]) -> None: ...
 
-global___GetUutRequest = GetUutRequest
+Global___GetUutRequest: typing_extensions.TypeAlias = GetUutRequest
 
 @typing.final
 class GetUutResponse(google.protobuf.message.Message):
@@ -162,7 +168,7 @@ class GetUutResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["uut", b"uut"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["uut", b"uut"]) -> None: ...
 
-global___GetUutResponse = GetUutResponse
+Global___GetUutResponse: typing_extensions.TypeAlias = GetUutResponse
 
 @typing.final
 class QueryUutsRequest(google.protobuf.message.Message):
@@ -180,7 +186,7 @@ class QueryUutsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryUutsRequest = QueryUutsRequest
+Global___QueryUutsRequest: typing_extensions.TypeAlias = QueryUutsRequest
 
 @typing.final
 class QueryUutsResponse(google.protobuf.message.Message):
@@ -196,7 +202,7 @@ class QueryUutsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["uuts", b"uuts"]) -> None: ...
 
-global___QueryUutsResponse = QueryUutsResponse
+Global___QueryUutsResponse: typing_extensions.TypeAlias = QueryUutsResponse
 
 @typing.final
 class CreateUutRequest(google.protobuf.message.Message):
@@ -217,7 +223,7 @@ class CreateUutRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["uut", b"uut"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["uut", b"uut"]) -> None: ...
 
-global___CreateUutRequest = CreateUutRequest
+Global___CreateUutRequest: typing_extensions.TypeAlias = CreateUutRequest
 
 @typing.final
 class CreateUutResponse(google.protobuf.message.Message):
@@ -235,7 +241,7 @@ class CreateUutResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["uut_id", b"uut_id"]) -> None: ...
 
-global___CreateUutResponse = CreateUutResponse
+Global___CreateUutResponse: typing_extensions.TypeAlias = CreateUutResponse
 
 @typing.final
 class GetOperatorRequest(google.protobuf.message.Message):
@@ -253,7 +259,7 @@ class GetOperatorRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["operator_id", b"operator_id"]) -> None: ...
 
-global___GetOperatorRequest = GetOperatorRequest
+Global___GetOperatorRequest: typing_extensions.TypeAlias = GetOperatorRequest
 
 @typing.final
 class GetOperatorResponse(google.protobuf.message.Message):
@@ -274,7 +280,7 @@ class GetOperatorResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["operator", b"operator"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["operator", b"operator"]) -> None: ...
 
-global___GetOperatorResponse = GetOperatorResponse
+Global___GetOperatorResponse: typing_extensions.TypeAlias = GetOperatorResponse
 
 @typing.final
 class QueryOperatorsRequest(google.protobuf.message.Message):
@@ -292,7 +298,7 @@ class QueryOperatorsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryOperatorsRequest = QueryOperatorsRequest
+Global___QueryOperatorsRequest: typing_extensions.TypeAlias = QueryOperatorsRequest
 
 @typing.final
 class QueryOperatorsResponse(google.protobuf.message.Message):
@@ -308,7 +314,7 @@ class QueryOperatorsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["operators", b"operators"]) -> None: ...
 
-global___QueryOperatorsResponse = QueryOperatorsResponse
+Global___QueryOperatorsResponse: typing_extensions.TypeAlias = QueryOperatorsResponse
 
 @typing.final
 class CreateOperatorRequest(google.protobuf.message.Message):
@@ -329,7 +335,7 @@ class CreateOperatorRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["operator", b"operator"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["operator", b"operator"]) -> None: ...
 
-global___CreateOperatorRequest = CreateOperatorRequest
+Global___CreateOperatorRequest: typing_extensions.TypeAlias = CreateOperatorRequest
 
 @typing.final
 class CreateOperatorResponse(google.protobuf.message.Message):
@@ -347,7 +353,7 @@ class CreateOperatorResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["operator_id", b"operator_id"]) -> None: ...
 
-global___CreateOperatorResponse = CreateOperatorResponse
+Global___CreateOperatorResponse: typing_extensions.TypeAlias = CreateOperatorResponse
 
 @typing.final
 class GetTestDescriptionRequest(google.protobuf.message.Message):
@@ -365,7 +371,7 @@ class GetTestDescriptionRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_description_id", b"test_description_id"]) -> None: ...
 
-global___GetTestDescriptionRequest = GetTestDescriptionRequest
+Global___GetTestDescriptionRequest: typing_extensions.TypeAlias = GetTestDescriptionRequest
 
 @typing.final
 class GetTestDescriptionResponse(google.protobuf.message.Message):
@@ -386,7 +392,7 @@ class GetTestDescriptionResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_description", b"test_description"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_description", b"test_description"]) -> None: ...
 
-global___GetTestDescriptionResponse = GetTestDescriptionResponse
+Global___GetTestDescriptionResponse: typing_extensions.TypeAlias = GetTestDescriptionResponse
 
 @typing.final
 class QueryTestDescriptionsRequest(google.protobuf.message.Message):
@@ -404,7 +410,7 @@ class QueryTestDescriptionsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryTestDescriptionsRequest = QueryTestDescriptionsRequest
+Global___QueryTestDescriptionsRequest: typing_extensions.TypeAlias = QueryTestDescriptionsRequest
 
 @typing.final
 class QueryTestDescriptionsResponse(google.protobuf.message.Message):
@@ -420,7 +426,7 @@ class QueryTestDescriptionsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_descriptions", b"test_descriptions"]) -> None: ...
 
-global___QueryTestDescriptionsResponse = QueryTestDescriptionsResponse
+Global___QueryTestDescriptionsResponse: typing_extensions.TypeAlias = QueryTestDescriptionsResponse
 
 @typing.final
 class CreateTestDescriptionRequest(google.protobuf.message.Message):
@@ -441,7 +447,7 @@ class CreateTestDescriptionRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_description", b"test_description"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_description", b"test_description"]) -> None: ...
 
-global___CreateTestDescriptionRequest = CreateTestDescriptionRequest
+Global___CreateTestDescriptionRequest: typing_extensions.TypeAlias = CreateTestDescriptionRequest
 
 @typing.final
 class CreateTestDescriptionResponse(google.protobuf.message.Message):
@@ -459,7 +465,7 @@ class CreateTestDescriptionResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_description_id", b"test_description_id"]) -> None: ...
 
-global___CreateTestDescriptionResponse = CreateTestDescriptionResponse
+Global___CreateTestDescriptionResponse: typing_extensions.TypeAlias = CreateTestDescriptionResponse
 
 @typing.final
 class GetTestRequest(google.protobuf.message.Message):
@@ -477,7 +483,7 @@ class GetTestRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_id", b"test_id"]) -> None: ...
 
-global___GetTestRequest = GetTestRequest
+Global___GetTestRequest: typing_extensions.TypeAlias = GetTestRequest
 
 @typing.final
 class GetTestResponse(google.protobuf.message.Message):
@@ -498,7 +504,7 @@ class GetTestResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test", b"test"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test", b"test"]) -> None: ...
 
-global___GetTestResponse = GetTestResponse
+Global___GetTestResponse: typing_extensions.TypeAlias = GetTestResponse
 
 @typing.final
 class QueryTestsRequest(google.protobuf.message.Message):
@@ -516,7 +522,7 @@ class QueryTestsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryTestsRequest = QueryTestsRequest
+Global___QueryTestsRequest: typing_extensions.TypeAlias = QueryTestsRequest
 
 @typing.final
 class QueryTestsResponse(google.protobuf.message.Message):
@@ -532,7 +538,7 @@ class QueryTestsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["tests", b"tests"]) -> None: ...
 
-global___QueryTestsResponse = QueryTestsResponse
+Global___QueryTestsResponse: typing_extensions.TypeAlias = QueryTestsResponse
 
 @typing.final
 class CreateTestRequest(google.protobuf.message.Message):
@@ -553,7 +559,7 @@ class CreateTestRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test", b"test"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test", b"test"]) -> None: ...
 
-global___CreateTestRequest = CreateTestRequest
+Global___CreateTestRequest: typing_extensions.TypeAlias = CreateTestRequest
 
 @typing.final
 class CreateTestResponse(google.protobuf.message.Message):
@@ -571,7 +577,7 @@ class CreateTestResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_id", b"test_id"]) -> None: ...
 
-global___CreateTestResponse = CreateTestResponse
+Global___CreateTestResponse: typing_extensions.TypeAlias = CreateTestResponse
 
 @typing.final
 class GetTestStationRequest(google.protobuf.message.Message):
@@ -589,7 +595,7 @@ class GetTestStationRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_station_id", b"test_station_id"]) -> None: ...
 
-global___GetTestStationRequest = GetTestStationRequest
+Global___GetTestStationRequest: typing_extensions.TypeAlias = GetTestStationRequest
 
 @typing.final
 class GetTestStationResponse(google.protobuf.message.Message):
@@ -610,7 +616,7 @@ class GetTestStationResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_station", b"test_station"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_station", b"test_station"]) -> None: ...
 
-global___GetTestStationResponse = GetTestStationResponse
+Global___GetTestStationResponse: typing_extensions.TypeAlias = GetTestStationResponse
 
 @typing.final
 class QueryTestStationsRequest(google.protobuf.message.Message):
@@ -628,7 +634,7 @@ class QueryTestStationsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryTestStationsRequest = QueryTestStationsRequest
+Global___QueryTestStationsRequest: typing_extensions.TypeAlias = QueryTestStationsRequest
 
 @typing.final
 class QueryTestStationsResponse(google.protobuf.message.Message):
@@ -644,7 +650,7 @@ class QueryTestStationsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_stations", b"test_stations"]) -> None: ...
 
-global___QueryTestStationsResponse = QueryTestStationsResponse
+Global___QueryTestStationsResponse: typing_extensions.TypeAlias = QueryTestStationsResponse
 
 @typing.final
 class CreateTestStationRequest(google.protobuf.message.Message):
@@ -665,7 +671,7 @@ class CreateTestStationRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_station", b"test_station"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_station", b"test_station"]) -> None: ...
 
-global___CreateTestStationRequest = CreateTestStationRequest
+Global___CreateTestStationRequest: typing_extensions.TypeAlias = CreateTestStationRequest
 
 @typing.final
 class CreateTestStationResponse(google.protobuf.message.Message):
@@ -683,7 +689,7 @@ class CreateTestStationResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_station_id", b"test_station_id"]) -> None: ...
 
-global___CreateTestStationResponse = CreateTestStationResponse
+Global___CreateTestStationResponse: typing_extensions.TypeAlias = CreateTestStationResponse
 
 @typing.final
 class GetHardwareItemRequest(google.protobuf.message.Message):
@@ -701,7 +707,7 @@ class GetHardwareItemRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["hardware_item_id", b"hardware_item_id"]) -> None: ...
 
-global___GetHardwareItemRequest = GetHardwareItemRequest
+Global___GetHardwareItemRequest: typing_extensions.TypeAlias = GetHardwareItemRequest
 
 @typing.final
 class GetHardwareItemResponse(google.protobuf.message.Message):
@@ -722,7 +728,7 @@ class GetHardwareItemResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> None: ...
 
-global___GetHardwareItemResponse = GetHardwareItemResponse
+Global___GetHardwareItemResponse: typing_extensions.TypeAlias = GetHardwareItemResponse
 
 @typing.final
 class QueryHardwareItemsRequest(google.protobuf.message.Message):
@@ -740,7 +746,7 @@ class QueryHardwareItemsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryHardwareItemsRequest = QueryHardwareItemsRequest
+Global___QueryHardwareItemsRequest: typing_extensions.TypeAlias = QueryHardwareItemsRequest
 
 @typing.final
 class QueryHardwareItemsResponse(google.protobuf.message.Message):
@@ -756,7 +762,7 @@ class QueryHardwareItemsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["hardware_items", b"hardware_items"]) -> None: ...
 
-global___QueryHardwareItemsResponse = QueryHardwareItemsResponse
+Global___QueryHardwareItemsResponse: typing_extensions.TypeAlias = QueryHardwareItemsResponse
 
 @typing.final
 class CreateHardwareItemRequest(google.protobuf.message.Message):
@@ -777,7 +783,7 @@ class CreateHardwareItemRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> None: ...
 
-global___CreateHardwareItemRequest = CreateHardwareItemRequest
+Global___CreateHardwareItemRequest: typing_extensions.TypeAlias = CreateHardwareItemRequest
 
 @typing.final
 class CreateHardwareItemResponse(google.protobuf.message.Message):
@@ -795,7 +801,7 @@ class CreateHardwareItemResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["hardware_item_id", b"hardware_item_id"]) -> None: ...
 
-global___CreateHardwareItemResponse = CreateHardwareItemResponse
+Global___CreateHardwareItemResponse: typing_extensions.TypeAlias = CreateHardwareItemResponse
 
 @typing.final
 class GetSoftwareItemRequest(google.protobuf.message.Message):
@@ -813,7 +819,7 @@ class GetSoftwareItemRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["software_item_id", b"software_item_id"]) -> None: ...
 
-global___GetSoftwareItemRequest = GetSoftwareItemRequest
+Global___GetSoftwareItemRequest: typing_extensions.TypeAlias = GetSoftwareItemRequest
 
 @typing.final
 class GetSoftwareItemResponse(google.protobuf.message.Message):
@@ -834,7 +840,7 @@ class GetSoftwareItemResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["software_item", b"software_item"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["software_item", b"software_item"]) -> None: ...
 
-global___GetSoftwareItemResponse = GetSoftwareItemResponse
+Global___GetSoftwareItemResponse: typing_extensions.TypeAlias = GetSoftwareItemResponse
 
 @typing.final
 class QuerySoftwareItemsRequest(google.protobuf.message.Message):
@@ -852,7 +858,7 @@ class QuerySoftwareItemsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QuerySoftwareItemsRequest = QuerySoftwareItemsRequest
+Global___QuerySoftwareItemsRequest: typing_extensions.TypeAlias = QuerySoftwareItemsRequest
 
 @typing.final
 class QuerySoftwareItemsResponse(google.protobuf.message.Message):
@@ -868,7 +874,7 @@ class QuerySoftwareItemsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["software_items", b"software_items"]) -> None: ...
 
-global___QuerySoftwareItemsResponse = QuerySoftwareItemsResponse
+Global___QuerySoftwareItemsResponse: typing_extensions.TypeAlias = QuerySoftwareItemsResponse
 
 @typing.final
 class CreateSoftwareItemRequest(google.protobuf.message.Message):
@@ -889,7 +895,7 @@ class CreateSoftwareItemRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["software_item", b"software_item"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["software_item", b"software_item"]) -> None: ...
 
-global___CreateSoftwareItemRequest = CreateSoftwareItemRequest
+Global___CreateSoftwareItemRequest: typing_extensions.TypeAlias = CreateSoftwareItemRequest
 
 @typing.final
 class CreateSoftwareItemResponse(google.protobuf.message.Message):
@@ -907,7 +913,7 @@ class CreateSoftwareItemResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["software_item_id", b"software_item_id"]) -> None: ...
 
-global___CreateSoftwareItemResponse = CreateSoftwareItemResponse
+Global___CreateSoftwareItemResponse: typing_extensions.TypeAlias = CreateSoftwareItemResponse
 
 @typing.final
 class GetTestAdapterRequest(google.protobuf.message.Message):
@@ -925,7 +931,7 @@ class GetTestAdapterRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_adapter_id", b"test_adapter_id"]) -> None: ...
 
-global___GetTestAdapterRequest = GetTestAdapterRequest
+Global___GetTestAdapterRequest: typing_extensions.TypeAlias = GetTestAdapterRequest
 
 @typing.final
 class GetTestAdapterResponse(google.protobuf.message.Message):
@@ -946,7 +952,7 @@ class GetTestAdapterResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> None: ...
 
-global___GetTestAdapterResponse = GetTestAdapterResponse
+Global___GetTestAdapterResponse: typing_extensions.TypeAlias = GetTestAdapterResponse
 
 @typing.final
 class QueryTestAdaptersRequest(google.protobuf.message.Message):
@@ -964,7 +970,7 @@ class QueryTestAdaptersRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryTestAdaptersRequest = QueryTestAdaptersRequest
+Global___QueryTestAdaptersRequest: typing_extensions.TypeAlias = QueryTestAdaptersRequest
 
 @typing.final
 class QueryTestAdaptersResponse(google.protobuf.message.Message):
@@ -980,7 +986,7 @@ class QueryTestAdaptersResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_adapters", b"test_adapters"]) -> None: ...
 
-global___QueryTestAdaptersResponse = QueryTestAdaptersResponse
+Global___QueryTestAdaptersResponse: typing_extensions.TypeAlias = QueryTestAdaptersResponse
 
 @typing.final
 class CreateTestAdapterRequest(google.protobuf.message.Message):
@@ -1001,7 +1007,7 @@ class CreateTestAdapterRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> None: ...
 
-global___CreateTestAdapterRequest = CreateTestAdapterRequest
+Global___CreateTestAdapterRequest: typing_extensions.TypeAlias = CreateTestAdapterRequest
 
 @typing.final
 class CreateTestAdapterResponse(google.protobuf.message.Message):
@@ -1019,7 +1025,7 @@ class CreateTestAdapterResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_adapter_id", b"test_adapter_id"]) -> None: ...
 
-global___CreateTestAdapterResponse = CreateTestAdapterResponse
+Global___CreateTestAdapterResponse: typing_extensions.TypeAlias = CreateTestAdapterResponse
 
 @typing.final
 class RegisterSchemaRequest(google.protobuf.message.Message):
@@ -1038,7 +1044,7 @@ class RegisterSchemaRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["schema", b"schema"]) -> None: ...
 
-global___RegisterSchemaRequest = RegisterSchemaRequest
+Global___RegisterSchemaRequest: typing_extensions.TypeAlias = RegisterSchemaRequest
 
 @typing.final
 class RegisterSchemaResponse(google.protobuf.message.Message):
@@ -1054,7 +1060,7 @@ class RegisterSchemaResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["schema_id", b"schema_id"]) -> None: ...
 
-global___RegisterSchemaResponse = RegisterSchemaResponse
+Global___RegisterSchemaResponse: typing_extensions.TypeAlias = RegisterSchemaResponse
 
 @typing.final
 class ListSchemasRequest(google.protobuf.message.Message):
@@ -1064,7 +1070,7 @@ class ListSchemasRequest(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___ListSchemasRequest = ListSchemasRequest
+Global___ListSchemasRequest: typing_extensions.TypeAlias = ListSchemasRequest
 
 @typing.final
 class ListSchemasResponse(google.protobuf.message.Message):
@@ -1080,7 +1086,7 @@ class ListSchemasResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["schemas", b"schemas"]) -> None: ...
 
-global___ListSchemasResponse = ListSchemasResponse
+Global___ListSchemasResponse: typing_extensions.TypeAlias = ListSchemasResponse
 
 @typing.final
 class GetAliasRequest(google.protobuf.message.Message):
@@ -1095,7 +1101,7 @@ class GetAliasRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name"]) -> None: ...
 
-global___GetAliasRequest = GetAliasRequest
+Global___GetAliasRequest: typing_extensions.TypeAlias = GetAliasRequest
 
 @typing.final
 class GetAliasResponse(google.protobuf.message.Message):
@@ -1112,7 +1118,7 @@ class GetAliasResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["alias", b"alias"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["alias", b"alias"]) -> None: ...
 
-global___GetAliasResponse = GetAliasResponse
+Global___GetAliasResponse: typing_extensions.TypeAlias = GetAliasResponse
 
 @typing.final
 class QueryAliasesRequest(google.protobuf.message.Message):
@@ -1130,7 +1136,7 @@ class QueryAliasesRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
-global___QueryAliasesRequest = QueryAliasesRequest
+Global___QueryAliasesRequest: typing_extensions.TypeAlias = QueryAliasesRequest
 
 @typing.final
 class QueryAliasesResponse(google.protobuf.message.Message):
@@ -1146,7 +1152,7 @@ class QueryAliasesResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["aliases", b"aliases"]) -> None: ...
 
-global___QueryAliasesResponse = QueryAliasesResponse
+Global___QueryAliasesResponse: typing_extensions.TypeAlias = QueryAliasesResponse
 
 @typing.final
 class CreateAliasRequest(google.protobuf.message.Message):
@@ -1200,7 +1206,7 @@ class CreateAliasRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name", "alias_target", b"alias_target", "hardware_item", b"hardware_item", "operator", b"operator", "software_item", b"software_item", "test", b"test", "test_adapter", b"test_adapter", "test_description", b"test_description", "test_station", b"test_station", "uut", b"uut", "uut_instance", b"uut_instance"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["alias_target", b"alias_target"]) -> typing.Literal["uut_instance", "uut", "hardware_item", "software_item", "operator", "test_description", "test", "test_station", "test_adapter"] | None: ...
 
-global___CreateAliasRequest = CreateAliasRequest
+Global___CreateAliasRequest: typing_extensions.TypeAlias = CreateAliasRequest
 
 @typing.final
 class CreateAliasResponse(google.protobuf.message.Message):
@@ -1217,7 +1223,7 @@ class CreateAliasResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["alias", b"alias"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["alias", b"alias"]) -> None: ...
 
-global___CreateAliasResponse = CreateAliasResponse
+Global___CreateAliasResponse: typing_extensions.TypeAlias = CreateAliasResponse
 
 @typing.final
 class DeleteAliasRequest(google.protobuf.message.Message):
@@ -1233,7 +1239,7 @@ class DeleteAliasRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name"]) -> None: ...
 
-global___DeleteAliasRequest = DeleteAliasRequest
+Global___DeleteAliasRequest: typing_extensions.TypeAlias = DeleteAliasRequest
 
 @typing.final
 class DeleteAliasResponse(google.protobuf.message.Message):
@@ -1249,7 +1255,7 @@ class DeleteAliasResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["unregistered", b"unregistered"]) -> None: ...
 
-global___DeleteAliasResponse = DeleteAliasResponse
+Global___DeleteAliasResponse: typing_extensions.TypeAlias = DeleteAliasResponse
 
 @typing.final
 class CreateFromJsonDocumentRequest(google.protobuf.message.Message):
@@ -1268,7 +1274,7 @@ class CreateFromJsonDocumentRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["json_document", b"json_document"]) -> None: ...
 
-global___CreateFromJsonDocumentRequest = CreateFromJsonDocumentRequest
+Global___CreateFromJsonDocumentRequest: typing_extensions.TypeAlias = CreateFromJsonDocumentRequest
 
 @typing.final
 class CreateFromJsonDocumentResponse(google.protobuf.message.Message):
@@ -1352,4 +1358,4 @@ class CreateFromJsonDocumentResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["hardware_items", b"hardware_items", "operators", b"operators", "software_items", b"software_items", "test_adapters", b"test_adapters", "test_descriptions", b"test_descriptions", "test_stations", b"test_stations", "tests", b"tests", "uut_instances", b"uut_instances", "uuts", b"uuts"]) -> None: ...
 
-global___CreateFromJsonDocumentResponse = CreateFromJsonDocumentResponse
+Global___CreateFromJsonDocumentResponse: typing_extensions.TypeAlias = CreateFromJsonDocumentResponse

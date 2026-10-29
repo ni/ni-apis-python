@@ -10,7 +10,13 @@ import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -112,7 +118,7 @@ class ServiceDescriptor(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["annotations", b"annotations", "description_url", b"description_url", "display_name", b"display_name", "provided_interfaces", b"provided_interfaces", "service_class", b"service_class", "versions", b"versions"]) -> None: ...
 
-global___ServiceDescriptor = ServiceDescriptor
+Global___ServiceDescriptor: typing_extensions.TypeAlias = ServiceDescriptor
 
 @typing.final
 class ServiceLocation(google.protobuf.message.Message):
@@ -144,7 +150,7 @@ class ServiceLocation(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["insecure_port", b"insecure_port", "location", b"location", "ssl_authenticated_port", b"ssl_authenticated_port"]) -> None: ...
 
-global___ServiceLocation = ServiceLocation
+Global___ServiceLocation: typing_extensions.TypeAlias = ServiceLocation
 
 @typing.final
 class RegisterServiceRequest(google.protobuf.message.Message):
@@ -153,23 +159,23 @@ class RegisterServiceRequest(google.protobuf.message.Message):
     SERVICE_DESCRIPTION_FIELD_NUMBER: builtins.int
     LOCATION_FIELD_NUMBER: builtins.int
     @property
-    def service_description(self) -> global___ServiceDescriptor:
+    def service_description(self) -> Global___ServiceDescriptor:
         """Required. The description of the service."""
 
     @property
-    def location(self) -> global___ServiceLocation:
+    def location(self) -> Global___ServiceLocation:
         """Required. The canonical location information for the service."""
 
     def __init__(
         self,
         *,
-        service_description: global___ServiceDescriptor | None = ...,
-        location: global___ServiceLocation | None = ...,
+        service_description: Global___ServiceDescriptor | None = ...,
+        location: Global___ServiceLocation | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["location", b"location", "service_description", b"service_description"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["location", b"location", "service_description", b"service_description"]) -> None: ...
 
-global___RegisterServiceRequest = RegisterServiceRequest
+Global___RegisterServiceRequest: typing_extensions.TypeAlias = RegisterServiceRequest
 
 @typing.final
 class RegisterServiceResponse(google.protobuf.message.Message):
@@ -185,7 +191,7 @@ class RegisterServiceResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["registration_id", b"registration_id"]) -> None: ...
 
-global___RegisterServiceResponse = RegisterServiceResponse
+Global___RegisterServiceResponse: typing_extensions.TypeAlias = RegisterServiceResponse
 
 @typing.final
 class UnregisterServiceRequest(google.protobuf.message.Message):
@@ -201,7 +207,7 @@ class UnregisterServiceRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["registration_id", b"registration_id"]) -> None: ...
 
-global___UnregisterServiceRequest = UnregisterServiceRequest
+Global___UnregisterServiceRequest: typing_extensions.TypeAlias = UnregisterServiceRequest
 
 @typing.final
 class UnregisterServiceResponse(google.protobuf.message.Message):
@@ -211,7 +217,7 @@ class UnregisterServiceResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___UnregisterServiceResponse = UnregisterServiceResponse
+Global___UnregisterServiceResponse: typing_extensions.TypeAlias = UnregisterServiceResponse
 
 @typing.final
 class EnumerateServicesRequest(google.protobuf.message.Message):
@@ -238,7 +244,7 @@ class EnumerateServicesRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["provided_interface", b"provided_interface", "service_class", b"service_class"]) -> None: ...
 
-global___EnumerateServicesRequest = EnumerateServicesRequest
+Global___EnumerateServicesRequest: typing_extensions.TypeAlias = EnumerateServicesRequest
 
 @typing.final
 class EnumerateServicesResponse(google.protobuf.message.Message):
@@ -247,7 +253,7 @@ class EnumerateServicesResponse(google.protobuf.message.Message):
     AVAILABLE_SERVICES_FIELD_NUMBER: builtins.int
     UNREACHABLE_FIELD_NUMBER: builtins.int
     @property
-    def available_services(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ServiceDescriptor]:
+    def available_services(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ServiceDescriptor]:
         """The list of available services which implement the specified service interface."""
 
     @property
@@ -261,12 +267,12 @@ class EnumerateServicesResponse(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        available_services: collections.abc.Iterable[global___ServiceDescriptor] | None = ...,
+        available_services: collections.abc.Iterable[Global___ServiceDescriptor] | None = ...,
         unreachable: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["available_services", b"available_services", "unreachable", b"unreachable"]) -> None: ...
 
-global___EnumerateServicesResponse = EnumerateServicesResponse
+Global___EnumerateServicesResponse: typing_extensions.TypeAlias = EnumerateServicesResponse
 
 @typing.final
 class ResolveServiceRequest(google.protobuf.message.Message):
@@ -303,7 +309,7 @@ class ResolveServiceRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["deployment_target", b"deployment_target", "provided_interface", b"provided_interface", "service_class", b"service_class", "version", b"version"]) -> None: ...
 
-global___ResolveServiceRequest = ResolveServiceRequest
+Global___ResolveServiceRequest: typing_extensions.TypeAlias = ResolveServiceRequest
 
 @typing.final
 class ResolveServiceWithInformationRequest(google.protobuf.message.Message):
@@ -340,7 +346,7 @@ class ResolveServiceWithInformationRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["deployment_target", b"deployment_target", "provided_interface", b"provided_interface", "service_class", b"service_class", "version", b"version"]) -> None: ...
 
-global___ResolveServiceWithInformationRequest = ResolveServiceWithInformationRequest
+Global___ResolveServiceWithInformationRequest: typing_extensions.TypeAlias = ResolveServiceWithInformationRequest
 
 @typing.final
 class ResolveServiceWithInformationResponse(google.protobuf.message.Message):
@@ -349,23 +355,23 @@ class ResolveServiceWithInformationResponse(google.protobuf.message.Message):
     SERVICE_LOCATION_FIELD_NUMBER: builtins.int
     SERVICE_DESCRIPTOR_FIELD_NUMBER: builtins.int
     @property
-    def service_location(self) -> global___ServiceLocation:
+    def service_location(self) -> Global___ServiceLocation:
         """The canonical location information of the service."""
 
     @property
-    def service_descriptor(self) -> global___ServiceDescriptor:
+    def service_descriptor(self) -> Global___ServiceDescriptor:
         """The description of the service."""
 
     def __init__(
         self,
         *,
-        service_location: global___ServiceLocation | None = ...,
-        service_descriptor: global___ServiceDescriptor | None = ...,
+        service_location: Global___ServiceLocation | None = ...,
+        service_descriptor: Global___ServiceDescriptor | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["service_descriptor", b"service_descriptor", "service_location", b"service_location"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["service_descriptor", b"service_descriptor", "service_location", b"service_location"]) -> None: ...
 
-global___ResolveServiceWithInformationResponse = ResolveServiceWithInformationResponse
+Global___ResolveServiceWithInformationResponse: typing_extensions.TypeAlias = ResolveServiceWithInformationResponse
 
 @typing.final
 class ComputeNodeDescriptor(google.protobuf.message.Message):
@@ -387,7 +393,7 @@ class ComputeNodeDescriptor(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["is_local", b"is_local", "url", b"url"]) -> None: ...
 
-global___ComputeNodeDescriptor = ComputeNodeDescriptor
+Global___ComputeNodeDescriptor: typing_extensions.TypeAlias = ComputeNodeDescriptor
 
 @typing.final
 class EnumerateActiveServicesRequest(google.protobuf.message.Message):
@@ -415,7 +421,7 @@ class EnumerateActiveServicesRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["provided_interface", b"provided_interface", "service_class", b"service_class"]) -> None: ...
 
-global___EnumerateActiveServicesRequest = EnumerateActiveServicesRequest
+Global___EnumerateActiveServicesRequest: typing_extensions.TypeAlias = EnumerateActiveServicesRequest
 
 @typing.final
 class ActiveServiceInformation(google.protobuf.message.Message):
@@ -428,23 +434,23 @@ class ActiveServiceInformation(google.protobuf.message.Message):
     SERVICE_DESCRIPTOR_FIELD_NUMBER: builtins.int
     SERVICE_LOCATION_FIELD_NUMBER: builtins.int
     @property
-    def service_descriptor(self) -> global___ServiceDescriptor:
+    def service_descriptor(self) -> Global___ServiceDescriptor:
         """The description of the service."""
 
     @property
-    def service_location(self) -> global___ServiceLocation:
+    def service_location(self) -> Global___ServiceLocation:
         """The location of the service."""
 
     def __init__(
         self,
         *,
-        service_descriptor: global___ServiceDescriptor | None = ...,
-        service_location: global___ServiceLocation | None = ...,
+        service_descriptor: Global___ServiceDescriptor | None = ...,
+        service_location: Global___ServiceLocation | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["service_descriptor", b"service_descriptor", "service_location", b"service_location"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["service_descriptor", b"service_descriptor", "service_location", b"service_location"]) -> None: ...
 
-global___ActiveServiceInformation = ActiveServiceInformation
+Global___ActiveServiceInformation: typing_extensions.TypeAlias = ActiveServiceInformation
 
 @typing.final
 class EnumerateActiveServicesResponse(google.protobuf.message.Message):
@@ -454,7 +460,7 @@ class EnumerateActiveServicesResponse(google.protobuf.message.Message):
 
     ACTIVE_SERVICES_FIELD_NUMBER: builtins.int
     @property
-    def active_services(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ActiveServiceInformation]:
+    def active_services(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ActiveServiceInformation]:
         """The list of currently active service instances which implement the specified service interface.
         This information is intended for diagnostic and informational purposes only.
         To communicate with a service, use ResolveService or ResolveServiceWithInformation instead.
@@ -465,11 +471,11 @@ class EnumerateActiveServicesResponse(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        active_services: collections.abc.Iterable[global___ActiveServiceInformation] | None = ...,
+        active_services: collections.abc.Iterable[Global___ActiveServiceInformation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["active_services", b"active_services"]) -> None: ...
 
-global___EnumerateActiveServicesResponse = EnumerateActiveServicesResponse
+Global___EnumerateActiveServicesResponse: typing_extensions.TypeAlias = EnumerateActiveServicesResponse
 
 @typing.final
 class EnumerateComputeNodesRequest(google.protobuf.message.Message):
@@ -481,7 +487,7 @@ class EnumerateComputeNodesRequest(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___EnumerateComputeNodesRequest = EnumerateComputeNodesRequest
+Global___EnumerateComputeNodesRequest: typing_extensions.TypeAlias = EnumerateComputeNodesRequest
 
 @typing.final
 class EnumerateComputeNodesResponse(google.protobuf.message.Message):
@@ -491,14 +497,14 @@ class EnumerateComputeNodesResponse(google.protobuf.message.Message):
 
     COMPUTE_NODES_FIELD_NUMBER: builtins.int
     @property
-    def compute_nodes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ComputeNodeDescriptor]:
+    def compute_nodes(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ComputeNodeDescriptor]:
         """The list of compute nodes that have registered themselves in the current session."""
 
     def __init__(
         self,
         *,
-        compute_nodes: collections.abc.Iterable[global___ComputeNodeDescriptor] | None = ...,
+        compute_nodes: collections.abc.Iterable[Global___ComputeNodeDescriptor] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["compute_nodes", b"compute_nodes"]) -> None: ...
 
-global___EnumerateComputeNodesResponse = EnumerateComputeNodesResponse
+Global___EnumerateComputeNodesResponse: typing_extensions.TypeAlias = EnumerateComputeNodesResponse
