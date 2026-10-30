@@ -4,7 +4,7 @@ import logging
 import sys
 import threading
 from types import TracebackType
-from typing import Generic, Protocol, TYPE_CHECKING, TypeVar
+from typing import TYPE_CHECKING, Generic, Protocol, TypeVar
 
 import grpc
 from ni.measurementlink.discovery.v1.client import DiscoveryClient
@@ -20,17 +20,17 @@ _logger = logging.getLogger(__name__)
 
 
 class StubProtocol(Protocol):
-    """Protocol for generated gRPC stub classes."""
+    """Protocol for gRPC stub classes."""
 
     def __init__(self, channel: grpc.Channel) -> None:
-        """Initialize a generated gRPC stub."""
+        """Initialize the gRPC client."""
 
 
 TStub = TypeVar("TStub", bound=StubProtocol)
 
 
 class GrpcServiceClientBase(Generic[TStub]):
-    """Base class for V2 gRPC service clients."""
+    """Base class for NI gRPC service clients."""
 
     __slots__ = (
         "_lock",
@@ -62,7 +62,16 @@ class GrpcServiceClientBase(Generic[TStub]):
         grpc_channel: grpc.Channel | None = None,
         grpc_channel_pool: GrpcChannelPool | None = None,
     ) -> None:
-        """Initialize the gRPC client connection configuration."""
+        """Initialize the gRPC client.
+
+        Args:
+            service_interface_name: The fully qualified name of the service interface.
+            service_class: The name of the service class.
+            stub_class: The gRPC stub class for the service.
+            discovery_client: An optional discovery client (recommended).
+            grpc_channel: An optional pin map gRPC channel.
+            grpc_channel_pool: An optional gRPC channel pool (recommended).
+        """
         self._lock = threading.Lock()
         self._owns_grpc_channel_pool = False
         self._discovery_client = discovery_client
@@ -73,28 +82,24 @@ class GrpcServiceClientBase(Generic[TStub]):
         self._stub_class = stub_class
 
     def __enter__(self) -> Self:
-        """Enter the client's context."""
+        """Enter the runtime context of the GrpcServiceClientBase."""
         return self
 
     def __exit__(
         self,
         exc_type: type[BaseException] | None,
-        exc_value: BaseException | None,
+        exc_val: BaseException | None,
         traceback: TracebackType | None,
     ) -> None:
-        """Close client-owned resources when leaving the context."""
+        """Exit the runtime context of the GrpcServiceClientBase."""
         self.close()
 
     def close(self) -> None:
-        """Close resources created by this client.
-
-        The client can be used again after this method returns. Do not call this
-        method while RPCs are in progress.
-        """
+        """Close the client and clean up resources that it owns."""
         with self._lock:
             self._stub = None
             self._discovery_client = None
-            if self._owns_grpc_channel_pool and self._grpc_channel_pool is not None:
+            if self._owns_grpc_channel_pool and self._grpc_channel_pool:
                 self._grpc_channel_pool.close()
             self._grpc_channel_pool = None
             self._owns_grpc_channel_pool = False

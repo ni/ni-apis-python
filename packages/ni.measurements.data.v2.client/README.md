@@ -15,7 +15,7 @@ NI created and supports this package.
 
 ## Operating System Support
 
-`ni.measurements.data.v2.client` supports Windows and POSIX operating systems.
+`ni.measurements.data.v2.client` supports Windows and Linux operating systems.
 
 ## Python Version Support
 
