@@ -18,7 +18,7 @@ NI created and supports this package.
 
 ## Python Version Support
 
-`ni.measurements.data.v1.proto` supports CPython 3.10+.
+`ni.measurements.data.v1.proto` supports CPython 3.11+.
 
 ## Installation
 

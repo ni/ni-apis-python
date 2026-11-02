@@ -28,8 +28,8 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest]  # Temporarily disabled: macos-latest
-        # Pin to 3.14.8 to workaround AB#4147280
-        python-version: ['3.10', 3.14.8]
+        # Pin to 3.15.0 to workaround AB#4147280
+        python-version: [3.11, 3.15.0]
     runs-on: ${{ matrix.os }}
     defaults:
       run:
