@@ -23,6 +23,7 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Programming Language :: Python :: Implementation :: CPython",
 ]
 dynamic = ["dependencies"]
@@ -48,7 +49,6 @@ types-protobuf = ">=4.21"
 ni-measurementlink-proto = {path = "../../packages/ni.measurementlink.proto", develop = true}
 numpy = [
   { version = ">=1.26", python = ">=3.11,<3.13" },
-  { version = ">=1.26", python = ">=3.12,<3.13" },
   { version = ">=2.1", python = "^3.13" },
 ]
 
@@ -122,4 +122,3 @@ exclude = ["**/*_pb2_grpc.py", "**/*_pb2_grpc.pyi", "**/*_pb2.py", "**/*_pb2.pyi
 [tool.pytest.ini_options]
 addopts = "--doctest-modules --doctest-plus --strict-markers"
 testpaths = ["tests"]
-
