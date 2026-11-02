@@ -6,7 +6,13 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -40,4 +46,4 @@ class AttributeValue(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["attribute", b"attribute", "bool_value", b"bool_value", "double_value", b"double_value", "integer_value", b"integer_value", "string_value", b"string_value"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["attribute", b"attribute"]) -> typing.Literal["bool_value", "integer_value", "double_value", "string_value"] | None: ...
 
-global___AttributeValue = AttributeValue
+Global___AttributeValue: typing_extensions.TypeAlias = AttributeValue

@@ -3009,4 +3009,4 @@ niswitch = ["niswitch"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "b1a0faeb0f9671bc9b3b4172cda721fcc2b92c945fad9e6387932451a81e3d85"
+content-hash = "694022dfd8907143a12230a80e333f2017795a5d3e04b1aacfd2949df9797ce0"

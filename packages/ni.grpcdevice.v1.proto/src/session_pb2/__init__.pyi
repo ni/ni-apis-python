@@ -34,7 +34,7 @@ class SessionInitializationBehavior(_SessionInitializationBehavior, metaclass=_S
 SESSION_INITIALIZATION_BEHAVIOR_UNSPECIFIED: SessionInitializationBehavior.ValueType  # 0
 SESSION_INITIALIZATION_BEHAVIOR_INITIALIZE_NEW: SessionInitializationBehavior.ValueType  # 1
 SESSION_INITIALIZATION_BEHAVIOR_ATTACH_TO_EXISTING: SessionInitializationBehavior.ValueType  # 2
-global___SessionInitializationBehavior = SessionInitializationBehavior
+Global___SessionInitializationBehavior: typing_extensions.TypeAlias = SessionInitializationBehavior
 
 @typing.final
 class Session(google.protobuf.message.Message):
@@ -54,7 +54,7 @@ class Session(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["id", b"id", "name", b"name", "session", b"session"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["session", b"session"]) -> typing.Literal["name", "id"] | None: ...
 
-global___Session = Session
+Global___Session: typing_extensions.TypeAlias = Session
 
 @typing.final
 class DeviceProperties(google.protobuf.message.Message):
@@ -81,7 +81,7 @@ class DeviceProperties(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["model", b"model", "name", b"name", "product_id", b"product_id", "serial_number", b"serial_number", "vendor", b"vendor"]) -> None: ...
 
-global___DeviceProperties = DeviceProperties
+Global___DeviceProperties: typing_extensions.TypeAlias = DeviceProperties
 
 @typing.final
 class EnumerateDevicesRequest(google.protobuf.message.Message):
@@ -91,7 +91,7 @@ class EnumerateDevicesRequest(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___EnumerateDevicesRequest = EnumerateDevicesRequest
+Global___EnumerateDevicesRequest: typing_extensions.TypeAlias = EnumerateDevicesRequest
 
 @typing.final
 class EnumerateDevicesResponse(google.protobuf.message.Message):
@@ -99,15 +99,15 @@ class EnumerateDevicesResponse(google.protobuf.message.Message):
 
     DEVICES_FIELD_NUMBER: builtins.int
     @property
-    def devices(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DeviceProperties]: ...
+    def devices(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeviceProperties]: ...
     def __init__(
         self,
         *,
-        devices: collections.abc.Iterable[global___DeviceProperties] | None = ...,
+        devices: collections.abc.Iterable[Global___DeviceProperties] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["devices", b"devices"]) -> None: ...
 
-global___EnumerateDevicesResponse = EnumerateDevicesResponse
+Global___EnumerateDevicesResponse: typing_extensions.TypeAlias = EnumerateDevicesResponse
 
 @typing.final
 class ReserveRequest(google.protobuf.message.Message):
@@ -127,7 +127,7 @@ class ReserveRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["client_id", b"client_id", "reservation_id", b"reservation_id"]) -> None: ...
 
-global___ReserveRequest = ReserveRequest
+Global___ReserveRequest: typing_extensions.TypeAlias = ReserveRequest
 
 @typing.final
 class ReserveResponse(google.protobuf.message.Message):
@@ -142,7 +142,7 @@ class ReserveResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["is_reserved", b"is_reserved"]) -> None: ...
 
-global___ReserveResponse = ReserveResponse
+Global___ReserveResponse: typing_extensions.TypeAlias = ReserveResponse
 
 @typing.final
 class IsReservedByClientRequest(google.protobuf.message.Message):
@@ -162,7 +162,7 @@ class IsReservedByClientRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["client_id", b"client_id", "reservation_id", b"reservation_id"]) -> None: ...
 
-global___IsReservedByClientRequest = IsReservedByClientRequest
+Global___IsReservedByClientRequest: typing_extensions.TypeAlias = IsReservedByClientRequest
 
 @typing.final
 class IsReservedByClientResponse(google.protobuf.message.Message):
@@ -177,7 +177,7 @@ class IsReservedByClientResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["is_reserved", b"is_reserved"]) -> None: ...
 
-global___IsReservedByClientResponse = IsReservedByClientResponse
+Global___IsReservedByClientResponse: typing_extensions.TypeAlias = IsReservedByClientResponse
 
 @typing.final
 class UnreserveRequest(google.protobuf.message.Message):
@@ -197,7 +197,7 @@ class UnreserveRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["client_id", b"client_id", "reservation_id", b"reservation_id"]) -> None: ...
 
-global___UnreserveRequest = UnreserveRequest
+Global___UnreserveRequest: typing_extensions.TypeAlias = UnreserveRequest
 
 @typing.final
 class UnreserveResponse(google.protobuf.message.Message):
@@ -212,7 +212,7 @@ class UnreserveResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["is_unreserved", b"is_unreserved"]) -> None: ...
 
-global___UnreserveResponse = UnreserveResponse
+Global___UnreserveResponse: typing_extensions.TypeAlias = UnreserveResponse
 
 @typing.final
 class ResetServerRequest(google.protobuf.message.Message):
@@ -222,7 +222,7 @@ class ResetServerRequest(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___ResetServerRequest = ResetServerRequest
+Global___ResetServerRequest: typing_extensions.TypeAlias = ResetServerRequest
 
 @typing.final
 class ResetServerResponse(google.protobuf.message.Message):
@@ -237,4 +237,4 @@ class ResetServerResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["is_server_reset", b"is_server_reset"]) -> None: ...
 
-global___ResetServerResponse = ResetServerResponse
+Global___ResetServerResponse: typing_extensions.TypeAlias = ResetServerResponse

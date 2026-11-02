@@ -1339,7 +1339,7 @@ files = []
 develop = true
 
 [package.dependencies]
-grpcio = ">=1.49.0,<2.0"
+grpcio = ">=1.67.0,<2.0"
 ni-grpc-extensions = ">=1.1.0"
 ni-measurementlink-discovery-v1-proto = ">=1.2.0"
 pywin32 = {version = ">=303", markers = "sys_platform == \"win32\""}
@@ -1374,7 +1374,8 @@ files = []
 develop = true
 
 [package.dependencies]
-protobuf = ">=4.21"
+grpcio = ">=1.67.0,<2.0"
+protobuf = ">=5.27.2"
 
 [package.source]
 type = "directory"
@@ -2403,4 +2404,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "38c3710e9dfebe58e392e2d744d170d99a7bdaf67f515aa2a23d46c6237efe9e"
+content-hash = "1d2b0c6d44b37d4b7282033ec56b2e2a4399f055e9a404040271f5a61d77de6e"
