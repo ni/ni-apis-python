@@ -10,7 +10,13 @@ import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -30,7 +36,7 @@ class BoolArray(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["values", b"values"]) -> None: ...
 
-global___BoolArray = BoolArray
+Global___BoolArray: typing_extensions.TypeAlias = BoolArray
 
 @typing.final
 class BytesArray(google.protobuf.message.Message):
@@ -48,7 +54,7 @@ class BytesArray(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["values", b"values"]) -> None: ...
 
-global___BytesArray = BytesArray
+Global___BytesArray: typing_extensions.TypeAlias = BytesArray
 
 @typing.final
 class DoubleArray(google.protobuf.message.Message):
@@ -66,7 +72,7 @@ class DoubleArray(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["values", b"values"]) -> None: ...
 
-global___DoubleArray = DoubleArray
+Global___DoubleArray: typing_extensions.TypeAlias = DoubleArray
 
 @typing.final
 class SInt32Array(google.protobuf.message.Message):
@@ -84,7 +90,7 @@ class SInt32Array(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["values", b"values"]) -> None: ...
 
-global___SInt32Array = SInt32Array
+Global___SInt32Array: typing_extensions.TypeAlias = SInt32Array
 
 @typing.final
 class SInt64Array(google.protobuf.message.Message):
@@ -102,7 +108,7 @@ class SInt64Array(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["values", b"values"]) -> None: ...
 
-global___SInt64Array = SInt64Array
+Global___SInt64Array: typing_extensions.TypeAlias = SInt64Array
 
 @typing.final
 class StringArray(google.protobuf.message.Message):
@@ -120,7 +126,7 @@ class StringArray(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["values", b"values"]) -> None: ...
 
-global___StringArray = StringArray
+Global___StringArray: typing_extensions.TypeAlias = StringArray
 
 @typing.final
 class Double2DArray(google.protobuf.message.Message):
@@ -167,7 +173,7 @@ class Double2DArray(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["columns", b"columns", "data", b"data", "rows", b"rows"]) -> None: ...
 
-global___Double2DArray = Double2DArray
+Global___Double2DArray: typing_extensions.TypeAlias = Double2DArray
 
 @typing.final
 class String2DArray(google.protobuf.message.Message):
@@ -191,4 +197,4 @@ class String2DArray(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["columns", b"columns", "data", b"data", "rows", b"rows"]) -> None: ...
 
-global___String2DArray = String2DArray
+Global___String2DArray: typing_extensions.TypeAlias = String2DArray

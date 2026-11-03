@@ -50,10 +50,10 @@ jobs:
         with:
           fetch-depth: 0  # Need full history for git tag and release notes
       - name: Set up Python
-        uses: ni/python-actions/setup-python@dee640bba235ae28fdc6b7337c643bd06358ae90 # v0.9.0
+        uses: ni/python-actions/setup-python@36d77b6a215e106c33e30638943d5bc5233bef2f # v0.10.0
         id: setup-python
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@dee640bba235ae28fdc6b7337c643bd06358ae90 # v0.9.0
+        uses: ni/python-actions/setup-poetry@36d77b6a215e106c33e30638943d5bc5233bef2f # v0.10.0
       - name: Get release details
         id: get-release-details
         working-directory: packages/${{ inputs.package-name }}
