@@ -10,7 +10,13 @@ import grpc
 import grpc.aio
 import ni.measurements.data.v2.data_store_pb2
 import ni.measurements.data.v2.data_store_service_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 13):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 _T = typing.TypeVar("_T")
 
@@ -19,7 +25,505 @@ class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Ite
 class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
-class DataStoreServiceStub:
+GRPC_GENERATED_VERSION: str
+GRPC_VERSION: str
+_DataStoreServiceCreateTestResultType = typing_extensions.TypeVar(
+    '_DataStoreServiceCreateTestResultType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.CreateTestResultRequest,
+        ni.measurements.data.v2.data_store_pb2.TestResult,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.CreateTestResultRequest,
+        ni.measurements.data.v2.data_store_pb2.TestResult,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.CreateTestResultRequest,
+        ni.measurements.data.v2.data_store_pb2.TestResult,
+    ],
+)
+
+_DataStoreServiceBatchCreateTestResultsType = typing_extensions.TypeVar(
+    '_DataStoreServiceBatchCreateTestResultsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsResponse,
+    ],
+)
+
+_DataStoreServiceGetTestResultType = typing_extensions.TypeVar(
+    '_DataStoreServiceGetTestResultType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.GetTestResultRequest,
+        ni.measurements.data.v2.data_store_pb2.TestResult,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.GetTestResultRequest,
+        ni.measurements.data.v2.data_store_pb2.TestResult,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.GetTestResultRequest,
+        ni.measurements.data.v2.data_store_pb2.TestResult,
+    ],
+)
+
+_DataStoreServiceQueryTestResultsType = typing_extensions.TypeVar(
+    '_DataStoreServiceQueryTestResultsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsResponse,
+    ],
+)
+
+_DataStoreServiceUpdateTestResultType = typing_extensions.TypeVar(
+    '_DataStoreServiceUpdateTestResultType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.UpdateTestResultRequest,
+        ni.measurements.data.v2.data_store_pb2.TestResult,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.UpdateTestResultRequest,
+        ni.measurements.data.v2.data_store_pb2.TestResult,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.UpdateTestResultRequest,
+        ni.measurements.data.v2.data_store_pb2.TestResult,
+    ],
+)
+
+_DataStoreServiceBatchUpdateTestResultsType = typing_extensions.TypeVar(
+    '_DataStoreServiceBatchUpdateTestResultsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsResponse,
+    ],
+)
+
+_DataStoreServiceAddTestResultMetadataType = typing_extensions.TypeVar(
+    '_DataStoreServiceAddTestResultMetadataType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataResponse,
+    ],
+)
+
+_DataStoreServiceRemoveTestResultMetadataType = typing_extensions.TypeVar(
+    '_DataStoreServiceRemoveTestResultMetadataType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataResponse,
+    ],
+)
+
+_DataStoreServiceDeleteTestResultType = typing_extensions.TypeVar(
+    '_DataStoreServiceDeleteTestResultType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.DeleteTestResultRequest,
+        google.protobuf.empty_pb2.Empty,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.DeleteTestResultRequest,
+        google.protobuf.empty_pb2.Empty,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.DeleteTestResultRequest,
+        google.protobuf.empty_pb2.Empty,
+    ],
+)
+
+_DataStoreServiceBatchDeleteTestResultsType = typing_extensions.TypeVar(
+    '_DataStoreServiceBatchDeleteTestResultsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsResponse,
+    ],
+)
+
+_DataStoreServiceCreateStepType = typing_extensions.TypeVar(
+    '_DataStoreServiceCreateStepType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.CreateStepRequest,
+        ni.measurements.data.v2.data_store_pb2.Step,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.CreateStepRequest,
+        ni.measurements.data.v2.data_store_pb2.Step,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.CreateStepRequest,
+        ni.measurements.data.v2.data_store_pb2.Step,
+    ],
+)
+
+_DataStoreServiceBatchCreateStepsType = typing_extensions.TypeVar(
+    '_DataStoreServiceBatchCreateStepsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsResponse,
+    ],
+)
+
+_DataStoreServiceGetStepType = typing_extensions.TypeVar(
+    '_DataStoreServiceGetStepType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.GetStepRequest,
+        ni.measurements.data.v2.data_store_pb2.Step,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.GetStepRequest,
+        ni.measurements.data.v2.data_store_pb2.Step,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.GetStepRequest,
+        ni.measurements.data.v2.data_store_pb2.Step,
+    ],
+)
+
+_DataStoreServiceQueryStepsType = typing_extensions.TypeVar(
+    '_DataStoreServiceQueryStepsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.QueryStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.QueryStepsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.QueryStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.QueryStepsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.QueryStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.QueryStepsResponse,
+    ],
+)
+
+_DataStoreServiceUpdateStepType = typing_extensions.TypeVar(
+    '_DataStoreServiceUpdateStepType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.UpdateStepRequest,
+        ni.measurements.data.v2.data_store_pb2.Step,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.UpdateStepRequest,
+        ni.measurements.data.v2.data_store_pb2.Step,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.UpdateStepRequest,
+        ni.measurements.data.v2.data_store_pb2.Step,
+    ],
+)
+
+_DataStoreServiceBatchUpdateStepsType = typing_extensions.TypeVar(
+    '_DataStoreServiceBatchUpdateStepsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsResponse,
+    ],
+)
+
+_DataStoreServiceAddConditionType = typing_extensions.TypeVar(
+    '_DataStoreServiceAddConditionType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.AddConditionRequest,
+        ni.measurements.data.v2.data_store_service_pb2.AddConditionResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.AddConditionRequest,
+        ni.measurements.data.v2.data_store_service_pb2.AddConditionResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.AddConditionRequest,
+        ni.measurements.data.v2.data_store_service_pb2.AddConditionResponse,
+    ],
+)
+
+_DataStoreServiceRemoveConditionType = typing_extensions.TypeVar(
+    '_DataStoreServiceRemoveConditionType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.RemoveConditionRequest,
+        ni.measurements.data.v2.data_store_service_pb2.RemoveConditionResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.RemoveConditionRequest,
+        ni.measurements.data.v2.data_store_service_pb2.RemoveConditionResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.RemoveConditionRequest,
+        ni.measurements.data.v2.data_store_service_pb2.RemoveConditionResponse,
+    ],
+)
+
+_DataStoreServiceDeleteStepType = typing_extensions.TypeVar(
+    '_DataStoreServiceDeleteStepType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.DeleteStepRequest,
+        google.protobuf.empty_pb2.Empty,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.DeleteStepRequest,
+        google.protobuf.empty_pb2.Empty,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.DeleteStepRequest,
+        google.protobuf.empty_pb2.Empty,
+    ],
+)
+
+_DataStoreServiceBatchDeleteStepsType = typing_extensions.TypeVar(
+    '_DataStoreServiceBatchDeleteStepsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsResponse,
+    ],
+)
+
+_DataStoreServiceCreateMeasurementType = typing_extensions.TypeVar(
+    '_DataStoreServiceCreateMeasurementType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.CreateMeasurementRequest,
+        ni.measurements.data.v2.data_store_pb2.Measurement,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.CreateMeasurementRequest,
+        ni.measurements.data.v2.data_store_pb2.Measurement,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.CreateMeasurementRequest,
+        ni.measurements.data.v2.data_store_pb2.Measurement,
+    ],
+)
+
+_DataStoreServiceBatchCreateMeasurementsType = typing_extensions.TypeVar(
+    '_DataStoreServiceBatchCreateMeasurementsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsResponse,
+    ],
+)
+
+_DataStoreServiceGetMeasurementType = typing_extensions.TypeVar(
+    '_DataStoreServiceGetMeasurementType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.GetMeasurementRequest,
+        ni.measurements.data.v2.data_store_pb2.Measurement,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.GetMeasurementRequest,
+        ni.measurements.data.v2.data_store_pb2.Measurement,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.GetMeasurementRequest,
+        ni.measurements.data.v2.data_store_pb2.Measurement,
+    ],
+)
+
+_DataStoreServiceQueryMeasurementsType = typing_extensions.TypeVar(
+    '_DataStoreServiceQueryMeasurementsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsResponse,
+    ],
+)
+
+_DataStoreServiceUpdateMeasurementType = typing_extensions.TypeVar(
+    '_DataStoreServiceUpdateMeasurementType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.UpdateMeasurementRequest,
+        ni.measurements.data.v2.data_store_pb2.Measurement,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.UpdateMeasurementRequest,
+        ni.measurements.data.v2.data_store_pb2.Measurement,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.UpdateMeasurementRequest,
+        ni.measurements.data.v2.data_store_pb2.Measurement,
+    ],
+)
+
+_DataStoreServiceBatchUpdateMeasurementsType = typing_extensions.TypeVar(
+    '_DataStoreServiceBatchUpdateMeasurementsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsResponse,
+    ],
+)
+
+_DataStoreServiceAddMeasurementMetadataType = typing_extensions.TypeVar(
+    '_DataStoreServiceAddMeasurementMetadataType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataResponse,
+    ],
+)
+
+_DataStoreServiceRemoveMeasurementMetadataType = typing_extensions.TypeVar(
+    '_DataStoreServiceRemoveMeasurementMetadataType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataRequest,
+        ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataResponse,
+    ],
+)
+
+_DataStoreServiceDeleteMeasurementType = typing_extensions.TypeVar(
+    '_DataStoreServiceDeleteMeasurementType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.DeleteMeasurementRequest,
+        google.protobuf.empty_pb2.Empty,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.DeleteMeasurementRequest,
+        google.protobuf.empty_pb2.Empty,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.DeleteMeasurementRequest,
+        google.protobuf.empty_pb2.Empty,
+    ],
+)
+
+_DataStoreServiceBatchDeleteMeasurementsType = typing_extensions.TypeVar(
+    '_DataStoreServiceBatchDeleteMeasurementsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsRequest,
+        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsResponse,
+    ],
+)
+
+_DataStoreServiceReadMeasurementValuesType = typing_extensions.TypeVar(
+    '_DataStoreServiceReadMeasurementValuesType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesRequest,
+        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesRequest,
+        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesRequest,
+        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesResponse,
+    ],
+)
+
+class DataStoreServiceStub(typing.Generic[_DataStoreServiceCreateTestResultType, _DataStoreServiceBatchCreateTestResultsType, _DataStoreServiceGetTestResultType, _DataStoreServiceQueryTestResultsType, _DataStoreServiceUpdateTestResultType, _DataStoreServiceBatchUpdateTestResultsType, _DataStoreServiceAddTestResultMetadataType, _DataStoreServiceRemoveTestResultMetadataType, _DataStoreServiceDeleteTestResultType, _DataStoreServiceBatchDeleteTestResultsType, _DataStoreServiceCreateStepType, _DataStoreServiceBatchCreateStepsType, _DataStoreServiceGetStepType, _DataStoreServiceQueryStepsType, _DataStoreServiceUpdateStepType, _DataStoreServiceBatchUpdateStepsType, _DataStoreServiceAddConditionType, _DataStoreServiceRemoveConditionType, _DataStoreServiceDeleteStepType, _DataStoreServiceBatchDeleteStepsType, _DataStoreServiceCreateMeasurementType, _DataStoreServiceBatchCreateMeasurementsType, _DataStoreServiceGetMeasurementType, _DataStoreServiceQueryMeasurementsType, _DataStoreServiceUpdateMeasurementType, _DataStoreServiceBatchUpdateMeasurementsType, _DataStoreServiceAddMeasurementMetadataType, _DataStoreServiceRemoveMeasurementMetadataType, _DataStoreServiceDeleteMeasurementType, _DataStoreServiceBatchDeleteMeasurementsType, _DataStoreServiceReadMeasurementValuesType]):
     """Provides create, read, query, update, and delete operations for test results,
     step executions, and measurements. Conditions are managed through their
     owning Steps.
@@ -30,333 +534,453 @@ class DataStoreServiceStub:
     omit nested and expanded related resources.
     """
 
-    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
-    CreateTestResult: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.CreateTestResultRequest,
-        ni.measurements.data.v2.data_store_pb2.TestResult,
-    ]
+    @typing.overload
+    def __init__(self: DataStoreServiceStub[
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.CreateTestResultRequest,
+            ni.measurements.data.v2.data_store_pb2.TestResult,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.GetTestResultRequest,
+            ni.measurements.data.v2.data_store_pb2.TestResult,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.UpdateTestResultRequest,
+            ni.measurements.data.v2.data_store_pb2.TestResult,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataRequest,
+            ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataRequest,
+            ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.DeleteTestResultRequest,
+            google.protobuf.empty_pb2.Empty,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.CreateStepRequest,
+            ni.measurements.data.v2.data_store_pb2.Step,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.GetStepRequest,
+            ni.measurements.data.v2.data_store_pb2.Step,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.QueryStepsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.QueryStepsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.UpdateStepRequest,
+            ni.measurements.data.v2.data_store_pb2.Step,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.AddConditionRequest,
+            ni.measurements.data.v2.data_store_service_pb2.AddConditionResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.RemoveConditionRequest,
+            ni.measurements.data.v2.data_store_service_pb2.RemoveConditionResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.DeleteStepRequest,
+            google.protobuf.empty_pb2.Empty,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.CreateMeasurementRequest,
+            ni.measurements.data.v2.data_store_pb2.Measurement,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.GetMeasurementRequest,
+            ni.measurements.data.v2.data_store_pb2.Measurement,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.UpdateMeasurementRequest,
+            ni.measurements.data.v2.data_store_pb2.Measurement,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataRequest,
+            ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataRequest,
+            ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.DeleteMeasurementRequest,
+            google.protobuf.empty_pb2.Empty,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesRequest,
+            ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesResponse,
+        ],
+    ], channel: grpc.Channel) -> None: ...
+
+    @typing.overload
+    def __init__(self: DataStoreServiceStub[
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.CreateTestResultRequest,
+            ni.measurements.data.v2.data_store_pb2.TestResult,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.GetTestResultRequest,
+            ni.measurements.data.v2.data_store_pb2.TestResult,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.UpdateTestResultRequest,
+            ni.measurements.data.v2.data_store_pb2.TestResult,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataRequest,
+            ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataRequest,
+            ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.DeleteTestResultRequest,
+            google.protobuf.empty_pb2.Empty,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.CreateStepRequest,
+            ni.measurements.data.v2.data_store_pb2.Step,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.GetStepRequest,
+            ni.measurements.data.v2.data_store_pb2.Step,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.QueryStepsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.QueryStepsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.UpdateStepRequest,
+            ni.measurements.data.v2.data_store_pb2.Step,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.AddConditionRequest,
+            ni.measurements.data.v2.data_store_service_pb2.AddConditionResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.RemoveConditionRequest,
+            ni.measurements.data.v2.data_store_service_pb2.RemoveConditionResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.DeleteStepRequest,
+            google.protobuf.empty_pb2.Empty,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.CreateMeasurementRequest,
+            ni.measurements.data.v2.data_store_pb2.Measurement,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.GetMeasurementRequest,
+            ni.measurements.data.v2.data_store_pb2.Measurement,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.UpdateMeasurementRequest,
+            ni.measurements.data.v2.data_store_pb2.Measurement,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataRequest,
+            ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataRequest,
+            ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.DeleteMeasurementRequest,
+            google.protobuf.empty_pb2.Empty,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsRequest,
+            ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesRequest,
+            ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesResponse,
+        ],
+    ], channel: grpc.aio.Channel) -> None: ...
+
+    CreateTestResult: _DataStoreServiceCreateTestResultType
     """Test result operations"""
 
-    BatchCreateTestResults: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsResponse,
-    ]
+    BatchCreateTestResults: _DataStoreServiceBatchCreateTestResultsType
 
-    GetTestResult: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.GetTestResultRequest,
-        ni.measurements.data.v2.data_store_pb2.TestResult,
-    ]
+    GetTestResult: _DataStoreServiceGetTestResultType
 
-    QueryTestResults: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsResponse,
-    ]
+    QueryTestResults: _DataStoreServiceQueryTestResultsType
 
-    UpdateTestResult: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.UpdateTestResultRequest,
-        ni.measurements.data.v2.data_store_pb2.TestResult,
-    ]
+    UpdateTestResult: _DataStoreServiceUpdateTestResultType
 
-    BatchUpdateTestResults: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsResponse,
-    ]
+    BatchUpdateTestResults: _DataStoreServiceBatchUpdateTestResultsType
 
-    AddTestResultMetadata: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataRequest,
-        ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataResponse,
-    ]
+    AddTestResultMetadata: _DataStoreServiceAddTestResultMetadataType
 
-    RemoveTestResultMetadata: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataRequest,
-        ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataResponse,
-    ]
+    RemoveTestResultMetadata: _DataStoreServiceRemoveTestResultMetadataType
 
-    DeleteTestResult: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.DeleteTestResultRequest,
-        google.protobuf.empty_pb2.Empty,
-    ]
+    DeleteTestResult: _DataStoreServiceDeleteTestResultType
 
-    BatchDeleteTestResults: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsResponse,
-    ]
+    BatchDeleteTestResults: _DataStoreServiceBatchDeleteTestResultsType
 
-    CreateStep: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.CreateStepRequest,
-        ni.measurements.data.v2.data_store_pb2.Step,
-    ]
+    CreateStep: _DataStoreServiceCreateStepType
     """Step operations"""
 
-    BatchCreateSteps: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsResponse,
-    ]
+    BatchCreateSteps: _DataStoreServiceBatchCreateStepsType
 
-    GetStep: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.GetStepRequest,
-        ni.measurements.data.v2.data_store_pb2.Step,
-    ]
+    GetStep: _DataStoreServiceGetStepType
 
-    QuerySteps: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.QueryStepsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.QueryStepsResponse,
-    ]
+    QuerySteps: _DataStoreServiceQueryStepsType
 
-    UpdateStep: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.UpdateStepRequest,
-        ni.measurements.data.v2.data_store_pb2.Step,
-    ]
+    UpdateStep: _DataStoreServiceUpdateStepType
 
-    BatchUpdateSteps: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsResponse,
-    ]
+    BatchUpdateSteps: _DataStoreServiceBatchUpdateStepsType
 
-    AddCondition: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.AddConditionRequest,
-        ni.measurements.data.v2.data_store_service_pb2.AddConditionResponse,
-    ]
+    AddCondition: _DataStoreServiceAddConditionType
 
-    RemoveCondition: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.RemoveConditionRequest,
-        ni.measurements.data.v2.data_store_service_pb2.RemoveConditionResponse,
-    ]
+    RemoveCondition: _DataStoreServiceRemoveConditionType
 
-    DeleteStep: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.DeleteStepRequest,
-        google.protobuf.empty_pb2.Empty,
-    ]
+    DeleteStep: _DataStoreServiceDeleteStepType
 
-    BatchDeleteSteps: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsResponse,
-    ]
+    BatchDeleteSteps: _DataStoreServiceBatchDeleteStepsType
 
-    CreateMeasurement: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.CreateMeasurementRequest,
-        ni.measurements.data.v2.data_store_pb2.Measurement,
-    ]
+    CreateMeasurement: _DataStoreServiceCreateMeasurementType
     """Measurement operations"""
 
-    BatchCreateMeasurements: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsResponse,
-    ]
+    BatchCreateMeasurements: _DataStoreServiceBatchCreateMeasurementsType
 
-    GetMeasurement: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.GetMeasurementRequest,
-        ni.measurements.data.v2.data_store_pb2.Measurement,
-    ]
+    GetMeasurement: _DataStoreServiceGetMeasurementType
 
-    QueryMeasurements: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsResponse,
-    ]
+    QueryMeasurements: _DataStoreServiceQueryMeasurementsType
 
-    UpdateMeasurement: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.UpdateMeasurementRequest,
-        ni.measurements.data.v2.data_store_pb2.Measurement,
-    ]
+    UpdateMeasurement: _DataStoreServiceUpdateMeasurementType
 
-    BatchUpdateMeasurements: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsResponse,
-    ]
+    BatchUpdateMeasurements: _DataStoreServiceBatchUpdateMeasurementsType
 
-    AddMeasurementMetadata: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataRequest,
-        ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataResponse,
-    ]
+    AddMeasurementMetadata: _DataStoreServiceAddMeasurementMetadataType
 
-    RemoveMeasurementMetadata: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataRequest,
-        ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataResponse,
-    ]
+    RemoveMeasurementMetadata: _DataStoreServiceRemoveMeasurementMetadataType
 
-    DeleteMeasurement: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.DeleteMeasurementRequest,
-        google.protobuf.empty_pb2.Empty,
-    ]
+    DeleteMeasurement: _DataStoreServiceDeleteMeasurementType
 
-    BatchDeleteMeasurements: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsRequest,
-        ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsResponse,
-    ]
+    BatchDeleteMeasurements: _DataStoreServiceBatchDeleteMeasurementsType
 
-    ReadMeasurementValues: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesRequest,
-        ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesResponse,
-    ]
+    ReadMeasurementValues: _DataStoreServiceReadMeasurementValuesType
 
-class DataStoreServiceAsyncStub:
-    """Provides create, read, query, update, and delete operations for test results,
-    step executions, and measurements. Conditions are managed through their
-    owning Steps.
-
-    Requests are subject to service-defined limits. An operation that exceeds a
-    limit fails with RESOURCE_EXHAUSTED before changing data.
-    Create and update responses populate canonical relationship ID fields and
-    omit nested and expanded related resources.
-    """
-
-    CreateTestResult: grpc.aio.UnaryUnaryMultiCallable[
+DataStoreServiceAsyncStub: typing_extensions.TypeAlias = DataStoreServiceStub[
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.CreateTestResultRequest,
         ni.measurements.data.v2.data_store_pb2.TestResult,
-    ]
-    """Test result operations"""
-
-    BatchCreateTestResults: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsRequest,
         ni.measurements.data.v2.data_store_service_pb2.BatchCreateTestResultsResponse,
-    ]
-
-    GetTestResult: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.GetTestResultRequest,
         ni.measurements.data.v2.data_store_pb2.TestResult,
-    ]
-
-    QueryTestResults: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsRequest,
         ni.measurements.data.v2.data_store_service_pb2.QueryTestResultsResponse,
-    ]
-
-    UpdateTestResult: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.UpdateTestResultRequest,
         ni.measurements.data.v2.data_store_pb2.TestResult,
-    ]
-
-    BatchUpdateTestResults: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsRequest,
         ni.measurements.data.v2.data_store_service_pb2.BatchUpdateTestResultsResponse,
-    ]
-
-    AddTestResultMetadata: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataRequest,
         ni.measurements.data.v2.data_store_service_pb2.AddTestResultMetadataResponse,
-    ]
-
-    RemoveTestResultMetadata: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataRequest,
         ni.measurements.data.v2.data_store_service_pb2.RemoveTestResultMetadataResponse,
-    ]
-
-    DeleteTestResult: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.DeleteTestResultRequest,
         google.protobuf.empty_pb2.Empty,
-    ]
-
-    BatchDeleteTestResults: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsRequest,
         ni.measurements.data.v2.data_store_service_pb2.BatchDeleteTestResultsResponse,
-    ]
-
-    CreateStep: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.CreateStepRequest,
         ni.measurements.data.v2.data_store_pb2.Step,
-    ]
-    """Step operations"""
-
-    BatchCreateSteps: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsRequest,
         ni.measurements.data.v2.data_store_service_pb2.BatchCreateStepsResponse,
-    ]
-
-    GetStep: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.GetStepRequest,
         ni.measurements.data.v2.data_store_pb2.Step,
-    ]
-
-    QuerySteps: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.QueryStepsRequest,
         ni.measurements.data.v2.data_store_service_pb2.QueryStepsResponse,
-    ]
-
-    UpdateStep: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.UpdateStepRequest,
         ni.measurements.data.v2.data_store_pb2.Step,
-    ]
-
-    BatchUpdateSteps: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsRequest,
         ni.measurements.data.v2.data_store_service_pb2.BatchUpdateStepsResponse,
-    ]
-
-    AddCondition: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.AddConditionRequest,
         ni.measurements.data.v2.data_store_service_pb2.AddConditionResponse,
-    ]
-
-    RemoveCondition: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.RemoveConditionRequest,
         ni.measurements.data.v2.data_store_service_pb2.RemoveConditionResponse,
-    ]
-
-    DeleteStep: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.DeleteStepRequest,
         google.protobuf.empty_pb2.Empty,
-    ]
-
-    BatchDeleteSteps: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsRequest,
         ni.measurements.data.v2.data_store_service_pb2.BatchDeleteStepsResponse,
-    ]
-
-    CreateMeasurement: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.CreateMeasurementRequest,
         ni.measurements.data.v2.data_store_pb2.Measurement,
-    ]
-    """Measurement operations"""
-
-    BatchCreateMeasurements: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsRequest,
         ni.measurements.data.v2.data_store_service_pb2.BatchCreateMeasurementsResponse,
-    ]
-
-    GetMeasurement: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.GetMeasurementRequest,
         ni.measurements.data.v2.data_store_pb2.Measurement,
-    ]
-
-    QueryMeasurements: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsRequest,
         ni.measurements.data.v2.data_store_service_pb2.QueryMeasurementsResponse,
-    ]
-
-    UpdateMeasurement: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.UpdateMeasurementRequest,
         ni.measurements.data.v2.data_store_pb2.Measurement,
-    ]
-
-    BatchUpdateMeasurements: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsRequest,
         ni.measurements.data.v2.data_store_service_pb2.BatchUpdateMeasurementsResponse,
-    ]
-
-    AddMeasurementMetadata: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataRequest,
         ni.measurements.data.v2.data_store_service_pb2.AddMeasurementMetadataResponse,
-    ]
-
-    RemoveMeasurementMetadata: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataRequest,
         ni.measurements.data.v2.data_store_service_pb2.RemoveMeasurementMetadataResponse,
-    ]
-
-    DeleteMeasurement: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.DeleteMeasurementRequest,
         google.protobuf.empty_pb2.Empty,
-    ]
-
-    BatchDeleteMeasurements: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsRequest,
         ni.measurements.data.v2.data_store_service_pb2.BatchDeleteMeasurementsResponse,
-    ]
-
-    ReadMeasurementValues: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesRequest,
         ni.measurements.data.v2.data_store_service_pb2.ReadMeasurementValuesResponse,
-    ]
+    ],
+]
 
 class DataStoreServiceServicer(metaclass=abc.ABCMeta):
     """Provides create, read, query, update, and delete operations for test results,

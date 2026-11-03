@@ -10,7 +10,13 @@ import google.protobuf.field_mask_pb2
 import google.protobuf.internal.containers
 import google.protobuf.message
 import ni.measurements.data.v2.data_store_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -33,7 +39,7 @@ class CreateTestResultRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_result", b"test_result"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_result", b"test_result"]) -> None: ...
 
-global___CreateTestResultRequest = CreateTestResultRequest
+Global___CreateTestResultRequest: typing_extensions.TypeAlias = CreateTestResultRequest
 
 @typing.final
 class BatchCreateTestResultsRequest(google.protobuf.message.Message):
@@ -41,17 +47,17 @@ class BatchCreateTestResultsRequest(google.protobuf.message.Message):
 
     REQUESTS_FIELD_NUMBER: builtins.int
     @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CreateTestResultRequest]:
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___CreateTestResultRequest]:
         """Required. Non-empty and subject to service limits. The batch is atomic."""
 
     def __init__(
         self,
         *,
-        requests: collections.abc.Iterable[global___CreateTestResultRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___CreateTestResultRequest] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-global___BatchCreateTestResultsRequest = BatchCreateTestResultsRequest
+Global___BatchCreateTestResultsRequest: typing_extensions.TypeAlias = BatchCreateTestResultsRequest
 
 @typing.final
 class BatchCreateTestResultsResponse(google.protobuf.message.Message):
@@ -69,7 +75,7 @@ class BatchCreateTestResultsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_results", b"test_results"]) -> None: ...
 
-global___BatchCreateTestResultsResponse = BatchCreateTestResultsResponse
+Global___BatchCreateTestResultsResponse: typing_extensions.TypeAlias = BatchCreateTestResultsResponse
 
 @typing.final
 class GetTestResultRequest(google.protobuf.message.Message):
@@ -92,7 +98,7 @@ class GetTestResultRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["read_mask", b"read_mask", "test_result_id", b"test_result_id"]) -> None: ...
 
-global___GetTestResultRequest = GetTestResultRequest
+Global___GetTestResultRequest: typing_extensions.TypeAlias = GetTestResultRequest
 
 @typing.final
 class QueryTestResultsRequest(google.protobuf.message.Message):
@@ -120,7 +126,7 @@ class QueryTestResultsRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "read_mask", b"read_mask"]) -> None: ...
 
-global___QueryTestResultsRequest = QueryTestResultsRequest
+Global___QueryTestResultsRequest: typing_extensions.TypeAlias = QueryTestResultsRequest
 
 @typing.final
 class QueryTestResultsResponse(google.protobuf.message.Message):
@@ -144,7 +150,7 @@ class QueryTestResultsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["next_link", b"next_link", "test_results", b"test_results"]) -> None: ...
 
-global___QueryTestResultsResponse = QueryTestResultsResponse
+Global___QueryTestResultsResponse: typing_extensions.TypeAlias = QueryTestResultsResponse
 
 @typing.final
 class UpdateTestResultRequest(google.protobuf.message.Message):
@@ -172,7 +178,7 @@ class UpdateTestResultRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_result", b"test_result", "update_mask", b"update_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_result", b"test_result", "update_mask", b"update_mask"]) -> None: ...
 
-global___UpdateTestResultRequest = UpdateTestResultRequest
+Global___UpdateTestResultRequest: typing_extensions.TypeAlias = UpdateTestResultRequest
 
 @typing.final
 class BatchUpdateTestResultsRequest(google.protobuf.message.Message):
@@ -181,7 +187,7 @@ class BatchUpdateTestResultsRequest(google.protobuf.message.Message):
     REQUESTS_FIELD_NUMBER: builtins.int
     UPDATE_MASK_FIELD_NUMBER: builtins.int
     @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___UpdateTestResultRequest]:
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___UpdateTestResultRequest]:
         """Required. Non-empty and subject to service limits. Duplicate targets are
         invalid, and the batch is atomic.
         """
@@ -196,13 +202,13 @@ class BatchUpdateTestResultsRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        requests: collections.abc.Iterable[global___UpdateTestResultRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___UpdateTestResultRequest] | None = ...,
         update_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["update_mask", b"update_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["requests", b"requests", "update_mask", b"update_mask"]) -> None: ...
 
-global___BatchUpdateTestResultsRequest = BatchUpdateTestResultsRequest
+Global___BatchUpdateTestResultsRequest: typing_extensions.TypeAlias = BatchUpdateTestResultsRequest
 
 @typing.final
 class BatchUpdateTestResultsResponse(google.protobuf.message.Message):
@@ -220,7 +226,7 @@ class BatchUpdateTestResultsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["test_results", b"test_results"]) -> None: ...
 
-global___BatchUpdateTestResultsResponse = BatchUpdateTestResultsResponse
+Global___BatchUpdateTestResultsResponse: typing_extensions.TypeAlias = BatchUpdateTestResultsResponse
 
 @typing.final
 class AddTestResultMetadataRequest(google.protobuf.message.Message):
@@ -248,7 +254,7 @@ class AddTestResultMetadataRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["hardware_item_ids", b"hardware_item_ids", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids", "test_result_id", b"test_result_id"]) -> None: ...
 
-global___AddTestResultMetadataRequest = AddTestResultMetadataRequest
+Global___AddTestResultMetadataRequest: typing_extensions.TypeAlias = AddTestResultMetadataRequest
 
 @typing.final
 class AddTestResultMetadataResponse(google.protobuf.message.Message):
@@ -265,7 +271,7 @@ class AddTestResultMetadataResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_result", b"test_result"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_result", b"test_result"]) -> None: ...
 
-global___AddTestResultMetadataResponse = AddTestResultMetadataResponse
+Global___AddTestResultMetadataResponse: typing_extensions.TypeAlias = AddTestResultMetadataResponse
 
 @typing.final
 class RemoveTestResultMetadataRequest(google.protobuf.message.Message):
@@ -293,7 +299,7 @@ class RemoveTestResultMetadataRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["hardware_item_ids", b"hardware_item_ids", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids", "test_result_id", b"test_result_id"]) -> None: ...
 
-global___RemoveTestResultMetadataRequest = RemoveTestResultMetadataRequest
+Global___RemoveTestResultMetadataRequest: typing_extensions.TypeAlias = RemoveTestResultMetadataRequest
 
 @typing.final
 class RemoveTestResultMetadataResponse(google.protobuf.message.Message):
@@ -310,7 +316,7 @@ class RemoveTestResultMetadataResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["test_result", b"test_result"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["test_result", b"test_result"]) -> None: ...
 
-global___RemoveTestResultMetadataResponse = RemoveTestResultMetadataResponse
+Global___RemoveTestResultMetadataResponse: typing_extensions.TypeAlias = RemoveTestResultMetadataResponse
 
 @typing.final
 class DeleteTestResultRequest(google.protobuf.message.Message):
@@ -333,7 +339,7 @@ class DeleteTestResultRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["force", b"force", "test_result_id", b"test_result_id"]) -> None: ...
 
-global___DeleteTestResultRequest = DeleteTestResultRequest
+Global___DeleteTestResultRequest: typing_extensions.TypeAlias = DeleteTestResultRequest
 
 @typing.final
 class BatchDeleteTestResultsRequest(google.protobuf.message.Message):
@@ -341,7 +347,7 @@ class BatchDeleteTestResultsRequest(google.protobuf.message.Message):
 
     REQUESTS_FIELD_NUMBER: builtins.int
     @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DeleteTestResultRequest]:
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteTestResultRequest]:
         """Required. Non-empty and subject to service limits. Each request has its
         own force value. Duplicate targets are invalid, and the batch is atomic.
         """
@@ -349,11 +355,11 @@ class BatchDeleteTestResultsRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        requests: collections.abc.Iterable[global___DeleteTestResultRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___DeleteTestResultRequest] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-global___BatchDeleteTestResultsRequest = BatchDeleteTestResultsRequest
+Global___BatchDeleteTestResultsRequest: typing_extensions.TypeAlias = BatchDeleteTestResultsRequest
 
 @typing.final
 class BatchDeleteTestResultsResponse(google.protobuf.message.Message):
@@ -363,7 +369,7 @@ class BatchDeleteTestResultsResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___BatchDeleteTestResultsResponse = BatchDeleteTestResultsResponse
+Global___BatchDeleteTestResultsResponse: typing_extensions.TypeAlias = BatchDeleteTestResultsResponse
 
 @typing.final
 class CreateStepRequest(google.protobuf.message.Message):
@@ -386,7 +392,7 @@ class CreateStepRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["step", b"step"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["step", b"step"]) -> None: ...
 
-global___CreateStepRequest = CreateStepRequest
+Global___CreateStepRequest: typing_extensions.TypeAlias = CreateStepRequest
 
 @typing.final
 class BatchCreateStepsRequest(google.protobuf.message.Message):
@@ -394,7 +400,7 @@ class BatchCreateStepsRequest(google.protobuf.message.Message):
 
     REQUESTS_FIELD_NUMBER: builtins.int
     @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CreateStepRequest]:
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___CreateStepRequest]:
         """Required. Non-empty and subject to service limits. Each request identifies
         its own TestResult and may target a different TestResult. The batch is atomic.
         """
@@ -402,11 +408,11 @@ class BatchCreateStepsRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        requests: collections.abc.Iterable[global___CreateStepRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___CreateStepRequest] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-global___BatchCreateStepsRequest = BatchCreateStepsRequest
+Global___BatchCreateStepsRequest: typing_extensions.TypeAlias = BatchCreateStepsRequest
 
 @typing.final
 class BatchCreateStepsResponse(google.protobuf.message.Message):
@@ -424,7 +430,7 @@ class BatchCreateStepsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["steps", b"steps"]) -> None: ...
 
-global___BatchCreateStepsResponse = BatchCreateStepsResponse
+Global___BatchCreateStepsResponse: typing_extensions.TypeAlias = BatchCreateStepsResponse
 
 @typing.final
 class GetStepRequest(google.protobuf.message.Message):
@@ -447,7 +453,7 @@ class GetStepRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["read_mask", b"read_mask", "step_id", b"step_id"]) -> None: ...
 
-global___GetStepRequest = GetStepRequest
+Global___GetStepRequest: typing_extensions.TypeAlias = GetStepRequest
 
 @typing.final
 class QueryStepsRequest(google.protobuf.message.Message):
@@ -475,7 +481,7 @@ class QueryStepsRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "read_mask", b"read_mask"]) -> None: ...
 
-global___QueryStepsRequest = QueryStepsRequest
+Global___QueryStepsRequest: typing_extensions.TypeAlias = QueryStepsRequest
 
 @typing.final
 class QueryStepsResponse(google.protobuf.message.Message):
@@ -499,7 +505,7 @@ class QueryStepsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["next_link", b"next_link", "steps", b"steps"]) -> None: ...
 
-global___QueryStepsResponse = QueryStepsResponse
+Global___QueryStepsResponse: typing_extensions.TypeAlias = QueryStepsResponse
 
 @typing.final
 class UpdateStepRequest(google.protobuf.message.Message):
@@ -527,7 +533,7 @@ class UpdateStepRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["step", b"step", "update_mask", b"update_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["step", b"step", "update_mask", b"update_mask"]) -> None: ...
 
-global___UpdateStepRequest = UpdateStepRequest
+Global___UpdateStepRequest: typing_extensions.TypeAlias = UpdateStepRequest
 
 @typing.final
 class BatchUpdateStepsRequest(google.protobuf.message.Message):
@@ -536,7 +542,7 @@ class BatchUpdateStepsRequest(google.protobuf.message.Message):
     REQUESTS_FIELD_NUMBER: builtins.int
     UPDATE_MASK_FIELD_NUMBER: builtins.int
     @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___UpdateStepRequest]:
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___UpdateStepRequest]:
         """Required. Non-empty and subject to service limits. Duplicate targets are
         invalid, and the batch is atomic.
         """
@@ -551,13 +557,13 @@ class BatchUpdateStepsRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        requests: collections.abc.Iterable[global___UpdateStepRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___UpdateStepRequest] | None = ...,
         update_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["update_mask", b"update_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["requests", b"requests", "update_mask", b"update_mask"]) -> None: ...
 
-global___BatchUpdateStepsRequest = BatchUpdateStepsRequest
+Global___BatchUpdateStepsRequest: typing_extensions.TypeAlias = BatchUpdateStepsRequest
 
 @typing.final
 class BatchUpdateStepsResponse(google.protobuf.message.Message):
@@ -575,7 +581,7 @@ class BatchUpdateStepsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["steps", b"steps"]) -> None: ...
 
-global___BatchUpdateStepsResponse = BatchUpdateStepsResponse
+Global___BatchUpdateStepsResponse: typing_extensions.TypeAlias = BatchUpdateStepsResponse
 
 @typing.final
 class AddConditionRequest(google.protobuf.message.Message):
@@ -600,7 +606,7 @@ class AddConditionRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["condition", b"condition"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["condition", b"condition", "step_id", b"step_id"]) -> None: ...
 
-global___AddConditionRequest = AddConditionRequest
+Global___AddConditionRequest: typing_extensions.TypeAlias = AddConditionRequest
 
 @typing.final
 class AddConditionResponse(google.protobuf.message.Message):
@@ -617,7 +623,7 @@ class AddConditionResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["step", b"step"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["step", b"step"]) -> None: ...
 
-global___AddConditionResponse = AddConditionResponse
+Global___AddConditionResponse: typing_extensions.TypeAlias = AddConditionResponse
 
 @typing.final
 class RemoveConditionRequest(google.protobuf.message.Message):
@@ -637,7 +643,7 @@ class RemoveConditionRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["condition_name", b"condition_name", "step_id", b"step_id"]) -> None: ...
 
-global___RemoveConditionRequest = RemoveConditionRequest
+Global___RemoveConditionRequest: typing_extensions.TypeAlias = RemoveConditionRequest
 
 @typing.final
 class RemoveConditionResponse(google.protobuf.message.Message):
@@ -654,7 +660,7 @@ class RemoveConditionResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["step", b"step"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["step", b"step"]) -> None: ...
 
-global___RemoveConditionResponse = RemoveConditionResponse
+Global___RemoveConditionResponse: typing_extensions.TypeAlias = RemoveConditionResponse
 
 @typing.final
 class DeleteStepRequest(google.protobuf.message.Message):
@@ -678,7 +684,7 @@ class DeleteStepRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["force", b"force", "step_id", b"step_id"]) -> None: ...
 
-global___DeleteStepRequest = DeleteStepRequest
+Global___DeleteStepRequest: typing_extensions.TypeAlias = DeleteStepRequest
 
 @typing.final
 class BatchDeleteStepsRequest(google.protobuf.message.Message):
@@ -686,7 +692,7 @@ class BatchDeleteStepsRequest(google.protobuf.message.Message):
 
     REQUESTS_FIELD_NUMBER: builtins.int
     @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DeleteStepRequest]:
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteStepRequest]:
         """Required. Non-empty and subject to service limits. Each request has its
         own force value. Duplicate and ancestor/descendant target pairs are
         invalid, and the batch is atomic.
@@ -695,11 +701,11 @@ class BatchDeleteStepsRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        requests: collections.abc.Iterable[global___DeleteStepRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___DeleteStepRequest] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-global___BatchDeleteStepsRequest = BatchDeleteStepsRequest
+Global___BatchDeleteStepsRequest: typing_extensions.TypeAlias = BatchDeleteStepsRequest
 
 @typing.final
 class BatchDeleteStepsResponse(google.protobuf.message.Message):
@@ -709,7 +715,7 @@ class BatchDeleteStepsResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___BatchDeleteStepsResponse = BatchDeleteStepsResponse
+Global___BatchDeleteStepsResponse: typing_extensions.TypeAlias = BatchDeleteStepsResponse
 
 @typing.final
 class CreateMeasurementRequest(google.protobuf.message.Message):
@@ -730,7 +736,7 @@ class CreateMeasurementRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["measurement", b"measurement"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["measurement", b"measurement"]) -> None: ...
 
-global___CreateMeasurementRequest = CreateMeasurementRequest
+Global___CreateMeasurementRequest: typing_extensions.TypeAlias = CreateMeasurementRequest
 
 @typing.final
 class BatchCreateMeasurementsRequest(google.protobuf.message.Message):
@@ -738,7 +744,7 @@ class BatchCreateMeasurementsRequest(google.protobuf.message.Message):
 
     REQUESTS_FIELD_NUMBER: builtins.int
     @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___CreateMeasurementRequest]:
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___CreateMeasurementRequest]:
         """Required. Non-empty and subject to service limits. Requests may target
         different Steps and TestResults, and the batch is atomic.
         """
@@ -746,11 +752,11 @@ class BatchCreateMeasurementsRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        requests: collections.abc.Iterable[global___CreateMeasurementRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___CreateMeasurementRequest] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-global___BatchCreateMeasurementsRequest = BatchCreateMeasurementsRequest
+Global___BatchCreateMeasurementsRequest: typing_extensions.TypeAlias = BatchCreateMeasurementsRequest
 
 @typing.final
 class BatchCreateMeasurementsResponse(google.protobuf.message.Message):
@@ -768,7 +774,7 @@ class BatchCreateMeasurementsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["measurements", b"measurements"]) -> None: ...
 
-global___BatchCreateMeasurementsResponse = BatchCreateMeasurementsResponse
+Global___BatchCreateMeasurementsResponse: typing_extensions.TypeAlias = BatchCreateMeasurementsResponse
 
 @typing.final
 class GetMeasurementRequest(google.protobuf.message.Message):
@@ -791,7 +797,7 @@ class GetMeasurementRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id", "read_mask", b"read_mask"]) -> None: ...
 
-global___GetMeasurementRequest = GetMeasurementRequest
+Global___GetMeasurementRequest: typing_extensions.TypeAlias = GetMeasurementRequest
 
 @typing.final
 class QueryMeasurementsRequest(google.protobuf.message.Message):
@@ -819,7 +825,7 @@ class QueryMeasurementsRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "read_mask", b"read_mask"]) -> None: ...
 
-global___QueryMeasurementsRequest = QueryMeasurementsRequest
+Global___QueryMeasurementsRequest: typing_extensions.TypeAlias = QueryMeasurementsRequest
 
 @typing.final
 class QueryMeasurementsResponse(google.protobuf.message.Message):
@@ -839,7 +845,7 @@ class QueryMeasurementsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["measurements", b"measurements", "next_link", b"next_link"]) -> None: ...
 
-global___QueryMeasurementsResponse = QueryMeasurementsResponse
+Global___QueryMeasurementsResponse: typing_extensions.TypeAlias = QueryMeasurementsResponse
 
 @typing.final
 class UpdateMeasurementRequest(google.protobuf.message.Message):
@@ -868,7 +874,7 @@ class UpdateMeasurementRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["measurement", b"measurement", "update_mask", b"update_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["measurement", b"measurement", "update_mask", b"update_mask"]) -> None: ...
 
-global___UpdateMeasurementRequest = UpdateMeasurementRequest
+Global___UpdateMeasurementRequest: typing_extensions.TypeAlias = UpdateMeasurementRequest
 
 @typing.final
 class BatchUpdateMeasurementsRequest(google.protobuf.message.Message):
@@ -877,7 +883,7 @@ class BatchUpdateMeasurementsRequest(google.protobuf.message.Message):
     REQUESTS_FIELD_NUMBER: builtins.int
     UPDATE_MASK_FIELD_NUMBER: builtins.int
     @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___UpdateMeasurementRequest]:
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___UpdateMeasurementRequest]:
         """Required. Non-empty and subject to service limits. Duplicate targets are
         invalid, and the batch is atomic.
         """
@@ -892,13 +898,13 @@ class BatchUpdateMeasurementsRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        requests: collections.abc.Iterable[global___UpdateMeasurementRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___UpdateMeasurementRequest] | None = ...,
         update_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["update_mask", b"update_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["requests", b"requests", "update_mask", b"update_mask"]) -> None: ...
 
-global___BatchUpdateMeasurementsRequest = BatchUpdateMeasurementsRequest
+Global___BatchUpdateMeasurementsRequest: typing_extensions.TypeAlias = BatchUpdateMeasurementsRequest
 
 @typing.final
 class BatchUpdateMeasurementsResponse(google.protobuf.message.Message):
@@ -916,7 +922,7 @@ class BatchUpdateMeasurementsResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["measurements", b"measurements"]) -> None: ...
 
-global___BatchUpdateMeasurementsResponse = BatchUpdateMeasurementsResponse
+Global___BatchUpdateMeasurementsResponse: typing_extensions.TypeAlias = BatchUpdateMeasurementsResponse
 
 @typing.final
 class AddMeasurementMetadataRequest(google.protobuf.message.Message):
@@ -946,7 +952,7 @@ class AddMeasurementMetadataRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["hardware_item_ids", b"hardware_item_ids", "measurement_id", b"measurement_id", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids"]) -> None: ...
 
-global___AddMeasurementMetadataRequest = AddMeasurementMetadataRequest
+Global___AddMeasurementMetadataRequest: typing_extensions.TypeAlias = AddMeasurementMetadataRequest
 
 @typing.final
 class AddMeasurementMetadataResponse(google.protobuf.message.Message):
@@ -963,7 +969,7 @@ class AddMeasurementMetadataResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["measurement", b"measurement"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["measurement", b"measurement"]) -> None: ...
 
-global___AddMeasurementMetadataResponse = AddMeasurementMetadataResponse
+Global___AddMeasurementMetadataResponse: typing_extensions.TypeAlias = AddMeasurementMetadataResponse
 
 @typing.final
 class RemoveMeasurementMetadataRequest(google.protobuf.message.Message):
@@ -991,7 +997,7 @@ class RemoveMeasurementMetadataRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["hardware_item_ids", b"hardware_item_ids", "measurement_id", b"measurement_id", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids"]) -> None: ...
 
-global___RemoveMeasurementMetadataRequest = RemoveMeasurementMetadataRequest
+Global___RemoveMeasurementMetadataRequest: typing_extensions.TypeAlias = RemoveMeasurementMetadataRequest
 
 @typing.final
 class RemoveMeasurementMetadataResponse(google.protobuf.message.Message):
@@ -1008,7 +1014,7 @@ class RemoveMeasurementMetadataResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["measurement", b"measurement"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["measurement", b"measurement"]) -> None: ...
 
-global___RemoveMeasurementMetadataResponse = RemoveMeasurementMetadataResponse
+Global___RemoveMeasurementMetadataResponse: typing_extensions.TypeAlias = RemoveMeasurementMetadataResponse
 
 @typing.final
 class DeleteMeasurementRequest(google.protobuf.message.Message):
@@ -1027,7 +1033,7 @@ class DeleteMeasurementRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id"]) -> None: ...
 
-global___DeleteMeasurementRequest = DeleteMeasurementRequest
+Global___DeleteMeasurementRequest: typing_extensions.TypeAlias = DeleteMeasurementRequest
 
 @typing.final
 class BatchDeleteMeasurementsRequest(google.protobuf.message.Message):
@@ -1035,7 +1041,7 @@ class BatchDeleteMeasurementsRequest(google.protobuf.message.Message):
 
     REQUESTS_FIELD_NUMBER: builtins.int
     @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___DeleteMeasurementRequest]:
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteMeasurementRequest]:
         """Required. Non-empty and subject to service limits. Duplicate targets are
         invalid, and the batch is atomic.
         """
@@ -1043,11 +1049,11 @@ class BatchDeleteMeasurementsRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        requests: collections.abc.Iterable[global___DeleteMeasurementRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___DeleteMeasurementRequest] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-global___BatchDeleteMeasurementsRequest = BatchDeleteMeasurementsRequest
+Global___BatchDeleteMeasurementsRequest: typing_extensions.TypeAlias = BatchDeleteMeasurementsRequest
 
 @typing.final
 class BatchDeleteMeasurementsResponse(google.protobuf.message.Message):
@@ -1057,7 +1063,7 @@ class BatchDeleteMeasurementsResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___BatchDeleteMeasurementsResponse = BatchDeleteMeasurementsResponse
+Global___BatchDeleteMeasurementsResponse: typing_extensions.TypeAlias = BatchDeleteMeasurementsResponse
 
 @typing.final
 class ReadMeasurementValuesRequest(google.protobuf.message.Message):
@@ -1080,7 +1086,7 @@ class ReadMeasurementValuesRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id", "read_mask", b"read_mask"]) -> None: ...
 
-global___ReadMeasurementValuesRequest = ReadMeasurementValuesRequest
+Global___ReadMeasurementValuesRequest: typing_extensions.TypeAlias = ReadMeasurementValuesRequest
 
 @typing.final
 class ReadMeasurementValuesResponse(google.protobuf.message.Message):
@@ -1116,4 +1122,4 @@ class ReadMeasurementValuesResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["lower_limit", b"lower_limit", "upper_limit", b"upper_limit", "value", b"value"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["lower_limit", b"lower_limit", "upper_limit", b"upper_limit", "value", b"value"]) -> None: ...
 
-global___ReadMeasurementValuesResponse = ReadMeasurementValuesResponse
+Global___ReadMeasurementValuesResponse: typing_extensions.TypeAlias = ReadMeasurementValuesResponse

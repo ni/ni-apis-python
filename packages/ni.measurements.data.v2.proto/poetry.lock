@@ -1322,7 +1322,7 @@ files = []
 develop = true
 
 [package.dependencies]
-protobuf = ">=4.21"
+protobuf = ">=5.27.2"
 
 [package.source]
 type = "directory"
@@ -1342,7 +1342,7 @@ develop = true
 ni-datamonikers-v1-proto = ">=1.0.0"
 ni-measurements-metadata-v1-proto = ">=1.0.0"
 ni-protobuf-types = ">=1.3.0"
-protobuf = ">=4.21"
+protobuf = ">=5.27.2"
 
 [package.source]
 type = "directory"
@@ -1359,7 +1359,7 @@ files = []
 develop = true
 
 [package.dependencies]
-protobuf = ">=4.21"
+protobuf = ">=5.27.2"
 
 [package.source]
 type = "directory"
@@ -1377,7 +1377,7 @@ develop = true
 
 [package.dependencies]
 nitypes = ">=1.1.0"
-protobuf = ">=4.21"
+protobuf = ">=5.27.2"
 
 [package.source]
 type = "directory"
@@ -2613,4 +2613,4 @@ grpc = ["grpcio"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "22bd216f02e44c8a1d82293a4419cabb9a90cc973916253e60ce9bf785f15447"
+content-hash = "59486168a53cf46b03e13617860f88236df22dd6db3987c3e628daa3186d078d"

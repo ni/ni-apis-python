@@ -54,7 +54,7 @@ OUTCOME_TERMINATED: Outcome.ValueType  # 4
 OUTCOME_ERRORED: Outcome.ValueType  # 5
 OUTCOME_TIMED_OUT: Outcome.ValueType  # 6
 OUTCOME_USER_DEFINED: Outcome.ValueType  # 7
-global___Outcome = Outcome
+Global___Outcome: typing_extensions.TypeAlias = Outcome
 
 class _Status:
     ValueType = typing.NewType("ValueType", builtins.int)
@@ -78,7 +78,7 @@ STATUS_LOOPING: Status.ValueType  # 2
 STATUS_RUNNING: Status.ValueType  # 3
 STATUS_WAITING: Status.ValueType  # 4
 STATUS_DONE: Status.ValueType  # 5
-global___Status = Status
+Global___Status: typing_extensions.TypeAlias = Status
 
 @typing.final
 class ErrorInformation(google.protobuf.message.Message):
@@ -101,7 +101,7 @@ class ErrorInformation(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["error_code", b"error_code", "message", b"message", "source", b"source"]) -> None: ...
 
-global___ErrorInformation = ErrorInformation
+Global___ErrorInformation: typing_extensions.TypeAlias = ErrorInformation
 
 @typing.final
 class JsonValue(google.protobuf.message.Message):
@@ -152,7 +152,7 @@ class JsonValue(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "schema_id", b"schema_id", "value", b"value"]) -> None: ...
 
-global___JsonValue = JsonValue
+Global___JsonValue: typing_extensions.TypeAlias = JsonValue
 
 @typing.final
 class ConditionValue(google.protobuf.message.Message):
@@ -165,18 +165,18 @@ class ConditionValue(google.protobuf.message.Message):
     @property
     def scalar(self) -> ni.protobuf.types.scalar_pb2.Scalar: ...
     @property
-    def json_value(self) -> global___JsonValue: ...
+    def json_value(self) -> Global___JsonValue: ...
     def __init__(
         self,
         *,
         scalar: ni.protobuf.types.scalar_pb2.Scalar | None = ...,
-        json_value: global___JsonValue | None = ...,
+        json_value: Global___JsonValue | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["json_value", b"json_value", "scalar", b"scalar", "value", b"value"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["json_value", b"json_value", "scalar", b"scalar", "value", b"value"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["scalar", "json_value"] | None: ...
 
-global___ConditionValue = ConditionValue
+Global___ConditionValue: typing_extensions.TypeAlias = ConditionValue
 
 @typing.final
 class Condition(google.protobuf.message.Message):
@@ -201,7 +201,7 @@ class Condition(google.protobuf.message.Message):
     units: builtins.str
     """Optional. Immutable."""
     @property
-    def value(self) -> global___ConditionValue:
+    def value(self) -> Global___ConditionValue:
         """Required. Immutable."""
 
     def __init__(
@@ -209,14 +209,14 @@ class Condition(google.protobuf.message.Message):
         *,
         name: builtins.str = ...,
         condition_type: builtins.str = ...,
-        value: global___ConditionValue | None = ...,
+        value: Global___ConditionValue | None = ...,
         value_label: builtins.str = ...,
         units: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["condition_type", b"condition_type", "name", b"name", "units", b"units", "value", b"value", "value_label", b"value_label"]) -> None: ...
 
-global___Condition = Condition
+Global___Condition: typing_extensions.TypeAlias = Condition
 
 @typing.final
 class MeasurementValue(google.protobuf.message.Message):
@@ -265,7 +265,7 @@ class MeasurementValue(google.protobuf.message.Message):
     @property
     def float_spectrum(self) -> ni.protobuf.types.waveform_pb2.FloatSpectrum: ...
     @property
-    def json_value(self) -> global___JsonValue: ...
+    def json_value(self) -> Global___JsonValue: ...
     def __init__(
         self,
         *,
@@ -282,13 +282,13 @@ class MeasurementValue(google.protobuf.message.Message):
         float_analog_waveform: ni.protobuf.types.waveform_pb2.FloatAnalogWaveform | None = ...,
         float_complex_waveform: ni.protobuf.types.waveform_pb2.FloatComplexWaveform | None = ...,
         float_spectrum: ni.protobuf.types.waveform_pb2.FloatSpectrum | None = ...,
-        json_value: global___JsonValue | None = ...,
+        json_value: Global___JsonValue | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["data_moniker", b"data_moniker", "digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "json_value", b"json_value", "scalar", b"scalar", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["data_moniker", b"data_moniker", "digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "json_value", b"json_value", "scalar", b"scalar", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["data_moniker", "scalar", "vector", "double_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "i16_complex_waveform", "double_spectrum", "digital_waveform", "float_analog_waveform", "float_complex_waveform", "float_spectrum", "json_value"] | None: ...
 
-global___MeasurementValue = MeasurementValue
+Global___MeasurementValue: typing_extensions.TypeAlias = MeasurementValue
 
 @typing.final
 class Measurement(google.protobuf.message.Message):
@@ -348,7 +348,7 @@ class Measurement(google.protobuf.message.Message):
     """Optional. Immutable engineering units for the scalar or primary value."""
     notes: builtins.str
     """Optional."""
-    outcome: global___Outcome.ValueType
+    outcome: Global___Outcome.ValueType
     """Optional."""
     schema_id: builtins.str
     """Reserved for a future schema associated with the extension. Must be empty."""
@@ -361,15 +361,15 @@ class Measurement(google.protobuf.message.Message):
     stores this value as provenance and does not derive Outcome from it.
     """
     @property
-    def value(self) -> global___MeasurementValue:
+    def value(self) -> Global___MeasurementValue:
         """Required. Immutable."""
 
     @property
-    def upper_limit(self) -> global___MeasurementValue:
+    def upper_limit(self) -> Global___MeasurementValue:
         """Optional. Immutable."""
 
     @property
-    def lower_limit(self) -> global___MeasurementValue:
+    def lower_limit(self) -> Global___MeasurementValue:
         """Optional. Immutable."""
 
     @property
@@ -402,7 +402,7 @@ class Measurement(google.protobuf.message.Message):
         """Optional."""
 
     @property
-    def error_information(self) -> global___ErrorInformation:
+    def error_information(self) -> Global___ErrorInformation:
         """Optional."""
 
     @property
@@ -420,7 +420,7 @@ class Measurement(google.protobuf.message.Message):
         """
 
     @property
-    def conditions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Condition]:
+    def conditions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Condition]:
         """Output only. Conditions copied from the owning Step."""
 
     @property
@@ -460,22 +460,22 @@ class Measurement(google.protobuf.message.Message):
         step_id: builtins.str = ...,
         name: builtins.str = ...,
         value_type: builtins.str = ...,
-        value: global___MeasurementValue | None = ...,
+        value: Global___MeasurementValue | None = ...,
         units: builtins.str = ...,
-        upper_limit: global___MeasurementValue | None = ...,
-        lower_limit: global___MeasurementValue | None = ...,
+        upper_limit: Global___MeasurementValue | None = ...,
+        lower_limit: Global___MeasurementValue | None = ...,
         software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
         hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
         test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
         notes: builtins.str = ...,
         start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        outcome: global___Outcome.ValueType = ...,
-        error_information: global___ErrorInformation | None = ...,
+        outcome: Global___Outcome.ValueType = ...,
+        error_information: Global___ErrorInformation | None = ...,
         extension: google.protobuf.struct_pb2.Struct | None = ...,
         schema_id: builtins.str = ...,
         duration: ni.protobuf.types.precision_duration_pb2.PrecisionDuration | None = ...,
-        conditions: collections.abc.Iterable[global___Condition] | None = ...,
+        conditions: collections.abc.Iterable[Global___Condition] | None = ...,
         created_at: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         updated_at: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         created_by: builtins.str = ...,
@@ -488,7 +488,7 @@ class Measurement(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["created_at", b"created_at", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "lower_limit", b"lower_limit", "start_date_time", b"start_date_time", "updated_at", b"updated_at", "upper_limit", b"upper_limit", "value", b"value"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["comparison_type", b"comparison_type", "conditions", b"conditions", "created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "hardware_item_ids", b"hardware_item_ids", "hardware_items", b"hardware_items", "id", b"id", "lower_limit", b"lower_limit", "name", b"name", "notes", b"notes", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "software_items", b"software_items", "start_date_time", b"start_date_time", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "test_adapters", b"test_adapters", "test_result_id", b"test_result_id", "units", b"units", "updated_at", b"updated_at", "updated_by", b"updated_by", "upper_limit", b"upper_limit", "value", b"value", "value_type", b"value_type"]) -> None: ...
 
-global___Measurement = Measurement
+Global___Measurement: typing_extensions.TypeAlias = Measurement
 
 @typing.final
 class TestResult(google.protobuf.message.Message):
@@ -544,9 +544,9 @@ class TestResult(google.protobuf.message.Message):
     """Optional. Accepts an existing metadata identifier or alias."""
     name: builtins.str
     """Required. Immutable."""
-    outcome: global___Outcome.ValueType
+    outcome: Global___Outcome.ValueType
     """Optional."""
-    status: global___Status.ValueType
+    status: Global___Status.ValueType
     """Optional. A non-unspecified Outcome sets status to STATUS_DONE. A
     conflicting non-Done status is invalid.
     """
@@ -587,7 +587,7 @@ class TestResult(google.protobuf.message.Message):
         """Optional."""
 
     @property
-    def error_information(self) -> global___ErrorInformation:
+    def error_information(self) -> Global___ErrorInformation:
         """Optional."""
 
     @property
@@ -617,7 +617,7 @@ class TestResult(google.protobuf.message.Message):
         """Output only."""
 
     @property
-    def steps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Step]:
+    def steps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Step]:
         """Input only. Recursively nested Steps created with this TestResult. Use
         QuerySteps to read the hierarchy as a flat, paged collection.
         """
@@ -692,9 +692,9 @@ class TestResult(google.protobuf.message.Message):
         name: builtins.str = ...,
         start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        outcome: global___Outcome.ValueType = ...,
-        status: global___Status.ValueType = ...,
-        error_information: global___ErrorInformation | None = ...,
+        outcome: Global___Outcome.ValueType = ...,
+        status: Global___Status.ValueType = ...,
+        error_information: Global___ErrorInformation | None = ...,
         link: builtins.str = ...,
         extension: google.protobuf.struct_pb2.Struct | None = ...,
         schema_id: builtins.str = ...,
@@ -705,7 +705,7 @@ class TestResult(google.protobuf.message.Message):
         updated_at: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         created_by: builtins.str = ...,
         updated_by: builtins.str = ...,
-        steps: collections.abc.Iterable[global___Step] | None = ...,
+        steps: collections.abc.Iterable[Global___Step] | None = ...,
         uut_instance: ni.measurements.metadata.v1.metadata_store_pb2.UutInstance | None = ...,
         operator: ni.measurements.metadata.v1.metadata_store_pb2.Operator | None = ...,
         test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStation | None = ...,
@@ -718,7 +718,7 @@ class TestResult(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["created_at", b"created_at", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "operator", b"operator", "start_date_time", b"start_date_time", "test_description", b"test_description", "test_station", b"test_station", "updated_at", b"updated_at", "uut", b"uut", "uut_instance", b"uut_instance"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "hardware_item_ids", b"hardware_item_ids", "hardware_items", b"hardware_items", "id", b"id", "keywords", b"keywords", "link", b"link", "name", b"name", "operator", b"operator", "operator_id", b"operator_id", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "software_items", b"software_items", "start_date_time", b"start_date_time", "status", b"status", "steps", b"steps", "test_adapter_ids", b"test_adapter_ids", "test_adapters", b"test_adapters", "test_description", b"test_description", "test_description_id", b"test_description_id", "test_station", b"test_station", "test_station_id", b"test_station_id", "updated_at", b"updated_at", "updated_by", b"updated_by", "uut", b"uut", "uut_id", b"uut_id", "uut_instance", b"uut_instance", "uut_instance_id", b"uut_instance_id"]) -> None: ...
 
-global___TestResult = TestResult
+Global___TestResult: typing_extensions.TypeAlias = TestResult
 
 @typing.final
 class Step(google.protobuf.message.Message):
@@ -776,9 +776,9 @@ class Step(google.protobuf.message.Message):
     """Optional. Immutable free-form classification."""
     notes: builtins.str
     """Optional."""
-    outcome: global___Outcome.ValueType
+    outcome: Global___Outcome.ValueType
     """Optional."""
-    status: global___Status.ValueType
+    status: Global___Status.ValueType
     """Optional. A non-unspecified Outcome sets status to STATUS_DONE. A
     conflicting non-Done status is invalid.
     """
@@ -799,7 +799,7 @@ class Step(google.protobuf.message.Message):
         """Optional."""
 
     @property
-    def error_information(self) -> global___ErrorInformation:
+    def error_information(self) -> Global___ErrorInformation:
         """Optional."""
 
     @property
@@ -839,19 +839,19 @@ class Step(google.protobuf.message.Message):
         """Output only."""
 
     @property
-    def conditions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Condition]:
+    def conditions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Condition]:
         """Input on create and output when explicitly requested. Use AddCondition and
         RemoveCondition to modify existing conditions.
         """
 
     @property
-    def measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Measurement]:
+    def measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Measurement]:
         """Input on create and output when explicitly requested. Use Measurement
         methods to modify existing measurements.
         """
 
     @property
-    def children(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Step]:
+    def children(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Step]:
         """Input only. Recursively nested child Steps created with this Step. Use
         QuerySteps to read child Steps as a flat, paged collection.
         """
@@ -875,9 +875,9 @@ class Step(google.protobuf.message.Message):
         notes: builtins.str = ...,
         start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        outcome: global___Outcome.ValueType = ...,
-        status: global___Status.ValueType = ...,
-        error_information: global___ErrorInformation | None = ...,
+        outcome: Global___Outcome.ValueType = ...,
+        status: Global___Status.ValueType = ...,
+        error_information: Global___ErrorInformation | None = ...,
         link: builtins.str = ...,
         extension: google.protobuf.struct_pb2.Struct | None = ...,
         schema_id: builtins.str = ...,
@@ -889,12 +889,12 @@ class Step(google.protobuf.message.Message):
         updated_at: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         created_by: builtins.str = ...,
         updated_by: builtins.str = ...,
-        conditions: collections.abc.Iterable[global___Condition] | None = ...,
-        measurements: collections.abc.Iterable[global___Measurement] | None = ...,
-        children: collections.abc.Iterable[global___Step] | None = ...,
+        conditions: collections.abc.Iterable[Global___Condition] | None = ...,
+        measurements: collections.abc.Iterable[Global___Measurement] | None = ...,
+        children: collections.abc.Iterable[Global___Step] | None = ...,
         test: ni.measurements.metadata.v1.metadata_store_pb2.Test | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["created_at", b"created_at", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "start_date_time", b"start_date_time", "test", b"test", "updated_at", b"updated_at"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["children", b"children", "conditions", b"conditions", "created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "id", b"id", "keywords", b"keywords", "link", b"link", "measurements", b"measurements", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parent_step_id", b"parent_step_id", "path", b"path", "path_ids", b"path_ids", "schema_id", b"schema_id", "start_date_time", b"start_date_time", "status", b"status", "step_type", b"step_type", "test", b"test", "test_id", b"test_id", "test_result_id", b"test_result_id", "updated_at", b"updated_at", "updated_by", b"updated_by"]) -> None: ...
 
-global___Step = Step
+Global___Step: typing_extensions.TypeAlias = Step

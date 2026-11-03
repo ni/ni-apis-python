@@ -40,7 +40,7 @@ ni-measurements-data-v2-proto = { version = ">=1.0.0.dev0", allow-prereleases = 
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
-types-protobuf = ">=4.21"
+types-protobuf = ">=5.27.2"
 ni-grpc-extensions = { path = "../ni-grpc-extensions", develop = true }
 ni-measurementlink-discovery-v1-client = { path = "../ni.measurementlink.discovery.v1.client", develop = true }
 ni-measurements-data-v2-proto = { path = "../ni.measurements.data.v2.proto", develop = true }
