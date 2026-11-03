@@ -19,15 +19,15 @@ classifiers = [
   "Operating System :: Microsoft :: Windows",
   "Operating System :: POSIX",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Programming Language :: Python :: Implementation :: CPython",
 ]
 dynamic = ["dependencies"]
-requires-python = '>=3.10,<4.0'
+requires-python = '>=3.11,<4.0'
 
 [project.urls]
 repository = "https://github.com/ni/ni-apis-python"
@@ -48,8 +48,7 @@ types-protobuf = ">=5.27.2"
 # in the same Git repository.
 ni-measurementlink-proto = {path = "../../packages/ni.measurementlink.proto", develop = true}
 numpy = [
-  { version = ">=1.22", python = ">=3.10,<3.12" },
-  { version = ">=1.26", python = ">=3.12,<3.13" },
+  { version = ">=1.26", python = ">=3.11,<3.13" },
   { version = ">=2.1", python = "^3.13" },
 ]
 
@@ -72,7 +71,6 @@ optional = true
 [tool.poetry.group.docs.dependencies]
 # The latest Sphinx requires a recent Python version.
 Sphinx = [
-  { version = ">=8.1", python = ">=3.10,<3.11" },
   { version = ">=8.2", python = "^3.11" },
 ]
 sphinx-rtd-theme = ">=1.0.0"
