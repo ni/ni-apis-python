@@ -28,8 +28,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest]  # Temporarily disabled: macos-latest
-        # Pin to 3.14.8 to workaround AB#4147280
-        python-version: ['3.10', 3.14.8]
+        python-version: ['3.10', 3.14]
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -41,12 +40,12 @@ jobs:
         with:
           submodules: true
       - name: Set up Python
-        uses: ni/python-actions/setup-python@dee640bba235ae28fdc6b7337c643bd06358ae90 # v0.9.0
+        uses: ni/python-actions/setup-python@36d77b6a215e106c33e30638943d5bc5233bef2f # v0.10.0
         id: setup-python
         with:
           python-version: ${{ matrix.python-version }}
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@dee640bba235ae28fdc6b7337c643bd06358ae90 # v0.9.0
+        uses: ni/python-actions/setup-poetry@36d77b6a215e106c33e30638943d5bc5233bef2f # v0.10.0
       - name: Analyze Python Project
         uses: ni/python-actions/analyze-project@dee640bba235ae28fdc6b7337c643bd06358ae90 # v0.9.0
         with:
