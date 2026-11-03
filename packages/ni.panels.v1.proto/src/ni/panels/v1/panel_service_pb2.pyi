@@ -9,7 +9,13 @@ import google.protobuf.any_pb2
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -34,7 +40,7 @@ class StartPanelRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["panel_configuration", b"panel_configuration"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["panel_configuration", b"panel_configuration", "panel_id", b"panel_id"]) -> None: ...
 
-global___StartPanelRequest = StartPanelRequest
+Global___StartPanelRequest: typing_extensions.TypeAlias = StartPanelRequest
 
 @typing.final
 class StartPanelResponse(google.protobuf.message.Message):
@@ -50,7 +56,7 @@ class StartPanelResponse(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["panel_url", b"panel_url"]) -> None: ...
 
-global___StartPanelResponse = StartPanelResponse
+Global___StartPanelResponse: typing_extensions.TypeAlias = StartPanelResponse
 
 @typing.final
 class StopPanelRequest(google.protobuf.message.Message):
@@ -70,7 +76,7 @@ class StopPanelRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["panel_id", b"panel_id", "reset", b"reset"]) -> None: ...
 
-global___StopPanelRequest = StopPanelRequest
+Global___StopPanelRequest: typing_extensions.TypeAlias = StopPanelRequest
 
 @typing.final
 class StopPanelResponse(google.protobuf.message.Message):
@@ -80,7 +86,7 @@ class StopPanelResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___StopPanelResponse = StopPanelResponse
+Global___StopPanelResponse: typing_extensions.TypeAlias = StopPanelResponse
 
 @typing.final
 class EnumeratePanelsRequest(google.protobuf.message.Message):
@@ -90,7 +96,7 @@ class EnumeratePanelsRequest(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___EnumeratePanelsRequest = EnumeratePanelsRequest
+Global___EnumeratePanelsRequest: typing_extensions.TypeAlias = EnumeratePanelsRequest
 
 @typing.final
 class PanelInformation(google.protobuf.message.Message):
@@ -116,7 +122,7 @@ class PanelInformation(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["panel_id", b"panel_id", "panel_url", b"panel_url", "value_ids", b"value_ids"]) -> None: ...
 
-global___PanelInformation = PanelInformation
+Global___PanelInformation: typing_extensions.TypeAlias = PanelInformation
 
 @typing.final
 class EnumeratePanelsResponse(google.protobuf.message.Message):
@@ -124,17 +130,17 @@ class EnumeratePanelsResponse(google.protobuf.message.Message):
 
     PANELS_FIELD_NUMBER: builtins.int
     @property
-    def panels(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PanelInformation]:
+    def panels(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___PanelInformation]:
         """The list of panels available in the system"""
 
     def __init__(
         self,
         *,
-        panels: collections.abc.Iterable[global___PanelInformation] | None = ...,
+        panels: collections.abc.Iterable[Global___PanelInformation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["panels", b"panels"]) -> None: ...
 
-global___EnumeratePanelsResponse = EnumeratePanelsResponse
+Global___EnumeratePanelsResponse: typing_extensions.TypeAlias = EnumeratePanelsResponse
 
 @typing.final
 class GetValueRequest(google.protobuf.message.Message):
@@ -154,7 +160,7 @@ class GetValueRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["panel_id", b"panel_id", "value_id", b"value_id"]) -> None: ...
 
-global___GetValueRequest = GetValueRequest
+Global___GetValueRequest: typing_extensions.TypeAlias = GetValueRequest
 
 @typing.final
 class GetValueResponse(google.protobuf.message.Message):
@@ -175,7 +181,7 @@ class GetValueResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["value", b"value"]) -> None: ...
 
-global___GetValueResponse = GetValueResponse
+Global___GetValueResponse: typing_extensions.TypeAlias = GetValueResponse
 
 @typing.final
 class TryGetValueRequest(google.protobuf.message.Message):
@@ -195,7 +201,7 @@ class TryGetValueRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["panel_id", b"panel_id", "value_id", b"value_id"]) -> None: ...
 
-global___TryGetValueRequest = TryGetValueRequest
+Global___TryGetValueRequest: typing_extensions.TypeAlias = TryGetValueRequest
 
 @typing.final
 class TryGetValueResponse(google.protobuf.message.Message):
@@ -216,7 +222,7 @@ class TryGetValueResponse(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["value", b"value"]) -> None: ...
 
-global___TryGetValueResponse = TryGetValueResponse
+Global___TryGetValueResponse: typing_extensions.TypeAlias = TryGetValueResponse
 
 @typing.final
 class SetValueRequest(google.protobuf.message.Message):
@@ -249,7 +255,7 @@ class SetValueRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["notify", b"notify", "panel_id", b"panel_id", "value", b"value", "value_id", b"value_id"]) -> None: ...
 
-global___SetValueRequest = SetValueRequest
+Global___SetValueRequest: typing_extensions.TypeAlias = SetValueRequest
 
 @typing.final
 class SetValueResponse(google.protobuf.message.Message):
@@ -259,4 +265,4 @@ class SetValueResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___SetValueResponse = SetValueResponse
+Global___SetValueResponse: typing_extensions.TypeAlias = SetValueResponse

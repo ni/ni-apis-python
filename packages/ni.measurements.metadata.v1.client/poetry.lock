@@ -1339,7 +1339,7 @@ files = []
 develop = true
 
 [package.dependencies]
-grpcio = ">=1.49.0,<2.0"
+grpcio = ">=1.67.0,<2.0"
 ni-grpc-extensions = ">=1.1.0"
 ni-measurementlink-discovery-v1-proto = ">=1.2.0"
 pywin32 = {version = ">=303", markers = "sys_platform == \"win32\""}
@@ -1374,7 +1374,8 @@ files = []
 develop = true
 
 [package.dependencies]
-protobuf = ">=4.21"
+grpcio = ">=1.67.0,<2.0"
+protobuf = ">=5.27.2"
 
 [package.source]
 type = "directory"
@@ -1709,14 +1710,14 @@ test = ["numpy", "pytest-remotedata (>=0.3.2)", "setuptools (>=30.3.0)", "sphinx
 
 [[package]]
 name = "pytest-mock"
-version = "3.16.0"
+version = "3.17.0"
 description = "Thin-wrapper around the mock package for easier use with pytest"
 optional = false
 python-versions = ">=3.10"
 groups = ["test"]
 files = [
-    {file = "pytest_mock-3.16.0-py3-none-any.whl", hash = "sha256:007cfeb257801d88d9c0b2a7b5a15a15e73b71968dfd72e7bf8c4a2f8393aec8"},
-    {file = "pytest_mock-3.16.0.tar.gz", hash = "sha256:5a8395528b8f498205f3718f575228d0edaed7425fff638f87d1a6c3e0383636"},
+    {file = "pytest_mock-3.17.0-py3-none-any.whl", hash = "sha256:1b82aa4b37137248bd687055e109723debeb07b489de1565297dc9589c5f2d6b"},
+    {file = "pytest_mock-3.17.0.tar.gz", hash = "sha256:e36576e0985e01027e999891e7a966c67822d40c89ef1b4c8b6e22737e3590b4"},
 ]
 
 [package.dependencies]
@@ -2403,4 +2404,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "38c3710e9dfebe58e392e2d744d170d99a7bdaf67f515aa2a23d46c6237efe9e"
+content-hash = "1d2b0c6d44b37d4b7282033ec56b2e2a4399f055e9a404040271f5a61d77de6e"

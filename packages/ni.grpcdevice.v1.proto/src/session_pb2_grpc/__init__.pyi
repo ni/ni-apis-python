@@ -8,7 +8,13 @@ import collections.abc
 import grpc
 import grpc.aio
 import session_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 13):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 _T = typing.TypeVar("_T")
 
@@ -17,72 +23,176 @@ class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Ite
 class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
-class SessionUtilitiesStub:
-    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
-    EnumerateDevices: grpc.UnaryUnaryMultiCallable[
+GRPC_GENERATED_VERSION: str
+GRPC_VERSION: str
+_SessionUtilitiesEnumerateDevicesType = typing_extensions.TypeVar(
+    '_SessionUtilitiesEnumerateDevicesType',
+    grpc.UnaryUnaryMultiCallable[
         session_pb2.EnumerateDevicesRequest,
         session_pb2.EnumerateDevicesResponse,
-    ]
-    """Provides a list of devices or chassis connected to server under localhost"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        session_pb2.EnumerateDevicesRequest,
+        session_pb2.EnumerateDevicesResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        session_pb2.EnumerateDevicesRequest,
+        session_pb2.EnumerateDevicesResponse,
+    ],
+)
 
-    Reserve: grpc.UnaryUnaryMultiCallable[
+_SessionUtilitiesReserveType = typing_extensions.TypeVar(
+    '_SessionUtilitiesReserveType',
+    grpc.UnaryUnaryMultiCallable[
         session_pb2.ReserveRequest,
         session_pb2.ReserveResponse,
-    ]
-    """Reserve a set of client defined resources for exclusive use"""
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        session_pb2.ReserveRequest,
+        session_pb2.ReserveResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        session_pb2.ReserveRequest,
+        session_pb2.ReserveResponse,
+    ],
+)
 
-    IsReservedByClient: grpc.UnaryUnaryMultiCallable[
+_SessionUtilitiesIsReservedByClientType = typing_extensions.TypeVar(
+    '_SessionUtilitiesIsReservedByClientType',
+    grpc.UnaryUnaryMultiCallable[
         session_pb2.IsReservedByClientRequest,
         session_pb2.IsReservedByClientResponse,
-    ]
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        session_pb2.IsReservedByClientRequest,
+        session_pb2.IsReservedByClientResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        session_pb2.IsReservedByClientRequest,
+        session_pb2.IsReservedByClientResponse,
+    ],
+)
+
+_SessionUtilitiesUnreserveType = typing_extensions.TypeVar(
+    '_SessionUtilitiesUnreserveType',
+    grpc.UnaryUnaryMultiCallable[
+        session_pb2.UnreserveRequest,
+        session_pb2.UnreserveResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        session_pb2.UnreserveRequest,
+        session_pb2.UnreserveResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        session_pb2.UnreserveRequest,
+        session_pb2.UnreserveResponse,
+    ],
+)
+
+_SessionUtilitiesResetServerType = typing_extensions.TypeVar(
+    '_SessionUtilitiesResetServerType',
+    grpc.UnaryUnaryMultiCallable[
+        session_pb2.ResetServerRequest,
+        session_pb2.ResetServerResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        session_pb2.ResetServerRequest,
+        session_pb2.ResetServerResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        session_pb2.ResetServerRequest,
+        session_pb2.ResetServerResponse,
+    ],
+)
+
+class SessionUtilitiesStub(typing.Generic[_SessionUtilitiesEnumerateDevicesType, _SessionUtilitiesReserveType, _SessionUtilitiesIsReservedByClientType, _SessionUtilitiesUnreserveType, _SessionUtilitiesResetServerType]):
+    @typing.overload
+    def __init__(self: SessionUtilitiesStub[
+        grpc.UnaryUnaryMultiCallable[
+            session_pb2.EnumerateDevicesRequest,
+            session_pb2.EnumerateDevicesResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            session_pb2.ReserveRequest,
+            session_pb2.ReserveResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            session_pb2.IsReservedByClientRequest,
+            session_pb2.IsReservedByClientResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            session_pb2.UnreserveRequest,
+            session_pb2.UnreserveResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            session_pb2.ResetServerRequest,
+            session_pb2.ResetServerResponse,
+        ],
+    ], channel: grpc.Channel) -> None: ...
+
+    @typing.overload
+    def __init__(self: SessionUtilitiesStub[
+        grpc.aio.UnaryUnaryMultiCallable[
+            session_pb2.EnumerateDevicesRequest,
+            session_pb2.EnumerateDevicesResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            session_pb2.ReserveRequest,
+            session_pb2.ReserveResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            session_pb2.IsReservedByClientRequest,
+            session_pb2.IsReservedByClientResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            session_pb2.UnreserveRequest,
+            session_pb2.UnreserveResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            session_pb2.ResetServerRequest,
+            session_pb2.ResetServerResponse,
+        ],
+    ], channel: grpc.aio.Channel) -> None: ...
+
+    EnumerateDevices: _SessionUtilitiesEnumerateDevicesType
+    """Provides a list of devices or chassis connected to server under localhost"""
+
+    Reserve: _SessionUtilitiesReserveType
+    """Reserve a set of client defined resources for exclusive use"""
+
+    IsReservedByClient: _SessionUtilitiesIsReservedByClientType
     """Determines if a set of client defined resources is currently reserved by a
     specific client
     """
 
-    Unreserve: grpc.UnaryUnaryMultiCallable[
-        session_pb2.UnreserveRequest,
-        session_pb2.UnreserveResponse,
-    ]
+    Unreserve: _SessionUtilitiesUnreserveType
     """Unreserves a previously reserved resource"""
 
-    ResetServer: grpc.UnaryUnaryMultiCallable[
-        session_pb2.ResetServerRequest,
-        session_pb2.ResetServerResponse,
-    ]
+    ResetServer: _SessionUtilitiesResetServerType
     """Resets the server to a default state with no open sessions"""
 
-class SessionUtilitiesAsyncStub:
-    EnumerateDevices: grpc.aio.UnaryUnaryMultiCallable[
+SessionUtilitiesAsyncStub: typing_extensions.TypeAlias = SessionUtilitiesStub[
+    grpc.aio.UnaryUnaryMultiCallable[
         session_pb2.EnumerateDevicesRequest,
         session_pb2.EnumerateDevicesResponse,
-    ]
-    """Provides a list of devices or chassis connected to server under localhost"""
-
-    Reserve: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         session_pb2.ReserveRequest,
         session_pb2.ReserveResponse,
-    ]
-    """Reserve a set of client defined resources for exclusive use"""
-
-    IsReservedByClient: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         session_pb2.IsReservedByClientRequest,
         session_pb2.IsReservedByClientResponse,
-    ]
-    """Determines if a set of client defined resources is currently reserved by a
-    specific client
-    """
-
-    Unreserve: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         session_pb2.UnreserveRequest,
         session_pb2.UnreserveResponse,
-    ]
-    """Unreserves a previously reserved resource"""
-
-    ResetServer: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         session_pb2.ResetServerRequest,
         session_pb2.ResetServerResponse,
-    ]
-    """Resets the server to a default state with no open sessions"""
+    ],
+]
 
 class SessionUtilitiesServicer(metaclass=abc.ABCMeta):
     @abc.abstractmethod

@@ -10,7 +10,13 @@ import google.protobuf.internal.containers
 import google.protobuf.message
 import ni.protobuf.types.array_pb2
 import ni.protobuf.types.attribute_value_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -73,4 +79,4 @@ class Vector(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "bool_array", b"bool_array", "double_array", b"double_array", "sint32_array", b"sint32_array", "string_array", b"string_array", "value", b"value"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["double_array", "sint32_array", "bool_array", "string_array"] | None: ...
 
-global___Vector = Vector
+Global___Vector: typing_extensions.TypeAlias = Vector
