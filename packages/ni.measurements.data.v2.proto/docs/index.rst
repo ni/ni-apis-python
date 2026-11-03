@@ -1,6 +1,6 @@
-#############################################
-Protobuf Types for NI Data Store V2 gRPC APIs
-#############################################
+##########################################
+Protobuf Types for NI Data Store gRPC APIs
+##########################################
 
 .. include:: intro.inc
 

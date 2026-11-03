@@ -2,6 +2,11 @@ ni.measurements.data.v2
 =======================
 
 .. py:module:: ni.measurements.data.v2
+.. autoapi-nested-parse::
+
+   Package for ni.measurements.data.v2
+
+
 
 Subpackages
 -----------

@@ -142,7 +142,7 @@
     "proto-subpath": "ni/measurements/data/v2",
     "proto-include-path": "third_party/ni-apis",
     "output-format": "subpackage",
-    "install-extras": null
+    "install-extras": "grpc"
   },
   "ni.measurements.metadata.v1.client": {
     "package-basepath": "packages",
