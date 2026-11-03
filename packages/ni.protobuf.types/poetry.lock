@@ -1235,21 +1235,21 @@ toml = ">=0.10.1"
 
 [[package]]
 name = "nitypes"
-version = "1.1.0"
+version = "1.2.0.dev0"
 description = "Data types for NI Python APIs"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = "<4.0,>=3.11"
 groups = ["main"]
 files = [
-    {file = "nitypes-1.1.0-py3-none-any.whl", hash = "sha256:b43ac7027e1cceeca7ceffa58f31ffadd03feeb1788ca5cb8f9d105e73893b14"},
-    {file = "nitypes-1.1.0.tar.gz", hash = "sha256:f273b5131ef0d5b848c37a0a63452626caf5c2938f7744c324f7991b76fa0b60"},
+    {file = "nitypes-1.2.0.dev0-py3-none-any.whl", hash = "sha256:cea60356b4a3bac857a1449131575f9c05de90a927d74272efdf2eefadbe090f"},
+    {file = "nitypes-1.2.0.dev0.tar.gz", hash = "sha256:b8db4802ee8b02a96b4c6f5079b19deb508ac2a03050666d1d37f506afa65ae0"},
 ]
 
 [package.dependencies]
 hightime = ">=0.2.2"
 numpy = [
+    {version = ">=1.23.2", markers = "python_version >= \"3.11\" and python_version < \"3.13\""},
     {version = ">=2.1", markers = "python_version >= \"3.13\" and python_version < \"4.0\""},
-    {version = ">=1.22", markers = "python_version >= \"3.9\" and python_version < \"3.13\""},
 ]
 typing-extensions = ">=4.13.2"
 
@@ -2232,4 +2232,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "e04be6bc91b0259722ae3685dc124b878669d27561c56323ac824381deade965"
+content-hash = "9e66d5a08fa72dd34e346e6344c26bb9c8f29c5936adfdd5fea1aca105be41b4"
