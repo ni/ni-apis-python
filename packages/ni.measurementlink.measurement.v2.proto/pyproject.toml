@@ -39,7 +39,7 @@ requires-poetry = '>=2.1,<3.0'
 
 [tool.poetry.dependencies]
 protobuf = ">=5.27.2"
-ni-measurementlink-proto = ">=1.0.0"
+ni-measurementlink-proto = { version = ">=1.0.0", allow-prereleases=true }
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
