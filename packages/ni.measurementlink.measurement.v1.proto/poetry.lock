@@ -1202,7 +1202,7 @@ files = [
 
 [[package]]
 name = "ni-measurementlink-proto"
-version = "1.1.1.dev0"
+version = "1.2.0.dev1"
 description = "Protobuf data types for NI gRPC APIs"
 optional = false
 python-versions = ">=3.11,<4.0"
@@ -2242,4 +2242,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "5face8be81202e664d41019c8b9a22c8ba61aad32a8a61c2f9f075e265d79b0a"
+content-hash = "044faaea9c37eea2c2f51ec76bcf82dd77c80c4174f217e81c30a056a6cad100"
