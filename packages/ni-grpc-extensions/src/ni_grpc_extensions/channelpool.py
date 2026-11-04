@@ -7,7 +7,7 @@ import re
 import sys
 from threading import Lock
 from types import TracebackType
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING, Callable, Literal, TypeVar
 from urllib.parse import urlparse
 
 import grpc
@@ -21,13 +21,18 @@ if TYPE_CHECKING:
         from typing_extensions import Self
 
 
-class GrpcChannelPool:
+TCallResult = TypeVar("TCallResult")
+
+
+class GrpcChannelPool(grpc.UnaryUnaryClientInterceptor):
     """Class that manages :any:`grpc.Channel` lifetimes."""
 
     def __init__(self) -> None:
         """Initialize the :class:`GrpcChannelPool` object."""
         self._lock: Lock = Lock()
         self._channel_cache: dict[str, grpc.Channel] = {}
+        self._active_calls = 0
+        self._channels_pending_close: list[grpc.Channel] = []
 
     def __enter__(self: Self) -> Self:
         """Enter the runtime context of the GrpcChannelPool."""
@@ -68,11 +73,65 @@ class GrpcChannelPool:
         return channel
 
     def close(self) -> None:
-        """Close channels opened by get_channel()."""
+        """Close channels opened by get_channel() after active RPCs finish."""
         with self._lock:
-            for channel in self._channel_cache.values():
-                channel.close()
+            channels = list(self._channel_cache.values())
             self._channel_cache.clear()
+            if self._active_calls:
+                self._channels_pending_close.extend(channels)
+                channels = []
+
+        for channel in channels:
+            channel.close()
+
+    def intercept_unary_unary(
+        self,
+        continuation: Callable[..., TCallResult],
+        client_call_details: grpc.ClientCallDetails,
+        request: object,
+    ) -> TCallResult:
+        """Keep channels open until an intercepted unary RPC finishes."""
+        with self._lock:
+            self._active_calls += 1
+
+        finish_lock = Lock()
+        call_finished = False
+
+        def finish_call() -> None:
+            nonlocal call_finished
+            with finish_lock:
+                if call_finished:
+                    return
+                call_finished = True
+            self._finish_call()
+
+        try:
+            result = continuation(client_call_details, request)
+        except BaseException:
+            finish_call()
+            raise
+
+        if isinstance(result, grpc.Future):
+            try:
+                result.add_done_callback(lambda _: finish_call())
+            except BaseException:
+                finish_call()
+                raise
+        else:
+            finish_call()
+
+        return result
+
+    def _finish_call(self) -> None:
+        with self._lock:
+            self._active_calls -= 1
+            if self._active_calls:
+                return
+            channels = self._channels_pending_close
+            self._channels_pending_close = []
+
+        for channel in channels:
+            channel.close()
 
     def _create_channel(self, target: str) -> grpc.Channel:
         options = [
@@ -82,8 +141,10 @@ class GrpcChannelPool:
         if self._is_local(target):
             options.append(("grpc.enable_http_proxy", 0))
         channel = grpc.insecure_channel(target, options)
+        interceptors: list[grpc.UnaryUnaryClientInterceptor] = [self]
         if ClientLogger.is_enabled():
-            channel = grpc.intercept_channel(channel, ClientLogger())
+            interceptors.append(ClientLogger())
+        channel = grpc.intercept_channel(channel, *interceptors)
         return channel
 
     def _is_local(self, target: str) -> bool:
