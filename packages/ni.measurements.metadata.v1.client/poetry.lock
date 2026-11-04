@@ -1283,7 +1283,7 @@ traceloggingdynamic = {version = ">=1.0", markers = "sys_platform == \"win32\""}
 
 [[package]]
 name = "ni-measurementlink-discovery-v1-client"
-version = "1.2.1.dev0"
+version = "1.3.0.dev1"
 description = "gRPC Client for NI Discovery Service"
 optional = false
 python-versions = ">=3.11,<4.0"
@@ -1294,7 +1294,7 @@ develop = true
 [package.dependencies]
 grpcio = ">=1.67.0,<2.0"
 ni-grpc-extensions = ">=1.1.0"
-ni-measurementlink-discovery-v1-proto = ">=1.2.0"
+ni-measurementlink-discovery-v1-proto = ">=1.3.0.dev0"
 pywin32 = {version = ">=303", markers = "sys_platform == \"win32\""}
 
 [package.source]
@@ -1303,22 +1303,22 @@ url = "../ni.measurementlink.discovery.v1.client"
 
 [[package]]
 name = "ni-measurementlink-discovery-v1-proto"
-version = "1.2.0"
+version = "1.3.0.dev0"
 description = "Protobuf data types for NI discovery gRPC APIs"
 optional = false
-python-versions = "<4.0,>=3.10"
+python-versions = "<4.0,>=3.11"
 groups = ["main", "dev"]
 files = [
-    {file = "ni_measurementlink_discovery_v1_proto-1.2.0-py3-none-any.whl", hash = "sha256:06ceb4c94687b18469780739e0600f46695c73de816fef5fe1b4a3588fbe1e8f"},
-    {file = "ni_measurementlink_discovery_v1_proto-1.2.0.tar.gz", hash = "sha256:5b767048c60d5dea6d66b6c1e8c1bad7b2d7a8207e88d2d81444e96dfbaa8f36"},
+    {file = "ni_measurementlink_discovery_v1_proto-1.3.0.dev0-py3-none-any.whl", hash = "sha256:ec1bcc820f33f84aab26913ec674738204ba71515ba84b2ff0e1a2c5dd00e580"},
+    {file = "ni_measurementlink_discovery_v1_proto-1.3.0.dev0.tar.gz", hash = "sha256:9ee98ab3337df7ba0df8707c1660be3be884e2e2d9f18b46e2a4dcf76c054314"},
 ]
 
 [package.dependencies]
-protobuf = ">=4.21"
+protobuf = ">=5.27.2"
 
 [[package]]
 name = "ni-measurements-metadata-v1-proto"
-version = "1.0.1.dev0"
+version = "1.1.0.dev1"
 description = "Protobuf data types and service stub for NI metadata store gRPC APIs"
 optional = false
 python-versions = ">=3.11,<4.0"
@@ -2243,4 +2243,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.11,<4.0"
-content-hash = "f8493857b55e73b8b06e7fcc66ab682a920ff2ce6b8946ba96339b93fa1fc54f"
+content-hash = "c097d53095c242ac28c7180a5f6e049cef9f0f81d8359f2d262bfec380fe254b"
