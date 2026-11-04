@@ -6,7 +6,7 @@ description = "Python generator for NI gRPC APIs"
 authors = [{name = "NI", email = "opensource@ni.com"}]
 readme = "README.md"
 dynamic = ["dependencies"]
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.11,<4.0"
 
 [tool.poetry]
 packages = [{include = "grpc_generator", from = "src"}]
@@ -18,7 +18,7 @@ generate-stubs = "grpc_generator.generate_stubs:main"
 
 [tool.poetry.dependencies]
 click = [
-  { version = "^8.2.1", python = "^3.10" },
+  { version = "^8.2.1", python = "^3.11" },
 ]
 # When updating the grpcio-tools version, also update the minimum grpcio version
 # and regenerate gRPC stubs.
@@ -26,7 +26,8 @@ grpcio-tools = [
   # requires protobuf v5 or later
   { version = "1.67.0", python = ">=3.10,<3.14" },
   # requires protobuf v6 or later
-  { version = "1.75.1", python = "^3.14" },
+  { version = "1.75.1", python = ">=3.14,<3.15" },
+  { version = "1.84.0", python = "^3.15" },
 ]
 mypy-protobuf = [
   {version = ">=3.7,<4.0", python = ">=3.10,<3.14"},
