@@ -162,7 +162,13 @@ Each package lists its required generation options in this repository's [package
 
 # Add a New Package
 
+> **Note**: When possible, copy an existing package to use as a starting point, then make minimal
+> changes. When making changes, consider whether they are specific to your new package or whether
+> they should be applied to all of the packages in this repo. Avoiding unnecessary differences
+> between packages makes it easier to maintain this repo.
+
 To add a new package to this repo:
+
 1. Create a new folder under `packages` with the new package name.
 2. Create the front matter files for the package:
    - `pyproject.toml`
@@ -177,6 +183,9 @@ To add a new package to this repo:
 5. Generate the gRPC stubs using the `generate-stubs` script
 6. Create documentation control and content files under the `docs` folder
 7. Create tests for the package under the `tests` folder
+8. Add the package to the `inputs.package-name` choices in `publish.yml` and `draft_release.yml`
+9. If you copied an existing package, post a PR adding the copied package with no changes, then push
+   the changes in a separate update. This makes it easier to review your new package.
 
 ## packages.json
 
@@ -224,13 +233,33 @@ All values are strings or `null` when they do not apply to the package
 You can publish one of the packages in the `packages` folder by creating a GitHub release
 in the ni-apis-python repo. Here are the steps to follow to publish a package:
 
+1. From the main GitHub repo page, select "Actions".
+2. Select "Create draft release" from the left navigation list.
+3. Click "Run workflow".
+4. Select the package name from the list.
+5. Click the other "Run workflow".
+6. The `draft_release.yml` workflow will run, creating a draft release with prefilled release notes.
+   Wait for it to complete.
+7. From the main GitHub repo page, select "Releases" and find the new release.
+8. Review the release notes and edit them if necessary.
+9. Click "Publish release".
+10. Creating a release will start the publish workflow. You can track the progress of this workflow
+    in the "Actions" page of the GitHub repo.
+11. The workflow job that publishes a package to pypi requires code owner approval. This job will
+    automatically send code owners a notification email, then it will wait for them to log in and
+    approve the deployment.
+12. After receiving code owner approval, the publish workflow will resume.
+13. Once the publish workflow has finished, you should see your release on pypi.
+
+Old manual process:
+
 1. From the main GitHub repo page, select "Create a new release".
 2. On the "New Release" page, create a new tag using the "Select Tag" drop down. The tag must be in the
-format `<package-name>/<package-version>` where `package-name` and `package-version` match the
-values found in pyproject.toml. Example: `ni.protobuf.types/0.1.0.dev0`.
-> **NOTE:** Use a '.' to separate the dev version. E.g. ✅`2.1.0.dev1` and not 🚫`2.1.0-dev1`. This is the [Python normalized form](https://packaging.python.org/en/latest/specifications/version-specifiers/#development-release-separators) and matches what [`update-project-version`](https://github.com/ni/python-actions/blob/main/update-project-version/README.md#version-rule-and-use-dev-suffix) does.
-3. Enter a title in the "Release title" field. The title should contain the package name and
-version in the format `<package-name> <package-version>`. For example: `ni.protobuf.types 0.1.0.dev0`.
+   format `<package-name>/<package-version>` where `package-name` and `package-version` match the
+   values found in pyproject.toml. Example: `ni.protobuf.types/0.1.0.dev0`.
+   > **NOTE:** Use a '.' to separate the dev version. E.g. ✅`2.1.0.dev1` and not 🚫`2.1.0-dev1`. This is the [Python normalized form](https://packaging.python.org/en/latest/specifications/version-specifiers/#development-release-separators) and matches what [`update-project-version`](https://github.com/ni/python-actions/blob/main/update-project-version/README.md#version-rule-and-use-dev-suffix) does.
+3. Enter a title in the "Release title" field. The title should contain the package name and version
+   in the format `<package-name> <package-version>`. For example: `ni.protobuf.types 0.1.0.dev0`.
 4. Click "Generate release notes" and edit the release notes.
    - Delete entries for PRs that do not affect users, such as "chore(deps):" and "fix(deps):" PRs.
    - Consider grouping related entries.
@@ -238,7 +267,7 @@ version in the format `<package-name> <package-version>`. For example: `ni.proto
 5. If this is a pre-release release, check the "Set as a pre-release" checkbox.
 6. Click "Publish release".
 7. Creating a release will start the publish workflow. You can track the
-progress of this workflow in the "Actions" page of the GitHub repo.
+   progress of this workflow in the "Actions" page of the GitHub repo.
 8. The workflow job that publishes a package to pypi requires code owner approval. This job will automatically send code owners a notification email, then it will wait for them to log in and approve the deployment.
 9. After receiving code owner approval, the publish workflow will resume.
 10. Once the publish workflow has finished, you should see your release on pypi.
