@@ -23,16 +23,14 @@ runs:
       with:
         path: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}/.venv
         key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ env.pythonVersion }}-${{ hashFiles(format('{0}/{1}/poetry.lock', inputs.package-basepath, inputs.package-name)) }}
-    - name: Install ${{ inputs.package-name }} without extras
-      if: inputs.install-extras == ''
-      run: poetry install -v
+    - name: Install ${{ inputs.package-name }}
+      run: |
+        install_cmd="poetry install -v $INSTALL_ARGS"
+        eval $install_cmd
       working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
       shell: bash
-    - name: Install ${{ inputs.package-name }} with extras
-      if: inputs.install-extras != ''
-      run: poetry install -v --extras '${{ inputs.install-extras }}'
-      working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
-      shell: bash
+      env:
+        INSTALL_ARGS: "--extras '${{ inputs.install-extras }}'"
     - name: Run ${{ inputs.package-name }} unit tests and code coverage
       run: poetry run pytest ./tests/unit -v --cov=${{ inputs.package-name }} --junitxml=test_results/${{ inputs.package-name }}-${{ env.osVersion }}-py${{ env.pythonVersion }}.xml
       working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
