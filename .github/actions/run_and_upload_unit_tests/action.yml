@@ -8,6 +8,10 @@ inputs:
     description: 'Relative path to the parent directory of the package.'
     required: false
     default: 'packages'
+  install-extras:
+    description: 'Optional Poetry extras to install for this package.'
+    required: false
+    default: ''
 runs:
   using: "composite"
   steps:
@@ -20,9 +24,13 @@ runs:
         path: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}/.venv
         key: ${{ inputs.package-name }}-${{ runner.os }}-py${{ env.pythonVersion }}-${{ hashFiles(format('{0}/{1}/poetry.lock', inputs.package-basepath, inputs.package-name)) }}
     - name: Install ${{ inputs.package-name }}
-      run: poetry install -v
+      run: |
+        install_cmd="poetry install -v $INSTALL_ARGS"
+        eval $install_cmd
       working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
       shell: bash
+      env:
+        INSTALL_ARGS: "--extras '${{ inputs.install-extras }}'"
     - name: Run ${{ inputs.package-name }} unit tests and code coverage
       run: poetry run pytest ./tests/unit -v --cov=${{ inputs.package-name }} --junitxml=test_results/${{ inputs.package-name }}-${{ env.osVersion }}-py${{ env.pythonVersion }}.xml
       working-directory: ${{ github.workspace }}/${{ inputs.package-basepath }}/${{ inputs.package-name }}
