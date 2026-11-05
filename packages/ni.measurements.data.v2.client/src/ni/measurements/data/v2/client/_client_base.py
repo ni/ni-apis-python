@@ -105,8 +105,7 @@ class GrpcServiceClientBase(Generic[TStub]):
             self._owns_grpc_channel_pool = False
 
     def _get_stub(self) -> TStub:
-        stub = self._stub
-        if stub is None:
+        if self._stub is None:
             with self._lock:
                 if self._grpc_channel_pool is None:
                     _logger.debug("Creating unshared GrpcChannelPool.")
@@ -129,9 +128,8 @@ class GrpcServiceClientBase(Generic[TStub]):
                         deployment_target=target_url,
                         service_class=self._service_class,
                     )
+
                     channel = self._grpc_channel_pool.get_channel(service_location.insecure_address)
                     self._stub = self._stub_class(channel)
-                stub = self._stub
 
-        assert stub is not None
-        return stub
+        return self._stub

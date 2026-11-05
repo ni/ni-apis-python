@@ -2,9 +2,9 @@
 
 import datetime
 import pathlib
-import tomllib
 
 import autoapi.extension
+import toml
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
@@ -20,7 +20,7 @@ extensions = [
 
 root_path = pathlib.Path(__file__).parent.parent
 pyproj_file = root_path / "pyproject.toml"
-proj_config = tomllib.loads(pyproj_file.read_text())
+proj_config = toml.loads(pyproj_file.read_text())
 
 
 project = proj_config["project"]["name"]

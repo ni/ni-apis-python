@@ -348,6 +348,7 @@ def test_client_reuse_after_close_creates_new_resources(mocker: MockerFixture) -
     client.close()
 
 
+@pytest.mark.xfail(reason="https://github.com/ni/ni-apis-python/issues/433")
 def test_close_during_stub_initialization_does_not_return_none(mocker: MockerFixture) -> None:
     class CloseAfterLockRelease:
         def __init__(self) -> None:
