@@ -184,7 +184,8 @@ To add a new package to this repo:
 6. Create documentation control and content files under the `docs` folder
 7. Create tests for the package under the `tests` folder
 8. Add the package to the `inputs.package-name` choices in `publish.yml` and `draft_release.yml`
-9. If you copied an existing package, post a PR adding the copied package with no changes, then push
+9. Add the package to the top-level `README.md`
+10. If you copied an existing package, post a PR adding the copied package with no changes, then push
    the changes in a separate update. This makes it easier to review your new package.
 
 ## packages.json
