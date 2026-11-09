@@ -2188,14 +2188,14 @@ files = [
 
 [[package]]
 name = "types-grpcio"
-version = "1.84.0.20260928"
+version = "1.84.0.20261021"
 description = "Typing stubs for grpcio"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "types_grpcio-1.84.0.20260928-py3-none-any.whl", hash = "sha256:f0b54cbed12cf8fb0d8e6e7e699562da06515ca5a88014a209bf75780d6d1145"},
-    {file = "types_grpcio-1.84.0.20260928.tar.gz", hash = "sha256:eacb229deeb94e23a37c7ed0dd739dd2098ee63c7e432cc88340109ae3ad2fc1"},
+    {file = "types_grpcio-1.84.0.20261021-py3-none-any.whl", hash = "sha256:0cd5f897d7485c448c4819597cb05fd17afac4620c0feaee6f7c5d0ee96a60f1"},
+    {file = "types_grpcio-1.84.0.20261021.tar.gz", hash = "sha256:d06d24b31843adaf34656654a7536bd70b40425880bb6162219eb5b1a86220ae"},
 ]
 
 [[package]]
