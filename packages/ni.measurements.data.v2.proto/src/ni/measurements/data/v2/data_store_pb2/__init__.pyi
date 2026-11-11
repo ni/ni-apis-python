@@ -3,38 +3,38 @@
 isort:skip_file
 """
 
-import builtins
-import collections.abc
-import google.protobuf.descriptor
-import google.protobuf.internal.containers
-import google.protobuf.internal.enum_type_wrapper
-import google.protobuf.message
-import google.protobuf.struct_pb2
-import ni.datamonikers.v1.data_moniker_pb2
-import ni.measurements.metadata.v1.metadata_store_pb2
-import ni.protobuf.types.attribute_value_pb2
-import ni.protobuf.types.precision_duration_pb2
-import ni.protobuf.types.precision_timestamp_pb2
-import ni.protobuf.types.scalar_pb2
-import ni.protobuf.types.vector_pb2
-import ni.protobuf.types.waveform_pb2
-import ni.protobuf.types.xydata_pb2
+from collections import abc as _abc
+from google.protobuf import descriptor as _descriptor
+from google.protobuf import message as _message
+from google.protobuf import struct_pb2 as _struct_pb2
+from google.protobuf.internal import containers as _containers
+from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
+from ni.datamonikers.v1 import data_moniker_pb2 as _data_moniker_pb2
+from ni.measurements.metadata.v1 import metadata_store_pb2 as _metadata_store_pb2
+from ni.protobuf.types import attribute_value_pb2 as _attribute_value_pb2
+from ni.protobuf.types import precision_duration_pb2 as _precision_duration_pb2
+from ni.protobuf.types import precision_timestamp_pb2 as _precision_timestamp_pb2
+from ni.protobuf.types import scalar_pb2 as _scalar_pb2
+from ni.protobuf.types import vector_pb2 as _vector_pb2
+from ni.protobuf.types import waveform_pb2 as _waveform_pb2
+from ni.protobuf.types import xydata_pb2 as _xydata_pb2
+import builtins as _builtins
 import sys
-import typing
+import typing as _typing
 
-if sys.version_info >= (3, 10):
-    import typing as typing_extensions
+if sys.version_info >= (3, 11):
+    from typing import TypeAlias as _TypeAlias, Never as _Never
 else:
-    import typing_extensions
+    from typing_extensions import TypeAlias as _TypeAlias, Never as _Never
 
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: _descriptor.FileDescriptor
 
 class _Outcome:
-    ValueType = typing.NewType("ValueType", builtins.int)
-    V: typing_extensions.TypeAlias = ValueType
+    ValueType = _typing.NewType("ValueType", _builtins.int)
+    V: _TypeAlias = ValueType  # noqa: Y015
 
-class _OutcomeEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Outcome.ValueType], builtins.type):
-    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+class _OutcomeEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_Outcome.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
     OUTCOME_UNSPECIFIED: _Outcome.ValueType  # 0
     OUTCOME_PASSED: _Outcome.ValueType  # 1
     OUTCOME_FAILED: _Outcome.ValueType  # 2
@@ -54,14 +54,14 @@ OUTCOME_TERMINATED: Outcome.ValueType  # 4
 OUTCOME_ERRORED: Outcome.ValueType  # 5
 OUTCOME_TIMED_OUT: Outcome.ValueType  # 6
 OUTCOME_USER_DEFINED: Outcome.ValueType  # 7
-Global___Outcome: typing_extensions.TypeAlias = Outcome
+Global___Outcome: _TypeAlias = Outcome  # noqa: Y015
 
 class _Status:
-    ValueType = typing.NewType("ValueType", builtins.int)
-    V: typing_extensions.TypeAlias = ValueType
+    ValueType = _typing.NewType("ValueType", _builtins.int)
+    V: _TypeAlias = ValueType  # noqa: Y015
 
-class _StatusEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._EnumTypeWrapper[_Status.ValueType], builtins.type):
-    DESCRIPTOR: google.protobuf.descriptor.EnumDescriptor
+class _StatusEnumTypeWrapper(_enum_type_wrapper._EnumTypeWrapper[_Status.ValueType], _builtins.type):
+    DESCRIPTOR: _descriptor.EnumDescriptor
     STATUS_UNSPECIFIED: _Status.ValueType  # 0
     STATUS_NOT_STARTED: _Status.ValueType  # 1
     STATUS_LOOPING: _Status.ValueType  # 2
@@ -78,375 +78,396 @@ STATUS_LOOPING: Status.ValueType  # 2
 STATUS_RUNNING: Status.ValueType  # 3
 STATUS_WAITING: Status.ValueType  # 4
 STATUS_DONE: Status.ValueType  # 5
-Global___Status: typing_extensions.TypeAlias = Status
+Global___Status: _TypeAlias = Status  # noqa: Y015
 
-@typing.final
-class ErrorInformation(google.protobuf.message.Message):
+@_typing.final
+class ErrorInformation(_message.Message):
     """Represents error details reported by a resource producer."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ERROR_CODE_FIELD_NUMBER: builtins.int
-    MESSAGE_FIELD_NUMBER: builtins.int
-    SOURCE_FIELD_NUMBER: builtins.int
-    error_code: builtins.int
-    message: builtins.str
-    source: builtins.str
+    ERROR_CODE_FIELD_NUMBER: _builtins.int
+    MESSAGE_FIELD_NUMBER: _builtins.int
+    SOURCE_FIELD_NUMBER: _builtins.int
+    error_code: _builtins.int
+    message: _builtins.str
+    source: _builtins.str
     def __init__(
         self,
         *,
-        error_code: builtins.int = ...,
-        message: builtins.str = ...,
-        source: builtins.str = ...,
+        error_code: _builtins.int = ...,
+        message: _builtins.str = ...,
+        source: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["error_code", b"error_code", "message", b"message", "source", b"source"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["error_code", b"error_code", "message", b"message", "source", b"source"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___ErrorInformation: typing_extensions.TypeAlias = ErrorInformation
+Global___ErrorInformation: _TypeAlias = ErrorInformation  # noqa: Y015
 
-@typing.final
-class JsonValue(google.protobuf.message.Message):
+@_typing.final
+class JsonValue(_message.Message):
     """Represents structured JSON data"""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    @typing.final
-    class AttributesEntry(google.protobuf.message.Message):
-        DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    @_typing.final
+    class AttributesEntry(_message.Message):
+        DESCRIPTOR: _descriptor.Descriptor
 
-        KEY_FIELD_NUMBER: builtins.int
-        VALUE_FIELD_NUMBER: builtins.int
-        key: builtins.str
-        @property
-        def value(self) -> ni.protobuf.types.attribute_value_pb2.AttributeValue: ...
+        KEY_FIELD_NUMBER: _builtins.int
+        VALUE_FIELD_NUMBER: _builtins.int
+        key: _builtins.str
+        @_builtins.property
+        def value(self) -> _attribute_value_pb2.AttributeValue: ...
         def __init__(
             self,
             *,
-            key: builtins.str = ...,
-            value: ni.protobuf.types.attribute_value_pb2.AttributeValue | None = ...,
+            key: _builtins.str = ...,
+            value: _attribute_value_pb2.AttributeValue | None = ...,
         ) -> None: ...
-        def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
-        def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
+        _HasFieldArgType: _TypeAlias = _typing.Literal["value", b"value"]  # noqa: Y015
+        def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+        _ClearFieldArgType: _TypeAlias = _typing.Literal["key", b"key", "value", b"value"]  # noqa: Y015
+        def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+        def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-    VALUE_FIELD_NUMBER: builtins.int
-    SCHEMA_ID_FIELD_NUMBER: builtins.int
-    ATTRIBUTES_FIELD_NUMBER: builtins.int
-    schema_id: builtins.str
+    VALUE_FIELD_NUMBER: _builtins.int
+    SCHEMA_ID_FIELD_NUMBER: _builtins.int
+    ATTRIBUTES_FIELD_NUMBER: _builtins.int
+    schema_id: _builtins.str
     """Reserved for a schema associated with the JSON content. Schema validation
     is not implemented for the preview; requests that set this field fail.
     """
-    @property
-    def value(self) -> google.protobuf.struct_pb2.Struct:
+    @_builtins.property
+    def value(self) -> _struct_pb2.Struct:
         """Required. The JSON content."""
 
-    @property
-    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, ni.protobuf.types.attribute_value_pb2.AttributeValue]:
+    @_builtins.property
+    def attributes(self) -> _containers.MessageMap[_builtins.str, _attribute_value_pb2.AttributeValue]:
         """Optional. Metadata attached to the complete JSON value."""
 
     def __init__(
         self,
         *,
-        value: google.protobuf.struct_pb2.Struct | None = ...,
-        schema_id: builtins.str = ...,
-        attributes: collections.abc.Mapping[builtins.str, ni.protobuf.types.attribute_value_pb2.AttributeValue] | None = ...,
+        value: _struct_pb2.Struct | None = ...,
+        schema_id: _builtins.str = ...,
+        attributes: _abc.Mapping[_builtins.str, _attribute_value_pb2.AttributeValue] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "schema_id", b"schema_id", "value", b"value"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["value", b"value"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["attributes", b"attributes", "schema_id", b"schema_id", "value", b"value"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___JsonValue: typing_extensions.TypeAlias = JsonValue
+Global___JsonValue: _TypeAlias = JsonValue  # noqa: Y015
 
-@typing.final
-class ConditionValue(google.protobuf.message.Message):
+@_typing.final
+class ConditionValue(_message.Message):
     """Represents a condition value."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    SCALAR_FIELD_NUMBER: builtins.int
-    JSON_VALUE_FIELD_NUMBER: builtins.int
-    @property
-    def scalar(self) -> ni.protobuf.types.scalar_pb2.Scalar: ...
-    @property
+    SCALAR_FIELD_NUMBER: _builtins.int
+    JSON_VALUE_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def scalar(self) -> _scalar_pb2.Scalar: ...
+    @_builtins.property
     def json_value(self) -> Global___JsonValue: ...
     def __init__(
         self,
         *,
-        scalar: ni.protobuf.types.scalar_pb2.Scalar | None = ...,
+        scalar: _scalar_pb2.Scalar | None = ...,
         json_value: Global___JsonValue | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["json_value", b"json_value", "scalar", b"scalar", "value", b"value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["json_value", b"json_value", "scalar", b"scalar", "value", b"value"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["scalar", "json_value"] | None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["json_value", b"json_value", "scalar", b"scalar", "value", b"value"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["json_value", b"json_value", "scalar", b"scalar", "value", b"value"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    _WhichOneofReturnType_value: _TypeAlias = _typing.Literal["scalar", "json_value"]  # noqa: Y015
+    _WhichOneofArgType_value: _TypeAlias = _typing.Literal["value", b"value"]  # noqa: Y015
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_value) -> _WhichOneofReturnType_value | None: ...
 
-Global___ConditionValue: typing_extensions.TypeAlias = ConditionValue
+Global___ConditionValue: _TypeAlias = ConditionValue  # noqa: Y015
 
-@typing.final
-class Condition(google.protobuf.message.Message):
+@_typing.final
+class Condition(_message.Message):
     """Represents an immutable operational condition value associated with a Step.
     Conditions are not updated in place. AddCondition with the same name and a
     different value replaces the Step's association with another Condition value.
     """
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    NAME_FIELD_NUMBER: builtins.int
-    CONDITION_TYPE_FIELD_NUMBER: builtins.int
-    VALUE_FIELD_NUMBER: builtins.int
-    VALUE_LABEL_FIELD_NUMBER: builtins.int
-    UNITS_FIELD_NUMBER: builtins.int
-    name: builtins.str
+    NAME_FIELD_NUMBER: _builtins.int
+    CONDITION_TYPE_FIELD_NUMBER: _builtins.int
+    VALUE_FIELD_NUMBER: _builtins.int
+    VALUE_LABEL_FIELD_NUMBER: _builtins.int
+    UNITS_FIELD_NUMBER: _builtins.int
+    name: _builtins.str
     """Required. Immutable and unique within a Step by exact, case-sensitive name."""
-    condition_type: builtins.str
+    condition_type: _builtins.str
     """Optional. Immutable."""
-    value_label: builtins.str
+    value_label: _builtins.str
     """Optional. Immutable."""
-    units: builtins.str
+    units: _builtins.str
     """Optional. Immutable."""
-    @property
+    @_builtins.property
     def value(self) -> Global___ConditionValue:
         """Required. Immutable."""
 
     def __init__(
         self,
         *,
-        name: builtins.str = ...,
-        condition_type: builtins.str = ...,
+        name: _builtins.str = ...,
+        condition_type: _builtins.str = ...,
         value: Global___ConditionValue | None = ...,
-        value_label: builtins.str = ...,
-        units: builtins.str = ...,
+        value_label: _builtins.str = ...,
+        units: _builtins.str = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["condition_type", b"condition_type", "name", b"name", "units", b"units", "value", b"value", "value_label", b"value_label"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["value", b"value"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["condition_type", b"condition_type", "name", b"name", "units", b"units", "value", b"value", "value_label", b"value_label"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___Condition: typing_extensions.TypeAlias = Condition
+Global___Condition: _TypeAlias = Condition  # noqa: Y015
 
-@typing.final
-class MeasurementValue(google.protobuf.message.Message):
+@_typing.final
+class MeasurementValue(_message.Message):
     """Represents inline measurement data or a reference to externally stored data."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    DATA_MONIKER_FIELD_NUMBER: builtins.int
-    SCALAR_FIELD_NUMBER: builtins.int
-    VECTOR_FIELD_NUMBER: builtins.int
-    DOUBLE_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
-    X_Y_DATA_FIELD_NUMBER: builtins.int
-    I16_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
-    DOUBLE_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
-    I16_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
-    DOUBLE_SPECTRUM_FIELD_NUMBER: builtins.int
-    DIGITAL_WAVEFORM_FIELD_NUMBER: builtins.int
-    FLOAT_ANALOG_WAVEFORM_FIELD_NUMBER: builtins.int
-    FLOAT_COMPLEX_WAVEFORM_FIELD_NUMBER: builtins.int
-    FLOAT_SPECTRUM_FIELD_NUMBER: builtins.int
-    JSON_VALUE_FIELD_NUMBER: builtins.int
-    @property
-    def data_moniker(self) -> ni.datamonikers.v1.data_moniker_pb2.Moniker: ...
-    @property
-    def scalar(self) -> ni.protobuf.types.scalar_pb2.Scalar: ...
-    @property
-    def vector(self) -> ni.protobuf.types.vector_pb2.Vector: ...
-    @property
-    def double_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.DoubleAnalogWaveform: ...
-    @property
-    def x_y_data(self) -> ni.protobuf.types.xydata_pb2.DoubleXYData: ...
-    @property
-    def i16_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.I16AnalogWaveform: ...
-    @property
-    def double_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.DoubleComplexWaveform: ...
-    @property
-    def i16_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.I16ComplexWaveform: ...
-    @property
-    def double_spectrum(self) -> ni.protobuf.types.waveform_pb2.DoubleSpectrum: ...
-    @property
-    def digital_waveform(self) -> ni.protobuf.types.waveform_pb2.DigitalWaveform: ...
-    @property
-    def float_analog_waveform(self) -> ni.protobuf.types.waveform_pb2.FloatAnalogWaveform: ...
-    @property
-    def float_complex_waveform(self) -> ni.protobuf.types.waveform_pb2.FloatComplexWaveform: ...
-    @property
-    def float_spectrum(self) -> ni.protobuf.types.waveform_pb2.FloatSpectrum: ...
-    @property
+    DATA_MONIKER_FIELD_NUMBER: _builtins.int
+    SCALAR_FIELD_NUMBER: _builtins.int
+    VECTOR_FIELD_NUMBER: _builtins.int
+    DOUBLE_ANALOG_WAVEFORM_FIELD_NUMBER: _builtins.int
+    X_Y_DATA_FIELD_NUMBER: _builtins.int
+    I16_ANALOG_WAVEFORM_FIELD_NUMBER: _builtins.int
+    DOUBLE_COMPLEX_WAVEFORM_FIELD_NUMBER: _builtins.int
+    I16_COMPLEX_WAVEFORM_FIELD_NUMBER: _builtins.int
+    DOUBLE_SPECTRUM_FIELD_NUMBER: _builtins.int
+    DIGITAL_WAVEFORM_FIELD_NUMBER: _builtins.int
+    FLOAT_ANALOG_WAVEFORM_FIELD_NUMBER: _builtins.int
+    FLOAT_COMPLEX_WAVEFORM_FIELD_NUMBER: _builtins.int
+    FLOAT_SPECTRUM_FIELD_NUMBER: _builtins.int
+    JSON_VALUE_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def data_moniker(self) -> _data_moniker_pb2.Moniker: ...
+    @_builtins.property
+    def scalar(self) -> _scalar_pb2.Scalar: ...
+    @_builtins.property
+    def vector(self) -> _vector_pb2.Vector: ...
+    @_builtins.property
+    def double_analog_waveform(self) -> _waveform_pb2.DoubleAnalogWaveform: ...
+    @_builtins.property
+    def x_y_data(self) -> _xydata_pb2.DoubleXYData: ...
+    @_builtins.property
+    def i16_analog_waveform(self) -> _waveform_pb2.I16AnalogWaveform: ...
+    @_builtins.property
+    def double_complex_waveform(self) -> _waveform_pb2.DoubleComplexWaveform: ...
+    @_builtins.property
+    def i16_complex_waveform(self) -> _waveform_pb2.I16ComplexWaveform: ...
+    @_builtins.property
+    def double_spectrum(self) -> _waveform_pb2.DoubleSpectrum: ...
+    @_builtins.property
+    def digital_waveform(self) -> _waveform_pb2.DigitalWaveform: ...
+    @_builtins.property
+    def float_analog_waveform(self) -> _waveform_pb2.FloatAnalogWaveform: ...
+    @_builtins.property
+    def float_complex_waveform(self) -> _waveform_pb2.FloatComplexWaveform: ...
+    @_builtins.property
+    def float_spectrum(self) -> _waveform_pb2.FloatSpectrum: ...
+    @_builtins.property
     def json_value(self) -> Global___JsonValue: ...
     def __init__(
         self,
         *,
-        data_moniker: ni.datamonikers.v1.data_moniker_pb2.Moniker | None = ...,
-        scalar: ni.protobuf.types.scalar_pb2.Scalar | None = ...,
-        vector: ni.protobuf.types.vector_pb2.Vector | None = ...,
-        double_analog_waveform: ni.protobuf.types.waveform_pb2.DoubleAnalogWaveform | None = ...,
-        x_y_data: ni.protobuf.types.xydata_pb2.DoubleXYData | None = ...,
-        i16_analog_waveform: ni.protobuf.types.waveform_pb2.I16AnalogWaveform | None = ...,
-        double_complex_waveform: ni.protobuf.types.waveform_pb2.DoubleComplexWaveform | None = ...,
-        i16_complex_waveform: ni.protobuf.types.waveform_pb2.I16ComplexWaveform | None = ...,
-        double_spectrum: ni.protobuf.types.waveform_pb2.DoubleSpectrum | None = ...,
-        digital_waveform: ni.protobuf.types.waveform_pb2.DigitalWaveform | None = ...,
-        float_analog_waveform: ni.protobuf.types.waveform_pb2.FloatAnalogWaveform | None = ...,
-        float_complex_waveform: ni.protobuf.types.waveform_pb2.FloatComplexWaveform | None = ...,
-        float_spectrum: ni.protobuf.types.waveform_pb2.FloatSpectrum | None = ...,
+        data_moniker: _data_moniker_pb2.Moniker | None = ...,
+        scalar: _scalar_pb2.Scalar | None = ...,
+        vector: _vector_pb2.Vector | None = ...,
+        double_analog_waveform: _waveform_pb2.DoubleAnalogWaveform | None = ...,
+        x_y_data: _xydata_pb2.DoubleXYData | None = ...,
+        i16_analog_waveform: _waveform_pb2.I16AnalogWaveform | None = ...,
+        double_complex_waveform: _waveform_pb2.DoubleComplexWaveform | None = ...,
+        i16_complex_waveform: _waveform_pb2.I16ComplexWaveform | None = ...,
+        double_spectrum: _waveform_pb2.DoubleSpectrum | None = ...,
+        digital_waveform: _waveform_pb2.DigitalWaveform | None = ...,
+        float_analog_waveform: _waveform_pb2.FloatAnalogWaveform | None = ...,
+        float_complex_waveform: _waveform_pb2.FloatComplexWaveform | None = ...,
+        float_spectrum: _waveform_pb2.FloatSpectrum | None = ...,
         json_value: Global___JsonValue | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["data_moniker", b"data_moniker", "digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "json_value", b"json_value", "scalar", b"scalar", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["data_moniker", b"data_moniker", "digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "json_value", b"json_value", "scalar", b"scalar", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["value", b"value"]) -> typing.Literal["data_moniker", "scalar", "vector", "double_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "i16_complex_waveform", "double_spectrum", "digital_waveform", "float_analog_waveform", "float_complex_waveform", "float_spectrum", "json_value"] | None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["data_moniker", b"data_moniker", "digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "json_value", b"json_value", "scalar", b"scalar", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["data_moniker", b"data_moniker", "digital_waveform", b"digital_waveform", "double_analog_waveform", b"double_analog_waveform", "double_complex_waveform", b"double_complex_waveform", "double_spectrum", b"double_spectrum", "float_analog_waveform", b"float_analog_waveform", "float_complex_waveform", b"float_complex_waveform", "float_spectrum", b"float_spectrum", "i16_analog_waveform", b"i16_analog_waveform", "i16_complex_waveform", b"i16_complex_waveform", "json_value", b"json_value", "scalar", b"scalar", "value", b"value", "vector", b"vector", "x_y_data", b"x_y_data"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    _WhichOneofReturnType_value: _TypeAlias = _typing.Literal["data_moniker", "scalar", "vector", "double_analog_waveform", "x_y_data", "i16_analog_waveform", "double_complex_waveform", "i16_complex_waveform", "double_spectrum", "digital_waveform", "float_analog_waveform", "float_complex_waveform", "float_spectrum", "json_value"]  # noqa: Y015
+    _WhichOneofArgType_value: _TypeAlias = _typing.Literal["value", b"value"]  # noqa: Y015
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_value) -> _WhichOneofReturnType_value | None: ...
 
-Global___MeasurementValue: typing_extensions.TypeAlias = MeasurementValue
+Global___MeasurementValue: _TypeAlias = MeasurementValue  # noqa: Y015
 
-@typing.final
-class Measurement(google.protobuf.message.Message):
+@_typing.final
+class Measurement(_message.Message):
     """Represents one scalar, vector, waveform, XY, spectrum, digital, or JSON
     measurement. A data moniker can reference values without an inline type.
     """
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    TEST_RESULT_ID_FIELD_NUMBER: builtins.int
-    STEP_ID_FIELD_NUMBER: builtins.int
-    NAME_FIELD_NUMBER: builtins.int
-    VALUE_TYPE_FIELD_NUMBER: builtins.int
-    VALUE_FIELD_NUMBER: builtins.int
-    UNITS_FIELD_NUMBER: builtins.int
-    UPPER_LIMIT_FIELD_NUMBER: builtins.int
-    LOWER_LIMIT_FIELD_NUMBER: builtins.int
-    SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
-    HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
-    TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
-    NOTES_FIELD_NUMBER: builtins.int
-    START_DATE_TIME_FIELD_NUMBER: builtins.int
-    END_DATE_TIME_FIELD_NUMBER: builtins.int
-    OUTCOME_FIELD_NUMBER: builtins.int
-    ERROR_INFORMATION_FIELD_NUMBER: builtins.int
-    EXTENSION_FIELD_NUMBER: builtins.int
-    SCHEMA_ID_FIELD_NUMBER: builtins.int
-    DURATION_FIELD_NUMBER: builtins.int
-    CONDITIONS_FIELD_NUMBER: builtins.int
-    CREATED_AT_FIELD_NUMBER: builtins.int
-    UPDATED_AT_FIELD_NUMBER: builtins.int
-    CREATED_BY_FIELD_NUMBER: builtins.int
-    UPDATED_BY_FIELD_NUMBER: builtins.int
-    SOFTWARE_ITEMS_FIELD_NUMBER: builtins.int
-    HARDWARE_ITEMS_FIELD_NUMBER: builtins.int
-    TEST_ADAPTERS_FIELD_NUMBER: builtins.int
-    COMPARISON_TYPE_FIELD_NUMBER: builtins.int
-    id: builtins.str
+    ID_FIELD_NUMBER: _builtins.int
+    TEST_RESULT_ID_FIELD_NUMBER: _builtins.int
+    STEP_ID_FIELD_NUMBER: _builtins.int
+    NAME_FIELD_NUMBER: _builtins.int
+    VALUE_TYPE_FIELD_NUMBER: _builtins.int
+    VALUE_FIELD_NUMBER: _builtins.int
+    UNITS_FIELD_NUMBER: _builtins.int
+    UPPER_LIMIT_FIELD_NUMBER: _builtins.int
+    LOWER_LIMIT_FIELD_NUMBER: _builtins.int
+    SOFTWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
+    HARDWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
+    TEST_ADAPTER_IDS_FIELD_NUMBER: _builtins.int
+    NOTES_FIELD_NUMBER: _builtins.int
+    START_DATE_TIME_FIELD_NUMBER: _builtins.int
+    END_DATE_TIME_FIELD_NUMBER: _builtins.int
+    OUTCOME_FIELD_NUMBER: _builtins.int
+    ERROR_INFORMATION_FIELD_NUMBER: _builtins.int
+    EXTENSION_FIELD_NUMBER: _builtins.int
+    SCHEMA_ID_FIELD_NUMBER: _builtins.int
+    DURATION_FIELD_NUMBER: _builtins.int
+    CONDITIONS_FIELD_NUMBER: _builtins.int
+    CREATED_AT_FIELD_NUMBER: _builtins.int
+    UPDATED_AT_FIELD_NUMBER: _builtins.int
+    CREATED_BY_FIELD_NUMBER: _builtins.int
+    UPDATED_BY_FIELD_NUMBER: _builtins.int
+    SOFTWARE_ITEMS_FIELD_NUMBER: _builtins.int
+    HARDWARE_ITEMS_FIELD_NUMBER: _builtins.int
+    TEST_ADAPTERS_FIELD_NUMBER: _builtins.int
+    COMPARISON_TYPE_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
     """Optional on create. When provided, must be a lowercase, hyphenated,
     non-nil UUID; otherwise the service generates a UUIDv4. Output contains
     the canonical V2 resource identifier. Required on update. Immutable.
     """
-    test_result_id: builtins.str
+    test_result_id: _builtins.str
     """Optional when nested as a consistency assertion against a request-known
     containing TestResult ID; otherwise set from the owning Step.
     """
-    step_id: builtins.str
+    step_id: _builtins.str
     """Required when created directly. When nested, may assert a request-known
     containing Step ID; otherwise set from the owning Step. Immutable.
     """
-    name: builtins.str
+    name: _builtins.str
     """Required. Immutable."""
-    value_type: builtins.str
+    value_type: _builtins.str
     """Output only. The service-generated measurement value type."""
-    units: builtins.str
+    units: _builtins.str
     """Optional. Immutable engineering units for the scalar or primary value."""
-    notes: builtins.str
+    notes: _builtins.str
     """Optional."""
     outcome: Global___Outcome.ValueType
     """Optional."""
-    schema_id: builtins.str
+    schema_id: _builtins.str
     """Reserved for a future schema associated with the extension. Must be empty."""
-    created_by: builtins.str
+    created_by: _builtins.str
     """Output only."""
-    updated_by: builtins.str
+    updated_by: _builtins.str
     """Output only."""
-    comparison_type: builtins.str
+    comparison_type: _builtins.str
     """Optional. Immutable publisher-defined comparison operation. The service
     stores this value as provenance and does not derive Outcome from it.
     """
-    @property
+    @_builtins.property
     def value(self) -> Global___MeasurementValue:
         """Required. Immutable."""
 
-    @property
+    @_builtins.property
     def upper_limit(self) -> Global___MeasurementValue:
         """Optional. Immutable."""
 
-    @property
+    @_builtins.property
     def lower_limit(self) -> Global___MeasurementValue:
         """Optional. Immutable."""
 
-    @property
-    def software_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def software_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Optional on create. Use AddMeasurementMetadata or
         RemoveMeasurementMetadata after creation; UpdateMeasurement rejects this
         field in an update mask.
         """
 
-    @property
-    def hardware_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def hardware_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Optional on create. Use AddMeasurementMetadata or
         RemoveMeasurementMetadata after creation; UpdateMeasurement rejects this
         field in an update mask.
         """
 
-    @property
-    def test_adapter_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def test_adapter_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Optional on create. Use AddMeasurementMetadata or
         RemoveMeasurementMetadata after creation; UpdateMeasurement rejects this
         field in an update mask.
         """
 
-    @property
-    def start_date_time(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    @_builtins.property
+    def start_date_time(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Optional."""
 
-    @property
-    def end_date_time(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    @_builtins.property
+    def end_date_time(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Optional."""
 
-    @property
+    @_builtins.property
     def error_information(self) -> Global___ErrorInformation:
         """Optional."""
 
-    @property
-    def extension(self) -> google.protobuf.struct_pb2.Struct:
+    @_builtins.property
+    def extension(self) -> _struct_pb2.Struct:
         """Optional. Open custom data; values may be any JSON kind. An update that
         selects this field replaces the whole value.
         """
 
-    @property
-    def duration(self) -> ni.protobuf.types.precision_duration_pb2.PrecisionDuration:
+    @_builtins.property
+    def duration(self) -> _precision_duration_pb2.PrecisionDuration:
         """Optional. For this resource, the service derives the omitted timing value
         when exactly two of start_date_time, end_date_time, and duration are
         provided. All three must be consistent when provided. Zero or one is
         accepted without derivation. Child timing does not update this resource.
         """
 
-    @property
-    def conditions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Condition]:
+    @_builtins.property
+    def conditions(self) -> _containers.RepeatedCompositeFieldContainer[Global___Condition]:
         """Output only. Conditions copied from the owning Step."""
 
-    @property
-    def created_at(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    @_builtins.property
+    def created_at(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Output only."""
 
-    @property
-    def updated_at(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    @_builtins.property
+    def updated_at(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Output only."""
 
-    @property
-    def software_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem]:
+    @_builtins.property
+    def software_items(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.SoftwareItem]:
         """Optional. On create, find or create these items and merge their IDs with
         software_item_ids, removing duplicates. Populated on reads only when
         requested by read_mask or OData expansion.
         """
 
-    @property
-    def hardware_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem]:
+    @_builtins.property
+    def hardware_items(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.HardwareItem]:
         """Optional. On create, find or create these items and merge their IDs with
         hardware_item_ids, removing duplicates. Populated on reads only when
         requested by read_mask or OData expansion.
         """
 
-    @property
-    def test_adapters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter]:
+    @_builtins.property
+    def test_adapters(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.TestAdapter]:
         """Optional. On create, find or create these items and merge their IDs with
         test_adapter_ids, removing duplicates. Populated on reads only when
         requested by read_mask or OData expansion.
@@ -455,94 +476,97 @@ class Measurement(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
-        test_result_id: builtins.str = ...,
-        step_id: builtins.str = ...,
-        name: builtins.str = ...,
-        value_type: builtins.str = ...,
+        id: _builtins.str = ...,
+        test_result_id: _builtins.str = ...,
+        step_id: _builtins.str = ...,
+        name: _builtins.str = ...,
+        value_type: _builtins.str = ...,
         value: Global___MeasurementValue | None = ...,
-        units: builtins.str = ...,
+        units: _builtins.str = ...,
         upper_limit: Global___MeasurementValue | None = ...,
         lower_limit: Global___MeasurementValue | None = ...,
-        software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
-        hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
-        test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
-        notes: builtins.str = ...,
-        start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        software_item_ids: _abc.Iterable[_builtins.str] | None = ...,
+        hardware_item_ids: _abc.Iterable[_builtins.str] | None = ...,
+        test_adapter_ids: _abc.Iterable[_builtins.str] | None = ...,
+        notes: _builtins.str = ...,
+        start_date_time: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        end_date_time: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         outcome: Global___Outcome.ValueType = ...,
         error_information: Global___ErrorInformation | None = ...,
-        extension: google.protobuf.struct_pb2.Struct | None = ...,
-        schema_id: builtins.str = ...,
-        duration: ni.protobuf.types.precision_duration_pb2.PrecisionDuration | None = ...,
-        conditions: collections.abc.Iterable[Global___Condition] | None = ...,
-        created_at: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        updated_at: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        created_by: builtins.str = ...,
-        updated_by: builtins.str = ...,
-        software_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem] | None = ...,
-        hardware_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem] | None = ...,
-        test_adapters: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter] | None = ...,
-        comparison_type: builtins.str = ...,
+        extension: _struct_pb2.Struct | None = ...,
+        schema_id: _builtins.str = ...,
+        duration: _precision_duration_pb2.PrecisionDuration | None = ...,
+        conditions: _abc.Iterable[Global___Condition] | None = ...,
+        created_at: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        updated_at: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        created_by: _builtins.str = ...,
+        updated_by: _builtins.str = ...,
+        software_items: _abc.Iterable[_metadata_store_pb2.SoftwareItem] | None = ...,
+        hardware_items: _abc.Iterable[_metadata_store_pb2.HardwareItem] | None = ...,
+        test_adapters: _abc.Iterable[_metadata_store_pb2.TestAdapter] | None = ...,
+        comparison_type: _builtins.str = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["created_at", b"created_at", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "lower_limit", b"lower_limit", "start_date_time", b"start_date_time", "updated_at", b"updated_at", "upper_limit", b"upper_limit", "value", b"value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["comparison_type", b"comparison_type", "conditions", b"conditions", "created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "hardware_item_ids", b"hardware_item_ids", "hardware_items", b"hardware_items", "id", b"id", "lower_limit", b"lower_limit", "name", b"name", "notes", b"notes", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "software_items", b"software_items", "start_date_time", b"start_date_time", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "test_adapters", b"test_adapters", "test_result_id", b"test_result_id", "units", b"units", "updated_at", b"updated_at", "updated_by", b"updated_by", "upper_limit", b"upper_limit", "value", b"value", "value_type", b"value_type"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["created_at", b"created_at", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "lower_limit", b"lower_limit", "start_date_time", b"start_date_time", "updated_at", b"updated_at", "upper_limit", b"upper_limit", "value", b"value"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["comparison_type", b"comparison_type", "conditions", b"conditions", "created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "hardware_item_ids", b"hardware_item_ids", "hardware_items", b"hardware_items", "id", b"id", "lower_limit", b"lower_limit", "name", b"name", "notes", b"notes", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "software_items", b"software_items", "start_date_time", b"start_date_time", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "test_adapters", b"test_adapters", "test_result_id", b"test_result_id", "units", b"units", "updated_at", b"updated_at", "updated_by", b"updated_by", "upper_limit", b"upper_limit", "value", b"value", "value_type", b"value_type"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___Measurement: typing_extensions.TypeAlias = Measurement
+Global___Measurement: _TypeAlias = Measurement  # noqa: Y015
 
-@typing.final
-class TestResult(google.protobuf.message.Message):
+@_typing.final
+class TestResult(_message.Message):
     """Represents one execution of a test process."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    UUT_INSTANCE_ID_FIELD_NUMBER: builtins.int
-    OPERATOR_ID_FIELD_NUMBER: builtins.int
-    TEST_STATION_ID_FIELD_NUMBER: builtins.int
-    TEST_DESCRIPTION_ID_FIELD_NUMBER: builtins.int
-    SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
-    HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
-    TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
-    NAME_FIELD_NUMBER: builtins.int
-    START_DATE_TIME_FIELD_NUMBER: builtins.int
-    END_DATE_TIME_FIELD_NUMBER: builtins.int
-    OUTCOME_FIELD_NUMBER: builtins.int
-    STATUS_FIELD_NUMBER: builtins.int
-    ERROR_INFORMATION_FIELD_NUMBER: builtins.int
-    LINK_FIELD_NUMBER: builtins.int
-    EXTENSION_FIELD_NUMBER: builtins.int
-    SCHEMA_ID_FIELD_NUMBER: builtins.int
-    UUT_ID_FIELD_NUMBER: builtins.int
-    KEYWORDS_FIELD_NUMBER: builtins.int
-    DURATION_FIELD_NUMBER: builtins.int
-    CREATED_AT_FIELD_NUMBER: builtins.int
-    UPDATED_AT_FIELD_NUMBER: builtins.int
-    CREATED_BY_FIELD_NUMBER: builtins.int
-    UPDATED_BY_FIELD_NUMBER: builtins.int
-    STEPS_FIELD_NUMBER: builtins.int
-    UUT_INSTANCE_FIELD_NUMBER: builtins.int
-    OPERATOR_FIELD_NUMBER: builtins.int
-    TEST_STATION_FIELD_NUMBER: builtins.int
-    TEST_DESCRIPTION_FIELD_NUMBER: builtins.int
-    UUT_FIELD_NUMBER: builtins.int
-    SOFTWARE_ITEMS_FIELD_NUMBER: builtins.int
-    HARDWARE_ITEMS_FIELD_NUMBER: builtins.int
-    TEST_ADAPTERS_FIELD_NUMBER: builtins.int
-    id: builtins.str
+    ID_FIELD_NUMBER: _builtins.int
+    UUT_INSTANCE_ID_FIELD_NUMBER: _builtins.int
+    OPERATOR_ID_FIELD_NUMBER: _builtins.int
+    TEST_STATION_ID_FIELD_NUMBER: _builtins.int
+    TEST_DESCRIPTION_ID_FIELD_NUMBER: _builtins.int
+    SOFTWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
+    HARDWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
+    TEST_ADAPTER_IDS_FIELD_NUMBER: _builtins.int
+    NAME_FIELD_NUMBER: _builtins.int
+    START_DATE_TIME_FIELD_NUMBER: _builtins.int
+    END_DATE_TIME_FIELD_NUMBER: _builtins.int
+    OUTCOME_FIELD_NUMBER: _builtins.int
+    STATUS_FIELD_NUMBER: _builtins.int
+    ERROR_INFORMATION_FIELD_NUMBER: _builtins.int
+    LINK_FIELD_NUMBER: _builtins.int
+    EXTENSION_FIELD_NUMBER: _builtins.int
+    SCHEMA_ID_FIELD_NUMBER: _builtins.int
+    UUT_ID_FIELD_NUMBER: _builtins.int
+    KEYWORDS_FIELD_NUMBER: _builtins.int
+    DURATION_FIELD_NUMBER: _builtins.int
+    CREATED_AT_FIELD_NUMBER: _builtins.int
+    UPDATED_AT_FIELD_NUMBER: _builtins.int
+    CREATED_BY_FIELD_NUMBER: _builtins.int
+    UPDATED_BY_FIELD_NUMBER: _builtins.int
+    STEPS_FIELD_NUMBER: _builtins.int
+    UUT_INSTANCE_FIELD_NUMBER: _builtins.int
+    OPERATOR_FIELD_NUMBER: _builtins.int
+    TEST_STATION_FIELD_NUMBER: _builtins.int
+    TEST_DESCRIPTION_FIELD_NUMBER: _builtins.int
+    UUT_FIELD_NUMBER: _builtins.int
+    SOFTWARE_ITEMS_FIELD_NUMBER: _builtins.int
+    HARDWARE_ITEMS_FIELD_NUMBER: _builtins.int
+    TEST_ADAPTERS_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
     """Optional on create. When provided, must be a lowercase, hyphenated,
     non-nil UUID; otherwise the service generates a UUIDv4. Output contains
     the canonical V2 resource identifier. Required on update. Immutable.
     """
-    uut_instance_id: builtins.str
+    uut_instance_id: _builtins.str
     """Optional. Accepts an existing metadata identifier or alias."""
-    operator_id: builtins.str
+    operator_id: _builtins.str
     """Optional. Accepts an existing metadata identifier or alias."""
-    test_station_id: builtins.str
+    test_station_id: _builtins.str
     """Optional. Accepts an existing metadata identifier or alias."""
-    test_description_id: builtins.str
+    test_description_id: _builtins.str
     """Optional. Accepts an existing metadata identifier or alias."""
-    name: builtins.str
+    name: _builtins.str
     """Required. Immutable."""
     outcome: Global___Outcome.ValueType
     """Optional."""
@@ -550,129 +574,129 @@ class TestResult(google.protobuf.message.Message):
     """Optional. A non-unspecified Outcome sets status to STATUS_DONE. A
     conflicting non-Done status is invalid.
     """
-    link: builtins.str
+    link: _builtins.str
     """Optional. A URI associated with the test result."""
-    schema_id: builtins.str
+    schema_id: _builtins.str
     """Reserved for a future schema associated with the extension. Must be empty."""
-    uut_id: builtins.str
+    uut_id: _builtins.str
     """Optional. Direct reference to the UUT product definition."""
-    created_by: builtins.str
+    created_by: _builtins.str
     """Output only."""
-    updated_by: builtins.str
+    updated_by: _builtins.str
     """Output only."""
-    @property
-    def software_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def software_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Optional on create. Use AddTestResultMetadata or RemoveTestResultMetadata
         after creation; UpdateTestResult rejects this field in an update mask.
         """
 
-    @property
-    def hardware_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def hardware_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Optional on create. Use AddTestResultMetadata or RemoveTestResultMetadata
         after creation; UpdateTestResult rejects this field in an update mask.
         """
 
-    @property
-    def test_adapter_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def test_adapter_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Optional on create. Use AddTestResultMetadata or RemoveTestResultMetadata
         after creation; UpdateTestResult rejects this field in an update mask.
         """
 
-    @property
-    def start_date_time(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    @_builtins.property
+    def start_date_time(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Optional."""
 
-    @property
-    def end_date_time(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    @_builtins.property
+    def end_date_time(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Optional."""
 
-    @property
+    @_builtins.property
     def error_information(self) -> Global___ErrorInformation:
         """Optional."""
 
-    @property
-    def extension(self) -> google.protobuf.struct_pb2.Struct:
+    @_builtins.property
+    def extension(self) -> _struct_pb2.Struct:
         """Optional. Open custom data; values may be any JSON kind. An update that
         selects this field replaces the whole value.
         """
 
-    @property
-    def keywords(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def keywords(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Optional. Labels used to classify the test result."""
 
-    @property
-    def duration(self) -> ni.protobuf.types.precision_duration_pb2.PrecisionDuration:
+    @_builtins.property
+    def duration(self) -> _precision_duration_pb2.PrecisionDuration:
         """Optional. For this resource, the service derives the omitted timing value
         when exactly two of start_date_time, end_date_time, and duration are
         provided. All three must be consistent when provided. Zero or one is
         accepted without derivation. Child timing does not update this resource.
         """
 
-    @property
-    def created_at(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    @_builtins.property
+    def created_at(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Output only."""
 
-    @property
-    def updated_at(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    @_builtins.property
+    def updated_at(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Output only."""
 
-    @property
-    def steps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Step]:
+    @_builtins.property
+    def steps(self) -> _containers.RepeatedCompositeFieldContainer[Global___Step]:
         """Input only. Recursively nested Steps created with this TestResult. Use
         QuerySteps to read the hierarchy as a flat, paged collection.
         """
 
-    @property
-    def uut_instance(self) -> ni.measurements.metadata.v1.metadata_store_pb2.UutInstance:
+    @_builtins.property
+    def uut_instance(self) -> _metadata_store_pb2.UutInstance:
         """Optional. On create or update, use either uut_instance_id or this inline
         resource, not both. Populated on reads only when requested by read_mask or
         OData expansion.
         """
 
-    @property
-    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Operator:
+    @_builtins.property
+    def operator(self) -> _metadata_store_pb2.Operator:
         """Optional. On create or update, use either operator_id or this inline
         resource, not both. Populated on reads only when requested by read_mask or
         OData expansion.
         """
 
-    @property
-    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStation:
+    @_builtins.property
+    def test_station(self) -> _metadata_store_pb2.TestStation:
         """Optional. On create or update, use either test_station_id or this inline
         resource, not both. Populated on reads only when requested by read_mask or
         OData expansion.
         """
 
-    @property
-    def test_description(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestDescription:
+    @_builtins.property
+    def test_description(self) -> _metadata_store_pb2.TestDescription:
         """Optional. On create or update, use either test_description_id or this
         inline resource, not both. Populated on reads only when requested by
         read_mask or OData expansion.
         """
 
-    @property
-    def uut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Uut:
+    @_builtins.property
+    def uut(self) -> _metadata_store_pb2.Uut:
         """Optional. On create or update, use either uut_id or this inline resource,
         not both. Populated on reads only when requested by read_mask or OData
         expansion.
         """
 
-    @property
-    def software_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem]:
+    @_builtins.property
+    def software_items(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.SoftwareItem]:
         """Optional. On create, find or create these items and merge their IDs with
         software_item_ids, removing duplicates. Populated on reads only when
         requested by read_mask or OData expansion.
         """
 
-    @property
-    def hardware_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem]:
+    @_builtins.property
+    def hardware_items(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.HardwareItem]:
         """Optional. On create, find or create these items and merge their IDs with
         hardware_item_ids, removing duplicates. Populated on reads only when
         requested by read_mask or OData expansion.
         """
 
-    @property
-    def test_adapters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter]:
+    @_builtins.property
+    def test_adapters(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.TestAdapter]:
         """Optional. On create, find or create these items and merge their IDs with
         test_adapter_ids, removing duplicates. Populated on reads only when
         requested by read_mask or OData expansion.
@@ -681,100 +705,104 @@ class TestResult(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
-        uut_instance_id: builtins.str = ...,
-        operator_id: builtins.str = ...,
-        test_station_id: builtins.str = ...,
-        test_description_id: builtins.str = ...,
-        software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
-        hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
-        test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
-        name: builtins.str = ...,
-        start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        id: _builtins.str = ...,
+        uut_instance_id: _builtins.str = ...,
+        operator_id: _builtins.str = ...,
+        test_station_id: _builtins.str = ...,
+        test_description_id: _builtins.str = ...,
+        software_item_ids: _abc.Iterable[_builtins.str] | None = ...,
+        hardware_item_ids: _abc.Iterable[_builtins.str] | None = ...,
+        test_adapter_ids: _abc.Iterable[_builtins.str] | None = ...,
+        name: _builtins.str = ...,
+        start_date_time: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        end_date_time: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         outcome: Global___Outcome.ValueType = ...,
         status: Global___Status.ValueType = ...,
         error_information: Global___ErrorInformation | None = ...,
-        link: builtins.str = ...,
-        extension: google.protobuf.struct_pb2.Struct | None = ...,
-        schema_id: builtins.str = ...,
-        uut_id: builtins.str = ...,
-        keywords: collections.abc.Iterable[builtins.str] | None = ...,
-        duration: ni.protobuf.types.precision_duration_pb2.PrecisionDuration | None = ...,
-        created_at: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        updated_at: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        created_by: builtins.str = ...,
-        updated_by: builtins.str = ...,
-        steps: collections.abc.Iterable[Global___Step] | None = ...,
-        uut_instance: ni.measurements.metadata.v1.metadata_store_pb2.UutInstance | None = ...,
-        operator: ni.measurements.metadata.v1.metadata_store_pb2.Operator | None = ...,
-        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStation | None = ...,
-        test_description: ni.measurements.metadata.v1.metadata_store_pb2.TestDescription | None = ...,
-        uut: ni.measurements.metadata.v1.metadata_store_pb2.Uut | None = ...,
-        software_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem] | None = ...,
-        hardware_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem] | None = ...,
-        test_adapters: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter] | None = ...,
+        link: _builtins.str = ...,
+        extension: _struct_pb2.Struct | None = ...,
+        schema_id: _builtins.str = ...,
+        uut_id: _builtins.str = ...,
+        keywords: _abc.Iterable[_builtins.str] | None = ...,
+        duration: _precision_duration_pb2.PrecisionDuration | None = ...,
+        created_at: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        updated_at: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        created_by: _builtins.str = ...,
+        updated_by: _builtins.str = ...,
+        steps: _abc.Iterable[Global___Step] | None = ...,
+        uut_instance: _metadata_store_pb2.UutInstance | None = ...,
+        operator: _metadata_store_pb2.Operator | None = ...,
+        test_station: _metadata_store_pb2.TestStation | None = ...,
+        test_description: _metadata_store_pb2.TestDescription | None = ...,
+        uut: _metadata_store_pb2.Uut | None = ...,
+        software_items: _abc.Iterable[_metadata_store_pb2.SoftwareItem] | None = ...,
+        hardware_items: _abc.Iterable[_metadata_store_pb2.HardwareItem] | None = ...,
+        test_adapters: _abc.Iterable[_metadata_store_pb2.TestAdapter] | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["created_at", b"created_at", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "operator", b"operator", "start_date_time", b"start_date_time", "test_description", b"test_description", "test_station", b"test_station", "updated_at", b"updated_at", "uut", b"uut", "uut_instance", b"uut_instance"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "hardware_item_ids", b"hardware_item_ids", "hardware_items", b"hardware_items", "id", b"id", "keywords", b"keywords", "link", b"link", "name", b"name", "operator", b"operator", "operator_id", b"operator_id", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "software_items", b"software_items", "start_date_time", b"start_date_time", "status", b"status", "steps", b"steps", "test_adapter_ids", b"test_adapter_ids", "test_adapters", b"test_adapters", "test_description", b"test_description", "test_description_id", b"test_description_id", "test_station", b"test_station", "test_station_id", b"test_station_id", "updated_at", b"updated_at", "updated_by", b"updated_by", "uut", b"uut", "uut_id", b"uut_id", "uut_instance", b"uut_instance", "uut_instance_id", b"uut_instance_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["created_at", b"created_at", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "operator", b"operator", "start_date_time", b"start_date_time", "test_description", b"test_description", "test_station", b"test_station", "updated_at", b"updated_at", "uut", b"uut", "uut_instance", b"uut_instance"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "hardware_item_ids", b"hardware_item_ids", "hardware_items", b"hardware_items", "id", b"id", "keywords", b"keywords", "link", b"link", "name", b"name", "operator", b"operator", "operator_id", b"operator_id", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "software_items", b"software_items", "start_date_time", b"start_date_time", "status", b"status", "steps", b"steps", "test_adapter_ids", b"test_adapter_ids", "test_adapters", b"test_adapters", "test_description", b"test_description", "test_description_id", b"test_description_id", "test_station", b"test_station", "test_station_id", b"test_station_id", "updated_at", b"updated_at", "updated_by", b"updated_by", "uut", b"uut", "uut_id", b"uut_id", "uut_instance", b"uut_instance", "uut_instance_id", b"uut_instance_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___TestResult: typing_extensions.TypeAlias = TestResult
+Global___TestResult: _TypeAlias = TestResult  # noqa: Y015
 
-@typing.final
-class Step(google.protobuf.message.Message):
+@_typing.final
+class Step(_message.Message):
     """Represents one execution of a test step."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ID_FIELD_NUMBER: builtins.int
-    PARENT_STEP_ID_FIELD_NUMBER: builtins.int
-    TEST_RESULT_ID_FIELD_NUMBER: builtins.int
-    TEST_ID_FIELD_NUMBER: builtins.int
-    NAME_FIELD_NUMBER: builtins.int
-    STEP_TYPE_FIELD_NUMBER: builtins.int
-    NOTES_FIELD_NUMBER: builtins.int
-    START_DATE_TIME_FIELD_NUMBER: builtins.int
-    END_DATE_TIME_FIELD_NUMBER: builtins.int
-    OUTCOME_FIELD_NUMBER: builtins.int
-    STATUS_FIELD_NUMBER: builtins.int
-    ERROR_INFORMATION_FIELD_NUMBER: builtins.int
-    LINK_FIELD_NUMBER: builtins.int
-    EXTENSION_FIELD_NUMBER: builtins.int
-    SCHEMA_ID_FIELD_NUMBER: builtins.int
-    KEYWORDS_FIELD_NUMBER: builtins.int
-    DURATION_FIELD_NUMBER: builtins.int
-    PATH_FIELD_NUMBER: builtins.int
-    PATH_IDS_FIELD_NUMBER: builtins.int
-    CREATED_AT_FIELD_NUMBER: builtins.int
-    UPDATED_AT_FIELD_NUMBER: builtins.int
-    CREATED_BY_FIELD_NUMBER: builtins.int
-    UPDATED_BY_FIELD_NUMBER: builtins.int
-    CONDITIONS_FIELD_NUMBER: builtins.int
-    MEASUREMENTS_FIELD_NUMBER: builtins.int
-    CHILDREN_FIELD_NUMBER: builtins.int
-    TEST_FIELD_NUMBER: builtins.int
-    id: builtins.str
+    ID_FIELD_NUMBER: _builtins.int
+    PARENT_STEP_ID_FIELD_NUMBER: _builtins.int
+    TEST_RESULT_ID_FIELD_NUMBER: _builtins.int
+    TEST_ID_FIELD_NUMBER: _builtins.int
+    NAME_FIELD_NUMBER: _builtins.int
+    STEP_TYPE_FIELD_NUMBER: _builtins.int
+    NOTES_FIELD_NUMBER: _builtins.int
+    START_DATE_TIME_FIELD_NUMBER: _builtins.int
+    END_DATE_TIME_FIELD_NUMBER: _builtins.int
+    OUTCOME_FIELD_NUMBER: _builtins.int
+    STATUS_FIELD_NUMBER: _builtins.int
+    ERROR_INFORMATION_FIELD_NUMBER: _builtins.int
+    LINK_FIELD_NUMBER: _builtins.int
+    EXTENSION_FIELD_NUMBER: _builtins.int
+    SCHEMA_ID_FIELD_NUMBER: _builtins.int
+    KEYWORDS_FIELD_NUMBER: _builtins.int
+    DURATION_FIELD_NUMBER: _builtins.int
+    PATH_FIELD_NUMBER: _builtins.int
+    PATH_IDS_FIELD_NUMBER: _builtins.int
+    CREATED_AT_FIELD_NUMBER: _builtins.int
+    UPDATED_AT_FIELD_NUMBER: _builtins.int
+    CREATED_BY_FIELD_NUMBER: _builtins.int
+    UPDATED_BY_FIELD_NUMBER: _builtins.int
+    CONDITIONS_FIELD_NUMBER: _builtins.int
+    MEASUREMENTS_FIELD_NUMBER: _builtins.int
+    CHILDREN_FIELD_NUMBER: _builtins.int
+    TEST_FIELD_NUMBER: _builtins.int
+    HAS_CHILDREN_FIELD_NUMBER: _builtins.int
+    id: _builtins.str
     """Optional on create. When provided, must be a lowercase, hyphenated,
     non-nil UUID; otherwise the service generates a UUIDv4. Output contains
     the canonical V2 resource identifier. Required on update. Immutable.
     """
-    parent_step_id: builtins.str
+    parent_step_id: _builtins.str
     """Optional. When nested, may assert a request-known containing parent Step
     ID; otherwise set from the containing parent. Immutable. The parent Step
     must belong to the same TestResult.
     """
-    test_result_id: builtins.str
+    test_result_id: _builtins.str
     """Required when created directly. When nested, may assert a request-known
     containing TestResult ID; otherwise set from the owning TestResult.
     Immutable.
     """
-    test_id: builtins.str
+    test_id: _builtins.str
     """Optional. Accepts an existing metadata identifier or alias."""
-    name: builtins.str
+    name: _builtins.str
     """Required. Immutable."""
-    step_type: builtins.str
+    step_type: _builtins.str
     """Optional. Immutable free-form classification."""
-    notes: builtins.str
+    notes: _builtins.str
     """Optional."""
     outcome: Global___Outcome.ValueType
     """Optional."""
@@ -782,82 +810,87 @@ class Step(google.protobuf.message.Message):
     """Optional. A non-unspecified Outcome sets status to STATUS_DONE. A
     conflicting non-Done status is invalid.
     """
-    link: builtins.str
+    link: _builtins.str
     """Optional. A URI associated with the step."""
-    schema_id: builtins.str
+    schema_id: _builtins.str
     """Reserved for a future schema associated with the extension. Must be empty."""
-    created_by: builtins.str
+    created_by: _builtins.str
     """Output only."""
-    updated_by: builtins.str
+    updated_by: _builtins.str
     """Output only."""
-    @property
-    def start_date_time(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    has_children: _builtins.bool
+    """Output only. True once this Step has committed at least one direct child.
+    The service manages this historical value and does not clear it after
+    deletion.
+    """
+    @_builtins.property
+    def start_date_time(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Optional."""
 
-    @property
-    def end_date_time(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    @_builtins.property
+    def end_date_time(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Optional."""
 
-    @property
+    @_builtins.property
     def error_information(self) -> Global___ErrorInformation:
         """Optional."""
 
-    @property
-    def extension(self) -> google.protobuf.struct_pb2.Struct:
+    @_builtins.property
+    def extension(self) -> _struct_pb2.Struct:
         """Optional. Open custom data; values may be any JSON kind. TestStand
         integrations may store code-module inputs, outputs, and additional results
         here when they are not represented as Conditions or Measurements. An update
         that selects this field replaces the whole value.
         """
 
-    @property
-    def keywords(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def keywords(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Optional. Labels used to classify the step."""
 
-    @property
-    def duration(self) -> ni.protobuf.types.precision_duration_pb2.PrecisionDuration:
+    @_builtins.property
+    def duration(self) -> _precision_duration_pb2.PrecisionDuration:
         """Optional. For this resource, the service derives the omitted timing value
         when exactly two of start_date_time, end_date_time, and duration are
         provided. All three must be consistent when provided. Zero or one is
         accepted without derivation. Child timing does not update this resource.
         """
 
-    @property
-    def path(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def path(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Output only. Step-name path including this step."""
 
-    @property
-    def path_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+    @_builtins.property
+    def path_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]:
         """Output only. Step-identifier path including this step."""
 
-    @property
-    def created_at(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    @_builtins.property
+    def created_at(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Output only."""
 
-    @property
-    def updated_at(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
+    @_builtins.property
+    def updated_at(self) -> _precision_timestamp_pb2.PrecisionTimestamp:
         """Output only."""
 
-    @property
-    def conditions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Condition]:
+    @_builtins.property
+    def conditions(self) -> _containers.RepeatedCompositeFieldContainer[Global___Condition]:
         """Input on create and output when explicitly requested. Use AddCondition and
         RemoveCondition to modify existing conditions.
         """
 
-    @property
-    def measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Measurement]:
+    @_builtins.property
+    def measurements(self) -> _containers.RepeatedCompositeFieldContainer[Global___Measurement]:
         """Input on create and output when explicitly requested. Use Measurement
         methods to modify existing measurements.
         """
 
-    @property
-    def children(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Step]:
+    @_builtins.property
+    def children(self) -> _containers.RepeatedCompositeFieldContainer[Global___Step]:
         """Input only. Recursively nested child Steps created with this Step. Use
         QuerySteps to read child Steps as a flat, paged collection.
         """
 
-    @property
-    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Test:
+    @_builtins.property
+    def test(self) -> _metadata_store_pb2.Test:
         """Optional. On create or update, supply either test_id or test; supplying
         both is invalid. On reads, test is populated only when requested by
         read_mask or OData expansion.
@@ -866,35 +899,39 @@ class Step(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        id: builtins.str = ...,
-        parent_step_id: builtins.str = ...,
-        test_result_id: builtins.str = ...,
-        test_id: builtins.str = ...,
-        name: builtins.str = ...,
-        step_type: builtins.str = ...,
-        notes: builtins.str = ...,
-        start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        id: _builtins.str = ...,
+        parent_step_id: _builtins.str = ...,
+        test_result_id: _builtins.str = ...,
+        test_id: _builtins.str = ...,
+        name: _builtins.str = ...,
+        step_type: _builtins.str = ...,
+        notes: _builtins.str = ...,
+        start_date_time: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        end_date_time: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         outcome: Global___Outcome.ValueType = ...,
         status: Global___Status.ValueType = ...,
         error_information: Global___ErrorInformation | None = ...,
-        link: builtins.str = ...,
-        extension: google.protobuf.struct_pb2.Struct | None = ...,
-        schema_id: builtins.str = ...,
-        keywords: collections.abc.Iterable[builtins.str] | None = ...,
-        duration: ni.protobuf.types.precision_duration_pb2.PrecisionDuration | None = ...,
-        path: collections.abc.Iterable[builtins.str] | None = ...,
-        path_ids: collections.abc.Iterable[builtins.str] | None = ...,
-        created_at: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        updated_at: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        created_by: builtins.str = ...,
-        updated_by: builtins.str = ...,
-        conditions: collections.abc.Iterable[Global___Condition] | None = ...,
-        measurements: collections.abc.Iterable[Global___Measurement] | None = ...,
-        children: collections.abc.Iterable[Global___Step] | None = ...,
-        test: ni.measurements.metadata.v1.metadata_store_pb2.Test | None = ...,
+        link: _builtins.str = ...,
+        extension: _struct_pb2.Struct | None = ...,
+        schema_id: _builtins.str = ...,
+        keywords: _abc.Iterable[_builtins.str] | None = ...,
+        duration: _precision_duration_pb2.PrecisionDuration | None = ...,
+        path: _abc.Iterable[_builtins.str] | None = ...,
+        path_ids: _abc.Iterable[_builtins.str] | None = ...,
+        created_at: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        updated_at: _precision_timestamp_pb2.PrecisionTimestamp | None = ...,
+        created_by: _builtins.str = ...,
+        updated_by: _builtins.str = ...,
+        conditions: _abc.Iterable[Global___Condition] | None = ...,
+        measurements: _abc.Iterable[Global___Measurement] | None = ...,
+        children: _abc.Iterable[Global___Step] | None = ...,
+        test: _metadata_store_pb2.Test | None = ...,
+        has_children: _builtins.bool = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["created_at", b"created_at", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "start_date_time", b"start_date_time", "test", b"test", "updated_at", b"updated_at"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["children", b"children", "conditions", b"conditions", "created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "id", b"id", "keywords", b"keywords", "link", b"link", "measurements", b"measurements", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parent_step_id", b"parent_step_id", "path", b"path", "path_ids", b"path_ids", "schema_id", b"schema_id", "start_date_time", b"start_date_time", "status", b"status", "step_type", b"step_type", "test", b"test", "test_id", b"test_id", "test_result_id", b"test_result_id", "updated_at", b"updated_at", "updated_by", b"updated_by"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["created_at", b"created_at", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "start_date_time", b"start_date_time", "test", b"test", "updated_at", b"updated_at"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["children", b"children", "conditions", b"conditions", "created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "has_children", b"has_children", "id", b"id", "keywords", b"keywords", "link", b"link", "measurements", b"measurements", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parent_step_id", b"parent_step_id", "path", b"path", "path_ids", b"path_ids", "schema_id", b"schema_id", "start_date_time", b"start_date_time", "status", b"status", "step_type", b"step_type", "test", b"test", "test_id", b"test_id", "test_result_id", b"test_result_id", "updated_at", b"updated_at", "updated_by", b"updated_by"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___Step: typing_extensions.TypeAlias = Step
+Global___Step: _TypeAlias = Step  # noqa: Y015

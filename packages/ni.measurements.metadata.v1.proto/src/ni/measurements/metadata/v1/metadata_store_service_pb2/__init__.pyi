@@ -3,1036 +3,1234 @@
 isort:skip_file
 """
 
-import builtins
-import collections.abc
-import google.protobuf.descriptor
-import google.protobuf.internal.containers
-import google.protobuf.message
-import ni.measurements.metadata.v1.metadata_store_pb2
+from collections import abc as _abc
+from google.protobuf import descriptor as _descriptor
+from google.protobuf import message as _message
+from google.protobuf.internal import containers as _containers
+from ni.measurements.metadata.v1 import metadata_store_pb2 as _metadata_store_pb2
+import builtins as _builtins
 import sys
-import typing
+import typing as _typing
 
-if sys.version_info >= (3, 10):
-    import typing as typing_extensions
+if sys.version_info >= (3, 11):
+    from typing import TypeAlias as _TypeAlias, Never as _Never
 else:
-    import typing_extensions
+    from typing_extensions import TypeAlias as _TypeAlias, Never as _Never
 
-DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
+DESCRIPTOR: _descriptor.FileDescriptor
 
-@typing.final
-class GetUutInstanceRequest(google.protobuf.message.Message):
+@_typing.final
+class GetUutInstanceRequest(_message.Message):
     """Message sent to get the UUT instance associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UUT_INSTANCE_ID_FIELD_NUMBER: builtins.int
-    uut_instance_id: builtins.str
+    UUT_INSTANCE_ID_FIELD_NUMBER: _builtins.int
+    uut_instance_id: _builtins.str
     """Required. The identifier of the desired UUT instance."""
     def __init__(
         self,
         *,
-        uut_instance_id: builtins.str = ...,
+        uut_instance_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["uut_instance_id", b"uut_instance_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["uut_instance_id", b"uut_instance_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetUutInstanceRequest: typing_extensions.TypeAlias = GetUutInstanceRequest
+Global___GetUutInstanceRequest: _TypeAlias = GetUutInstanceRequest  # noqa: Y015
 
-@typing.final
-class GetUutInstanceResponse(google.protobuf.message.Message):
+@_typing.final
+class GetUutInstanceResponse(_message.Message):
     """Message returned when getting a UUT instance associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UUT_INSTANCE_FIELD_NUMBER: builtins.int
-    @property
-    def uut_instance(self) -> ni.measurements.metadata.v1.metadata_store_pb2.UutInstance:
+    UUT_INSTANCE_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def uut_instance(self) -> _metadata_store_pb2.UutInstance:
         """The metadata of the requested UUT instance."""
 
     def __init__(
         self,
         *,
-        uut_instance: ni.measurements.metadata.v1.metadata_store_pb2.UutInstance | None = ...,
+        uut_instance: _metadata_store_pb2.UutInstance | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["uut_instance", b"uut_instance"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["uut_instance", b"uut_instance"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetUutInstanceResponse: typing_extensions.TypeAlias = GetUutInstanceResponse
+Global___GetUutInstanceResponse: _TypeAlias = GetUutInstanceResponse  # noqa: Y015
 
-@typing.final
-class QueryUutInstancesRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryUutInstancesRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: builtins.int
-    odata_query: builtins.str
+    ODATA_QUERY_FIELD_NUMBER: _builtins.int
+    odata_query: _builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
     $expand is not supported
     """
     def __init__(
         self,
         *,
-        odata_query: builtins.str = ...,
+        odata_query: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryUutInstancesRequest: typing_extensions.TypeAlias = QueryUutInstancesRequest
+Global___QueryUutInstancesRequest: _TypeAlias = QueryUutInstancesRequest  # noqa: Y015
 
-@typing.final
-class QueryUutInstancesResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryUutInstancesResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UUT_INSTANCES_FIELD_NUMBER: builtins.int
-    @property
-    def uut_instances(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance]: ...
+    UUT_INSTANCES_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def uut_instances(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.UutInstance]: ...
     def __init__(
         self,
         *,
-        uut_instances: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance] | None = ...,
+        uut_instances: _abc.Iterable[_metadata_store_pb2.UutInstance] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["uut_instances", b"uut_instances"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["uut_instances", b"uut_instances"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryUutInstancesResponse: typing_extensions.TypeAlias = QueryUutInstancesResponse
+Global___QueryUutInstancesResponse: _TypeAlias = QueryUutInstancesResponse  # noqa: Y015
 
-@typing.final
-class CreateUutInstanceRequest(google.protobuf.message.Message):
+@_typing.final
+class CreateUutInstanceRequest(_message.Message):
     """Message sent to create a new UUT instance in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UUT_INSTANCE_FIELD_NUMBER: builtins.int
-    @property
-    def uut_instance(self) -> ni.measurements.metadata.v1.metadata_store_pb2.UutInstance:
+    UUT_INSTANCE_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def uut_instance(self) -> _metadata_store_pb2.UutInstance:
         """Required. The metadata of the UUT instance to be created."""
 
     def __init__(
         self,
         *,
-        uut_instance: ni.measurements.metadata.v1.metadata_store_pb2.UutInstance | None = ...,
+        uut_instance: _metadata_store_pb2.UutInstance | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["uut_instance", b"uut_instance"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["uut_instance", b"uut_instance"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateUutInstanceRequest: typing_extensions.TypeAlias = CreateUutInstanceRequest
+Global___CreateUutInstanceRequest: _TypeAlias = CreateUutInstanceRequest  # noqa: Y015
 
-@typing.final
-class CreateUutInstanceResponse(google.protobuf.message.Message):
+@_typing.final
+class CreateUutInstanceResponse(_message.Message):
     """Message returned when creating a new UUT instance in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UUT_INSTANCE_ID_FIELD_NUMBER: builtins.int
-    uut_instance_id: builtins.str
+    UUT_INSTANCE_ID_FIELD_NUMBER: _builtins.int
+    uut_instance_id: _builtins.str
     """The identifier of the created UUT instance."""
     def __init__(
         self,
         *,
-        uut_instance_id: builtins.str = ...,
+        uut_instance_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["uut_instance_id", b"uut_instance_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["uut_instance_id", b"uut_instance_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateUutInstanceResponse: typing_extensions.TypeAlias = CreateUutInstanceResponse
+Global___CreateUutInstanceResponse: _TypeAlias = CreateUutInstanceResponse  # noqa: Y015
 
-@typing.final
-class GetUutRequest(google.protobuf.message.Message):
+@_typing.final
+class GetUutRequest(_message.Message):
     """Message sent to get the UUT associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UUT_ID_FIELD_NUMBER: builtins.int
-    uut_id: builtins.str
+    UUT_ID_FIELD_NUMBER: _builtins.int
+    uut_id: _builtins.str
     """Required. The identifier of the desired UUT."""
     def __init__(
         self,
         *,
-        uut_id: builtins.str = ...,
+        uut_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["uut_id", b"uut_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["uut_id", b"uut_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetUutRequest: typing_extensions.TypeAlias = GetUutRequest
+Global___GetUutRequest: _TypeAlias = GetUutRequest  # noqa: Y015
 
-@typing.final
-class GetUutResponse(google.protobuf.message.Message):
+@_typing.final
+class GetUutResponse(_message.Message):
     """Message returned when getting a UUT associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UUT_FIELD_NUMBER: builtins.int
-    @property
-    def uut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Uut:
+    UUT_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def uut(self) -> _metadata_store_pb2.Uut:
         """The metadata of the requested UUT."""
 
     def __init__(
         self,
         *,
-        uut: ni.measurements.metadata.v1.metadata_store_pb2.Uut | None = ...,
+        uut: _metadata_store_pb2.Uut | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["uut", b"uut"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["uut", b"uut"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["uut", b"uut"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["uut", b"uut"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetUutResponse: typing_extensions.TypeAlias = GetUutResponse
+Global___GetUutResponse: _TypeAlias = GetUutResponse  # noqa: Y015
 
-@typing.final
-class QueryUutsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryUutsRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: builtins.int
-    odata_query: builtins.str
+    ODATA_QUERY_FIELD_NUMBER: _builtins.int
+    odata_query: _builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
     $expand is not supported
     """
     def __init__(
         self,
         *,
-        odata_query: builtins.str = ...,
+        odata_query: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryUutsRequest: typing_extensions.TypeAlias = QueryUutsRequest
+Global___QueryUutsRequest: _TypeAlias = QueryUutsRequest  # noqa: Y015
 
-@typing.final
-class QueryUutsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryUutsResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UUTS_FIELD_NUMBER: builtins.int
-    @property
-    def uuts(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Uut]: ...
+    UUTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def uuts(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.Uut]: ...
     def __init__(
         self,
         *,
-        uuts: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Uut] | None = ...,
+        uuts: _abc.Iterable[_metadata_store_pb2.Uut] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["uuts", b"uuts"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["uuts", b"uuts"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryUutsResponse: typing_extensions.TypeAlias = QueryUutsResponse
+Global___QueryUutsResponse: _TypeAlias = QueryUutsResponse  # noqa: Y015
 
-@typing.final
-class CreateUutRequest(google.protobuf.message.Message):
+@_typing.final
+class CreateUutRequest(_message.Message):
     """Message sent to create a new UUT in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UUT_FIELD_NUMBER: builtins.int
-    @property
-    def uut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Uut:
+    UUT_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def uut(self) -> _metadata_store_pb2.Uut:
         """Required. The metadata of the UUT to be created."""
 
     def __init__(
         self,
         *,
-        uut: ni.measurements.metadata.v1.metadata_store_pb2.Uut | None = ...,
+        uut: _metadata_store_pb2.Uut | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["uut", b"uut"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["uut", b"uut"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["uut", b"uut"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["uut", b"uut"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateUutRequest: typing_extensions.TypeAlias = CreateUutRequest
+Global___CreateUutRequest: _TypeAlias = CreateUutRequest  # noqa: Y015
 
-@typing.final
-class CreateUutResponse(google.protobuf.message.Message):
+@_typing.final
+class CreateUutResponse(_message.Message):
     """Message returned when creating a new UUT in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UUT_ID_FIELD_NUMBER: builtins.int
-    uut_id: builtins.str
+    UUT_ID_FIELD_NUMBER: _builtins.int
+    uut_id: _builtins.str
     """The identifier of the created UUT."""
     def __init__(
         self,
         *,
-        uut_id: builtins.str = ...,
+        uut_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["uut_id", b"uut_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["uut_id", b"uut_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateUutResponse: typing_extensions.TypeAlias = CreateUutResponse
+Global___CreateUutResponse: _TypeAlias = CreateUutResponse  # noqa: Y015
 
-@typing.final
-class GetOperatorRequest(google.protobuf.message.Message):
+@_typing.final
+class GetOperatorRequest(_message.Message):
     """Message sent to get the operator associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    OPERATOR_ID_FIELD_NUMBER: builtins.int
-    operator_id: builtins.str
+    OPERATOR_ID_FIELD_NUMBER: _builtins.int
+    operator_id: _builtins.str
     """Required. The identifier of the desired operator."""
     def __init__(
         self,
         *,
-        operator_id: builtins.str = ...,
+        operator_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["operator_id", b"operator_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["operator_id", b"operator_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetOperatorRequest: typing_extensions.TypeAlias = GetOperatorRequest
+Global___GetOperatorRequest: _TypeAlias = GetOperatorRequest  # noqa: Y015
 
-@typing.final
-class GetOperatorResponse(google.protobuf.message.Message):
+@_typing.final
+class GetOperatorResponse(_message.Message):
     """Message returned when getting an operator associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    OPERATOR_FIELD_NUMBER: builtins.int
-    @property
-    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Operator:
+    OPERATOR_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def operator(self) -> _metadata_store_pb2.Operator:
         """The metadata of the requested operator."""
 
     def __init__(
         self,
         *,
-        operator: ni.measurements.metadata.v1.metadata_store_pb2.Operator | None = ...,
+        operator: _metadata_store_pb2.Operator | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["operator", b"operator"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["operator", b"operator"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["operator", b"operator"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["operator", b"operator"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetOperatorResponse: typing_extensions.TypeAlias = GetOperatorResponse
+Global___GetOperatorResponse: _TypeAlias = GetOperatorResponse  # noqa: Y015
 
-@typing.final
-class QueryOperatorsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryOperatorsRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: builtins.int
-    odata_query: builtins.str
+    ODATA_QUERY_FIELD_NUMBER: _builtins.int
+    odata_query: _builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
     $expand is not supported
     """
     def __init__(
         self,
         *,
-        odata_query: builtins.str = ...,
+        odata_query: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryOperatorsRequest: typing_extensions.TypeAlias = QueryOperatorsRequest
+Global___QueryOperatorsRequest: _TypeAlias = QueryOperatorsRequest  # noqa: Y015
 
-@typing.final
-class QueryOperatorsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryOperatorsResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    OPERATORS_FIELD_NUMBER: builtins.int
-    @property
-    def operators(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Operator]: ...
+    OPERATORS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def operators(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.Operator]: ...
     def __init__(
         self,
         *,
-        operators: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Operator] | None = ...,
+        operators: _abc.Iterable[_metadata_store_pb2.Operator] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["operators", b"operators"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["operators", b"operators"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryOperatorsResponse: typing_extensions.TypeAlias = QueryOperatorsResponse
+Global___QueryOperatorsResponse: _TypeAlias = QueryOperatorsResponse  # noqa: Y015
 
-@typing.final
-class CreateOperatorRequest(google.protobuf.message.Message):
+@_typing.final
+class CreateOperatorRequest(_message.Message):
     """Message sent to create a new operator in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    OPERATOR_FIELD_NUMBER: builtins.int
-    @property
-    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Operator:
+    OPERATOR_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def operator(self) -> _metadata_store_pb2.Operator:
         """Required. The metadata of the operator to be created."""
 
     def __init__(
         self,
         *,
-        operator: ni.measurements.metadata.v1.metadata_store_pb2.Operator | None = ...,
+        operator: _metadata_store_pb2.Operator | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["operator", b"operator"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["operator", b"operator"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["operator", b"operator"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["operator", b"operator"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateOperatorRequest: typing_extensions.TypeAlias = CreateOperatorRequest
+Global___CreateOperatorRequest: _TypeAlias = CreateOperatorRequest  # noqa: Y015
 
-@typing.final
-class CreateOperatorResponse(google.protobuf.message.Message):
+@_typing.final
+class CreateOperatorResponse(_message.Message):
     """Message returned when creating a new operator in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    OPERATOR_ID_FIELD_NUMBER: builtins.int
-    operator_id: builtins.str
+    OPERATOR_ID_FIELD_NUMBER: _builtins.int
+    operator_id: _builtins.str
     """The identifier of the created operator."""
     def __init__(
         self,
         *,
-        operator_id: builtins.str = ...,
+        operator_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["operator_id", b"operator_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["operator_id", b"operator_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateOperatorResponse: typing_extensions.TypeAlias = CreateOperatorResponse
+Global___CreateOperatorResponse: _TypeAlias = CreateOperatorResponse  # noqa: Y015
 
-@typing.final
-class GetTestDescriptionRequest(google.protobuf.message.Message):
+@_typing.final
+class GetTestDescriptionRequest(_message.Message):
     """Message sent to get the test description associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_DESCRIPTION_ID_FIELD_NUMBER: builtins.int
-    test_description_id: builtins.str
+    TEST_DESCRIPTION_ID_FIELD_NUMBER: _builtins.int
+    test_description_id: _builtins.str
     """Required. The identifier of the desired test description."""
     def __init__(
         self,
         *,
-        test_description_id: builtins.str = ...,
+        test_description_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_description_id", b"test_description_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_description_id", b"test_description_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetTestDescriptionRequest: typing_extensions.TypeAlias = GetTestDescriptionRequest
+Global___GetTestDescriptionRequest: _TypeAlias = GetTestDescriptionRequest  # noqa: Y015
 
-@typing.final
-class GetTestDescriptionResponse(google.protobuf.message.Message):
+@_typing.final
+class GetTestDescriptionResponse(_message.Message):
     """Message returned when getting a test description associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_DESCRIPTION_FIELD_NUMBER: builtins.int
-    @property
-    def test_description(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestDescription:
+    TEST_DESCRIPTION_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def test_description(self) -> _metadata_store_pb2.TestDescription:
         """The metadata of the requested test description."""
 
     def __init__(
         self,
         *,
-        test_description: ni.measurements.metadata.v1.metadata_store_pb2.TestDescription | None = ...,
+        test_description: _metadata_store_pb2.TestDescription | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test_description", b"test_description"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test_description", b"test_description"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["test_description", b"test_description"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_description", b"test_description"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetTestDescriptionResponse: typing_extensions.TypeAlias = GetTestDescriptionResponse
+Global___GetTestDescriptionResponse: _TypeAlias = GetTestDescriptionResponse  # noqa: Y015
 
-@typing.final
-class QueryTestDescriptionsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryTestDescriptionsRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: builtins.int
-    odata_query: builtins.str
+    ODATA_QUERY_FIELD_NUMBER: _builtins.int
+    odata_query: _builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
     $expand is not supported
     """
     def __init__(
         self,
         *,
-        odata_query: builtins.str = ...,
+        odata_query: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryTestDescriptionsRequest: typing_extensions.TypeAlias = QueryTestDescriptionsRequest
+Global___QueryTestDescriptionsRequest: _TypeAlias = QueryTestDescriptionsRequest  # noqa: Y015
 
-@typing.final
-class QueryTestDescriptionsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryTestDescriptionsResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_DESCRIPTIONS_FIELD_NUMBER: builtins.int
-    @property
-    def test_descriptions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription]: ...
+    TEST_DESCRIPTIONS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def test_descriptions(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.TestDescription]: ...
     def __init__(
         self,
         *,
-        test_descriptions: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription] | None = ...,
+        test_descriptions: _abc.Iterable[_metadata_store_pb2.TestDescription] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_descriptions", b"test_descriptions"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_descriptions", b"test_descriptions"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryTestDescriptionsResponse: typing_extensions.TypeAlias = QueryTestDescriptionsResponse
+Global___QueryTestDescriptionsResponse: _TypeAlias = QueryTestDescriptionsResponse  # noqa: Y015
 
-@typing.final
-class CreateTestDescriptionRequest(google.protobuf.message.Message):
+@_typing.final
+class CreateTestDescriptionRequest(_message.Message):
     """Message sent to create a new test description in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_DESCRIPTION_FIELD_NUMBER: builtins.int
-    @property
-    def test_description(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestDescription:
+    TEST_DESCRIPTION_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def test_description(self) -> _metadata_store_pb2.TestDescription:
         """Required. The metadata of the test description to be created."""
 
     def __init__(
         self,
         *,
-        test_description: ni.measurements.metadata.v1.metadata_store_pb2.TestDescription | None = ...,
+        test_description: _metadata_store_pb2.TestDescription | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test_description", b"test_description"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test_description", b"test_description"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["test_description", b"test_description"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_description", b"test_description"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateTestDescriptionRequest: typing_extensions.TypeAlias = CreateTestDescriptionRequest
+Global___CreateTestDescriptionRequest: _TypeAlias = CreateTestDescriptionRequest  # noqa: Y015
 
-@typing.final
-class CreateTestDescriptionResponse(google.protobuf.message.Message):
+@_typing.final
+class CreateTestDescriptionResponse(_message.Message):
     """Message returned when creating a new test description in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_DESCRIPTION_ID_FIELD_NUMBER: builtins.int
-    test_description_id: builtins.str
+    TEST_DESCRIPTION_ID_FIELD_NUMBER: _builtins.int
+    test_description_id: _builtins.str
     """The identifier of the created test description."""
     def __init__(
         self,
         *,
-        test_description_id: builtins.str = ...,
+        test_description_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_description_id", b"test_description_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_description_id", b"test_description_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateTestDescriptionResponse: typing_extensions.TypeAlias = CreateTestDescriptionResponse
+Global___CreateTestDescriptionResponse: _TypeAlias = CreateTestDescriptionResponse  # noqa: Y015
 
-@typing.final
-class GetTestRequest(google.protobuf.message.Message):
+@_typing.final
+class GetTestRequest(_message.Message):
     """Message sent to get the test associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_ID_FIELD_NUMBER: builtins.int
-    test_id: builtins.str
+    TEST_ID_FIELD_NUMBER: _builtins.int
+    test_id: _builtins.str
     """Required. The identifier of the desired test."""
     def __init__(
         self,
         *,
-        test_id: builtins.str = ...,
+        test_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_id", b"test_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_id", b"test_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetTestRequest: typing_extensions.TypeAlias = GetTestRequest
+Global___GetTestRequest: _TypeAlias = GetTestRequest  # noqa: Y015
 
-@typing.final
-class GetTestResponse(google.protobuf.message.Message):
+@_typing.final
+class GetTestResponse(_message.Message):
     """Message returned when getting a test associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_FIELD_NUMBER: builtins.int
-    @property
-    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Test:
+    TEST_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def test(self) -> _metadata_store_pb2.Test:
         """The metadata of the requested test."""
 
     def __init__(
         self,
         *,
-        test: ni.measurements.metadata.v1.metadata_store_pb2.Test | None = ...,
+        test: _metadata_store_pb2.Test | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test", b"test"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test", b"test"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["test", b"test"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test", b"test"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetTestResponse: typing_extensions.TypeAlias = GetTestResponse
+Global___GetTestResponse: _TypeAlias = GetTestResponse  # noqa: Y015
 
-@typing.final
-class QueryTestsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryTestsRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: builtins.int
-    odata_query: builtins.str
+    ODATA_QUERY_FIELD_NUMBER: _builtins.int
+    odata_query: _builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
     $expand is not supported
     """
     def __init__(
         self,
         *,
-        odata_query: builtins.str = ...,
+        odata_query: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryTestsRequest: typing_extensions.TypeAlias = QueryTestsRequest
+Global___QueryTestsRequest: _TypeAlias = QueryTestsRequest  # noqa: Y015
 
-@typing.final
-class QueryTestsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryTestsResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TESTS_FIELD_NUMBER: builtins.int
-    @property
-    def tests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Test]: ...
+    TESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def tests(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.Test]: ...
     def __init__(
         self,
         *,
-        tests: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Test] | None = ...,
+        tests: _abc.Iterable[_metadata_store_pb2.Test] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["tests", b"tests"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["tests", b"tests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryTestsResponse: typing_extensions.TypeAlias = QueryTestsResponse
+Global___QueryTestsResponse: _TypeAlias = QueryTestsResponse  # noqa: Y015
 
-@typing.final
-class CreateTestRequest(google.protobuf.message.Message):
+@_typing.final
+class CreateTestRequest(_message.Message):
     """Message sent to create a new test in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_FIELD_NUMBER: builtins.int
-    @property
-    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Test:
+    TEST_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def test(self) -> _metadata_store_pb2.Test:
         """Required. The metadata of the test to be created."""
 
     def __init__(
         self,
         *,
-        test: ni.measurements.metadata.v1.metadata_store_pb2.Test | None = ...,
+        test: _metadata_store_pb2.Test | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test", b"test"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test", b"test"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["test", b"test"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test", b"test"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateTestRequest: typing_extensions.TypeAlias = CreateTestRequest
+Global___CreateTestRequest: _TypeAlias = CreateTestRequest  # noqa: Y015
 
-@typing.final
-class CreateTestResponse(google.protobuf.message.Message):
+@_typing.final
+class CreateTestResponse(_message.Message):
     """Message returned when creating a new test in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_ID_FIELD_NUMBER: builtins.int
-    test_id: builtins.str
+    TEST_ID_FIELD_NUMBER: _builtins.int
+    test_id: _builtins.str
     """The identifier of the created test."""
     def __init__(
         self,
         *,
-        test_id: builtins.str = ...,
+        test_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_id", b"test_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_id", b"test_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateTestResponse: typing_extensions.TypeAlias = CreateTestResponse
+Global___CreateTestResponse: _TypeAlias = CreateTestResponse  # noqa: Y015
 
-@typing.final
-class GetTestStationRequest(google.protobuf.message.Message):
+@_typing.final
+class GetTestStationRequest(_message.Message):
     """Message sent to get the test station associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_STATION_ID_FIELD_NUMBER: builtins.int
-    test_station_id: builtins.str
+    TEST_STATION_ID_FIELD_NUMBER: _builtins.int
+    test_station_id: _builtins.str
     """Required. The identifier of the desired test station."""
     def __init__(
         self,
         *,
-        test_station_id: builtins.str = ...,
+        test_station_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_station_id", b"test_station_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_station_id", b"test_station_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetTestStationRequest: typing_extensions.TypeAlias = GetTestStationRequest
+Global___GetTestStationRequest: _TypeAlias = GetTestStationRequest  # noqa: Y015
 
-@typing.final
-class GetTestStationResponse(google.protobuf.message.Message):
+@_typing.final
+class GetTestStationResponse(_message.Message):
     """Message returned when getting a test station associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_STATION_FIELD_NUMBER: builtins.int
-    @property
-    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStation:
+    TEST_STATION_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def test_station(self) -> _metadata_store_pb2.TestStation:
         """The metadata of the requested test station."""
 
     def __init__(
         self,
         *,
-        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStation | None = ...,
+        test_station: _metadata_store_pb2.TestStation | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test_station", b"test_station"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test_station", b"test_station"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["test_station", b"test_station"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_station", b"test_station"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetTestStationResponse: typing_extensions.TypeAlias = GetTestStationResponse
+Global___GetTestStationResponse: _TypeAlias = GetTestStationResponse  # noqa: Y015
 
-@typing.final
-class QueryTestStationsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryTestStationsRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: builtins.int
-    odata_query: builtins.str
+    ODATA_QUERY_FIELD_NUMBER: _builtins.int
+    odata_query: _builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
     $expand is not supported
     """
     def __init__(
         self,
         *,
-        odata_query: builtins.str = ...,
+        odata_query: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryTestStationsRequest: typing_extensions.TypeAlias = QueryTestStationsRequest
+Global___QueryTestStationsRequest: _TypeAlias = QueryTestStationsRequest  # noqa: Y015
 
-@typing.final
-class QueryTestStationsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryTestStationsResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_STATIONS_FIELD_NUMBER: builtins.int
-    @property
-    def test_stations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestStation]: ...
+    TEST_STATIONS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def test_stations(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.TestStation]: ...
     def __init__(
         self,
         *,
-        test_stations: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestStation] | None = ...,
+        test_stations: _abc.Iterable[_metadata_store_pb2.TestStation] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_stations", b"test_stations"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_stations", b"test_stations"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryTestStationsResponse: typing_extensions.TypeAlias = QueryTestStationsResponse
+Global___QueryTestStationsResponse: _TypeAlias = QueryTestStationsResponse  # noqa: Y015
 
-@typing.final
-class CreateTestStationRequest(google.protobuf.message.Message):
+@_typing.final
+class CreateTestStationRequest(_message.Message):
     """Message sent to create a new test station in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_STATION_FIELD_NUMBER: builtins.int
-    @property
-    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStation:
+    TEST_STATION_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def test_station(self) -> _metadata_store_pb2.TestStation:
         """Required. The metadata of the test station to be created."""
 
     def __init__(
         self,
         *,
-        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStation | None = ...,
+        test_station: _metadata_store_pb2.TestStation | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test_station", b"test_station"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test_station", b"test_station"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["test_station", b"test_station"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_station", b"test_station"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateTestStationRequest: typing_extensions.TypeAlias = CreateTestStationRequest
+Global___CreateTestStationRequest: _TypeAlias = CreateTestStationRequest  # noqa: Y015
 
-@typing.final
-class CreateTestStationResponse(google.protobuf.message.Message):
+@_typing.final
+class CreateTestStationResponse(_message.Message):
     """Message returned when creating a new test station in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_STATION_ID_FIELD_NUMBER: builtins.int
-    test_station_id: builtins.str
+    TEST_STATION_ID_FIELD_NUMBER: _builtins.int
+    test_station_id: _builtins.str
     """The identifier of the created test station."""
     def __init__(
         self,
         *,
-        test_station_id: builtins.str = ...,
+        test_station_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_station_id", b"test_station_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_station_id", b"test_station_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateTestStationResponse: typing_extensions.TypeAlias = CreateTestStationResponse
+Global___CreateTestStationResponse: _TypeAlias = CreateTestStationResponse  # noqa: Y015
 
-@typing.final
-class GetHardwareItemRequest(google.protobuf.message.Message):
+@_typing.final
+class GetHardwareItemRequest(_message.Message):
     """Message sent to get the hardware item associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    HARDWARE_ITEM_ID_FIELD_NUMBER: builtins.int
-    hardware_item_id: builtins.str
+    HARDWARE_ITEM_ID_FIELD_NUMBER: _builtins.int
+    hardware_item_id: _builtins.str
     """Required. The identifier of the desired hardware item."""
     def __init__(
         self,
         *,
-        hardware_item_id: builtins.str = ...,
+        hardware_item_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["hardware_item_id", b"hardware_item_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["hardware_item_id", b"hardware_item_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetHardwareItemRequest: typing_extensions.TypeAlias = GetHardwareItemRequest
+Global___GetHardwareItemRequest: _TypeAlias = GetHardwareItemRequest  # noqa: Y015
 
-@typing.final
-class GetHardwareItemResponse(google.protobuf.message.Message):
+@_typing.final
+class GetHardwareItemResponse(_message.Message):
     """Message returned when getting the hardware item associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    HARDWARE_ITEM_FIELD_NUMBER: builtins.int
-    @property
-    def hardware_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem:
+    HARDWARE_ITEM_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def hardware_item(self) -> _metadata_store_pb2.HardwareItem:
         """The metadata of the requested hardware item."""
 
     def __init__(
         self,
         *,
-        hardware_item: ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem | None = ...,
+        hardware_item: _metadata_store_pb2.HardwareItem | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["hardware_item", b"hardware_item"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["hardware_item", b"hardware_item"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetHardwareItemResponse: typing_extensions.TypeAlias = GetHardwareItemResponse
+Global___GetHardwareItemResponse: _TypeAlias = GetHardwareItemResponse  # noqa: Y015
 
-@typing.final
-class QueryHardwareItemsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryHardwareItemsRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: builtins.int
-    odata_query: builtins.str
+    ODATA_QUERY_FIELD_NUMBER: _builtins.int
+    odata_query: _builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
     $expand is not supported
     """
     def __init__(
         self,
         *,
-        odata_query: builtins.str = ...,
+        odata_query: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryHardwareItemsRequest: typing_extensions.TypeAlias = QueryHardwareItemsRequest
+Global___QueryHardwareItemsRequest: _TypeAlias = QueryHardwareItemsRequest  # noqa: Y015
 
-@typing.final
-class QueryHardwareItemsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryHardwareItemsResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    HARDWARE_ITEMS_FIELD_NUMBER: builtins.int
-    @property
-    def hardware_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem]: ...
+    HARDWARE_ITEMS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def hardware_items(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.HardwareItem]: ...
     def __init__(
         self,
         *,
-        hardware_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem] | None = ...,
+        hardware_items: _abc.Iterable[_metadata_store_pb2.HardwareItem] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["hardware_items", b"hardware_items"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["hardware_items", b"hardware_items"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryHardwareItemsResponse: typing_extensions.TypeAlias = QueryHardwareItemsResponse
+Global___QueryHardwareItemsResponse: _TypeAlias = QueryHardwareItemsResponse  # noqa: Y015
 
-@typing.final
-class CreateHardwareItemRequest(google.protobuf.message.Message):
+@_typing.final
+class CreateHardwareItemRequest(_message.Message):
     """Message sent to create new hardware item in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    HARDWARE_ITEM_FIELD_NUMBER: builtins.int
-    @property
-    def hardware_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem:
+    HARDWARE_ITEM_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def hardware_item(self) -> _metadata_store_pb2.HardwareItem:
         """Required. The metadata of the hardware item to be created."""
 
     def __init__(
         self,
         *,
-        hardware_item: ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem | None = ...,
+        hardware_item: _metadata_store_pb2.HardwareItem | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["hardware_item", b"hardware_item"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["hardware_item", b"hardware_item"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateHardwareItemRequest: typing_extensions.TypeAlias = CreateHardwareItemRequest
+Global___CreateHardwareItemRequest: _TypeAlias = CreateHardwareItemRequest  # noqa: Y015
 
-@typing.final
-class CreateHardwareItemResponse(google.protobuf.message.Message):
+@_typing.final
+class CreateHardwareItemResponse(_message.Message):
     """Message returned when creating new hardware item in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    HARDWARE_ITEM_ID_FIELD_NUMBER: builtins.int
-    hardware_item_id: builtins.str
+    HARDWARE_ITEM_ID_FIELD_NUMBER: _builtins.int
+    hardware_item_id: _builtins.str
     """The identifier of the created hardware item."""
     def __init__(
         self,
         *,
-        hardware_item_id: builtins.str = ...,
+        hardware_item_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["hardware_item_id", b"hardware_item_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["hardware_item_id", b"hardware_item_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateHardwareItemResponse: typing_extensions.TypeAlias = CreateHardwareItemResponse
+Global___CreateHardwareItemResponse: _TypeAlias = CreateHardwareItemResponse  # noqa: Y015
 
-@typing.final
-class GetSoftwareItemRequest(google.protobuf.message.Message):
+@_typing.final
+class GetSoftwareItemRequest(_message.Message):
     """Message sent to get the software item associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    SOFTWARE_ITEM_ID_FIELD_NUMBER: builtins.int
-    software_item_id: builtins.str
+    SOFTWARE_ITEM_ID_FIELD_NUMBER: _builtins.int
+    software_item_id: _builtins.str
     """Required. The identifier of the desired software item."""
     def __init__(
         self,
         *,
-        software_item_id: builtins.str = ...,
+        software_item_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["software_item_id", b"software_item_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["software_item_id", b"software_item_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetSoftwareItemRequest: typing_extensions.TypeAlias = GetSoftwareItemRequest
+Global___GetSoftwareItemRequest: _TypeAlias = GetSoftwareItemRequest  # noqa: Y015
 
-@typing.final
-class GetSoftwareItemResponse(google.protobuf.message.Message):
+@_typing.final
+class GetSoftwareItemResponse(_message.Message):
     """Message returned when getting the software item associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    SOFTWARE_ITEM_FIELD_NUMBER: builtins.int
-    @property
-    def software_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem:
+    SOFTWARE_ITEM_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def software_item(self) -> _metadata_store_pb2.SoftwareItem:
         """The metadata of the requested software item."""
 
     def __init__(
         self,
         *,
-        software_item: ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem | None = ...,
+        software_item: _metadata_store_pb2.SoftwareItem | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["software_item", b"software_item"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["software_item", b"software_item"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["software_item", b"software_item"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["software_item", b"software_item"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetSoftwareItemResponse: typing_extensions.TypeAlias = GetSoftwareItemResponse
+Global___GetSoftwareItemResponse: _TypeAlias = GetSoftwareItemResponse  # noqa: Y015
 
-@typing.final
-class QuerySoftwareItemsRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QuerySoftwareItemsRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: builtins.int
-    odata_query: builtins.str
+    ODATA_QUERY_FIELD_NUMBER: _builtins.int
+    odata_query: _builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
     $expand is not supported
     """
     def __init__(
         self,
         *,
-        odata_query: builtins.str = ...,
+        odata_query: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QuerySoftwareItemsRequest: typing_extensions.TypeAlias = QuerySoftwareItemsRequest
+Global___QuerySoftwareItemsRequest: _TypeAlias = QuerySoftwareItemsRequest  # noqa: Y015
 
-@typing.final
-class QuerySoftwareItemsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QuerySoftwareItemsResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    SOFTWARE_ITEMS_FIELD_NUMBER: builtins.int
-    @property
-    def software_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem]: ...
+    SOFTWARE_ITEMS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def software_items(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.SoftwareItem]: ...
     def __init__(
         self,
         *,
-        software_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem] | None = ...,
+        software_items: _abc.Iterable[_metadata_store_pb2.SoftwareItem] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["software_items", b"software_items"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["software_items", b"software_items"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QuerySoftwareItemsResponse: typing_extensions.TypeAlias = QuerySoftwareItemsResponse
+Global___QuerySoftwareItemsResponse: _TypeAlias = QuerySoftwareItemsResponse  # noqa: Y015
 
-@typing.final
-class CreateSoftwareItemRequest(google.protobuf.message.Message):
+@_typing.final
+class CreateSoftwareItemRequest(_message.Message):
     """Message sent to create new software item in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    SOFTWARE_ITEM_FIELD_NUMBER: builtins.int
-    @property
-    def software_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem:
+    SOFTWARE_ITEM_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def software_item(self) -> _metadata_store_pb2.SoftwareItem:
         """Required. The metadata of the software item to be created."""
 
     def __init__(
         self,
         *,
-        software_item: ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem | None = ...,
+        software_item: _metadata_store_pb2.SoftwareItem | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["software_item", b"software_item"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["software_item", b"software_item"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["software_item", b"software_item"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["software_item", b"software_item"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateSoftwareItemRequest: typing_extensions.TypeAlias = CreateSoftwareItemRequest
+Global___CreateSoftwareItemRequest: _TypeAlias = CreateSoftwareItemRequest  # noqa: Y015
 
-@typing.final
-class CreateSoftwareItemResponse(google.protobuf.message.Message):
+@_typing.final
+class CreateSoftwareItemResponse(_message.Message):
     """Message returned when creating new software item in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    SOFTWARE_ITEM_ID_FIELD_NUMBER: builtins.int
-    software_item_id: builtins.str
+    SOFTWARE_ITEM_ID_FIELD_NUMBER: _builtins.int
+    software_item_id: _builtins.str
     """The identifier of the created software item."""
     def __init__(
         self,
         *,
-        software_item_id: builtins.str = ...,
+        software_item_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["software_item_id", b"software_item_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["software_item_id", b"software_item_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateSoftwareItemResponse: typing_extensions.TypeAlias = CreateSoftwareItemResponse
+Global___CreateSoftwareItemResponse: _TypeAlias = CreateSoftwareItemResponse  # noqa: Y015
 
-@typing.final
-class GetTestAdapterRequest(google.protobuf.message.Message):
+@_typing.final
+class GetTestAdapterRequest(_message.Message):
     """Message sent to get the test adapter associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_ADAPTER_ID_FIELD_NUMBER: builtins.int
-    test_adapter_id: builtins.str
+    TEST_ADAPTER_ID_FIELD_NUMBER: _builtins.int
+    test_adapter_id: _builtins.str
     """Required. The identifier of the desired test adapter."""
     def __init__(
         self,
         *,
-        test_adapter_id: builtins.str = ...,
+        test_adapter_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_adapter_id", b"test_adapter_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_adapter_id", b"test_adapter_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetTestAdapterRequest: typing_extensions.TypeAlias = GetTestAdapterRequest
+Global___GetTestAdapterRequest: _TypeAlias = GetTestAdapterRequest  # noqa: Y015
 
-@typing.final
-class GetTestAdapterResponse(google.protobuf.message.Message):
+@_typing.final
+class GetTestAdapterResponse(_message.Message):
     """Message returned when getting the test adapter associated with the given identifier."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_ADAPTER_FIELD_NUMBER: builtins.int
-    @property
-    def test_adapter(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter:
+    TEST_ADAPTER_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def test_adapter(self) -> _metadata_store_pb2.TestAdapter:
         """The metadata of the requested test adapter."""
 
     def __init__(
         self,
         *,
-        test_adapter: ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter | None = ...,
+        test_adapter: _metadata_store_pb2.TestAdapter | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["test_adapter", b"test_adapter"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_adapter", b"test_adapter"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetTestAdapterResponse: typing_extensions.TypeAlias = GetTestAdapterResponse
+Global___GetTestAdapterResponse: _TypeAlias = GetTestAdapterResponse  # noqa: Y015
 
-@typing.final
-class QueryTestAdaptersRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryTestAdaptersRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: builtins.int
-    odata_query: builtins.str
+    ODATA_QUERY_FIELD_NUMBER: _builtins.int
+    odata_query: _builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
     $expand is not supported
     """
     def __init__(
         self,
         *,
-        odata_query: builtins.str = ...,
+        odata_query: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryTestAdaptersRequest: typing_extensions.TypeAlias = QueryTestAdaptersRequest
+Global___QueryTestAdaptersRequest: _TypeAlias = QueryTestAdaptersRequest  # noqa: Y015
 
-@typing.final
-class QueryTestAdaptersResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryTestAdaptersResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_ADAPTERS_FIELD_NUMBER: builtins.int
-    @property
-    def test_adapters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter]: ...
+    TEST_ADAPTERS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def test_adapters(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.TestAdapter]: ...
     def __init__(
         self,
         *,
-        test_adapters: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter] | None = ...,
+        test_adapters: _abc.Iterable[_metadata_store_pb2.TestAdapter] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_adapters", b"test_adapters"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_adapters", b"test_adapters"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryTestAdaptersResponse: typing_extensions.TypeAlias = QueryTestAdaptersResponse
+Global___QueryTestAdaptersResponse: _TypeAlias = QueryTestAdaptersResponse  # noqa: Y015
 
-@typing.final
-class CreateTestAdapterRequest(google.protobuf.message.Message):
+@_typing.final
+class CreateTestAdapterRequest(_message.Message):
     """Message sent to create new test adapter in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_ADAPTER_FIELD_NUMBER: builtins.int
-    @property
-    def test_adapter(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter:
+    TEST_ADAPTER_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def test_adapter(self) -> _metadata_store_pb2.TestAdapter:
         """Required. The metadata of the test adapter to be created."""
 
     def __init__(
         self,
         *,
-        test_adapter: ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter | None = ...,
+        test_adapter: _metadata_store_pb2.TestAdapter | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["test_adapter", b"test_adapter"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_adapter", b"test_adapter"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateTestAdapterRequest: typing_extensions.TypeAlias = CreateTestAdapterRequest
+Global___CreateTestAdapterRequest: _TypeAlias = CreateTestAdapterRequest  # noqa: Y015
 
-@typing.final
-class CreateTestAdapterResponse(google.protobuf.message.Message):
+@_typing.final
+class CreateTestAdapterResponse(_message.Message):
     """Message returned when creating new test adapter in the metadata store."""
 
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+    DESCRIPTOR: _descriptor.Descriptor
 
-    TEST_ADAPTER_ID_FIELD_NUMBER: builtins.int
-    test_adapter_id: builtins.str
+    TEST_ADAPTER_ID_FIELD_NUMBER: _builtins.int
+    test_adapter_id: _builtins.str
     """The identifier of the created test adapter."""
     def __init__(
         self,
         *,
-        test_adapter_id: builtins.str = ...,
+        test_adapter_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_adapter_id", b"test_adapter_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_adapter_id", b"test_adapter_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateTestAdapterResponse: typing_extensions.TypeAlias = CreateTestAdapterResponse
+Global___CreateTestAdapterResponse: _TypeAlias = CreateTestAdapterResponse  # noqa: Y015
 
-@typing.final
-class RegisterSchemaRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class RegisterSchemaRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    SCHEMA_FIELD_NUMBER: builtins.int
-    schema: builtins.str
+    SCHEMA_FIELD_NUMBER: _builtins.int
+    schema: _builtins.str
     """The contents of the JSON or TOML schema. This should be a
     well-formed JSON or TOML schema.  Validation will be performed, and
     an error will be returned if the schema is not valid.
@@ -1040,229 +1238,280 @@ class RegisterSchemaRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        schema: builtins.str = ...,
+        schema: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["schema", b"schema"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["schema", b"schema"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___RegisterSchemaRequest: typing_extensions.TypeAlias = RegisterSchemaRequest
+Global___RegisterSchemaRequest: _TypeAlias = RegisterSchemaRequest  # noqa: Y015
 
-@typing.final
-class RegisterSchemaResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class RegisterSchemaResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    SCHEMA_ID_FIELD_NUMBER: builtins.int
-    schema_id: builtins.str
+    SCHEMA_ID_FIELD_NUMBER: _builtins.int
+    schema_id: _builtins.str
     """The id of the schema"""
     def __init__(
         self,
         *,
-        schema_id: builtins.str = ...,
+        schema_id: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["schema_id", b"schema_id"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["schema_id", b"schema_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___RegisterSchemaResponse: typing_extensions.TypeAlias = RegisterSchemaResponse
+Global___RegisterSchemaResponse: _TypeAlias = RegisterSchemaResponse  # noqa: Y015
 
-@typing.final
-class ListSchemasRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class ListSchemasRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
     def __init__(
         self,
     ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___ListSchemasRequest: typing_extensions.TypeAlias = ListSchemasRequest
+Global___ListSchemasRequest: _TypeAlias = ListSchemasRequest  # noqa: Y015
 
-@typing.final
-class ListSchemasResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class ListSchemasResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    SCHEMAS_FIELD_NUMBER: builtins.int
-    @property
-    def schemas(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.ExtensionSchema]: ...
-    def __init__(
-        self,
-        *,
-        schemas: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.ExtensionSchema] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["schemas", b"schemas"]) -> None: ...
-
-Global___ListSchemasResponse: typing_extensions.TypeAlias = ListSchemasResponse
-
-@typing.final
-class GetAliasRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    ALIAS_NAME_FIELD_NUMBER: builtins.int
-    alias_name: builtins.str
+    SCHEMAS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def schemas(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.ExtensionSchema]: ...
     def __init__(
         self,
         *,
-        alias_name: builtins.str = ...,
+        schemas: _abc.Iterable[_metadata_store_pb2.ExtensionSchema] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["schemas", b"schemas"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetAliasRequest: typing_extensions.TypeAlias = GetAliasRequest
+Global___ListSchemasResponse: _TypeAlias = ListSchemasResponse  # noqa: Y015
 
-@typing.final
-class GetAliasResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class GetAliasRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ALIAS_FIELD_NUMBER: builtins.int
-    @property
-    def alias(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Alias: ...
+    ALIAS_NAME_FIELD_NUMBER: _builtins.int
+    alias_name: _builtins.str
     def __init__(
         self,
         *,
-        alias: ni.measurements.metadata.v1.metadata_store_pb2.Alias | None = ...,
+        alias_name: _builtins.str = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["alias", b"alias"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["alias", b"alias"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["alias_name", b"alias_name"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___GetAliasResponse: typing_extensions.TypeAlias = GetAliasResponse
+Global___GetAliasRequest: _TypeAlias = GetAliasRequest  # noqa: Y015
 
-@typing.final
-class QueryAliasesRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class GetAliasResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: builtins.int
-    odata_query: builtins.str
+    ALIAS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def alias(self) -> _metadata_store_pb2.Alias: ...
+    def __init__(
+        self,
+        *,
+        alias: _metadata_store_pb2.Alias | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["alias", b"alias"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["alias", b"alias"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___GetAliasResponse: _TypeAlias = GetAliasResponse  # noqa: Y015
+
+@_typing.final
+class QueryAliasesRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
+
+    ODATA_QUERY_FIELD_NUMBER: _builtins.int
+    odata_query: _builtins.str
     """an OData query string.  example "$filter=name eq 'Value'"
     $expand is not supported
     """
     def __init__(
         self,
         *,
-        odata_query: builtins.str = ...,
+        odata_query: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryAliasesRequest: typing_extensions.TypeAlias = QueryAliasesRequest
+Global___QueryAliasesRequest: _TypeAlias = QueryAliasesRequest  # noqa: Y015
 
-@typing.final
-class QueryAliasesResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class QueryAliasesResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ALIASES_FIELD_NUMBER: builtins.int
-    @property
-    def aliases(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Alias]: ...
+    ALIASES_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def aliases(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.Alias]: ...
     def __init__(
         self,
         *,
-        aliases: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Alias] | None = ...,
+        aliases: _abc.Iterable[_metadata_store_pb2.Alias] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["aliases", b"aliases"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["aliases", b"aliases"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___QueryAliasesResponse: typing_extensions.TypeAlias = QueryAliasesResponse
+Global___QueryAliasesResponse: _TypeAlias = QueryAliasesResponse  # noqa: Y015
 
-@typing.final
-class CreateAliasRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class CreateAliasRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ALIAS_NAME_FIELD_NUMBER: builtins.int
-    UUT_INSTANCE_FIELD_NUMBER: builtins.int
-    UUT_FIELD_NUMBER: builtins.int
-    HARDWARE_ITEM_FIELD_NUMBER: builtins.int
-    SOFTWARE_ITEM_FIELD_NUMBER: builtins.int
-    OPERATOR_FIELD_NUMBER: builtins.int
-    TEST_DESCRIPTION_FIELD_NUMBER: builtins.int
-    TEST_FIELD_NUMBER: builtins.int
-    TEST_STATION_FIELD_NUMBER: builtins.int
-    TEST_ADAPTER_FIELD_NUMBER: builtins.int
-    alias_name: builtins.str
+    ALIAS_NAME_FIELD_NUMBER: _builtins.int
+    UUT_INSTANCE_FIELD_NUMBER: _builtins.int
+    UUT_FIELD_NUMBER: _builtins.int
+    HARDWARE_ITEM_FIELD_NUMBER: _builtins.int
+    SOFTWARE_ITEM_FIELD_NUMBER: _builtins.int
+    OPERATOR_FIELD_NUMBER: _builtins.int
+    TEST_DESCRIPTION_FIELD_NUMBER: _builtins.int
+    TEST_FIELD_NUMBER: _builtins.int
+    TEST_STATION_FIELD_NUMBER: _builtins.int
+    TEST_ADAPTER_FIELD_NUMBER: _builtins.int
+    alias_name: _builtins.str
     """The alias name to register."""
-    @property
-    def uut_instance(self) -> ni.measurements.metadata.v1.metadata_store_pb2.UutInstance: ...
-    @property
-    def uut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Uut: ...
-    @property
-    def hardware_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem: ...
-    @property
-    def software_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem: ...
-    @property
-    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Operator: ...
-    @property
-    def test_description(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestDescription: ...
-    @property
-    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Test: ...
-    @property
-    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStation: ...
-    @property
-    def test_adapter(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter: ...
+    @_builtins.property
+    def uut_instance(self) -> _metadata_store_pb2.UutInstance: ...
+    @_builtins.property
+    def uut(self) -> _metadata_store_pb2.Uut: ...
+    @_builtins.property
+    def hardware_item(self) -> _metadata_store_pb2.HardwareItem: ...
+    @_builtins.property
+    def software_item(self) -> _metadata_store_pb2.SoftwareItem: ...
+    @_builtins.property
+    def operator(self) -> _metadata_store_pb2.Operator: ...
+    @_builtins.property
+    def test_description(self) -> _metadata_store_pb2.TestDescription: ...
+    @_builtins.property
+    def test(self) -> _metadata_store_pb2.Test: ...
+    @_builtins.property
+    def test_station(self) -> _metadata_store_pb2.TestStation: ...
+    @_builtins.property
+    def test_adapter(self) -> _metadata_store_pb2.TestAdapter: ...
     def __init__(
         self,
         *,
-        alias_name: builtins.str = ...,
-        uut_instance: ni.measurements.metadata.v1.metadata_store_pb2.UutInstance | None = ...,
-        uut: ni.measurements.metadata.v1.metadata_store_pb2.Uut | None = ...,
-        hardware_item: ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem | None = ...,
-        software_item: ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem | None = ...,
-        operator: ni.measurements.metadata.v1.metadata_store_pb2.Operator | None = ...,
-        test_description: ni.measurements.metadata.v1.metadata_store_pb2.TestDescription | None = ...,
-        test: ni.measurements.metadata.v1.metadata_store_pb2.Test | None = ...,
-        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStation | None = ...,
-        test_adapter: ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter | None = ...,
+        alias_name: _builtins.str = ...,
+        uut_instance: _metadata_store_pb2.UutInstance | None = ...,
+        uut: _metadata_store_pb2.Uut | None = ...,
+        hardware_item: _metadata_store_pb2.HardwareItem | None = ...,
+        software_item: _metadata_store_pb2.SoftwareItem | None = ...,
+        operator: _metadata_store_pb2.Operator | None = ...,
+        test_description: _metadata_store_pb2.TestDescription | None = ...,
+        test: _metadata_store_pb2.Test | None = ...,
+        test_station: _metadata_store_pb2.TestStation | None = ...,
+        test_adapter: _metadata_store_pb2.TestAdapter | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["alias_target", b"alias_target", "hardware_item", b"hardware_item", "operator", b"operator", "software_item", b"software_item", "test", b"test", "test_adapter", b"test_adapter", "test_description", b"test_description", "test_station", b"test_station", "uut", b"uut", "uut_instance", b"uut_instance"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name", "alias_target", b"alias_target", "hardware_item", b"hardware_item", "operator", b"operator", "software_item", b"software_item", "test", b"test", "test_adapter", b"test_adapter", "test_description", b"test_description", "test_station", b"test_station", "uut", b"uut", "uut_instance", b"uut_instance"]) -> None: ...
-    def WhichOneof(self, oneof_group: typing.Literal["alias_target", b"alias_target"]) -> typing.Literal["uut_instance", "uut", "hardware_item", "software_item", "operator", "test_description", "test", "test_station", "test_adapter"] | None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["alias_target", b"alias_target", "hardware_item", b"hardware_item", "operator", b"operator", "software_item", b"software_item", "test", b"test", "test_adapter", b"test_adapter", "test_description", b"test_description", "test_station", b"test_station", "uut", b"uut", "uut_instance", b"uut_instance"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["alias_name", b"alias_name", "alias_target", b"alias_target", "hardware_item", b"hardware_item", "operator", b"operator", "software_item", b"software_item", "test", b"test", "test_adapter", b"test_adapter", "test_description", b"test_description", "test_station", b"test_station", "uut", b"uut", "uut_instance", b"uut_instance"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    _WhichOneofReturnType_alias_target: _TypeAlias = _typing.Literal["uut_instance", "uut", "hardware_item", "software_item", "operator", "test_description", "test", "test_station", "test_adapter"]  # noqa: Y015
+    _WhichOneofArgType_alias_target: _TypeAlias = _typing.Literal["alias_target", b"alias_target"]  # noqa: Y015
+    def WhichOneof(self, oneof_group: _WhichOneofArgType_alias_target) -> _WhichOneofReturnType_alias_target | None: ...
 
-Global___CreateAliasRequest: typing_extensions.TypeAlias = CreateAliasRequest
+Global___CreateAliasRequest: _TypeAlias = CreateAliasRequest  # noqa: Y015
 
-@typing.final
-class CreateAliasResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class CreateAliasResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    ALIAS_FIELD_NUMBER: builtins.int
-    @property
-    def alias(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Alias: ...
+    ALIAS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def alias(self) -> _metadata_store_pb2.Alias: ...
     def __init__(
         self,
         *,
-        alias: ni.measurements.metadata.v1.metadata_store_pb2.Alias | None = ...,
+        alias: _metadata_store_pb2.Alias | None = ...,
     ) -> None: ...
-    def HasField(self, field_name: typing.Literal["alias", b"alias"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["alias", b"alias"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _typing.Literal["alias", b"alias"]  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["alias", b"alias"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateAliasResponse: typing_extensions.TypeAlias = CreateAliasResponse
+Global___CreateAliasResponse: _TypeAlias = CreateAliasResponse  # noqa: Y015
 
-@typing.final
-class DeleteAliasRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class DeleteAliasRequest(_message.Message):
+    """Request to delete an Alias by its exact registered name."""
 
-    ALIAS_NAME_FIELD_NUMBER: builtins.int
-    alias_name: builtins.str
-    """The name of the alias to unregister"""
+    DESCRIPTOR: _descriptor.Descriptor
+
+    ALIAS_NAME_FIELD_NUMBER: _builtins.int
+    alias_name: _builtins.str
+    """Required. Exact registered Alias name."""
     def __init__(
         self,
         *,
-        alias_name: builtins.str = ...,
+        alias_name: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["alias_name", b"alias_name"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___DeleteAliasRequest: typing_extensions.TypeAlias = DeleteAliasRequest
+Global___DeleteAliasRequest: _TypeAlias = DeleteAliasRequest  # noqa: Y015
 
-@typing.final
-class DeleteAliasResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class DeleteAliasResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UNREGISTERED_FIELD_NUMBER: builtins.int
-    unregistered: builtins.bool
-    """Whether the action resulted in the specified alias becoming unregistered. (False if the alias does not exist.)"""
+    UNREGISTERED_FIELD_NUMBER: _builtins.int
+    unregistered: _builtins.bool
+    """Whether the action unregistered the alias. In v1 mode, false means the alias did not exist;
+    in v2 mode, an absent alias returns NOT_FOUND.
+    """
     def __init__(
         self,
         *,
-        unregistered: builtins.bool = ...,
+        unregistered: _builtins.bool = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["unregistered", b"unregistered"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["unregistered", b"unregistered"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___DeleteAliasResponse: typing_extensions.TypeAlias = DeleteAliasResponse
+Global___DeleteAliasResponse: _TypeAlias = DeleteAliasResponse  # noqa: Y015
 
-@typing.final
-class CreateFromJsonDocumentRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class CreateFromJsonDocumentRequest(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    JSON_DOCUMENT_FIELD_NUMBER: builtins.int
-    json_document: builtins.str
+    JSON_DOCUMENT_FIELD_NUMBER: _builtins.int
+    json_document: _builtins.str
     """The JSON document containing the metadata entries to create.
     The JSON document should conform to the schema defined by
     https://raw.githubusercontent.com/ni/ni-apis/main/ni/measurements/metadata/v1/registration.schema.json
@@ -1270,75 +1519,79 @@ class CreateFromJsonDocumentRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        json_document: builtins.str = ...,
+        json_document: _builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["json_document", b"json_document"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["json_document", b"json_document"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateFromJsonDocumentRequest: typing_extensions.TypeAlias = CreateFromJsonDocumentRequest
+Global___CreateFromJsonDocumentRequest: _TypeAlias = CreateFromJsonDocumentRequest  # noqa: Y015
 
-@typing.final
-class CreateFromJsonDocumentResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+@_typing.final
+class CreateFromJsonDocumentResponse(_message.Message):
+    DESCRIPTOR: _descriptor.Descriptor
 
-    UUT_INSTANCES_FIELD_NUMBER: builtins.int
-    UUTS_FIELD_NUMBER: builtins.int
-    OPERATORS_FIELD_NUMBER: builtins.int
-    TEST_DESCRIPTIONS_FIELD_NUMBER: builtins.int
-    TESTS_FIELD_NUMBER: builtins.int
-    TEST_STATIONS_FIELD_NUMBER: builtins.int
-    HARDWARE_ITEMS_FIELD_NUMBER: builtins.int
-    SOFTWARE_ITEMS_FIELD_NUMBER: builtins.int
-    TEST_ADAPTERS_FIELD_NUMBER: builtins.int
-    @property
-    def uut_instances(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance]:
+    UUT_INSTANCES_FIELD_NUMBER: _builtins.int
+    UUTS_FIELD_NUMBER: _builtins.int
+    OPERATORS_FIELD_NUMBER: _builtins.int
+    TEST_DESCRIPTIONS_FIELD_NUMBER: _builtins.int
+    TESTS_FIELD_NUMBER: _builtins.int
+    TEST_STATIONS_FIELD_NUMBER: _builtins.int
+    HARDWARE_ITEMS_FIELD_NUMBER: _builtins.int
+    SOFTWARE_ITEMS_FIELD_NUMBER: _builtins.int
+    TEST_ADAPTERS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def uut_instances(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.UutInstance]:
         """The collection of UUTInstances associated with the JSON document.
         If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
         """
 
-    @property
-    def uuts(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Uut]:
+    @_builtins.property
+    def uuts(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.Uut]:
         """The collection of UUTs associated with the JSON document.
         If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
         """
 
-    @property
-    def operators(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Operator]:
+    @_builtins.property
+    def operators(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.Operator]:
         """The collection of Operators associated with the JSON document.
         If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
         """
 
-    @property
-    def test_descriptions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription]:
+    @_builtins.property
+    def test_descriptions(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.TestDescription]:
         """The collection of TestDescriptions associated with the JSON document.
         If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
         """
 
-    @property
-    def tests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Test]:
+    @_builtins.property
+    def tests(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.Test]:
         """The collection of Tests associated with the JSON document.
         If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
         """
 
-    @property
-    def test_stations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestStation]:
+    @_builtins.property
+    def test_stations(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.TestStation]:
         """The collection of TestStations associated with the JSON document.
         If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
         """
 
-    @property
-    def hardware_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem]:
+    @_builtins.property
+    def hardware_items(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.HardwareItem]:
         """The collection of HardwareItems associated with the JSON document.
         If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
         """
 
-    @property
-    def software_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem]:
+    @_builtins.property
+    def software_items(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.SoftwareItem]:
         """The collection of SoftwareItems associated with the JSON document.
         If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
         """
 
-    @property
-    def test_adapters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter]:
+    @_builtins.property
+    def test_adapters(self) -> _containers.RepeatedCompositeFieldContainer[_metadata_store_pb2.TestAdapter]:
         """The collection of TestAdapters associated with the JSON document.
         If the object specified in the request exists, the existing object is returned; otherwise, the newly created object is returned.
         """
@@ -1346,16 +1599,899 @@ class CreateFromJsonDocumentResponse(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        uut_instances: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance] | None = ...,
-        uuts: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Uut] | None = ...,
-        operators: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Operator] | None = ...,
-        test_descriptions: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription] | None = ...,
-        tests: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Test] | None = ...,
-        test_stations: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestStation] | None = ...,
-        hardware_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem] | None = ...,
-        software_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem] | None = ...,
-        test_adapters: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter] | None = ...,
+        uut_instances: _abc.Iterable[_metadata_store_pb2.UutInstance] | None = ...,
+        uuts: _abc.Iterable[_metadata_store_pb2.Uut] | None = ...,
+        operators: _abc.Iterable[_metadata_store_pb2.Operator] | None = ...,
+        test_descriptions: _abc.Iterable[_metadata_store_pb2.TestDescription] | None = ...,
+        tests: _abc.Iterable[_metadata_store_pb2.Test] | None = ...,
+        test_stations: _abc.Iterable[_metadata_store_pb2.TestStation] | None = ...,
+        hardware_items: _abc.Iterable[_metadata_store_pb2.HardwareItem] | None = ...,
+        software_items: _abc.Iterable[_metadata_store_pb2.SoftwareItem] | None = ...,
+        test_adapters: _abc.Iterable[_metadata_store_pb2.TestAdapter] | None = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["hardware_items", b"hardware_items", "operators", b"operators", "software_items", b"software_items", "test_adapters", b"test_adapters", "test_descriptions", b"test_descriptions", "test_stations", b"test_stations", "tests", b"tests", "uut_instances", b"uut_instances", "uuts", b"uuts"]) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["hardware_items", b"hardware_items", "operators", b"operators", "software_items", b"software_items", "test_adapters", b"test_adapters", "test_descriptions", b"test_descriptions", "test_stations", b"test_stations", "tests", b"tests", "uut_instances", b"uut_instances", "uuts", b"uuts"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___CreateFromJsonDocumentResponse: typing_extensions.TypeAlias = CreateFromJsonDocumentResponse
+Global___CreateFromJsonDocumentResponse: _TypeAlias = CreateFromJsonDocumentResponse  # noqa: Y015
+
+@_typing.final
+class DeleteOperatorRequest(_message.Message):
+    """Request to delete one Operator by UUID."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    OPERATOR_ID_FIELD_NUMBER: _builtins.int
+    FORCE_FIELD_NUMBER: _builtins.int
+    operator_id: _builtins.str
+    """Required. UUID of the Operator to delete; aliases are not accepted."""
+    force: _builtins.bool
+    """If true, remove incoming links but retain linked test data and other metadata."""
+    def __init__(
+        self,
+        *,
+        operator_id: _builtins.str = ...,
+        force: _builtins.bool = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["force", b"force", "operator_id", b"operator_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteOperatorRequest: _TypeAlias = DeleteOperatorRequest  # noqa: Y015
+
+@_typing.final
+class DeleteOperatorResponse(_message.Message):
+    """Empty response returned when an Operator is deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteOperatorResponse: _TypeAlias = DeleteOperatorResponse  # noqa: Y015
+
+@_typing.final
+class BatchDeleteOperatorsRequest(_message.Message):
+    """Request to atomically delete Operators; each item has its own force value."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteOperatorRequest]:
+        """1 to 1,000 Operator delete requests."""
+
+    def __init__(
+        self,
+        *,
+        requests: _abc.Iterable[Global___DeleteOperatorRequest] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteOperatorsRequest: _TypeAlias = BatchDeleteOperatorsRequest  # noqa: Y015
+
+@_typing.final
+class BatchDeleteOperatorsResponse(_message.Message):
+    """Empty response returned when all Operators are deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteOperatorsResponse: _TypeAlias = BatchDeleteOperatorsResponse  # noqa: Y015
+
+@_typing.final
+class DeleteTestStationRequest(_message.Message):
+    """Request to delete one TestStation by UUID."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    TEST_STATION_ID_FIELD_NUMBER: _builtins.int
+    FORCE_FIELD_NUMBER: _builtins.int
+    test_station_id: _builtins.str
+    """Required. UUID of the TestStation to delete; aliases are not accepted."""
+    force: _builtins.bool
+    """If true, remove incoming links but retain linked test data and other metadata."""
+    def __init__(
+        self,
+        *,
+        test_station_id: _builtins.str = ...,
+        force: _builtins.bool = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["force", b"force", "test_station_id", b"test_station_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteTestStationRequest: _TypeAlias = DeleteTestStationRequest  # noqa: Y015
+
+@_typing.final
+class DeleteTestStationResponse(_message.Message):
+    """Empty response returned when a TestStation is deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteTestStationResponse: _TypeAlias = DeleteTestStationResponse  # noqa: Y015
+
+@_typing.final
+class BatchDeleteTestStationsRequest(_message.Message):
+    """Request to atomically delete TestStations; each item has its own force value."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteTestStationRequest]:
+        """1 to 1,000 TestStation delete requests."""
+
+    def __init__(
+        self,
+        *,
+        requests: _abc.Iterable[Global___DeleteTestStationRequest] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteTestStationsRequest: _TypeAlias = BatchDeleteTestStationsRequest  # noqa: Y015
+
+@_typing.final
+class BatchDeleteTestStationsResponse(_message.Message):
+    """Empty response returned when all TestStations are deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteTestStationsResponse: _TypeAlias = BatchDeleteTestStationsResponse  # noqa: Y015
+
+@_typing.final
+class DeleteTestDescriptionRequest(_message.Message):
+    """Request to delete one TestDescription by UUID."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    TEST_DESCRIPTION_ID_FIELD_NUMBER: _builtins.int
+    FORCE_FIELD_NUMBER: _builtins.int
+    test_description_id: _builtins.str
+    """Required. UUID of the TestDescription to delete; aliases are not accepted."""
+    force: _builtins.bool
+    """If true, remove incoming links but retain linked test data and other metadata."""
+    def __init__(
+        self,
+        *,
+        test_description_id: _builtins.str = ...,
+        force: _builtins.bool = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["force", b"force", "test_description_id", b"test_description_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteTestDescriptionRequest: _TypeAlias = DeleteTestDescriptionRequest  # noqa: Y015
+
+@_typing.final
+class DeleteTestDescriptionResponse(_message.Message):
+    """Empty response returned when a TestDescription is deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteTestDescriptionResponse: _TypeAlias = DeleteTestDescriptionResponse  # noqa: Y015
+
+@_typing.final
+class BatchDeleteTestDescriptionsRequest(_message.Message):
+    """Request to atomically delete TestDescriptions; each item has its own force value."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteTestDescriptionRequest]:
+        """1 to 1,000 TestDescription delete requests."""
+
+    def __init__(
+        self,
+        *,
+        requests: _abc.Iterable[Global___DeleteTestDescriptionRequest] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteTestDescriptionsRequest: _TypeAlias = BatchDeleteTestDescriptionsRequest  # noqa: Y015
+
+@_typing.final
+class BatchDeleteTestDescriptionsResponse(_message.Message):
+    """Empty response returned when all TestDescriptions are deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteTestDescriptionsResponse: _TypeAlias = BatchDeleteTestDescriptionsResponse  # noqa: Y015
+
+@_typing.final
+class DeleteUutRequest(_message.Message):
+    """Request to delete one UUT by UUID."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    UUT_ID_FIELD_NUMBER: _builtins.int
+    FORCE_FIELD_NUMBER: _builtins.int
+    uut_id: _builtins.str
+    """Required. UUID of the UUT to delete; aliases are not accepted."""
+    force: _builtins.bool
+    """If true, remove incoming links and delete the UUT's owned UutInstances. Retain linked test
+    data and TestDescriptions.
+    """
+    def __init__(
+        self,
+        *,
+        uut_id: _builtins.str = ...,
+        force: _builtins.bool = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["force", b"force", "uut_id", b"uut_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteUutRequest: _TypeAlias = DeleteUutRequest  # noqa: Y015
+
+@_typing.final
+class DeleteUutResponse(_message.Message):
+    """Empty response returned when a UUT is deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteUutResponse: _TypeAlias = DeleteUutResponse  # noqa: Y015
+
+@_typing.final
+class BatchDeleteUutsRequest(_message.Message):
+    """Request to atomically delete UUTs; each item has its own force value."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteUutRequest]:
+        """1 to 1,000 UUT delete requests."""
+
+    def __init__(
+        self,
+        *,
+        requests: _abc.Iterable[Global___DeleteUutRequest] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteUutsRequest: _TypeAlias = BatchDeleteUutsRequest  # noqa: Y015
+
+@_typing.final
+class BatchDeleteUutsResponse(_message.Message):
+    """Empty response returned when all UUTs are deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteUutsResponse: _TypeAlias = BatchDeleteUutsResponse  # noqa: Y015
+
+@_typing.final
+class DeleteUutInstanceRequest(_message.Message):
+    """Request to delete one UutInstance by UUID."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    UUT_INSTANCE_ID_FIELD_NUMBER: _builtins.int
+    FORCE_FIELD_NUMBER: _builtins.int
+    uut_instance_id: _builtins.str
+    """Required. UUID of the UutInstance to delete; aliases are not accepted."""
+    force: _builtins.bool
+    """If true, remove incoming links but retain linked test data and the owning UUT."""
+    def __init__(
+        self,
+        *,
+        uut_instance_id: _builtins.str = ...,
+        force: _builtins.bool = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["force", b"force", "uut_instance_id", b"uut_instance_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteUutInstanceRequest: _TypeAlias = DeleteUutInstanceRequest  # noqa: Y015
+
+@_typing.final
+class DeleteUutInstanceResponse(_message.Message):
+    """Empty response returned when a UutInstance is deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteUutInstanceResponse: _TypeAlias = DeleteUutInstanceResponse  # noqa: Y015
+
+@_typing.final
+class BatchDeleteUutInstancesRequest(_message.Message):
+    """Request to atomically delete UutInstances; each item has its own force value."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteUutInstanceRequest]:
+        """1 to 1,000 UutInstance delete requests."""
+
+    def __init__(
+        self,
+        *,
+        requests: _abc.Iterable[Global___DeleteUutInstanceRequest] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteUutInstancesRequest: _TypeAlias = BatchDeleteUutInstancesRequest  # noqa: Y015
+
+@_typing.final
+class BatchDeleteUutInstancesResponse(_message.Message):
+    """Empty response returned when all UutInstances are deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteUutInstancesResponse: _TypeAlias = BatchDeleteUutInstancesResponse  # noqa: Y015
+
+@_typing.final
+class DeleteSoftwareItemRequest(_message.Message):
+    """Request to delete one SoftwareItem by UUID."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    SOFTWARE_ITEM_ID_FIELD_NUMBER: _builtins.int
+    FORCE_FIELD_NUMBER: _builtins.int
+    software_item_id: _builtins.str
+    """Required. UUID of the SoftwareItem to delete; aliases are not accepted."""
+    force: _builtins.bool
+    """If true, remove incoming links but retain linked test data and other metadata."""
+    def __init__(
+        self,
+        *,
+        software_item_id: _builtins.str = ...,
+        force: _builtins.bool = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["force", b"force", "software_item_id", b"software_item_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteSoftwareItemRequest: _TypeAlias = DeleteSoftwareItemRequest  # noqa: Y015
+
+@_typing.final
+class DeleteSoftwareItemResponse(_message.Message):
+    """Empty response returned when a SoftwareItem is deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteSoftwareItemResponse: _TypeAlias = DeleteSoftwareItemResponse  # noqa: Y015
+
+@_typing.final
+class BatchDeleteSoftwareItemsRequest(_message.Message):
+    """Request to atomically delete SoftwareItems; each item has its own force value."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteSoftwareItemRequest]:
+        """1 to 1,000 SoftwareItem delete requests."""
+
+    def __init__(
+        self,
+        *,
+        requests: _abc.Iterable[Global___DeleteSoftwareItemRequest] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteSoftwareItemsRequest: _TypeAlias = BatchDeleteSoftwareItemsRequest  # noqa: Y015
+
+@_typing.final
+class BatchDeleteSoftwareItemsResponse(_message.Message):
+    """Empty response returned when all SoftwareItems are deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteSoftwareItemsResponse: _TypeAlias = BatchDeleteSoftwareItemsResponse  # noqa: Y015
+
+@_typing.final
+class DeleteHardwareItemRequest(_message.Message):
+    """Request to delete one HardwareItem by UUID."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    HARDWARE_ITEM_ID_FIELD_NUMBER: _builtins.int
+    FORCE_FIELD_NUMBER: _builtins.int
+    hardware_item_id: _builtins.str
+    """Required. UUID of the HardwareItem to delete; aliases are not accepted."""
+    force: _builtins.bool
+    """If true, remove incoming links but retain linked test data and other metadata."""
+    def __init__(
+        self,
+        *,
+        hardware_item_id: _builtins.str = ...,
+        force: _builtins.bool = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["force", b"force", "hardware_item_id", b"hardware_item_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteHardwareItemRequest: _TypeAlias = DeleteHardwareItemRequest  # noqa: Y015
+
+@_typing.final
+class DeleteHardwareItemResponse(_message.Message):
+    """Empty response returned when a HardwareItem is deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteHardwareItemResponse: _TypeAlias = DeleteHardwareItemResponse  # noqa: Y015
+
+@_typing.final
+class BatchDeleteHardwareItemsRequest(_message.Message):
+    """Request to atomically delete HardwareItems; each item has its own force value."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteHardwareItemRequest]:
+        """1 to 1,000 HardwareItem delete requests."""
+
+    def __init__(
+        self,
+        *,
+        requests: _abc.Iterable[Global___DeleteHardwareItemRequest] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteHardwareItemsRequest: _TypeAlias = BatchDeleteHardwareItemsRequest  # noqa: Y015
+
+@_typing.final
+class BatchDeleteHardwareItemsResponse(_message.Message):
+    """Empty response returned when all HardwareItems are deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteHardwareItemsResponse: _TypeAlias = BatchDeleteHardwareItemsResponse  # noqa: Y015
+
+@_typing.final
+class DeleteTestAdapterRequest(_message.Message):
+    """Request to delete one TestAdapter by UUID."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    TEST_ADAPTER_ID_FIELD_NUMBER: _builtins.int
+    FORCE_FIELD_NUMBER: _builtins.int
+    test_adapter_id: _builtins.str
+    """Required. UUID of the TestAdapter to delete; aliases are not accepted."""
+    force: _builtins.bool
+    """If true, remove incoming links but retain linked test data and other metadata."""
+    def __init__(
+        self,
+        *,
+        test_adapter_id: _builtins.str = ...,
+        force: _builtins.bool = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["force", b"force", "test_adapter_id", b"test_adapter_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteTestAdapterRequest: _TypeAlias = DeleteTestAdapterRequest  # noqa: Y015
+
+@_typing.final
+class DeleteTestAdapterResponse(_message.Message):
+    """Empty response returned when a TestAdapter is deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteTestAdapterResponse: _TypeAlias = DeleteTestAdapterResponse  # noqa: Y015
+
+@_typing.final
+class BatchDeleteTestAdaptersRequest(_message.Message):
+    """Request to atomically delete TestAdapters; each item has its own force value."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteTestAdapterRequest]:
+        """1 to 1,000 TestAdapter delete requests."""
+
+    def __init__(
+        self,
+        *,
+        requests: _abc.Iterable[Global___DeleteTestAdapterRequest] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteTestAdaptersRequest: _TypeAlias = BatchDeleteTestAdaptersRequest  # noqa: Y015
+
+@_typing.final
+class BatchDeleteTestAdaptersResponse(_message.Message):
+    """Empty response returned when all TestAdapters are deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteTestAdaptersResponse: _TypeAlias = BatchDeleteTestAdaptersResponse  # noqa: Y015
+
+@_typing.final
+class DeleteTestRequest(_message.Message):
+    """Request to delete one Test by UUID."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    TEST_ID_FIELD_NUMBER: _builtins.int
+    FORCE_FIELD_NUMBER: _builtins.int
+    test_id: _builtins.str
+    """Required. UUID of the Test to delete; aliases are not accepted."""
+    force: _builtins.bool
+    """If true, remove incoming links but retain linked test data and other metadata."""
+    def __init__(
+        self,
+        *,
+        test_id: _builtins.str = ...,
+        force: _builtins.bool = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["force", b"force", "test_id", b"test_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteTestRequest: _TypeAlias = DeleteTestRequest  # noqa: Y015
+
+@_typing.final
+class DeleteTestResponse(_message.Message):
+    """Empty response returned when a Test is deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteTestResponse: _TypeAlias = DeleteTestResponse  # noqa: Y015
+
+@_typing.final
+class BatchDeleteTestsRequest(_message.Message):
+    """Request to atomically delete Tests; each item has its own force value."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteTestRequest]:
+        """1 to 1,000 Test delete requests."""
+
+    def __init__(
+        self,
+        *,
+        requests: _abc.Iterable[Global___DeleteTestRequest] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteTestsRequest: _TypeAlias = BatchDeleteTestsRequest  # noqa: Y015
+
+@_typing.final
+class BatchDeleteTestsResponse(_message.Message):
+    """Empty response returned when all Tests are deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteTestsResponse: _TypeAlias = BatchDeleteTestsResponse  # noqa: Y015
+
+@_typing.final
+class DeleteSchemaRequest(_message.Message):
+    """Request to delete a Schema by its exact registered ID."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    SCHEMA_ID_FIELD_NUMBER: _builtins.int
+    schema_id: _builtins.str
+    """Required. Exact registered Schema ID; this is not an ordinary UUID identifier."""
+    def __init__(
+        self,
+        *,
+        schema_id: _builtins.str = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["schema_id", b"schema_id"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteSchemaRequest: _TypeAlias = DeleteSchemaRequest  # noqa: Y015
+
+@_typing.final
+class DeleteSchemaResponse(_message.Message):
+    """Empty response returned when a Schema is deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___DeleteSchemaResponse: _TypeAlias = DeleteSchemaResponse  # noqa: Y015
+
+@_typing.final
+class BatchDeleteSchemasRequest(_message.Message):
+    """Request to atomically delete Schemas by their exact registered IDs; no force option is available."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteSchemaRequest]:
+        """1 to 1,000 Schema delete requests."""
+
+    def __init__(
+        self,
+        *,
+        requests: _abc.Iterable[Global___DeleteSchemaRequest] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteSchemasRequest: _TypeAlias = BatchDeleteSchemasRequest  # noqa: Y015
+
+@_typing.final
+class BatchDeleteSchemasResponse(_message.Message):
+    """Empty response returned when all Schemas are deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteSchemasResponse: _TypeAlias = BatchDeleteSchemasResponse  # noqa: Y015
+
+@_typing.final
+class BatchDeleteAliasesRequest(_message.Message):
+    """Request to atomically delete Aliases by their exact registered names; no force option is available."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: _builtins.int
+    @_builtins.property
+    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteAliasRequest]:
+        """1 to 1,000 Alias delete requests. Each uses the exact registered alias_name."""
+
+    def __init__(
+        self,
+        *,
+        requests: _abc.Iterable[Global___DeleteAliasRequest] | None = ...,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteAliasesRequest: _TypeAlias = BatchDeleteAliasesRequest  # noqa: Y015
+
+@_typing.final
+class BatchDeleteAliasesResponse(_message.Message):
+    """Empty response returned when all Aliases are deleted successfully."""
+
+    DESCRIPTOR: _descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
+    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
+    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
+    def WhichOneof(self, oneof_group: _Never) -> None: ...
+
+Global___BatchDeleteAliasesResponse: _TypeAlias = BatchDeleteAliasesResponse  # noqa: Y015

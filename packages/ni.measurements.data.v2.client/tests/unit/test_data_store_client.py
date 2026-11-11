@@ -450,3 +450,39 @@ def test_read_measurement_values_transports_mask_and_optional_limits() -> None:
                 assert not result.HasField("lower_limit")
         finally:
             server.stop(0).wait()
+
+
+def test_get_step_preserves_has_children_over_grpc() -> None:
+    response = data_store_types.Step(has_children=True)
+
+    def get_step(
+        request: service_types.GetStepRequest, context: grpc.ServicerContext
+    ) -> data_store_types.Step:
+        return response
+
+    with ThreadPoolExecutor(max_workers=1) as executor:
+        server = grpc.server(executor)
+        handler = grpc.unary_unary_rpc_method_handler(
+            get_step,
+            request_deserializer=service_types.GetStepRequest.FromString,
+            response_serializer=data_store_types.Step.SerializeToString,
+        )
+        server.add_generic_rpc_handlers(
+            (
+                grpc.method_handlers_generic_handler(
+                    "ni.measurements.data.v2.DataStoreService", {"GetStep": handler}
+                ),
+            )
+        )
+        port = server.add_insecure_port("127.0.0.1:0")
+        assert port != 0
+        server.start()
+        try:
+            with grpc.insecure_channel(f"127.0.0.1:{port}") as channel:
+                grpc.channel_ready_future(channel).result(timeout=5)
+                with DataStoreClient(grpc_channel=channel) as client:
+                    result = client.get_step(service_types.GetStepRequest())
+
+            assert result.has_children
+        finally:
+            server.stop(0).wait()
