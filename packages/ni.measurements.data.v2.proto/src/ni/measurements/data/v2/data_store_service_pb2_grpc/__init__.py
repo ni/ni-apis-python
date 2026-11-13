@@ -7,7 +7,7 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from ni.measurements.data.v2 import data_store_pb2 as ni_dot_measurements_dot_data_dot_v2_dot_data__store__pb2
 from ni.measurements.data.v2 import data_store_service_pb2 as ni_dot_measurements_dot_data_dot_v2_dot_data__store__service__pb2
 
-GRPC_GENERATED_VERSION = '1.75.1'
+GRPC_GENERATED_VERSION = '1.67.0'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 

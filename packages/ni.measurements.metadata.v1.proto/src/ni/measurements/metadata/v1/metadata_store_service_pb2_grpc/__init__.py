@@ -5,7 +5,7 @@ import warnings
 
 from ni.measurements.metadata.v1 import metadata_store_service_pb2 as ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2
 
-GRPC_GENERATED_VERSION = '1.75.1'
+GRPC_GENERATED_VERSION = '1.67.0'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 

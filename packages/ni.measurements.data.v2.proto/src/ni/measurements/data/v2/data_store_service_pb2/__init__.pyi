@@ -3,30 +3,30 @@
 isort:skip_file
 """
 
-from collections import abc as _abc
-from google.protobuf import descriptor as _descriptor
-from google.protobuf import field_mask_pb2 as _field_mask_pb2
-from google.protobuf import message as _message
-from google.protobuf.internal import containers as _containers
-from ni.measurements.data.v2 import data_store_pb2 as _data_store_pb2
-import builtins as _builtins
+import builtins
+import collections.abc
+import google.protobuf.descriptor
+import google.protobuf.field_mask_pb2
+import google.protobuf.internal.containers
+import google.protobuf.message
+import ni.measurements.data.v2.data_store_pb2
 import sys
-import typing as _typing
+import typing
 
-if sys.version_info >= (3, 11):
-    from typing import TypeAlias as _TypeAlias, Never as _Never
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
 else:
-    from typing_extensions import TypeAlias as _TypeAlias, Never as _Never
+    import typing_extensions
 
-DESCRIPTOR: _descriptor.FileDescriptor
+DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
-@_typing.final
-class CreateTestResultRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class CreateTestResultRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_RESULT_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def test_result(self) -> _data_store_pb2.TestResult:
+    TEST_RESULT_FIELD_NUMBER: builtins.int
+    @property
+    def test_result(self) -> ni.measurements.data.v2.data_store_pb2.TestResult:
         """Required. May include bounded nested Steps, Conditions, Measurements, and
         inline metadata. The request is atomic.
         """
@@ -34,109 +34,95 @@ class CreateTestResultRequest(_message.Message):
     def __init__(
         self,
         *,
-        test_result: _data_store_pb2.TestResult | None = ...,
+        test_result: ni.measurements.data.v2.data_store_pb2.TestResult | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["test_result", b"test_result"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_result", b"test_result"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_result", b"test_result"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_result", b"test_result"]) -> None: ...
 
-Global___CreateTestResultRequest: _TypeAlias = CreateTestResultRequest  # noqa: Y015
+Global___CreateTestResultRequest: typing_extensions.TypeAlias = CreateTestResultRequest
 
-@_typing.final
-class BatchCreateTestResultsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchCreateTestResultsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    REQUESTS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___CreateTestResultRequest]:
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___CreateTestResultRequest]:
         """Required. Non-empty and subject to service limits. The batch is atomic."""
 
     def __init__(
         self,
         *,
-        requests: _abc.Iterable[Global___CreateTestResultRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___CreateTestResultRequest] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-Global___BatchCreateTestResultsRequest: _TypeAlias = BatchCreateTestResultsRequest  # noqa: Y015
+Global___BatchCreateTestResultsRequest: typing_extensions.TypeAlias = BatchCreateTestResultsRequest
 
-@_typing.final
-class BatchCreateTestResultsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchCreateTestResultsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_RESULTS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def test_results(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.TestResult]:
+    TEST_RESULTS_FIELD_NUMBER: builtins.int
+    @property
+    def test_results(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.TestResult]:
         """Saved TestResults in request order. Nested resources are omitted."""
 
     def __init__(
         self,
         *,
-        test_results: _abc.Iterable[_data_store_pb2.TestResult] | None = ...,
+        test_results: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.TestResult] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_results", b"test_results"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_results", b"test_results"]) -> None: ...
 
-Global___BatchCreateTestResultsResponse: _TypeAlias = BatchCreateTestResultsResponse  # noqa: Y015
+Global___BatchCreateTestResultsResponse: typing_extensions.TypeAlias = BatchCreateTestResultsResponse
 
-@_typing.final
-class GetTestResultRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class GetTestResultRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_RESULT_ID_FIELD_NUMBER: _builtins.int
-    READ_MASK_FIELD_NUMBER: _builtins.int
-    test_result_id: _builtins.str
+    TEST_RESULT_ID_FIELD_NUMBER: builtins.int
+    READ_MASK_FIELD_NUMBER: builtins.int
+    test_result_id: builtins.str
     """Required. The test result identifier."""
-    @_builtins.property
-    def read_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def read_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. Fields to return on the requested TestResult."""
 
     def __init__(
         self,
         *,
-        test_result_id: _builtins.str = ...,
-        read_mask: _field_mask_pb2.FieldMask | None = ...,
+        test_result_id: builtins.str = ...,
+        read_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask", "test_result_id", b"test_result_id"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["read_mask", b"read_mask", "test_result_id", b"test_result_id"]) -> None: ...
 
-Global___GetTestResultRequest: _TypeAlias = GetTestResultRequest  # noqa: Y015
+Global___GetTestResultRequest: typing_extensions.TypeAlias = GetTestResultRequest
 
-@_typing.final
-class QueryTestResultsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class QueryTestResultsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: _builtins.int
-    READ_MASK_FIELD_NUMBER: _builtins.int
-    PAGE_SIZE_FIELD_NUMBER: _builtins.int
-    PAGE_TOKEN_FIELD_NUMBER: _builtins.int
-    odata_query: _builtins.str
+    ODATA_QUERY_FIELD_NUMBER: builtins.int
+    READ_MASK_FIELD_NUMBER: builtins.int
+    PAGE_SIZE_FIELD_NUMBER: builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    odata_query: builtins.str
     """Optional. An OData query expression. The gRPC API rejects $select, $count,
     $expand, and $apply because they change the response shape; use the HTTP
     API for those options.
     """
-    page_size: _builtins.int
+    page_size: builtins.int
     """Optional. Maximum TestResults to return in this page. Zero or unset uses
     the service default; values above the service maximum are capped.
     """
-    page_token: _builtins.str
+    page_token: builtins.str
     """Optional. Opaque token from a previous response's next_page_token. Omit
     for the first page; all other request fields must match the original query.
     """
-    @_builtins.property
-    def read_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def read_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. Fields to return for each matching TestResult. Use this mask
         instead of OData $select for gRPC projections.
         """
@@ -144,31 +130,28 @@ class QueryTestResultsRequest(_message.Message):
     def __init__(
         self,
         *,
-        odata_query: _builtins.str = ...,
-        read_mask: _field_mask_pb2.FieldMask | None = ...,
-        page_size: _builtins.int = ...,
-        page_token: _builtins.str = ...,
+        odata_query: builtins.str = ...,
+        read_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
+        page_size: builtins.int = ...,
+        page_token: builtins.str = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]) -> None: ...
 
-Global___QueryTestResultsRequest: _TypeAlias = QueryTestResultsRequest  # noqa: Y015
+Global___QueryTestResultsRequest: typing_extensions.TypeAlias = QueryTestResultsRequest
 
-@_typing.final
-class QueryTestResultsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class QueryTestResultsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_RESULTS_FIELD_NUMBER: _builtins.int
-    NEXT_PAGE_TOKEN_FIELD_NUMBER: _builtins.int
-    next_page_token: _builtins.str
+    TEST_RESULTS_FIELD_NUMBER: builtins.int
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    next_page_token: builtins.str
     """Token for the next page. Empty when the query is complete. A page may be
     empty and still carry a token.
     """
-    @_builtins.property
-    def test_results(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.TestResult]:
+    @property
+    def test_results(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.TestResult]:
         """Matching TestResults as flat resources. Use QuerySteps to retrieve their
         Steps.
         """
@@ -176,29 +159,25 @@ class QueryTestResultsResponse(_message.Message):
     def __init__(
         self,
         *,
-        test_results: _abc.Iterable[_data_store_pb2.TestResult] | None = ...,
-        next_page_token: _builtins.str = ...,
+        test_results: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.TestResult] | None = ...,
+        next_page_token: builtins.str = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["next_page_token", b"next_page_token", "test_results", b"test_results"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["next_page_token", b"next_page_token", "test_results", b"test_results"]) -> None: ...
 
-Global___QueryTestResultsResponse: _TypeAlias = QueryTestResultsResponse  # noqa: Y015
+Global___QueryTestResultsResponse: typing_extensions.TypeAlias = QueryTestResultsResponse
 
-@_typing.final
-class UpdateTestResultRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class UpdateTestResultRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_RESULT_FIELD_NUMBER: _builtins.int
-    UPDATE_MASK_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def test_result(self) -> _data_store_pb2.TestResult:
+    TEST_RESULT_FIELD_NUMBER: builtins.int
+    UPDATE_MASK_FIELD_NUMBER: builtins.int
+    @property
+    def test_result(self) -> ni.measurements.data.v2.data_store_pb2.TestResult:
         """Required. The TestResult to update. Its id identifies the target."""
 
-    @_builtins.property
-    def update_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def update_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. An empty mask updates supplied mutable fields whose values are
         not their protobuf defaults.
         An explicit mask is required to clear a field to its default value.
@@ -207,31 +186,28 @@ class UpdateTestResultRequest(_message.Message):
     def __init__(
         self,
         *,
-        test_result: _data_store_pb2.TestResult | None = ...,
-        update_mask: _field_mask_pb2.FieldMask | None = ...,
+        test_result: ni.measurements.data.v2.data_store_pb2.TestResult | None = ...,
+        update_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["test_result", b"test_result", "update_mask", b"update_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_result", b"test_result", "update_mask", b"update_mask"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_result", b"test_result", "update_mask", b"update_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_result", b"test_result", "update_mask", b"update_mask"]) -> None: ...
 
-Global___UpdateTestResultRequest: _TypeAlias = UpdateTestResultRequest  # noqa: Y015
+Global___UpdateTestResultRequest: typing_extensions.TypeAlias = UpdateTestResultRequest
 
-@_typing.final
-class BatchUpdateTestResultsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchUpdateTestResultsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    REQUESTS_FIELD_NUMBER: _builtins.int
-    UPDATE_MASK_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___UpdateTestResultRequest]:
+    REQUESTS_FIELD_NUMBER: builtins.int
+    UPDATE_MASK_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___UpdateTestResultRequest]:
         """Required. Non-empty and subject to service limits. Duplicate targets are
         invalid, and the batch is atomic.
         """
 
-    @_builtins.property
-    def update_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def update_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. A mask used by every request. If a request also contains a mask,
         both masks must select the same fields. The service normalizes field paths
         before comparing the masks.
@@ -240,152 +216,131 @@ class BatchUpdateTestResultsRequest(_message.Message):
     def __init__(
         self,
         *,
-        requests: _abc.Iterable[Global___UpdateTestResultRequest] | None = ...,
-        update_mask: _field_mask_pb2.FieldMask | None = ...,
+        requests: collections.abc.Iterable[Global___UpdateTestResultRequest] | None = ...,
+        update_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["update_mask", b"update_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests", "update_mask", b"update_mask"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["update_mask", b"update_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests", "update_mask", b"update_mask"]) -> None: ...
 
-Global___BatchUpdateTestResultsRequest: _TypeAlias = BatchUpdateTestResultsRequest  # noqa: Y015
+Global___BatchUpdateTestResultsRequest: typing_extensions.TypeAlias = BatchUpdateTestResultsRequest
 
-@_typing.final
-class BatchUpdateTestResultsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchUpdateTestResultsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_RESULTS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def test_results(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.TestResult]:
+    TEST_RESULTS_FIELD_NUMBER: builtins.int
+    @property
+    def test_results(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.TestResult]:
         """Updated resources in request order. Nested resources are omitted."""
 
     def __init__(
         self,
         *,
-        test_results: _abc.Iterable[_data_store_pb2.TestResult] | None = ...,
+        test_results: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.TestResult] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_results", b"test_results"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_results", b"test_results"]) -> None: ...
 
-Global___BatchUpdateTestResultsResponse: _TypeAlias = BatchUpdateTestResultsResponse  # noqa: Y015
+Global___BatchUpdateTestResultsResponse: typing_extensions.TypeAlias = BatchUpdateTestResultsResponse
 
-@_typing.final
-class AddTestResultMetadataRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class AddTestResultMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_RESULT_ID_FIELD_NUMBER: _builtins.int
-    SOFTWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
-    HARDWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
-    TEST_ADAPTER_IDS_FIELD_NUMBER: _builtins.int
-    test_result_id: _builtins.str
+    TEST_RESULT_ID_FIELD_NUMBER: builtins.int
+    SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
+    test_result_id: builtins.str
     """Required. The test result identifier."""
-    @_builtins.property
-    def software_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
-    @_builtins.property
-    def hardware_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
-    @_builtins.property
-    def test_adapter_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
+    @property
+    def software_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
+    @property
+    def hardware_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
+    @property
+    def test_adapter_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
     def __init__(
         self,
         *,
-        test_result_id: _builtins.str = ...,
-        software_item_ids: _abc.Iterable[_builtins.str] | None = ...,
-        hardware_item_ids: _abc.Iterable[_builtins.str] | None = ...,
-        test_adapter_ids: _abc.Iterable[_builtins.str] | None = ...,
+        test_result_id: builtins.str = ...,
+        software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["hardware_item_ids", b"hardware_item_ids", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids", "test_result_id", b"test_result_id"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["hardware_item_ids", b"hardware_item_ids", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids", "test_result_id", b"test_result_id"]) -> None: ...
 
-Global___AddTestResultMetadataRequest: _TypeAlias = AddTestResultMetadataRequest  # noqa: Y015
+Global___AddTestResultMetadataRequest: typing_extensions.TypeAlias = AddTestResultMetadataRequest
 
-@_typing.final
-class AddTestResultMetadataResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class AddTestResultMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_RESULT_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def test_result(self) -> _data_store_pb2.TestResult: ...
+    TEST_RESULT_FIELD_NUMBER: builtins.int
+    @property
+    def test_result(self) -> ni.measurements.data.v2.data_store_pb2.TestResult: ...
     def __init__(
         self,
         *,
-        test_result: _data_store_pb2.TestResult | None = ...,
+        test_result: ni.measurements.data.v2.data_store_pb2.TestResult | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["test_result", b"test_result"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_result", b"test_result"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_result", b"test_result"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_result", b"test_result"]) -> None: ...
 
-Global___AddTestResultMetadataResponse: _TypeAlias = AddTestResultMetadataResponse  # noqa: Y015
+Global___AddTestResultMetadataResponse: typing_extensions.TypeAlias = AddTestResultMetadataResponse
 
-@_typing.final
-class RemoveTestResultMetadataRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class RemoveTestResultMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_RESULT_ID_FIELD_NUMBER: _builtins.int
-    SOFTWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
-    HARDWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
-    TEST_ADAPTER_IDS_FIELD_NUMBER: _builtins.int
-    test_result_id: _builtins.str
+    TEST_RESULT_ID_FIELD_NUMBER: builtins.int
+    SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
+    test_result_id: builtins.str
     """Required. The test result identifier."""
-    @_builtins.property
-    def software_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
-    @_builtins.property
-    def hardware_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
-    @_builtins.property
-    def test_adapter_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
+    @property
+    def software_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
+    @property
+    def hardware_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
+    @property
+    def test_adapter_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
     def __init__(
         self,
         *,
-        test_result_id: _builtins.str = ...,
-        software_item_ids: _abc.Iterable[_builtins.str] | None = ...,
-        hardware_item_ids: _abc.Iterable[_builtins.str] | None = ...,
-        test_adapter_ids: _abc.Iterable[_builtins.str] | None = ...,
+        test_result_id: builtins.str = ...,
+        software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["hardware_item_ids", b"hardware_item_ids", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids", "test_result_id", b"test_result_id"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["hardware_item_ids", b"hardware_item_ids", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids", "test_result_id", b"test_result_id"]) -> None: ...
 
-Global___RemoveTestResultMetadataRequest: _TypeAlias = RemoveTestResultMetadataRequest  # noqa: Y015
+Global___RemoveTestResultMetadataRequest: typing_extensions.TypeAlias = RemoveTestResultMetadataRequest
 
-@_typing.final
-class RemoveTestResultMetadataResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class RemoveTestResultMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_RESULT_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def test_result(self) -> _data_store_pb2.TestResult: ...
+    TEST_RESULT_FIELD_NUMBER: builtins.int
+    @property
+    def test_result(self) -> ni.measurements.data.v2.data_store_pb2.TestResult: ...
     def __init__(
         self,
         *,
-        test_result: _data_store_pb2.TestResult | None = ...,
+        test_result: ni.measurements.data.v2.data_store_pb2.TestResult | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["test_result", b"test_result"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["test_result", b"test_result"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_result", b"test_result"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_result", b"test_result"]) -> None: ...
 
-Global___RemoveTestResultMetadataResponse: _TypeAlias = RemoveTestResultMetadataResponse  # noqa: Y015
+Global___RemoveTestResultMetadataResponse: typing_extensions.TypeAlias = RemoveTestResultMetadataResponse
 
-@_typing.final
-class DeleteTestResultRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class DeleteTestResultRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    TEST_RESULT_ID_FIELD_NUMBER: _builtins.int
-    FORCE_FIELD_NUMBER: _builtins.int
-    test_result_id: _builtins.str
+    TEST_RESULT_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
+    test_result_id: builtins.str
     """Required. The test result identifier."""
-    force: _builtins.bool
+    force: builtins.bool
     """Optional. If true, also deletes owned Steps, Measurements, Conditions, and
     datastore-owned relationships. Otherwise, the operation fails with
     FAILED_PRECONDITION when owned resources require cleanup.
@@ -393,24 +348,20 @@ class DeleteTestResultRequest(_message.Message):
     def __init__(
         self,
         *,
-        test_result_id: _builtins.str = ...,
-        force: _builtins.bool = ...,
+        test_result_id: builtins.str = ...,
+        force: builtins.bool = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["force", b"force", "test_result_id", b"test_result_id"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["force", b"force", "test_result_id", b"test_result_id"]) -> None: ...
 
-Global___DeleteTestResultRequest: _TypeAlias = DeleteTestResultRequest  # noqa: Y015
+Global___DeleteTestResultRequest: typing_extensions.TypeAlias = DeleteTestResultRequest
 
-@_typing.final
-class BatchDeleteTestResultsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchDeleteTestResultsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    REQUESTS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteTestResultRequest]:
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteTestResultRequest]:
         """Required. Non-empty and subject to service limits. Each request has its
         own force value. Duplicate targets are invalid, and the batch is atomic.
         """
@@ -418,38 +369,29 @@ class BatchDeleteTestResultsRequest(_message.Message):
     def __init__(
         self,
         *,
-        requests: _abc.Iterable[Global___DeleteTestResultRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___DeleteTestResultRequest] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-Global___BatchDeleteTestResultsRequest: _TypeAlias = BatchDeleteTestResultsRequest  # noqa: Y015
+Global___BatchDeleteTestResultsRequest: typing_extensions.TypeAlias = BatchDeleteTestResultsRequest
 
-@_typing.final
-class BatchDeleteTestResultsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchDeleteTestResultsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(
         self,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___BatchDeleteTestResultsResponse: _TypeAlias = BatchDeleteTestResultsResponse  # noqa: Y015
+Global___BatchDeleteTestResultsResponse: typing_extensions.TypeAlias = BatchDeleteTestResultsResponse
 
-@_typing.final
-class CreateStepRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class CreateStepRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STEP_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def step(self) -> _data_store_pb2.Step:
+    STEP_FIELD_NUMBER: builtins.int
+    @property
+    def step(self) -> ni.measurements.data.v2.data_store_pb2.Step:
         """Required. May include bounded nested child Steps, Conditions,
         Measurements, and inline metadata. test_result_id identifies the owning
         TestResult. Set parent_step_id when creating a child Step; the parent Step
@@ -459,23 +401,20 @@ class CreateStepRequest(_message.Message):
     def __init__(
         self,
         *,
-        step: _data_store_pb2.Step | None = ...,
+        step: ni.measurements.data.v2.data_store_pb2.Step | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["step", b"step"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["step", b"step"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["step", b"step"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["step", b"step"]) -> None: ...
 
-Global___CreateStepRequest: _TypeAlias = CreateStepRequest  # noqa: Y015
+Global___CreateStepRequest: typing_extensions.TypeAlias = CreateStepRequest
 
-@_typing.final
-class BatchCreateStepsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchCreateStepsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    REQUESTS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___CreateStepRequest]:
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___CreateStepRequest]:
         """Required. Non-empty and subject to service limits. Each request identifies
         its own TestResult and may target a different TestResult. The batch is atomic.
         """
@@ -483,87 +422,76 @@ class BatchCreateStepsRequest(_message.Message):
     def __init__(
         self,
         *,
-        requests: _abc.Iterable[Global___CreateStepRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___CreateStepRequest] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-Global___BatchCreateStepsRequest: _TypeAlias = BatchCreateStepsRequest  # noqa: Y015
+Global___BatchCreateStepsRequest: typing_extensions.TypeAlias = BatchCreateStepsRequest
 
-@_typing.final
-class BatchCreateStepsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchCreateStepsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STEPS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def steps(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.Step]:
+    STEPS_FIELD_NUMBER: builtins.int
+    @property
+    def steps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.Step]:
         """Saved Steps in request order. Nested resources are omitted."""
 
     def __init__(
         self,
         *,
-        steps: _abc.Iterable[_data_store_pb2.Step] | None = ...,
+        steps: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.Step] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["steps", b"steps"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["steps", b"steps"]) -> None: ...
 
-Global___BatchCreateStepsResponse: _TypeAlias = BatchCreateStepsResponse  # noqa: Y015
+Global___BatchCreateStepsResponse: typing_extensions.TypeAlias = BatchCreateStepsResponse
 
-@_typing.final
-class GetStepRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class GetStepRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STEP_ID_FIELD_NUMBER: _builtins.int
-    READ_MASK_FIELD_NUMBER: _builtins.int
-    step_id: _builtins.str
+    STEP_ID_FIELD_NUMBER: builtins.int
+    READ_MASK_FIELD_NUMBER: builtins.int
+    step_id: builtins.str
     """Required. The step identifier."""
-    @_builtins.property
-    def read_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def read_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. Fields to return on the requested Step."""
 
     def __init__(
         self,
         *,
-        step_id: _builtins.str = ...,
-        read_mask: _field_mask_pb2.FieldMask | None = ...,
+        step_id: builtins.str = ...,
+        read_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask", "step_id", b"step_id"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["read_mask", b"read_mask", "step_id", b"step_id"]) -> None: ...
 
-Global___GetStepRequest: _TypeAlias = GetStepRequest  # noqa: Y015
+Global___GetStepRequest: typing_extensions.TypeAlias = GetStepRequest
 
-@_typing.final
-class QueryStepsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class QueryStepsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: _builtins.int
-    READ_MASK_FIELD_NUMBER: _builtins.int
-    PAGE_SIZE_FIELD_NUMBER: _builtins.int
-    PAGE_TOKEN_FIELD_NUMBER: _builtins.int
-    odata_query: _builtins.str
+    ODATA_QUERY_FIELD_NUMBER: builtins.int
+    READ_MASK_FIELD_NUMBER: builtins.int
+    PAGE_SIZE_FIELD_NUMBER: builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    odata_query: builtins.str
     """Optional. An OData query expression. The gRPC API rejects $select, $count,
     $expand, and $apply because they change the response shape; use the HTTP
     API for those options.
     """
-    page_size: _builtins.int
+    page_size: builtins.int
     """Optional. Maximum Steps to return in this page. Zero or unset uses the
     service default; values above the service maximum are capped.
     """
-    page_token: _builtins.str
+    page_token: builtins.str
     """Optional. Opaque token from a previous response's next_page_token. Omit
     for the first page; all other request fields must match the original query.
     """
-    @_builtins.property
-    def read_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def read_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. Fields to return for each matching Step. Use this mask instead
         of OData $select for gRPC projections.
         """
@@ -571,31 +499,28 @@ class QueryStepsRequest(_message.Message):
     def __init__(
         self,
         *,
-        odata_query: _builtins.str = ...,
-        read_mask: _field_mask_pb2.FieldMask | None = ...,
-        page_size: _builtins.int = ...,
-        page_token: _builtins.str = ...,
+        odata_query: builtins.str = ...,
+        read_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
+        page_size: builtins.int = ...,
+        page_token: builtins.str = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]) -> None: ...
 
-Global___QueryStepsRequest: _TypeAlias = QueryStepsRequest  # noqa: Y015
+Global___QueryStepsRequest: typing_extensions.TypeAlias = QueryStepsRequest
 
-@_typing.final
-class QueryStepsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class QueryStepsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STEPS_FIELD_NUMBER: _builtins.int
-    NEXT_PAGE_TOKEN_FIELD_NUMBER: _builtins.int
-    next_page_token: _builtins.str
+    STEPS_FIELD_NUMBER: builtins.int
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    next_page_token: builtins.str
     """Token for the next page. Empty when the query is complete. A page may be
     empty and still carry a token.
     """
-    @_builtins.property
-    def steps(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.Step]:
+    @property
+    def steps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.Step]:
         """Matching Steps as flat resources. Descendants are returned as
         separate matching Steps linked through parent_step_id.
         """
@@ -603,29 +528,25 @@ class QueryStepsResponse(_message.Message):
     def __init__(
         self,
         *,
-        steps: _abc.Iterable[_data_store_pb2.Step] | None = ...,
-        next_page_token: _builtins.str = ...,
+        steps: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.Step] | None = ...,
+        next_page_token: builtins.str = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["next_page_token", b"next_page_token", "steps", b"steps"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["next_page_token", b"next_page_token", "steps", b"steps"]) -> None: ...
 
-Global___QueryStepsResponse: _TypeAlias = QueryStepsResponse  # noqa: Y015
+Global___QueryStepsResponse: typing_extensions.TypeAlias = QueryStepsResponse
 
-@_typing.final
-class UpdateStepRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class UpdateStepRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STEP_FIELD_NUMBER: _builtins.int
-    UPDATE_MASK_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def step(self) -> _data_store_pb2.Step:
+    STEP_FIELD_NUMBER: builtins.int
+    UPDATE_MASK_FIELD_NUMBER: builtins.int
+    @property
+    def step(self) -> ni.measurements.data.v2.data_store_pb2.Step:
         """Required. The Step to update. Its id identifies the target."""
 
-    @_builtins.property
-    def update_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def update_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. An empty mask updates supplied mutable fields whose values are
         not their protobuf defaults.
         An explicit mask is required to clear a field to its default value.
@@ -634,31 +555,28 @@ class UpdateStepRequest(_message.Message):
     def __init__(
         self,
         *,
-        step: _data_store_pb2.Step | None = ...,
-        update_mask: _field_mask_pb2.FieldMask | None = ...,
+        step: ni.measurements.data.v2.data_store_pb2.Step | None = ...,
+        update_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["step", b"step", "update_mask", b"update_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["step", b"step", "update_mask", b"update_mask"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["step", b"step", "update_mask", b"update_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["step", b"step", "update_mask", b"update_mask"]) -> None: ...
 
-Global___UpdateStepRequest: _TypeAlias = UpdateStepRequest  # noqa: Y015
+Global___UpdateStepRequest: typing_extensions.TypeAlias = UpdateStepRequest
 
-@_typing.final
-class BatchUpdateStepsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchUpdateStepsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    REQUESTS_FIELD_NUMBER: _builtins.int
-    UPDATE_MASK_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___UpdateStepRequest]:
+    REQUESTS_FIELD_NUMBER: builtins.int
+    UPDATE_MASK_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___UpdateStepRequest]:
         """Required. Non-empty and subject to service limits. Duplicate targets are
         invalid, and the batch is atomic.
         """
 
-    @_builtins.property
-    def update_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def update_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. A mask used by every request. If a request also contains a mask,
         both masks must select the same fields. The service normalizes field paths
         before comparing the masks.
@@ -667,49 +585,42 @@ class BatchUpdateStepsRequest(_message.Message):
     def __init__(
         self,
         *,
-        requests: _abc.Iterable[Global___UpdateStepRequest] | None = ...,
-        update_mask: _field_mask_pb2.FieldMask | None = ...,
+        requests: collections.abc.Iterable[Global___UpdateStepRequest] | None = ...,
+        update_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["update_mask", b"update_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests", "update_mask", b"update_mask"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["update_mask", b"update_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests", "update_mask", b"update_mask"]) -> None: ...
 
-Global___BatchUpdateStepsRequest: _TypeAlias = BatchUpdateStepsRequest  # noqa: Y015
+Global___BatchUpdateStepsRequest: typing_extensions.TypeAlias = BatchUpdateStepsRequest
 
-@_typing.final
-class BatchUpdateStepsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchUpdateStepsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STEPS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def steps(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.Step]:
+    STEPS_FIELD_NUMBER: builtins.int
+    @property
+    def steps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.Step]:
         """Updated resources in request order. Nested resources are omitted."""
 
     def __init__(
         self,
         *,
-        steps: _abc.Iterable[_data_store_pb2.Step] | None = ...,
+        steps: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.Step] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["steps", b"steps"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["steps", b"steps"]) -> None: ...
 
-Global___BatchUpdateStepsResponse: _TypeAlias = BatchUpdateStepsResponse  # noqa: Y015
+Global___BatchUpdateStepsResponse: typing_extensions.TypeAlias = BatchUpdateStepsResponse
 
-@_typing.final
-class AddConditionRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class AddConditionRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STEP_ID_FIELD_NUMBER: _builtins.int
-    CONDITION_FIELD_NUMBER: _builtins.int
-    step_id: _builtins.str
+    STEP_ID_FIELD_NUMBER: builtins.int
+    CONDITION_FIELD_NUMBER: builtins.int
+    step_id: builtins.str
     """Required. The step identifier."""
-    @_builtins.property
-    def condition(self) -> _data_store_pb2.Condition:
+    @property
+    def condition(self) -> ni.measurements.data.v2.data_store_pb2.Condition:
         """Required. Adding the same name and value again has no effect. Adding the
         same name with a different value changes the Step to use the new value.
         """
@@ -717,90 +628,77 @@ class AddConditionRequest(_message.Message):
     def __init__(
         self,
         *,
-        step_id: _builtins.str = ...,
-        condition: _data_store_pb2.Condition | None = ...,
+        step_id: builtins.str = ...,
+        condition: ni.measurements.data.v2.data_store_pb2.Condition | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["condition", b"condition"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["condition", b"condition", "step_id", b"step_id"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["condition", b"condition"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["condition", b"condition", "step_id", b"step_id"]) -> None: ...
 
-Global___AddConditionRequest: _TypeAlias = AddConditionRequest  # noqa: Y015
+Global___AddConditionRequest: typing_extensions.TypeAlias = AddConditionRequest
 
-@_typing.final
-class AddConditionResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class AddConditionResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STEP_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def step(self) -> _data_store_pb2.Step: ...
+    STEP_FIELD_NUMBER: builtins.int
+    @property
+    def step(self) -> ni.measurements.data.v2.data_store_pb2.Step: ...
     def __init__(
         self,
         *,
-        step: _data_store_pb2.Step | None = ...,
+        step: ni.measurements.data.v2.data_store_pb2.Step | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["step", b"step"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["step", b"step"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["step", b"step"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["step", b"step"]) -> None: ...
 
-Global___AddConditionResponse: _TypeAlias = AddConditionResponse  # noqa: Y015
+Global___AddConditionResponse: typing_extensions.TypeAlias = AddConditionResponse
 
-@_typing.final
-class RemoveConditionRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class RemoveConditionRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STEP_ID_FIELD_NUMBER: _builtins.int
-    CONDITION_NAME_FIELD_NUMBER: _builtins.int
-    step_id: _builtins.str
+    STEP_ID_FIELD_NUMBER: builtins.int
+    CONDITION_NAME_FIELD_NUMBER: builtins.int
+    step_id: builtins.str
     """Required. The step identifier."""
-    condition_name: _builtins.str
+    condition_name: builtins.str
     """Required. Exact, case-sensitive condition name."""
     def __init__(
         self,
         *,
-        step_id: _builtins.str = ...,
-        condition_name: _builtins.str = ...,
+        step_id: builtins.str = ...,
+        condition_name: builtins.str = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["condition_name", b"condition_name", "step_id", b"step_id"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["condition_name", b"condition_name", "step_id", b"step_id"]) -> None: ...
 
-Global___RemoveConditionRequest: _TypeAlias = RemoveConditionRequest  # noqa: Y015
+Global___RemoveConditionRequest: typing_extensions.TypeAlias = RemoveConditionRequest
 
-@_typing.final
-class RemoveConditionResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class RemoveConditionResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STEP_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def step(self) -> _data_store_pb2.Step: ...
+    STEP_FIELD_NUMBER: builtins.int
+    @property
+    def step(self) -> ni.measurements.data.v2.data_store_pb2.Step: ...
     def __init__(
         self,
         *,
-        step: _data_store_pb2.Step | None = ...,
+        step: ni.measurements.data.v2.data_store_pb2.Step | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["step", b"step"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["step", b"step"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["step", b"step"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["step", b"step"]) -> None: ...
 
-Global___RemoveConditionResponse: _TypeAlias = RemoveConditionResponse  # noqa: Y015
+Global___RemoveConditionResponse: typing_extensions.TypeAlias = RemoveConditionResponse
 
-@_typing.final
-class DeleteStepRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class DeleteStepRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    STEP_ID_FIELD_NUMBER: _builtins.int
-    FORCE_FIELD_NUMBER: _builtins.int
-    step_id: _builtins.str
+    STEP_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
+    step_id: builtins.str
     """Required. The step identifier."""
-    force: _builtins.bool
+    force: builtins.bool
     """Optional. A Step with child Steps always fails with FAILED_PRECONDITION. If
     false and Measurements exist, the request also fails. If true for a leaf
     Step, its Measurements and datastore-owned relationships are deleted;
@@ -809,24 +707,20 @@ class DeleteStepRequest(_message.Message):
     def __init__(
         self,
         *,
-        step_id: _builtins.str = ...,
-        force: _builtins.bool = ...,
+        step_id: builtins.str = ...,
+        force: builtins.bool = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["force", b"force", "step_id", b"step_id"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["force", b"force", "step_id", b"step_id"]) -> None: ...
 
-Global___DeleteStepRequest: _TypeAlias = DeleteStepRequest  # noqa: Y015
+Global___DeleteStepRequest: typing_extensions.TypeAlias = DeleteStepRequest
 
-@_typing.final
-class BatchDeleteStepsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchDeleteStepsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    REQUESTS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteStepRequest]:
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteStepRequest]:
         """Required. Non-empty and subject to service limits. Each request has its
         own force value. Duplicate and ancestor/descendant target pairs are
         invalid, and the batch is atomic.
@@ -835,38 +729,29 @@ class BatchDeleteStepsRequest(_message.Message):
     def __init__(
         self,
         *,
-        requests: _abc.Iterable[Global___DeleteStepRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___DeleteStepRequest] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-Global___BatchDeleteStepsRequest: _TypeAlias = BatchDeleteStepsRequest  # noqa: Y015
+Global___BatchDeleteStepsRequest: typing_extensions.TypeAlias = BatchDeleteStepsRequest
 
-@_typing.final
-class BatchDeleteStepsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchDeleteStepsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(
         self,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___BatchDeleteStepsResponse: _TypeAlias = BatchDeleteStepsResponse  # noqa: Y015
+Global___BatchDeleteStepsResponse: typing_extensions.TypeAlias = BatchDeleteStepsResponse
 
-@_typing.final
-class CreateMeasurementRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class CreateMeasurementRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def measurement(self) -> _data_store_pb2.Measurement:
+    MEASUREMENT_FIELD_NUMBER: builtins.int
+    @property
+    def measurement(self) -> ni.measurements.data.v2.data_store_pb2.Measurement:
         """Required. Inline metadata must resolve to links present on the parent
         TestResult.
         """
@@ -874,23 +759,20 @@ class CreateMeasurementRequest(_message.Message):
     def __init__(
         self,
         *,
-        measurement: _data_store_pb2.Measurement | None = ...,
+        measurement: ni.measurements.data.v2.data_store_pb2.Measurement | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["measurement", b"measurement"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurement", b"measurement"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["measurement", b"measurement"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["measurement", b"measurement"]) -> None: ...
 
-Global___CreateMeasurementRequest: _TypeAlias = CreateMeasurementRequest  # noqa: Y015
+Global___CreateMeasurementRequest: typing_extensions.TypeAlias = CreateMeasurementRequest
 
-@_typing.final
-class BatchCreateMeasurementsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchCreateMeasurementsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    REQUESTS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___CreateMeasurementRequest]:
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___CreateMeasurementRequest]:
         """Required. Non-empty and subject to service limits. Requests may target
         different Steps and TestResults, and the batch is atomic.
         """
@@ -898,87 +780,76 @@ class BatchCreateMeasurementsRequest(_message.Message):
     def __init__(
         self,
         *,
-        requests: _abc.Iterable[Global___CreateMeasurementRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___CreateMeasurementRequest] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-Global___BatchCreateMeasurementsRequest: _TypeAlias = BatchCreateMeasurementsRequest  # noqa: Y015
+Global___BatchCreateMeasurementsRequest: typing_extensions.TypeAlias = BatchCreateMeasurementsRequest
 
-@_typing.final
-class BatchCreateMeasurementsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchCreateMeasurementsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENTS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def measurements(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.Measurement]:
+    MEASUREMENTS_FIELD_NUMBER: builtins.int
+    @property
+    def measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.Measurement]:
         """Saved Measurements in request order."""
 
     def __init__(
         self,
         *,
-        measurements: _abc.Iterable[_data_store_pb2.Measurement] | None = ...,
+        measurements: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.Measurement] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurements", b"measurements"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["measurements", b"measurements"]) -> None: ...
 
-Global___BatchCreateMeasurementsResponse: _TypeAlias = BatchCreateMeasurementsResponse  # noqa: Y015
+Global___BatchCreateMeasurementsResponse: typing_extensions.TypeAlias = BatchCreateMeasurementsResponse
 
-@_typing.final
-class GetMeasurementRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class GetMeasurementRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_ID_FIELD_NUMBER: _builtins.int
-    READ_MASK_FIELD_NUMBER: _builtins.int
-    measurement_id: _builtins.str
+    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
+    READ_MASK_FIELD_NUMBER: builtins.int
+    measurement_id: builtins.str
     """Required. The measurement identifier."""
-    @_builtins.property
-    def read_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def read_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. Fields and related resources to return."""
 
     def __init__(
         self,
         *,
-        measurement_id: _builtins.str = ...,
-        read_mask: _field_mask_pb2.FieldMask | None = ...,
+        measurement_id: builtins.str = ...,
+        read_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurement_id", b"measurement_id", "read_mask", b"read_mask"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id", "read_mask", b"read_mask"]) -> None: ...
 
-Global___GetMeasurementRequest: _TypeAlias = GetMeasurementRequest  # noqa: Y015
+Global___GetMeasurementRequest: typing_extensions.TypeAlias = GetMeasurementRequest
 
-@_typing.final
-class QueryMeasurementsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class QueryMeasurementsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    ODATA_QUERY_FIELD_NUMBER: _builtins.int
-    READ_MASK_FIELD_NUMBER: _builtins.int
-    PAGE_SIZE_FIELD_NUMBER: _builtins.int
-    PAGE_TOKEN_FIELD_NUMBER: _builtins.int
-    odata_query: _builtins.str
+    ODATA_QUERY_FIELD_NUMBER: builtins.int
+    READ_MASK_FIELD_NUMBER: builtins.int
+    PAGE_SIZE_FIELD_NUMBER: builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    odata_query: builtins.str
     """Optional. An OData query expression. The gRPC API rejects $select, $count,
     $expand, and $apply because they change the response shape; use the HTTP
     API for those options.
     """
-    page_size: _builtins.int
+    page_size: builtins.int
     """Optional. Maximum Measurements to return in this page. Zero or unset uses
     the service default; values above the service maximum are capped.
     """
-    page_token: _builtins.str
+    page_token: builtins.str
     """Optional. Opaque token from a previous response's next_page_token. Omit
     for the first page; all other request fields must match the original query.
     """
-    @_builtins.property
-    def read_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def read_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. Fields to return for each matching Measurement. Use this mask
         instead of OData $select for gRPC projections.
         """
@@ -986,57 +857,50 @@ class QueryMeasurementsRequest(_message.Message):
     def __init__(
         self,
         *,
-        odata_query: _builtins.str = ...,
-        read_mask: _field_mask_pb2.FieldMask | None = ...,
-        page_size: _builtins.int = ...,
-        page_token: _builtins.str = ...,
+        odata_query: builtins.str = ...,
+        read_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
+        page_size: builtins.int = ...,
+        page_token: builtins.str = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]) -> None: ...
 
-Global___QueryMeasurementsRequest: _TypeAlias = QueryMeasurementsRequest  # noqa: Y015
+Global___QueryMeasurementsRequest: typing_extensions.TypeAlias = QueryMeasurementsRequest
 
-@_typing.final
-class QueryMeasurementsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class QueryMeasurementsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENTS_FIELD_NUMBER: _builtins.int
-    NEXT_PAGE_TOKEN_FIELD_NUMBER: _builtins.int
-    next_page_token: _builtins.str
+    MEASUREMENTS_FIELD_NUMBER: builtins.int
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    next_page_token: builtins.str
     """Token for the next page. Empty when the query is complete. A page may be
     empty and still carry a token.
     """
-    @_builtins.property
-    def measurements(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.Measurement]: ...
+    @property
+    def measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.Measurement]: ...
     def __init__(
         self,
         *,
-        measurements: _abc.Iterable[_data_store_pb2.Measurement] | None = ...,
-        next_page_token: _builtins.str = ...,
+        measurements: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.Measurement] | None = ...,
+        next_page_token: builtins.str = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurements", b"measurements", "next_page_token", b"next_page_token"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["measurements", b"measurements", "next_page_token", b"next_page_token"]) -> None: ...
 
-Global___QueryMeasurementsResponse: _TypeAlias = QueryMeasurementsResponse  # noqa: Y015
+Global___QueryMeasurementsResponse: typing_extensions.TypeAlias = QueryMeasurementsResponse
 
-@_typing.final
-class UpdateMeasurementRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class UpdateMeasurementRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_FIELD_NUMBER: _builtins.int
-    UPDATE_MASK_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def measurement(self) -> _data_store_pb2.Measurement:
+    MEASUREMENT_FIELD_NUMBER: builtins.int
+    UPDATE_MASK_FIELD_NUMBER: builtins.int
+    @property
+    def measurement(self) -> ni.measurements.data.v2.data_store_pb2.Measurement:
         """Required. The Measurement to update. Its id identifies the target."""
 
-    @_builtins.property
-    def update_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def update_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. An empty mask updates supplied mutable fields whose values are
         not their protobuf defaults.
         An explicit mask is required to clear a field to its default value.
@@ -1046,31 +910,28 @@ class UpdateMeasurementRequest(_message.Message):
     def __init__(
         self,
         *,
-        measurement: _data_store_pb2.Measurement | None = ...,
-        update_mask: _field_mask_pb2.FieldMask | None = ...,
+        measurement: ni.measurements.data.v2.data_store_pb2.Measurement | None = ...,
+        update_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["measurement", b"measurement", "update_mask", b"update_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurement", b"measurement", "update_mask", b"update_mask"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["measurement", b"measurement", "update_mask", b"update_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["measurement", b"measurement", "update_mask", b"update_mask"]) -> None: ...
 
-Global___UpdateMeasurementRequest: _TypeAlias = UpdateMeasurementRequest  # noqa: Y015
+Global___UpdateMeasurementRequest: typing_extensions.TypeAlias = UpdateMeasurementRequest
 
-@_typing.final
-class BatchUpdateMeasurementsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchUpdateMeasurementsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    REQUESTS_FIELD_NUMBER: _builtins.int
-    UPDATE_MASK_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___UpdateMeasurementRequest]:
+    REQUESTS_FIELD_NUMBER: builtins.int
+    UPDATE_MASK_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___UpdateMeasurementRequest]:
         """Required. Non-empty and subject to service limits. Duplicate targets are
         invalid, and the batch is atomic.
         """
 
-    @_builtins.property
-    def update_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def update_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. A mask used by every request. If a request also contains a mask,
         both masks must select the same fields. The service normalizes field paths
         before comparing the masks.
@@ -1079,151 +940,130 @@ class BatchUpdateMeasurementsRequest(_message.Message):
     def __init__(
         self,
         *,
-        requests: _abc.Iterable[Global___UpdateMeasurementRequest] | None = ...,
-        update_mask: _field_mask_pb2.FieldMask | None = ...,
+        requests: collections.abc.Iterable[Global___UpdateMeasurementRequest] | None = ...,
+        update_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["update_mask", b"update_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests", "update_mask", b"update_mask"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["update_mask", b"update_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests", "update_mask", b"update_mask"]) -> None: ...
 
-Global___BatchUpdateMeasurementsRequest: _TypeAlias = BatchUpdateMeasurementsRequest  # noqa: Y015
+Global___BatchUpdateMeasurementsRequest: typing_extensions.TypeAlias = BatchUpdateMeasurementsRequest
 
-@_typing.final
-class BatchUpdateMeasurementsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchUpdateMeasurementsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENTS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def measurements(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.Measurement]:
+    MEASUREMENTS_FIELD_NUMBER: builtins.int
+    @property
+    def measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.Measurement]:
         """Updated resources in request order."""
 
     def __init__(
         self,
         *,
-        measurements: _abc.Iterable[_data_store_pb2.Measurement] | None = ...,
+        measurements: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.Measurement] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurements", b"measurements"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["measurements", b"measurements"]) -> None: ...
 
-Global___BatchUpdateMeasurementsResponse: _TypeAlias = BatchUpdateMeasurementsResponse  # noqa: Y015
+Global___BatchUpdateMeasurementsResponse: typing_extensions.TypeAlias = BatchUpdateMeasurementsResponse
 
-@_typing.final
-class AddMeasurementMetadataRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class AddMeasurementMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_ID_FIELD_NUMBER: _builtins.int
-    SOFTWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
-    HARDWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
-    TEST_ADAPTER_IDS_FIELD_NUMBER: _builtins.int
-    measurement_id: _builtins.str
+    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
+    SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
+    measurement_id: builtins.str
     """Required. The measurement identifier. Added metadata must already be
     linked to the parent TestResult.
     """
-    @_builtins.property
-    def software_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
-    @_builtins.property
-    def hardware_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
-    @_builtins.property
-    def test_adapter_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
+    @property
+    def software_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
+    @property
+    def hardware_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
+    @property
+    def test_adapter_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
     def __init__(
         self,
         *,
-        measurement_id: _builtins.str = ...,
-        software_item_ids: _abc.Iterable[_builtins.str] | None = ...,
-        hardware_item_ids: _abc.Iterable[_builtins.str] | None = ...,
-        test_adapter_ids: _abc.Iterable[_builtins.str] | None = ...,
+        measurement_id: builtins.str = ...,
+        software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["hardware_item_ids", b"hardware_item_ids", "measurement_id", b"measurement_id", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["hardware_item_ids", b"hardware_item_ids", "measurement_id", b"measurement_id", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids"]) -> None: ...
 
-Global___AddMeasurementMetadataRequest: _TypeAlias = AddMeasurementMetadataRequest  # noqa: Y015
+Global___AddMeasurementMetadataRequest: typing_extensions.TypeAlias = AddMeasurementMetadataRequest
 
-@_typing.final
-class AddMeasurementMetadataResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class AddMeasurementMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def measurement(self) -> _data_store_pb2.Measurement: ...
+    MEASUREMENT_FIELD_NUMBER: builtins.int
+    @property
+    def measurement(self) -> ni.measurements.data.v2.data_store_pb2.Measurement: ...
     def __init__(
         self,
         *,
-        measurement: _data_store_pb2.Measurement | None = ...,
+        measurement: ni.measurements.data.v2.data_store_pb2.Measurement | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["measurement", b"measurement"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurement", b"measurement"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["measurement", b"measurement"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["measurement", b"measurement"]) -> None: ...
 
-Global___AddMeasurementMetadataResponse: _TypeAlias = AddMeasurementMetadataResponse  # noqa: Y015
+Global___AddMeasurementMetadataResponse: typing_extensions.TypeAlias = AddMeasurementMetadataResponse
 
-@_typing.final
-class RemoveMeasurementMetadataRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class RemoveMeasurementMetadataRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_ID_FIELD_NUMBER: _builtins.int
-    SOFTWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
-    HARDWARE_ITEM_IDS_FIELD_NUMBER: _builtins.int
-    TEST_ADAPTER_IDS_FIELD_NUMBER: _builtins.int
-    measurement_id: _builtins.str
+    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
+    SOFTWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    HARDWARE_ITEM_IDS_FIELD_NUMBER: builtins.int
+    TEST_ADAPTER_IDS_FIELD_NUMBER: builtins.int
+    measurement_id: builtins.str
     """Required. The measurement identifier."""
-    @_builtins.property
-    def software_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
-    @_builtins.property
-    def hardware_item_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
-    @_builtins.property
-    def test_adapter_ids(self) -> _containers.RepeatedScalarFieldContainer[_builtins.str]: ...
+    @property
+    def software_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
+    @property
+    def hardware_item_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
+    @property
+    def test_adapter_ids(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]: ...
     def __init__(
         self,
         *,
-        measurement_id: _builtins.str = ...,
-        software_item_ids: _abc.Iterable[_builtins.str] | None = ...,
-        hardware_item_ids: _abc.Iterable[_builtins.str] | None = ...,
-        test_adapter_ids: _abc.Iterable[_builtins.str] | None = ...,
+        measurement_id: builtins.str = ...,
+        software_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        hardware_item_ids: collections.abc.Iterable[builtins.str] | None = ...,
+        test_adapter_ids: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["hardware_item_ids", b"hardware_item_ids", "measurement_id", b"measurement_id", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["hardware_item_ids", b"hardware_item_ids", "measurement_id", b"measurement_id", "software_item_ids", b"software_item_ids", "test_adapter_ids", b"test_adapter_ids"]) -> None: ...
 
-Global___RemoveMeasurementMetadataRequest: _TypeAlias = RemoveMeasurementMetadataRequest  # noqa: Y015
+Global___RemoveMeasurementMetadataRequest: typing_extensions.TypeAlias = RemoveMeasurementMetadataRequest
 
-@_typing.final
-class RemoveMeasurementMetadataResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class RemoveMeasurementMetadataResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def measurement(self) -> _data_store_pb2.Measurement: ...
+    MEASUREMENT_FIELD_NUMBER: builtins.int
+    @property
+    def measurement(self) -> ni.measurements.data.v2.data_store_pb2.Measurement: ...
     def __init__(
         self,
         *,
-        measurement: _data_store_pb2.Measurement | None = ...,
+        measurement: ni.measurements.data.v2.data_store_pb2.Measurement | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["measurement", b"measurement"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurement", b"measurement"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["measurement", b"measurement"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["measurement", b"measurement"]) -> None: ...
 
-Global___RemoveMeasurementMetadataResponse: _TypeAlias = RemoveMeasurementMetadataResponse  # noqa: Y015
+Global___RemoveMeasurementMetadataResponse: typing_extensions.TypeAlias = RemoveMeasurementMetadataResponse
 
-@_typing.final
-class DeleteMeasurementRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class DeleteMeasurementRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_ID_FIELD_NUMBER: _builtins.int
-    measurement_id: _builtins.str
+    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
+    measurement_id: builtins.str
     """Required. The measurement identifier. Deletion removes the Measurement and
     its datastore-owned relationships but does not delete other Data Store
     resources.
@@ -1231,23 +1071,19 @@ class DeleteMeasurementRequest(_message.Message):
     def __init__(
         self,
         *,
-        measurement_id: _builtins.str = ...,
+        measurement_id: builtins.str = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurement_id", b"measurement_id"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id"]) -> None: ...
 
-Global___DeleteMeasurementRequest: _TypeAlias = DeleteMeasurementRequest  # noqa: Y015
+Global___DeleteMeasurementRequest: typing_extensions.TypeAlias = DeleteMeasurementRequest
 
-@_typing.final
-class BatchDeleteMeasurementsRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchDeleteMeasurementsRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    REQUESTS_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def requests(self) -> _containers.RepeatedCompositeFieldContainer[Global___DeleteMeasurementRequest]:
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteMeasurementRequest]:
         """Required. Non-empty and subject to service limits. Duplicate targets are
         invalid, and the batch is atomic.
         """
@@ -1255,92 +1091,77 @@ class BatchDeleteMeasurementsRequest(_message.Message):
     def __init__(
         self,
         *,
-        requests: _abc.Iterable[Global___DeleteMeasurementRequest] | None = ...,
+        requests: collections.abc.Iterable[Global___DeleteMeasurementRequest] | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["requests", b"requests"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
 
-Global___BatchDeleteMeasurementsRequest: _TypeAlias = BatchDeleteMeasurementsRequest  # noqa: Y015
+Global___BatchDeleteMeasurementsRequest: typing_extensions.TypeAlias = BatchDeleteMeasurementsRequest
 
-@_typing.final
-class BatchDeleteMeasurementsResponse(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class BatchDeleteMeasurementsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     def __init__(
         self,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _Never  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
 
-Global___BatchDeleteMeasurementsResponse: _TypeAlias = BatchDeleteMeasurementsResponse  # noqa: Y015
+Global___BatchDeleteMeasurementsResponse: typing_extensions.TypeAlias = BatchDeleteMeasurementsResponse
 
-@_typing.final
-class ReadMeasurementValuesRequest(_message.Message):
-    DESCRIPTOR: _descriptor.Descriptor
+@typing.final
+class ReadMeasurementValuesRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    MEASUREMENT_ID_FIELD_NUMBER: _builtins.int
-    READ_MASK_FIELD_NUMBER: _builtins.int
-    measurement_id: _builtins.str
+    MEASUREMENT_ID_FIELD_NUMBER: builtins.int
+    READ_MASK_FIELD_NUMBER: builtins.int
+    measurement_id: builtins.str
     """Required. The Measurement identifier."""
-    @_builtins.property
-    def read_mask(self) -> _field_mask_pb2.FieldMask:
+    @property
+    def read_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
         """Optional. Selects fields to read. Omitted or empty selects all three."""
 
     def __init__(
         self,
         *,
-        measurement_id: _builtins.str = ...,
-        read_mask: _field_mask_pb2.FieldMask | None = ...,
+        measurement_id: builtins.str = ...,
+        read_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurement_id", b"measurement_id", "read_mask", b"read_mask"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["measurement_id", b"measurement_id", "read_mask", b"read_mask"]) -> None: ...
 
-Global___ReadMeasurementValuesRequest: _TypeAlias = ReadMeasurementValuesRequest  # noqa: Y015
+Global___ReadMeasurementValuesRequest: typing_extensions.TypeAlias = ReadMeasurementValuesRequest
 
-@_typing.final
-class ReadMeasurementValuesResponse(_message.Message):
+@typing.final
+class ReadMeasurementValuesResponse(google.protobuf.message.Message):
     """Each selected field contains a complete value and never a data_moniker.
     A field not selected by read_mask is unset; clients use the request mask
     to distinguish this from an absent optional limit.
     """
 
-    DESCRIPTOR: _descriptor.Descriptor
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-    VALUE_FIELD_NUMBER: _builtins.int
-    UPPER_LIMIT_FIELD_NUMBER: _builtins.int
-    LOWER_LIMIT_FIELD_NUMBER: _builtins.int
-    @_builtins.property
-    def value(self) -> _data_store_pb2.MeasurementValue:
+    VALUE_FIELD_NUMBER: builtins.int
+    UPPER_LIMIT_FIELD_NUMBER: builtins.int
+    LOWER_LIMIT_FIELD_NUMBER: builtins.int
+    @property
+    def value(self) -> ni.measurements.data.v2.data_store_pb2.MeasurementValue:
         """The primary Measurement value, when selected."""
 
-    @_builtins.property
-    def upper_limit(self) -> _data_store_pb2.MeasurementValue:
+    @property
+    def upper_limit(self) -> ni.measurements.data.v2.data_store_pb2.MeasurementValue:
         """Unset when not selected or when the Measurement has no upper limit."""
 
-    @_builtins.property
-    def lower_limit(self) -> _data_store_pb2.MeasurementValue:
+    @property
+    def lower_limit(self) -> ni.measurements.data.v2.data_store_pb2.MeasurementValue:
         """Unset when not selected or when the Measurement has no lower limit."""
 
     def __init__(
         self,
         *,
-        value: _data_store_pb2.MeasurementValue | None = ...,
-        upper_limit: _data_store_pb2.MeasurementValue | None = ...,
-        lower_limit: _data_store_pb2.MeasurementValue | None = ...,
+        value: ni.measurements.data.v2.data_store_pb2.MeasurementValue | None = ...,
+        upper_limit: ni.measurements.data.v2.data_store_pb2.MeasurementValue | None = ...,
+        lower_limit: ni.measurements.data.v2.data_store_pb2.MeasurementValue | None = ...,
     ) -> None: ...
-    _HasFieldArgType: _TypeAlias = _typing.Literal["lower_limit", b"lower_limit", "upper_limit", b"upper_limit", "value", b"value"]  # noqa: Y015
-    def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["lower_limit", b"lower_limit", "upper_limit", b"upper_limit", "value", b"value"]  # noqa: Y015
-    def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
-    def WhichOneof(self, oneof_group: _Never) -> None: ...
+    def HasField(self, field_name: typing.Literal["lower_limit", b"lower_limit", "upper_limit", b"upper_limit", "value", b"value"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["lower_limit", b"lower_limit", "upper_limit", b"upper_limit", "value", b"value"]) -> None: ...
 
-Global___ReadMeasurementValuesResponse: _TypeAlias = ReadMeasurementValuesResponse  # noqa: Y015
+Global___ReadMeasurementValuesResponse: typing_extensions.TypeAlias = ReadMeasurementValuesResponse
