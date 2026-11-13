@@ -434,10 +434,11 @@ class Measurement(_message.Message):
 
     @_builtins.property
     def duration(self) -> _precision_duration_pb2.PrecisionDuration:
-        """Optional. For this resource, the service derives the omitted timing value
-        when exactly two of start_date_time, end_date_time, and duration are
-        provided. All three must be consistent when provided. Zero or one is
-        accepted without derivation. Child timing does not update this resource.
+        """Optional. Stored at microsecond precision; additional precision is dropped.
+        When exactly two of start_date_time, end_date_time, and duration are set,
+        the service derives the missing value. Fewer values are accepted as given.
+        If all three are set, they are preserved without checking that they agree.
+        Timing on the owning Step or TestResult does not update this Measurement.
         """
 
     @_builtins.property
@@ -626,10 +627,11 @@ class TestResult(_message.Message):
 
     @_builtins.property
     def duration(self) -> _precision_duration_pb2.PrecisionDuration:
-        """Optional. For this resource, the service derives the omitted timing value
-        when exactly two of start_date_time, end_date_time, and duration are
-        provided. All three must be consistent when provided. Zero or one is
-        accepted without derivation. Child timing does not update this resource.
+        """Optional. Stored at microsecond precision; additional precision is dropped.
+        When exactly two of start_date_time, end_date_time, and duration are set,
+        the service derives the missing value. Fewer values are accepted as given.
+        If all three are set, they are preserved without checking that they agree.
+        Timing on child Steps and Measurements does not update this TestResult.
         """
 
     @_builtins.property
@@ -849,10 +851,12 @@ class Step(_message.Message):
 
     @_builtins.property
     def duration(self) -> _precision_duration_pb2.PrecisionDuration:
-        """Optional. For this resource, the service derives the omitted timing value
-        when exactly two of start_date_time, end_date_time, and duration are
-        provided. All three must be consistent when provided. Zero or one is
-        accepted without derivation. Child timing does not update this resource.
+        """Optional. Stored at microsecond precision; additional precision is dropped.
+        When exactly two of start_date_time, end_date_time, and duration are set,
+        the service derives the missing value. Fewer values are accepted as given.
+        If all three are set, they are preserved without checking that they agree.
+        This duration does not update or validate against the parent Step or
+        TestResult duration. Child timing does not update this Step.
         """
 
     @_builtins.property

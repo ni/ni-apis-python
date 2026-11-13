@@ -120,10 +120,20 @@ class QueryTestResultsRequest(_message.Message):
 
     ODATA_QUERY_FIELD_NUMBER: _builtins.int
     READ_MASK_FIELD_NUMBER: _builtins.int
+    PAGE_SIZE_FIELD_NUMBER: _builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: _builtins.int
     odata_query: _builtins.str
     """Optional. An OData query expression. The gRPC API rejects $select, $count,
     $expand, and $apply because they change the response shape; use the HTTP
     API for those options.
+    """
+    page_size: _builtins.int
+    """Optional. Maximum TestResults to return in this page. Zero or unset uses
+    the service default; values above the service maximum are capped.
+    """
+    page_token: _builtins.str
+    """Optional. Opaque token from a previous response's next_page_token. Omit
+    for the first page; all other request fields must match the original query.
     """
     @_builtins.property
     def read_mask(self) -> _field_mask_pb2.FieldMask:
@@ -136,10 +146,12 @@ class QueryTestResultsRequest(_message.Message):
         *,
         odata_query: _builtins.str = ...,
         read_mask: _field_mask_pb2.FieldMask | None = ...,
+        page_size: _builtins.int = ...,
+        page_token: _builtins.str = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query", "read_mask", b"read_mask"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -150,9 +162,11 @@ class QueryTestResultsResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
     TEST_RESULTS_FIELD_NUMBER: _builtins.int
-    NEXT_LINK_FIELD_NUMBER: _builtins.int
-    next_link: _builtins.str
-    """Reserved for future gRPC pagination. Current queries return an empty value."""
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    next_page_token: _builtins.str
+    """Token for the next page. Empty when the query is complete. A page may be
+    empty and still carry a token.
+    """
     @_builtins.property
     def test_results(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.TestResult]:
         """Matching TestResults as flat resources. Use QuerySteps to retrieve their
@@ -163,11 +177,11 @@ class QueryTestResultsResponse(_message.Message):
         self,
         *,
         test_results: _abc.Iterable[_data_store_pb2.TestResult] | None = ...,
-        next_link: _builtins.str = ...,
+        next_page_token: _builtins.str = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["next_link", b"next_link", "test_results", b"test_results"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["next_page_token", b"next_page_token", "test_results", b"test_results"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -533,10 +547,20 @@ class QueryStepsRequest(_message.Message):
 
     ODATA_QUERY_FIELD_NUMBER: _builtins.int
     READ_MASK_FIELD_NUMBER: _builtins.int
+    PAGE_SIZE_FIELD_NUMBER: _builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: _builtins.int
     odata_query: _builtins.str
     """Optional. An OData query expression. The gRPC API rejects $select, $count,
     $expand, and $apply because they change the response shape; use the HTTP
     API for those options.
+    """
+    page_size: _builtins.int
+    """Optional. Maximum Steps to return in this page. Zero or unset uses the
+    service default; values above the service maximum are capped.
+    """
+    page_token: _builtins.str
+    """Optional. Opaque token from a previous response's next_page_token. Omit
+    for the first page; all other request fields must match the original query.
     """
     @_builtins.property
     def read_mask(self) -> _field_mask_pb2.FieldMask:
@@ -549,10 +573,12 @@ class QueryStepsRequest(_message.Message):
         *,
         odata_query: _builtins.str = ...,
         read_mask: _field_mask_pb2.FieldMask | None = ...,
+        page_size: _builtins.int = ...,
+        page_token: _builtins.str = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query", "read_mask", b"read_mask"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -563,9 +589,11 @@ class QueryStepsResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
     STEPS_FIELD_NUMBER: _builtins.int
-    NEXT_LINK_FIELD_NUMBER: _builtins.int
-    next_link: _builtins.str
-    """Reserved for future gRPC pagination. Current queries return an empty value."""
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    next_page_token: _builtins.str
+    """Token for the next page. Empty when the query is complete. A page may be
+    empty and still carry a token.
+    """
     @_builtins.property
     def steps(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.Step]:
         """Matching Steps as flat resources. Descendants are returned as
@@ -576,11 +604,11 @@ class QueryStepsResponse(_message.Message):
         self,
         *,
         steps: _abc.Iterable[_data_store_pb2.Step] | None = ...,
-        next_link: _builtins.str = ...,
+        next_page_token: _builtins.str = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["next_link", b"next_link", "steps", b"steps"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["next_page_token", b"next_page_token", "steps", b"steps"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -934,10 +962,20 @@ class QueryMeasurementsRequest(_message.Message):
 
     ODATA_QUERY_FIELD_NUMBER: _builtins.int
     READ_MASK_FIELD_NUMBER: _builtins.int
+    PAGE_SIZE_FIELD_NUMBER: _builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: _builtins.int
     odata_query: _builtins.str
     """Optional. An OData query expression. The gRPC API rejects $select, $count,
     $expand, and $apply because they change the response shape; use the HTTP
     API for those options.
+    """
+    page_size: _builtins.int
+    """Optional. Maximum Measurements to return in this page. Zero or unset uses
+    the service default; values above the service maximum are capped.
+    """
+    page_token: _builtins.str
+    """Optional. Opaque token from a previous response's next_page_token. Omit
+    for the first page; all other request fields must match the original query.
     """
     @_builtins.property
     def read_mask(self) -> _field_mask_pb2.FieldMask:
@@ -950,10 +988,12 @@ class QueryMeasurementsRequest(_message.Message):
         *,
         odata_query: _builtins.str = ...,
         read_mask: _field_mask_pb2.FieldMask | None = ...,
+        page_size: _builtins.int = ...,
+        page_token: _builtins.str = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _typing.Literal["read_mask", b"read_mask"]  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query", "read_mask", b"read_mask"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
@@ -964,20 +1004,22 @@ class QueryMeasurementsResponse(_message.Message):
     DESCRIPTOR: _descriptor.Descriptor
 
     MEASUREMENTS_FIELD_NUMBER: _builtins.int
-    NEXT_LINK_FIELD_NUMBER: _builtins.int
-    next_link: _builtins.str
-    """Reserved for future gRPC pagination. Current queries return an empty value."""
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: _builtins.int
+    next_page_token: _builtins.str
+    """Token for the next page. Empty when the query is complete. A page may be
+    empty and still carry a token.
+    """
     @_builtins.property
     def measurements(self) -> _containers.RepeatedCompositeFieldContainer[_data_store_pb2.Measurement]: ...
     def __init__(
         self,
         *,
         measurements: _abc.Iterable[_data_store_pb2.Measurement] | None = ...,
-        next_link: _builtins.str = ...,
+        next_page_token: _builtins.str = ...,
     ) -> None: ...
     _HasFieldArgType: _TypeAlias = _Never  # noqa: Y015
     def HasField(self, field_name: _HasFieldArgType) -> _builtins.bool: ...
-    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurements", b"measurements", "next_link", b"next_link"]  # noqa: Y015
+    _ClearFieldArgType: _TypeAlias = _typing.Literal["measurements", b"measurements", "next_page_token", b"next_page_token"]  # noqa: Y015
     def ClearField(self, field_name: _ClearFieldArgType) -> None: ...
     def WhichOneof(self, oneof_group: _Never) -> None: ...
 
