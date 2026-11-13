@@ -413,10 +413,11 @@ class Measurement(google.protobuf.message.Message):
 
     @property
     def duration(self) -> ni.protobuf.types.precision_duration_pb2.PrecisionDuration:
-        """Optional. For this resource, the service derives the omitted timing value
-        when exactly two of start_date_time, end_date_time, and duration are
-        provided. All three must be consistent when provided. Zero or one is
-        accepted without derivation. Child timing does not update this resource.
+        """Optional. Stored at microsecond precision; additional precision is dropped.
+        When exactly two of start_date_time, end_date_time, and duration are set,
+        the service derives the missing value. Fewer values are accepted as given.
+        If all three are set, they are preserved without checking that they agree.
+        Timing on the owning Step or TestResult does not update this Measurement.
         """
 
     @property
@@ -602,10 +603,11 @@ class TestResult(google.protobuf.message.Message):
 
     @property
     def duration(self) -> ni.protobuf.types.precision_duration_pb2.PrecisionDuration:
-        """Optional. For this resource, the service derives the omitted timing value
-        when exactly two of start_date_time, end_date_time, and duration are
-        provided. All three must be consistent when provided. Zero or one is
-        accepted without derivation. Child timing does not update this resource.
+        """Optional. Stored at microsecond precision; additional precision is dropped.
+        When exactly two of start_date_time, end_date_time, and duration are set,
+        the service derives the missing value. Fewer values are accepted as given.
+        If all three are set, they are preserved without checking that they agree.
+        Timing on child Steps and Measurements does not update this TestResult.
         """
 
     @property
@@ -753,6 +755,7 @@ class Step(google.protobuf.message.Message):
     MEASUREMENTS_FIELD_NUMBER: builtins.int
     CHILDREN_FIELD_NUMBER: builtins.int
     TEST_FIELD_NUMBER: builtins.int
+    HAS_CHILDREN_FIELD_NUMBER: builtins.int
     id: builtins.str
     """Optional on create. When provided, must be a lowercase, hyphenated,
     non-nil UUID; otherwise the service generates a UUIDv4. Output contains
@@ -790,6 +793,11 @@ class Step(google.protobuf.message.Message):
     """Output only."""
     updated_by: builtins.str
     """Output only."""
+    has_children: builtins.bool
+    """Output only. True once this Step has committed at least one direct child.
+    The service manages this historical value and does not clear it after
+    deletion.
+    """
     @property
     def start_date_time(self) -> ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp:
         """Optional."""
@@ -816,10 +824,12 @@ class Step(google.protobuf.message.Message):
 
     @property
     def duration(self) -> ni.protobuf.types.precision_duration_pb2.PrecisionDuration:
-        """Optional. For this resource, the service derives the omitted timing value
-        when exactly two of start_date_time, end_date_time, and duration are
-        provided. All three must be consistent when provided. Zero or one is
-        accepted without derivation. Child timing does not update this resource.
+        """Optional. Stored at microsecond precision; additional precision is dropped.
+        When exactly two of start_date_time, end_date_time, and duration are set,
+        the service derives the missing value. Fewer values are accepted as given.
+        If all three are set, they are preserved without checking that they agree.
+        This duration does not update or validate against the parent Step or
+        TestResult duration. Child timing does not update this Step.
         """
 
     @property
@@ -893,8 +903,9 @@ class Step(google.protobuf.message.Message):
         measurements: collections.abc.Iterable[Global___Measurement] | None = ...,
         children: collections.abc.Iterable[Global___Step] | None = ...,
         test: ni.measurements.metadata.v1.metadata_store_pb2.Test | None = ...,
+        has_children: builtins.bool = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["created_at", b"created_at", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "start_date_time", b"start_date_time", "test", b"test", "updated_at", b"updated_at"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["children", b"children", "conditions", b"conditions", "created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "id", b"id", "keywords", b"keywords", "link", b"link", "measurements", b"measurements", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parent_step_id", b"parent_step_id", "path", b"path", "path_ids", b"path_ids", "schema_id", b"schema_id", "start_date_time", b"start_date_time", "status", b"status", "step_type", b"step_type", "test", b"test", "test_id", b"test_id", "test_result_id", b"test_result_id", "updated_at", b"updated_at", "updated_by", b"updated_by"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["children", b"children", "conditions", b"conditions", "created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "has_children", b"has_children", "id", b"id", "keywords", b"keywords", "link", b"link", "measurements", b"measurements", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parent_step_id", b"parent_step_id", "path", b"path", "path_ids", b"path_ids", "schema_id", b"schema_id", "start_date_time", b"start_date_time", "status", b"status", "step_type", b"step_type", "test", b"test", "test_id", b"test_id", "test_result_id", b"test_result_id", "updated_at", b"updated_at", "updated_by", b"updated_by"]) -> None: ...
 
 Global___Step: typing_extensions.TypeAlias = Step

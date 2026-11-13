@@ -205,6 +205,111 @@ class MetadataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentResponse.FromString,
                 _registered_method=True)
+        self.DeleteOperator = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteOperator',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteOperators = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteOperators',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsResponse.FromString,
+                _registered_method=True)
+        self.DeleteTestStation = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestStation',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteTestStations = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestStations',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsResponse.FromString,
+                _registered_method=True)
+        self.DeleteTestDescription = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestDescription',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteTestDescriptions = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestDescriptions',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsResponse.FromString,
+                _registered_method=True)
+        self.DeleteUut = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteUut',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteUuts = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteUuts',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsResponse.FromString,
+                _registered_method=True)
+        self.DeleteUutInstance = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteUutInstance',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteUutInstances = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteUutInstances',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesResponse.FromString,
+                _registered_method=True)
+        self.DeleteSoftwareItem = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteSoftwareItem',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteSoftwareItems = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteSoftwareItems',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsResponse.FromString,
+                _registered_method=True)
+        self.DeleteHardwareItem = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteHardwareItem',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteHardwareItems = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteHardwareItems',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsResponse.FromString,
+                _registered_method=True)
+        self.DeleteTestAdapter = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestAdapter',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteTestAdapters = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestAdapters',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersResponse.FromString,
+                _registered_method=True)
+        self.DeleteTest = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTest',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteTests = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTests',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsResponse.FromString,
+                _registered_method=True)
+        self.DeleteSchema = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteSchema',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteSchemas = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteSchemas',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteAliases = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteAliases',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesResponse.FromString,
+                _registered_method=True)
 
 
 class MetadataStoreServiceServicer(object):
@@ -401,7 +506,8 @@ class MetadataStoreServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def RegisterSchema(self, request, context):
-        """Registers a schema. Once a schema has been published, it cannot be modified or removed.
+        """Registers a schema. A registered schema cannot be modified. Schema removal is available
+        only in v2 mode through DeleteSchema; v1 registration behavior is unchanged.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -439,7 +545,9 @@ class MetadataStoreServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def DeleteAlias(self, request, context):
-        """Removes a registered alias
+        """Removes a registered alias without deleting its target metadata. This method remains
+        available in both API modes. If the alias is absent, v2 returns NOT_FOUND while v1 returns
+        success with unregistered=false.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -451,6 +559,195 @@ class MetadataStoreServiceServicer(object):
         https://raw.githubusercontent.com/ni/ni-apis/main/ni/measurements/metadata/v1/registration.schema.json
         The response will contain all of the associated objects from the metadata store.  If the object
         already exists, the existing object will be returned; otherwise, a new object will be created
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteOperator(self, request, context):
+        """These delete RPCs are on the retained MetadataStoreService and are executable only in v2 API
+        mode. In v1 mode, new RPCs return UNIMPLEMENTED without changing metadata or test data; this
+        does not add a metadata HTTP delete route or a parallel v2 metadata service.
+
+        Ordinary kinds use UUID identifiers and per-item force; Schema uses its exact registered ID,
+        and Alias uses its exact registered name. Alias names are not ordinary UUID identifiers.
+        Without force, references from retained test data or metadata restrict an ordinary target;
+        Alias and Schema references do not. With force, eligible incoming links and memberships are
+        removed while linked TestResults, Steps, Measurements, their value data and payloads, and
+        other metadata are retained. Forced UUT deletion also removes its owned UutInstances; direct
+        UutInstance deletion does not remove its UUT or sibling instances. Aliases targeting an
+        ordinary resource are removed regardless of force. Force may override future
+        finalization-based relationship immutability, but does not bypass authorization or other
+        delete checks.
+
+        Every new singular request and batch is atomic. New delete RPCs return empty responses on
+        success; the existing successful DeleteAlias response is unchanged. Each batch is
+        homogeneous and contains 1 to 1,000 requests. Ordinary items may use different force values;
+        Schema and Alias requests do not have force. Empty batches return INVALID_ARGUMENT; batches
+        larger than 1,000 return RESOURCE_EXHAUSTED before per-item validation or database access.
+        For admitted batches, check shape (INVALID_ARGUMENT), then the first missing direct target in
+        request order (NOT_FOUND), then reference restrictions (FAILED_PRECONDITION), then delete
+        impact (RESOURCE_EXHAUSTED). No allow_missing option is defined.
+
+        Before mutation, count distinct observed metadata rows to delete: direct targets, owned
+        UutInstances, and aliases targeting those resources. Exclude link rows removed and retained
+        rows whose links change. Exactly 50,000 observed rows passes; more than 50,000 returns
+        RESOURCE_EXHAUSTED before effects. This preflight guardrail is not a commit-time ceiling:
+        there is no capacity reservation or final recount, and concurrent changes can increase actual
+        deletions beyond the observed count.
+
+        During concurrent changes, error selection is best effort; no additional synchronization or
+        retries guarantee a particular status. No cross-request replay guarantee is provided; a
+        repeated request may observe that its target is already missing. Requests preserve database
+        reference integrity. A failure has no partial effects from that request, but does not undo
+        independent concurrent commits.
+        Deletes an Operator by UUID.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteOperators(self, request, context):
+        """Atomically deletes Operators by UUID using each request's force setting.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteTestStation(self, request, context):
+        """Deletes a TestStation by UUID.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteTestStations(self, request, context):
+        """Atomically deletes TestStations by UUID using each request's force setting.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteTestDescription(self, request, context):
+        """Deletes a TestDescription by UUID.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteTestDescriptions(self, request, context):
+        """Atomically deletes TestDescriptions by UUID using each request's force setting.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteUut(self, request, context):
+        """Deletes a UUT by UUID. With force, its owned UutInstances are also deleted.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteUuts(self, request, context):
+        """Atomically deletes UUTs by UUID using each request's force setting.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteUutInstance(self, request, context):
+        """Deletes a UutInstance by UUID without deleting its UUT.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteUutInstances(self, request, context):
+        """Atomically deletes UutInstances by UUID using each request's force setting.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteSoftwareItem(self, request, context):
+        """Deletes a SoftwareItem by UUID.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteSoftwareItems(self, request, context):
+        """Atomically deletes SoftwareItems by UUID using each request's force setting.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteHardwareItem(self, request, context):
+        """Deletes a HardwareItem by UUID.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteHardwareItems(self, request, context):
+        """Atomically deletes HardwareItems by UUID using each request's force setting.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteTestAdapter(self, request, context):
+        """Deletes a TestAdapter by UUID.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteTestAdapters(self, request, context):
+        """Atomically deletes TestAdapters by UUID using each request's force setting.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteTest(self, request, context):
+        """Deletes a Test by UUID.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteTests(self, request, context):
+        """Atomically deletes Tests by UUID using each request's force setting.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteSchema(self, request, context):
+        """Deletes a Schema by its exact registered schema ID and clears associations on the nine
+        metadata kinds while retaining their Extension values, resource IDs, stored identity keys,
+        and existing Aliases. TestResults, Steps, and Measurements have no Schema associations;
+        non-empty v2 datastore-resource schema_id values remain rejected. This operation has no
+        force option.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteSchemas(self, request, context):
+        """Atomically deletes Schemas by exact registered schema ID. This operation has no force option.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteAliases(self, request, context):
+        """Atomically deletes Aliases by exact registered name without deleting their target metadata.
+        This operation has no force option; the existing DeleteAlias RPC remains available in both
+        API modes.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -628,6 +925,111 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     servicer.CreateFromJsonDocument,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentResponse.SerializeToString,
+            ),
+            'DeleteOperator': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteOperator,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorResponse.SerializeToString,
+            ),
+            'BatchDeleteOperators': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteOperators,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsResponse.SerializeToString,
+            ),
+            'DeleteTestStation': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteTestStation,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationResponse.SerializeToString,
+            ),
+            'BatchDeleteTestStations': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteTestStations,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsResponse.SerializeToString,
+            ),
+            'DeleteTestDescription': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteTestDescription,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionResponse.SerializeToString,
+            ),
+            'BatchDeleteTestDescriptions': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteTestDescriptions,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsResponse.SerializeToString,
+            ),
+            'DeleteUut': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteUut,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutResponse.SerializeToString,
+            ),
+            'BatchDeleteUuts': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteUuts,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsResponse.SerializeToString,
+            ),
+            'DeleteUutInstance': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteUutInstance,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceResponse.SerializeToString,
+            ),
+            'BatchDeleteUutInstances': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteUutInstances,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesResponse.SerializeToString,
+            ),
+            'DeleteSoftwareItem': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteSoftwareItem,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemResponse.SerializeToString,
+            ),
+            'BatchDeleteSoftwareItems': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteSoftwareItems,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsResponse.SerializeToString,
+            ),
+            'DeleteHardwareItem': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteHardwareItem,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemResponse.SerializeToString,
+            ),
+            'BatchDeleteHardwareItems': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteHardwareItems,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsResponse.SerializeToString,
+            ),
+            'DeleteTestAdapter': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteTestAdapter,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterResponse.SerializeToString,
+            ),
+            'BatchDeleteTestAdapters': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteTestAdapters,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersResponse.SerializeToString,
+            ),
+            'DeleteTest': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteTest,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestResponse.SerializeToString,
+            ),
+            'BatchDeleteTests': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteTests,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsResponse.SerializeToString,
+            ),
+            'DeleteSchema': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteSchema,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaResponse.SerializeToString,
+            ),
+            'BatchDeleteSchemas': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteSchemas,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasResponse.SerializeToString,
+            ),
+            'BatchDeleteAliases': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteAliases,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -1549,6 +1951,573 @@ class MetadataStoreService(object):
             '/ni.measurements.metadata.v1.MetadataStoreService/CreateFromJsonDocument',
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentRequest.SerializeToString,
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateFromJsonDocumentResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteOperator(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteOperator',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteOperators(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteOperators',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteTestStation(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestStation',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteTestStations(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestStations',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteTestDescription(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestDescription',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteTestDescriptions(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestDescriptions',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteUut(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteUut',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteUuts(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteUuts',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteUutInstance(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteUutInstance',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteUutInstances(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteUutInstances',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteSoftwareItem(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteSoftwareItem',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteSoftwareItems(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteSoftwareItems',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteHardwareItem(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteHardwareItem',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteHardwareItems(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteHardwareItems',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteTestAdapter(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestAdapter',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteTestAdapters(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestAdapters',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteTest(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTest',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteTests(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTests',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteSchema(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteSchema',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteSchemas(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteSchemas',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteAliases(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteAliases',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesResponse.FromString,
             options,
             channel_credentials,
             insecure,
