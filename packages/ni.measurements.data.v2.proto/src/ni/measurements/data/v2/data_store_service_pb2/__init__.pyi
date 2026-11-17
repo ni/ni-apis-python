@@ -106,10 +106,20 @@ class QueryTestResultsRequest(google.protobuf.message.Message):
 
     ODATA_QUERY_FIELD_NUMBER: builtins.int
     READ_MASK_FIELD_NUMBER: builtins.int
+    PAGE_SIZE_FIELD_NUMBER: builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: builtins.int
     odata_query: builtins.str
     """Optional. An OData query expression. The gRPC API rejects $select, $count,
     $expand, and $apply because they change the response shape; use the HTTP
     API for those options.
+    """
+    page_size: builtins.int
+    """Optional. Maximum TestResults to return in this page. Zero or unset uses
+    the service default; values above the service maximum are capped.
+    """
+    page_token: builtins.str
+    """Optional. Opaque token from a previous response's next_page_token. Omit
+    for the first page; all other request fields must match the original query.
     """
     @property
     def read_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
@@ -122,9 +132,11 @@ class QueryTestResultsRequest(google.protobuf.message.Message):
         *,
         odata_query: builtins.str = ...,
         read_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
+        page_size: builtins.int = ...,
+        page_token: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "read_mask", b"read_mask"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]) -> None: ...
 
 Global___QueryTestResultsRequest: typing_extensions.TypeAlias = QueryTestResultsRequest
 
@@ -133,9 +145,11 @@ class QueryTestResultsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     TEST_RESULTS_FIELD_NUMBER: builtins.int
-    NEXT_LINK_FIELD_NUMBER: builtins.int
-    next_link: builtins.str
-    """Reserved for future gRPC pagination. Current queries return an empty value."""
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    next_page_token: builtins.str
+    """Token for the next page. Empty when the query is complete. A page may be
+    empty and still carry a token.
+    """
     @property
     def test_results(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.TestResult]:
         """Matching TestResults as flat resources. Use QuerySteps to retrieve their
@@ -146,9 +160,9 @@ class QueryTestResultsResponse(google.protobuf.message.Message):
         self,
         *,
         test_results: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.TestResult] | None = ...,
-        next_link: builtins.str = ...,
+        next_page_token: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["next_link", b"next_link", "test_results", b"test_results"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["next_page_token", b"next_page_token", "test_results", b"test_results"]) -> None: ...
 
 Global___QueryTestResultsResponse: typing_extensions.TypeAlias = QueryTestResultsResponse
 
@@ -461,10 +475,20 @@ class QueryStepsRequest(google.protobuf.message.Message):
 
     ODATA_QUERY_FIELD_NUMBER: builtins.int
     READ_MASK_FIELD_NUMBER: builtins.int
+    PAGE_SIZE_FIELD_NUMBER: builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: builtins.int
     odata_query: builtins.str
     """Optional. An OData query expression. The gRPC API rejects $select, $count,
     $expand, and $apply because they change the response shape; use the HTTP
     API for those options.
+    """
+    page_size: builtins.int
+    """Optional. Maximum Steps to return in this page. Zero or unset uses the
+    service default; values above the service maximum are capped.
+    """
+    page_token: builtins.str
+    """Optional. Opaque token from a previous response's next_page_token. Omit
+    for the first page; all other request fields must match the original query.
     """
     @property
     def read_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
@@ -477,9 +501,11 @@ class QueryStepsRequest(google.protobuf.message.Message):
         *,
         odata_query: builtins.str = ...,
         read_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
+        page_size: builtins.int = ...,
+        page_token: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "read_mask", b"read_mask"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]) -> None: ...
 
 Global___QueryStepsRequest: typing_extensions.TypeAlias = QueryStepsRequest
 
@@ -488,9 +514,11 @@ class QueryStepsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     STEPS_FIELD_NUMBER: builtins.int
-    NEXT_LINK_FIELD_NUMBER: builtins.int
-    next_link: builtins.str
-    """Reserved for future gRPC pagination. Current queries return an empty value."""
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    next_page_token: builtins.str
+    """Token for the next page. Empty when the query is complete. A page may be
+    empty and still carry a token.
+    """
     @property
     def steps(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.Step]:
         """Matching Steps as flat resources. Descendants are returned as
@@ -501,9 +529,9 @@ class QueryStepsResponse(google.protobuf.message.Message):
         self,
         *,
         steps: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.Step] | None = ...,
-        next_link: builtins.str = ...,
+        next_page_token: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["next_link", b"next_link", "steps", b"steps"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["next_page_token", b"next_page_token", "steps", b"steps"]) -> None: ...
 
 Global___QueryStepsResponse: typing_extensions.TypeAlias = QueryStepsResponse
 
@@ -805,10 +833,20 @@ class QueryMeasurementsRequest(google.protobuf.message.Message):
 
     ODATA_QUERY_FIELD_NUMBER: builtins.int
     READ_MASK_FIELD_NUMBER: builtins.int
+    PAGE_SIZE_FIELD_NUMBER: builtins.int
+    PAGE_TOKEN_FIELD_NUMBER: builtins.int
     odata_query: builtins.str
     """Optional. An OData query expression. The gRPC API rejects $select, $count,
     $expand, and $apply because they change the response shape; use the HTTP
     API for those options.
+    """
+    page_size: builtins.int
+    """Optional. Maximum Measurements to return in this page. Zero or unset uses
+    the service default; values above the service maximum are capped.
+    """
+    page_token: builtins.str
+    """Optional. Opaque token from a previous response's next_page_token. Omit
+    for the first page; all other request fields must match the original query.
     """
     @property
     def read_mask(self) -> google.protobuf.field_mask_pb2.FieldMask:
@@ -821,9 +859,11 @@ class QueryMeasurementsRequest(google.protobuf.message.Message):
         *,
         odata_query: builtins.str = ...,
         read_mask: google.protobuf.field_mask_pb2.FieldMask | None = ...,
+        page_size: builtins.int = ...,
+        page_token: builtins.str = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["read_mask", b"read_mask"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "read_mask", b"read_mask"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query", "page_size", b"page_size", "page_token", b"page_token", "read_mask", b"read_mask"]) -> None: ...
 
 Global___QueryMeasurementsRequest: typing_extensions.TypeAlias = QueryMeasurementsRequest
 
@@ -832,18 +872,20 @@ class QueryMeasurementsResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     MEASUREMENTS_FIELD_NUMBER: builtins.int
-    NEXT_LINK_FIELD_NUMBER: builtins.int
-    next_link: builtins.str
-    """Reserved for future gRPC pagination. Current queries return an empty value."""
+    NEXT_PAGE_TOKEN_FIELD_NUMBER: builtins.int
+    next_page_token: builtins.str
+    """Token for the next page. Empty when the query is complete. A page may be
+    empty and still carry a token.
+    """
     @property
     def measurements(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.data.v2.data_store_pb2.Measurement]: ...
     def __init__(
         self,
         *,
         measurements: collections.abc.Iterable[ni.measurements.data.v2.data_store_pb2.Measurement] | None = ...,
-        next_link: builtins.str = ...,
+        next_page_token: builtins.str = ...,
     ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["measurements", b"measurements", "next_link", b"next_link"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["measurements", b"measurements", "next_page_token", b"next_page_token"]) -> None: ...
 
 Global___QueryMeasurementsResponse: typing_extensions.TypeAlias = QueryMeasurementsResponse
 
