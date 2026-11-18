@@ -50,6 +50,16 @@ class MetadataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutInstanceRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutInstanceResponse.FromString,
                 _registered_method=True)
+        self.DeleteUutInstance = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteUutInstance',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteUutInstances = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteUutInstances',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesResponse.FromString,
+                _registered_method=True)
         self.GetUut = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/GetUut',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutRequest.SerializeToString,
@@ -64,6 +74,16 @@ class MetadataStoreServiceStub(object):
                 '/ni.measurements.metadata.v1.MetadataStoreService/CreateUut',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutResponse.FromString,
+                _registered_method=True)
+        self.DeleteUut = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteUut',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteUuts = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteUuts',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsResponse.FromString,
                 _registered_method=True)
         self.GetOperator = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/GetOperator',
@@ -80,6 +100,16 @@ class MetadataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateOperatorRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateOperatorResponse.FromString,
                 _registered_method=True)
+        self.DeleteOperator = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteOperator',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteOperators = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteOperators',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsResponse.FromString,
+                _registered_method=True)
         self.GetTestDescription = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/GetTestDescription',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestDescriptionRequest.SerializeToString,
@@ -94,6 +124,16 @@ class MetadataStoreServiceStub(object):
                 '/ni.measurements.metadata.v1.MetadataStoreService/CreateTestDescription',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionResponse.FromString,
+                _registered_method=True)
+        self.DeleteTestDescription = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestDescription',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteTestDescriptions = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestDescriptions',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsResponse.FromString,
                 _registered_method=True)
         self.GetTest = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/GetTest',
@@ -110,6 +150,16 @@ class MetadataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestResponse.FromString,
                 _registered_method=True)
+        self.DeleteTest = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTest',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteTests = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTests',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsResponse.FromString,
+                _registered_method=True)
         self.GetTestStation = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/GetTestStation',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestStationRequest.SerializeToString,
@@ -124,6 +174,16 @@ class MetadataStoreServiceStub(object):
                 '/ni.measurements.metadata.v1.MetadataStoreService/CreateTestStation',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestStationRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestStationResponse.FromString,
+                _registered_method=True)
+        self.DeleteTestStation = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestStation',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteTestStations = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestStations',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsResponse.FromString,
                 _registered_method=True)
         self.GetHardwareItem = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/GetHardwareItem',
@@ -140,6 +200,16 @@ class MetadataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareItemRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareItemResponse.FromString,
                 _registered_method=True)
+        self.DeleteHardwareItem = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteHardwareItem',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteHardwareItems = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteHardwareItems',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsResponse.FromString,
+                _registered_method=True)
         self.GetSoftwareItem = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/GetSoftwareItem',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareItemRequest.SerializeToString,
@@ -154,6 +224,16 @@ class MetadataStoreServiceStub(object):
                 '/ni.measurements.metadata.v1.MetadataStoreService/CreateSoftwareItem',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemResponse.FromString,
+                _registered_method=True)
+        self.DeleteSoftwareItem = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteSoftwareItem',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteSoftwareItems = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteSoftwareItems',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsResponse.FromString,
                 _registered_method=True)
         self.GetTestAdapter = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/GetTestAdapter',
@@ -170,6 +250,16 @@ class MetadataStoreServiceStub(object):
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestAdapterRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestAdapterResponse.FromString,
                 _registered_method=True)
+        self.DeleteTestAdapter = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestAdapter',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteTestAdapters = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestAdapters',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersResponse.FromString,
+                _registered_method=True)
         self.RegisterSchema = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/RegisterSchema',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterSchemaRequest.SerializeToString,
@@ -179,6 +269,16 @@ class MetadataStoreServiceStub(object):
                 '/ni.measurements.metadata.v1.MetadataStoreService/ListSchemas',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasResponse.FromString,
+                _registered_method=True)
+        self.DeleteSchema = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/DeleteSchema',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteSchemas = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteSchemas',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasResponse.FromString,
                 _registered_method=True)
         self.GetAlias = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/GetAlias',
@@ -199,6 +299,11 @@ class MetadataStoreServiceStub(object):
                 '/ni.measurements.metadata.v1.MetadataStoreService/DeleteAlias',
                 request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasRequest.SerializeToString,
                 response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasResponse.FromString,
+                _registered_method=True)
+        self.BatchDeleteAliases = channel.unary_unary(
+                '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteAliases',
+                request_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesRequest.SerializeToString,
+                response_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesResponse.FromString,
                 _registered_method=True)
         self.CreateFromJsonDocument = channel.unary_unary(
                 '/ni.measurements.metadata.v1.MetadataStoreService/CreateFromJsonDocument',
@@ -232,6 +337,24 @@ class MetadataStoreServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DeleteUutInstance(self, request, context):
+        """Deletes a UutInstance and its aliases, retaining its UUT and sibling instances.
+        Returns NOT_FOUND if the UutInstance does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteUutInstances(self, request, context):
+        """Deletes UutInstances and their aliases without deleting their UUTs.
+        Returns NOT_FOUND for a missing UutInstance, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetUut(self, request, context):
         """Gets the UUT associated with the identifier given in the request.
         """
@@ -248,6 +371,24 @@ class MetadataStoreServiceServicer(object):
 
     def CreateUut(self, request, context):
         """Creates a new UUT in the metadata store.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteUut(self, request, context):
+        """Deletes a UUT and its aliases. With force, also deletes its UutInstances.
+        Returns NOT_FOUND if the UUT does not exist, or FAILED_PRECONDITION
+        if references or owned instances prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteUuts(self, request, context):
+        """Deletes UUTs and their aliases. Forced requests also delete their UutInstances.
+        Returns NOT_FOUND for a missing UUT, or FAILED_PRECONDITION
+        if references or owned instances prevent deletion.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -274,6 +415,24 @@ class MetadataStoreServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DeleteOperator(self, request, context):
+        """Deletes an Operator and its aliases.
+        Returns NOT_FOUND if the Operator does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteOperators(self, request, context):
+        """Deletes Operators and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing Operator, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetTestDescription(self, request, context):
         """Gets the test description associated with the identifier given in the request.
         """
@@ -290,6 +449,24 @@ class MetadataStoreServiceServicer(object):
 
     def CreateTestDescription(self, request, context):
         """Creates a new test description in the metadata store.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteTestDescription(self, request, context):
+        """Deletes a TestDescription and its aliases.
+        Returns NOT_FOUND if the TestDescription does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteTestDescriptions(self, request, context):
+        """Deletes TestDescriptions and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing TestDescription, or FAILED_PRECONDITION
+        if references prevent deletion.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -316,6 +493,24 @@ class MetadataStoreServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DeleteTest(self, request, context):
+        """Deletes a Test and its aliases.
+        Returns NOT_FOUND if the Test does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteTests(self, request, context):
+        """Deletes Tests and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing Test, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetTestStation(self, request, context):
         """Gets the test station associated with the identifier given in the request.
         """
@@ -332,6 +527,24 @@ class MetadataStoreServiceServicer(object):
 
     def CreateTestStation(self, request, context):
         """Creates a new test station in the metadata store.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteTestStation(self, request, context):
+        """Deletes a TestStation and its aliases.
+        Returns NOT_FOUND if the TestStation does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteTestStations(self, request, context):
+        """Deletes TestStations and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing TestStation, or FAILED_PRECONDITION
+        if references prevent deletion.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -358,6 +571,24 @@ class MetadataStoreServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DeleteHardwareItem(self, request, context):
+        """Deletes a HardwareItem and its aliases.
+        Returns NOT_FOUND if the HardwareItem does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteHardwareItems(self, request, context):
+        """Deletes HardwareItems and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing HardwareItem, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetSoftwareItem(self, request, context):
         """Gets the software item associated with the identifier given in the request.
         """
@@ -374,6 +605,24 @@ class MetadataStoreServiceServicer(object):
 
     def CreateSoftwareItem(self, request, context):
         """Creates a new software item in the metadata store.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteSoftwareItem(self, request, context):
+        """Deletes a SoftwareItem and its aliases.
+        Returns NOT_FOUND if the SoftwareItem does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteSoftwareItems(self, request, context):
+        """Deletes SoftwareItems and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing SoftwareItem, or FAILED_PRECONDITION
+        if references prevent deletion.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -400,8 +649,26 @@ class MetadataStoreServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DeleteTestAdapter(self, request, context):
+        """Deletes a TestAdapter and its aliases.
+        Returns NOT_FOUND if the TestAdapter does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteTestAdapters(self, request, context):
+        """Deletes TestAdapters and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing TestAdapter, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def RegisterSchema(self, request, context):
-        """Registers a schema. Once a schema has been published, it cannot be modified or removed.
+        """Registers a schema. A registered schema cannot be modified.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -409,6 +676,24 @@ class MetadataStoreServiceServicer(object):
 
     def ListSchemas(self, request, context):
         """Lists the schemas that have been previously registered
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def DeleteSchema(self, request, context):
+        """Deletes a Schema and clears its associations with metadata.
+        The metadata, extension attributes, and aliases are retained.
+        Returns NOT_FOUND if the Schema does not exist.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteSchemas(self, request, context):
+        """Deletes Schemas and clears their associations with metadata.
+        The metadata, extension attributes, and aliases are retained.
+        Returns NOT_FOUND for a missing Schema.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -439,7 +724,16 @@ class MetadataStoreServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def DeleteAlias(self, request, context):
-        """Removes a registered alias
+        """Removes an alias without deleting its target metadata.
+        Returns NOT_FOUND if the alias does not exist.
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def BatchDeleteAliases(self, request, context):
+        """Removes aliases without deleting their target metadata.
+        Returns NOT_FOUND for a missing alias.
         """
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -474,6 +768,16 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutInstanceRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutInstanceResponse.SerializeToString,
             ),
+            'DeleteUutInstance': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteUutInstance,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceResponse.SerializeToString,
+            ),
+            'BatchDeleteUutInstances': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteUutInstances,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesResponse.SerializeToString,
+            ),
             'GetUut': grpc.unary_unary_rpc_method_handler(
                     servicer.GetUut,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetUutRequest.FromString,
@@ -488,6 +792,16 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     servicer.CreateUut,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutResponse.SerializeToString,
+            ),
+            'DeleteUut': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteUut,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutResponse.SerializeToString,
+            ),
+            'BatchDeleteUuts': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteUuts,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsResponse.SerializeToString,
             ),
             'GetOperator': grpc.unary_unary_rpc_method_handler(
                     servicer.GetOperator,
@@ -504,6 +818,16 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateOperatorRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateOperatorResponse.SerializeToString,
             ),
+            'DeleteOperator': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteOperator,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorResponse.SerializeToString,
+            ),
+            'BatchDeleteOperators': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteOperators,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsResponse.SerializeToString,
+            ),
             'GetTestDescription': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTestDescription,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestDescriptionRequest.FromString,
@@ -518,6 +842,16 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     servicer.CreateTestDescription,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionResponse.SerializeToString,
+            ),
+            'DeleteTestDescription': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteTestDescription,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionResponse.SerializeToString,
+            ),
+            'BatchDeleteTestDescriptions': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteTestDescriptions,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsResponse.SerializeToString,
             ),
             'GetTest': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTest,
@@ -534,6 +868,16 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestResponse.SerializeToString,
             ),
+            'DeleteTest': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteTest,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestResponse.SerializeToString,
+            ),
+            'BatchDeleteTests': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteTests,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsResponse.SerializeToString,
+            ),
             'GetTestStation': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTestStation,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetTestStationRequest.FromString,
@@ -548,6 +892,16 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     servicer.CreateTestStation,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestStationRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestStationResponse.SerializeToString,
+            ),
+            'DeleteTestStation': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteTestStation,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationResponse.SerializeToString,
+            ),
+            'BatchDeleteTestStations': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteTestStations,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsResponse.SerializeToString,
             ),
             'GetHardwareItem': grpc.unary_unary_rpc_method_handler(
                     servicer.GetHardwareItem,
@@ -564,6 +918,16 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareItemRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateHardwareItemResponse.SerializeToString,
             ),
+            'DeleteHardwareItem': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteHardwareItem,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemResponse.SerializeToString,
+            ),
+            'BatchDeleteHardwareItems': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteHardwareItems,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsResponse.SerializeToString,
+            ),
             'GetSoftwareItem': grpc.unary_unary_rpc_method_handler(
                     servicer.GetSoftwareItem,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.GetSoftwareItemRequest.FromString,
@@ -578,6 +942,16 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     servicer.CreateSoftwareItem,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemResponse.SerializeToString,
+            ),
+            'DeleteSoftwareItem': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteSoftwareItem,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemResponse.SerializeToString,
+            ),
+            'BatchDeleteSoftwareItems': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteSoftwareItems,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsResponse.SerializeToString,
             ),
             'GetTestAdapter': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTestAdapter,
@@ -594,6 +968,16 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestAdapterRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestAdapterResponse.SerializeToString,
             ),
+            'DeleteTestAdapter': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteTestAdapter,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterResponse.SerializeToString,
+            ),
+            'BatchDeleteTestAdapters': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteTestAdapters,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersResponse.SerializeToString,
+            ),
             'RegisterSchema': grpc.unary_unary_rpc_method_handler(
                     servicer.RegisterSchema,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.RegisterSchemaRequest.FromString,
@@ -603,6 +987,16 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     servicer.ListSchemas,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasResponse.SerializeToString,
+            ),
+            'DeleteSchema': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteSchema,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaResponse.SerializeToString,
+            ),
+            'BatchDeleteSchemas': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteSchemas,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasResponse.SerializeToString,
             ),
             'GetAlias': grpc.unary_unary_rpc_method_handler(
                     servicer.GetAlias,
@@ -623,6 +1017,11 @@ def add_MetadataStoreServiceServicer_to_server(servicer, server):
                     servicer.DeleteAlias,
                     request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasRequest.FromString,
                     response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasResponse.SerializeToString,
+            ),
+            'BatchDeleteAliases': grpc.unary_unary_rpc_method_handler(
+                    servicer.BatchDeleteAliases,
+                    request_deserializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesRequest.FromString,
+                    response_serializer=ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesResponse.SerializeToString,
             ),
             'CreateFromJsonDocument': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateFromJsonDocument,
@@ -723,6 +1122,60 @@ class MetadataStoreService(object):
             _registered_method=True)
 
     @staticmethod
+    def DeleteUutInstance(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteUutInstance',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutInstanceResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteUutInstances(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteUutInstances',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutInstancesResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def GetUut(request,
             target,
             options=(),
@@ -793,6 +1246,60 @@ class MetadataStoreService(object):
             '/ni.measurements.metadata.v1.MetadataStoreService/CreateUut',
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutRequest.SerializeToString,
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateUutResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteUut(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteUut',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteUutResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteUuts(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteUuts',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteUutsResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -885,6 +1392,60 @@ class MetadataStoreService(object):
             _registered_method=True)
 
     @staticmethod
+    def DeleteOperator(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteOperator',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteOperatorResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteOperators(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteOperators',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteOperatorsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def GetTestDescription(request,
             target,
             options=(),
@@ -955,6 +1516,60 @@ class MetadataStoreService(object):
             '/ni.measurements.metadata.v1.MetadataStoreService/CreateTestDescription',
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionRequest.SerializeToString,
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestDescriptionResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteTestDescription(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestDescription',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestDescriptionResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteTestDescriptions(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestDescriptions',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestDescriptionsResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -1047,6 +1662,60 @@ class MetadataStoreService(object):
             _registered_method=True)
 
     @staticmethod
+    def DeleteTest(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTest',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteTests(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTests',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def GetTestStation(request,
             target,
             options=(),
@@ -1117,6 +1786,60 @@ class MetadataStoreService(object):
             '/ni.measurements.metadata.v1.MetadataStoreService/CreateTestStation',
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestStationRequest.SerializeToString,
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateTestStationResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteTestStation(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestStation',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestStationResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteTestStations(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestStations',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestStationsResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -1209,6 +1932,60 @@ class MetadataStoreService(object):
             _registered_method=True)
 
     @staticmethod
+    def DeleteHardwareItem(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteHardwareItem',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteHardwareItemResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteHardwareItems(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteHardwareItems',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteHardwareItemsResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def GetSoftwareItem(request,
             target,
             options=(),
@@ -1279,6 +2056,60 @@ class MetadataStoreService(object):
             '/ni.measurements.metadata.v1.MetadataStoreService/CreateSoftwareItem',
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemRequest.SerializeToString,
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.CreateSoftwareItemResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteSoftwareItem(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteSoftwareItem',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSoftwareItemResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteSoftwareItems(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteSoftwareItems',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSoftwareItemsResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -1371,6 +2202,60 @@ class MetadataStoreService(object):
             _registered_method=True)
 
     @staticmethod
+    def DeleteTestAdapter(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteTestAdapter',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteTestAdapterResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteTestAdapters(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteTestAdapters',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteTestAdaptersResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
     def RegisterSchema(request,
             target,
             options=(),
@@ -1414,6 +2299,60 @@ class MetadataStoreService(object):
             '/ni.measurements.metadata.v1.MetadataStoreService/ListSchemas',
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasRequest.SerializeToString,
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.ListSchemasResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteSchema(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/DeleteSchema',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteSchemaResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteSchemas(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteSchemas',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteSchemasResponse.FromString,
             options,
             channel_credentials,
             insecure,
@@ -1522,6 +2461,33 @@ class MetadataStoreService(object):
             '/ni.measurements.metadata.v1.MetadataStoreService/DeleteAlias',
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasRequest.SerializeToString,
             ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.DeleteAliasResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def BatchDeleteAliases(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/ni.measurements.metadata.v1.MetadataStoreService/BatchDeleteAliases',
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesRequest.SerializeToString,
+            ni_dot_measurements_dot_metadata_dot_v1_dot_metadata__store__service__pb2.BatchDeleteAliasesResponse.FromString,
             options,
             channel_credentials,
             insecure,
