@@ -567,7 +567,7 @@ description = "Distro - an OS platform information API"
 optional = true
 python-versions = ">=3.6"
 groups = ["main"]
-markers = "sys_platform == \"linux\" and (extra == \"drivers\" or extra == \"nidaqmx\")"
+markers = "(extra == \"drivers\" or extra == \"nidaqmx\") and sys_platform == \"linux\""
 files = [
     {file = "distro-1.9.0-py3-none-any.whl", hash = "sha256:7bffd925d65168f85027d8da9af6bddab658135b840670a223589bc0c8ef02b2"},
     {file = "distro-1.9.0.tar.gz", hash = "sha256:2fa77c6fd8940f116ee1d6b94a2f90b13b5ea8d019b98bc8bafdcabcdd9bdbed"},
@@ -1879,7 +1879,7 @@ description = "Fundamental package for array computing in Python"
 optional = true
 python-versions = ">=3.12"
 groups = ["main"]
-markers = "python_version >= \"3.12\" and (extra == \"drivers\" or extra == \"nidaqmx\")"
+markers = "(extra == \"drivers\" or extra == \"nidaqmx\") and python_version >= \"3.12\""
 files = [
     {file = "numpy-2.5.4-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:c6342f54c67093cae5c0227eb0eb772fdb79f2a2c37a6eb278b9909ee06aa356"},
     {file = "numpy-2.5.4-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:b11e8fda06a7d69f15ebf542660b74466c2e51094800c1fb794f47ad4faeef17"},
@@ -2810,14 +2810,14 @@ files = [
 
 [[package]]
 name = "types-pywin32"
-version = "312.0.0.20261031"
+version = "312.0.0.20261104"
 description = "Typing stubs for pywin32"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "types_pywin32-312.0.0.20261031-py3-none-any.whl", hash = "sha256:692a0d47a107d121d855dfc9a86b8054f994645277d2b5a42ebcbd1a0abed7cb"},
-    {file = "types_pywin32-312.0.0.20261031.tar.gz", hash = "sha256:6d8941b3324dc5979a47c3e63ce8310ad9cc5f5f2e28e1f6774018153842fb0a"},
+    {file = "types_pywin32-312.0.0.20261104-py3-none-any.whl", hash = "sha256:1652e70149c9febdaaab1d0224354d6be51cab2e2963ba5e0f34c758a17e5a5a"},
+    {file = "types_pywin32-312.0.0.20261104.tar.gz", hash = "sha256:2944bdb1ce11397eb78c4a0ff031d18c9871730aed111b1cc1c872e6c854eccc"},
 ]
 
 [[package]]
@@ -2839,7 +2839,7 @@ description = "Provider of IANA time zone data"
 optional = true
 python-versions = ">=2"
 groups = ["main"]
-markers = "platform_system == \"Windows\" and (extra == \"drivers\" or extra == \"nidaqmx\")"
+markers = "(extra == \"drivers\" or extra == \"nidaqmx\") and platform_system == \"Windows\""
 files = [
     {file = "tzdata-2026.5-py2.py3-none-any.whl", hash = "sha256:b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac"},
     {file = "tzdata-2026.5.tar.gz", hash = "sha256:8cc73c0a0bfca7dbfa59235d60b2eff82231dee33f53d206db1acd9173cfc0a7"},
