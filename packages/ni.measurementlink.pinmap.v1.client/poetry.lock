@@ -2160,7 +2160,7 @@ description = "Python documentation generator"
 optional = false
 python-versions = ">=3.12"
 groups = ["docs"]
-markers = "python_version < \"3.15\" and python_version >= \"3.12\""
+markers = "python_version >= \"3.12\" and python_version < \"3.15\""
 files = [
     {file = "sphinx-9.1.1-py3-none-any.whl", hash = "sha256:f8b60013ce25017be41a509e5c2d265bc1918410061315c36b809c7f335646c0"},
     {file = "sphinx-9.1.1.tar.gz", hash = "sha256:48b627f02908f22c601b3ba9c7b17265b4f315dd05c8bc64cd4da41183f44fbc"},
@@ -2429,14 +2429,14 @@ files = [
 
 [[package]]
 name = "types-pywin32"
-version = "312.0.0.20261031"
+version = "312.0.0.20261104"
 description = "Typing stubs for pywin32"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "types_pywin32-312.0.0.20261031-py3-none-any.whl", hash = "sha256:692a0d47a107d121d855dfc9a86b8054f994645277d2b5a42ebcbd1a0abed7cb"},
-    {file = "types_pywin32-312.0.0.20261031.tar.gz", hash = "sha256:6d8941b3324dc5979a47c3e63ce8310ad9cc5f5f2e28e1f6774018153842fb0a"},
+    {file = "types_pywin32-312.0.0.20261104-py3-none-any.whl", hash = "sha256:1652e70149c9febdaaab1d0224354d6be51cab2e2963ba5e0f34c758a17e5a5a"},
+    {file = "types_pywin32-312.0.0.20261104.tar.gz", hash = "sha256:2944bdb1ce11397eb78c4a0ff031d18c9871730aed111b1cc1c872e6c854eccc"},
 ]
 
 [[package]]
