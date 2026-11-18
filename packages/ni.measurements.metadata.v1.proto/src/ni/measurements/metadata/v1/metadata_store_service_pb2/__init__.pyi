@@ -38,27 +38,6 @@ class GetUutInstanceRequest(google.protobuf.message.Message):
 Global___GetUutInstanceRequest: typing_extensions.TypeAlias = GetUutInstanceRequest
 
 @typing.final
-class GetUutInstanceResponse(google.protobuf.message.Message):
-    """Message returned when getting a UUT instance associated with the given identifier."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    UUT_INSTANCE_FIELD_NUMBER: builtins.int
-    @property
-    def uut_instance(self) -> ni.measurements.metadata.v1.metadata_store_pb2.UutInstance:
-        """The metadata of the requested UUT instance."""
-
-    def __init__(
-        self,
-        *,
-        uut_instance: ni.measurements.metadata.v1.metadata_store_pb2.UutInstance | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> None: ...
-
-Global___GetUutInstanceResponse: typing_extensions.TypeAlias = GetUutInstanceResponse
-
-@typing.final
 class QueryUutInstancesRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -75,22 +54,6 @@ class QueryUutInstancesRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
 Global___QueryUutInstancesRequest: typing_extensions.TypeAlias = QueryUutInstancesRequest
-
-@typing.final
-class QueryUutInstancesResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    UUT_INSTANCES_FIELD_NUMBER: builtins.int
-    @property
-    def uut_instances(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance]: ...
-    def __init__(
-        self,
-        *,
-        uut_instances: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["uut_instances", b"uut_instances"]) -> None: ...
-
-Global___QueryUutInstancesResponse: typing_extensions.TypeAlias = QueryUutInstancesResponse
 
 @typing.final
 class CreateUutInstanceRequest(google.protobuf.message.Message):
@@ -114,6 +77,89 @@ class CreateUutInstanceRequest(google.protobuf.message.Message):
 Global___CreateUutInstanceRequest: typing_extensions.TypeAlias = CreateUutInstanceRequest
 
 @typing.final
+class DeleteUutInstanceRequest(google.protobuf.message.Message):
+    """Request to delete one UutInstance by UUID."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    UUT_INSTANCE_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
+    uut_instance_id: builtins.str
+    """Required. UUID of the UutInstance to delete; aliases are not accepted."""
+    force: builtins.bool
+    """If true, removes references while retaining linked test data and the UUT.
+    Otherwise, references prevent deletion.
+    """
+    def __init__(
+        self,
+        *,
+        uut_instance_id: builtins.str = ...,
+        force: builtins.bool = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["force", b"force", "uut_instance_id", b"uut_instance_id"]) -> None: ...
+
+Global___DeleteUutInstanceRequest: typing_extensions.TypeAlias = DeleteUutInstanceRequest
+
+@typing.final
+class BatchDeleteUutInstancesRequest(google.protobuf.message.Message):
+    """Request to delete UutInstances using each item's force setting."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteUutInstanceRequest]:
+        """Required. UutInstance delete requests with distinct identifiers.
+        Returns INVALID_ARGUMENT if empty or invalid, or RESOURCE_EXHAUSTED if too large.
+        """
+
+    def __init__(
+        self,
+        *,
+        requests: collections.abc.Iterable[Global___DeleteUutInstanceRequest] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
+
+Global___BatchDeleteUutInstancesRequest: typing_extensions.TypeAlias = BatchDeleteUutInstancesRequest
+
+@typing.final
+class GetUutInstanceResponse(google.protobuf.message.Message):
+    """Message returned when getting a UUT instance associated with the given identifier."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    UUT_INSTANCE_FIELD_NUMBER: builtins.int
+    @property
+    def uut_instance(self) -> ni.measurements.metadata.v1.metadata_store_pb2.UutInstance:
+        """The metadata of the requested UUT instance."""
+
+    def __init__(
+        self,
+        *,
+        uut_instance: ni.measurements.metadata.v1.metadata_store_pb2.UutInstance | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["uut_instance", b"uut_instance"]) -> None: ...
+
+Global___GetUutInstanceResponse: typing_extensions.TypeAlias = GetUutInstanceResponse
+
+@typing.final
+class QueryUutInstancesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    UUT_INSTANCES_FIELD_NUMBER: builtins.int
+    @property
+    def uut_instances(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance]: ...
+    def __init__(
+        self,
+        *,
+        uut_instances: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.UutInstance] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["uut_instances", b"uut_instances"]) -> None: ...
+
+Global___QueryUutInstancesResponse: typing_extensions.TypeAlias = QueryUutInstancesResponse
+
+@typing.final
 class CreateUutInstanceResponse(google.protobuf.message.Message):
     """Message returned when creating a new UUT instance in the metadata store."""
 
@@ -130,6 +176,30 @@ class CreateUutInstanceResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["uut_instance_id", b"uut_instance_id"]) -> None: ...
 
 Global___CreateUutInstanceResponse: typing_extensions.TypeAlias = CreateUutInstanceResponse
+
+@typing.final
+class DeleteUutInstanceResponse(google.protobuf.message.Message):
+    """Empty response returned when a UutInstance is deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___DeleteUutInstanceResponse: typing_extensions.TypeAlias = DeleteUutInstanceResponse
+
+@typing.final
+class BatchDeleteUutInstancesResponse(google.protobuf.message.Message):
+    """Empty response returned when all UutInstances are deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___BatchDeleteUutInstancesResponse: typing_extensions.TypeAlias = BatchDeleteUutInstancesResponse
 
 @typing.final
 class GetUutRequest(google.protobuf.message.Message):
@@ -150,27 +220,6 @@ class GetUutRequest(google.protobuf.message.Message):
 Global___GetUutRequest: typing_extensions.TypeAlias = GetUutRequest
 
 @typing.final
-class GetUutResponse(google.protobuf.message.Message):
-    """Message returned when getting a UUT associated with the given identifier."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    UUT_FIELD_NUMBER: builtins.int
-    @property
-    def uut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Uut:
-        """The metadata of the requested UUT."""
-
-    def __init__(
-        self,
-        *,
-        uut: ni.measurements.metadata.v1.metadata_store_pb2.Uut | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["uut", b"uut"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["uut", b"uut"]) -> None: ...
-
-Global___GetUutResponse: typing_extensions.TypeAlias = GetUutResponse
-
-@typing.final
 class QueryUutsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -187,22 +236,6 @@ class QueryUutsRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
 Global___QueryUutsRequest: typing_extensions.TypeAlias = QueryUutsRequest
-
-@typing.final
-class QueryUutsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    UUTS_FIELD_NUMBER: builtins.int
-    @property
-    def uuts(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Uut]: ...
-    def __init__(
-        self,
-        *,
-        uuts: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Uut] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["uuts", b"uuts"]) -> None: ...
-
-Global___QueryUutsResponse: typing_extensions.TypeAlias = QueryUutsResponse
 
 @typing.final
 class CreateUutRequest(google.protobuf.message.Message):
@@ -226,6 +259,89 @@ class CreateUutRequest(google.protobuf.message.Message):
 Global___CreateUutRequest: typing_extensions.TypeAlias = CreateUutRequest
 
 @typing.final
+class DeleteUutRequest(google.protobuf.message.Message):
+    """Request to delete one UUT by UUID."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    UUT_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
+    uut_id: builtins.str
+    """Required. UUID of the UUT to delete; aliases are not accepted."""
+    force: builtins.bool
+    """If true, also deletes this UUT's instances and removes references to the
+    deleted resources. Related test data and other metadata are retained.
+    """
+    def __init__(
+        self,
+        *,
+        uut_id: builtins.str = ...,
+        force: builtins.bool = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["force", b"force", "uut_id", b"uut_id"]) -> None: ...
+
+Global___DeleteUutRequest: typing_extensions.TypeAlias = DeleteUutRequest
+
+@typing.final
+class BatchDeleteUutsRequest(google.protobuf.message.Message):
+    """Request to delete UUTs using each item's force setting."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteUutRequest]:
+        """Required. UUT delete requests with distinct identifiers.
+        Returns INVALID_ARGUMENT if empty or invalid, or RESOURCE_EXHAUSTED if too large.
+        """
+
+    def __init__(
+        self,
+        *,
+        requests: collections.abc.Iterable[Global___DeleteUutRequest] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
+
+Global___BatchDeleteUutsRequest: typing_extensions.TypeAlias = BatchDeleteUutsRequest
+
+@typing.final
+class GetUutResponse(google.protobuf.message.Message):
+    """Message returned when getting a UUT associated with the given identifier."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    UUT_FIELD_NUMBER: builtins.int
+    @property
+    def uut(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Uut:
+        """The metadata of the requested UUT."""
+
+    def __init__(
+        self,
+        *,
+        uut: ni.measurements.metadata.v1.metadata_store_pb2.Uut | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["uut", b"uut"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["uut", b"uut"]) -> None: ...
+
+Global___GetUutResponse: typing_extensions.TypeAlias = GetUutResponse
+
+@typing.final
+class QueryUutsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    UUTS_FIELD_NUMBER: builtins.int
+    @property
+    def uuts(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Uut]: ...
+    def __init__(
+        self,
+        *,
+        uuts: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Uut] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["uuts", b"uuts"]) -> None: ...
+
+Global___QueryUutsResponse: typing_extensions.TypeAlias = QueryUutsResponse
+
+@typing.final
 class CreateUutResponse(google.protobuf.message.Message):
     """Message returned when creating a new UUT in the metadata store."""
 
@@ -242,6 +358,30 @@ class CreateUutResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["uut_id", b"uut_id"]) -> None: ...
 
 Global___CreateUutResponse: typing_extensions.TypeAlias = CreateUutResponse
+
+@typing.final
+class DeleteUutResponse(google.protobuf.message.Message):
+    """Empty response returned when a UUT is deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___DeleteUutResponse: typing_extensions.TypeAlias = DeleteUutResponse
+
+@typing.final
+class BatchDeleteUutsResponse(google.protobuf.message.Message):
+    """Empty response returned when all UUTs are deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___BatchDeleteUutsResponse: typing_extensions.TypeAlias = BatchDeleteUutsResponse
 
 @typing.final
 class GetOperatorRequest(google.protobuf.message.Message):
@@ -262,27 +402,6 @@ class GetOperatorRequest(google.protobuf.message.Message):
 Global___GetOperatorRequest: typing_extensions.TypeAlias = GetOperatorRequest
 
 @typing.final
-class GetOperatorResponse(google.protobuf.message.Message):
-    """Message returned when getting an operator associated with the given identifier."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    OPERATOR_FIELD_NUMBER: builtins.int
-    @property
-    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Operator:
-        """The metadata of the requested operator."""
-
-    def __init__(
-        self,
-        *,
-        operator: ni.measurements.metadata.v1.metadata_store_pb2.Operator | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["operator", b"operator"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["operator", b"operator"]) -> None: ...
-
-Global___GetOperatorResponse: typing_extensions.TypeAlias = GetOperatorResponse
-
-@typing.final
 class QueryOperatorsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -299,22 +418,6 @@ class QueryOperatorsRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
 Global___QueryOperatorsRequest: typing_extensions.TypeAlias = QueryOperatorsRequest
-
-@typing.final
-class QueryOperatorsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    OPERATORS_FIELD_NUMBER: builtins.int
-    @property
-    def operators(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Operator]: ...
-    def __init__(
-        self,
-        *,
-        operators: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Operator] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["operators", b"operators"]) -> None: ...
-
-Global___QueryOperatorsResponse: typing_extensions.TypeAlias = QueryOperatorsResponse
 
 @typing.final
 class CreateOperatorRequest(google.protobuf.message.Message):
@@ -338,6 +441,89 @@ class CreateOperatorRequest(google.protobuf.message.Message):
 Global___CreateOperatorRequest: typing_extensions.TypeAlias = CreateOperatorRequest
 
 @typing.final
+class DeleteOperatorRequest(google.protobuf.message.Message):
+    """Request to delete one Operator by UUID."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    OPERATOR_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
+    operator_id: builtins.str
+    """Required. UUID of the Operator to delete; aliases are not accepted."""
+    force: builtins.bool
+    """If true, removes references from other metadata and test data, retaining
+    those resources. Otherwise, those references prevent deletion.
+    """
+    def __init__(
+        self,
+        *,
+        operator_id: builtins.str = ...,
+        force: builtins.bool = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["force", b"force", "operator_id", b"operator_id"]) -> None: ...
+
+Global___DeleteOperatorRequest: typing_extensions.TypeAlias = DeleteOperatorRequest
+
+@typing.final
+class BatchDeleteOperatorsRequest(google.protobuf.message.Message):
+    """Request to delete Operators using each item's force setting."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteOperatorRequest]:
+        """Required. Operator delete requests with distinct identifiers.
+        Returns INVALID_ARGUMENT if empty or invalid, or RESOURCE_EXHAUSTED if too large.
+        """
+
+    def __init__(
+        self,
+        *,
+        requests: collections.abc.Iterable[Global___DeleteOperatorRequest] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
+
+Global___BatchDeleteOperatorsRequest: typing_extensions.TypeAlias = BatchDeleteOperatorsRequest
+
+@typing.final
+class GetOperatorResponse(google.protobuf.message.Message):
+    """Message returned when getting an operator associated with the given identifier."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    OPERATOR_FIELD_NUMBER: builtins.int
+    @property
+    def operator(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Operator:
+        """The metadata of the requested operator."""
+
+    def __init__(
+        self,
+        *,
+        operator: ni.measurements.metadata.v1.metadata_store_pb2.Operator | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["operator", b"operator"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["operator", b"operator"]) -> None: ...
+
+Global___GetOperatorResponse: typing_extensions.TypeAlias = GetOperatorResponse
+
+@typing.final
+class QueryOperatorsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    OPERATORS_FIELD_NUMBER: builtins.int
+    @property
+    def operators(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Operator]: ...
+    def __init__(
+        self,
+        *,
+        operators: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Operator] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["operators", b"operators"]) -> None: ...
+
+Global___QueryOperatorsResponse: typing_extensions.TypeAlias = QueryOperatorsResponse
+
+@typing.final
 class CreateOperatorResponse(google.protobuf.message.Message):
     """Message returned when creating a new operator in the metadata store."""
 
@@ -354,6 +540,30 @@ class CreateOperatorResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["operator_id", b"operator_id"]) -> None: ...
 
 Global___CreateOperatorResponse: typing_extensions.TypeAlias = CreateOperatorResponse
+
+@typing.final
+class DeleteOperatorResponse(google.protobuf.message.Message):
+    """Empty response returned when an Operator is deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___DeleteOperatorResponse: typing_extensions.TypeAlias = DeleteOperatorResponse
+
+@typing.final
+class BatchDeleteOperatorsResponse(google.protobuf.message.Message):
+    """Empty response returned when all Operators are deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___BatchDeleteOperatorsResponse: typing_extensions.TypeAlias = BatchDeleteOperatorsResponse
 
 @typing.final
 class GetTestDescriptionRequest(google.protobuf.message.Message):
@@ -374,27 +584,6 @@ class GetTestDescriptionRequest(google.protobuf.message.Message):
 Global___GetTestDescriptionRequest: typing_extensions.TypeAlias = GetTestDescriptionRequest
 
 @typing.final
-class GetTestDescriptionResponse(google.protobuf.message.Message):
-    """Message returned when getting a test description associated with the given identifier."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TEST_DESCRIPTION_FIELD_NUMBER: builtins.int
-    @property
-    def test_description(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestDescription:
-        """The metadata of the requested test description."""
-
-    def __init__(
-        self,
-        *,
-        test_description: ni.measurements.metadata.v1.metadata_store_pb2.TestDescription | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test_description", b"test_description"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test_description", b"test_description"]) -> None: ...
-
-Global___GetTestDescriptionResponse: typing_extensions.TypeAlias = GetTestDescriptionResponse
-
-@typing.final
 class QueryTestDescriptionsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -411,22 +600,6 @@ class QueryTestDescriptionsRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
 Global___QueryTestDescriptionsRequest: typing_extensions.TypeAlias = QueryTestDescriptionsRequest
-
-@typing.final
-class QueryTestDescriptionsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TEST_DESCRIPTIONS_FIELD_NUMBER: builtins.int
-    @property
-    def test_descriptions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription]: ...
-    def __init__(
-        self,
-        *,
-        test_descriptions: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_descriptions", b"test_descriptions"]) -> None: ...
-
-Global___QueryTestDescriptionsResponse: typing_extensions.TypeAlias = QueryTestDescriptionsResponse
 
 @typing.final
 class CreateTestDescriptionRequest(google.protobuf.message.Message):
@@ -450,6 +623,89 @@ class CreateTestDescriptionRequest(google.protobuf.message.Message):
 Global___CreateTestDescriptionRequest: typing_extensions.TypeAlias = CreateTestDescriptionRequest
 
 @typing.final
+class DeleteTestDescriptionRequest(google.protobuf.message.Message):
+    """Request to delete one TestDescription by UUID."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_DESCRIPTION_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
+    test_description_id: builtins.str
+    """Required. UUID of the TestDescription to delete; aliases are not accepted."""
+    force: builtins.bool
+    """If true, removes references from other metadata and test data, retaining
+    those resources. Otherwise, those references prevent deletion.
+    """
+    def __init__(
+        self,
+        *,
+        test_description_id: builtins.str = ...,
+        force: builtins.bool = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["force", b"force", "test_description_id", b"test_description_id"]) -> None: ...
+
+Global___DeleteTestDescriptionRequest: typing_extensions.TypeAlias = DeleteTestDescriptionRequest
+
+@typing.final
+class BatchDeleteTestDescriptionsRequest(google.protobuf.message.Message):
+    """Request to delete TestDescriptions using each item's force setting."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteTestDescriptionRequest]:
+        """Required. TestDescription delete requests with distinct identifiers.
+        Returns INVALID_ARGUMENT if empty or invalid, or RESOURCE_EXHAUSTED if too large.
+        """
+
+    def __init__(
+        self,
+        *,
+        requests: collections.abc.Iterable[Global___DeleteTestDescriptionRequest] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
+
+Global___BatchDeleteTestDescriptionsRequest: typing_extensions.TypeAlias = BatchDeleteTestDescriptionsRequest
+
+@typing.final
+class GetTestDescriptionResponse(google.protobuf.message.Message):
+    """Message returned when getting a test description associated with the given identifier."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_DESCRIPTION_FIELD_NUMBER: builtins.int
+    @property
+    def test_description(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestDescription:
+        """The metadata of the requested test description."""
+
+    def __init__(
+        self,
+        *,
+        test_description: ni.measurements.metadata.v1.metadata_store_pb2.TestDescription | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_description", b"test_description"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_description", b"test_description"]) -> None: ...
+
+Global___GetTestDescriptionResponse: typing_extensions.TypeAlias = GetTestDescriptionResponse
+
+@typing.final
+class QueryTestDescriptionsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_DESCRIPTIONS_FIELD_NUMBER: builtins.int
+    @property
+    def test_descriptions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription]: ...
+    def __init__(
+        self,
+        *,
+        test_descriptions: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestDescription] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_descriptions", b"test_descriptions"]) -> None: ...
+
+Global___QueryTestDescriptionsResponse: typing_extensions.TypeAlias = QueryTestDescriptionsResponse
+
+@typing.final
 class CreateTestDescriptionResponse(google.protobuf.message.Message):
     """Message returned when creating a new test description in the metadata store."""
 
@@ -466,6 +722,30 @@ class CreateTestDescriptionResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["test_description_id", b"test_description_id"]) -> None: ...
 
 Global___CreateTestDescriptionResponse: typing_extensions.TypeAlias = CreateTestDescriptionResponse
+
+@typing.final
+class DeleteTestDescriptionResponse(google.protobuf.message.Message):
+    """Empty response returned when a TestDescription is deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___DeleteTestDescriptionResponse: typing_extensions.TypeAlias = DeleteTestDescriptionResponse
+
+@typing.final
+class BatchDeleteTestDescriptionsResponse(google.protobuf.message.Message):
+    """Empty response returned when all TestDescriptions are deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___BatchDeleteTestDescriptionsResponse: typing_extensions.TypeAlias = BatchDeleteTestDescriptionsResponse
 
 @typing.final
 class GetTestRequest(google.protobuf.message.Message):
@@ -486,27 +766,6 @@ class GetTestRequest(google.protobuf.message.Message):
 Global___GetTestRequest: typing_extensions.TypeAlias = GetTestRequest
 
 @typing.final
-class GetTestResponse(google.protobuf.message.Message):
-    """Message returned when getting a test associated with the given identifier."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TEST_FIELD_NUMBER: builtins.int
-    @property
-    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Test:
-        """The metadata of the requested test."""
-
-    def __init__(
-        self,
-        *,
-        test: ni.measurements.metadata.v1.metadata_store_pb2.Test | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test", b"test"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test", b"test"]) -> None: ...
-
-Global___GetTestResponse: typing_extensions.TypeAlias = GetTestResponse
-
-@typing.final
 class QueryTestsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -523,22 +782,6 @@ class QueryTestsRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
 Global___QueryTestsRequest: typing_extensions.TypeAlias = QueryTestsRequest
-
-@typing.final
-class QueryTestsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TESTS_FIELD_NUMBER: builtins.int
-    @property
-    def tests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Test]: ...
-    def __init__(
-        self,
-        *,
-        tests: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Test] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["tests", b"tests"]) -> None: ...
-
-Global___QueryTestsResponse: typing_extensions.TypeAlias = QueryTestsResponse
 
 @typing.final
 class CreateTestRequest(google.protobuf.message.Message):
@@ -562,6 +805,89 @@ class CreateTestRequest(google.protobuf.message.Message):
 Global___CreateTestRequest: typing_extensions.TypeAlias = CreateTestRequest
 
 @typing.final
+class DeleteTestRequest(google.protobuf.message.Message):
+    """Request to delete one Test by UUID."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
+    test_id: builtins.str
+    """Required. UUID of the Test to delete; aliases are not accepted."""
+    force: builtins.bool
+    """If true, removes references from other metadata and test data, retaining
+    those resources. Otherwise, those references prevent deletion.
+    """
+    def __init__(
+        self,
+        *,
+        test_id: builtins.str = ...,
+        force: builtins.bool = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["force", b"force", "test_id", b"test_id"]) -> None: ...
+
+Global___DeleteTestRequest: typing_extensions.TypeAlias = DeleteTestRequest
+
+@typing.final
+class BatchDeleteTestsRequest(google.protobuf.message.Message):
+    """Request to delete Tests using each item's force setting."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteTestRequest]:
+        """Required. Test delete requests with distinct identifiers.
+        Returns INVALID_ARGUMENT if empty or invalid, or RESOURCE_EXHAUSTED if too large.
+        """
+
+    def __init__(
+        self,
+        *,
+        requests: collections.abc.Iterable[Global___DeleteTestRequest] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
+
+Global___BatchDeleteTestsRequest: typing_extensions.TypeAlias = BatchDeleteTestsRequest
+
+@typing.final
+class GetTestResponse(google.protobuf.message.Message):
+    """Message returned when getting a test associated with the given identifier."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_FIELD_NUMBER: builtins.int
+    @property
+    def test(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Test:
+        """The metadata of the requested test."""
+
+    def __init__(
+        self,
+        *,
+        test: ni.measurements.metadata.v1.metadata_store_pb2.Test | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["test", b"test"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test", b"test"]) -> None: ...
+
+Global___GetTestResponse: typing_extensions.TypeAlias = GetTestResponse
+
+@typing.final
+class QueryTestsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TESTS_FIELD_NUMBER: builtins.int
+    @property
+    def tests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Test]: ...
+    def __init__(
+        self,
+        *,
+        tests: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Test] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["tests", b"tests"]) -> None: ...
+
+Global___QueryTestsResponse: typing_extensions.TypeAlias = QueryTestsResponse
+
+@typing.final
 class CreateTestResponse(google.protobuf.message.Message):
     """Message returned when creating a new test in the metadata store."""
 
@@ -578,6 +904,30 @@ class CreateTestResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["test_id", b"test_id"]) -> None: ...
 
 Global___CreateTestResponse: typing_extensions.TypeAlias = CreateTestResponse
+
+@typing.final
+class DeleteTestResponse(google.protobuf.message.Message):
+    """Empty response returned when a Test is deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___DeleteTestResponse: typing_extensions.TypeAlias = DeleteTestResponse
+
+@typing.final
+class BatchDeleteTestsResponse(google.protobuf.message.Message):
+    """Empty response returned when all Tests are deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___BatchDeleteTestsResponse: typing_extensions.TypeAlias = BatchDeleteTestsResponse
 
 @typing.final
 class GetTestStationRequest(google.protobuf.message.Message):
@@ -598,27 +948,6 @@ class GetTestStationRequest(google.protobuf.message.Message):
 Global___GetTestStationRequest: typing_extensions.TypeAlias = GetTestStationRequest
 
 @typing.final
-class GetTestStationResponse(google.protobuf.message.Message):
-    """Message returned when getting a test station associated with the given identifier."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TEST_STATION_FIELD_NUMBER: builtins.int
-    @property
-    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStation:
-        """The metadata of the requested test station."""
-
-    def __init__(
-        self,
-        *,
-        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStation | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test_station", b"test_station"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test_station", b"test_station"]) -> None: ...
-
-Global___GetTestStationResponse: typing_extensions.TypeAlias = GetTestStationResponse
-
-@typing.final
 class QueryTestStationsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -635,22 +964,6 @@ class QueryTestStationsRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
 Global___QueryTestStationsRequest: typing_extensions.TypeAlias = QueryTestStationsRequest
-
-@typing.final
-class QueryTestStationsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TEST_STATIONS_FIELD_NUMBER: builtins.int
-    @property
-    def test_stations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestStation]: ...
-    def __init__(
-        self,
-        *,
-        test_stations: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestStation] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_stations", b"test_stations"]) -> None: ...
-
-Global___QueryTestStationsResponse: typing_extensions.TypeAlias = QueryTestStationsResponse
 
 @typing.final
 class CreateTestStationRequest(google.protobuf.message.Message):
@@ -674,6 +987,89 @@ class CreateTestStationRequest(google.protobuf.message.Message):
 Global___CreateTestStationRequest: typing_extensions.TypeAlias = CreateTestStationRequest
 
 @typing.final
+class DeleteTestStationRequest(google.protobuf.message.Message):
+    """Request to delete one TestStation by UUID."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_STATION_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
+    test_station_id: builtins.str
+    """Required. UUID of the TestStation to delete; aliases are not accepted."""
+    force: builtins.bool
+    """If true, removes references from other metadata and test data, retaining
+    those resources. Otherwise, those references prevent deletion.
+    """
+    def __init__(
+        self,
+        *,
+        test_station_id: builtins.str = ...,
+        force: builtins.bool = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["force", b"force", "test_station_id", b"test_station_id"]) -> None: ...
+
+Global___DeleteTestStationRequest: typing_extensions.TypeAlias = DeleteTestStationRequest
+
+@typing.final
+class BatchDeleteTestStationsRequest(google.protobuf.message.Message):
+    """Request to delete TestStations using each item's force setting."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteTestStationRequest]:
+        """Required. TestStation delete requests with distinct identifiers.
+        Returns INVALID_ARGUMENT if empty or invalid, or RESOURCE_EXHAUSTED if too large.
+        """
+
+    def __init__(
+        self,
+        *,
+        requests: collections.abc.Iterable[Global___DeleteTestStationRequest] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
+
+Global___BatchDeleteTestStationsRequest: typing_extensions.TypeAlias = BatchDeleteTestStationsRequest
+
+@typing.final
+class GetTestStationResponse(google.protobuf.message.Message):
+    """Message returned when getting a test station associated with the given identifier."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_STATION_FIELD_NUMBER: builtins.int
+    @property
+    def test_station(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestStation:
+        """The metadata of the requested test station."""
+
+    def __init__(
+        self,
+        *,
+        test_station: ni.measurements.metadata.v1.metadata_store_pb2.TestStation | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_station", b"test_station"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_station", b"test_station"]) -> None: ...
+
+Global___GetTestStationResponse: typing_extensions.TypeAlias = GetTestStationResponse
+
+@typing.final
+class QueryTestStationsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_STATIONS_FIELD_NUMBER: builtins.int
+    @property
+    def test_stations(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestStation]: ...
+    def __init__(
+        self,
+        *,
+        test_stations: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestStation] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_stations", b"test_stations"]) -> None: ...
+
+Global___QueryTestStationsResponse: typing_extensions.TypeAlias = QueryTestStationsResponse
+
+@typing.final
 class CreateTestStationResponse(google.protobuf.message.Message):
     """Message returned when creating a new test station in the metadata store."""
 
@@ -690,6 +1086,30 @@ class CreateTestStationResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["test_station_id", b"test_station_id"]) -> None: ...
 
 Global___CreateTestStationResponse: typing_extensions.TypeAlias = CreateTestStationResponse
+
+@typing.final
+class DeleteTestStationResponse(google.protobuf.message.Message):
+    """Empty response returned when a TestStation is deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___DeleteTestStationResponse: typing_extensions.TypeAlias = DeleteTestStationResponse
+
+@typing.final
+class BatchDeleteTestStationsResponse(google.protobuf.message.Message):
+    """Empty response returned when all TestStations are deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___BatchDeleteTestStationsResponse: typing_extensions.TypeAlias = BatchDeleteTestStationsResponse
 
 @typing.final
 class GetHardwareItemRequest(google.protobuf.message.Message):
@@ -710,27 +1130,6 @@ class GetHardwareItemRequest(google.protobuf.message.Message):
 Global___GetHardwareItemRequest: typing_extensions.TypeAlias = GetHardwareItemRequest
 
 @typing.final
-class GetHardwareItemResponse(google.protobuf.message.Message):
-    """Message returned when getting the hardware item associated with the given identifier."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    HARDWARE_ITEM_FIELD_NUMBER: builtins.int
-    @property
-    def hardware_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem:
-        """The metadata of the requested hardware item."""
-
-    def __init__(
-        self,
-        *,
-        hardware_item: ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> None: ...
-
-Global___GetHardwareItemResponse: typing_extensions.TypeAlias = GetHardwareItemResponse
-
-@typing.final
 class QueryHardwareItemsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -747,22 +1146,6 @@ class QueryHardwareItemsRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
 Global___QueryHardwareItemsRequest: typing_extensions.TypeAlias = QueryHardwareItemsRequest
-
-@typing.final
-class QueryHardwareItemsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    HARDWARE_ITEMS_FIELD_NUMBER: builtins.int
-    @property
-    def hardware_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem]: ...
-    def __init__(
-        self,
-        *,
-        hardware_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["hardware_items", b"hardware_items"]) -> None: ...
-
-Global___QueryHardwareItemsResponse: typing_extensions.TypeAlias = QueryHardwareItemsResponse
 
 @typing.final
 class CreateHardwareItemRequest(google.protobuf.message.Message):
@@ -786,6 +1169,89 @@ class CreateHardwareItemRequest(google.protobuf.message.Message):
 Global___CreateHardwareItemRequest: typing_extensions.TypeAlias = CreateHardwareItemRequest
 
 @typing.final
+class DeleteHardwareItemRequest(google.protobuf.message.Message):
+    """Request to delete one HardwareItem by UUID."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    HARDWARE_ITEM_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
+    hardware_item_id: builtins.str
+    """Required. UUID of the HardwareItem to delete; aliases are not accepted."""
+    force: builtins.bool
+    """If true, removes references from other metadata and test data, retaining
+    those resources. Otherwise, those references prevent deletion.
+    """
+    def __init__(
+        self,
+        *,
+        hardware_item_id: builtins.str = ...,
+        force: builtins.bool = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["force", b"force", "hardware_item_id", b"hardware_item_id"]) -> None: ...
+
+Global___DeleteHardwareItemRequest: typing_extensions.TypeAlias = DeleteHardwareItemRequest
+
+@typing.final
+class BatchDeleteHardwareItemsRequest(google.protobuf.message.Message):
+    """Request to delete HardwareItems using each item's force setting."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteHardwareItemRequest]:
+        """Required. HardwareItem delete requests with distinct identifiers.
+        Returns INVALID_ARGUMENT if empty or invalid, or RESOURCE_EXHAUSTED if too large.
+        """
+
+    def __init__(
+        self,
+        *,
+        requests: collections.abc.Iterable[Global___DeleteHardwareItemRequest] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
+
+Global___BatchDeleteHardwareItemsRequest: typing_extensions.TypeAlias = BatchDeleteHardwareItemsRequest
+
+@typing.final
+class GetHardwareItemResponse(google.protobuf.message.Message):
+    """Message returned when getting the hardware item associated with the given identifier."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    HARDWARE_ITEM_FIELD_NUMBER: builtins.int
+    @property
+    def hardware_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem:
+        """The metadata of the requested hardware item."""
+
+    def __init__(
+        self,
+        *,
+        hardware_item: ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["hardware_item", b"hardware_item"]) -> None: ...
+
+Global___GetHardwareItemResponse: typing_extensions.TypeAlias = GetHardwareItemResponse
+
+@typing.final
+class QueryHardwareItemsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    HARDWARE_ITEMS_FIELD_NUMBER: builtins.int
+    @property
+    def hardware_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem]: ...
+    def __init__(
+        self,
+        *,
+        hardware_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["hardware_items", b"hardware_items"]) -> None: ...
+
+Global___QueryHardwareItemsResponse: typing_extensions.TypeAlias = QueryHardwareItemsResponse
+
+@typing.final
 class CreateHardwareItemResponse(google.protobuf.message.Message):
     """Message returned when creating new hardware item in the metadata store."""
 
@@ -802,6 +1268,30 @@ class CreateHardwareItemResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["hardware_item_id", b"hardware_item_id"]) -> None: ...
 
 Global___CreateHardwareItemResponse: typing_extensions.TypeAlias = CreateHardwareItemResponse
+
+@typing.final
+class DeleteHardwareItemResponse(google.protobuf.message.Message):
+    """Empty response returned when a HardwareItem is deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___DeleteHardwareItemResponse: typing_extensions.TypeAlias = DeleteHardwareItemResponse
+
+@typing.final
+class BatchDeleteHardwareItemsResponse(google.protobuf.message.Message):
+    """Empty response returned when all HardwareItems are deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___BatchDeleteHardwareItemsResponse: typing_extensions.TypeAlias = BatchDeleteHardwareItemsResponse
 
 @typing.final
 class GetSoftwareItemRequest(google.protobuf.message.Message):
@@ -822,27 +1312,6 @@ class GetSoftwareItemRequest(google.protobuf.message.Message):
 Global___GetSoftwareItemRequest: typing_extensions.TypeAlias = GetSoftwareItemRequest
 
 @typing.final
-class GetSoftwareItemResponse(google.protobuf.message.Message):
-    """Message returned when getting the software item associated with the given identifier."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    SOFTWARE_ITEM_FIELD_NUMBER: builtins.int
-    @property
-    def software_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem:
-        """The metadata of the requested software item."""
-
-    def __init__(
-        self,
-        *,
-        software_item: ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["software_item", b"software_item"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["software_item", b"software_item"]) -> None: ...
-
-Global___GetSoftwareItemResponse: typing_extensions.TypeAlias = GetSoftwareItemResponse
-
-@typing.final
 class QuerySoftwareItemsRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -859,22 +1328,6 @@ class QuerySoftwareItemsRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
 Global___QuerySoftwareItemsRequest: typing_extensions.TypeAlias = QuerySoftwareItemsRequest
-
-@typing.final
-class QuerySoftwareItemsResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    SOFTWARE_ITEMS_FIELD_NUMBER: builtins.int
-    @property
-    def software_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem]: ...
-    def __init__(
-        self,
-        *,
-        software_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["software_items", b"software_items"]) -> None: ...
-
-Global___QuerySoftwareItemsResponse: typing_extensions.TypeAlias = QuerySoftwareItemsResponse
 
 @typing.final
 class CreateSoftwareItemRequest(google.protobuf.message.Message):
@@ -898,6 +1351,89 @@ class CreateSoftwareItemRequest(google.protobuf.message.Message):
 Global___CreateSoftwareItemRequest: typing_extensions.TypeAlias = CreateSoftwareItemRequest
 
 @typing.final
+class DeleteSoftwareItemRequest(google.protobuf.message.Message):
+    """Request to delete one SoftwareItem by UUID."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    SOFTWARE_ITEM_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
+    software_item_id: builtins.str
+    """Required. UUID of the SoftwareItem to delete; aliases are not accepted."""
+    force: builtins.bool
+    """If true, removes references from other metadata and test data, retaining
+    those resources. Otherwise, those references prevent deletion.
+    """
+    def __init__(
+        self,
+        *,
+        software_item_id: builtins.str = ...,
+        force: builtins.bool = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["force", b"force", "software_item_id", b"software_item_id"]) -> None: ...
+
+Global___DeleteSoftwareItemRequest: typing_extensions.TypeAlias = DeleteSoftwareItemRequest
+
+@typing.final
+class BatchDeleteSoftwareItemsRequest(google.protobuf.message.Message):
+    """Request to delete SoftwareItems using each item's force setting."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteSoftwareItemRequest]:
+        """Required. SoftwareItem delete requests with distinct identifiers.
+        Returns INVALID_ARGUMENT if empty or invalid, or RESOURCE_EXHAUSTED if too large.
+        """
+
+    def __init__(
+        self,
+        *,
+        requests: collections.abc.Iterable[Global___DeleteSoftwareItemRequest] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
+
+Global___BatchDeleteSoftwareItemsRequest: typing_extensions.TypeAlias = BatchDeleteSoftwareItemsRequest
+
+@typing.final
+class GetSoftwareItemResponse(google.protobuf.message.Message):
+    """Message returned when getting the software item associated with the given identifier."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    SOFTWARE_ITEM_FIELD_NUMBER: builtins.int
+    @property
+    def software_item(self) -> ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem:
+        """The metadata of the requested software item."""
+
+    def __init__(
+        self,
+        *,
+        software_item: ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["software_item", b"software_item"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["software_item", b"software_item"]) -> None: ...
+
+Global___GetSoftwareItemResponse: typing_extensions.TypeAlias = GetSoftwareItemResponse
+
+@typing.final
+class QuerySoftwareItemsResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    SOFTWARE_ITEMS_FIELD_NUMBER: builtins.int
+    @property
+    def software_items(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem]: ...
+    def __init__(
+        self,
+        *,
+        software_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.SoftwareItem] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["software_items", b"software_items"]) -> None: ...
+
+Global___QuerySoftwareItemsResponse: typing_extensions.TypeAlias = QuerySoftwareItemsResponse
+
+@typing.final
 class CreateSoftwareItemResponse(google.protobuf.message.Message):
     """Message returned when creating new software item in the metadata store."""
 
@@ -914,6 +1450,30 @@ class CreateSoftwareItemResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["software_item_id", b"software_item_id"]) -> None: ...
 
 Global___CreateSoftwareItemResponse: typing_extensions.TypeAlias = CreateSoftwareItemResponse
+
+@typing.final
+class DeleteSoftwareItemResponse(google.protobuf.message.Message):
+    """Empty response returned when a SoftwareItem is deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___DeleteSoftwareItemResponse: typing_extensions.TypeAlias = DeleteSoftwareItemResponse
+
+@typing.final
+class BatchDeleteSoftwareItemsResponse(google.protobuf.message.Message):
+    """Empty response returned when all SoftwareItems are deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___BatchDeleteSoftwareItemsResponse: typing_extensions.TypeAlias = BatchDeleteSoftwareItemsResponse
 
 @typing.final
 class GetTestAdapterRequest(google.protobuf.message.Message):
@@ -934,27 +1494,6 @@ class GetTestAdapterRequest(google.protobuf.message.Message):
 Global___GetTestAdapterRequest: typing_extensions.TypeAlias = GetTestAdapterRequest
 
 @typing.final
-class GetTestAdapterResponse(google.protobuf.message.Message):
-    """Message returned when getting the test adapter associated with the given identifier."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TEST_ADAPTER_FIELD_NUMBER: builtins.int
-    @property
-    def test_adapter(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter:
-        """The metadata of the requested test adapter."""
-
-    def __init__(
-        self,
-        *,
-        test_adapter: ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> None: ...
-
-Global___GetTestAdapterResponse: typing_extensions.TypeAlias = GetTestAdapterResponse
-
-@typing.final
 class QueryTestAdaptersRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -971,22 +1510,6 @@ class QueryTestAdaptersRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
 Global___QueryTestAdaptersRequest: typing_extensions.TypeAlias = QueryTestAdaptersRequest
-
-@typing.final
-class QueryTestAdaptersResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TEST_ADAPTERS_FIELD_NUMBER: builtins.int
-    @property
-    def test_adapters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter]: ...
-    def __init__(
-        self,
-        *,
-        test_adapters: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["test_adapters", b"test_adapters"]) -> None: ...
-
-Global___QueryTestAdaptersResponse: typing_extensions.TypeAlias = QueryTestAdaptersResponse
 
 @typing.final
 class CreateTestAdapterRequest(google.protobuf.message.Message):
@@ -1010,6 +1533,89 @@ class CreateTestAdapterRequest(google.protobuf.message.Message):
 Global___CreateTestAdapterRequest: typing_extensions.TypeAlias = CreateTestAdapterRequest
 
 @typing.final
+class DeleteTestAdapterRequest(google.protobuf.message.Message):
+    """Request to delete one TestAdapter by UUID."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_ADAPTER_ID_FIELD_NUMBER: builtins.int
+    FORCE_FIELD_NUMBER: builtins.int
+    test_adapter_id: builtins.str
+    """Required. UUID of the TestAdapter to delete; aliases are not accepted."""
+    force: builtins.bool
+    """If true, removes references from other metadata and test data, retaining
+    those resources. Otherwise, those references prevent deletion.
+    """
+    def __init__(
+        self,
+        *,
+        test_adapter_id: builtins.str = ...,
+        force: builtins.bool = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["force", b"force", "test_adapter_id", b"test_adapter_id"]) -> None: ...
+
+Global___DeleteTestAdapterRequest: typing_extensions.TypeAlias = DeleteTestAdapterRequest
+
+@typing.final
+class BatchDeleteTestAdaptersRequest(google.protobuf.message.Message):
+    """Request to delete TestAdapters using each item's force setting."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteTestAdapterRequest]:
+        """Required. TestAdapter delete requests with distinct identifiers.
+        Returns INVALID_ARGUMENT if empty or invalid, or RESOURCE_EXHAUSTED if too large.
+        """
+
+    def __init__(
+        self,
+        *,
+        requests: collections.abc.Iterable[Global___DeleteTestAdapterRequest] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
+
+Global___BatchDeleteTestAdaptersRequest: typing_extensions.TypeAlias = BatchDeleteTestAdaptersRequest
+
+@typing.final
+class GetTestAdapterResponse(google.protobuf.message.Message):
+    """Message returned when getting the test adapter associated with the given identifier."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_ADAPTER_FIELD_NUMBER: builtins.int
+    @property
+    def test_adapter(self) -> ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter:
+        """The metadata of the requested test adapter."""
+
+    def __init__(
+        self,
+        *,
+        test_adapter: ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["test_adapter", b"test_adapter"]) -> None: ...
+
+Global___GetTestAdapterResponse: typing_extensions.TypeAlias = GetTestAdapterResponse
+
+@typing.final
+class QueryTestAdaptersResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    TEST_ADAPTERS_FIELD_NUMBER: builtins.int
+    @property
+    def test_adapters(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter]: ...
+    def __init__(
+        self,
+        *,
+        test_adapters: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["test_adapters", b"test_adapters"]) -> None: ...
+
+Global___QueryTestAdaptersResponse: typing_extensions.TypeAlias = QueryTestAdaptersResponse
+
+@typing.final
 class CreateTestAdapterResponse(google.protobuf.message.Message):
     """Message returned when creating new test adapter in the metadata store."""
 
@@ -1026,6 +1632,30 @@ class CreateTestAdapterResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["test_adapter_id", b"test_adapter_id"]) -> None: ...
 
 Global___CreateTestAdapterResponse: typing_extensions.TypeAlias = CreateTestAdapterResponse
+
+@typing.final
+class DeleteTestAdapterResponse(google.protobuf.message.Message):
+    """Empty response returned when a TestAdapter is deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___DeleteTestAdapterResponse: typing_extensions.TypeAlias = DeleteTestAdapterResponse
+
+@typing.final
+class BatchDeleteTestAdaptersResponse(google.protobuf.message.Message):
+    """Empty response returned when all TestAdapters are deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___BatchDeleteTestAdaptersResponse: typing_extensions.TypeAlias = BatchDeleteTestAdaptersResponse
 
 @typing.final
 class RegisterSchemaRequest(google.protobuf.message.Message):
@@ -1047,6 +1677,56 @@ class RegisterSchemaRequest(google.protobuf.message.Message):
 Global___RegisterSchemaRequest: typing_extensions.TypeAlias = RegisterSchemaRequest
 
 @typing.final
+class ListSchemasRequest(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___ListSchemasRequest: typing_extensions.TypeAlias = ListSchemasRequest
+
+@typing.final
+class DeleteSchemaRequest(google.protobuf.message.Message):
+    """Request to delete a Schema by its exact registered ID."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    SCHEMA_ID_FIELD_NUMBER: builtins.int
+    schema_id: builtins.str
+    """Required. Case-sensitive registered Schema ID."""
+    def __init__(
+        self,
+        *,
+        schema_id: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["schema_id", b"schema_id"]) -> None: ...
+
+Global___DeleteSchemaRequest: typing_extensions.TypeAlias = DeleteSchemaRequest
+
+@typing.final
+class BatchDeleteSchemasRequest(google.protobuf.message.Message):
+    """Request to delete Schemas by their registered IDs."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteSchemaRequest]:
+        """Required. Schema delete requests with distinct identifiers.
+        Returns INVALID_ARGUMENT if empty or invalid, or RESOURCE_EXHAUSTED if too large.
+        """
+
+    def __init__(
+        self,
+        *,
+        requests: collections.abc.Iterable[Global___DeleteSchemaRequest] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
+
+Global___BatchDeleteSchemasRequest: typing_extensions.TypeAlias = BatchDeleteSchemasRequest
+
+@typing.final
 class RegisterSchemaResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -1061,16 +1741,6 @@ class RegisterSchemaResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["schema_id", b"schema_id"]) -> None: ...
 
 Global___RegisterSchemaResponse: typing_extensions.TypeAlias = RegisterSchemaResponse
-
-@typing.final
-class ListSchemasRequest(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___ListSchemasRequest: typing_extensions.TypeAlias = ListSchemasRequest
 
 @typing.final
 class ListSchemasResponse(google.protobuf.message.Message):
@@ -1089,6 +1759,30 @@ class ListSchemasResponse(google.protobuf.message.Message):
 Global___ListSchemasResponse: typing_extensions.TypeAlias = ListSchemasResponse
 
 @typing.final
+class DeleteSchemaResponse(google.protobuf.message.Message):
+    """Empty response returned when a Schema is deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___DeleteSchemaResponse: typing_extensions.TypeAlias = DeleteSchemaResponse
+
+@typing.final
+class BatchDeleteSchemasResponse(google.protobuf.message.Message):
+    """Empty response returned when all Schemas are deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___BatchDeleteSchemasResponse: typing_extensions.TypeAlias = BatchDeleteSchemasResponse
+
+@typing.final
 class GetAliasRequest(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -1102,23 +1796,6 @@ class GetAliasRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name"]) -> None: ...
 
 Global___GetAliasRequest: typing_extensions.TypeAlias = GetAliasRequest
-
-@typing.final
-class GetAliasResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    ALIAS_FIELD_NUMBER: builtins.int
-    @property
-    def alias(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Alias: ...
-    def __init__(
-        self,
-        *,
-        alias: ni.measurements.metadata.v1.metadata_store_pb2.Alias | None = ...,
-    ) -> None: ...
-    def HasField(self, field_name: typing.Literal["alias", b"alias"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["alias", b"alias"]) -> None: ...
-
-Global___GetAliasResponse: typing_extensions.TypeAlias = GetAliasResponse
 
 @typing.final
 class QueryAliasesRequest(google.protobuf.message.Message):
@@ -1137,22 +1814,6 @@ class QueryAliasesRequest(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["odata_query", b"odata_query"]) -> None: ...
 
 Global___QueryAliasesRequest: typing_extensions.TypeAlias = QueryAliasesRequest
-
-@typing.final
-class QueryAliasesResponse(google.protobuf.message.Message):
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    ALIASES_FIELD_NUMBER: builtins.int
-    @property
-    def aliases(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Alias]: ...
-    def __init__(
-        self,
-        *,
-        aliases: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Alias] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["aliases", b"aliases"]) -> None: ...
-
-Global___QueryAliasesResponse: typing_extensions.TypeAlias = QueryAliasesResponse
 
 @typing.final
 class CreateAliasRequest(google.protobuf.message.Message):
@@ -1209,6 +1870,79 @@ class CreateAliasRequest(google.protobuf.message.Message):
 Global___CreateAliasRequest: typing_extensions.TypeAlias = CreateAliasRequest
 
 @typing.final
+class DeleteAliasRequest(google.protobuf.message.Message):
+    """Request to delete an Alias by its exact registered name."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    ALIAS_NAME_FIELD_NUMBER: builtins.int
+    alias_name: builtins.str
+    """Required. Case-sensitive registered Alias name."""
+    def __init__(
+        self,
+        *,
+        alias_name: builtins.str = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name"]) -> None: ...
+
+Global___DeleteAliasRequest: typing_extensions.TypeAlias = DeleteAliasRequest
+
+@typing.final
+class BatchDeleteAliasesRequest(google.protobuf.message.Message):
+    """Request to delete Aliases by their registered names."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    REQUESTS_FIELD_NUMBER: builtins.int
+    @property
+    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteAliasRequest]:
+        """Required. Alias delete requests with distinct names.
+        Returns INVALID_ARGUMENT if empty or invalid, or RESOURCE_EXHAUSTED if too large.
+        """
+
+    def __init__(
+        self,
+        *,
+        requests: collections.abc.Iterable[Global___DeleteAliasRequest] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
+
+Global___BatchDeleteAliasesRequest: typing_extensions.TypeAlias = BatchDeleteAliasesRequest
+
+@typing.final
+class GetAliasResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    ALIAS_FIELD_NUMBER: builtins.int
+    @property
+    def alias(self) -> ni.measurements.metadata.v1.metadata_store_pb2.Alias: ...
+    def __init__(
+        self,
+        *,
+        alias: ni.measurements.metadata.v1.metadata_store_pb2.Alias | None = ...,
+    ) -> None: ...
+    def HasField(self, field_name: typing.Literal["alias", b"alias"]) -> builtins.bool: ...
+    def ClearField(self, field_name: typing.Literal["alias", b"alias"]) -> None: ...
+
+Global___GetAliasResponse: typing_extensions.TypeAlias = GetAliasResponse
+
+@typing.final
+class QueryAliasesResponse(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    ALIASES_FIELD_NUMBER: builtins.int
+    @property
+    def aliases(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[ni.measurements.metadata.v1.metadata_store_pb2.Alias]: ...
+    def __init__(
+        self,
+        *,
+        aliases: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.Alias] | None = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["aliases", b"aliases"]) -> None: ...
+
+Global___QueryAliasesResponse: typing_extensions.TypeAlias = QueryAliasesResponse
+
+@typing.final
 class CreateAliasResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -1226,32 +1960,12 @@ class CreateAliasResponse(google.protobuf.message.Message):
 Global___CreateAliasResponse: typing_extensions.TypeAlias = CreateAliasResponse
 
 @typing.final
-class DeleteAliasRequest(google.protobuf.message.Message):
-    """Request to delete an Alias by its exact registered name."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    ALIAS_NAME_FIELD_NUMBER: builtins.int
-    alias_name: builtins.str
-    """Required. Exact registered Alias name."""
-    def __init__(
-        self,
-        *,
-        alias_name: builtins.str = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["alias_name", b"alias_name"]) -> None: ...
-
-Global___DeleteAliasRequest: typing_extensions.TypeAlias = DeleteAliasRequest
-
-@typing.final
 class DeleteAliasResponse(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
     UNREGISTERED_FIELD_NUMBER: builtins.int
     unregistered: builtins.bool
-    """Whether the action unregistered the alias. In v1 mode, false means the alias did not exist;
-    in v2 mode, an absent alias returns NOT_FOUND.
-    """
+    """Whether the alias was unregistered."""
     def __init__(
         self,
         *,
@@ -1260,6 +1974,18 @@ class DeleteAliasResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["unregistered", b"unregistered"]) -> None: ...
 
 Global___DeleteAliasResponse: typing_extensions.TypeAlias = DeleteAliasResponse
+
+@typing.final
+class BatchDeleteAliasesResponse(google.protobuf.message.Message):
+    """Empty response returned when all Aliases are deleted successfully."""
+
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    def __init__(
+        self,
+    ) -> None: ...
+
+Global___BatchDeleteAliasesResponse: typing_extensions.TypeAlias = BatchDeleteAliasesResponse
 
 @typing.final
 class CreateFromJsonDocumentRequest(google.protobuf.message.Message):
@@ -1363,693 +2089,3 @@ class CreateFromJsonDocumentResponse(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["hardware_items", b"hardware_items", "operators", b"operators", "software_items", b"software_items", "test_adapters", b"test_adapters", "test_descriptions", b"test_descriptions", "test_stations", b"test_stations", "tests", b"tests", "uut_instances", b"uut_instances", "uuts", b"uuts"]) -> None: ...
 
 Global___CreateFromJsonDocumentResponse: typing_extensions.TypeAlias = CreateFromJsonDocumentResponse
-
-@typing.final
-class DeleteOperatorRequest(google.protobuf.message.Message):
-    """Request to delete one Operator by UUID."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    OPERATOR_ID_FIELD_NUMBER: builtins.int
-    FORCE_FIELD_NUMBER: builtins.int
-    operator_id: builtins.str
-    """Required. UUID of the Operator to delete; aliases are not accepted."""
-    force: builtins.bool
-    """If true, remove incoming links but retain linked test data and other metadata."""
-    def __init__(
-        self,
-        *,
-        operator_id: builtins.str = ...,
-        force: builtins.bool = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["force", b"force", "operator_id", b"operator_id"]) -> None: ...
-
-Global___DeleteOperatorRequest: typing_extensions.TypeAlias = DeleteOperatorRequest
-
-@typing.final
-class DeleteOperatorResponse(google.protobuf.message.Message):
-    """Empty response returned when an Operator is deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___DeleteOperatorResponse: typing_extensions.TypeAlias = DeleteOperatorResponse
-
-@typing.final
-class BatchDeleteOperatorsRequest(google.protobuf.message.Message):
-    """Request to atomically delete Operators; each item has its own force value."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    REQUESTS_FIELD_NUMBER: builtins.int
-    @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteOperatorRequest]:
-        """1 to 1,000 Operator delete requests."""
-
-    def __init__(
-        self,
-        *,
-        requests: collections.abc.Iterable[Global___DeleteOperatorRequest] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
-
-Global___BatchDeleteOperatorsRequest: typing_extensions.TypeAlias = BatchDeleteOperatorsRequest
-
-@typing.final
-class BatchDeleteOperatorsResponse(google.protobuf.message.Message):
-    """Empty response returned when all Operators are deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___BatchDeleteOperatorsResponse: typing_extensions.TypeAlias = BatchDeleteOperatorsResponse
-
-@typing.final
-class DeleteTestStationRequest(google.protobuf.message.Message):
-    """Request to delete one TestStation by UUID."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TEST_STATION_ID_FIELD_NUMBER: builtins.int
-    FORCE_FIELD_NUMBER: builtins.int
-    test_station_id: builtins.str
-    """Required. UUID of the TestStation to delete; aliases are not accepted."""
-    force: builtins.bool
-    """If true, remove incoming links but retain linked test data and other metadata."""
-    def __init__(
-        self,
-        *,
-        test_station_id: builtins.str = ...,
-        force: builtins.bool = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["force", b"force", "test_station_id", b"test_station_id"]) -> None: ...
-
-Global___DeleteTestStationRequest: typing_extensions.TypeAlias = DeleteTestStationRequest
-
-@typing.final
-class DeleteTestStationResponse(google.protobuf.message.Message):
-    """Empty response returned when a TestStation is deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___DeleteTestStationResponse: typing_extensions.TypeAlias = DeleteTestStationResponse
-
-@typing.final
-class BatchDeleteTestStationsRequest(google.protobuf.message.Message):
-    """Request to atomically delete TestStations; each item has its own force value."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    REQUESTS_FIELD_NUMBER: builtins.int
-    @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteTestStationRequest]:
-        """1 to 1,000 TestStation delete requests."""
-
-    def __init__(
-        self,
-        *,
-        requests: collections.abc.Iterable[Global___DeleteTestStationRequest] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
-
-Global___BatchDeleteTestStationsRequest: typing_extensions.TypeAlias = BatchDeleteTestStationsRequest
-
-@typing.final
-class BatchDeleteTestStationsResponse(google.protobuf.message.Message):
-    """Empty response returned when all TestStations are deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___BatchDeleteTestStationsResponse: typing_extensions.TypeAlias = BatchDeleteTestStationsResponse
-
-@typing.final
-class DeleteTestDescriptionRequest(google.protobuf.message.Message):
-    """Request to delete one TestDescription by UUID."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TEST_DESCRIPTION_ID_FIELD_NUMBER: builtins.int
-    FORCE_FIELD_NUMBER: builtins.int
-    test_description_id: builtins.str
-    """Required. UUID of the TestDescription to delete; aliases are not accepted."""
-    force: builtins.bool
-    """If true, remove incoming links but retain linked test data and other metadata."""
-    def __init__(
-        self,
-        *,
-        test_description_id: builtins.str = ...,
-        force: builtins.bool = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["force", b"force", "test_description_id", b"test_description_id"]) -> None: ...
-
-Global___DeleteTestDescriptionRequest: typing_extensions.TypeAlias = DeleteTestDescriptionRequest
-
-@typing.final
-class DeleteTestDescriptionResponse(google.protobuf.message.Message):
-    """Empty response returned when a TestDescription is deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___DeleteTestDescriptionResponse: typing_extensions.TypeAlias = DeleteTestDescriptionResponse
-
-@typing.final
-class BatchDeleteTestDescriptionsRequest(google.protobuf.message.Message):
-    """Request to atomically delete TestDescriptions; each item has its own force value."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    REQUESTS_FIELD_NUMBER: builtins.int
-    @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteTestDescriptionRequest]:
-        """1 to 1,000 TestDescription delete requests."""
-
-    def __init__(
-        self,
-        *,
-        requests: collections.abc.Iterable[Global___DeleteTestDescriptionRequest] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
-
-Global___BatchDeleteTestDescriptionsRequest: typing_extensions.TypeAlias = BatchDeleteTestDescriptionsRequest
-
-@typing.final
-class BatchDeleteTestDescriptionsResponse(google.protobuf.message.Message):
-    """Empty response returned when all TestDescriptions are deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___BatchDeleteTestDescriptionsResponse: typing_extensions.TypeAlias = BatchDeleteTestDescriptionsResponse
-
-@typing.final
-class DeleteUutRequest(google.protobuf.message.Message):
-    """Request to delete one UUT by UUID."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    UUT_ID_FIELD_NUMBER: builtins.int
-    FORCE_FIELD_NUMBER: builtins.int
-    uut_id: builtins.str
-    """Required. UUID of the UUT to delete; aliases are not accepted."""
-    force: builtins.bool
-    """If true, remove incoming links and delete the UUT's owned UutInstances. Retain linked test
-    data and TestDescriptions.
-    """
-    def __init__(
-        self,
-        *,
-        uut_id: builtins.str = ...,
-        force: builtins.bool = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["force", b"force", "uut_id", b"uut_id"]) -> None: ...
-
-Global___DeleteUutRequest: typing_extensions.TypeAlias = DeleteUutRequest
-
-@typing.final
-class DeleteUutResponse(google.protobuf.message.Message):
-    """Empty response returned when a UUT is deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___DeleteUutResponse: typing_extensions.TypeAlias = DeleteUutResponse
-
-@typing.final
-class BatchDeleteUutsRequest(google.protobuf.message.Message):
-    """Request to atomically delete UUTs; each item has its own force value."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    REQUESTS_FIELD_NUMBER: builtins.int
-    @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteUutRequest]:
-        """1 to 1,000 UUT delete requests."""
-
-    def __init__(
-        self,
-        *,
-        requests: collections.abc.Iterable[Global___DeleteUutRequest] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
-
-Global___BatchDeleteUutsRequest: typing_extensions.TypeAlias = BatchDeleteUutsRequest
-
-@typing.final
-class BatchDeleteUutsResponse(google.protobuf.message.Message):
-    """Empty response returned when all UUTs are deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___BatchDeleteUutsResponse: typing_extensions.TypeAlias = BatchDeleteUutsResponse
-
-@typing.final
-class DeleteUutInstanceRequest(google.protobuf.message.Message):
-    """Request to delete one UutInstance by UUID."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    UUT_INSTANCE_ID_FIELD_NUMBER: builtins.int
-    FORCE_FIELD_NUMBER: builtins.int
-    uut_instance_id: builtins.str
-    """Required. UUID of the UutInstance to delete; aliases are not accepted."""
-    force: builtins.bool
-    """If true, remove incoming links but retain linked test data and the owning UUT."""
-    def __init__(
-        self,
-        *,
-        uut_instance_id: builtins.str = ...,
-        force: builtins.bool = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["force", b"force", "uut_instance_id", b"uut_instance_id"]) -> None: ...
-
-Global___DeleteUutInstanceRequest: typing_extensions.TypeAlias = DeleteUutInstanceRequest
-
-@typing.final
-class DeleteUutInstanceResponse(google.protobuf.message.Message):
-    """Empty response returned when a UutInstance is deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___DeleteUutInstanceResponse: typing_extensions.TypeAlias = DeleteUutInstanceResponse
-
-@typing.final
-class BatchDeleteUutInstancesRequest(google.protobuf.message.Message):
-    """Request to atomically delete UutInstances; each item has its own force value."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    REQUESTS_FIELD_NUMBER: builtins.int
-    @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteUutInstanceRequest]:
-        """1 to 1,000 UutInstance delete requests."""
-
-    def __init__(
-        self,
-        *,
-        requests: collections.abc.Iterable[Global___DeleteUutInstanceRequest] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
-
-Global___BatchDeleteUutInstancesRequest: typing_extensions.TypeAlias = BatchDeleteUutInstancesRequest
-
-@typing.final
-class BatchDeleteUutInstancesResponse(google.protobuf.message.Message):
-    """Empty response returned when all UutInstances are deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___BatchDeleteUutInstancesResponse: typing_extensions.TypeAlias = BatchDeleteUutInstancesResponse
-
-@typing.final
-class DeleteSoftwareItemRequest(google.protobuf.message.Message):
-    """Request to delete one SoftwareItem by UUID."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    SOFTWARE_ITEM_ID_FIELD_NUMBER: builtins.int
-    FORCE_FIELD_NUMBER: builtins.int
-    software_item_id: builtins.str
-    """Required. UUID of the SoftwareItem to delete; aliases are not accepted."""
-    force: builtins.bool
-    """If true, remove incoming links but retain linked test data and other metadata."""
-    def __init__(
-        self,
-        *,
-        software_item_id: builtins.str = ...,
-        force: builtins.bool = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["force", b"force", "software_item_id", b"software_item_id"]) -> None: ...
-
-Global___DeleteSoftwareItemRequest: typing_extensions.TypeAlias = DeleteSoftwareItemRequest
-
-@typing.final
-class DeleteSoftwareItemResponse(google.protobuf.message.Message):
-    """Empty response returned when a SoftwareItem is deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___DeleteSoftwareItemResponse: typing_extensions.TypeAlias = DeleteSoftwareItemResponse
-
-@typing.final
-class BatchDeleteSoftwareItemsRequest(google.protobuf.message.Message):
-    """Request to atomically delete SoftwareItems; each item has its own force value."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    REQUESTS_FIELD_NUMBER: builtins.int
-    @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteSoftwareItemRequest]:
-        """1 to 1,000 SoftwareItem delete requests."""
-
-    def __init__(
-        self,
-        *,
-        requests: collections.abc.Iterable[Global___DeleteSoftwareItemRequest] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
-
-Global___BatchDeleteSoftwareItemsRequest: typing_extensions.TypeAlias = BatchDeleteSoftwareItemsRequest
-
-@typing.final
-class BatchDeleteSoftwareItemsResponse(google.protobuf.message.Message):
-    """Empty response returned when all SoftwareItems are deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___BatchDeleteSoftwareItemsResponse: typing_extensions.TypeAlias = BatchDeleteSoftwareItemsResponse
-
-@typing.final
-class DeleteHardwareItemRequest(google.protobuf.message.Message):
-    """Request to delete one HardwareItem by UUID."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    HARDWARE_ITEM_ID_FIELD_NUMBER: builtins.int
-    FORCE_FIELD_NUMBER: builtins.int
-    hardware_item_id: builtins.str
-    """Required. UUID of the HardwareItem to delete; aliases are not accepted."""
-    force: builtins.bool
-    """If true, remove incoming links but retain linked test data and other metadata."""
-    def __init__(
-        self,
-        *,
-        hardware_item_id: builtins.str = ...,
-        force: builtins.bool = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["force", b"force", "hardware_item_id", b"hardware_item_id"]) -> None: ...
-
-Global___DeleteHardwareItemRequest: typing_extensions.TypeAlias = DeleteHardwareItemRequest
-
-@typing.final
-class DeleteHardwareItemResponse(google.protobuf.message.Message):
-    """Empty response returned when a HardwareItem is deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___DeleteHardwareItemResponse: typing_extensions.TypeAlias = DeleteHardwareItemResponse
-
-@typing.final
-class BatchDeleteHardwareItemsRequest(google.protobuf.message.Message):
-    """Request to atomically delete HardwareItems; each item has its own force value."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    REQUESTS_FIELD_NUMBER: builtins.int
-    @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteHardwareItemRequest]:
-        """1 to 1,000 HardwareItem delete requests."""
-
-    def __init__(
-        self,
-        *,
-        requests: collections.abc.Iterable[Global___DeleteHardwareItemRequest] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
-
-Global___BatchDeleteHardwareItemsRequest: typing_extensions.TypeAlias = BatchDeleteHardwareItemsRequest
-
-@typing.final
-class BatchDeleteHardwareItemsResponse(google.protobuf.message.Message):
-    """Empty response returned when all HardwareItems are deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___BatchDeleteHardwareItemsResponse: typing_extensions.TypeAlias = BatchDeleteHardwareItemsResponse
-
-@typing.final
-class DeleteTestAdapterRequest(google.protobuf.message.Message):
-    """Request to delete one TestAdapter by UUID."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TEST_ADAPTER_ID_FIELD_NUMBER: builtins.int
-    FORCE_FIELD_NUMBER: builtins.int
-    test_adapter_id: builtins.str
-    """Required. UUID of the TestAdapter to delete; aliases are not accepted."""
-    force: builtins.bool
-    """If true, remove incoming links but retain linked test data and other metadata."""
-    def __init__(
-        self,
-        *,
-        test_adapter_id: builtins.str = ...,
-        force: builtins.bool = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["force", b"force", "test_adapter_id", b"test_adapter_id"]) -> None: ...
-
-Global___DeleteTestAdapterRequest: typing_extensions.TypeAlias = DeleteTestAdapterRequest
-
-@typing.final
-class DeleteTestAdapterResponse(google.protobuf.message.Message):
-    """Empty response returned when a TestAdapter is deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___DeleteTestAdapterResponse: typing_extensions.TypeAlias = DeleteTestAdapterResponse
-
-@typing.final
-class BatchDeleteTestAdaptersRequest(google.protobuf.message.Message):
-    """Request to atomically delete TestAdapters; each item has its own force value."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    REQUESTS_FIELD_NUMBER: builtins.int
-    @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteTestAdapterRequest]:
-        """1 to 1,000 TestAdapter delete requests."""
-
-    def __init__(
-        self,
-        *,
-        requests: collections.abc.Iterable[Global___DeleteTestAdapterRequest] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
-
-Global___BatchDeleteTestAdaptersRequest: typing_extensions.TypeAlias = BatchDeleteTestAdaptersRequest
-
-@typing.final
-class BatchDeleteTestAdaptersResponse(google.protobuf.message.Message):
-    """Empty response returned when all TestAdapters are deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___BatchDeleteTestAdaptersResponse: typing_extensions.TypeAlias = BatchDeleteTestAdaptersResponse
-
-@typing.final
-class DeleteTestRequest(google.protobuf.message.Message):
-    """Request to delete one Test by UUID."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    TEST_ID_FIELD_NUMBER: builtins.int
-    FORCE_FIELD_NUMBER: builtins.int
-    test_id: builtins.str
-    """Required. UUID of the Test to delete; aliases are not accepted."""
-    force: builtins.bool
-    """If true, remove incoming links but retain linked test data and other metadata."""
-    def __init__(
-        self,
-        *,
-        test_id: builtins.str = ...,
-        force: builtins.bool = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["force", b"force", "test_id", b"test_id"]) -> None: ...
-
-Global___DeleteTestRequest: typing_extensions.TypeAlias = DeleteTestRequest
-
-@typing.final
-class DeleteTestResponse(google.protobuf.message.Message):
-    """Empty response returned when a Test is deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___DeleteTestResponse: typing_extensions.TypeAlias = DeleteTestResponse
-
-@typing.final
-class BatchDeleteTestsRequest(google.protobuf.message.Message):
-    """Request to atomically delete Tests; each item has its own force value."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    REQUESTS_FIELD_NUMBER: builtins.int
-    @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteTestRequest]:
-        """1 to 1,000 Test delete requests."""
-
-    def __init__(
-        self,
-        *,
-        requests: collections.abc.Iterable[Global___DeleteTestRequest] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
-
-Global___BatchDeleteTestsRequest: typing_extensions.TypeAlias = BatchDeleteTestsRequest
-
-@typing.final
-class BatchDeleteTestsResponse(google.protobuf.message.Message):
-    """Empty response returned when all Tests are deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___BatchDeleteTestsResponse: typing_extensions.TypeAlias = BatchDeleteTestsResponse
-
-@typing.final
-class DeleteSchemaRequest(google.protobuf.message.Message):
-    """Request to delete a Schema by its exact registered ID."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    SCHEMA_ID_FIELD_NUMBER: builtins.int
-    schema_id: builtins.str
-    """Required. Exact registered Schema ID; this is not an ordinary UUID identifier."""
-    def __init__(
-        self,
-        *,
-        schema_id: builtins.str = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["schema_id", b"schema_id"]) -> None: ...
-
-Global___DeleteSchemaRequest: typing_extensions.TypeAlias = DeleteSchemaRequest
-
-@typing.final
-class DeleteSchemaResponse(google.protobuf.message.Message):
-    """Empty response returned when a Schema is deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___DeleteSchemaResponse: typing_extensions.TypeAlias = DeleteSchemaResponse
-
-@typing.final
-class BatchDeleteSchemasRequest(google.protobuf.message.Message):
-    """Request to atomically delete Schemas by their exact registered IDs; no force option is available."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    REQUESTS_FIELD_NUMBER: builtins.int
-    @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteSchemaRequest]:
-        """1 to 1,000 Schema delete requests."""
-
-    def __init__(
-        self,
-        *,
-        requests: collections.abc.Iterable[Global___DeleteSchemaRequest] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
-
-Global___BatchDeleteSchemasRequest: typing_extensions.TypeAlias = BatchDeleteSchemasRequest
-
-@typing.final
-class BatchDeleteSchemasResponse(google.protobuf.message.Message):
-    """Empty response returned when all Schemas are deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___BatchDeleteSchemasResponse: typing_extensions.TypeAlias = BatchDeleteSchemasResponse
-
-@typing.final
-class BatchDeleteAliasesRequest(google.protobuf.message.Message):
-    """Request to atomically delete Aliases by their exact registered names; no force option is available."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    REQUESTS_FIELD_NUMBER: builtins.int
-    @property
-    def requests(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___DeleteAliasRequest]:
-        """1 to 1,000 Alias delete requests. Each uses the exact registered alias_name."""
-
-    def __init__(
-        self,
-        *,
-        requests: collections.abc.Iterable[Global___DeleteAliasRequest] | None = ...,
-    ) -> None: ...
-    def ClearField(self, field_name: typing.Literal["requests", b"requests"]) -> None: ...
-
-Global___BatchDeleteAliasesRequest: typing_extensions.TypeAlias = BatchDeleteAliasesRequest
-
-@typing.final
-class BatchDeleteAliasesResponse(google.protobuf.message.Message):
-    """Empty response returned when all Aliases are deleted successfully."""
-
-    DESCRIPTOR: google.protobuf.descriptor.Descriptor
-
-    def __init__(
-        self,
-    ) -> None: ...
-
-Global___BatchDeleteAliasesResponse: typing_extensions.TypeAlias = BatchDeleteAliasesResponse

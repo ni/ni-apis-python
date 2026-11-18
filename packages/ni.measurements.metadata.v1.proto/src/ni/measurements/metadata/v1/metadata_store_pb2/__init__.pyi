@@ -108,19 +108,12 @@ class UutInstance(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """In v1, required when extension values are present and must be the ID of a registered schema.
-    In v2, optional for schema-less Extension values; deleting the Schema clears this field
-    without changing Extension values, this resource's ID, or its stored identity keys.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your UutInstance can go here.
-        In v1, register a schema for extension attributes and specify its ID in schema_id. In v2,
-        association is optional for this metadata resource: schema-less Extension values use open
-        extension rules, while a supplied Schema continues to validate Extension values.
-        Deleting a schema in v2 clears schema_id but retains these values, this resource's ID, and
-        its stored identity keys; subsequent extension writes use schema-less rules.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -187,9 +180,8 @@ class Uut(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """In v1, required when extension values are present and must be the ID of a registered schema.
-    In v2, optional for schema-less Extension values; deleting the Schema clears this field
-    without changing Extension values, this resource's ID, or its stored identity keys.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def manufacturers(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
@@ -197,13 +189,7 @@ class Uut(google.protobuf.message.Message):
 
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your Uut can go here.
-        In v1, register a schema for extension attributes and specify its ID in schema_id. In v2,
-        association is optional for this metadata resource: schema-less Extension values use open
-        extension rules, while a supplied Schema continues to validate Extension values.
-        Deleting a schema in v2 clears schema_id but retains these values, this resource's ID, and
-        its stored identity keys; subsequent extension writes use schema-less rules.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -277,19 +263,12 @@ class HardwareItem(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """In v1, required when extension values are present and must be the ID of a registered schema.
-    In v2, optional for schema-less Extension values; deleting the Schema clears this field
-    without changing Extension values, this resource's ID, or its stored identity keys.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your HardwareItem can go here.
-        In v1, register a schema for extension attributes and specify its ID in schema_id. In v2,
-        association is optional for this metadata resource: schema-less Extension values use open
-        extension rules, while a supplied Schema continues to validate Extension values.
-        Deleting a schema in v2 clears schema_id but retains these values, this resource's ID, and
-        its stored identity keys; subsequent extension writes use schema-less rules.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -372,19 +351,12 @@ class TestAdapter(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """In v1, required when extension values are present and must be the ID of a registered schema.
-    In v2, optional for schema-less Extension values; deleting the Schema clears this field
-    without changing Extension values, this resource's ID, or its stored identity keys.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your TestAdapter can go here.
-        In v1, register a schema for extension attributes and specify its ID in schema_id. In v2,
-        association is optional for this metadata resource: schema-less Extension values use open
-        extension rules, while a supplied Schema continues to validate Extension values.
-        Deleting a schema in v2 clears schema_id but retains these values, this resource's ID, and
-        its stored identity keys; subsequent extension writes use schema-less rules.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -449,19 +421,12 @@ class SoftwareItem(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """In v1, required when extension values are present and must be the ID of a registered schema.
-    In v2, optional for schema-less Extension values; deleting the Schema clears this field
-    without changing Extension values, this resource's ID, or its stored identity keys.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your SoftwareItem can go here.
-        In v1, register a schema for extension attributes and specify its ID in schema_id. In v2,
-        association is optional for this metadata resource: schema-less Extension values use open
-        extension rules, while a supplied Schema continues to validate Extension values.
-        Deleting a schema in v2 clears schema_id but retains these values, this resource's ID, and
-        its stored identity keys; subsequent extension writes use schema-less rules.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -521,19 +486,12 @@ class Operator(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """In v1, required when extension values are present and must be the ID of a registered schema.
-    In v2, optional for schema-less Extension values; deleting the Schema clears this field
-    without changing Extension values, this resource's ID, or its stored identity keys.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your Operator can go here.
-        In v1, register a schema for extension attributes and specify its ID in schema_id. In v2,
-        association is optional for this metadata resource: schema-less Extension values use open
-        extension rules, while a supplied Schema continues to validate Extension values.
-        Deleting a schema in v2 clears schema_id but retains these values, this resource's ID, and
-        its stored identity keys; subsequent extension writes use schema-less rules.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -593,19 +551,12 @@ class TestDescription(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """In v1, required when extension values are present and must be the ID of a registered schema.
-    In v2, optional for schema-less Extension values; deleting the Schema clears this field
-    without changing Extension values, this resource's ID, or its stored identity keys.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your TestDescription can go here.
-        In v1, register a schema for extension attributes and specify its ID in schema_id. In v2,
-        association is optional for this metadata resource: schema-less Extension values use open
-        extension rules, while a supplied Schema continues to validate Extension values.
-        Deleting a schema in v2 clears schema_id but retains these values, this resource's ID, and
-        its stored identity keys; subsequent extension writes use schema-less rules.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -665,19 +616,12 @@ class Test(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """In v1, required when extension values are present and must be the ID of a registered schema.
-    In v2, optional for schema-less Extension values; deleting the Schema clears this field
-    without changing Extension values, this resource's ID, or its stored identity keys.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your Test can go here.
-        In v1, register a schema for extension attributes and specify its ID in schema_id. In v2,
-        association is optional for this metadata resource: schema-less Extension values use open
-        extension rules, while a supplied Schema continues to validate Extension values.
-        Deleting a schema in v2 clears schema_id but retains these values, this resource's ID, and
-        its stored identity keys; subsequent extension writes use schema-less rules.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -737,19 +681,12 @@ class TestStation(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """In v1, required when extension values are present and must be the ID of a registered schema.
-    In v2, optional for schema-less Extension values; deleting the Schema clears this field
-    without changing Extension values, this resource's ID, or its stored identity keys.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your TestStation can go here.
-        In v1, register a schema for extension attributes and specify its ID in schema_id. In v2,
-        association is optional for this metadata resource: schema-less Extension values use open
-        extension rules, while a supplied Schema continues to validate Extension values.
-        Deleting a schema in v2 clears schema_id but retains these values, this resource's ID, and
-        its stored identity keys; subsequent extension writes use schema-less rules.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,

@@ -327,6 +327,7 @@ class Measurement(google.protobuf.message.Message):
     HARDWARE_ITEMS_FIELD_NUMBER: builtins.int
     TEST_ADAPTERS_FIELD_NUMBER: builtins.int
     COMPARISON_TYPE_FIELD_NUMBER: builtins.int
+    KEYWORDS_FIELD_NUMBER: builtins.int
     id: builtins.str
     """Optional on create. When provided, must be a lowercase, hyphenated,
     non-nil UUID; otherwise the service generates a UUIDv4. Output contains
@@ -453,6 +454,10 @@ class Measurement(google.protobuf.message.Message):
         requested by read_mask or OData expansion.
         """
 
+    @property
+    def keywords(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
+        """Optional. Labels used to classify the measurement."""
+
     def __init__(
         self,
         *,
@@ -485,9 +490,10 @@ class Measurement(google.protobuf.message.Message):
         hardware_items: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.HardwareItem] | None = ...,
         test_adapters: collections.abc.Iterable[ni.measurements.metadata.v1.metadata_store_pb2.TestAdapter] | None = ...,
         comparison_type: builtins.str = ...,
+        keywords: collections.abc.Iterable[builtins.str] | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["created_at", b"created_at", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "lower_limit", b"lower_limit", "start_date_time", b"start_date_time", "updated_at", b"updated_at", "upper_limit", b"upper_limit", "value", b"value"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["comparison_type", b"comparison_type", "conditions", b"conditions", "created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "hardware_item_ids", b"hardware_item_ids", "hardware_items", b"hardware_items", "id", b"id", "lower_limit", b"lower_limit", "name", b"name", "notes", b"notes", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "software_items", b"software_items", "start_date_time", b"start_date_time", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "test_adapters", b"test_adapters", "test_result_id", b"test_result_id", "units", b"units", "updated_at", b"updated_at", "updated_by", b"updated_by", "upper_limit", b"upper_limit", "value", b"value", "value_type", b"value_type"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["comparison_type", b"comparison_type", "conditions", b"conditions", "created_at", b"created_at", "created_by", b"created_by", "duration", b"duration", "end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "hardware_item_ids", b"hardware_item_ids", "hardware_items", b"hardware_items", "id", b"id", "keywords", b"keywords", "lower_limit", b"lower_limit", "name", b"name", "notes", b"notes", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "software_items", b"software_items", "start_date_time", b"start_date_time", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "test_adapters", b"test_adapters", "test_result_id", b"test_result_id", "units", b"units", "updated_at", b"updated_at", "updated_by", b"updated_by", "upper_limit", b"upper_limit", "value", b"value", "value_type", b"value_type"]) -> None: ...
 
 Global___Measurement: typing_extensions.TypeAlias = Measurement
 
