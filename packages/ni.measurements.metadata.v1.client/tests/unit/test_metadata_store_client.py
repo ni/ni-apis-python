@@ -10,6 +10,30 @@ from pytest_mock import MockerFixture
 
 from ni.measurements.metadata.v1.client import MetadataStoreClient
 
+DELETE_RPC_METHODS = (
+    ("DeleteUutInstance", "delete_uut_instance"),
+    ("BatchDeleteUutInstances", "batch_delete_uut_instances"),
+    ("DeleteUut", "delete_uut"),
+    ("BatchDeleteUuts", "batch_delete_uuts"),
+    ("DeleteOperator", "delete_operator"),
+    ("BatchDeleteOperators", "batch_delete_operators"),
+    ("DeleteTestDescription", "delete_test_description"),
+    ("BatchDeleteTestDescriptions", "batch_delete_test_descriptions"),
+    ("DeleteTest", "delete_test"),
+    ("BatchDeleteTests", "batch_delete_tests"),
+    ("DeleteTestStation", "delete_test_station"),
+    ("BatchDeleteTestStations", "batch_delete_test_stations"),
+    ("DeleteHardwareItem", "delete_hardware_item"),
+    ("BatchDeleteHardwareItems", "batch_delete_hardware_items"),
+    ("DeleteSoftwareItem", "delete_software_item"),
+    ("BatchDeleteSoftwareItems", "batch_delete_software_items"),
+    ("DeleteTestAdapter", "delete_test_adapter"),
+    ("BatchDeleteTestAdapters", "batch_delete_test_adapters"),
+    ("DeleteSchema", "delete_schema"),
+    ("BatchDeleteSchemas", "batch_delete_schemas"),
+    ("BatchDeleteAliases", "batch_delete_aliases"),
+)
+
 
 def test__get_uut_instance__request_and_response_pass_through(
     metadata_store_client: MetadataStoreClient, metadata_store_stub: Mock
@@ -580,6 +604,43 @@ def test__delete_alias__request_and_response_pass_through(
     assert stub_response == client_response
 
 
+@pytest.mark.parametrize(("rpc_name", "client_method"), DELETE_RPC_METHODS)
+def test__delete_rpc__request_and_response_pass_through(
+    metadata_store_client: MetadataStoreClient,
+    metadata_store_stub: Mock,
+    rpc_name: str,
+    client_method: str,
+) -> None:
+    request = getattr(metadata_store_service_types, f"{rpc_name}Request")()
+    response = getattr(metadata_store_service_types, f"{rpc_name}Response")()
+    rpc = getattr(metadata_store_stub, rpc_name)
+    rpc.return_value = response
+
+    client_response = getattr(metadata_store_client, client_method)(request)
+
+    rpc.assert_called_once_with(request)
+    assert client_response is response
+
+
+@pytest.mark.parametrize(("rpc_name", "client_method"), DELETE_RPC_METHODS)
+def test__delete_rpc__error_propagates_unchanged(
+    metadata_store_client: MetadataStoreClient,
+    metadata_store_stub: Mock,
+    rpc_name: str,
+    client_method: str,
+) -> None:
+    request = getattr(metadata_store_service_types, f"{rpc_name}Request")()
+    error = grpc.RpcError("request failed")
+    rpc = getattr(metadata_store_stub, rpc_name)
+    rpc.side_effect = error
+
+    with pytest.raises(grpc.RpcError) as raised:
+        getattr(metadata_store_client, client_method)(request)
+
+    assert raised.value is error
+    rpc.assert_called_once_with(request)
+
+
 @pytest.fixture
 def metadata_store_client(
     mocker: MockerFixture,
@@ -631,4 +692,6 @@ def metadata_store_stub(mocker: MockerFixture) -> Mock:
     stub.QueryAliases = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     stub.CreateAlias = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
     stub.DeleteAlias = mocker.create_autospec(grpc.UnaryUnaryMultiCallable)
+    for rpc_name, _ in DELETE_RPC_METHODS:
+        setattr(stub, rpc_name, mocker.create_autospec(grpc.UnaryUnaryMultiCallable))
     return stub
