@@ -246,6 +246,12 @@ class MetadataStoreClient(
         """Deletes a created alias."""
         return self._get_stub().DeleteAlias(request)
 
+    def batch_delete_aliases(
+        self, request: metadata_store_service_pb2.BatchDeleteAliasesRequest
+    ) -> metadata_store_service_pb2.BatchDeleteAliasesResponse:
+        """Deletes multiple aliases atomically."""
+        return self._get_stub().BatchDeleteAliases(request)
+
     def delete_uut_instance(
         self, request: metadata_store_service_pb2.DeleteUutInstanceRequest
     ) -> metadata_store_service_pb2.DeleteUutInstanceResponse:
@@ -365,12 +371,6 @@ class MetadataStoreClient(
     ) -> metadata_store_service_pb2.BatchDeleteSchemasResponse:
         """Deletes multiple schemas atomically."""
         return self._get_stub().BatchDeleteSchemas(request)
-
-    def batch_delete_aliases(
-        self, request: metadata_store_service_pb2.BatchDeleteAliasesRequest
-    ) -> metadata_store_service_pb2.BatchDeleteAliasesResponse:
-        """Deletes multiple aliases atomically."""
-        return self._get_stub().BatchDeleteAliases(request)
 
     def create_from_json_document(
         self, request: metadata_store_service_pb2.CreateFromJsonDocumentRequest
