@@ -108,15 +108,12 @@ class UutInstance(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your UutInstance
-        can go here. To add extension attributes, you must first register a schema,
-        and specify the schema's id in the 'schema_id' field.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -183,8 +180,8 @@ class Uut(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def manufacturers(self) -> google.protobuf.internal.containers.RepeatedScalarFieldContainer[builtins.str]:
@@ -192,10 +189,7 @@ class Uut(google.protobuf.message.Message):
 
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your Uut
-        can go here. To add extension attributes, you must first register a schema,
-        and specify the schema's id in the 'schema_id' field.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -269,15 +263,12 @@ class HardwareItem(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your HardwareItem
-        can go here. To add extension attributes, you must first register a schema,
-        and specify the schema's id in the 'schema_id' field.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -360,15 +351,12 @@ class TestAdapter(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your TestAdapter
-        can go here. To add extension attributes, you must first register a schema,
-        and specify the schema's id in the 'schema_id' field.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -433,15 +421,12 @@ class SoftwareItem(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your SoftwareItem
-        can go here. To add extension attributes, you must first register a schema,
-        and specify the schema's id in the 'schema_id' field.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -501,15 +486,12 @@ class Operator(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your Operator
-        can go here. To add extension attributes, you must first register a schema,
-        and specify the schema's id in the 'schema_id' field.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -569,15 +551,12 @@ class TestDescription(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your TestDescription
-        can go here. To add extension attributes, you must first register a schema,
-        and specify the schema's id in the 'schema_id' field.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -637,15 +616,12 @@ class Test(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your Test
-        can go here. To add extension attributes, you must first register a schema,
-        and specify the schema's id in the 'schema_id' field.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,
@@ -705,15 +681,12 @@ class TestStation(google.protobuf.message.Message):
     This value is expected to be a valid URI.
     """
     schema_id: builtins.str
-    """The unique identifier of the schema that applies to this instance's extension.
-    If any extension is associated with this instance, a schema_id must be provided.
+    """Optional. The registered schema used to validate extension attributes.
+    Deleting the schema clears this field without removing the attributes.
     """
     @property
     def extension(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ExtensionValue]:
-        """Optional. Any attributes used to extend the definition of your TestStation
-        can go here. To add extension attributes, you must first register a schema,
-        and specify the schema's id in the 'schema_id' field.
-        """
+        """Optional. Additional attributes, validated using schema_id when provided."""
 
     def __init__(
         self,

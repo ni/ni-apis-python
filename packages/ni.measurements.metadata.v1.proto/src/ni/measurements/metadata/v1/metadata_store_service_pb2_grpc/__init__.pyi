@@ -73,6 +73,38 @@ _MetadataStoreServiceCreateUutInstanceType = typing_extensions.TypeVar(
     ],
 )
 
+_MetadataStoreServiceDeleteUutInstanceType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceDeleteUutInstanceType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceResponse,
+    ],
+)
+
+_MetadataStoreServiceBatchDeleteUutInstancesType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceBatchDeleteUutInstancesType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesResponse,
+    ],
+)
+
 _MetadataStoreServiceGetUutType = typing_extensions.TypeVar(
     '_MetadataStoreServiceGetUutType',
     grpc.UnaryUnaryMultiCallable[
@@ -118,6 +150,38 @@ _MetadataStoreServiceCreateUutType = typing_extensions.TypeVar(
     default=grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
+    ],
+)
+
+_MetadataStoreServiceDeleteUutType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceDeleteUutType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutResponse,
+    ],
+)
+
+_MetadataStoreServiceBatchDeleteUutsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceBatchDeleteUutsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsResponse,
     ],
 )
 
@@ -169,6 +233,38 @@ _MetadataStoreServiceCreateOperatorType = typing_extensions.TypeVar(
     ],
 )
 
+_MetadataStoreServiceDeleteOperatorType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceDeleteOperatorType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorResponse,
+    ],
+)
+
+_MetadataStoreServiceBatchDeleteOperatorsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceBatchDeleteOperatorsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsResponse,
+    ],
+)
+
 _MetadataStoreServiceGetTestDescriptionType = typing_extensions.TypeVar(
     '_MetadataStoreServiceGetTestDescriptionType',
     grpc.UnaryUnaryMultiCallable[
@@ -214,6 +310,38 @@ _MetadataStoreServiceCreateTestDescriptionType = typing_extensions.TypeVar(
     default=grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
+    ],
+)
+
+_MetadataStoreServiceDeleteTestDescriptionType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceDeleteTestDescriptionType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionResponse,
+    ],
+)
+
+_MetadataStoreServiceBatchDeleteTestDescriptionsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceBatchDeleteTestDescriptionsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsResponse,
     ],
 )
 
@@ -265,6 +393,38 @@ _MetadataStoreServiceCreateTestType = typing_extensions.TypeVar(
     ],
 )
 
+_MetadataStoreServiceDeleteTestType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceDeleteTestType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestResponse,
+    ],
+)
+
+_MetadataStoreServiceBatchDeleteTestsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceBatchDeleteTestsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsResponse,
+    ],
+)
+
 _MetadataStoreServiceGetTestStationType = typing_extensions.TypeVar(
     '_MetadataStoreServiceGetTestStationType',
     grpc.UnaryUnaryMultiCallable[
@@ -310,6 +470,38 @@ _MetadataStoreServiceCreateTestStationType = typing_extensions.TypeVar(
     default=grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse,
+    ],
+)
+
+_MetadataStoreServiceDeleteTestStationType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceDeleteTestStationType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationResponse,
+    ],
+)
+
+_MetadataStoreServiceBatchDeleteTestStationsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceBatchDeleteTestStationsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsResponse,
     ],
 )
 
@@ -361,6 +553,38 @@ _MetadataStoreServiceCreateHardwareItemType = typing_extensions.TypeVar(
     ],
 )
 
+_MetadataStoreServiceDeleteHardwareItemType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceDeleteHardwareItemType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemResponse,
+    ],
+)
+
+_MetadataStoreServiceBatchDeleteHardwareItemsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceBatchDeleteHardwareItemsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsResponse,
+    ],
+)
+
 _MetadataStoreServiceGetSoftwareItemType = typing_extensions.TypeVar(
     '_MetadataStoreServiceGetSoftwareItemType',
     grpc.UnaryUnaryMultiCallable[
@@ -406,6 +630,38 @@ _MetadataStoreServiceCreateSoftwareItemType = typing_extensions.TypeVar(
     default=grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
+    ],
+)
+
+_MetadataStoreServiceDeleteSoftwareItemType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceDeleteSoftwareItemType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemResponse,
+    ],
+)
+
+_MetadataStoreServiceBatchDeleteSoftwareItemsType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceBatchDeleteSoftwareItemsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsResponse,
     ],
 )
 
@@ -457,6 +713,38 @@ _MetadataStoreServiceCreateTestAdapterType = typing_extensions.TypeVar(
     ],
 )
 
+_MetadataStoreServiceDeleteTestAdapterType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceDeleteTestAdapterType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterResponse,
+    ],
+)
+
+_MetadataStoreServiceBatchDeleteTestAdaptersType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceBatchDeleteTestAdaptersType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersResponse,
+    ],
+)
+
 _MetadataStoreServiceRegisterSchemaType = typing_extensions.TypeVar(
     '_MetadataStoreServiceRegisterSchemaType',
     grpc.UnaryUnaryMultiCallable[
@@ -486,6 +774,38 @@ _MetadataStoreServiceListSchemasType = typing_extensions.TypeVar(
     default=grpc.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
+    ],
+)
+
+_MetadataStoreServiceDeleteSchemaType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceDeleteSchemaType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaResponse,
+    ],
+)
+
+_MetadataStoreServiceBatchDeleteSchemasType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceBatchDeleteSchemasType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasResponse,
     ],
 )
 
@@ -553,6 +873,22 @@ _MetadataStoreServiceDeleteAliasType = typing_extensions.TypeVar(
     ],
 )
 
+_MetadataStoreServiceBatchDeleteAliasesType = typing_extensions.TypeVar(
+    '_MetadataStoreServiceBatchDeleteAliasesType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesResponse,
+    ],
+)
+
 _MetadataStoreServiceCreateFromJsonDocumentType = typing_extensions.TypeVar(
     '_MetadataStoreServiceCreateFromJsonDocumentType',
     grpc.UnaryUnaryMultiCallable[
@@ -569,7 +905,7 @@ _MetadataStoreServiceCreateFromJsonDocumentType = typing_extensions.TypeVar(
     ],
 )
 
-class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanceType, _MetadataStoreServiceQueryUutInstancesType, _MetadataStoreServiceCreateUutInstanceType, _MetadataStoreServiceGetUutType, _MetadataStoreServiceQueryUutsType, _MetadataStoreServiceCreateUutType, _MetadataStoreServiceGetOperatorType, _MetadataStoreServiceQueryOperatorsType, _MetadataStoreServiceCreateOperatorType, _MetadataStoreServiceGetTestDescriptionType, _MetadataStoreServiceQueryTestDescriptionsType, _MetadataStoreServiceCreateTestDescriptionType, _MetadataStoreServiceGetTestType, _MetadataStoreServiceQueryTestsType, _MetadataStoreServiceCreateTestType, _MetadataStoreServiceGetTestStationType, _MetadataStoreServiceQueryTestStationsType, _MetadataStoreServiceCreateTestStationType, _MetadataStoreServiceGetHardwareItemType, _MetadataStoreServiceQueryHardwareItemsType, _MetadataStoreServiceCreateHardwareItemType, _MetadataStoreServiceGetSoftwareItemType, _MetadataStoreServiceQuerySoftwareItemsType, _MetadataStoreServiceCreateSoftwareItemType, _MetadataStoreServiceGetTestAdapterType, _MetadataStoreServiceQueryTestAdaptersType, _MetadataStoreServiceCreateTestAdapterType, _MetadataStoreServiceRegisterSchemaType, _MetadataStoreServiceListSchemasType, _MetadataStoreServiceGetAliasType, _MetadataStoreServiceQueryAliasesType, _MetadataStoreServiceCreateAliasType, _MetadataStoreServiceDeleteAliasType, _MetadataStoreServiceCreateFromJsonDocumentType]):
+class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanceType, _MetadataStoreServiceQueryUutInstancesType, _MetadataStoreServiceCreateUutInstanceType, _MetadataStoreServiceDeleteUutInstanceType, _MetadataStoreServiceBatchDeleteUutInstancesType, _MetadataStoreServiceGetUutType, _MetadataStoreServiceQueryUutsType, _MetadataStoreServiceCreateUutType, _MetadataStoreServiceDeleteUutType, _MetadataStoreServiceBatchDeleteUutsType, _MetadataStoreServiceGetOperatorType, _MetadataStoreServiceQueryOperatorsType, _MetadataStoreServiceCreateOperatorType, _MetadataStoreServiceDeleteOperatorType, _MetadataStoreServiceBatchDeleteOperatorsType, _MetadataStoreServiceGetTestDescriptionType, _MetadataStoreServiceQueryTestDescriptionsType, _MetadataStoreServiceCreateTestDescriptionType, _MetadataStoreServiceDeleteTestDescriptionType, _MetadataStoreServiceBatchDeleteTestDescriptionsType, _MetadataStoreServiceGetTestType, _MetadataStoreServiceQueryTestsType, _MetadataStoreServiceCreateTestType, _MetadataStoreServiceDeleteTestType, _MetadataStoreServiceBatchDeleteTestsType, _MetadataStoreServiceGetTestStationType, _MetadataStoreServiceQueryTestStationsType, _MetadataStoreServiceCreateTestStationType, _MetadataStoreServiceDeleteTestStationType, _MetadataStoreServiceBatchDeleteTestStationsType, _MetadataStoreServiceGetHardwareItemType, _MetadataStoreServiceQueryHardwareItemsType, _MetadataStoreServiceCreateHardwareItemType, _MetadataStoreServiceDeleteHardwareItemType, _MetadataStoreServiceBatchDeleteHardwareItemsType, _MetadataStoreServiceGetSoftwareItemType, _MetadataStoreServiceQuerySoftwareItemsType, _MetadataStoreServiceCreateSoftwareItemType, _MetadataStoreServiceDeleteSoftwareItemType, _MetadataStoreServiceBatchDeleteSoftwareItemsType, _MetadataStoreServiceGetTestAdapterType, _MetadataStoreServiceQueryTestAdaptersType, _MetadataStoreServiceCreateTestAdapterType, _MetadataStoreServiceDeleteTestAdapterType, _MetadataStoreServiceBatchDeleteTestAdaptersType, _MetadataStoreServiceRegisterSchemaType, _MetadataStoreServiceListSchemasType, _MetadataStoreServiceDeleteSchemaType, _MetadataStoreServiceBatchDeleteSchemasType, _MetadataStoreServiceGetAliasType, _MetadataStoreServiceQueryAliasesType, _MetadataStoreServiceCreateAliasType, _MetadataStoreServiceDeleteAliasType, _MetadataStoreServiceBatchDeleteAliasesType, _MetadataStoreServiceCreateFromJsonDocumentType]):
     """This service is responsible for storing and retrieving metadata associated with test step measurements."""
 
     @typing.overload
@@ -587,6 +923,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse,
         ],
@@ -597,6 +941,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorRequest,
@@ -611,6 +963,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse,
         ],
@@ -621,6 +981,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestRequest,
@@ -635,6 +1003,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationResponse,
         ],
@@ -645,6 +1021,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
@@ -659,6 +1043,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse,
         ],
@@ -669,6 +1061,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
@@ -683,12 +1083,28 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
@@ -705,6 +1121,10 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesResponse,
         ],
         grpc.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
@@ -727,6 +1147,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse,
         ],
@@ -737,6 +1165,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
         grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorRequest,
@@ -751,6 +1187,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse,
         ],
@@ -761,6 +1205,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
         grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestRequest,
@@ -775,6 +1227,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationResponse,
         ],
@@ -785,6 +1245,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
         grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
@@ -799,6 +1267,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse,
         ],
@@ -809,6 +1285,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
         grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
@@ -823,12 +1307,28 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
@@ -847,6 +1347,10 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
             ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
         ],
         grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesRequest,
+            ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
             ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentResponse,
         ],
@@ -861,6 +1365,18 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
     CreateUutInstance: _MetadataStoreServiceCreateUutInstanceType
     """Creates a new UUT instance in the metadata store."""
 
+    DeleteUutInstance: _MetadataStoreServiceDeleteUutInstanceType
+    """Deletes a UutInstance and its aliases, retaining its UUT and sibling instances.
+    Returns NOT_FOUND if the UutInstance does not exist, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
+    BatchDeleteUutInstances: _MetadataStoreServiceBatchDeleteUutInstancesType
+    """Deletes UutInstances and their aliases without deleting their UUTs.
+    Returns NOT_FOUND for a missing UutInstance, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
     GetUut: _MetadataStoreServiceGetUutType
     """Gets the UUT associated with the identifier given in the request."""
 
@@ -869,6 +1385,18 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
 
     CreateUut: _MetadataStoreServiceCreateUutType
     """Creates a new UUT in the metadata store."""
+
+    DeleteUut: _MetadataStoreServiceDeleteUutType
+    """Deletes a UUT and its aliases. With force, also deletes its UutInstances.
+    Returns NOT_FOUND if the UUT does not exist, or FAILED_PRECONDITION
+    if references or owned instances prevent deletion.
+    """
+
+    BatchDeleteUuts: _MetadataStoreServiceBatchDeleteUutsType
+    """Deletes UUTs and their aliases. Forced requests also delete their UutInstances.
+    Returns NOT_FOUND for a missing UUT, or FAILED_PRECONDITION
+    if references or owned instances prevent deletion.
+    """
 
     GetOperator: _MetadataStoreServiceGetOperatorType
     """Gets the operator associated with the identifier given in the request."""
@@ -879,6 +1407,18 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
     CreateOperator: _MetadataStoreServiceCreateOperatorType
     """Creates a new operator in the metadata store."""
 
+    DeleteOperator: _MetadataStoreServiceDeleteOperatorType
+    """Deletes an Operator and its aliases.
+    Returns NOT_FOUND if the Operator does not exist, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
+    BatchDeleteOperators: _MetadataStoreServiceBatchDeleteOperatorsType
+    """Deletes Operators and their aliases using each request's force setting.
+    Returns NOT_FOUND for a missing Operator, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
     GetTestDescription: _MetadataStoreServiceGetTestDescriptionType
     """Gets the test description associated with the identifier given in the request."""
 
@@ -887,6 +1427,18 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
 
     CreateTestDescription: _MetadataStoreServiceCreateTestDescriptionType
     """Creates a new test description in the metadata store."""
+
+    DeleteTestDescription: _MetadataStoreServiceDeleteTestDescriptionType
+    """Deletes a TestDescription and its aliases.
+    Returns NOT_FOUND if the TestDescription does not exist, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
+    BatchDeleteTestDescriptions: _MetadataStoreServiceBatchDeleteTestDescriptionsType
+    """Deletes TestDescriptions and their aliases using each request's force setting.
+    Returns NOT_FOUND for a missing TestDescription, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
 
     GetTest: _MetadataStoreServiceGetTestType
     """Gets the test associated with the identifier given in the request."""
@@ -897,6 +1449,18 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
     CreateTest: _MetadataStoreServiceCreateTestType
     """Creates a new test in the metadata store."""
 
+    DeleteTest: _MetadataStoreServiceDeleteTestType
+    """Deletes a Test and its aliases.
+    Returns NOT_FOUND if the Test does not exist, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
+    BatchDeleteTests: _MetadataStoreServiceBatchDeleteTestsType
+    """Deletes Tests and their aliases using each request's force setting.
+    Returns NOT_FOUND for a missing Test, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
     GetTestStation: _MetadataStoreServiceGetTestStationType
     """Gets the test station associated with the identifier given in the request."""
 
@@ -905,6 +1469,18 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
 
     CreateTestStation: _MetadataStoreServiceCreateTestStationType
     """Creates a new test station in the metadata store."""
+
+    DeleteTestStation: _MetadataStoreServiceDeleteTestStationType
+    """Deletes a TestStation and its aliases.
+    Returns NOT_FOUND if the TestStation does not exist, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
+    BatchDeleteTestStations: _MetadataStoreServiceBatchDeleteTestStationsType
+    """Deletes TestStations and their aliases using each request's force setting.
+    Returns NOT_FOUND for a missing TestStation, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
 
     GetHardwareItem: _MetadataStoreServiceGetHardwareItemType
     """Gets the hardware item associated with the identifier given in the request."""
@@ -915,6 +1491,18 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
     CreateHardwareItem: _MetadataStoreServiceCreateHardwareItemType
     """Creates a new hardware item in the metadata store."""
 
+    DeleteHardwareItem: _MetadataStoreServiceDeleteHardwareItemType
+    """Deletes a HardwareItem and its aliases.
+    Returns NOT_FOUND if the HardwareItem does not exist, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
+    BatchDeleteHardwareItems: _MetadataStoreServiceBatchDeleteHardwareItemsType
+    """Deletes HardwareItems and their aliases using each request's force setting.
+    Returns NOT_FOUND for a missing HardwareItem, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
     GetSoftwareItem: _MetadataStoreServiceGetSoftwareItemType
     """Gets the software item associated with the identifier given in the request."""
 
@@ -923,6 +1511,18 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
 
     CreateSoftwareItem: _MetadataStoreServiceCreateSoftwareItemType
     """Creates a new software item in the metadata store."""
+
+    DeleteSoftwareItem: _MetadataStoreServiceDeleteSoftwareItemType
+    """Deletes a SoftwareItem and its aliases.
+    Returns NOT_FOUND if the SoftwareItem does not exist, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
+    BatchDeleteSoftwareItems: _MetadataStoreServiceBatchDeleteSoftwareItemsType
+    """Deletes SoftwareItems and their aliases using each request's force setting.
+    Returns NOT_FOUND for a missing SoftwareItem, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
 
     GetTestAdapter: _MetadataStoreServiceGetTestAdapterType
     """Gets the test adapter associated with the identifier given in the request."""
@@ -933,11 +1533,35 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
     CreateTestAdapter: _MetadataStoreServiceCreateTestAdapterType
     """Creates a new test adapter in the metadata store."""
 
+    DeleteTestAdapter: _MetadataStoreServiceDeleteTestAdapterType
+    """Deletes a TestAdapter and its aliases.
+    Returns NOT_FOUND if the TestAdapter does not exist, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
+    BatchDeleteTestAdapters: _MetadataStoreServiceBatchDeleteTestAdaptersType
+    """Deletes TestAdapters and their aliases using each request's force setting.
+    Returns NOT_FOUND for a missing TestAdapter, or FAILED_PRECONDITION
+    if references prevent deletion.
+    """
+
     RegisterSchema: _MetadataStoreServiceRegisterSchemaType
-    """Registers a schema. Once a schema has been published, it cannot be modified or removed."""
+    """Registers a schema. A registered schema cannot be modified."""
 
     ListSchemas: _MetadataStoreServiceListSchemasType
     """Lists the schemas that have been previously registered"""
+
+    DeleteSchema: _MetadataStoreServiceDeleteSchemaType
+    """Deletes a Schema and clears its associations with metadata.
+    The metadata, extension attributes, and aliases are retained.
+    Returns NOT_FOUND if the Schema does not exist.
+    """
+
+    BatchDeleteSchemas: _MetadataStoreServiceBatchDeleteSchemasType
+    """Deletes Schemas and clears their associations with metadata.
+    The metadata, extension attributes, and aliases are retained.
+    Returns NOT_FOUND for a missing Schema.
+    """
 
     GetAlias: _MetadataStoreServiceGetAliasType
     """Gets the alias and its target (i.e., the underlying metadata that it represents)"""
@@ -953,7 +1577,14 @@ class MetadataStoreServiceStub(typing.Generic[_MetadataStoreServiceGetUutInstanc
     """
 
     DeleteAlias: _MetadataStoreServiceDeleteAliasType
-    """Removes a registered alias"""
+    """Removes an alias without deleting its target metadata.
+    Returns NOT_FOUND if the alias does not exist.
+    """
+
+    BatchDeleteAliases: _MetadataStoreServiceBatchDeleteAliasesType
+    """Removes aliases without deleting their target metadata.
+    Returns NOT_FOUND for a missing alias.
+    """
 
     CreateFromJsonDocument: _MetadataStoreServiceCreateFromJsonDocumentType
     """Creates all of the metadata entries contained in the provided JSON document.
@@ -977,6 +1608,14 @@ MetadataStoreServiceAsyncStub: typing_extensions.TypeAlias = MetadataStoreServic
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutInstanceResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutResponse,
     ],
@@ -987,6 +1626,14 @@ MetadataStoreServiceAsyncStub: typing_extensions.TypeAlias = MetadataStoreServic
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetOperatorRequest,
@@ -1001,6 +1648,14 @@ MetadataStoreServiceAsyncStub: typing_extensions.TypeAlias = MetadataStoreServic
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateOperatorResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionResponse,
     ],
@@ -1011,6 +1666,14 @@ MetadataStoreServiceAsyncStub: typing_extensions.TypeAlias = MetadataStoreServic
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestRequest,
@@ -1025,6 +1688,14 @@ MetadataStoreServiceAsyncStub: typing_extensions.TypeAlias = MetadataStoreServic
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationResponse,
     ],
@@ -1035,6 +1706,14 @@ MetadataStoreServiceAsyncStub: typing_extensions.TypeAlias = MetadataStoreServic
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetHardwareItemRequest,
@@ -1049,6 +1728,14 @@ MetadataStoreServiceAsyncStub: typing_extensions.TypeAlias = MetadataStoreServic
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateHardwareItemResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemResponse,
     ],
@@ -1059,6 +1746,14 @@ MetadataStoreServiceAsyncStub: typing_extensions.TypeAlias = MetadataStoreServic
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestAdapterRequest,
@@ -1073,12 +1768,28 @@ MetadataStoreServiceAsyncStub: typing_extensions.TypeAlias = MetadataStoreServic
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestAdapterResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.GetAliasRequest,
@@ -1095,6 +1806,10 @@ MetadataStoreServiceAsyncStub: typing_extensions.TypeAlias = MetadataStoreServic
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
         ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesRequest,
+        ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesResponse,
     ],
     grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.metadata.v1.metadata_store_service_pb2.CreateFromJsonDocumentRequest,
@@ -1130,6 +1845,28 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         """Creates a new UUT instance in the metadata store."""
 
     @abc.abstractmethod
+    def DeleteUutInstance(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutInstanceResponse]]:
+        """Deletes a UutInstance and its aliases, retaining its UUT and sibling instances.
+        Returns NOT_FOUND if the UutInstance does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
+    def BatchDeleteUutInstances(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutInstancesResponse]]:
+        """Deletes UutInstances and their aliases without deleting their UUTs.
+        Returns NOT_FOUND for a missing UutInstance, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
     def GetUut(
         self,
         request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetUutRequest,
@@ -1152,6 +1889,28 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateUutResponse]]:
         """Creates a new UUT in the metadata store."""
+
+    @abc.abstractmethod
+    def DeleteUut(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteUutResponse]]:
+        """Deletes a UUT and its aliases. With force, also deletes its UutInstances.
+        Returns NOT_FOUND if the UUT does not exist, or FAILED_PRECONDITION
+        if references or owned instances prevent deletion.
+        """
+
+    @abc.abstractmethod
+    def BatchDeleteUuts(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteUutsResponse]]:
+        """Deletes UUTs and their aliases. Forced requests also delete their UutInstances.
+        Returns NOT_FOUND for a missing UUT, or FAILED_PRECONDITION
+        if references or owned instances prevent deletion.
+        """
 
     @abc.abstractmethod
     def GetOperator(
@@ -1178,6 +1937,28 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         """Creates a new operator in the metadata store."""
 
     @abc.abstractmethod
+    def DeleteOperator(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteOperatorResponse]]:
+        """Deletes an Operator and its aliases.
+        Returns NOT_FOUND if the Operator does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
+    def BatchDeleteOperators(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteOperatorsResponse]]:
+        """Deletes Operators and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing Operator, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
     def GetTestDescription(
         self,
         request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestDescriptionRequest,
@@ -1200,6 +1981,28 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestDescriptionResponse]]:
         """Creates a new test description in the metadata store."""
+
+    @abc.abstractmethod
+    def DeleteTestDescription(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestDescriptionResponse]]:
+        """Deletes a TestDescription and its aliases.
+        Returns NOT_FOUND if the TestDescription does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
+    def BatchDeleteTestDescriptions(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestDescriptionsResponse]]:
+        """Deletes TestDescriptions and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing TestDescription, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
 
     @abc.abstractmethod
     def GetTest(
@@ -1226,6 +2029,28 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         """Creates a new test in the metadata store."""
 
     @abc.abstractmethod
+    def DeleteTest(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestResponse]]:
+        """Deletes a Test and its aliases.
+        Returns NOT_FOUND if the Test does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
+    def BatchDeleteTests(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestsResponse]]:
+        """Deletes Tests and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing Test, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
     def GetTestStation(
         self,
         request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetTestStationRequest,
@@ -1248,6 +2073,28 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateTestStationResponse]]:
         """Creates a new test station in the metadata store."""
+
+    @abc.abstractmethod
+    def DeleteTestStation(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestStationResponse]]:
+        """Deletes a TestStation and its aliases.
+        Returns NOT_FOUND if the TestStation does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
+    def BatchDeleteTestStations(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestStationsResponse]]:
+        """Deletes TestStations and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing TestStation, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
 
     @abc.abstractmethod
     def GetHardwareItem(
@@ -1274,6 +2121,28 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         """Creates a new hardware item in the metadata store."""
 
     @abc.abstractmethod
+    def DeleteHardwareItem(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteHardwareItemResponse]]:
+        """Deletes a HardwareItem and its aliases.
+        Returns NOT_FOUND if the HardwareItem does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
+    def BatchDeleteHardwareItems(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteHardwareItemsResponse]]:
+        """Deletes HardwareItems and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing HardwareItem, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
     def GetSoftwareItem(
         self,
         request: ni.measurements.metadata.v1.metadata_store_service_pb2.GetSoftwareItemRequest,
@@ -1296,6 +2165,28 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.CreateSoftwareItemResponse]]:
         """Creates a new software item in the metadata store."""
+
+    @abc.abstractmethod
+    def DeleteSoftwareItem(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSoftwareItemResponse]]:
+        """Deletes a SoftwareItem and its aliases.
+        Returns NOT_FOUND if the SoftwareItem does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
+    def BatchDeleteSoftwareItems(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSoftwareItemsResponse]]:
+        """Deletes SoftwareItems and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing SoftwareItem, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
 
     @abc.abstractmethod
     def GetTestAdapter(
@@ -1322,12 +2213,34 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         """Creates a new test adapter in the metadata store."""
 
     @abc.abstractmethod
+    def DeleteTestAdapter(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteTestAdapterResponse]]:
+        """Deletes a TestAdapter and its aliases.
+        Returns NOT_FOUND if the TestAdapter does not exist, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
+    def BatchDeleteTestAdapters(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteTestAdaptersResponse]]:
+        """Deletes TestAdapters and their aliases using each request's force setting.
+        Returns NOT_FOUND for a missing TestAdapter, or FAILED_PRECONDITION
+        if references prevent deletion.
+        """
+
+    @abc.abstractmethod
     def RegisterSchema(
         self,
         request: ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaRequest,
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.RegisterSchemaResponse]]:
-        """Registers a schema. Once a schema has been published, it cannot be modified or removed."""
+        """Registers a schema. A registered schema cannot be modified."""
 
     @abc.abstractmethod
     def ListSchemas(
@@ -1336,6 +2249,28 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.ListSchemasResponse]]:
         """Lists the schemas that have been previously registered"""
+
+    @abc.abstractmethod
+    def DeleteSchema(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteSchemaResponse]]:
+        """Deletes a Schema and clears its associations with metadata.
+        The metadata, extension attributes, and aliases are retained.
+        Returns NOT_FOUND if the Schema does not exist.
+        """
+
+    @abc.abstractmethod
+    def BatchDeleteSchemas(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteSchemasResponse]]:
+        """Deletes Schemas and clears their associations with metadata.
+        The metadata, extension attributes, and aliases are retained.
+        Returns NOT_FOUND for a missing Schema.
+        """
 
     @abc.abstractmethod
     def GetAlias(
@@ -1371,7 +2306,19 @@ class MetadataStoreServiceServicer(metaclass=abc.ABCMeta):
         request: ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasRequest,
         context: _ServicerContext,
     ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.DeleteAliasResponse]]:
-        """Removes a registered alias"""
+        """Removes an alias without deleting its target metadata.
+        Returns NOT_FOUND if the alias does not exist.
+        """
+
+    @abc.abstractmethod
+    def BatchDeleteAliases(
+        self,
+        request: ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesRequest,
+        context: _ServicerContext,
+    ) -> typing.Union[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesResponse, collections.abc.Awaitable[ni.measurements.metadata.v1.metadata_store_service_pb2.BatchDeleteAliasesResponse]]:
+        """Removes aliases without deleting their target metadata.
+        Returns NOT_FOUND for a missing alias.
+        """
 
     @abc.abstractmethod
     def CreateFromJsonDocument(
