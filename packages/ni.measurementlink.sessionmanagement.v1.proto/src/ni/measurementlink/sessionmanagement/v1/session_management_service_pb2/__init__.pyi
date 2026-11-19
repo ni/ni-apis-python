@@ -10,7 +10,13 @@ import google.protobuf.internal.containers
 import google.protobuf.message
 import ni.measurementlink.pin_map_context_pb2
 import session_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -83,7 +89,7 @@ class SessionInformation(google.protobuf.message.Message):
         """
 
     @property
-    def channel_mappings(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___ChannelMapping]:
+    def channel_mappings(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___ChannelMapping]:
         """List of site and I/O resource mappings with optional multiplexer information for each channel in the channel_list.
         Each item represents a channel-to-I/O-resource connection for this instrument resource. In the case of shared pins, there is a separate item for each connection.
         This field is empty for any SessionInformation returned from ReserveAllRegisteredSessions.
@@ -106,13 +112,13 @@ class SessionInformation(google.protobuf.message.Message):
         instrument_type_id: builtins.str = ...,
         session_exists: builtins.bool = ...,
         session_reserved: builtins.bool = ...,
-        channel_mappings: collections.abc.Iterable[global___ChannelMapping] | None = ...,
+        channel_mappings: collections.abc.Iterable[Global___ChannelMapping] | None = ...,
         annotations: collections.abc.Mapping[builtins.str, builtins.str] | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["session", b"session"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["annotations", b"annotations", "channel_list", b"channel_list", "channel_mappings", b"channel_mappings", "instrument_type_id", b"instrument_type_id", "resource_name", b"resource_name", "session", b"session", "session_exists", b"session_exists", "session_reserved", b"session_reserved"]) -> None: ...
 
-global___SessionInformation = SessionInformation
+Global___SessionInformation: typing_extensions.TypeAlias = SessionInformation
 
 @typing.final
 class ChannelMapping(google.protobuf.message.Message):
@@ -146,7 +152,7 @@ class ChannelMapping(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["channel", b"channel", "multiplexer_resource_name", b"multiplexer_resource_name", "multiplexer_route", b"multiplexer_route", "pin_or_relay_name", b"pin_or_relay_name", "site", b"site"]) -> None: ...
 
-global___ChannelMapping = ChannelMapping
+Global___ChannelMapping: typing_extensions.TypeAlias = ChannelMapping
 
 @typing.final
 class MultiplexerSessionInformation(google.protobuf.message.Message):
@@ -210,7 +216,7 @@ class MultiplexerSessionInformation(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["session", b"session"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["annotations", b"annotations", "multiplexer_type_id", b"multiplexer_type_id", "resource_name", b"resource_name", "session", b"session", "session_exists", b"session_exists"]) -> None: ...
 
-global___MultiplexerSessionInformation = MultiplexerSessionInformation
+Global___MultiplexerSessionInformation: typing_extensions.TypeAlias = MultiplexerSessionInformation
 
 @typing.final
 class ReserveSessionsRequest(google.protobuf.message.Message):
@@ -283,7 +289,7 @@ class ReserveSessionsRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["pin_map_context", b"pin_map_context"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["annotations", b"annotations", "instrument_type_id", b"instrument_type_id", "pin_map_context", b"pin_map_context", "pin_or_relay_names", b"pin_or_relay_names", "timeout_in_milliseconds", b"timeout_in_milliseconds"]) -> None: ...
 
-global___ReserveSessionsRequest = ReserveSessionsRequest
+Global___ReserveSessionsRequest: typing_extensions.TypeAlias = ReserveSessionsRequest
 
 @typing.final
 class ReserveSessionsResponse(google.protobuf.message.Message):
@@ -297,12 +303,12 @@ class ReserveSessionsResponse(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___ResolvedPinsOrRelays: ...
+        def value(self) -> Global___ResolvedPinsOrRelays: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___ResolvedPinsOrRelays | None = ...,
+            value: Global___ResolvedPinsOrRelays | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -311,27 +317,27 @@ class ReserveSessionsResponse(google.protobuf.message.Message):
     MULTIPLEXER_SESSIONS_FIELD_NUMBER: builtins.int
     GROUP_MAPPINGS_FIELD_NUMBER: builtins.int
     @property
-    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SessionInformation]:
+    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___SessionInformation]:
         """List of information needed to create or use each session for the given I/O resource, site, and instrument type ID."""
 
     @property
-    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MultiplexerSessionInformation]:
+    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___MultiplexerSessionInformation]:
         """List of information needed to create or use each multiplexer session for the given I/O resource, site, and instrument type ID."""
 
     @property
-    def group_mappings(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___ResolvedPinsOrRelays]:
+    def group_mappings(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___ResolvedPinsOrRelays]:
         """Represents the mapping between pin or relay groups and their respective pin or relay names."""
 
     def __init__(
         self,
         *,
-        sessions: collections.abc.Iterable[global___SessionInformation] | None = ...,
-        multiplexer_sessions: collections.abc.Iterable[global___MultiplexerSessionInformation] | None = ...,
-        group_mappings: collections.abc.Mapping[builtins.str, global___ResolvedPinsOrRelays] | None = ...,
+        sessions: collections.abc.Iterable[Global___SessionInformation] | None = ...,
+        multiplexer_sessions: collections.abc.Iterable[Global___MultiplexerSessionInformation] | None = ...,
+        group_mappings: collections.abc.Mapping[builtins.str, Global___ResolvedPinsOrRelays] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["group_mappings", b"group_mappings", "multiplexer_sessions", b"multiplexer_sessions", "sessions", b"sessions"]) -> None: ...
 
-global___ReserveSessionsResponse = ReserveSessionsResponse
+Global___ReserveSessionsResponse: typing_extensions.TypeAlias = ReserveSessionsResponse
 
 @typing.final
 class UnreserveSessionsRequest(google.protobuf.message.Message):
@@ -339,17 +345,17 @@ class UnreserveSessionsRequest(google.protobuf.message.Message):
 
     SESSIONS_FIELD_NUMBER: builtins.int
     @property
-    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SessionInformation]:
+    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___SessionInformation]:
         """Required. List of information of sessions to be unreserved in the session management service."""
 
     def __init__(
         self,
         *,
-        sessions: collections.abc.Iterable[global___SessionInformation] | None = ...,
+        sessions: collections.abc.Iterable[Global___SessionInformation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["sessions", b"sessions"]) -> None: ...
 
-global___UnreserveSessionsRequest = UnreserveSessionsRequest
+Global___UnreserveSessionsRequest: typing_extensions.TypeAlias = UnreserveSessionsRequest
 
 @typing.final
 class UnreserveSessionsResponse(google.protobuf.message.Message):
@@ -359,7 +365,7 @@ class UnreserveSessionsResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___UnreserveSessionsResponse = UnreserveSessionsResponse
+Global___UnreserveSessionsResponse: typing_extensions.TypeAlias = UnreserveSessionsResponse
 
 @typing.final
 class RegisterSessionsRequest(google.protobuf.message.Message):
@@ -367,17 +373,17 @@ class RegisterSessionsRequest(google.protobuf.message.Message):
 
     SESSIONS_FIELD_NUMBER: builtins.int
     @property
-    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SessionInformation]:
+    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___SessionInformation]:
         """Required. List of sessions to register with the session management service to track as the sessions are open."""
 
     def __init__(
         self,
         *,
-        sessions: collections.abc.Iterable[global___SessionInformation] | None = ...,
+        sessions: collections.abc.Iterable[Global___SessionInformation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["sessions", b"sessions"]) -> None: ...
 
-global___RegisterSessionsRequest = RegisterSessionsRequest
+Global___RegisterSessionsRequest: typing_extensions.TypeAlias = RegisterSessionsRequest
 
 @typing.final
 class RegisterSessionsResponse(google.protobuf.message.Message):
@@ -387,7 +393,7 @@ class RegisterSessionsResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___RegisterSessionsResponse = RegisterSessionsResponse
+Global___RegisterSessionsResponse: typing_extensions.TypeAlias = RegisterSessionsResponse
 
 @typing.final
 class UnregisterSessionsRequest(google.protobuf.message.Message):
@@ -395,17 +401,17 @@ class UnregisterSessionsRequest(google.protobuf.message.Message):
 
     SESSIONS_FIELD_NUMBER: builtins.int
     @property
-    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SessionInformation]:
+    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___SessionInformation]:
         """Required. List of sessions to unregister with the session management service to mark them as sessions were closed."""
 
     def __init__(
         self,
         *,
-        sessions: collections.abc.Iterable[global___SessionInformation] | None = ...,
+        sessions: collections.abc.Iterable[Global___SessionInformation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["sessions", b"sessions"]) -> None: ...
 
-global___UnregisterSessionsRequest = UnregisterSessionsRequest
+Global___UnregisterSessionsRequest: typing_extensions.TypeAlias = UnregisterSessionsRequest
 
 @typing.final
 class UnregisterSessionsResponse(google.protobuf.message.Message):
@@ -415,7 +421,7 @@ class UnregisterSessionsResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___UnregisterSessionsResponse = UnregisterSessionsResponse
+Global___UnregisterSessionsResponse: typing_extensions.TypeAlias = UnregisterSessionsResponse
 
 @typing.final
 class ReserveAllRegisteredSessionsRequest(google.protobuf.message.Message):
@@ -475,7 +481,7 @@ class ReserveAllRegisteredSessionsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["annotations", b"annotations", "instrument_type_id", b"instrument_type_id", "timeout_in_milliseconds", b"timeout_in_milliseconds"]) -> None: ...
 
-global___ReserveAllRegisteredSessionsRequest = ReserveAllRegisteredSessionsRequest
+Global___ReserveAllRegisteredSessionsRequest: typing_extensions.TypeAlias = ReserveAllRegisteredSessionsRequest
 
 @typing.final
 class ReserveAllRegisteredSessionsResponse(google.protobuf.message.Message):
@@ -483,17 +489,17 @@ class ReserveAllRegisteredSessionsResponse(google.protobuf.message.Message):
 
     SESSIONS_FIELD_NUMBER: builtins.int
     @property
-    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SessionInformation]:
+    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___SessionInformation]:
         """Sessions currently registered in the session management service."""
 
     def __init__(
         self,
         *,
-        sessions: collections.abc.Iterable[global___SessionInformation] | None = ...,
+        sessions: collections.abc.Iterable[Global___SessionInformation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["sessions", b"sessions"]) -> None: ...
 
-global___ReserveAllRegisteredSessionsResponse = ReserveAllRegisteredSessionsResponse
+Global___ReserveAllRegisteredSessionsResponse: typing_extensions.TypeAlias = ReserveAllRegisteredSessionsResponse
 
 @typing.final
 class RegisterMultiplexerSessionsRequest(google.protobuf.message.Message):
@@ -501,17 +507,17 @@ class RegisterMultiplexerSessionsRequest(google.protobuf.message.Message):
 
     MULTIPLEXER_SESSIONS_FIELD_NUMBER: builtins.int
     @property
-    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MultiplexerSessionInformation]:
+    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___MultiplexerSessionInformation]:
         """Required. List of multiplexer sessions to register with the session management service to track as the sessions are open."""
 
     def __init__(
         self,
         *,
-        multiplexer_sessions: collections.abc.Iterable[global___MultiplexerSessionInformation] | None = ...,
+        multiplexer_sessions: collections.abc.Iterable[Global___MultiplexerSessionInformation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["multiplexer_sessions", b"multiplexer_sessions"]) -> None: ...
 
-global___RegisterMultiplexerSessionsRequest = RegisterMultiplexerSessionsRequest
+Global___RegisterMultiplexerSessionsRequest: typing_extensions.TypeAlias = RegisterMultiplexerSessionsRequest
 
 @typing.final
 class RegisterMultiplexerSessionsResponse(google.protobuf.message.Message):
@@ -521,7 +527,7 @@ class RegisterMultiplexerSessionsResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___RegisterMultiplexerSessionsResponse = RegisterMultiplexerSessionsResponse
+Global___RegisterMultiplexerSessionsResponse: typing_extensions.TypeAlias = RegisterMultiplexerSessionsResponse
 
 @typing.final
 class UnregisterMultiplexerSessionsRequest(google.protobuf.message.Message):
@@ -529,17 +535,17 @@ class UnregisterMultiplexerSessionsRequest(google.protobuf.message.Message):
 
     MULTIPLEXER_SESSIONS_FIELD_NUMBER: builtins.int
     @property
-    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MultiplexerSessionInformation]:
+    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___MultiplexerSessionInformation]:
         """Required. List of multiplexer sessions to unregister with the session management service to mark them as sessions were closed."""
 
     def __init__(
         self,
         *,
-        multiplexer_sessions: collections.abc.Iterable[global___MultiplexerSessionInformation] | None = ...,
+        multiplexer_sessions: collections.abc.Iterable[Global___MultiplexerSessionInformation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["multiplexer_sessions", b"multiplexer_sessions"]) -> None: ...
 
-global___UnregisterMultiplexerSessionsRequest = UnregisterMultiplexerSessionsRequest
+Global___UnregisterMultiplexerSessionsRequest: typing_extensions.TypeAlias = UnregisterMultiplexerSessionsRequest
 
 @typing.final
 class UnregisterMultiplexerSessionsResponse(google.protobuf.message.Message):
@@ -549,7 +555,7 @@ class UnregisterMultiplexerSessionsResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___UnregisterMultiplexerSessionsResponse = UnregisterMultiplexerSessionsResponse
+Global___UnregisterMultiplexerSessionsResponse: typing_extensions.TypeAlias = UnregisterMultiplexerSessionsResponse
 
 @typing.final
 class GetMultiplexerSessionsRequest(google.protobuf.message.Message):
@@ -574,7 +580,7 @@ class GetMultiplexerSessionsRequest(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["pin_map_context", b"pin_map_context"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["multiplexer_type_id", b"multiplexer_type_id", "pin_map_context", b"pin_map_context"]) -> None: ...
 
-global___GetMultiplexerSessionsRequest = GetMultiplexerSessionsRequest
+Global___GetMultiplexerSessionsRequest: typing_extensions.TypeAlias = GetMultiplexerSessionsRequest
 
 @typing.final
 class GetMultiplexerSessionsResponse(google.protobuf.message.Message):
@@ -582,17 +588,17 @@ class GetMultiplexerSessionsResponse(google.protobuf.message.Message):
 
     MULTIPLEXER_SESSIONS_FIELD_NUMBER: builtins.int
     @property
-    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MultiplexerSessionInformation]:
+    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___MultiplexerSessionInformation]:
         """List of information needed to create or use each multiplexer session for the given pin map context and multiplexer type ID."""
 
     def __init__(
         self,
         *,
-        multiplexer_sessions: collections.abc.Iterable[global___MultiplexerSessionInformation] | None = ...,
+        multiplexer_sessions: collections.abc.Iterable[Global___MultiplexerSessionInformation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["multiplexer_sessions", b"multiplexer_sessions"]) -> None: ...
 
-global___GetMultiplexerSessionsResponse = GetMultiplexerSessionsResponse
+Global___GetMultiplexerSessionsResponse: typing_extensions.TypeAlias = GetMultiplexerSessionsResponse
 
 @typing.final
 class GetAllRegisteredMultiplexerSessionsRequest(google.protobuf.message.Message):
@@ -610,7 +616,7 @@ class GetAllRegisteredMultiplexerSessionsRequest(google.protobuf.message.Message
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["multiplexer_type_id", b"multiplexer_type_id"]) -> None: ...
 
-global___GetAllRegisteredMultiplexerSessionsRequest = GetAllRegisteredMultiplexerSessionsRequest
+Global___GetAllRegisteredMultiplexerSessionsRequest: typing_extensions.TypeAlias = GetAllRegisteredMultiplexerSessionsRequest
 
 @typing.final
 class GetAllRegisteredMultiplexerSessionsResponse(google.protobuf.message.Message):
@@ -618,17 +624,17 @@ class GetAllRegisteredMultiplexerSessionsResponse(google.protobuf.message.Messag
 
     MULTIPLEXER_SESSIONS_FIELD_NUMBER: builtins.int
     @property
-    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MultiplexerSessionInformation]:
+    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___MultiplexerSessionInformation]:
         """Multiplexer sessions currently registered in the session management service."""
 
     def __init__(
         self,
         *,
-        multiplexer_sessions: collections.abc.Iterable[global___MultiplexerSessionInformation] | None = ...,
+        multiplexer_sessions: collections.abc.Iterable[Global___MultiplexerSessionInformation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["multiplexer_sessions", b"multiplexer_sessions"]) -> None: ...
 
-global___GetAllRegisteredMultiplexerSessionsResponse = GetAllRegisteredMultiplexerSessionsResponse
+Global___GetAllRegisteredMultiplexerSessionsResponse: typing_extensions.TypeAlias = GetAllRegisteredMultiplexerSessionsResponse
 
 @typing.final
 class ResolvedPinsOrRelays(google.protobuf.message.Message):
@@ -646,7 +652,7 @@ class ResolvedPinsOrRelays(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["pin_or_relay_names", b"pin_or_relay_names"]) -> None: ...
 
-global___ResolvedPinsOrRelays = ResolvedPinsOrRelays
+Global___ResolvedPinsOrRelays: typing_extensions.TypeAlias = ResolvedPinsOrRelays
 
 @typing.final
 class GetSessionsRequest(google.protobuf.message.Message):
@@ -670,7 +676,7 @@ class GetSessionsRequest(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["instrument_type_id", b"instrument_type_id", "multiplexer_type_id", b"multiplexer_type_id"]) -> None: ...
 
-global___GetSessionsRequest = GetSessionsRequest
+Global___GetSessionsRequest: typing_extensions.TypeAlias = GetSessionsRequest
 
 @typing.final
 class GetSessionsResponse(google.protobuf.message.Message):
@@ -679,19 +685,19 @@ class GetSessionsResponse(google.protobuf.message.Message):
     SESSIONS_FIELD_NUMBER: builtins.int
     MULTIPLEXER_SESSIONS_FIELD_NUMBER: builtins.int
     @property
-    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___SessionInformation]:
+    def sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___SessionInformation]:
         """List of reserved or registered instrument sessions."""
 
     @property
-    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___MultiplexerSessionInformation]:
+    def multiplexer_sessions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___MultiplexerSessionInformation]:
         """List of registered multiplexer sessions."""
 
     def __init__(
         self,
         *,
-        sessions: collections.abc.Iterable[global___SessionInformation] | None = ...,
-        multiplexer_sessions: collections.abc.Iterable[global___MultiplexerSessionInformation] | None = ...,
+        sessions: collections.abc.Iterable[Global___SessionInformation] | None = ...,
+        multiplexer_sessions: collections.abc.Iterable[Global___MultiplexerSessionInformation] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["multiplexer_sessions", b"multiplexer_sessions", "sessions", b"sessions"]) -> None: ...
 
-global___GetSessionsResponse = GetSessionsResponse
+Global___GetSessionsResponse: typing_extensions.TypeAlias = GetSessionsResponse

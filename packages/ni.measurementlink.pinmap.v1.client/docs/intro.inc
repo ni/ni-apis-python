@@ -18,7 +18,7 @@ Operating System Support
 Python Version Support
 ----------------------
 
-``ni.measurementlink.pinmap.v1.client`` supports CPython 3.10+.
+``ni.measurementlink.pinmap.v1.client`` supports CPython 3.11+.
 
 Installation
 ------------

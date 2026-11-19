@@ -8,7 +8,13 @@ import collections.abc
 import grpc
 import grpc.aio
 import ni.measurementlink.sessionmanagement.v1.session_management_service_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 13):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 _T = typing.TypeVar("_T")
 
@@ -17,14 +23,260 @@ class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Ite
 class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
-class SessionManagementServiceStub:
-    """Service to keep track of open sessions used by measurement services, and to allow measurement services to access sessions by I/O resource and site."""
-
-    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
-    ReserveSessions: grpc.UnaryUnaryMultiCallable[
+GRPC_GENERATED_VERSION: str
+GRPC_VERSION: str
+_SessionManagementServiceReserveSessionsType = typing_extensions.TypeVar(
+    '_SessionManagementServiceReserveSessionsType',
+    grpc.UnaryUnaryMultiCallable[
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsRequest,
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsResponse,
-    ]
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsResponse,
+    ],
+)
+
+_SessionManagementServiceUnreserveSessionsType = typing_extensions.TypeVar(
+    '_SessionManagementServiceUnreserveSessionsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsResponse,
+    ],
+)
+
+_SessionManagementServiceRegisterSessionsType = typing_extensions.TypeVar(
+    '_SessionManagementServiceRegisterSessionsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsResponse,
+    ],
+)
+
+_SessionManagementServiceUnregisterSessionsType = typing_extensions.TypeVar(
+    '_SessionManagementServiceUnregisterSessionsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsResponse,
+    ],
+)
+
+_SessionManagementServiceReserveAllRegisteredSessionsType = typing_extensions.TypeVar(
+    '_SessionManagementServiceReserveAllRegisteredSessionsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsResponse,
+    ],
+)
+
+_SessionManagementServiceRegisterMultiplexerSessionsType = typing_extensions.TypeVar(
+    '_SessionManagementServiceRegisterMultiplexerSessionsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse,
+    ],
+)
+
+_SessionManagementServiceUnregisterMultiplexerSessionsType = typing_extensions.TypeVar(
+    '_SessionManagementServiceUnregisterMultiplexerSessionsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsResponse,
+    ],
+)
+
+_SessionManagementServiceGetMultiplexerSessionsType = typing_extensions.TypeVar(
+    '_SessionManagementServiceGetMultiplexerSessionsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse,
+    ],
+)
+
+_SessionManagementServiceGetAllRegisteredMultiplexerSessionsType = typing_extensions.TypeVar(
+    '_SessionManagementServiceGetAllRegisteredMultiplexerSessionsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsResponse,
+    ],
+)
+
+_SessionManagementServiceGetSessionsType = typing_extensions.TypeVar(
+    '_SessionManagementServiceGetSessionsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsRequest,
+        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsResponse,
+    ],
+)
+
+class SessionManagementServiceStub(typing.Generic[_SessionManagementServiceReserveSessionsType, _SessionManagementServiceUnreserveSessionsType, _SessionManagementServiceRegisterSessionsType, _SessionManagementServiceUnregisterSessionsType, _SessionManagementServiceReserveAllRegisteredSessionsType, _SessionManagementServiceRegisterMultiplexerSessionsType, _SessionManagementServiceUnregisterMultiplexerSessionsType, _SessionManagementServiceGetMultiplexerSessionsType, _SessionManagementServiceGetAllRegisteredMultiplexerSessionsType, _SessionManagementServiceGetSessionsType]):
+    """Service to keep track of open sessions used by measurement services, and to allow measurement services to access sessions by I/O resource and site."""
+
+    @typing.overload
+    def __init__(self: SessionManagementServiceStub[
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsResponse,
+        ],
+    ], channel: grpc.Channel) -> None: ...
+
+    @typing.overload
+    def __init__(self: SessionManagementServiceStub[
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsRequest,
+            ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsResponse,
+        ],
+    ], channel: grpc.aio.Channel) -> None: ...
+
+    ReserveSessions: _SessionManagementServiceReserveSessionsType
     """Reserve session(s) for the given I/O resources (pins, relays, channels), sites, and instrument type ID and returns the information needed to create or access the session.
     Also reserves the session so other processes cannot access it with a ReserveSessions() call.
 
@@ -45,10 +297,7 @@ class SessionManagementServiceStub:
         - Session(s) were already reserved and didn't become available before the specified timeout expired.
     """
 
-    UnreserveSessions: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsRequest,
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsResponse,
-    ]
+    UnreserveSessions: _SessionManagementServiceUnreserveSessionsType
     """Unreserves sessions so they can be accessed by other clients.
 
     - RESOURCE_EXHAUSTED:
@@ -56,10 +305,7 @@ class SessionManagementServiceStub:
         - Error occurred while unreserving sessions.
     """
 
-    RegisterSessions: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsRequest,
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsResponse,
-    ]
+    RegisterSessions: _SessionManagementServiceRegisterSessionsType
     """Registers the sessions with this service. Indicates that the sessions are open and will need to be closed later.
     Status codes for errors:
 
@@ -72,16 +318,10 @@ class SessionManagementServiceStub:
         - Session names list has an empty string.
     """
 
-    UnregisterSessions: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsRequest,
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsResponse,
-    ]
+    UnregisterSessions: _SessionManagementServiceUnregisterSessionsType
     """Unregisters the sessions with this service. Indicates that the sessions have been closed and will need to be reopened before they can be used again."""
 
-    ReserveAllRegisteredSessions: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsRequest,
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsResponse,
-    ]
+    ReserveAllRegisteredSessions: _SessionManagementServiceReserveAllRegisteredSessionsType
     """Reserves and gets all sessions currently registered with this service.
 
     - INVALID_ARGUMENT:
@@ -93,10 +333,7 @@ class SessionManagementServiceStub:
         - Session(s) were already reserved and didn't become available before the specified timeout expired.
     """
 
-    RegisterMultiplexerSessions: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsRequest,
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse,
-    ]
+    RegisterMultiplexerSessions: _SessionManagementServiceRegisterMultiplexerSessionsType
     """Registers the multiplexer sessions with this service. Indicates that the sessions are open and will need to be closed later.
 
     Status codes for errors:
@@ -110,16 +347,10 @@ class SessionManagementServiceStub:
         - Session names list has an empty string.
     """
 
-    UnregisterMultiplexerSessions: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsRequest,
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsResponse,
-    ]
+    UnregisterMultiplexerSessions: _SessionManagementServiceUnregisterMultiplexerSessionsType
     """Unregisters the multiplexer sessions with this service. Indicates that the sessions have been closed and will need to be reopened before they can be used again."""
 
-    GetMultiplexerSessions: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsRequest,
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse,
-    ]
+    GetMultiplexerSessions: _SessionManagementServiceGetMultiplexerSessionsType
     """Gets all the connected multiplexer session(s) for the given pin map context and returns information needed to create or access the session.
 
     Status codes for errors:
@@ -133,144 +364,54 @@ class SessionManagementServiceStub:
         - Pin Map Context has a pin map ID that does not match any pin maps registered with the Pin Map Service.
     """
 
-    GetAllRegisteredMultiplexerSessions: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsRequest,
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsResponse,
-    ]
+    GetAllRegisteredMultiplexerSessions: _SessionManagementServiceGetAllRegisteredMultiplexerSessionsType
     """Gets all multiplexer sessions currently registered with this service."""
 
-    GetSessions: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsRequest,
-        ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsResponse,
-    ]
+    GetSessions: _SessionManagementServiceGetSessionsType
     """Gets all reserved or registered sessions for the specified instrument and multiplexer types."""
 
-class SessionManagementServiceAsyncStub:
-    """Service to keep track of open sessions used by measurement services, and to allow measurement services to access sessions by I/O resource and site."""
-
-    ReserveSessions: grpc.aio.UnaryUnaryMultiCallable[
+SessionManagementServiceAsyncStub: typing_extensions.TypeAlias = SessionManagementServiceStub[
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsRequest,
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveSessionsResponse,
-    ]
-    """Reserve session(s) for the given I/O resources (pins, relays, channels), sites, and instrument type ID and returns the information needed to create or access the session.
-    Also reserves the session so other processes cannot access it with a ReserveSessions() call.
-
-    Status codes for errors:
-
-    - INVALID_ARGUMENT:
-
-        - Pin Map Context references a site number that is not defined in the pin map
-        - Pin or relay name does not match any pin, pin group, relay, or relay group names in the pin map
-        - Timeout specified is less than -1.
-
-    - NOT_FOUND:
-
-        - Pin Map Context has a pin map ID that does not match any pin maps registered with the Pin Map Service.
-
-    - UNAVAILABLE:
-
-        - Session(s) were already reserved and didn't become available before the specified timeout expired.
-    """
-
-    UnreserveSessions: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsRequest,
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnreserveSessionsResponse,
-    ]
-    """Unreserves sessions so they can be accessed by other clients.
-
-    - RESOURCE_EXHAUSTED:
-
-        - Error occurred while unreserving sessions.
-    """
-
-    RegisterSessions: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsRequest,
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterSessionsResponse,
-    ]
-    """Registers the sessions with this service. Indicates that the sessions are open and will need to be closed later.
-    Status codes for errors:
-
-    - ALREADY_EXISTS:
-
-        - Session by the same name is already registered.
-
-    - INVALID_ARGUMENT:
-
-        - Session names list has an empty string.
-    """
-
-    UnregisterSessions: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsRequest,
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterSessionsResponse,
-    ]
-    """Unregisters the sessions with this service. Indicates that the sessions have been closed and will need to be reopened before they can be used again."""
-
-    ReserveAllRegisteredSessions: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsRequest,
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.ReserveAllRegisteredSessionsResponse,
-    ]
-    """Reserves and gets all sessions currently registered with this service.
-
-    - INVALID_ARGUMENT:
-
-        - Timeout specified is less than -1.
-
-    - UNAVAILABLE:
-
-        - Session(s) were already reserved and didn't become available before the specified timeout expired.
-    """
-
-    RegisterMultiplexerSessions: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsRequest,
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.RegisterMultiplexerSessionsResponse,
-    ]
-    """Registers the multiplexer sessions with this service. Indicates that the sessions are open and will need to be closed later.
-
-    Status codes for errors:
-
-    - ALREADY_EXISTS:
-
-        - Session by the same name is already registered.
-
-    - INVALID_ARGUMENT:
-
-        - Session names list has an empty string.
-    """
-
-    UnregisterMultiplexerSessions: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsRequest,
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.UnregisterMultiplexerSessionsResponse,
-    ]
-    """Unregisters the multiplexer sessions with this service. Indicates that the sessions have been closed and will need to be reopened before they can be used again."""
-
-    GetMultiplexerSessions: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsRequest,
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetMultiplexerSessionsResponse,
-    ]
-    """Gets all the connected multiplexer session(s) for the given pin map context and returns information needed to create or access the session.
-
-    Status codes for errors:
-
-    - INVALID_ARGUMENT:
-
-        - Pin Map Context references a site number that is not defined in the pin map.
-
-    - NOT_FOUND:
-
-        - Pin Map Context has a pin map ID that does not match any pin maps registered with the Pin Map Service.
-    """
-
-    GetAllRegisteredMultiplexerSessions: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsRequest,
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetAllRegisteredMultiplexerSessionsResponse,
-    ]
-    """Gets all multiplexer sessions currently registered with this service."""
-
-    GetSessions: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsRequest,
         ni.measurementlink.sessionmanagement.v1.session_management_service_pb2.GetSessionsResponse,
-    ]
-    """Gets all reserved or registered sessions for the specified instrument and multiplexer types."""
+    ],
+]
 
 class SessionManagementServiceServicer(metaclass=abc.ABCMeta):
     """Service to keep track of open sessions used by measurement services, and to allow measurement services to access sessions by I/O resource and site."""

@@ -11,7 +11,13 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import ni.protobuf.types.vector_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -31,4 +37,4 @@ class VectorArrayValue(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["vectors", b"vectors"]) -> None: ...
 
-global___VectorArrayValue = VectorArrayValue
+Global___VectorArrayValue: typing_extensions.TypeAlias = VectorArrayValue

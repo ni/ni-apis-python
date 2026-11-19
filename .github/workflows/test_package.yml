@@ -1,4 +1,8 @@
 name: Test package
+
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
@@ -29,7 +33,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-latest, ubuntu-latest]
-        python-version: ['3.10', 3.11, 3.12, 3.13, 3.14]
+        python-version: [3.11, 3.12, 3.13, 3.14, 3.15]
     name: Run unit tests - ${{ inputs.package-name }} (${{ matrix.python-version }} - ${{ matrix.os }})
     needs: get_package_info
     runs-on: ${{ matrix.os }}
@@ -39,13 +43,14 @@ jobs:
         with:
           submodules: true
       - name: Set up Python
-        uses: ni/python-actions/setup-python@dee640bba235ae28fdc6b7337c643bd06358ae90 # v0.9.0
+        uses: ni/python-actions/setup-python@edaf1454897cb4cd5f6fc0757cb62dee455e57fd # v0.10.1
         id: setup-python
         with:
           python-version: ${{ matrix.python-version }}
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@dee640bba235ae28fdc6b7337c643bd06358ae90 # v0.9.0
+        uses: ni/python-actions/setup-poetry@edaf1454897cb4cd5f6fc0757cb62dee455e57fd # v0.10.1
       - uses: ./.github/actions/run_and_upload_unit_tests
         with:
           package-name: ${{ inputs.package-name }}
           package-basepath: ${{ needs.get_package_info.outputs.package-basepath }}
+          install-extras: ${{ needs.get_package_info.outputs.install-extras }}

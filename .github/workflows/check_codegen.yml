@@ -1,5 +1,8 @@
 name: Check codegen up to date
 
+permissions:
+  contents: read
+
 on:
   workflow_call:
     inputs:
@@ -49,10 +52,10 @@ jobs:
         with:
           submodules: true
       - name: Set up Python
-        uses: ni/python-actions/setup-python@dee640bba235ae28fdc6b7337c643bd06358ae90 # v0.9.0
+        uses: ni/python-actions/setup-python@edaf1454897cb4cd5f6fc0757cb62dee455e57fd # v0.10.1
         id: setup-python
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@dee640bba235ae28fdc6b7337c643bd06358ae90 # v0.9.0
+        uses: ni/python-actions/setup-poetry@edaf1454897cb4cd5f6fc0757cb62dee455e57fd # v0.10.1
       - name: Check for lock changes
         run: poetry check --lock
       - name: Cache virtualenv

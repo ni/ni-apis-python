@@ -8,7 +8,13 @@ import collections.abc
 import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -32,4 +38,4 @@ class PinMapContext(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["pin_map_id", b"pin_map_id", "sites", b"sites"]) -> None: ...
 
-global___PinMapContext = PinMapContext
+Global___PinMapContext: typing_extensions.TypeAlias = PinMapContext

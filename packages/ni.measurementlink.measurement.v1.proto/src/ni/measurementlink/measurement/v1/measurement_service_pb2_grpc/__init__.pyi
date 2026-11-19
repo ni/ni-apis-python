@@ -10,7 +10,13 @@ import collections.abc
 import grpc
 import grpc.aio
 import ni.measurementlink.measurement.v1.measurement_service_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 13):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 _T = typing.TypeVar("_T")
 
@@ -19,40 +25,85 @@ class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Ite
 class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
-class MeasurementServiceStub:
+GRPC_GENERATED_VERSION: str
+GRPC_VERSION: str
+_MeasurementServiceGetMetadataType = typing_extensions.TypeVar(
+    '_MeasurementServiceGetMetadataType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataRequest,
+        ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataRequest,
+        ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataRequest,
+        ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataResponse,
+    ],
+)
+
+_MeasurementServiceMeasureType = typing_extensions.TypeVar(
+    '_MeasurementServiceMeasureType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureRequest,
+        ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureRequest,
+        ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureRequest,
+        ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureResponse,
+    ],
+)
+
+class MeasurementServiceStub(typing.Generic[_MeasurementServiceGetMetadataType, _MeasurementServiceMeasureType]):
     """Service that implements a measurement. Unlike other services, a MeasurementService is designed to be a plugin
     where there can be multiple implementations of the service that provide different measurement capabilities.
     """
 
-    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
-    GetMetadata: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataRequest,
-        ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataResponse,
-    ]
+    @typing.overload
+    def __init__(self: MeasurementServiceStub[
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataRequest,
+            ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureRequest,
+            ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureResponse,
+        ],
+    ], channel: grpc.Channel) -> None: ...
+
+    @typing.overload
+    def __init__(self: MeasurementServiceStub[
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataRequest,
+            ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureRequest,
+            ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureResponse,
+        ],
+    ], channel: grpc.aio.Channel) -> None: ...
+
+    GetMetadata: _MeasurementServiceGetMetadataType
     """Returns information that describes the measurement."""
 
-    Measure: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureRequest,
-        ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureResponse,
-    ]
+    Measure: _MeasurementServiceMeasureType
     """API used to perform a measurement."""
 
-class MeasurementServiceAsyncStub:
-    """Service that implements a measurement. Unlike other services, a MeasurementService is designed to be a plugin
-    where there can be multiple implementations of the service that provide different measurement capabilities.
-    """
-
-    GetMetadata: grpc.aio.UnaryUnaryMultiCallable[
+MeasurementServiceAsyncStub: typing_extensions.TypeAlias = MeasurementServiceStub[
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataRequest,
         ni.measurementlink.measurement.v1.measurement_service_pb2.GetMetadataResponse,
-    ]
-    """Returns information that describes the measurement."""
-
-    Measure: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureRequest,
         ni.measurementlink.measurement.v1.measurement_service_pb2.MeasureResponse,
-    ]
-    """API used to perform a measurement."""
+    ],
+]
 
 class MeasurementServiceServicer(metaclass=abc.ABCMeta):
     """Service that implements a measurement. Unlike other services, a MeasurementService is designed to be a plugin

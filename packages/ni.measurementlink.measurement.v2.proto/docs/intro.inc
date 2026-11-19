@@ -16,7 +16,7 @@ Operating System Support
 Python Version Support
 ----------------------
 
-``ni.measurementlink.measurement.v2.proto`` supports CPython 3.10+.
+``ni.measurementlink.measurement.v2.proto`` supports CPython 3.11+.
 
 Installation
 ------------

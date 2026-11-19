@@ -8,7 +8,13 @@ isort:skip_file
 import builtins
 import google.protobuf.descriptor
 import google.protobuf.message
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -37,4 +43,4 @@ class PrecisionDuration(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["fractional_seconds", b"fractional_seconds", "seconds", b"seconds"]) -> None: ...
 
-global___PrecisionDuration = PrecisionDuration
+Global___PrecisionDuration: typing_extensions.TypeAlias = PrecisionDuration

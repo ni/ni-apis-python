@@ -11,7 +11,13 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import ni.protobuf.types.xydata_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -31,4 +37,4 @@ class DoubleXYDataArrayValue(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["x_y_data", b"x_y_data"]) -> None: ...
 
-global___DoubleXYDataArrayValue = DoubleXYDataArrayValue
+Global___DoubleXYDataArrayValue: typing_extensions.TypeAlias = DoubleXYDataArrayValue

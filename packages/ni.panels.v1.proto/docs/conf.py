@@ -84,7 +84,13 @@ def process_docstring(app, what, name, obj, options, lines):
     # Sphinx/autoapi have problems with nested lists that use hyphens and
     # aren't correctly indented. Convert all docstrings with a list into
     # RST using m2r2.
-    if any([line for line in lines if line.startswith("-")]):
+    # Skip m2r2 formatting for docstrings already converted by Napoleon
+    # into RST field lists, preventing it from corrupting protobuf :returns:
+    # indentation while preserving conversion for list-only docstrings.
+    rst_field_markers = (":param ", ":type ", ":returns:", ":rtype:", ":raises ")
+    has_rst_field_list = any(line.lstrip().startswith(rst_field_markers) for line in lines)
+
+    if not has_rst_field_list and any(line.startswith("-") for line in lines):
         content = "\n".join(lines)
         rst_content = convert(content)
         lines.clear()

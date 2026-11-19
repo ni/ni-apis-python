@@ -48,7 +48,7 @@ OUTCOME_FAILED: Outcome.ValueType  # 2
 """The measurement failed."""
 OUTCOME_INDETERMINATE: Outcome.ValueType  # 3
 """The outcome is indeterminate."""
-global___Outcome = Outcome
+Global___Outcome: typing_extensions.TypeAlias = Outcome
 
 @typing.final
 class PublishedCondition(google.protobuf.message.Message):
@@ -91,7 +91,7 @@ class PublishedCondition(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["moniker", b"moniker"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["condition_type", b"condition_type", "id", b"id", "moniker", b"moniker", "name", b"name", "step_id", b"step_id", "test_result_id", b"test_result_id"]) -> None: ...
 
-global___PublishedCondition = PublishedCondition
+Global___PublishedCondition: typing_extensions.TypeAlias = PublishedCondition
 
 @typing.final
 class PublishedMeasurement(google.protobuf.message.Message):
@@ -125,7 +125,7 @@ class PublishedMeasurement(google.protobuf.message.Message):
     """The type of the value of the measurement. This is used to filter measurements in queries."""
     notes: builtins.str
     """Any notes about the measurement."""
-    outcome: global___Outcome.ValueType
+    outcome: Global___Outcome.ValueType
     """The most 'significant' outcome that was observed when publishing to this measurement.
     Significance hierarchy: Unspecified (default) < Passed < Indeterminate < Failed
     """
@@ -138,7 +138,7 @@ class PublishedMeasurement(google.protobuf.message.Message):
         """
 
     @property
-    def published_conditions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___PublishedCondition]:
+    def published_conditions(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___PublishedCondition]:
         """The conditions associated with the test step that owns this measurement."""
 
     @property
@@ -166,7 +166,7 @@ class PublishedMeasurement(google.protobuf.message.Message):
         """
 
     @property
-    def error_information(self) -> global___ErrorInformation:
+    def error_information(self) -> Global___ErrorInformation:
         """Error or exception information in JSON format. If the measurement represents a parametric set,
         this contains the error information for the first error that occurred when publishing to the parametric set.
         """
@@ -175,7 +175,7 @@ class PublishedMeasurement(google.protobuf.message.Message):
         self,
         *,
         moniker: ni.datamonikers.v1.data_moniker_pb2.Moniker | None = ...,
-        published_conditions: collections.abc.Iterable[global___PublishedCondition] | None = ...,
+        published_conditions: collections.abc.Iterable[Global___PublishedCondition] | None = ...,
         id: builtins.str = ...,
         test_result_id: builtins.str = ...,
         step_id: builtins.str = ...,
@@ -187,14 +187,14 @@ class PublishedMeasurement(google.protobuf.message.Message):
         notes: builtins.str = ...,
         start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        outcome: global___Outcome.ValueType = ...,
+        outcome: Global___Outcome.ValueType = ...,
         parametric_index: builtins.int = ...,
-        error_information: global___ErrorInformation | None = ...,
+        error_information: Global___ErrorInformation | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "moniker", b"moniker", "start_date_time", b"start_date_time"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "hardware_item_ids", b"hardware_item_ids", "id", b"id", "moniker", b"moniker", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parametric_index", b"parametric_index", "published_conditions", b"published_conditions", "software_item_ids", b"software_item_ids", "start_date_time", b"start_date_time", "step_id", b"step_id", "test_adapter_ids", b"test_adapter_ids", "test_result_id", b"test_result_id", "value_type", b"value_type"]) -> None: ...
 
-global___PublishedMeasurement = PublishedMeasurement
+Global___PublishedMeasurement: typing_extensions.TypeAlias = PublishedMeasurement
 
 @typing.final
 class TestResult(google.protobuf.message.Message):
@@ -270,7 +270,7 @@ class TestResult(google.protobuf.message.Message):
     """Required.
     The name of the test result.
     """
-    outcome: global___Outcome.ValueType
+    outcome: Global___Outcome.ValueType
     """Optional. Overall test result outcome (e.g., Passed, Failed, Indeterminate)
     The outcome can be set on creation if it is known at the time of creation.
     Otherwise, the outcome will be calculated based on the outcomes of the
@@ -314,7 +314,7 @@ class TestResult(google.protobuf.message.Message):
         """Optional. End date and time of the test execution (timestamp)"""
 
     @property
-    def error_information(self) -> global___ErrorInformation:
+    def error_information(self) -> Global___ErrorInformation:
         """Optional. Any error information associated with the test result. Error information can be
         set on creation if it is known at the time of creation. Otherwise, the error information
         will be calculated based on the outcomes of the associated steps.  If the error information
@@ -342,8 +342,8 @@ class TestResult(google.protobuf.message.Message):
         name: builtins.str = ...,
         start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        outcome: global___Outcome.ValueType = ...,
-        error_information: global___ErrorInformation | None = ...,
+        outcome: Global___Outcome.ValueType = ...,
+        error_information: Global___ErrorInformation | None = ...,
         link: builtins.str = ...,
         extension: collections.abc.Mapping[builtins.str, ni.measurements.metadata.v1.metadata_store_pb2.ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
@@ -351,7 +351,7 @@ class TestResult(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "start_date_time", b"start_date_time"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "hardware_item_ids", b"hardware_item_ids", "id", b"id", "link", b"link", "name", b"name", "operator_id", b"operator_id", "outcome", b"outcome", "schema_id", b"schema_id", "software_item_ids", b"software_item_ids", "start_date_time", b"start_date_time", "test_adapter_ids", b"test_adapter_ids", "test_description_id", b"test_description_id", "test_station_id", b"test_station_id", "uut_instance_id", b"uut_instance_id"]) -> None: ...
 
-global___TestResult = TestResult
+Global___TestResult: typing_extensions.TypeAlias = TestResult
 
 @typing.final
 class Step(google.protobuf.message.Message):
@@ -415,7 +415,7 @@ class Step(google.protobuf.message.Message):
     """Step type (e.g., Setup, Action, Measurement, Cleanup)"""
     notes: builtins.str
     """Any notes about the step"""
-    outcome: global___Outcome.ValueType
+    outcome: Global___Outcome.ValueType
     """Optional. Overall step outcome (e.g., Passed, Failed, Indeterminate)
     The outcome can be set on creation if it is known at the time of creation.
     Otherwise, the outcome will be calculated based on the outcomes of the
@@ -440,7 +440,7 @@ class Step(google.protobuf.message.Message):
         """End date and time of the test step (timestamp)"""
 
     @property
-    def error_information(self) -> global___ErrorInformation:
+    def error_information(self) -> Global___ErrorInformation:
         """Optional. Any error information associated with the test step. Error information can be
         set on creation if it is known at the time of creation. Otherwise, the error information
         will be calculated based on the outcomes of the associated measurements.  If the
@@ -466,8 +466,8 @@ class Step(google.protobuf.message.Message):
         notes: builtins.str = ...,
         start_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         end_date_time: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
-        outcome: global___Outcome.ValueType = ...,
-        error_information: global___ErrorInformation | None = ...,
+        outcome: Global___Outcome.ValueType = ...,
+        error_information: Global___ErrorInformation | None = ...,
         link: builtins.str = ...,
         extension: collections.abc.Mapping[builtins.str, ni.measurements.metadata.v1.metadata_store_pb2.ExtensionValue] | None = ...,
         schema_id: builtins.str = ...,
@@ -475,7 +475,7 @@ class Step(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "start_date_time", b"start_date_time"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["end_date_time", b"end_date_time", "error_information", b"error_information", "extension", b"extension", "id", b"id", "link", b"link", "name", b"name", "notes", b"notes", "outcome", b"outcome", "parent_step_id", b"parent_step_id", "schema_id", b"schema_id", "start_date_time", b"start_date_time", "step_type", b"step_type", "test_id", b"test_id", "test_result_id", b"test_result_id"]) -> None: ...
 
-global___Step = Step
+Global___Step: typing_extensions.TypeAlias = Step
 
 @typing.final
 class ErrorInformation(google.protobuf.message.Message):
@@ -501,4 +501,4 @@ class ErrorInformation(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["error_code", b"error_code", "message", b"message", "source", b"source"]) -> None: ...
 
-global___ErrorInformation = ErrorInformation
+Global___ErrorInformation: typing_extensions.TypeAlias = ErrorInformation

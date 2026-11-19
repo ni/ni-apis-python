@@ -16,7 +16,7 @@ Operating System Support
 Python Version Support
 ----------------------
 
-``ni.measurements.metadata.v1.proto`` supports CPython 3.10+.
+``ni.measurements.metadata.v1.proto`` supports CPython 3.11+.
 
 Installation
 ------------

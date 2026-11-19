@@ -246,6 +246,132 @@ class MetadataStoreClient(
         """Deletes a created alias."""
         return self._get_stub().DeleteAlias(request)
 
+    def batch_delete_aliases(
+        self, request: metadata_store_service_pb2.BatchDeleteAliasesRequest
+    ) -> metadata_store_service_pb2.BatchDeleteAliasesResponse:
+        """Deletes multiple aliases atomically."""
+        return self._get_stub().BatchDeleteAliases(request)
+
+    def delete_uut_instance(
+        self, request: metadata_store_service_pb2.DeleteUutInstanceRequest
+    ) -> metadata_store_service_pb2.DeleteUutInstanceResponse:
+        """Deletes a UUT instance."""
+        return self._get_stub().DeleteUutInstance(request)
+
+    def batch_delete_uut_instances(
+        self, request: metadata_store_service_pb2.BatchDeleteUutInstancesRequest
+    ) -> metadata_store_service_pb2.BatchDeleteUutInstancesResponse:
+        """Deletes multiple UUT instances atomically."""
+        return self._get_stub().BatchDeleteUutInstances(request)
+
+    def delete_uut(
+        self, request: metadata_store_service_pb2.DeleteUutRequest
+    ) -> metadata_store_service_pb2.DeleteUutResponse:
+        """Deletes a UUT."""
+        return self._get_stub().DeleteUut(request)
+
+    def batch_delete_uuts(
+        self, request: metadata_store_service_pb2.BatchDeleteUutsRequest
+    ) -> metadata_store_service_pb2.BatchDeleteUutsResponse:
+        """Deletes multiple UUTs atomically."""
+        return self._get_stub().BatchDeleteUuts(request)
+
+    def delete_operator(
+        self, request: metadata_store_service_pb2.DeleteOperatorRequest
+    ) -> metadata_store_service_pb2.DeleteOperatorResponse:
+        """Deletes an operator."""
+        return self._get_stub().DeleteOperator(request)
+
+    def batch_delete_operators(
+        self, request: metadata_store_service_pb2.BatchDeleteOperatorsRequest
+    ) -> metadata_store_service_pb2.BatchDeleteOperatorsResponse:
+        """Deletes multiple operators atomically."""
+        return self._get_stub().BatchDeleteOperators(request)
+
+    def delete_test_description(
+        self, request: metadata_store_service_pb2.DeleteTestDescriptionRequest
+    ) -> metadata_store_service_pb2.DeleteTestDescriptionResponse:
+        """Deletes a test description."""
+        return self._get_stub().DeleteTestDescription(request)
+
+    def batch_delete_test_descriptions(
+        self, request: metadata_store_service_pb2.BatchDeleteTestDescriptionsRequest
+    ) -> metadata_store_service_pb2.BatchDeleteTestDescriptionsResponse:
+        """Deletes multiple test descriptions atomically."""
+        return self._get_stub().BatchDeleteTestDescriptions(request)
+
+    def delete_test(
+        self, request: metadata_store_service_pb2.DeleteTestRequest
+    ) -> metadata_store_service_pb2.DeleteTestResponse:
+        """Deletes a test."""
+        return self._get_stub().DeleteTest(request)
+
+    def batch_delete_tests(
+        self, request: metadata_store_service_pb2.BatchDeleteTestsRequest
+    ) -> metadata_store_service_pb2.BatchDeleteTestsResponse:
+        """Deletes multiple tests atomically."""
+        return self._get_stub().BatchDeleteTests(request)
+
+    def delete_test_station(
+        self, request: metadata_store_service_pb2.DeleteTestStationRequest
+    ) -> metadata_store_service_pb2.DeleteTestStationResponse:
+        """Deletes a test station."""
+        return self._get_stub().DeleteTestStation(request)
+
+    def batch_delete_test_stations(
+        self, request: metadata_store_service_pb2.BatchDeleteTestStationsRequest
+    ) -> metadata_store_service_pb2.BatchDeleteTestStationsResponse:
+        """Deletes multiple test stations atomically."""
+        return self._get_stub().BatchDeleteTestStations(request)
+
+    def delete_hardware_item(
+        self, request: metadata_store_service_pb2.DeleteHardwareItemRequest
+    ) -> metadata_store_service_pb2.DeleteHardwareItemResponse:
+        """Deletes a hardware item."""
+        return self._get_stub().DeleteHardwareItem(request)
+
+    def batch_delete_hardware_items(
+        self, request: metadata_store_service_pb2.BatchDeleteHardwareItemsRequest
+    ) -> metadata_store_service_pb2.BatchDeleteHardwareItemsResponse:
+        """Deletes multiple hardware items atomically."""
+        return self._get_stub().BatchDeleteHardwareItems(request)
+
+    def delete_software_item(
+        self, request: metadata_store_service_pb2.DeleteSoftwareItemRequest
+    ) -> metadata_store_service_pb2.DeleteSoftwareItemResponse:
+        """Deletes a software item."""
+        return self._get_stub().DeleteSoftwareItem(request)
+
+    def batch_delete_software_items(
+        self, request: metadata_store_service_pb2.BatchDeleteSoftwareItemsRequest
+    ) -> metadata_store_service_pb2.BatchDeleteSoftwareItemsResponse:
+        """Deletes multiple software items atomically."""
+        return self._get_stub().BatchDeleteSoftwareItems(request)
+
+    def delete_test_adapter(
+        self, request: metadata_store_service_pb2.DeleteTestAdapterRequest
+    ) -> metadata_store_service_pb2.DeleteTestAdapterResponse:
+        """Deletes a test adapter."""
+        return self._get_stub().DeleteTestAdapter(request)
+
+    def batch_delete_test_adapters(
+        self, request: metadata_store_service_pb2.BatchDeleteTestAdaptersRequest
+    ) -> metadata_store_service_pb2.BatchDeleteTestAdaptersResponse:
+        """Deletes multiple test adapters atomically."""
+        return self._get_stub().BatchDeleteTestAdapters(request)
+
+    def delete_schema(
+        self, request: metadata_store_service_pb2.DeleteSchemaRequest
+    ) -> metadata_store_service_pb2.DeleteSchemaResponse:
+        """Deletes a schema."""
+        return self._get_stub().DeleteSchema(request)
+
+    def batch_delete_schemas(
+        self, request: metadata_store_service_pb2.BatchDeleteSchemasRequest
+    ) -> metadata_store_service_pb2.BatchDeleteSchemasResponse:
+        """Deletes multiple schemas atomically."""
+        return self._get_stub().BatchDeleteSchemas(request)
+
     def create_from_json_document(
         self, request: metadata_store_service_pb2.CreateFromJsonDocumentRequest
     ) -> metadata_store_service_pb2.CreateFromJsonDocumentResponse:

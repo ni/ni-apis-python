@@ -11,7 +11,13 @@ import google.protobuf.descriptor
 import google.protobuf.internal.containers
 import google.protobuf.message
 import ni.protobuf.types.precision_timestamp_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 10):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 DESCRIPTOR: google.protobuf.descriptor.FileDescriptor
 
@@ -29,12 +35,12 @@ class DoubleAnalogWaveform(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___WaveformAttributeValue: ...
+        def value(self) -> Global___WaveformAttributeValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___WaveformAttributeValue | None = ...,
+            value: Global___WaveformAttributeValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -67,7 +73,7 @@ class DoubleAnalogWaveform(google.protobuf.message.Message):
         """The data values of the waveform."""
 
     @property
-    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
+    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
 
     @property
@@ -94,7 +100,7 @@ class DoubleAnalogWaveform(google.protobuf.message.Message):
         t0: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         dt: builtins.float = ...,
         y_data: collections.abc.Iterable[builtins.float] | None = ...,
-        attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
+        attributes: collections.abc.Mapping[builtins.str, Global___WaveformAttributeValue] | None = ...,
         timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         time_offset: builtins.float = ...,
         timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
@@ -102,7 +108,7 @@ class DoubleAnalogWaveform(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
-global___DoubleAnalogWaveform = DoubleAnalogWaveform
+Global___DoubleAnalogWaveform: typing_extensions.TypeAlias = DoubleAnalogWaveform
 
 @typing.final
 class FloatAnalogWaveform(google.protobuf.message.Message):
@@ -118,12 +124,12 @@ class FloatAnalogWaveform(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___WaveformAttributeValue: ...
+        def value(self) -> Global___WaveformAttributeValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___WaveformAttributeValue | None = ...,
+            value: Global___WaveformAttributeValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -156,7 +162,7 @@ class FloatAnalogWaveform(google.protobuf.message.Message):
         """The data values of the waveform."""
 
     @property
-    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
+    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
 
     @property
@@ -183,7 +189,7 @@ class FloatAnalogWaveform(google.protobuf.message.Message):
         t0: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         dt: builtins.float = ...,
         y_data: collections.abc.Iterable[builtins.float] | None = ...,
-        attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
+        attributes: collections.abc.Mapping[builtins.str, Global___WaveformAttributeValue] | None = ...,
         timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         time_offset: builtins.float = ...,
         timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
@@ -191,7 +197,7 @@ class FloatAnalogWaveform(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
-global___FloatAnalogWaveform = FloatAnalogWaveform
+Global___FloatAnalogWaveform: typing_extensions.TypeAlias = FloatAnalogWaveform
 
 @typing.final
 class I16AnalogWaveform(google.protobuf.message.Message):
@@ -207,12 +213,12 @@ class I16AnalogWaveform(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___WaveformAttributeValue: ...
+        def value(self) -> Global___WaveformAttributeValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___WaveformAttributeValue | None = ...,
+            value: Global___WaveformAttributeValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -246,11 +252,11 @@ class I16AnalogWaveform(google.protobuf.message.Message):
         """The data values of the waveform."""
 
     @property
-    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
+    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
 
     @property
-    def scale(self) -> global___Scale:
+    def scale(self) -> Global___Scale:
         """Optional scaling information used to convert raw data to scaled data."""
 
     @property
@@ -277,8 +283,8 @@ class I16AnalogWaveform(google.protobuf.message.Message):
         t0: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         dt: builtins.float = ...,
         y_data: collections.abc.Iterable[builtins.int] | None = ...,
-        attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
-        scale: global___Scale | None = ...,
+        attributes: collections.abc.Mapping[builtins.str, Global___WaveformAttributeValue] | None = ...,
+        scale: Global___Scale | None = ...,
         timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         time_offset: builtins.float = ...,
         timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
@@ -286,7 +292,7 @@ class I16AnalogWaveform(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["scale", b"scale", "t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "scale", b"scale", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
-global___I16AnalogWaveform = I16AnalogWaveform
+Global___I16AnalogWaveform: typing_extensions.TypeAlias = I16AnalogWaveform
 
 @typing.final
 class DoubleComplexWaveform(google.protobuf.message.Message):
@@ -302,12 +308,12 @@ class DoubleComplexWaveform(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___WaveformAttributeValue: ...
+        def value(self) -> Global___WaveformAttributeValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___WaveformAttributeValue | None = ...,
+            value: Global___WaveformAttributeValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -344,7 +350,7 @@ class DoubleComplexWaveform(google.protobuf.message.Message):
         """
 
     @property
-    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
+    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
 
     @property
@@ -371,7 +377,7 @@ class DoubleComplexWaveform(google.protobuf.message.Message):
         t0: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         dt: builtins.float = ...,
         y_data: collections.abc.Iterable[builtins.float] | None = ...,
-        attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
+        attributes: collections.abc.Mapping[builtins.str, Global___WaveformAttributeValue] | None = ...,
         timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         time_offset: builtins.float = ...,
         timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
@@ -379,7 +385,7 @@ class DoubleComplexWaveform(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
-global___DoubleComplexWaveform = DoubleComplexWaveform
+Global___DoubleComplexWaveform: typing_extensions.TypeAlias = DoubleComplexWaveform
 
 @typing.final
 class FloatComplexWaveform(google.protobuf.message.Message):
@@ -395,12 +401,12 @@ class FloatComplexWaveform(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___WaveformAttributeValue: ...
+        def value(self) -> Global___WaveformAttributeValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___WaveformAttributeValue | None = ...,
+            value: Global___WaveformAttributeValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -437,7 +443,7 @@ class FloatComplexWaveform(google.protobuf.message.Message):
         """
 
     @property
-    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
+    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
 
     @property
@@ -464,7 +470,7 @@ class FloatComplexWaveform(google.protobuf.message.Message):
         t0: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         dt: builtins.float = ...,
         y_data: collections.abc.Iterable[builtins.float] | None = ...,
-        attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
+        attributes: collections.abc.Mapping[builtins.str, Global___WaveformAttributeValue] | None = ...,
         timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         time_offset: builtins.float = ...,
         timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
@@ -472,7 +478,7 @@ class FloatComplexWaveform(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
-global___FloatComplexWaveform = FloatComplexWaveform
+Global___FloatComplexWaveform: typing_extensions.TypeAlias = FloatComplexWaveform
 
 @typing.final
 class I16ComplexWaveform(google.protobuf.message.Message):
@@ -488,12 +494,12 @@ class I16ComplexWaveform(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___WaveformAttributeValue: ...
+        def value(self) -> Global___WaveformAttributeValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___WaveformAttributeValue | None = ...,
+            value: Global___WaveformAttributeValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -531,11 +537,11 @@ class I16ComplexWaveform(google.protobuf.message.Message):
         """
 
     @property
-    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
+    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
 
     @property
-    def scale(self) -> global___Scale:
+    def scale(self) -> Global___Scale:
         """Optional scaling information used to convert raw data to scaled data."""
 
     @property
@@ -562,8 +568,8 @@ class I16ComplexWaveform(google.protobuf.message.Message):
         t0: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         dt: builtins.float = ...,
         y_data: collections.abc.Iterable[builtins.int] | None = ...,
-        attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
-        scale: global___Scale | None = ...,
+        attributes: collections.abc.Mapping[builtins.str, Global___WaveformAttributeValue] | None = ...,
+        scale: Global___Scale | None = ...,
         timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         time_offset: builtins.float = ...,
         timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
@@ -571,7 +577,7 @@ class I16ComplexWaveform(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["scale", b"scale", "t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "scale", b"scale", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
-global___I16ComplexWaveform = I16ComplexWaveform
+Global___I16ComplexWaveform: typing_extensions.TypeAlias = I16ComplexWaveform
 
 @typing.final
 class DoubleSpectrum(google.protobuf.message.Message):
@@ -587,12 +593,12 @@ class DoubleSpectrum(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___WaveformAttributeValue: ...
+        def value(self) -> Global___WaveformAttributeValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___WaveformAttributeValue | None = ...,
+            value: Global___WaveformAttributeValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -610,7 +616,7 @@ class DoubleSpectrum(google.protobuf.message.Message):
         """The data values of the spectrum."""
 
     @property
-    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
+    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
 
     def __init__(
@@ -619,11 +625,11 @@ class DoubleSpectrum(google.protobuf.message.Message):
         start_frequency: builtins.float = ...,
         frequency_increment: builtins.float = ...,
         data: collections.abc.Iterable[builtins.float] | None = ...,
-        attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
+        attributes: collections.abc.Mapping[builtins.str, Global___WaveformAttributeValue] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "data", b"data", "frequency_increment", b"frequency_increment", "start_frequency", b"start_frequency"]) -> None: ...
 
-global___DoubleSpectrum = DoubleSpectrum
+Global___DoubleSpectrum: typing_extensions.TypeAlias = DoubleSpectrum
 
 @typing.final
 class FloatSpectrum(google.protobuf.message.Message):
@@ -639,12 +645,12 @@ class FloatSpectrum(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___WaveformAttributeValue: ...
+        def value(self) -> Global___WaveformAttributeValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___WaveformAttributeValue | None = ...,
+            value: Global___WaveformAttributeValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -662,7 +668,7 @@ class FloatSpectrum(google.protobuf.message.Message):
         """The data values of the spectrum."""
 
     @property
-    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
+    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
 
     def __init__(
@@ -671,11 +677,11 @@ class FloatSpectrum(google.protobuf.message.Message):
         start_frequency: builtins.float = ...,
         frequency_increment: builtins.float = ...,
         data: collections.abc.Iterable[builtins.float] | None = ...,
-        attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
+        attributes: collections.abc.Mapping[builtins.str, Global___WaveformAttributeValue] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "data", b"data", "frequency_increment", b"frequency_increment", "start_frequency", b"start_frequency"]) -> None: ...
 
-global___FloatSpectrum = FloatSpectrum
+Global___FloatSpectrum: typing_extensions.TypeAlias = FloatSpectrum
 
 @typing.final
 class WaveformAttributeValue(google.protobuf.message.Message):
@@ -718,7 +724,7 @@ class WaveformAttributeValue(google.protobuf.message.Message):
     def ClearField(self, field_name: typing.Literal["attribute", b"attribute", "bool_value", b"bool_value", "double_value", b"double_value", "integer_value", b"integer_value", "string_value", b"string_value"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["attribute", b"attribute"]) -> typing.Literal["bool_value", "integer_value", "double_value", "string_value"] | None: ...
 
-global___WaveformAttributeValue = WaveformAttributeValue
+Global___WaveformAttributeValue: typing_extensions.TypeAlias = WaveformAttributeValue
 
 @typing.final
 class DigitalWaveform(google.protobuf.message.Message):
@@ -734,12 +740,12 @@ class DigitalWaveform(google.protobuf.message.Message):
         VALUE_FIELD_NUMBER: builtins.int
         key: builtins.str
         @property
-        def value(self) -> global___WaveformAttributeValue: ...
+        def value(self) -> Global___WaveformAttributeValue: ...
         def __init__(
             self,
             *,
             key: builtins.str = ...,
-            value: global___WaveformAttributeValue | None = ...,
+            value: Global___WaveformAttributeValue | None = ...,
         ) -> None: ...
         def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
         def ClearField(self, field_name: typing.Literal["key", b"key", "value", b"value"]) -> None: ...
@@ -777,7 +783,7 @@ class DigitalWaveform(google.protobuf.message.Message):
         """
 
     @property
-    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, global___WaveformAttributeValue]:
+    def attributes(self) -> google.protobuf.internal.containers.MessageMap[builtins.str, Global___WaveformAttributeValue]:
         """Attribute names and values. See WaveformAttributeValue for more details."""
 
     @property
@@ -805,7 +811,7 @@ class DigitalWaveform(google.protobuf.message.Message):
         dt: builtins.float = ...,
         signal_count: builtins.int = ...,
         y_data: builtins.bytes = ...,
-        attributes: collections.abc.Mapping[builtins.str, global___WaveformAttributeValue] | None = ...,
+        attributes: collections.abc.Mapping[builtins.str, Global___WaveformAttributeValue] | None = ...,
         timestamp: ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp | None = ...,
         time_offset: builtins.float = ...,
         timestamps: collections.abc.Iterable[ni.protobuf.types.precision_timestamp_pb2.PrecisionTimestamp] | None = ...,
@@ -813,7 +819,7 @@ class DigitalWaveform(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["t0", b"t0", "timestamp", b"timestamp"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["attributes", b"attributes", "dt", b"dt", "signal_count", b"signal_count", "t0", b"t0", "time_offset", b"time_offset", "timestamp", b"timestamp", "timestamps", b"timestamps", "y_data", b"y_data"]) -> None: ...
 
-global___DigitalWaveform = DigitalWaveform
+Global___DigitalWaveform: typing_extensions.TypeAlias = DigitalWaveform
 
 @typing.final
 class Scale(google.protobuf.message.Message):
@@ -823,17 +829,17 @@ class Scale(google.protobuf.message.Message):
 
     LINEAR_SCALE_FIELD_NUMBER: builtins.int
     @property
-    def linear_scale(self) -> global___LinearScale: ...
+    def linear_scale(self) -> Global___LinearScale: ...
     def __init__(
         self,
         *,
-        linear_scale: global___LinearScale | None = ...,
+        linear_scale: Global___LinearScale | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["linear_scale", b"linear_scale", "mode", b"mode"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["linear_scale", b"linear_scale", "mode", b"mode"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["mode", b"mode"]) -> typing.Literal["linear_scale"] | None: ...
 
-global___Scale = Scale
+Global___Scale: typing_extensions.TypeAlias = Scale
 
 @typing.final
 class LinearScale(google.protobuf.message.Message):
@@ -855,4 +861,4 @@ class LinearScale(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["gain", b"gain", "offset", b"offset"]) -> None: ...
 
-global___LinearScale = LinearScale
+Global___LinearScale: typing_extensions.TypeAlias = LinearScale

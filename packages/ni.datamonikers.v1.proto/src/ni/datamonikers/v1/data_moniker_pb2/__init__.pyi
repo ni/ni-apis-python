@@ -85,7 +85,7 @@ RDMA_LOW_LATENCY: SidebandStrategy.ValueType  # 8
 """RDMA transport optimized for lower latency at the expense of higher
 CPU usage.
 """
-global___SidebandStrategy = SidebandStrategy
+Global___SidebandStrategy: typing_extensions.TypeAlias = SidebandStrategy
 
 @typing.final
 class Moniker(google.protobuf.message.Message):
@@ -113,7 +113,7 @@ class Moniker(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["data_instance", b"data_instance", "data_source", b"data_source", "service_location", b"service_location"]) -> None: ...
 
-global___Moniker = Moniker
+Global___Moniker: typing_extensions.TypeAlias = Moniker
 
 @typing.final
 class MonikerValues(google.protobuf.message.Message):
@@ -138,7 +138,7 @@ class MonikerValues(google.protobuf.message.Message):
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["values", b"values"]) -> None: ...
 
-global___MonikerValues = MonikerValues
+Global___MonikerValues: typing_extensions.TypeAlias = MonikerValues
 
 @typing.final
 class MonikerList(google.protobuf.message.Message):
@@ -154,23 +154,23 @@ class MonikerList(google.protobuf.message.Message):
     is_initial_write: builtins.bool
     """Deprecated. Preserved for backward compatibility."""
     @property
-    def read_monikers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Moniker]:
+    def read_monikers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Moniker]:
         """Monikers from which to read."""
 
     @property
-    def write_monikers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___Moniker]:
+    def write_monikers(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[Global___Moniker]:
         """Monikers to update with new data values."""
 
     def __init__(
         self,
         *,
         is_initial_write: builtins.bool = ...,
-        read_monikers: collections.abc.Iterable[global___Moniker] | None = ...,
-        write_monikers: collections.abc.Iterable[global___Moniker] | None = ...,
+        read_monikers: collections.abc.Iterable[Global___Moniker] | None = ...,
+        write_monikers: collections.abc.Iterable[Global___Moniker] | None = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["is_initial_write", b"is_initial_write", "read_monikers", b"read_monikers", "write_monikers", b"write_monikers"]) -> None: ...
 
-global___MonikerList = MonikerList
+Global___MonikerList: typing_extensions.TypeAlias = MonikerList
 
 @typing.final
 class BeginMonikerSidebandStreamRequest(google.protobuf.message.Message):
@@ -178,22 +178,22 @@ class BeginMonikerSidebandStreamRequest(google.protobuf.message.Message):
 
     STRATEGY_FIELD_NUMBER: builtins.int
     MONIKERS_FIELD_NUMBER: builtins.int
-    strategy: global___SidebandStrategy.ValueType
+    strategy: Global___SidebandStrategy.ValueType
     """The transport to use for the sideband communication channel."""
     @property
-    def monikers(self) -> global___MonikerList:
+    def monikers(self) -> Global___MonikerList:
         """Monikers participating in the sideband communication channel."""
 
     def __init__(
         self,
         *,
-        strategy: global___SidebandStrategy.ValueType = ...,
-        monikers: global___MonikerList | None = ...,
+        strategy: Global___SidebandStrategy.ValueType = ...,
+        monikers: Global___MonikerList | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["monikers", b"monikers"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["monikers", b"monikers", "strategy", b"strategy"]) -> None: ...
 
-global___BeginMonikerSidebandStreamRequest = BeginMonikerSidebandStreamRequest
+Global___BeginMonikerSidebandStreamRequest: typing_extensions.TypeAlias = BeginMonikerSidebandStreamRequest
 
 @typing.final
 class BeginMonikerSidebandStreamResponse(google.protobuf.message.Message):
@@ -203,7 +203,7 @@ class BeginMonikerSidebandStreamResponse(google.protobuf.message.Message):
     CONNECTION_URL_FIELD_NUMBER: builtins.int
     SIDEBAND_IDENTIFIER_FIELD_NUMBER: builtins.int
     BUFFER_SIZE_FIELD_NUMBER: builtins.int
-    strategy: global___SidebandStrategy.ValueType
+    strategy: Global___SidebandStrategy.ValueType
     """Selected transport used for the the sideband communication channel."""
     connection_url: builtins.str
     """Transport-specific URL or endpoint used to establish the sideband connection."""
@@ -214,14 +214,14 @@ class BeginMonikerSidebandStreamResponse(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        strategy: global___SidebandStrategy.ValueType = ...,
+        strategy: Global___SidebandStrategy.ValueType = ...,
         connection_url: builtins.str = ...,
         sideband_identifier: builtins.str = ...,
         buffer_size: builtins.int = ...,
     ) -> None: ...
     def ClearField(self, field_name: typing.Literal["buffer_size", b"buffer_size", "connection_url", b"connection_url", "sideband_identifier", b"sideband_identifier", "strategy", b"strategy"]) -> None: ...
 
-global___BeginMonikerSidebandStreamResponse = BeginMonikerSidebandStreamResponse
+Global___BeginMonikerSidebandStreamResponse: typing_extensions.TypeAlias = BeginMonikerSidebandStreamResponse
 
 @typing.final
 class MonikerWriteRequest(google.protobuf.message.Message):
@@ -232,11 +232,11 @@ class MonikerWriteRequest(google.protobuf.message.Message):
     MONIKERS_FIELD_NUMBER: builtins.int
     DATA_FIELD_NUMBER: builtins.int
     @property
-    def monikers(self) -> global___MonikerList:
+    def monikers(self) -> Global___MonikerList:
         """Initial handshake message that declares the target monikers."""
 
     @property
-    def data(self) -> global___MonikerValues:
+    def data(self) -> Global___MonikerValues:
         """Value payload for the established write session.
 
         This field should be set on all subsequent messages after the initial
@@ -246,14 +246,14 @@ class MonikerWriteRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        monikers: global___MonikerList | None = ...,
-        data: global___MonikerValues | None = ...,
+        monikers: Global___MonikerList | None = ...,
+        data: Global___MonikerValues | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["data", b"data", "monikers", b"monikers", "write_data", b"write_data"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["data", b"data", "monikers", b"monikers", "write_data", b"write_data"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["write_data", b"write_data"]) -> typing.Literal["monikers", "data"] | None: ...
 
-global___MonikerWriteRequest = MonikerWriteRequest
+Global___MonikerWriteRequest: typing_extensions.TypeAlias = MonikerWriteRequest
 
 @typing.final
 class MonikerReadResult(google.protobuf.message.Message):
@@ -263,18 +263,18 @@ class MonikerReadResult(google.protobuf.message.Message):
 
     DATA_FIELD_NUMBER: builtins.int
     @property
-    def data(self) -> global___MonikerValues:
+    def data(self) -> Global___MonikerValues:
         """Data values returned from the read monikers."""
 
     def __init__(
         self,
         *,
-        data: global___MonikerValues | None = ...,
+        data: Global___MonikerValues | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["data", b"data"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["data", b"data"]) -> None: ...
 
-global___MonikerReadResult = MonikerReadResult
+Global___MonikerReadResult: typing_extensions.TypeAlias = MonikerReadResult
 
 @typing.final
 class StreamWriteResponse(google.protobuf.message.Message):
@@ -284,7 +284,7 @@ class StreamWriteResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___StreamWriteResponse = StreamWriteResponse
+Global___StreamWriteResponse: typing_extensions.TypeAlias = StreamWriteResponse
 
 @typing.final
 class ReadFromMonikerResult(google.protobuf.message.Message):
@@ -303,7 +303,7 @@ class ReadFromMonikerResult(google.protobuf.message.Message):
     def HasField(self, field_name: typing.Literal["value", b"value"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["value", b"value"]) -> None: ...
 
-global___ReadFromMonikerResult = ReadFromMonikerResult
+Global___ReadFromMonikerResult: typing_extensions.TypeAlias = ReadFromMonikerResult
 
 @typing.final
 class WriteToMonikerRequest(google.protobuf.message.Message):
@@ -312,7 +312,7 @@ class WriteToMonikerRequest(google.protobuf.message.Message):
     MONIKER_FIELD_NUMBER: builtins.int
     VALUE_FIELD_NUMBER: builtins.int
     @property
-    def moniker(self) -> global___Moniker:
+    def moniker(self) -> Global___Moniker:
         """The data moniker to update."""
 
     @property
@@ -322,13 +322,13 @@ class WriteToMonikerRequest(google.protobuf.message.Message):
     def __init__(
         self,
         *,
-        moniker: global___Moniker | None = ...,
+        moniker: Global___Moniker | None = ...,
         value: google.protobuf.any_pb2.Any | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["moniker", b"moniker", "value", b"value"]) -> builtins.bool: ...
     def ClearField(self, field_name: typing.Literal["moniker", b"moniker", "value", b"value"]) -> None: ...
 
-global___WriteToMonikerRequest = WriteToMonikerRequest
+Global___WriteToMonikerRequest: typing_extensions.TypeAlias = WriteToMonikerRequest
 
 @typing.final
 class WriteToMonikerResponse(google.protobuf.message.Message):
@@ -338,4 +338,4 @@ class WriteToMonikerResponse(google.protobuf.message.Message):
         self,
     ) -> None: ...
 
-global___WriteToMonikerResponse = WriteToMonikerResponse
+Global___WriteToMonikerResponse: typing_extensions.TypeAlias = WriteToMonikerResponse

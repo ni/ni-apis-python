@@ -1,5 +1,8 @@
 name: Create draft release
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
     inputs:
@@ -24,6 +27,8 @@ on:
           - ni.measurementlink.sessionmanagement.v1.proto
           - ni.measurements.data.v1.client
           - ni.measurements.data.v1.proto
+          - ni.measurements.data.v2.client
+          - ni.measurements.data.v2.proto
           - ni.measurements.metadata.v1.client
           - ni.measurements.metadata.v1.proto
           - ni.panels.v1.proto
@@ -47,10 +52,10 @@ jobs:
         with:
           fetch-depth: 0  # Need full history for git tag and release notes
       - name: Set up Python
-        uses: ni/python-actions/setup-python@dee640bba235ae28fdc6b7337c643bd06358ae90 # v0.9.0
+        uses: ni/python-actions/setup-python@edaf1454897cb4cd5f6fc0757cb62dee455e57fd # v0.10.1
         id: setup-python
       - name: Set up Poetry
-        uses: ni/python-actions/setup-poetry@dee640bba235ae28fdc6b7337c643bd06358ae90 # v0.9.0
+        uses: ni/python-actions/setup-poetry@edaf1454897cb4cd5f6fc0757cb62dee455e57fd # v0.10.1
       - name: Get release details
         id: get-release-details
         working-directory: packages/${{ inputs.package-name }}

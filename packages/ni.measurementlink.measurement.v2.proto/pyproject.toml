@@ -1,6 +1,6 @@
 [project]
 name = "ni.measurementlink.measurement.v2.proto"
-version = "1.1.2.dev0"
+version = "1.2.0.dev1"
 license = "MIT"
 description = "Protobuf data types for NI measurement gRPC APIs"
 authors = [{name = "NI", email = "opensource@ni.com"}]
@@ -19,15 +19,15 @@ classifiers = [
   "Operating System :: Microsoft :: Windows",
   "Operating System :: POSIX",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
   "Programming Language :: Python :: Implementation :: CPython",
 ]
 dynamic = ["dependencies"]
-requires-python = '>=3.10,<4.0'
+requires-python = '>=3.11,<4.0'
 
 [project.urls]
 repository = "https://github.com/ni/ni-apis-python"
@@ -38,18 +38,17 @@ packages = [{include = "ni", from = "src"}]
 requires-poetry = '>=2.1,<3.0'
 
 [tool.poetry.dependencies]
-protobuf = {version=">=4.21"}
-ni-measurementlink-proto = ">=1.0.0"
+protobuf = ">=5.27.2"
+ni-measurementlink-proto = { version = ">=1.0.0", allow-prereleases=true }
 
 [tool.poetry.group.dev.dependencies]
 types-grpcio = ">=1.0"
-types-protobuf = ">=4.21"
+types-protobuf = ">=5.27.2"
 # During development, use file paths to reference the latest source for packages
 # in the same Git repository.
 ni-measurementlink-proto = {path = "../../packages/ni.measurementlink.proto", develop = true}
 numpy = [
-  { version = ">=1.22", python = ">=3.10,<3.12" },
-  { version = ">=1.26", python = ">=3.12,<3.13" },
+  { version = ">=1.26", python = ">=3.11,<3.13" },
   { version = ">=2.1", python = "^3.13" },
 ]
 
@@ -73,7 +72,6 @@ optional = true
 [tool.poetry.group.docs.dependencies]
 # The latest Sphinx requires a recent Python version.
 Sphinx = [
-  { version = ">=8.1", python = ">=3.10,<3.11" },
   { version = ">=8.2", python = "^3.11" },
 ]
 sphinx-rtd-theme = ">=1.0.0"

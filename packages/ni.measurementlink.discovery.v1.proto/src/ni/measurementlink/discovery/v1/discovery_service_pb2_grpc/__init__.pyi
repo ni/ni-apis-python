@@ -10,7 +10,13 @@ import collections.abc
 import grpc
 import grpc.aio
 import ni.measurementlink.discovery.v1.discovery_service_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 13):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 _T = typing.TypeVar("_T")
 
@@ -19,16 +25,190 @@ class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Ite
 class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
-class DiscoveryServiceStub:
+GRPC_GENERATED_VERSION: str
+GRPC_VERSION: str
+_DiscoveryServiceRegisterServiceType = typing_extensions.TypeVar(
+    '_DiscoveryServiceRegisterServiceType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceResponse,
+    ],
+)
+
+_DiscoveryServiceUnregisterServiceType = typing_extensions.TypeVar(
+    '_DiscoveryServiceUnregisterServiceType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceResponse,
+    ],
+)
+
+_DiscoveryServiceEnumerateServicesType = typing_extensions.TypeVar(
+    '_DiscoveryServiceEnumerateServicesType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesResponse,
+    ],
+)
+
+_DiscoveryServiceResolveServiceType = typing_extensions.TypeVar(
+    '_DiscoveryServiceResolveServiceType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ServiceLocation,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ServiceLocation,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ServiceLocation,
+    ],
+)
+
+_DiscoveryServiceResolveServiceWithInformationType = typing_extensions.TypeVar(
+    '_DiscoveryServiceResolveServiceWithInformationType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationResponse,
+    ],
+)
+
+_DiscoveryServiceEnumerateComputeNodesType = typing_extensions.TypeVar(
+    '_DiscoveryServiceEnumerateComputeNodesType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesResponse,
+    ],
+)
+
+_DiscoveryServiceEnumerateActiveServicesType = typing_extensions.TypeVar(
+    '_DiscoveryServiceEnumerateActiveServicesType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesRequest,
+        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesResponse,
+    ],
+)
+
+class DiscoveryServiceStub(typing.Generic[_DiscoveryServiceRegisterServiceType, _DiscoveryServiceUnregisterServiceType, _DiscoveryServiceEnumerateServicesType, _DiscoveryServiceResolveServiceType, _DiscoveryServiceResolveServiceWithInformationType, _DiscoveryServiceEnumerateComputeNodesType, _DiscoveryServiceEnumerateActiveServicesType]):
     """The service used as a registry for other services. This service can be used to discover
     and activate other services present in the system.
     """
 
-    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
-    RegisterService: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceRequest,
-        ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceResponse,
-    ]
+    @typing.overload
+    def __init__(self: DiscoveryServiceStub[
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.ServiceLocation,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesResponse,
+        ],
+    ], channel: grpc.Channel) -> None: ...
+
+    @typing.overload
+    def __init__(self: DiscoveryServiceStub[
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.ServiceLocation,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesRequest,
+            ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesResponse,
+        ],
+    ], channel: grpc.aio.Channel) -> None: ...
+
+    RegisterService: _DiscoveryServiceRegisterServiceType
     """Registers a service instance with the discovery service.
 
     Status codes for errors:
@@ -43,24 +223,15 @@ class DiscoveryServiceStub:
       - Either ServiceLocation.insecure_port or ServiceLocation.ssl_authenticated_port contain an invalid port number
     """
 
-    UnregisterService: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceRequest,
-        ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceResponse,
-    ]
+    UnregisterService: _DiscoveryServiceUnregisterServiceType
     """Unregisters a service instance with the discovery service."""
 
-    EnumerateServices: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesRequest,
-        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesResponse,
-    ]
+    EnumerateServices: _DiscoveryServiceEnumerateServicesType
     """Enumerate all services which implement a specific service interface.
     This is useful for plugin type systems where the possible services are not known ahead of time.
     """
 
-    ResolveService: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceRequest,
-        ni.measurementlink.discovery.v1.discovery_service_pb2.ServiceLocation,
-    ]
+    ResolveService: _DiscoveryServiceResolveServiceType
     """Given a description of a service, returns information that can be used to establish communication
     with that service. If necessary, the service will be started by the discovery service if it has not
     already been started. Activation of the service is accomplished through use of a .serviceconfig file
@@ -75,29 +246,20 @@ class DiscoveryServiceStub:
     - FAILED_PRECONDITION: More than one service matching the resolve request was found
     """
 
-    ResolveServiceWithInformation: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationRequest,
-        ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationResponse,
-    ]
+    ResolveServiceWithInformation: _DiscoveryServiceResolveServiceWithInformationType
     """Similar to ResolveService, returns information for the service in addition to the location of the service.
     This is useful if you want to avoid the overhead of having to call EnumerateServices to get this information as part of
     resolution of the service. See ResolveService for additional documentation related to resolving the service.
     """
 
-    EnumerateComputeNodes: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesRequest,
-        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesResponse,
-    ]
+    EnumerateComputeNodes: _DiscoveryServiceEnumerateComputeNodesType
     """Enumerate all compute nodes that have registered themselves in the current session.
     These compute nodes are targets available for execution of services.
     A compute node can be used as an argument to the ResolveService method to
     get the service location for a service running on that compute node.
     """
 
-    EnumerateActiveServices: grpc.UnaryUnaryMultiCallable[
-        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesRequest,
-        ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesResponse,
-    ]
+    EnumerateActiveServices: _DiscoveryServiceEnumerateActiveServicesType
     """Enumerate all service instances that are currently active (running).
     This RPC is intended for diagnostic and informational purposes, such as displaying the
     status of registered services to a user. It should not be used to obtain a service location
@@ -109,94 +271,36 @@ class DiscoveryServiceStub:
     callers to see each running instance independently when multiple versions are active side by side.
     """
 
-class DiscoveryServiceAsyncStub:
-    """The service used as a registry for other services. This service can be used to discover
-    and activate other services present in the system.
-    """
-
-    RegisterService: grpc.aio.UnaryUnaryMultiCallable[
+DiscoveryServiceAsyncStub: typing_extensions.TypeAlias = DiscoveryServiceStub[
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceRequest,
         ni.measurementlink.discovery.v1.discovery_service_pb2.RegisterServiceResponse,
-    ]
-    """Registers a service instance with the discovery service.
-
-    Status codes for errors:
-
-    - INVALID_ARGUMENT:
-
-      - ServiceDescriptor.display_name is empty
-      - ServiceDescriptor.provided_interfaces is empty
-      - ServiceDescriptor.service_class is empty
-      - ServiceLocation.location is empty
-      - Both ServiceLocation.insecure_port and ServiceLocation.ssl_authenticated_port are empty
-      - Either ServiceLocation.insecure_port or ServiceLocation.ssl_authenticated_port contain an invalid port number
-    """
-
-    UnregisterService: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceRequest,
         ni.measurementlink.discovery.v1.discovery_service_pb2.UnregisterServiceResponse,
-    ]
-    """Unregisters a service instance with the discovery service."""
-
-    EnumerateServices: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesRequest,
         ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateServicesResponse,
-    ]
-    """Enumerate all services which implement a specific service interface.
-    This is useful for plugin type systems where the possible services are not known ahead of time.
-    """
-
-    ResolveService: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceRequest,
         ni.measurementlink.discovery.v1.discovery_service_pb2.ServiceLocation,
-    ]
-    """Given a description of a service, returns information that can be used to establish communication
-    with that service. If necessary, the service will be started by the discovery service if it has not
-    already been started. Activation of the service is accomplished through use of a .serviceconfig file
-    which includes information describing the service. Services that register a .serviceconfig file must
-    call RegisterService when their service is started or this call will never complete successfully when
-    the discovery service attempts to start it.
-
-    Status codes for errors:
-
-    - INVALID_ARGUMENT: provided_interfaces is empty
-    - NOT_FOUND: No service matching the resolve request was found
-    - FAILED_PRECONDITION: More than one service matching the resolve request was found
-    """
-
-    ResolveServiceWithInformation: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationRequest,
         ni.measurementlink.discovery.v1.discovery_service_pb2.ResolveServiceWithInformationResponse,
-    ]
-    """Similar to ResolveService, returns information for the service in addition to the location of the service.
-    This is useful if you want to avoid the overhead of having to call EnumerateServices to get this information as part of
-    resolution of the service. See ResolveService for additional documentation related to resolving the service.
-    """
-
-    EnumerateComputeNodes: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesRequest,
         ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateComputeNodesResponse,
-    ]
-    """Enumerate all compute nodes that have registered themselves in the current session.
-    These compute nodes are targets available for execution of services.
-    A compute node can be used as an argument to the ResolveService method to
-    get the service location for a service running on that compute node.
-    """
-
-    EnumerateActiveServices: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesRequest,
         ni.measurementlink.discovery.v1.discovery_service_pb2.EnumerateActiveServicesResponse,
-    ]
-    """Enumerate all service instances that are currently active (running).
-    This RPC is intended for diagnostic and informational purposes, such as displaying the
-    status of registered services to a user. It should not be used to obtain a service location
-    for the purpose of communicating with that service; use ResolveService or
-    ResolveServiceWithInformation for that purpose.
-
-    Unlike EnumerateServices, this RPC returns individual active service instances rather than
-    collapsing multiple registered versions into a single ServiceDescriptor entry, allowing
-    callers to see each running instance independently when multiple versions are active side by side.
-    """
+    ],
+]
 
 class DiscoveryServiceServicer(metaclass=abc.ABCMeta):
     """The service used as a registry for other services. This service can be used to discover

@@ -8,7 +8,13 @@ import collections.abc
 import grpc
 import grpc.aio
 import ni.measurements.data.v1.data_store_service_pb2
+import sys
 import typing
+
+if sys.version_info >= (3, 13):
+    import typing as typing_extensions
+else:
+    import typing_extensions
 
 _T = typing.TypeVar("_T")
 
@@ -17,17 +23,407 @@ class _MaybeAsyncIterator(collections.abc.AsyncIterator[_T], collections.abc.Ite
 class _ServicerContext(grpc.ServicerContext, grpc.aio.ServicerContext):  # type: ignore[misc, type-arg]
     ...
 
-class DataStoreServiceStub:
+GRPC_GENERATED_VERSION: str
+GRPC_VERSION: str
+_DataStoreServiceCreateTestResultType = typing_extensions.TypeVar(
+    '_DataStoreServiceCreateTestResultType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultRequest,
+        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultRequest,
+        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultRequest,
+        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultResponse,
+    ],
+)
+
+_DataStoreServiceGetTestResultType = typing_extensions.TypeVar(
+    '_DataStoreServiceGetTestResultType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetTestResultRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetTestResultRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetTestResultRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse,
+    ],
+)
+
+_DataStoreServiceQueryTestResultsType = typing_extensions.TypeVar(
+    '_DataStoreServiceQueryTestResultsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsResponse,
+    ],
+)
+
+_DataStoreServiceCreateStepType = typing_extensions.TypeVar(
+    '_DataStoreServiceCreateStepType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
+        ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
+        ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
+        ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse,
+    ],
+)
+
+_DataStoreServiceGetStepType = typing_extensions.TypeVar(
+    '_DataStoreServiceGetStepType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetStepRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetStepResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetStepRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetStepResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetStepRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetStepResponse,
+    ],
+)
+
+_DataStoreServiceQueryStepsType = typing_extensions.TypeVar(
+    '_DataStoreServiceQueryStepsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryStepsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryStepsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryStepsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryStepsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryStepsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryStepsResponse,
+    ],
+)
+
+_DataStoreServicePublishConditionType = typing_extensions.TypeVar(
+    '_DataStoreServicePublishConditionType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionResponse,
+    ],
+)
+
+_DataStoreServicePublishConditionBatchType = typing_extensions.TypeVar(
+    '_DataStoreServicePublishConditionBatchType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchResponse,
+    ],
+)
+
+_DataStoreServicePublishMeasurementType = typing_extensions.TypeVar(
+    '_DataStoreServicePublishMeasurementType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementResponse,
+    ],
+)
+
+_DataStoreServicePublishMeasurementBatchType = typing_extensions.TypeVar(
+    '_DataStoreServicePublishMeasurementBatchType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
+        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
+    ],
+)
+
+_DataStoreServiceGetMeasurementType = typing_extensions.TypeVar(
+    '_DataStoreServiceGetMeasurementType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse,
+    ],
+)
+
+_DataStoreServiceGetConditionType = typing_extensions.TypeVar(
+    '_DataStoreServiceGetConditionType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetConditionRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetConditionResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetConditionRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetConditionResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.GetConditionRequest,
+        ni.measurements.data.v1.data_store_service_pb2.GetConditionResponse,
+    ],
+)
+
+_DataStoreServiceQueryConditionsType = typing_extensions.TypeVar(
+    '_DataStoreServiceQueryConditionsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse,
+    ],
+)
+
+_DataStoreServiceQueryMeasurementsType = typing_extensions.TypeVar(
+    '_DataStoreServiceQueryMeasurementsType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
+        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse,
+    ],
+)
+
+_DataStoreServiceReadConditionValueType = typing_extensions.TypeVar(
+    '_DataStoreServiceReadConditionValueType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueRequest,
+        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueRequest,
+        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueRequest,
+        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueResponse,
+    ],
+)
+
+_DataStoreServiceReadMeasurementValueType = typing_extensions.TypeVar(
+    '_DataStoreServiceReadMeasurementValueType',
+    grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueRequest,
+        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueResponse,
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueRequest,
+        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueResponse,
+    ],
+    default=grpc.UnaryUnaryMultiCallable[
+        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueRequest,
+        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueResponse,
+    ],
+)
+
+class DataStoreServiceStub(typing.Generic[_DataStoreServiceCreateTestResultType, _DataStoreServiceGetTestResultType, _DataStoreServiceQueryTestResultsType, _DataStoreServiceCreateStepType, _DataStoreServiceGetStepType, _DataStoreServiceQueryStepsType, _DataStoreServicePublishConditionType, _DataStoreServicePublishConditionBatchType, _DataStoreServicePublishMeasurementType, _DataStoreServicePublishMeasurementBatchType, _DataStoreServiceGetMeasurementType, _DataStoreServiceGetConditionType, _DataStoreServiceQueryConditionsType, _DataStoreServiceQueryMeasurementsType, _DataStoreServiceReadConditionValueType, _DataStoreServiceReadMeasurementValueType]):
     """This service provides endpoints for the publishing of measurements.
     This includes associating measurements with the conditions associated with the measurement,
     querying for the published measurements with OData queries, and reading back these published values.
     """
 
-    def __init__(self, channel: typing.Union[grpc.Channel, grpc.aio.Channel]) -> None: ...
-    CreateTestResult: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultRequest,
-        ni.measurements.data.v1.data_store_service_pb2.CreateTestResultResponse,
-    ]
+    @typing.overload
+    def __init__(self: DataStoreServiceStub[
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.CreateTestResultRequest,
+            ni.measurements.data.v1.data_store_service_pb2.CreateTestResultResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.GetTestResultRequest,
+            ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsRequest,
+            ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
+            ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.GetStepRequest,
+            ni.measurements.data.v1.data_store_service_pb2.GetStepResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.QueryStepsRequest,
+            ni.measurements.data.v1.data_store_service_pb2.QueryStepsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.PublishConditionRequest,
+            ni.measurements.data.v1.data_store_service_pb2.PublishConditionResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchRequest,
+            ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementRequest,
+            ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
+            ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
+            ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.GetConditionRequest,
+            ni.measurements.data.v1.data_store_service_pb2.GetConditionResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
+            ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
+            ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueRequest,
+            ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueResponse,
+        ],
+        grpc.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueRequest,
+            ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueResponse,
+        ],
+    ], channel: grpc.Channel) -> None: ...
+
+    @typing.overload
+    def __init__(self: DataStoreServiceStub[
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.CreateTestResultRequest,
+            ni.measurements.data.v1.data_store_service_pb2.CreateTestResultResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.GetTestResultRequest,
+            ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsRequest,
+            ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
+            ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.GetStepRequest,
+            ni.measurements.data.v1.data_store_service_pb2.GetStepResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.QueryStepsRequest,
+            ni.measurements.data.v1.data_store_service_pb2.QueryStepsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.PublishConditionRequest,
+            ni.measurements.data.v1.data_store_service_pb2.PublishConditionResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchRequest,
+            ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementRequest,
+            ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
+            ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
+            ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.GetConditionRequest,
+            ni.measurements.data.v1.data_store_service_pb2.GetConditionResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
+            ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
+            ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueRequest,
+            ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueResponse,
+        ],
+        grpc.aio.UnaryUnaryMultiCallable[
+            ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueRequest,
+            ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueResponse,
+        ],
+    ], channel: grpc.aio.Channel) -> None: ...
+
+    CreateTestResult: _DataStoreServiceCreateTestResultType
     """Creates a test result object for publishing measurements.  Once a test result is created,
     you can publish an arbitrary number of measurements to the test result.  The measurements
     will be associated with each of the metadata types specified in the test result.  For instance,
@@ -37,230 +433,130 @@ class DataStoreServiceStub:
     metadata via the GetTestResult method.
     """
 
-    GetTestResult: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.GetTestResultRequest,
-        ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse,
-    ]
+    GetTestResult: _DataStoreServiceGetTestResultType
     """Gets the test result associated with the identifier given in the request."""
 
-    QueryTestResults: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsRequest,
-        ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsResponse,
-    ]
+    QueryTestResults: _DataStoreServiceQueryTestResultsType
     """Query for test results matching the given OData query.  For information about the OData query syntax,
     see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
 
-    CreateStep: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
-        ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse,
-    ]
+    CreateStep: _DataStoreServiceCreateStepType
     """Creates a new step in the data store.  A step is owned by a test result,
     and is a logical grouping of published measurements.  All published measurements must be associated
     with a step.
     """
 
-    GetStep: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.GetStepRequest,
-        ni.measurements.data.v1.data_store_service_pb2.GetStepResponse,
-    ]
+    GetStep: _DataStoreServiceGetStepType
     """Gets the step associated with the identifier given in the request."""
 
-    QuerySteps: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.QueryStepsRequest,
-        ni.measurements.data.v1.data_store_service_pb2.QueryStepsResponse,
-    ]
+    QuerySteps: _DataStoreServiceQueryStepsType
     """Query for steps matching the given OData query.  For information about the OData query syntax,
     see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
 
-    PublishCondition: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionResponse,
-    ]
+    PublishCondition: _DataStoreServicePublishConditionType
     """Publishes a single condition value for a test step. Conditions are contextual values
     like input voltage, temperature, or humidity present during measurement.
     """
 
-    PublishConditionBatch: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchResponse,
-    ]
+    PublishConditionBatch: _DataStoreServicePublishConditionBatchType
     """Publishes multiple condition values at once for parametric sweeps."""
 
-    PublishMeasurement: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementResponse,
-    ]
+    PublishMeasurement: _DataStoreServicePublishMeasurementType
     """Publishes a single measurement value associated with a test step."""
 
-    PublishMeasurementBatch: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
-        ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
-    ]
+    PublishMeasurementBatch: _DataStoreServicePublishMeasurementBatchType
     """Publishes multiple measurements at once for parametric sweeps."""
 
-    GetMeasurement: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
-        ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse,
-    ]
+    GetMeasurement: _DataStoreServiceGetMeasurementType
     """Gets the measurement associated with the given id."""
 
-    GetCondition: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.GetConditionRequest,
-        ni.measurements.data.v1.data_store_service_pb2.GetConditionResponse,
-    ]
+    GetCondition: _DataStoreServiceGetConditionType
     """Gets the condition associated with the given id."""
 
-    QueryConditions: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
-        ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse,
-    ]
+    QueryConditions: _DataStoreServiceQueryConditionsType
     """Queries conditions using OData query syntax.
     See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
 
-    QueryMeasurements: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
-        ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse,
-    ]
+    QueryMeasurements: _DataStoreServiceQueryMeasurementsType
     """Queries measurements using OData query syntax.
     See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
     """
 
-    ReadConditionValue: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueRequest,
-        ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueResponse,
-    ]
+    ReadConditionValue: _DataStoreServiceReadConditionValueType
     """Reads the value corresponding to the specified condition."""
 
-    ReadMeasurementValue: grpc.UnaryUnaryMultiCallable[
-        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueRequest,
-        ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueResponse,
-    ]
+    ReadMeasurementValue: _DataStoreServiceReadMeasurementValueType
     """Reads the value corresponding to the specified measurement."""
 
-class DataStoreServiceAsyncStub:
-    """This service provides endpoints for the publishing of measurements.
-    This includes associating measurements with the conditions associated with the measurement,
-    querying for the published measurements with OData queries, and reading back these published values.
-    """
-
-    CreateTestResult: grpc.aio.UnaryUnaryMultiCallable[
+DataStoreServiceAsyncStub: typing_extensions.TypeAlias = DataStoreServiceStub[
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.CreateTestResultRequest,
         ni.measurements.data.v1.data_store_service_pb2.CreateTestResultResponse,
-    ]
-    """Creates a test result object for publishing measurements.  Once a test result is created,
-    you can publish an arbitrary number of measurements to the test result.  The measurements
-    will be associated with each of the metadata types specified in the test result.  For instance,
-    if you specify an operator when creating a test result, all measurements published to the test result
-    will be associated with that operator.  The response will include the test result id,
-    which can be used to reference the test result in subsequent requests, and to get the test result
-    metadata via the GetTestResult method.
-    """
-
-    GetTestResult: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.GetTestResultRequest,
         ni.measurements.data.v1.data_store_service_pb2.GetTestResultResponse,
-    ]
-    """Gets the test result associated with the identifier given in the request."""
-
-    QueryTestResults: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsRequest,
         ni.measurements.data.v1.data_store_service_pb2.QueryTestResultsResponse,
-    ]
-    """Query for test results matching the given OData query.  For information about the OData query syntax,
-    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
-    """
-
-    CreateStep: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.CreateStepRequest,
         ni.measurements.data.v1.data_store_service_pb2.CreateStepResponse,
-    ]
-    """Creates a new step in the data store.  A step is owned by a test result,
-    and is a logical grouping of published measurements.  All published measurements must be associated
-    with a step.
-    """
-
-    GetStep: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.GetStepRequest,
         ni.measurements.data.v1.data_store_service_pb2.GetStepResponse,
-    ]
-    """Gets the step associated with the identifier given in the request."""
-
-    QuerySteps: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.QueryStepsRequest,
         ni.measurements.data.v1.data_store_service_pb2.QueryStepsResponse,
-    ]
-    """Query for steps matching the given OData query.  For information about the OData query syntax,
-    see https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
-    """
-
-    PublishCondition: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionRequest,
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionResponse,
-    ]
-    """Publishes a single condition value for a test step. Conditions are contextual values
-    like input voltage, temperature, or humidity present during measurement.
-    """
-
-    PublishConditionBatch: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchRequest,
         ni.measurements.data.v1.data_store_service_pb2.PublishConditionBatchResponse,
-    ]
-    """Publishes multiple condition values at once for parametric sweeps."""
-
-    PublishMeasurement: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementRequest,
         ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementResponse,
-    ]
-    """Publishes a single measurement value associated with a test step."""
-
-    PublishMeasurementBatch: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchRequest,
         ni.measurements.data.v1.data_store_service_pb2.PublishMeasurementBatchResponse,
-    ]
-    """Publishes multiple measurements at once for parametric sweeps."""
-
-    GetMeasurement: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.GetMeasurementRequest,
         ni.measurements.data.v1.data_store_service_pb2.GetMeasurementResponse,
-    ]
-    """Gets the measurement associated with the given id."""
-
-    GetCondition: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.GetConditionRequest,
         ni.measurements.data.v1.data_store_service_pb2.GetConditionResponse,
-    ]
-    """Gets the condition associated with the given id."""
-
-    QueryConditions: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.QueryConditionsRequest,
         ni.measurements.data.v1.data_store_service_pb2.QueryConditionsResponse,
-    ]
-    """Queries conditions using OData query syntax.
-    See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
-    """
-
-    QueryMeasurements: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsRequest,
         ni.measurements.data.v1.data_store_service_pb2.QueryMeasurementsResponse,
-    ]
-    """Queries measurements using OData query syntax.
-    See https://learn.microsoft.com/en-us/odata/concepts/queryoptions-overview.
-    """
-
-    ReadConditionValue: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueRequest,
         ni.measurements.data.v1.data_store_service_pb2.ReadConditionValueResponse,
-    ]
-    """Reads the value corresponding to the specified condition."""
-
-    ReadMeasurementValue: grpc.aio.UnaryUnaryMultiCallable[
+    ],
+    grpc.aio.UnaryUnaryMultiCallable[
         ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueRequest,
         ni.measurements.data.v1.data_store_service_pb2.ReadMeasurementValueResponse,
-    ]
-    """Reads the value corresponding to the specified measurement."""
+    ],
+]
 
 class DataStoreServiceServicer(metaclass=abc.ABCMeta):
     """This service provides endpoints for the publishing of measurements.
