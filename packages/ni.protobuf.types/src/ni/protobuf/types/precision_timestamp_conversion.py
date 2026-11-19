@@ -30,6 +30,9 @@ def hightime_datetime_to_protobuf(value: ht.datetime, /) -> PrecisionTimestamp:
 
     The hightime.datetime input will be converted to UTC as part of
     the protobuf conversion.
+
+    Raises:
+        ValueError: If the value is not timezone-aware.
     """
     value_utc = _hightime_datetime_to_utc(value)
     bt_datetime = convert_datetime(bt.DateTime, value_utc)
@@ -44,8 +47,11 @@ def hightime_datetime_from_protobuf(message: PrecisionTimestamp, /) -> ht.dateti
 
 
 def _hightime_datetime_to_utc(value: ht.datetime, /) -> ht.datetime:
-    """Convert a hightime.datetime to UTC while preserving date-specific offsets."""
+    """Convert a hightime.datetime to UTC while preserving date-specific offsets.
+
+    This method does not use astimezone() because it fails for dates before the UNIX epoch.
+    """
     offset = value.utcoffset()
-    if value.tzinfo is None or offset is None:
+    if offset is None:
         raise ValueError("value must be timezone-aware")
     return (value - offset).replace(tzinfo=dt.timezone.utc)
